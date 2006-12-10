@@ -1,0 +1,23 @@
+# Full Event content
+block HLTriggerFEVT = {
+    untracked vstring outputCommands = {
+# HLT trigger "bits"
+	"keep TriggerResults_TriggerResults_*_*"
+    }
+}
+
+# RECO content
+block HLTriggerRECO = {
+    untracked vstring outputCommands = {
+# HLT trigger "bits"
+	"keep TriggerResults_TriggerResults_*_*"
+    }
+}
+
+# AOD content
+block HLTriggerAOD = {
+    untracked vstring outputCommands = {
+# HLT trigger "bits"
+	"keep TriggerResults_TriggerResults_*_*"
+    }
+}
