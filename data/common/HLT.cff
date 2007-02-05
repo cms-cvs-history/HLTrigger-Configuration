@@ -1,0 +1,13 @@
+// Tree of HLT filter objects
+
+        module hlt = HLTMakeSummaryObjects { }
+        endpath endhlt = {hlt}
+
+
+// Want trigger table summary in log file & trigger results object
+
+        untracked PSet options = {
+                untracked bool wantSummary = true  # default is false
+                untracked bool makeTriggerResults = true 
+                vstring listOfTriggers = {"*"}
+        }

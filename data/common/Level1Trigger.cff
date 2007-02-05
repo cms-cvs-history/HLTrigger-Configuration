@@ -1,0 +1,36 @@
+//
+// Level-1 Trigger sequences:
+//
+
+//
+// from MC Truth
+//
+include "L1Trigger/L1ExtraFromMCTruthProd/data/l1extra-from-mctruth.cff"
+	replace genCandidates.verbose       = false
+	replace genCandidatesForMET.verbose = false
+sequence doL1TfromMCTruth = {l1extraGen}
+
+//
+// from MC Digis
+//
+include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
+sequence doL1TfromDigis = {l1emulator, l1extra}
+
+//
+// from online Raw (needs raw2digi unpacking etc.)
+//
+// include "??"
+// sequence doL1TfromRaw = {??}
+
+//
+// from MC Digis via Raw (needs digi2raw as well as raw2digi)
+//
+// include "??"
+// sequence doL1TfromDigisViaRaw = {??}
+
+//
+// Generic sequence
+// sequence doL1T = {doL1TfromMCTruth}
+sequence doL1T = {doL1TfromDigis}
+// sequence doL1T = {doL1TfromRaw}
+// sequence doL1T = {doL1TfromDigisViaRaw}
