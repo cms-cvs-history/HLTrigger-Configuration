@@ -1,0 +1,8 @@
+// JetMET trigger paths
+
+// set up sequences needed for file included below:
+
+    sequence l1prod = {doL1TfromMCTruth}
+    sequence recoJetMETPath = {doCaloFromDigis , (doHLTJetReco & doHLTMETReco)}
+
+include "HLTrigger/JetMET/data/JetMET_hlt.cff"

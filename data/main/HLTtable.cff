@@ -1,0 +1,61 @@
+//
+// Common HLT-specific sequences:
+//
+include "HLTrigger/Configuration/data/common/Level1Trigger.cff"
+include "HLTrigger/Configuration/data/common/CaloTowers.cff"
+include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
+//
+
+//
+// JetMET triggers
+//   setup sequences required by JetMET trigger paths
+sequence doL1TJetMET = {doL1TfromMCTruth}
+sequence doHLTJets   = {doCaloFromDigis, doHLTJetReco}
+sequence doHLTMET    = {doCaloFromDigis, doHLTMETReco}
+//   the JetMET trigger paths:
+include "HLTrigger/Configuration/data/main/JetMET.cff"
+//
+
+//
+// Electron Photon triggers
+//   setup sequences required by Egamma trigger paths
+// sequence ?
+// sequence ?
+//   the Egamma trigger paths
+// include "?"
+// include "?"
+//
+
+//
+// Muon triggers
+//   setup sequences required by Muon trigger paths
+// sequence ?
+// sequence ?
+//   the Muon trigger paths
+include "HLTrigger/Configuration/data/main/Muon.cff"
+//
+
+//
+// Tau triggers
+//   setup sequences required by Tau trigger paths
+// sequence ?
+// sequence ?
+//   the Tau trigger paths
+// include "?"
+// include "?"
+//
+
+//
+// Cross triggers
+//   setup sequences required by Cross trigger paths
+// sequence ?
+// sequence ?
+//   the Cross trigger paths
+// include "?"
+// include "?"
+//
+
+//
+// HLT book keeping
+//
+include "HLTrigger/Configuration/data/common/HLT.cff"

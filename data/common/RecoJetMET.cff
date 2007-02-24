@@ -2,10 +2,10 @@
 // Sequences for Jet & MET reconstruction
 //
 // Jet algorithm for jets in the HLT
-include "RecoJets/JetProducers/data/CaloJetIcone5.cfi"
+include "RecoJets/Configuration/data/RecoJets.cff"
 //
 // MET reco sequence for HLT paths
-include "RecoMET/METProducers/data/CaloMET.cfi"
+include "RecoMET/Configuration/data/RecoMET.cff"
 
 sequence doHLTJetReco = {iterativeCone5CaloJets}
 sequence doHLTMETReco = {met}

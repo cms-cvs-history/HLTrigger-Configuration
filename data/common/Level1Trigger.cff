@@ -5,9 +5,26 @@
 //
 // from MC Truth
 //
-include "L1Trigger/L1ExtraFromMCTruthProd/data/l1extra-from-mctruth.cff"
-	replace genCandidates.verbose       = false
-	replace genCandidatesForMET.verbose = false
+// Werner needs to update the cff file:
+//   include "L1Trigger/L1ExtraFromMCTruthProd/data/l1extra-from-mctruth.cff"
+// until then:
+
+module l1extramctruth = L1ExtraFromMCTruthProd
+//  replace l1extramctruth.jetSource = iterativeCone5GenJets
+    replace l1extramctruth.singleJet140Prescale = 1
+    replace l1extramctruth.singleJet60Prescale = 1
+    replace l1extramctruth.singleJet20Prescale = 1
+    replace l1extramctruth.minBiasPrescale = 1
+
+
+include "RecoJets/Configuration/data/RecoJets.cff"
+
+module myParticleCandidates = genParticleCandidates from "PhysicsTools/HepMCCandAlgos/data/genParticleCandidates.cfi"
+replace genParticlesAllStable.src = "myParticleCandidates"
+
+sequence l1extraGen = { myParticleCandidates, genParticlesAllStable, midPointCone5GenJets, l1extramctruth }
+// end
+
 sequence doL1TfromMCTruth = {l1extraGen}
 
 //
