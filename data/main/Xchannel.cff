@@ -1,0 +1,11 @@
+// Xchannel trigger paths
+
+
+// muon+bjet
+// include "HLTrigger/xchannel/data/PathMuB.cff"
+// path HLTXMuonBjet = { MuB }
+
+
+// electron+muon
+// include "HLTrigger/xchannel/data/electronmuon.cff"
+// path HLTXElectronMuon = {emuonsequence}

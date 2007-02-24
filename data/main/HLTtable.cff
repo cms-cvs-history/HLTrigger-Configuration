@@ -35,13 +35,12 @@ include "HLTrigger/Configuration/data/main/Muon.cff"
 
 
 //
-// Tau triggers
-//   setup sequences required by Tau trigger paths
+// B and Tau triggers
+//   setup sequences required by B and Tau trigger paths
 // sequence ?
 // sequence ?
-//   the Tau trigger paths
-// include "?"
-// include "?"
+//   the B and Tau trigger paths
+include "HLTrigger/Configuration/data/main/BTau.cff"
 
 
 //
@@ -50,8 +49,7 @@ include "HLTrigger/Configuration/data/main/Muon.cff"
 // sequence ?
 // sequence ?
 //   the Cross trigger paths
-// include "?"
-// include "?"
+include "HLTrigger/Configuration/data/main/Xchannel.cff"
 
 
 //
