@@ -4,7 +4,7 @@
 include "HLTrigger/Configuration/data/common/Level1Trigger.cff"
 include "HLTrigger/Configuration/data/common/CaloTowers.cff"
 include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
-//
+
 
 //
 // JetMET triggers
@@ -14,7 +14,7 @@ sequence doHLTJets   = {doCaloFromDigis, doHLTJetReco}
 sequence doHLTMET    = {doCaloFromDigis, doHLTMETReco}
 //   the JetMET trigger paths:
 include "HLTrigger/Configuration/data/main/JetMET.cff"
-//
+
 
 //
 // Electron Photon triggers
@@ -22,9 +22,8 @@ include "HLTrigger/Configuration/data/main/JetMET.cff"
 // sequence ?
 // sequence ?
 //   the Egamma trigger paths
-// include "?"
-// include "?"
-//
+include "HLTrigger/Configuration/data/main/Egamma.cff"
+
 
 //
 // Muon triggers
@@ -33,7 +32,7 @@ include "HLTrigger/Configuration/data/main/JetMET.cff"
 // sequence ?
 //   the Muon trigger paths
 include "HLTrigger/Configuration/data/main/Muon.cff"
-//
+
 
 //
 // Tau triggers
@@ -43,7 +42,7 @@ include "HLTrigger/Configuration/data/main/Muon.cff"
 //   the Tau trigger paths
 // include "?"
 // include "?"
-//
+
 
 //
 // Cross triggers
@@ -53,7 +52,7 @@ include "HLTrigger/Configuration/data/main/Muon.cff"
 //   the Cross trigger paths
 // include "?"
 // include "?"
-//
+
 
 //
 // HLT book keeping
