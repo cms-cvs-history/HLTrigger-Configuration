@@ -1,5 +1,8 @@
 // Muon trigger paths
 
+
+// Main paths
+
 include "HLTrigger/Muon/data/PathSingleMu_2x1033_Iso.cff"
 path HLT1MuonIso = { singleMuIso }
 
@@ -13,6 +16,10 @@ include "HLTrigger/Muon/data/PathDiMuon_2x1033_NoIso.cff"
 path HLT2MuonNonIso = { diMuonNoIso }
 
 
+// New paths - cuts not yet tuned - thus commented out!
+
+/*
+
 include "HLTrigger/Muon/data/PathJpsimumu.cff"
 path HLT2MuonJPsi = { jpsiMM }
 
@@ -22,10 +29,10 @@ path HLT2MuonUpsilon = { upsilonMM }
 include "HLTrigger/Muon/data/PathZmumu.cff"
 path HLT2MuonZ = { zMM }
 
-
-// include "HLTrigger/Muon/data/PathMultiMuon_2x1033_NoIso.cff"
-// path HLTNMuonNonIso = { multiMuonNoIso }
-
+include "HLTrigger/Muon/data/PathMultiMuon_2x1033_NoIso.cff"
+path HLTNMuonNonIso = { multiMuonNoIso }
 
 include "HLTrigger/Muon/data/PathSingleMu_Startup.cff"
 path HLT1MuonStartup = { singleMuStartup }
+
+*/
