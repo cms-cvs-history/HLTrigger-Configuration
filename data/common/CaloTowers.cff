@@ -10,7 +10,7 @@
 // from MC Digis
 //
 include "RecoLocalCalo/Configuration/data/RecoLocalCalo.cff"
-include "RecoJets/Configuration/data/RecoJets.cff"
+include "RecoJets/Configuration/data/CaloTowersRec.cff"
 sequence doCaloFromDigis = {calolocalreco, caloTowersRec}
 
 //
