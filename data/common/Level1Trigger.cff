@@ -17,7 +17,7 @@ module l1extramctruth = L1ExtraFromMCTruthProd
     replace l1extramctruth.minBiasPrescale = 1
 
 
-include "RecoJets/Configuration/data/RecoJets.cff"
+include "RecoJets/Configuration/data/RecoGenJets.cff"
 
 module myParticleCandidates = genParticleCandidates from "PhysicsTools/HepMCCandAlgos/data/genParticleCandidates.cfi"
 replace genParticlesAllStable.src = "myParticleCandidates"
