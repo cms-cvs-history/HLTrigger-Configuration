@@ -2,10 +2,14 @@
 
 
 // B trigger paths
+
+// common
 include "HLTrigger/btau/data/jetTag/bHLTjets.cff"
 include "HLTrigger/btau/data/jetTag/bHLTpixel.cff"
 include "HLTrigger/btau/data/jetTag/regionalTracking.cff"
 include "HLTrigger/btau/data/jetTag/bHLTassJetTrk.cff"
+
+// tracking b-tag
 include "HLTrigger/btau/data/jetTag/bHLTlifetime_tag.cff"
 include "HLTrigger/btau/data/jetTag/L2multiJet.cff"
 include "HLTrigger/btau/data/jetTag/L2bTrkCounting.cff"
@@ -26,6 +30,28 @@ path HLTB3Jet = {(preL2bReco, hltL2b3jet) &
 path HLTB4Jet = {(preL2bReco, hltL2b4jet) &
                  (preL25bReco, hltL25b) &
                  (preL3bReco, hltL3b)}
+
+// muon b-tag
+include "HLTrigger/btau/data/jetTag/bHLTjetmu.cff"
+include "HLTrigger/btau/data/jetTag/L2multiJet.cff"
+include "HLTrigger/btau/data/jetTag/L2bSoftmu.cff"
+include "HLTrigger/btau/data/jetTag/L3bSoftmu.cff"
+
+path HLTB1JetMu = {(preL2bRecoMu, hltL2b1jet) &
+                   (preL25bRecoMu, hltL25bmu) &
+                   (preL3bRecoMu, hltL3bmu)}
+
+path HLTB2JetMu = {(preL2bRecoMu, hltL2b2jet) &
+                   (preL25bRecoMu, hltL25bmu) &
+                   (preL3bRecoMu, hltL3bmu)}
+
+path HLTB3JetMu = {(preL2bRecoMu, hltL2b3jet) &
+                   (preL25bRecoMu, hltL25bmu) &
+                   (preL3bRecoMu, hltL3bmu)}
+
+path HLTB4JetMu = {(preL2bRecoMu, hltL2b4jet) &
+                   (preL25bRecoMu, hltL25bmu) &
+                   (preL3bRecoMu, hltL3bmu)}
 
 
 // Tau trigger paths
