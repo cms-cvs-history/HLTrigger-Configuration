@@ -31,7 +31,8 @@ path HLTB4Jet = {(preL2bReco, hltL2b4jet) &
                  (preL25bReco, hltL25b) &
                  (preL3bReco, hltL3b)}
 
-// muon b-tag
+/*
+// muon b-tag - NOT yet ready!
 include "HLTrigger/btau/data/jetTag/bHLTjetmu.cff"
 include "HLTrigger/btau/data/jetTag/L2multiJet.cff"
 include "HLTrigger/btau/data/jetTag/L2bSoftmu.cff"
@@ -52,6 +53,7 @@ path HLTB3JetMu = {(preL2bRecoMu, hltL2b3jet) &
 path HLTB4JetMu = {(preL2bRecoMu, hltL2b4jet) &
                    (preL25bRecoMu, hltL25bmu) &
                    (preL3bRecoMu, hltL3bmu)}
+*/
 
 
 // Tau trigger paths
