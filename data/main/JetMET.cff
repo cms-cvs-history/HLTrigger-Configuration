@@ -3,7 +3,7 @@
 // set up sequences needed for file included below:
 
     sequence l1prod = {doL1TfromDigis}
-    sequence recoJetMETPath = {doCaloFromDigis , (doHLTJetReco & doHLTMETReco)}
+    sequence recoJetMETPath = {doCaloFromDigis & doHLTJetReco & doHLTMETReco}
 
 include "HLTrigger/JetMET/data/l1seeds_fromGCT.cff"
 
