@@ -1,11 +1,23 @@
 // Xchannel trigger paths
 
+/*
+// electron+jet
+include "HLTrigger/xchannel/data/PathElectronPlusJet.cff"
+sequence pdigireco = {doLocalTrackerFromDigis & doHLTJetReco}
+path HLTXElectron1Jet = { HLTEplus1jet }
+path HLTXElectron2Jet = { HLTEplus2jet }
+path HLTXElectron3Jet = { HLTEplus3jet }
+path HLTXElectron4Jet = { HLTEplus4jet }
+*/
 
+/*
 // muon+bjet
-// include "HLTrigger/xchannel/data/PathMuB.cff"
-// path HLTXMuonBjet = { MuB }
+include "HLTrigger/xchannel/data/PathMuB.cff"
+path HLTXMuonBJet = { MuB }
+*/
 
-
+/*
 // electron+muon
-// include "HLTrigger/xchannel/data/electronmuon.cff"
-// path HLTXElectronMuon = {emuonsequence}
+include "HLTrigger/xchannel/data/electronmuon.cff"
+path HLTXElectronMuon = {emuonsequence}
+*/
