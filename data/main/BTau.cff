@@ -3,17 +3,8 @@
 
 // B trigger paths
 
-// common
-include "HLTrigger/btau/data/jetTag/bHLTjets.cff"
-include "HLTrigger/btau/data/jetTag/bHLTpixel.cff"
-include "HLTrigger/btau/data/jetTag/regionalTracking.cff"
-include "HLTrigger/btau/data/jetTag/bHLTassJetTrk.cff"
-
-// tracking b-tag
-include "HLTrigger/btau/data/jetTag/bHLTlifetime_tag.cff"
-include "HLTrigger/btau/data/jetTag/L2multiJet.cff"
-include "HLTrigger/btau/data/jetTag/L2bTrkCounting.cff"
-include "HLTrigger/btau/data/jetTag/L3bTrkCounting.cff"
+// tracking-based b-tag
+include "HLTrigger/btau/data/jetTag/bHLT_LifetimeTrigger.cff"
 
 path HLTB1Jet = {(preL2bReco, hltL2b1jet) &
                  (preL25bReco, hltL25b) &
@@ -31,11 +22,8 @@ path HLTB4Jet = {(preL2bReco, hltL2b4jet) &
                  (preL25bReco, hltL25b) &
                  (preL3bReco, hltL3b)}
 
-// muon b-tag - NOT yet ready!
-include "HLTrigger/btau/data/jetTag/bHLTjetmu.cff"
-include "HLTrigger/btau/data/jetTag/L2multiJet.cff"
-include "HLTrigger/btau/data/jetTag/L2bSoftmu.cff"
-include "HLTrigger/btau/data/jetTag/L3bSoftmu.cff"
+// muon based b-tag
+include "HLTrigger/btau/data/jetTag/bHLT_bSoftmuTrigger.cff"
 
 path HLTB1JetMu = {(preL2bRecoMu, hltL2b1jet) &
                    (preL25bRecoMu, hltL25bmu) &
