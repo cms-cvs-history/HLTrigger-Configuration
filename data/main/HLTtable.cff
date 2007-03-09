@@ -53,6 +53,15 @@ include "HLTrigger/Configuration/data/main/Xchannel.cff"
 
 
 //
+// Special triggers
+//   setup sequences required by Special trigger paths
+// sequence ?
+// sequence ?
+//   the Special trigger paths
+include "HLTrigger/Configuration/data/main/Special.cff"
+
+
+//
 // HLT book keeping
 //
 include "HLTrigger/Configuration/data/common/HLT.cff"
