@@ -9,6 +9,11 @@
 	module l1tTR = l1TrigReport from "HLTrigger/HLTanalyzers/data/l1TrigReport.cfi"
 
 //
+// HL Trigger Report (log file)
+
+	module hltTR = hlTrigReport from "HLTrigger/HLTanalyzers/data/hlTrigReport.cfi"
+
+//
 // Want HLT trigger table summary in log file & trigger results object
 
 	untracked PSet options = {
@@ -20,4 +25,4 @@
 //
 // Put these modules into a common endpath
 
-	endpath endl1hlt = {l1tTR,hltMSO}
+	endpath endl1hlt = {l1tTR & hltTR & hltMSO}
