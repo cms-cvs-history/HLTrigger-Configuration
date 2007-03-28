@@ -1,13 +1,23 @@
+//
 // Tree of HLT filter objects
 
-        module hlt = HLTMakeSummaryObjects { }
-        endpath endhlt = {hlt}
+	module hltMSO = HLTMakeSummaryObjects { }
 
+//
+// L1 Trigger Report (log file)
 
-// Want trigger table summary in log file & trigger results object
+	module l1tTR = l1TrigReport from "HLTrigger/HLTanalyzers/data/l1TrigReport.cfi"
 
-        untracked PSet options = {
-                untracked bool wantSummary = true  # default is false
-                untracked bool makeTriggerResults = true 
-                vstring listOfTriggers = {"*"}
-        }
+//
+// Want HLT trigger table summary in log file & trigger results object
+
+	untracked PSet options = {
+		untracked bool wantSummary = true  # default is false
+		untracked bool makeTriggerResults = true 
+		vstring listOfTriggers = {"*"}
+	}
+
+//
+// Put these modules into a common endpath
+
+	endpath endl1hlt = {l1tTR,hltMSO}
