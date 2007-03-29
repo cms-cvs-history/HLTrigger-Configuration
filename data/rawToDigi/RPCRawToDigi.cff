@@ -1,0 +1,17 @@
+#
+# David Lange, LLNL
+# February 26, 2007
+#
+# Definition of RPCRawToDigi sequence
+#
+
+#to be true raw to digi sequence -- meanwhile prescaler placeholder
+module  rpcRTDPlaceholder = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
+replace rpcRTDPlaceholder.prescaleFactor = 1
+
+include "EventFilter/Configuration/data/DigiToRaw.cff"
+
+ sequence RPCRawToDigi = {DigiToRaw, rpcRTDPlaceholder}
+
+
+

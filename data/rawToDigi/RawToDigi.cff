@@ -1,0 +1,12 @@
+
+include "EventFilter/Configuration/data/CSCRawToDigi.cff"
+include "EventFilter/Configuration/data/CSCTFRawToDigi.cff"
+include "EventFilter/Configuration/data/DTRawToDigi.cff"
+include "EventFilter/Configuration/data/RPCRawToDigi.cff"
+
+include "EventFilter/Configuration/data/EcalRawToDigi.cff"
+include "EventFilter/Configuration/data/HcalRawToDigi.cff"
+
+include "EventFilter/Configuration/data/SiPixelRawToDigi.cff"
+include "EventFilter/Configuration/data/SiStripRawToDigi.cff"
+

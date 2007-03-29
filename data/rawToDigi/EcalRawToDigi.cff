@@ -1,0 +1,17 @@
+#
+# David Lange, LLNL
+# February 26, 2007
+#
+# Definition of EcalRawToDigi sequence
+#
+
+#to be true raw to digi sequence -- meanwhile prescaler placeholder
+module  ecalRTDPlaceholder = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
+replace ecalRTDPlaceholder.prescaleFactor = 1
+
+include "EventFilter/Configuration/data/DigiToRaw.cff"
+
+sequence EcalRawToDigi = {DigiToRaw, ecalRTDPlaceholder}
+
+
+

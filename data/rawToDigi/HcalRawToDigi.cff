@@ -1,0 +1,17 @@
+#
+# David Lange, LLNL
+# February 26, 2007
+#
+# Definition of HcalRawToDigi sequence
+#
+
+#to be true raw to digi sequence -- meanwhile prescaler placeholder
+module  hcalRTDPlaceholder = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
+replace hcalRTDPlaceholder.prescaleFactor = 1
+
+include "EventFilter/Configuration/data/DigiToRaw.cff"
+
+sequence HcalRawToDigi = {DigiToRaw, hcalRTDPlaceholder}
+
+
+
