@@ -7,5 +7,11 @@ include "RecoJets/Configuration/data/RecoJets.cff"
 // MET reco sequence for HLT paths
 include "RecoMET/Configuration/data/RecoMET.cff"
 
+// HT reco sequence for HLT paths
+include "RecoMET/Configuration/data/RecoHTMET.cff"
+replace htMet.src = "iterativeCone5CaloJets"
+
+
 sequence doHLTJetReco = {iterativeCone5CaloJets}
 sequence doHLTMETReco = {met}
+sequence doHLTHTReco = {htMet}

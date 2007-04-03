@@ -12,6 +12,7 @@ include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
 sequence doL1TJetMET = {doL1TfromMCTruth}
 sequence doHLTJets   = {doCaloFromDigis, doHLTJetReco}
 sequence doHLTMET    = {doCaloFromDigis, doHLTMETReco}
+sequence doHLTHT    = {doCaloFromDigis, doHLTHTReco}
 //   the JetMET trigger paths:
 include "HLTrigger/Configuration/data/main/JetMET.cff"
 
