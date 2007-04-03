@@ -19,6 +19,16 @@ path HLTXElectron4Jet = { HLTEplus4jet }
 */
 
 
+// muon+jet
+/*
+include "HLTrigger/xchannel/data/PathMuJets.cff"
+path HLTXMuon1Jet = { HLTMu1Jet }
+path HLTXMuon2Jet = { HLTMu2Jet }
+path HLTXMuon3Jet = { HLTMu3Jet }
+path HLTXMuon4Jet = { HLTMu4Jet }
+*/
+
+
 // electron+muon
 /*
 include "HLTrigger/xchannel/data/electronmuon.cff"

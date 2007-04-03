@@ -42,6 +42,11 @@ path HLTB4JetMu = {(preL2bRecoMu, hltL2b4jet) &
                    (preL3bRecoMu, hltL3bmu)}
 
 
+// Displaced mumu trigger
+include "HLTrigger/btau/data/displacedmumu/PathBToJpsiToMumuWithL2.cff"
+path HLTBToJPsiToMuMu = {btoJpsitoMumu}
+
+
 // Tau trigger paths
 include "HLTrigger/btau/data/tau/TauHLT.cff"
 path HLT1Tau     = {doL1TfromDigis & singleTauL1HLT}
