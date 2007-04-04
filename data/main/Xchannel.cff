@@ -2,10 +2,11 @@
 
 
 // muon+bjet
-/*
 include "HLTrigger/xchannel/data/PathMuB.cff"
+include "HLTrigger/xchannel/data/PathMuBsoftMu.cff"
 path HLTXMuonBJet = { MuB }
-*/
+path HLTXMuonBJetSoftMuon = { MuBsmu }
+
 
 
 // electron+jet
