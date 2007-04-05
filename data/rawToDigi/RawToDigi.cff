@@ -1,12 +1,10 @@
 
-include "EventFilter/Configuration/data/CSCRawToDigi.cff"
-include "EventFilter/Configuration/data/CSCTFRawToDigi.cff"
-include "EventFilter/Configuration/data/DTRawToDigi.cff"
-include "EventFilter/Configuration/data/RPCRawToDigi.cff"
+include "HLTrigger/Configuration/data/rawToDigi/SiPixelRawToDigi.cff"
+include "HLTrigger/Configuration/data/rawToDigi/SiStripRawToDigi.cff"
 
-include "EventFilter/Configuration/data/EcalRawToDigi.cff"
-include "EventFilter/Configuration/data/HcalRawToDigi.cff"
+include "HLTrigger/Configuration/data/rawToDigi/EcalRawToDigi.cff"
+include "HLTrigger/Configuration/data/rawToDigi/HcalRawToDigi.cff"
 
-include "EventFilter/Configuration/data/SiPixelRawToDigi.cff"
-include "EventFilter/Configuration/data/SiStripRawToDigi.cff"
-
+include "HLTrigger/Configuration/data/rawToDigi/CSCRawToDigi.cff"
+include "HLTrigger/Configuration/data/rawToDigi/DTRawToDigi.cff"
+include "HLTrigger/Configuration/data/rawToDigi/RPCRawToDigi.cff"

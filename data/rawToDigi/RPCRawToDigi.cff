@@ -9,9 +9,9 @@
 module  rpcRTDPlaceholder = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
 replace rpcRTDPlaceholder.prescaleFactor = 1
 
-include "EventFilter/Configuration/data/DigiToRaw.cff"
+include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
 
- sequence RPCRawToDigi = {DigiToRaw, rpcRTDPlaceholder}
+sequence RPCRawToDigi = {DigiToRaw, rpcRTDPlaceholder}
 
 
 

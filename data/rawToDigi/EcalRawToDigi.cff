@@ -9,7 +9,7 @@
 module  ecalRTDPlaceholder = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
 replace ecalRTDPlaceholder.prescaleFactor = 1
 
-include "EventFilter/Configuration/data/DigiToRaw.cff"
+include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
 
 sequence EcalRawToDigi = {DigiToRaw, ecalRTDPlaceholder}
 

@@ -1,35 +1,40 @@
-#
 # David Lange, LLNL 
 # February 26, 2007
 #
 # Definition of DigiToRaw sequence
 #
+# The DigiToRaw outputs from each subsystem are assembled into one collection
+# (as is the case for data) to be read later by each subsystem's RawToDigi module.  
 
-# Pixel DigiToRaw conversion
-#  include "EventFilter/SiPixelRawToDigi/data/SiPixelDigiToRaw.cfi"
+   #----------------------------------#
+   #--- Pixel DigiToRaw conversion ---#
+   #----------------------------------#
 
-# Strip DigiToRaw conversion
-#  include "EventFilter/SiStriPRawToDigi/data/DigiToRaw.cfi"
+   #------------------------------------#
+   #--- Tracker DigiToRaw conversion ---#
+   #------------------------------------#
 
-# ECAL
+   #---------------------------------#
+   #--- ECAL DigiToRaw conversion ---#
+   #---------------------------------#
 
-# HCAL
+   #---------------------------------#
+   #--- HCAL DigiToRaw conversion ---#
+   #---------------------------------#
 
-# DT conversion
+   #--------------------------------#
+   #--- CSC DigiToRaw conversion ---#
+   #--------------------------------#
 
-# RPC
+   #-------------------------------#
+   #--- DT DigiToRaw conversion ---#
+   #-------------------------------#
 
-# CSC
-
-# CSCTF
-
-# Gct
-
-# etc, etc
- 
-#
-
-# Collect all this together
-module rawDataCollector = RawDataCollectorModule {}
+   #--------------------------------#
+   #--- RPC DigiToRaw conversion ---#
+   #--------------------------------#
   
-sequence DigiToRaw = {rawDataCollector}
+   #--- Collect everything together ---#
+   module rawDataCollector = RawDataCollectorModule {}
+  
+   sequence DigiToRaw = {rawDataCollector}

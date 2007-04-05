@@ -9,7 +9,7 @@
 module  siStripRTDPlaceholder = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
 replace siStripRTDPlaceholder.prescaleFactor = 1
 
-include "EventFilter/Configuration/data/DigiToRaw.cff"
+include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
 
 sequence SiStripRawToDigi = {DigiToRaw, siStripRTDPlaceholder}
 

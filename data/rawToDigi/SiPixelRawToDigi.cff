@@ -9,7 +9,7 @@
 module  siPixelRTDPlaceholder = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
 replace siPixelRTDPlaceholder.prescaleFactor = 1
 
-include "EventFilter/Configuration/data/DigiToRaw.cff"
+include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
 
 sequence SiPixelRawToDigi = {DigiToRaw, siPixelRTDPlaceholder}
 
