@@ -12,8 +12,8 @@
 include "RecoLocalCalo/Configuration/data/RecoLocalCalo.cff"
 include "RecoJets/Configuration/data/CaloTowersRec.cff"
 //
-include "HLTrigger/Configuration/data/common/RecoLocalCaloZS.cff"
-include "HLTrigger/Configuration/data/common/CaloTowersRecZS.cff"
+// include "HLTrigger/Configuration/data/common/RecoLocalCaloZS.cff"
+// include "HLTrigger/Configuration/data/common/CaloTowersRecZS.cff"
 //
 sequence doCaloFromDigis = {calolocalreco, caloTowersRec}
 // sequence doCaloFromDigis = {calolocalrecoZS, caloTowersRecZS}
