@@ -3,8 +3,7 @@
 //
 include "HLTrigger/Configuration/data/common/Level1Trigger.cff"
 include "HLTrigger/Configuration/data/common/CaloTowers.cff"
-// include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
-include "HLTrigger/Configuration/data/common/RecoJetMETCor.cff"
+include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
 
 
 //
