@@ -10,13 +10,9 @@
 // from MC Digis
 //
 include "RecoLocalCalo/Configuration/data/RecoLocalCalo.cff"
+// include "RecoLocalCalo/Configuration/data/RecoLocalCalo_hcalZS.cff"
 include "RecoJets/Configuration/data/CaloTowersRec.cff"
-//
-// include "HLTrigger/Configuration/data/common/RecoLocalCaloZS.cff"
-// include "HLTrigger/Configuration/data/common/CaloTowersRecZS.cff"
-//
 sequence doCaloFromDigis = {calolocalreco, caloTowersRec}
-// sequence doCaloFromDigis = {calolocalrecoZS, caloTowersRecZS}
 
 //
 // from online Raw (needs raw2digi unpacking etc.)
