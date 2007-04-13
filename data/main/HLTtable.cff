@@ -3,13 +3,14 @@
 //
 include "HLTrigger/Configuration/data/common/Level1Trigger.cff"
 include "HLTrigger/Configuration/data/common/CaloTowers.cff"
-include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
+// include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
+include "HLTrigger/Configuration/data/common/RecoJetMETCor.cff"
 
 
 //
 // JetMET triggers
 //   setup sequences required by JetMET trigger paths
-sequence doL1TJetMET = {doL1TfromMCTruth}
+// sequence doL1TJetMET = {doL1TfromMCTruth}
 sequence doHLTJets   = {doCaloFromDigis, doHLTJetReco}
 sequence doHLTMET    = {doCaloFromDigis, doHLTMETReco}
 sequence doHLTHT    = {doCaloFromDigis, doHLTHTReco}

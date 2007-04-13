@@ -7,14 +7,17 @@ include "RecoJets/Configuration/data/RecoJets.cff"
 // MET reco sequence for HLT paths
 include "RecoMET/Configuration/data/RecoMET.cff"
 //
+// setup the sequences for the Jet and MET corrections
+include "JetMETCorrections/Modules/data/JetMETCorrections.cff"
+//
 // HT reco sequence for HLT paths
 include "RecoMET/Configuration/data/RecoHTMET.cff"
 
-replace htMet.src = "iterativeCone5CaloJets"
+replace htMet.src = "MCJetCorJetIcone5"
 
-replace hlt1CaloJetDefaults.inputTag = iterativeCone5CaloJets
+replace hlt1CaloJetDefaults.inputTag = MCJetCorJetIcone5
 
 //
-sequence doHLTJetReco = {iterativeCone5CaloJets}
+sequence doHLTJetReco = {iterativeCone5CaloJets & MCJetCorJetIcone5}
 sequence doHLTMETReco = {met}
 sequence doHLTHTReco = {htMet}
