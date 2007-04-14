@@ -7,6 +7,9 @@ block HLTriggerFEVT = {
 	"keep recoHLTFilterObjectBase_*_*_*",
 	"keep recoHLTFilterObject_*_*_*",
 	"keep recoHLTFilterObjectWithRefs_*_*_*",
+# Timing / Performance
+	"keep edmEventTime_*_*_*",
+	"keep HLTPerformanceInfo_*_*_*",
 # HLT trigger "bits" - hardwired EDProduct!
 	"keep edmTriggerResults_*_*_*"
     }
@@ -21,6 +24,9 @@ block HLTriggerRECO = {
 	"keep recoHLTFilterObjectBase_*_*_*",
 	"keep recoHLTFilterObject_*_*_*",
 	"keep recoHLTFilterObjectWithRefs_*_*_*",
+# Timing / Performance
+	"keep edmEventTime_*_*_*",
+	"keep HLTPerformanceInfo_*_*_*",
 # HLT trigger "bits" - hardwired EDProduct!
 	"keep edmTriggerResults_*_*_*"
     }
@@ -35,6 +41,9 @@ block HLTriggerAOD = {
 	"keep recoHLTFilterObjectBase_*_*_*",
 	"keep recoHLTFilterObject_*_*_*",
 //	"keep recoHLTFilterObjectWithRefs_*_*_*",
+# Timing / Performance
+	"keep edmEventTime_*_*_*",
+	"keep HLTPerformanceInfo_*_*_*",
 # HLT trigger "bits" - hardwired EDProduct!
 	"keep edmTriggerResults_*_*_*"
     }
