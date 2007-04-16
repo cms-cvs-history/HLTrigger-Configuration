@@ -15,6 +15,7 @@ include "RecoMET/Configuration/data/RecoHTMET.cff"
 
 replace htMet.src = "MCJetCorJetIcone5"
 
+include "HLTrigger/HLTexample/data/hlt1CaloJetDefaults.cff"
 replace hlt1CaloJetDefaults.inputTag = MCJetCorJetIcone5
 
 //
