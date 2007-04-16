@@ -1,7 +1,12 @@
 // Xchannel trigger paths
 
 
-// muon+bjet
+// electron + b-jet
+include "HLTrigger/xchannel/data/PathElectronB.cff"
+path HLTXElectronBJet = { ElectronB }
+
+
+// muon + b-jet
 include "HLTrigger/xchannel/data/PathMuB.cff"
 include "HLTrigger/xchannel/data/PathMuBsoftMu.cff"
 path HLTXMuonBJet = { MuB }
