@@ -5,13 +5,7 @@
 # Definition of DTRawToDigi sequence
 #
 
-#to be true raw to digi sequence -- meanwhile prescaler placeholder
-module  dtRTDPlaceholder = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-replace dtRTDPlaceholder.prescaleFactor = 1
-
-include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
-
-sequence DTRawToDigi = { DigiToRaw, dtRTDPlaceholder }
-
-
+# Someday true raw to digi sequence -- meanwhile hltGetData
+include "HLTrigger/HLTanalyzers/data/hltGetData.cfi"
+sequence DTRawToDigi = { hltGetData }
 

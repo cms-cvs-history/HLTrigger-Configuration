@@ -3,6 +3,7 @@ include "HLTrigger/Configuration/data/rawToDigi/SiPixelRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/SiStripRawToDigi.cff"
 
 include "HLTrigger/Configuration/data/rawToDigi/EcalRawToDigi.cff"
+include "HLTrigger/Configuration/data/rawToDigi/EcalESRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/HcalRawToDigi.cff"
 
 include "HLTrigger/Configuration/data/rawToDigi/CSCRawToDigi.cff"

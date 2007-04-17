@@ -5,13 +5,11 @@
 # Definition of SiPixelRawToDigi sequence
 #
 
-#to be true raw to digi sequence -- meanwhile prescaler placeholder
-module  siPixelRTDPlaceholder = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-replace siPixelRTDPlaceholder.prescaleFactor = 1
-
 include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
+include "EventFilter/SiPixelRawToDigi/data/SiPixelRawToDigi.cfi"
+replace siPixelDigis.InputLabel = "rawDataCollector"
 
-sequence SiPixelRawToDigi = {DigiToRaw, siPixelRTDPlaceholder}
+sequence SiPixelRawToDigi = { DigiToRaw, siPixelDigis }
 
 
 

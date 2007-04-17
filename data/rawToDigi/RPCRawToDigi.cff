@@ -5,13 +5,12 @@
 # Definition of RPCRawToDigi sequence
 #
 
-#to be true raw to digi sequence -- meanwhile prescaler placeholder
-module  rpcRTDPlaceholder = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-replace rpcRTDPlaceholder.prescaleFactor = 1
+# Someday true raw to digi sequence -- meanwhile hltGetData
+# include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
+# module rpcunpacker = RPCUnpackingModule {
+#    untracked InputTag InputLabel = rawDataCollector
+# }
+# sequence RPCRawToDigi = {DigiToRaw, rpcunpacker}
 
-include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
-
-sequence RPCRawToDigi = {DigiToRaw, rpcRTDPlaceholder}
-
-
-
+include "HLTrigger/HLTanalyzers/data/hltGetData.cfi" 
+sequence RPCRawToDigi = { hltGetData }

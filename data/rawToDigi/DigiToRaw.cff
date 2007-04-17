@@ -6,35 +6,130 @@
 # The DigiToRaw outputs from each subsystem are assembled into one collection
 # (as is the case for data) to be read later by each subsystem's RawToDigi module.  
 
-   #----------------------------------#
-   #--- Pixel DigiToRaw conversion ---#
-   #----------------------------------#
+#--- Allow for multiple calls to the database ---#
+include "CondCore/DBCommon/data/CondDBSetup.cfi" 
+replace CondDBSetup.DBParameters.authenticationPath="."
 
-   #------------------------------------#
-   #--- Tracker DigiToRaw conversion ---#
-   #------------------------------------#
+#--- Obtain the ideal geometry record ---#
+include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"
 
-   #---------------------------------#
-   #--- ECAL DigiToRaw conversion ---#
-   #---------------------------------#
+#----------------------------------#
+#--- Pixel DigiToRaw conversion ---#
+#----------------------------------#
+es_source siPixelCabling = PoolDBESSource {
+   using CondDBSetup
+   string connect = "sqlite_file:cabling.db"
+   untracked string catalog = "file:cablingCatalog.xml"
+   string timetype = "runnumber"
+   VPSet toGet = {{ string record="SiPixelFedCablingMapRcd" string tag="SiPixelFedCablingMap_v1" }}
+}
+include "Geometry/TrackerGeometryBuilder/data/trackerGeometry.cfi"
+include "Geometry/TrackerNumberingBuilder/data/trackerNumberingGeometry.cfi"
+#--- DigiToRaw module is siPixelRawData ---#
+include "EventFilter/SiPixelRawToDigi/data/SiPixelDigiToRaw.cfi"
 
-   #---------------------------------#
-   #--- HCAL DigiToRaw conversion ---#
-   #---------------------------------#
+#------------------------------------#
+#--- Tracker DigiToRaw conversion ---#
+#------------------------------------#
+# *** Not yet implemented *** #
 
-   #--------------------------------#
-   #--- CSC DigiToRaw conversion ---#
-   #--------------------------------#
+#---------------------------------#
+#--- ECAL DigiToRaw conversion ---#
+#---------------------------------#
+es_source = EcalTrivialConditionRetriever {}
+include "Geometry/EcalMapping/data/EcalMapping.cfi"
+es_source eegeom = EmptyESSource {
+   string recordName = "EcalMappingRcd"
+   vuint32 firstValid = { 1 }
+   bool iovIsRunNotTime = false  
+}
 
-   #-------------------------------#
-   #--- DT DigiToRaw conversion ---#
-   #-------------------------------#
+#--- Produce the ecalTriggerPrimitiveDigis :
+include  "SimCalorimetry/EcalTrigPrimProducers/data/ecalTriggerPrimitiveDigis.cff"
+replace ecalTriggerPrimitiveDigis.InstanceEB = "ebDigis"
+replace ecalTriggerPrimitiveDigis.InstanceEE = "eeDigis"
+#--- If there are no unsuppressed digis in the file, use "ecalDigis" ---#
+# replace ecalTriggerPrimitiveDigis.Label = "ecalUnsuppressedDigis"
+replace ecalTriggerPrimitiveDigis.Label = "ecalDigis"
 
-   #--------------------------------#
-   #--- RPC DigiToRaw conversion ---#
-   #--------------------------------#
+#--- Produce the SR suppressed digis, together with the SR flags ---#
+include "SimCalorimetry/EcalSelectiveReadoutProducers/data/ecalDigis.cfi"
+replace ecalDigis.digiProducer = "ecalDigis"
+replace ecalDigis.EBdigiCollection = "ebDigis"
+replace ecalDigis.EEdigiCollection = "eeDigis"
+replace ecalDigis.EBSRPdigiCollection = "SRPebDigis"
+replace ecalDigis.EESRPdigiCollection = "SRPeeDigis"
+replace ecalDigis.writeSrFlags = true
+
+module EcalDigiToRawWithZeroSup = EcalDigiToRaw {
+   string Label = "ecalDigis"
+   string InstanceEB = "SRPebDigis"
+   string InstanceEE = "SRPeeDigis"
+   untracked bool WriteTCCBlock = true
+   untracked bool WriteSRFlags = true
+   untracked bool WriteTowerBlock = true
+   untracked bool debug = false
+   untracked bool DoBarrel = true
+   untracked bool DoEndCap = true
+}
+
+#---------------------------------#
+#--- HCAL DigiToRaw conversion ---#
+#---------------------------------#
+# *** Not yet implemented *** #
+# include "SimCalorimetry/HcalZeroSuppressionProducers/data/HcalSimpleAmpl-hbhe.cfi" 
+# include "SimCalorimetry/HcalZeroSuppressionProducers/data/HcalSimpleAmpl-hf.cfi" 
+# include "SimCalorimetry/HcalZeroSuppressionProducers/data/HcalSimpleAmpl-ho.cfi" 
+# module HcalDigiToRaw = HcalDigiToRaw {
+#    untracked InputTag HBHE = hbheZeroSuppressedDigis
+#    untracked InputTag HF = hfZeroSuppressedDigis
+#    untracked InputTag HO = hoZeroSuppressedDigis
+# }
+# es_module = HcalDbProducer {}
+# es_source es_hardcode = HcalHardcodeCalibrations {
+#    untracked vstring toGet = {
+#       "Pedestals",
+#       "PedestalWidths", 
+#       "Gains", 
+#       "GainWidths", 
+#       "QIEShape", 
+#       "QIEData", 
+#       "ChannelQuality", 
+#       "ElectronicsMap"
+#    }
+# }
+
+#--------------------------------#
+#--- CSC DigiToRaw conversion ---#
+#--------------------------------#
+include "EventFilter/CSCRawToDigi/data/cscPacker.cfi"
+
+#-------------------------------#
+#--- DT DigiToRaw conversion ---#
+#-------------------------------#
+# *** Not yet implemented *** #
+
+#--------------------------------#
+#--- RPC DigiToRaw conversion ---#
+#--------------------------------#
+# *** Not yet implemented *** #
+# es_source RPCCabling = PoolDBESSource {
+#    using CondDBSetup
+#    string timetype = "runnumber"
+#    string connect = "sqlite_file:cabling-staged.db"
+#    untracked string catalog = "file:cablingCatalog-staged.xml"
+#    VPSet toGet = {{ string record = "RPCReadOutMappingRcd" string tag = "RPCReadOutMapping_v1" }}
+# }
+# include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
+# include "Geometry/RPCGeometry/data/rpcGeometry.cfi"
+# module rpcDigiToRaw = RPCPackingModule {}
+
+#--- Collect everything together ---#
+module rawDataCollector = RawDataCollectorModule {}
   
-   #--- Collect everything together ---#
-   module rawDataCollector = RawDataCollectorModule {}
-  
-   sequence DigiToRaw = {rawDataCollector}
+sequence DigiToRaw = {
+                      siPixelRawData,
+                      ecalTriggerPrimitiveDigis, ecalDigis, EcalDigiToRawWithZeroSup,
+                      cscpacker,
+                      rawDataCollector
+                     }

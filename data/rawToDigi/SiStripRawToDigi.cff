@@ -5,13 +5,6 @@
 # Definition of SiStripRawToDigi sequence
 #
 
-#to be true raw to digi sequence -- meanwhile prescaler placeholder
-module  siStripRTDPlaceholder = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-replace siStripRTDPlaceholder.prescaleFactor = 1
-
-include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
-
-sequence SiStripRawToDigi = {DigiToRaw, siStripRTDPlaceholder}
-
-
-
+# Someday true raw to digi sequence -- meanwhile hltGetData
+include "HLTrigger/HLTanalyzers/data/hltGetData.cfi" 
+sequence SiStripRawToDigi = { hltGetData }

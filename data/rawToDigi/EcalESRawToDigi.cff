@@ -1,0 +1,11 @@
+#
+# David Lange, LLNL
+# February 26, 2007
+#
+# Definition of EcalESRawToDigi sequence
+#
+
+# Someday true raw to digi sequence -- meanwhile hltGetData 
+
+include "HLTrigger/HLTanalyzers/data/hltGetData.cfi" 
+sequence EcalESRawToDigi = { hltGetData }

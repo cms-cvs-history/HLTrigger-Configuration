@@ -5,13 +5,11 @@
 # Definition of CSCRawToDigi sequence
 #
 
-#to be true raw to digi sequence -- meanwhile prescaler placeholder
-module  cscRTDPlaceholder = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-replace cscRTDPlaceholder.prescaleFactor = 1
-
 include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
+include "EventFilter/CSCRawToDigi/data/cscUnpacker.cfi"
+replace cscunpacker.InputObjects = rawDataCollector
 
-sequence CSCRawToDigi = {DigiToRaw, cscRTDPlaceholder}
+sequence CSCRawToDigi = { DigiToRaw, cscunpacker }
 
 
 

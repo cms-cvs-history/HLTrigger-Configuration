@@ -5,13 +5,23 @@
 # Definition of EcalRawToDigi sequence
 #
 
-#to be true raw to digi sequence -- meanwhile prescaler placeholder
-module  ecalRTDPlaceholder = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-replace ecalRTDPlaceholder.prescaleFactor = 1
-
 include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
 
-sequence EcalRawToDigi = {DigiToRaw, ecalRTDPlaceholder}
+module ecalEBunpacker = EcalRawToDigiDev {
+   # Default is true
+   untracked bool eventPut        = true
+   untracked bool memUnpacking    = false 
+   untracked bool headerUnpacking = false 
+   untracked bool srpUnpacking    = false 
+   untracked bool feUnpacking     = true 
+
+   untracked string InputLabel = "rawDataCollector" 
+   untracked vint32 FEDs = { 13 }
+   untracked int32 EcalFirstFED = 12 
+   untracked string DCCMapFile = "EventFilter/EcalRawToDigiDev/data/DCCMap.txt"
+}
+
+sequence EcalRawToDigi = { DigiToRaw, ecalEBunpacker }
 
 
 

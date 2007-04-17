@@ -5,13 +5,16 @@
 # Definition of HcalRawToDigi sequence
 #
 
-#to be true raw to digi sequence -- meanwhile prescaler placeholder
-module  hcalRTDPlaceholder = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-replace hcalRTDPlaceholder.prescaleFactor = 1
+# Someday true raw to digi sequence -- meanwhile hltGetData
+# include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
+# include "EventFilter/HcalRawToDigi/data/HcalRawToDigi-mtcc.cfi"
+# replace hcalDigis.InputLabel = "rawDataCollector"
+# sequence HcalRawToDigi = {DigiToRaw, hcalDigis}
 
-include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
-
-sequence HcalRawToDigi = {DigiToRaw, hcalRTDPlaceholder}
-
+include "HLTrigger/HLTanalyzers/data/hltGetData.cfi"
+replace hltGetData.HBHEdigiCollection = hcalDigis
+replace hltGetData.HOdigiCollection = hcalDigis
+replace hltGetData.HFdigiCollection = hcalDigis
+sequence HcalRawToDigi = { hltGetData } 
 
 
