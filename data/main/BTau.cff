@@ -44,10 +44,10 @@ path HLTB4JetMu = {(preL2bRecoMu, hltL2b4jet) &
 
 // Tau trigger paths
 include "HLTrigger/btau/data/tau/TauHLT.cff"
-path HLT1Tau     = {doL1TfromDigis & singleTauL1HLT}
-path HLT2Tau     = {doL1TfromDigis & doubleTrkTauL1HLT}
-path HLTPixelTau = {doL1TfromDigis & caloPixelTauL1HLT}
+path HLT1Tau     = {doL1TfromDigis &      singleTauL1HLT }
+path HLT2Tau     = {doL1TfromDigis & caloSiStripTauL1HLT }
+path HLTPixelTau = {doL1TfromDigis &   caloPixelTauL1HLT }
 
 // include "HLTrigger/btau/data/tau/Elec.cff"
-// path HLTElectronTau = {doL1TfromDigis & electronL1HLT}
-// path HLTLeptonTau   = {doL1TfromDigis & leptonTauL1HLT}
+// path HLTElectronTau = {doL1TfromDigis &  electronL1HLT }
+// path HLTLeptonTau   = {doL1TfromDigis & leptonTauL1HLT }
