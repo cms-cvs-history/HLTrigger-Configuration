@@ -10,14 +10,12 @@
 // until then:
 
 module l1extramctruth = L1ExtraFromMCTruthProd
-//  replace l1extramctruth.jetSource = iterativeCone5GenJets
-    replace l1extramctruth.singleJet140Prescale = 1
-    replace l1extramctruth.singleJet60Prescale = 1
-    replace l1extramctruth.singleJet20Prescale = 1
-    replace l1extramctruth.minBiasPrescale = 1
-
-
+// replace l1extramctruth.singleJet140Prescale = 1
+// replace l1extramctruth.singleJet60Prescale = 1
+// replace l1extramctruth.singleJet20Prescale = 1
+// replace l1extramctruth.minBiasPrescale = 1
 include "RecoJets/Configuration/data/RecoGenJets.cff"
+// replace l1extramctruth.jetSource = iterativeCone5GenJets
 
 module myParticleCandidates = genParticleCandidates from "PhysicsTools/HepMCCandAlgos/data/genParticleCandidates.cfi"
 replace genParticlesAllStable.src = "myParticleCandidates"
