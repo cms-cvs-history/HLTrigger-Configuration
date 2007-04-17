@@ -9,8 +9,9 @@
 //
 // from MC Digis
 //
-include "RecoLocalCalo/Configuration/data/RecoLocalCalo.cff"
-// include "RecoLocalCalo/Configuration/data/RecoLocalCalo_hcalZS.cff"
+// include "RecoLocalCalo/Configuration/data/RecoLocalCalo.cff"
+include "RecoLocalCalo/Configuration/data/RecoLocalCalo_hcalZS.cff"
+//
 include "RecoJets/Configuration/data/CaloTowersRec.cff"
 sequence doCaloFromDigis = {calolocalreco, caloTowersRec}
 
