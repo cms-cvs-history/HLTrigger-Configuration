@@ -6,40 +6,40 @@
 // tracking-based b-tag
 include "HLTrigger/btau/data/jetTag/bHLT_LifetimeTrigger.cff"
 
-path HLTB1Jet = {(preL2bReco, hltL2b1jet) &
-                 (preL25bReco, hltL25b) &
-                 (preL3bReco, hltL3b)}
+path HLTB1Jet = {(preL2bReco  , hltL2b1jet) &
+                 (preL25bReco , hltL25b) &
+                 (preL3bReco  , hltL3b)}
 
-path HLTB2Jet = {(preL2bReco, hltL2b2jet) &
-                 (preL25bReco, hltL25b) &
-                 (preL3bReco, hltL3b)}
+path HLTB2Jet = {(preL2bReco  , hltL2b2jet) &
+                 (preL25bReco , hltL25b) &
+                 (preL3bReco  , hltL3b)}
 
-path HLTB3Jet = {(preL2bReco, hltL2b3jet) &
-                 (preL25bReco, hltL25b) &
-                 (preL3bReco, hltL3b)}
+path HLTB3Jet = {(preL2bReco  , hltL2b3jet) &
+                 (preL25bReco , hltL25b) &
+                 (preL3bReco  , hltL3b)}
 
-path HLTB4Jet = {(preL2bReco, hltL2b4jet) &
-                 (preL25bReco, hltL25b) &
-                 (preL3bReco, hltL3b)}
+path HLTB4Jet = {(preL2bReco  , hltL2b4jet) &
+                 (preL25bReco , hltL25b) &
+                 (preL3bReco  , hltL3b)}
 
 // muon based b-tag
 include "HLTrigger/btau/data/jetTag/bHLT_bSoftmuTrigger.cff"
 
-path HLTB1JetMu = {(preL2bRecoMu, hltL2b1jet) &
-                   (preL25bRecoMu, hltL25bmu) &
-                   (preL3bRecoMu, hltL3bmu)}
+path HLTB1JetMu = {(preL2bReco    , hltL2b1jet) &
+                   (preL25bRecoMu , hltL25bmu) &
+                   (preL3bRecoMu  , hltL3bmu)}
 
-path HLTB2JetMu = {(preL2bRecoMu, hltL2b2jet) &
-                   (preL25bRecoMu, hltL25bmu) &
-                   (preL3bRecoMu, hltL3bmu)}
+path HLTB2JetMu = {(preL2bReco    , hltL2b2jet) &
+                   (preL25bRecoMu , hltL25bmu) &
+                   (preL3bRecoMu  , hltL3bmu)}
 
-path HLTB3JetMu = {(preL2bRecoMu, hltL2b3jet) &
-                   (preL25bRecoMu, hltL25bmu) &
-                   (preL3bRecoMu, hltL3bmu)}
+path HLTB3JetMu = {(preL2bReco    , hltL2b3jet) &
+                   (preL25bRecoMu , hltL25bmu) &
+                   (preL3bRecoMu  , hltL3bmu)}
 
-path HLTB4JetMu = {(preL2bRecoMu, hltL2b4jet) &
-                   (preL25bRecoMu, hltL25bmu) &
-                   (preL3bRecoMu, hltL3bmu)}
+path HLTB4JetMu = {(preL2bReco    , hltL2b4jet) &
+                   (preL25bRecoMu , hltL25bmu) &
+                   (preL3bRecoMu  , hltL3bmu)}
 
 
 // Tau trigger paths
