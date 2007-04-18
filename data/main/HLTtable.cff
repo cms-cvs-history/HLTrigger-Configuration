@@ -50,7 +50,7 @@ include "HLTrigger/Configuration/data/main/BTau.cff"
 // sequence ?
 // sequence ?
 //   the Cross trigger paths
-// include "HLTrigger/Configuration/data/main/Xchannel.cff"
+include "HLTrigger/Configuration/data/main/Xchannel.cff"
 
 
 //
