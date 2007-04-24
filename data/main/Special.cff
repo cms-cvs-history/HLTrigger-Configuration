@@ -14,4 +14,4 @@ include "HLTrigger/special/data/SimpleBias.cff"
 //
 include "HLTrigger/special/data/MinBias-Pixel-Reco.cff"
 include "HLTrigger/special/data/MinBias-With-Pixel-Tracks.cff"
-path HLTMinBiasPixel = {L1TSeq & pixeltrackerlocalreco & pixelTracks, hltPixlCands & hltPixlMBFilt}
+path HLTMinBiasPixel = {L1TSeq & pixeltrackerlocalreco & pixelTracksForMinBias, hltPixlCands & hltPixlMBFilt}
