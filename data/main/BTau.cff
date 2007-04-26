@@ -48,6 +48,4 @@ path HLT1Tau     = {doL1TfromDigis &      singleTauL1HLT }
 path HLT2Tau     = {doL1TfromDigis & caloSiStripTauL1HLT }
 path HLTPixelTau = {doL1TfromDigis &   caloPixelTauL1HLT }
 
-// include "HLTrigger/btau/data/tau/Elec.cff"
-// path HLTElectronTau = {doL1TfromDigis &  electronL1HLT }
-// path HLTLeptonTau   = {doL1TfromDigis & leptonTauL1HLT }
+//
