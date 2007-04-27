@@ -16,7 +16,7 @@ include "HLTrigger/Muon/data/PathDiMuon_2x1033_NoIso.cff"
 path HLT2MuonNonIso = { diMuonNoIso }
 
 
-// New paths
+// Additional paths
 
 include "HLTrigger/Muon/data/PathJpsimumu.cff"
 path HLT2MuonJPsi = { jpsiMM }
@@ -32,3 +32,11 @@ path HLTNMuonNonIso = { multiMuonNoIso }
 
 include "HLTrigger/Muon/data/PathSingleMu_Startup.cff"
 path HLT1MuonStartup = { singleMuStartup }
+
+
+// Same-sign di-muons
+
+include "HLTrigger/Muon/data/PathSameSignMu.cff"
+path HLT2MuonSameSign = { sameSignMu }
+
+//
