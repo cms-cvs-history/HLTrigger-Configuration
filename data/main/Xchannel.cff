@@ -13,7 +13,6 @@ path HLTXMuonBJet = { MuB }
 path HLTXMuonBJetSoftMuon = { MuBsmu }
 
 
-
 // electron+jet
 /*
 include "HLTrigger/xchannel/data/PathElectronPlusJet.cff"
@@ -36,10 +35,8 @@ path HLTXMuon4Jet = { HLTMu4Jet }
 
 
 // electron+muon
-/*
 include "HLTrigger/xchannel/data/electronmuon.cff"
 path HLTXElectronMuon = {emuonsequence}
-*/
 
 
 // electron+tau
