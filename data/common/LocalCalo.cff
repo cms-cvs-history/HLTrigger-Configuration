@@ -1,0 +1,12 @@
+//
+// Sequences for Local Calo reconstruction (see RecoLocalCalo)
+//
+//   Combines Ecal local reco and Hcal local reco with or without ZS
+//
+
+//
+// from MC Digis (pick one: without or with HCAL ZeroSuppression)
+//
+// include "RecoLocalCalo/Configuration/data/RecoLocalCalo.cff"
+include "RecoLocalCalo/Configuration/data/RecoLocalCalo_hcalZS.cff"
+//
