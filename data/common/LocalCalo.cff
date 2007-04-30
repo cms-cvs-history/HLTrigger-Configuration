@@ -5,8 +5,12 @@
 //
 
 //
-// from MC Digis (pick one: without or with HCAL ZeroSuppression)
+// Pick one of the two sets: without or with HCAL ZeroSuppression and
+// sequence for HCAL excluding horeco - horeco not needed for Egamma)
 //
 // include "RecoLocalCalo/Configuration/data/RecoLocalCalo.cff"
+// sequence hcalLocalRecoWithoutHO = { hbhereco & hfreco }
+//
 include "RecoLocalCalo/Configuration/data/RecoLocalCalo_hcalZS.cff"
+sequence hcalLocalRecoWithoutHO = {hcalZeroSuppressedDigis & hbhereco & hfreco}
 //
