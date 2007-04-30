@@ -42,6 +42,11 @@ path HLTB4JetMu = {(preL2bReco    , hltL2b4jet) &
                    (preL3bRecoMu  , hltL3bmu)}
 
 
+// special B -> J/Psi -> dimuon trigger
+include "HLTrigger/btau/data/displacedmumu/PathBToJpsiToMumu.cff"
+path HLTBJPsiMuMu = {btoJpsitoMumu}	
+
+
 // Tau trigger paths
 include "HLTrigger/btau/data/tau/TauHLT.cff"
 path HLT1Tau     = {doL1TfromDigis &      singleTauL1HLT }
