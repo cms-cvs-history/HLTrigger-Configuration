@@ -1,10 +1,10 @@
 // Xchannel trigger paths
 
-
+/*
 // electron + b-jet
 include "HLTrigger/xchannel/data/PathElectronB.cff"
 path HLTXElectronBJet = { ElectronB }
-
+*/
 
 // muon + b-jet
 include "HLTrigger/xchannel/data/PathMuB.cff"
@@ -33,11 +33,11 @@ path HLTXMuon3Jet = { HLTMu3Jet }
 path HLTXMuon4Jet = { HLTMu4Jet }
 */
 
-
+/*
 // electron+muon
 include "HLTrigger/xchannel/data/electronmuon.cff"
 path HLTXElectronMuon = {emuonsequence}
-
+*/
 
 // electron+tau
 /*
