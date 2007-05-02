@@ -1,0 +1,12 @@
+
+es_source = EcalTrivialConditionRetriever {}
+include "Geometry/EcalMapping/data/EcalMapping.cfi"
+es_source eegeom = EmptyESSource {
+   string recordName = "EcalMappingRcd"
+   vuint32 firstValid = { 1 }
+   bool iovIsRunNotTime = false  
+}
+include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
+include "Geometry/CaloEventSetup/data/CaloGeometry.cfi"
+include "Geometry/CaloEventSetup/data/EcalTrigTowerConstituents.cfi"
+include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"

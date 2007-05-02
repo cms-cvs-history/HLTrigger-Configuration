@@ -1,4 +1,24 @@
+#
+# David Lange, Bryan Dahmes LLNL
+# 30 April, 2007
+#
+# Set up for raw->digi conversion
 
+#--- Database and Geometry setup ---#
+include "HLTrigger/Configuration/data/rawToDigi/SetupRawToDigi.cff"
+
+#--- Grab the raw source ---#
+include "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
+
+#--- Using hltGetDigi for EcalES,DT, and RPC until they are ready ---#
+module getDigis = hltGetDigi from "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
+replace getDigis.getEcal   = false
+replace getDigis.getHcal   = false
+replace getDigis.getPixels = false
+replace getDigis.getStrips = false
+replace getDigis.getCSC    = false
+
+#--- Subsystem raw->digi conversion ---#
 include "HLTrigger/Configuration/data/rawToDigi/SiPixelRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/SiStripRawToDigi.cff"
 

@@ -1,0 +1,12 @@
+module ecalEBunpacker = EcalRawToDigiDev {
+   # Default is true
+   untracked bool eventPut        = true
+   untracked bool memUnpacking    = false 
+   untracked bool headerUnpacking = false 
+   untracked bool srpUnpacking    = false 
+   untracked bool feUnpacking     = true 
+
+   untracked string InputLabel = "source" 
+   untracked vint32 FEDs = {}
+   untracked string DCCMapFile = "EventFilter/EcalRawToDigiDev/data/DCCMap.txt"
+}

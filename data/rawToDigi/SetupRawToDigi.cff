@@ -1,0 +1,37 @@
+#
+# Bryan Dahmes, LLNL
+# 27 April, 2007
+#
+
+#--- Allow for multiple calls to the database ---#
+include "CondCore/DBCommon/data/CondDBSetup.cfi" 
+replace CondDBSetup.DBParameters.authenticationPath="/afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration"
+
+#--- Obtain the ideal geometry record ---#
+include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"
+
+#----------------------------------------#
+#--- Database setup and configuration ---#
+#----------------------------------------#
+#--- Pixels ---#
+include "HLTrigger/Configuration/data/rawToDigi/SiPixelDBCabling.cfi"
+include "Geometry/TrackerGeometryBuilder/data/trackerGeometry.cfi"
+include "Geometry/TrackerNumberingBuilder/data/trackerNumberingGeometry.cfi"
+#--- Strips ---#
+include "HLTrigger/Configuration/data/rawToDigi/SiStripDBCabling.cff"
+es_source SiStripNoise = pool2 from "EventFilter/SiStripRawToDigi/data/DBNoise.cfi"
+replace SiStripNoise.DBParameters.authenticationPath = "/afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration"
+replace SiStripNoise.connect = "sqlite_file:///afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration/SiStrip/noise_0.0.db"
+replace SiStripNoise.catalog = "file:///afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration/SiStrip/noise_0.0.xml"
+#--- ECAL ---#
+include "HLTrigger/Configuration/data/rawToDigi/EcalGeometrySetup.cff"
+#--- HCAL ---#
+es_module = HcalDbProducer {}
+include "HLTrigger/Configuration/data/rawToDigi/HcalHardcodeCalibrations.cfi"
+#--- DT ---#
+# include "HLTrigger/Configuration/data/rawToDigi/DTDBCabling.cfi"
+# include "Geometry/DTGeometry/data/dtGeometry.cfi"
+#--- RPC ---#
+# include "HLTrigger/Configuration/data/rawToDigi/RPCDBCabling.cfi"
+# include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
+# include "Geometry/RPCGeometry/data/rpcGeometry.cfi"

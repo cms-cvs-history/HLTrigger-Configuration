@@ -1,0 +1,12 @@
+# 
+# Bryan Dahmes, LLNL
+# 27 April, 2007
+# 
+# Definition of SiStripDigiToRaw sequence
+#
+
+module siStripPacker = DigiToRaw from "EventFilter/SiStripRawToDigi/data/DigiToRaw.cfi"
+replace siStripPacker.InputModuleLabel = "siStripDigis"  
+replace siStripPacker.FedReadoutMode = "ZERO_SUPPRESSED" 
+
+sequence SiStripDigiToRaw = { siStripPacker }

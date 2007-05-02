@@ -1,27 +1,11 @@
 #
-# David Lange, LLNL
+# David Lange, Bryan Dahmes LLNL
 # February 26, 2007
 #
 # Definition of EcalRawToDigi sequence
 #
 
-include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
+module unpackEcalEB = ecalEBunpacker from "HLTrigger/Configuration/data/rawToDigi/ecalUnpacker.cfi"
+replace unpackEcalEB.InputLabel = "rawDataCollector"
 
-module ecalEBunpacker = EcalRawToDigiDev {
-   # Default is true
-   untracked bool eventPut        = true
-   untracked bool memUnpacking    = false 
-   untracked bool headerUnpacking = false 
-   untracked bool srpUnpacking    = false 
-   untracked bool feUnpacking     = true 
-
-   untracked string InputLabel = "rawDataCollector" 
-   untracked vint32 FEDs = { 13 }
-   untracked int32 EcalFirstFED = 12 
-   untracked string DCCMapFile = "EventFilter/EcalRawToDigiDev/data/DCCMap.txt"
-}
-
-sequence EcalRawToDigi = { DigiToRaw, ecalEBunpacker }
-
-
-
+sequence EcalRawToDigi = { hltGetRaw,unpackEcalEB }

@@ -1,0 +1,6 @@
+
+# cabling
+include "HLTrigger/Configuration/data/rawToDigi/SiStripDBCabling.cfi"
+
+# build cabling objects of det and fec views
+es_module = SiStripConnectivity {}

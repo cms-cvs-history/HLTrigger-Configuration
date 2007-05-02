@@ -1,15 +1,11 @@
 #
-# David Lange, LLNL
+# David Lange, Bryan Dahmes LLNL
 # February 26, 2007
 #
 # Definition of SiPixelRawToDigi sequence
 #
 
-include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
 include "EventFilter/SiPixelRawToDigi/data/SiPixelRawToDigi.cfi"
 replace siPixelDigis.InputLabel = "rawDataCollector"
 
-sequence SiPixelRawToDigi = { DigiToRaw, siPixelDigis }
-
-
-
+sequence SiPixelRawToDigi = { hltGetRaw,siPixelDigis }

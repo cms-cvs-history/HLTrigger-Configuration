@@ -1,0 +1,9 @@
+
+include "CondCore/DBCommon/data/CondDBSetup.cfi" 
+es_source siPixelCabling = PoolDBESSource {
+   using CondDBSetup
+   string connect = "sqlite_file:///afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration/SiPixel/siPixelCabling.db"
+   untracked string catalog = "file:///afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration/SiPixel/siPixelCablingCatalog.xml"
+   string timetype = "runnumber"
+   VPSet toGet = {{ string record="SiPixelFedCablingMapRcd" string tag="SiPixelFedCablingMap_v1" }}
+}

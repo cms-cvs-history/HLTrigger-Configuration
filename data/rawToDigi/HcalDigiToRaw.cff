@@ -1,0 +1,16 @@
+# 
+# Bryan Dahmes, LLNL
+# 27 April, 2007
+# 
+# Definition of HcalDigiToRaw sequence
+#
+
+include "SimCalorimetry/HcalZeroSuppressionProducers/data/HcalSimpleAmpl-hbhe.cfi" 
+include "SimCalorimetry/HcalZeroSuppressionProducers/data/HcalSimpleAmpl-hf.cfi" 
+include "SimCalorimetry/HcalZeroSuppressionProducers/data/HcalSimpleAmpl-ho.cfi" 
+module hcalPacker = hcalRawData from "HLTrigger/Configuration/data/rawToDigi/HcalDigiToRaw.cfi"
+
+sequence HcalDigiToRaw = { hbheZeroSuppressedDigis,
+                           hfZeroSuppressedDigis,
+                           hoZeroSuppressedDigis,
+                           hcalPacker }

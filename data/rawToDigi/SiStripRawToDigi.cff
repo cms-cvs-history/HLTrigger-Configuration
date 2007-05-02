@@ -1,10 +1,11 @@
 #
-# David Lange, LLNL
+# David Lange, Bryan Dahmes LLNL
 # February 26, 2007
 #
 # Definition of SiStripRawToDigi sequence
 #
 
-# Someday true raw to digi sequence -- meanwhile hltGetData
-include "HLTrigger/HLTanalyzers/data/hltGetData.cfi" 
-sequence SiStripRawToDigi = { hltGetData }
+include "EventFilter/SiStripRawToDigi/data/SiStripDigis.cfi"
+replace SiStripDigis.ProductLabel = "rawDataCollector"
+
+sequence SiStripRawToDigi = { hltGetRaw,SiStripDigis }     

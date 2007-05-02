@@ -1,0 +1,12 @@
+es_source HcalHardcode = HcalHardcodeCalibrations {
+   untracked vstring toGet = {
+      "Pedestals",
+      "PedestalWidths", 
+      "Gains", 
+      "GainWidths", 
+      "QIEShape", 
+      "QIEData", 
+      "ChannelQuality", 
+      "ElectronicsMap"
+   }
+}

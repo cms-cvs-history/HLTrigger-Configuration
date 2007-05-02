@@ -1,0 +1,11 @@
+module ecalRawData = EcalDigiToRaw {
+   string Label = "ecalDigis"
+   string InstanceEB = "SRPebDigis"
+   string InstanceEE = "SRPeeDigis"
+   untracked bool WriteTCCBlock = true
+   untracked bool WriteSRFlags = true
+   untracked bool WriteTowerBlock = true
+   untracked bool debug = false
+   untracked bool DoBarrel = true
+   untracked bool DoEndCap = true
+}

@@ -1,16 +1,13 @@
 #
-# David Lange, LLNL
+# David Lange, Bryan Dahmes LLNL
 # February 26, 2007
 #
 # Definition of RPCRawToDigi sequence
 #
 
-# Someday true raw to digi sequence -- meanwhile hltGetData
-# include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
-# module rpcunpacker = RPCUnpackingModule {
-#    untracked InputTag InputLabel = rawDataCollector
-# }
-# sequence RPCRawToDigi = {DigiToRaw, rpcunpacker}
+# module unpackRPC = rpcunpacker from "HLTrigger/Configuration/data/rawToDigi/rpcUnpacker.cfi"
+# replace unpackRPC.InputLabel = rawDataCollector
+# sequence RPCRawToDigi = { hltGetRaw,unpackRPC }
 
-include "HLTrigger/HLTanalyzers/data/hltGetData.cfi" 
-sequence RPCRawToDigi = { hltGetData }
+# Use hltGetDigis as a placeholder until RPC is ready
+sequence RPCRawToDigi = { getDigis }

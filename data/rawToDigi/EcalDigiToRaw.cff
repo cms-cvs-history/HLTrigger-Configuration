@@ -1,0 +1,24 @@
+# 
+# Bryan Dahmes, LLNL
+# 27 April, 2007
+# 
+# Definition of EcalDigiToRaw sequence
+#
+
+module EcalTRPDigis = ecalTriggerPrimitiveDigis from "SimCalorimetry/EcalTrigPrimProducers/data/ecalTriggerPrimitiveDigis.cfi"
+replace EcalTRPDigis.InstanceEB = "ebDigis"
+replace EcalTRPDigis.InstanceEE = "eeDigis"
+replace EcalTRPDigis.Label = "ecalDigis"
+
+module EcalSRDigis = ecalDigis from "SimCalorimetry/EcalSelectiveReadoutProducers/data/ecalDigis.cfi"
+replace EcalSRDigis.digiProducer = "ecalDigis"
+replace EcalSRDigis.EBdigiCollection = "ebDigis"
+replace EcalSRDigis.EEdigiCollection = "eeDigis"
+replace EcalSRDigis.EBSRPdigiCollection = "SRPebDigis"
+replace EcalSRDigis.EESRPdigiCollection = "SRPeeDigis"
+replace EcalSRDigis.writeSrFlags = true
+
+module ecalPacker = ecalRawData from "HLTrigger/Configuration/data/rawToDigi/ecalRawData.cfi"
+replace ecalPacker.Label = "EcalSRDigis"
+
+sequence EcalDigiToRaw = { EcalTRPDigis,EcalSRDigis,ecalPacker }
