@@ -29,9 +29,9 @@ include "HLTrigger/Configuration/data/rawToDigi/EcalGeometrySetup.cff"
 es_module = HcalDbProducer {}
 include "HLTrigger/Configuration/data/rawToDigi/HcalHardcodeCalibrations.cfi"
 #--- DT ---#
-# include "HLTrigger/Configuration/data/rawToDigi/DTDBCabling.cfi"
-# include "Geometry/DTGeometry/data/dtGeometry.cfi"
+include "HLTrigger/Configuration/data/rawToDigi/DTDBCabling.cfi"
+include "Geometry/DTGeometry/data/dtGeometry.cfi"
 #--- RPC ---#
-# include "HLTrigger/Configuration/data/rawToDigi/RPCDBCabling.cfi"
-# include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
-# include "Geometry/RPCGeometry/data/rpcGeometry.cfi"
+include "HLTrigger/Configuration/data/rawToDigi/RPCDBCabling.cfi"
+include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
+include "Geometry/RPCGeometry/data/rpcGeometry.cfi"

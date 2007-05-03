@@ -1,0 +1,12 @@
+include "CondCore/DBCommon/data/CondDBSetup.cfi" 
+es_source DTCabling = PoolDBESSource { 
+   using CondDBSetup
+   string connect = "sqlite_file:///afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration/DT/DTFullMap.db"
+   untracked string catalog = "file:///afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration/DT/DTFullMapCatalog.xml"
+   string timetype = "runnumber"
+   untracked uint32 authenticationMethod = 1
+   untracked bool debug = false
+   untracked bool   debugFlag     = false
+   untracked uint32 debugVebosity = 10
+   VPSet toGet = {{ string record = "DTReadOutMappingRcd" string tag = "cmssw_map"}}
+}

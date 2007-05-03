@@ -5,10 +5,6 @@
 # Definition of DTRawToDigi sequence
 #
 
-# module unpackDT = dtunpacker from "HLTrigger/Configuration/data/rawToDigi/dtUnpacker.cfi"
-# replace unpackDT.fedColl = "rawDataCollector" 
-# replace unpackDT.debugMode = true
-# sequence DTRawToDigi = { hltGetRaw,unpackDT }
-
-# Use hltGetDigis as a placeholder until DT is ready
-sequence DTRawToDigi = { getDigis }
+module unpackDT = dtunpacker from "HLTrigger/Configuration/data/rawToDigi/dtUnpacker.cfi"
+replace unpackDT.fedColl = "rawDataCollector" 
+sequence DTRawToDigi = { hltGetRaw,unpackDT }

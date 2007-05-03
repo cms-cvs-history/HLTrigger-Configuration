@@ -17,6 +17,8 @@ replace getDigis.getHcal   = false
 replace getDigis.getPixels = false
 replace getDigis.getStrips = false
 replace getDigis.getCSC    = false
+replace getDigis.getDT     = false
+replace getDigis.getRPC    = false
 
 #--- Subsystem raw->digi conversion ---#
 include "HLTrigger/Configuration/data/rawToDigi/SiPixelRawToDigi.cff"

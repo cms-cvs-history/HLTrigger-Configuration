@@ -5,9 +5,5 @@
 # Definition of DTDigiToRaw sequence
 #
 
-# Use a prescaler as a placeholder until DT is ready 
-# module packDT = dtpacker from "HLTrigger/Configuration/data/rawToDigi/dtPacker.cfi"
-# sequence DTDigiToRaw = { packDT }
-
-module DTprescD2R = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-sequence DTDigiToRaw = { DTprescD2R }
+module packDT = dtpacker from "HLTrigger/Configuration/data/rawToDigi/dtPacker.cfi"
+sequence DTDigiToRaw = { packDT }

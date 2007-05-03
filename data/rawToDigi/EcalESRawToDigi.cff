@@ -5,5 +5,8 @@
 # Definition of EcalESRawToDigi sequence
 #
 
-# Use hltGetDigis as a placeholder until EcalES is ready
+# Use hltGetDigi as a placeholder until EcalES is ready
+# module esUnpacker = esRawToDigi from "HLTrigger/Configuration/data/rawToDigi/esRawToDigi.cfi"
+# replace esUnpacker.Label = "rawDataCollector" 
+# sequence EcalESRawToDigi = { hltGetRaw,esUnpacker }
 sequence EcalESRawToDigi = { getDigis }
