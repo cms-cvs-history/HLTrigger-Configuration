@@ -5,9 +5,6 @@
 # Definition of RPCRawToDigi sequence
 #
 
-# module unpackRPC = rpcunpacker from "HLTrigger/Configuration/data/rawToDigi/rpcUnpacker.cfi"
-# replace unpackRPC.InputLabel = rawDataCollector
-# sequence RPCRawToDigi = { hltGetRaw,unpackRPC }
-
-# Use hltGetDigis as a placeholder until RPC is ready
-sequence RPCRawToDigi = { getDigis }
+module unpackRPC = rpcunpacker from "HLTrigger/Configuration/data/rawToDigi/rpcUnpacker.cfi"
+replace unpackRPC.InputLabel = rawDataCollector
+sequence RPCRawToDigi = { hltGetRaw,unpackRPC }
