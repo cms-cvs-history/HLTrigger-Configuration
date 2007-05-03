@@ -1,0 +1,8 @@
+include "CondCore/DBCommon/data/CondDBSetup.cfi" 
+es_source RPCCabling = PoolDBESSource {
+   using CondDBSetup
+   string timetype = "runnumber"
+   string connect = "sqlite_file:///afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration/RPC/RPCCabling.db"
+   untracked string catalog = "file:///afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration/RPC/RPCCablingCatalog.xml"
+   VPSet toGet = {{ string record = "RPCReadOutMappingRcd" string tag = "RPCReadOutMapping_v1" }}
+}
