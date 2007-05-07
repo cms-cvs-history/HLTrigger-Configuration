@@ -1,55 +1,36 @@
 //
-// Level-1 Trigger sequences:
+// Level-1 Trigger sequences
+// * define sequences for the different cases
+// * define generic sequence "doL1T" to be used everywhere
 //
 
+
 //
-// from MC Truth
-//
-// Werner needs to update the cff file:
-//   include "L1Trigger/L1ExtraFromMCTruthProd/data/l1extra-from-mctruth.cff"
-// until then:
-
-module l1extramctruth = L1ExtraFromMCTruthProd
-// replace l1extramctruth.singleJet140Prescale = 1
-// replace l1extramctruth.singleJet60Prescale = 1
-// replace l1extramctruth.singleJet20Prescale = 1
-// replace l1extramctruth.minBiasPrescale = 1
-include "RecoJets/Configuration/data/RecoGenJets.cff"
-// replace l1extramctruth.jetSource = iterativeCone5GenJets
-
-module myParticleCandidates = genParticleCandidates from "PhysicsTools/HepMCCandAlgos/data/genParticleCandidates.cfi"
-replace genParticlesAllStable.src = "myParticleCandidates"
-
-sequence l1extraGen = { myParticleCandidates, genParticlesAllStable, midPointCone5GenJets, l1extramctruth }
-// end
-
+// from MC Truth sequence
+include "L1Trigger/L1ExtraFromMCTruthProd/data/l1extra-from-mctruth.cff"
 sequence doL1TfromMCTruth = {l1extraGen}
 
 //
-// from MC Digis
-//
+// from MC Digis sequence
 include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
-// replace l1extraParticleMap.singleJet140Prescale = 1
-// replace l1extraParticleMap.singleJet60Prescale = 1
-// replace l1extraParticleMap.singleJet20Prescale = 1
-// replace l1extraParticleMap.minBiasPrescale = 1
 sequence doL1TfromDigis = {l1emulator, l1extra}
 
 //
-// from online Raw (needs raw2digi unpacking etc.)
-//
+// from online/MC Raw sequence (needs raw2digi unpacking etc.)
 // include "??"
 // sequence doL1TfromRaw = {??}
 
 //
-// from MC Digis via Raw (needs digi2raw as well as raw2digi)
-//
+// from MC Digis via Raw sequence (needs digi2raw as well as raw2digi)
 // include "??"
 // sequence doL1TfromDigisViaRaw = {??}
 
+
 //
-// Generic sequence
+// Definition of generic sequence "doL1T" to be used - pick one
+//
 // sequence doL1T = {doL1TfromMCTruth}
 sequence doL1T = {doL1TfromDigis}
 // sequence doL1T = {doL1TfromRaw}
 // sequence doL1T = {doL1TfromDigisViaRaw}
+//
