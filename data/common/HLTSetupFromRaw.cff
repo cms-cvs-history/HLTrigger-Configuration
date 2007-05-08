@@ -1,0 +1,40 @@
+//
+// Running the HLT table from Raw on input file
+//
+
+include "HLTrigger/Configuration/data/rawToDigi/RawToDigi.cff"
+
+sequence doL1RawToDigi = { ecalDigis & ecalPreshowerDigis & hcalDigis & 
+                           muonCSCDigis & muonDTDigis & muonRPCDigis  }
+
+//
+// Tracker = Pixel and Strip
+//
+include "RecoLocalTracker/Configuration/data/RecoLocalTracker.cff"
+sequence doLocalPixel   = { siPixelDigis , pixeltrackerlocalreco }
+sequence doLocalStrip   = { siStripDigis , striptrackerlocalreco }
+// combined
+sequence doLocalTracker = { doLocalPixel & doLocalStrip }
+
+
+//
+// Calorimeter = Ecal and Hcal
+//
+include "HLTrigger/Configuration/data/common/LocalCalo.cff"
+sequence doLocalEcal    = { (ecalDigis & ecalPreshowerDigis) , ecalLocalRecoSequence }
+sequence doLocalHcal    = {  hcalDigis , hcalLocalRecoSequence }
+sequence doLocalHcalWithoutHO = {hcalDigis , hcalLocalRecoWithoutHO }
+// combined
+sequence doLocalCalo    = { doLocalEcal & doLocalHcal }
+sequence doLocalCaloWithoutHO = {doLocalEcal & doLocalHcalWithoutHO }
+
+
+//
+// Muon = CSC and DT and RPC
+//
+include "RecoLocalMuon/Configuration/data/RecoLocalMuon.cff"
+sequence doLocalCSC     = { muonCSCDigis , csclocalreco }
+sequence doLocalDT      = { muonDTDigis  , dtlocalreco }
+sequence doLocalRPC     = { muonRPCDigis , rpcRecHits }
+// combined
+sequence doLocalMuon    = { doLocalDT & doLocalCSC & doLocalRPC}
