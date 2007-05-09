@@ -31,3 +31,14 @@ include "HLTrigger/Configuration/data/rawToDigi/HcalRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/CSCRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/DTRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/RPCRawToDigi.cff"
+
+sequence RawToDigi = { 
+                        SiPixelRawToDigi &
+                        SiStripRawToDigi &
+                        EcalRawToDigi &
+                        EcalESRawToDigi &
+                        HcalRawToDigi &
+                        CSCRawToDigi &
+                        DTRawToDigi &
+                        RPCRawToDigi
+                     }
