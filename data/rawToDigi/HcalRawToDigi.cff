@@ -5,7 +5,7 @@
 # Definition of HcalRawToDigi sequence
 #
 
-module hcalUnpacker = hcalDigis from "HLTrigger/Configuration/data/rawToDigi/HcalRawToDigi-mtcc.cfi"
-replace hcalUnpacker.InputLabel = "rawDataCollector"
+module hcalDigis = hcalDigis from "HLTrigger/Configuration/data/rawToDigi/HcalRawToDigi-mtcc.cfi"
+replace hcalDigis.InputLabel = "rawDataCollector"
 
-sequence HcalRawToDigi = { hltGetRaw,hcalUnpacker }
+sequence HcalRawToDigi = { hltGetRaw,hcalDigis }

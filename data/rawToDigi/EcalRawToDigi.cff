@@ -5,7 +5,7 @@
 # Definition of EcalRawToDigi sequence
 #
 
-module unpackEcalEB = ecalEBunpacker from "HLTrigger/Configuration/data/rawToDigi/ecalUnpacker.cfi"
-replace unpackEcalEB.InputLabel = "rawDataCollector"
+module ecalDigis = ecalEBunpacker from "HLTrigger/Configuration/data/rawToDigi/ecalUnpacker.cfi"
+replace ecalDigis.InputLabel = "rawDataCollector"
 
-sequence EcalRawToDigi = { hltGetRaw,unpackEcalEB }
+sequence EcalRawToDigi = { hltGetRaw,ecalDigis }

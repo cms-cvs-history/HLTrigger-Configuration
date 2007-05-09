@@ -5,7 +5,7 @@
 # Definition of CSCRawToDigi sequence
 #
 
-module unpackCSC = cscunpacker from "EventFilter/CSCRawToDigi/data/cscUnpacker.cfi"
-replace unpackCSC.InputObjects = rawDataCollector
+module muonCSCDigis = cscunpacker from "EventFilter/CSCRawToDigi/data/cscUnpacker.cfi"
+replace muonCSCDigis.InputObjects = rawDataCollector
 
-sequence CSCRawToDigi = { hltGetRaw,unpackCSC }
+sequence CSCRawToDigi = { hltGetRaw,muonCSCDigis }
