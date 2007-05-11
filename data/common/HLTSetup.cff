@@ -7,7 +7,7 @@ include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
 sequence hltSetup = { hltGetDigi }
 include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
 sequence doL1T = { l1emulator , l1extra }
-include "HLTrigger/Configuration/data/common/HLTSetupFromDigis.cff
+include "HLTrigger/Configuration/data/common/HLTSetupFromDigis.cff"
 
 /*
 // 2: from Raw on input (file or online) - needs raw2digi unpacking
@@ -15,7 +15,7 @@ include "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
 sequence hltSetup = { hltGetRaw }
 include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
 sequence doL1T = { doL1RawToDigi , l1emulator , l1extra }
-include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff
+include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
 */
 
 /*
@@ -25,7 +25,7 @@ include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
 sequence hltSetup = { hltGetDigi & DigiToRaw }
 include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
 sequence doL1T = { doL1RawToDigi , l1emulator , l1extra }
-include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff
+include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
 */
 
 
@@ -54,5 +54,5 @@ path HLTBegin = {hltBegin}
 
 //
 // Epilogue with endpath of modules for HLT:
-include "HLTrigger/Configuration/data/common/HLT.cff
+include "HLTrigger/Configuration/data/common/HLT.cff"
 //
