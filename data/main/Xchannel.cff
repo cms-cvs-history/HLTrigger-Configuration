@@ -38,10 +38,10 @@ path HLTXMuon4Jet = { HLTMu4Jet }
 include "HLTrigger/xchannel/data/electronmuon-local.cff"
 path HLTXElectronMuon = {emuonsequence}
 
-
-// electron+tau
 /*
-include "HLTrigger/btau/data/tau/TauHLT.cff"
-include "HLTrigger/xchannel/data/LeptonTauHLT.cff"
-path HLTXElectronTau = {doL1T , electronTauL1HLT}
+// electron+tau
+// include "HLTrigger/xchannel/data/LeptonTauHLT.cff"
+// path HLTXElectronTau = {doL1T , electronTauL1HLT}
+include "HLTrigger/xchannel/data/LeptonTauHLTLocal.cff"
+path HLTXElectronTau = {doL1T & electronTauL1HLTLocal}
 */
