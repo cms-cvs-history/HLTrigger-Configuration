@@ -1,5 +1,5 @@
 //
-// Sequences for Calo reconstruction from Digis to CaloTowers
+// Sequence for Calo reconstruction up to and including CaloTowers
 //
 include "RecoJets/Configuration/data/CaloTowersRec.cff"
 sequence doCalo = {doLocalCalo , caloTowersRec}
