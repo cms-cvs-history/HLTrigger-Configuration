@@ -7,13 +7,11 @@ include "HLTrigger/xchannel/data/PathElectronB-local.cff"
 path HLTXElectronBJet = { ElectronB }
 */
 
-/*
 // muon + b-jet
 include "HLTrigger/xchannel/data/PathMuB.cff"
-include "HLTrigger/xchannel/data/PathMuBsoftMu.cff"
 path HLTXMuonBJet = { MuB }
-path HLTXMuonBJetSoftMuon = { MuBsmu }
-*/
+//include "HLTrigger/xchannel/data/PathMuBsoftMu.cff"
+//path HLTXMuonBJetSoftMuon = { MuBsmu }
 
 /*
 // electron+jet

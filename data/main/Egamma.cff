@@ -2,7 +2,6 @@
 
 
 
-/*
 // NEW: Local Reco
 
 include "HLTrigger/Egamma/data/EgammaHLTLocal.cff"
@@ -26,7 +25,6 @@ path HLT2Photon = {doublePhotonL1Isolated}
 
 include "HLTrigger/Egamma/data/DoublePhotonL1NonIsolated.cff"
 path HLT2PhotonRelaxed = {doublePhotonL1NonIsolated}
-*/
 
 
 
