@@ -1,9 +1,0 @@
-//
-// All common sequences for HLT
-//
-include "HLTrigger/Configuration/data/common/TrackerTracks.cff"
-include "HLTrigger/Configuration/data/common/Vertexing.cff"
-include "HLTrigger/Configuration/data/common/LocalCalo.cff"
-include "HLTrigger/Configuration/data/common/CaloTowers.cff"
-include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
-//
