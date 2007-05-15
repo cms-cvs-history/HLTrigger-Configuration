@@ -1,6 +1,6 @@
 //
-// Common sequences (for HLT)
-include "HLTrigger/Configuration/data/common/Common.cff"
+// HLT Setup
+include "HLTrigger/Configuration/data/common/HLTSetup.cff"
 
 
 //
@@ -9,12 +9,13 @@ include "HLTrigger/Configuration/data/main/JetMET.cff"
 
 //
 // Electron Photon triggers
-include "HLTrigger/Configuration/data/main/Egamma.cff"
+// include "HLTrigger/Configuration/data/main/Egamma.cff"
 
 //
 // Muon triggers
 include "HLTrigger/Configuration/data/main/Muon.cff"
 
+/*
 //
 // B and Tau triggers
 include "HLTrigger/Configuration/data/main/BTau.cff"
@@ -26,8 +27,4 @@ include "HLTrigger/Configuration/data/main/Xchannel.cff"
 //
 // Special triggers
 include "HLTrigger/Configuration/data/main/Special.cff"
-
-
-//
-// HLT book keeping
-include "HLTrigger/Configuration/data/common/HLT.cff"
+*/

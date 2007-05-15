@@ -54,5 +54,5 @@ path HLTBegin = {hltBegin}
 
 //
 // Epilogue with endpath of modules for HLT:
-include "HLTrigger/Configuration/data/common/HLT.cff"
+include "HLTrigger/Configuration/data/common/HLTEndpath.cff"
 //

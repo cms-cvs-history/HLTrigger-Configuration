@@ -1,12 +1,10 @@
 // JetMET trigger paths
 
 // set up sequences needed for file included below:
-
-    sequence l1prod = {doL1T}
-    sequence recoJetMETPath = {doCaloFromDigis & doHLTJetReco & doHLTMETReco & doHLTHTReco}
-
-include "HLTrigger/JetMET/data/l1seeds_fromGCT.cff"
+include "HLTrigger/Configuration/data/common/CaloTowers.cff"
+include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
+sequence recoJetMETPath = {doCalo, (doHLTJetReco & doHLTMETReco & doHLTHTReco)}
 
 // the JetMet trigger paths
-// include "HLTrigger/JetMET/data/JetMET_l1.cff"  // level 1 trigger paths
+include "HLTrigger/JetMET/data/l1seeds_fromGCT.cff"
 include "HLTrigger/JetMET/data/JetMET_hlt.cff" // full l1-hlt trigger paths
