@@ -6,7 +6,8 @@
 #
 
 # Use hltGetDigi as a placeholder until EcalES is ready
-# module esUnpacker = esRawToDigi from "HLTrigger/Configuration/data/rawToDigi/esRawToDigi.cfi"
-# replace esUnpacker.Label = "rawDataCollector" 
-# sequence EcalESRawToDigi = { hltGetRaw,esUnpacker }
+# module ecalPreshowerDigis = esRawToDigi from "HLTrigger/Configuration/data/rawToDigi/esRawToDigi.cfi"
+# replace ecalPreshowerDigis.Label = "rawDataCollector" 
+# replace ecalPreshowerDigis.debugMode = true
+# sequence EcalESRawToDigi = { hltGetRaw,ecalPreshowerDigis }
 sequence EcalESRawToDigi = { getDigis }

@@ -1,0 +1,6 @@
+
+module esDigiToRaw = ESDigiToRaw {
+   string Label = "ecalPreshowerDigis"
+   string InstanceES = ""
+   untracked bool debugMode = false 
+}
