@@ -2,66 +2,29 @@
 
 // B trigger paths
 
-/*
 // tracking-based b-tag
 include "HLTrigger/btau/data/jetTag/L1_for_LifetimeTrigger.cff"
 include "HLTrigger/btau/data/jetTag/bHLT_LifetimeTrigger.cff"
+include "HLTrigger/btau/data/jetTag/triggerPath.cff"
 
-path HLTB1Jet   = {L1forBlifeHLT   &
-                   (preL2bReco    , hltL2b1jet) &
-                   (preL25bReco   , hltL25b) &
-                   (preL3bReco    , hltL3b)}
-
-path HLTB2Jet   = {L1forBlifeHLT   &
-                   (preL2bReco    , hltL2b2jet) &
-                   (preL25bReco   , hltL25b) &
-                   (preL3bReco    , hltL3b)}
-
-path HLTB3Jet   = {L1forBlifeHLT   &
-                   (preL2bReco    , hltL2b3jet) &
-                   (preL25bReco   , hltL25b) &
-                   (preL3bReco    , hltL3b)}
-
-path HLTB4Jet   = {L1forBlifeHLT   &
-                   (preL2bReco    , hltL2b4jet) &
-                   (preL25bReco   , hltL25b) &
-                   (preL3bReco    , hltL3b)}
-*/
-
-/*
 // muon based b-tag
 include "HLTrigger/btau/data/jetTag/L1_for_bSoftmuTrigger.cff"
 include "HLTrigger/btau/data/jetTag/bHLT_bSoftmuTrigger.cff"
+include "HLTrigger/btau/data/jetTag/triggerSeqMu.cff"
 
-path HLTB1JetMu = {L1forBsoftmuHLT &
-                   (preL2bReco    , hltL2b1jet) &
-                   (preL25bRecoMu , hltL25bmu) &
-                   (preL3bRecoMu  , hltL3bmu)}
+path HLTB1JetMu = {bmu1jetL1HLT}
+path HLTB2JetMu = {bmu2jetL1HLT}
+path HLTB3JetMu = {bmu3jetL1HLT}
+path HLTB4JetMu = {bmu4jetL1HLT}
+path HLTBHTMu   = {bmuHTL1HLT}
 
-path HLTB2JetMu = {L1forBsoftmuHLT &
-                   (preL2bReco    , hltL2b2jet) &
-                   (preL25bRecoMu , hltL25bmu) &
-                   (preL3bRecoMu  , hltL3bmu)}
-
-path HLTB3JetMu = {L1forBsoftmuHLT &
-                   (preL2bReco    , hltL2b3jet) &
-                   (preL25bRecoMu , hltL25bmu) &
-                   (preL3bRecoMu  , hltL3bmu)}
-
-path HLTB4JetMu = {L1forBsoftmuHLT &
-                   (preL2bReco    , hltL2b4jet) &
-                   (preL25bRecoMu , hltL25bmu) &
-                   (preL3bRecoMu  , hltL3bmu)}
-*/
-
-/*
 // special B -> J/Psi -> dimuon trigger
 include "HLTrigger/btau/data/displacedmumu/PathBToJpsiToMumu.cff"
 path HLTBJPsiMuMu = {btoJpsitoMumu}	
-*/
 
 
 // Tau trigger paths
+
 include "HLTrigger/btau/data/tau/TauHLT.cff"
 path HLT1Tau     = {      singleTauL1HLT }
 path HLT2Tau     = { caloSiStripTauL1HLT }
