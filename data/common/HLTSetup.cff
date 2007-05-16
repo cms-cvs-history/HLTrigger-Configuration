@@ -29,7 +29,7 @@ include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
 include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
 include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
-sequence hltBegin = { hltGetDigi & DigiToRaw (doL1RawToDigi , l1emulator , l1extra) }
+sequence hltBegin = { hltGetDigi & (DigiToRaw , doL1RawToDigi , l1emulator , l1extra) }
 */
 
 
