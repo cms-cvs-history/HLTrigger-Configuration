@@ -1,5 +1,5 @@
 //
-// Three cases of running the HLT table - pick one and only one:
+// Four cases of running the HLT table - pick one and only one:
 //
 
 // 1: from Digis on input file
@@ -9,7 +9,14 @@ include "HLTrigger/Configuration/data/common/HLTSetupFromDigis.cff"
 sequence hltBegin = { hltGetDigi & (l1emulator , l1extra) }
 
 /*
-// 2: from Raw on input (file or online) - needs raw2digi unpacking
+// 2: from Raw+L1Extra on input file - needs raw2digi unpacking but no L1
+include "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
+include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
+sequence hltBegin = { hltGetRaw }
+*/
+
+/*
+// 3: from Raw on input (file or online) - needs raw2digi unpacking and L1
 include "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
 include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
@@ -17,7 +24,7 @@ sequence hltBegin = { hltGetRaw & (doL1RawToDigi , l1emulator , l1extra) }
 */
 
 /*
-// 3: from Digis on input via Raw on the fly - needs digi2raw and raw2digi
+// 4: from Digis on input via Raw on the fly - needs digi2raw and raw2digi and L1
 include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
 include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
 include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
