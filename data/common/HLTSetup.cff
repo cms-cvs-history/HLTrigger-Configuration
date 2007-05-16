@@ -4,36 +4,28 @@
 
 // 1: from Digis on input file
 include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
-sequence hltSetup = { hltGetDigi }
 include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
-sequence doL1T = { l1emulator , l1extra }
 include "HLTrigger/Configuration/data/common/HLTSetupFromDigis.cff"
+sequence hltBegin = { hltGetDigi & (l1emulator , l1extra) }
 
 /*
 // 2: from Raw on input (file or online) - needs raw2digi unpacking
 include "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
-sequence hltSetup = { hltGetRaw }
 include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
-sequence doL1T = { doL1RawToDigi , l1emulator , l1extra }
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
+sequence hltBegin = { hltGetRaw & (doL1RawToDigi , l1emulator , l1extra) }
 */
 
 /*
 // 3: from Digis on input via Raw on the fly - needs digi2raw and raw2digi
 include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
 include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
-sequence hltSetup = { hltGetDigi & DigiToRaw }
 include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
-sequence doL1T = { doL1RawToDigi , l1emulator , l1extra }
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
+sequence hltBegin = { hltGetDigi & DigiToRaw (doL1RawToDigi , l1emulator , l1extra) }
 */
 
 
-//
-// The sequences hltSetup and doL1T are combined to define
-// the initial part of each HLT path:
-//
-sequence hltBegin = {hltSetup & doL1T}
 //
 // Each HLT path must start with hltBegin (or put it after the HLTPrescaler
 // module but only if that is the first module on the path)
