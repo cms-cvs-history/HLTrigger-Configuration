@@ -2,12 +2,12 @@
 // Special triggers
 //
 
-/*
 //
 // Simple Zero- and Minimum-Bias Triggers
 //
 include "HLTrigger/special/data/SimpleBias.cff"
-*/
+path HLTZeroBias = {hltZeroBias}
+path HLTMinBias  = {hltMinBias}
 
 /*
 //
