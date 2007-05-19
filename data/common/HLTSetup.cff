@@ -50,6 +50,12 @@ path HLTBegin = {hltBegin}
 // Note: path HLTBegin should be excluded from HLTtable timing considerations
 //
 
+//
+// Load common files
+//
+include "HLTrigger/Configuration/data/common/CaloTowers.cff"
+include "HLTrigger/Configuration/data/common/TrackerTracks.cff"
+include "HLTrigger/Configuration/data/common/Vertexing.cff"
 
 //
 // Epilogue with endpath of modules for HLT:
