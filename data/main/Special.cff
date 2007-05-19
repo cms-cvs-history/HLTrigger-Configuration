@@ -2,13 +2,6 @@
 // Special triggers
 //
 
-//
-// Simple Zero- and Minimum-Bias Triggers
-//
-include "HLTrigger/special/data/SimpleBias.cff"
-path HLTZeroBias = {hltZeroBias}
-path HLTMinBias  = {hltMinBias}
-
 /*
 //
 // Pixel-Tracks based MinBias Trigger
@@ -17,3 +10,11 @@ include "HLTrigger/special/data/MinBias-Pixel-Reco.cff"
 include "HLTrigger/special/data/MinBias-With-Pixel-Tracks.cff"
 path HLTMinBiasPixel = {L1TSeq & pixeltrackerlocalreco & pixelTracksForMinBias, hltPixlCands & hltPixlMBFilt}
 */
+
+
+//
+// Simple Zero- and Minimum-Bias Triggers
+//
+include "HLTrigger/special/data/SimpleBias.cff"
+path HLTMinBias  = {hltMinBias}
+path HLTZeroBias = {hltZeroBias}
