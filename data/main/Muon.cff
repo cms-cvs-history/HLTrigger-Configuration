@@ -30,8 +30,8 @@ path HLT2MuonZ = { zMM }
 include "HLTrigger/Muon/data/PathMultiMuon_2x1033_NoIso.cff"
 path HLTNMuonNonIso = { multiMuonNoIso }
 
-include "HLTrigger/Muon/data/PathSingleMu_Startup.cff"
-path HLT1MuonStartup = { singleMuStartup }
+// include "HLTrigger/Muon/data/PathSingleMu_Startup.cff"
+// path HLT1MuonStartup = { singleMuStartup }
 
 
 // Same-sign di-muons
