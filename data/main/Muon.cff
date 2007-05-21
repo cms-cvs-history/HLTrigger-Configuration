@@ -1,23 +1,23 @@
 // Muon trigger paths
 
-// for 2x1033 or 1033
+// for 2x1033 (high) or 1032 (low)
 
 // Main paths
 
 // include "HLTrigger/Muon/data/PathSingleMu_2x1033_Iso.cff"
-include "HLTrigger/Muon/data/PathSingleMu_1033_Iso.cff"
+include "HLTrigger/Muon/data/PathSingleMu_1032_Iso.cff"
 path HLT1MuonIso = { singleMuIso }
 
 // include "HLTrigger/Muon/data/PathSingleMu_2x1033_NoIso.cff"
-include "HLTrigger/Muon/data/PathSingleMu_1033_NoIso.cff"
+include "HLTrigger/Muon/data/PathSingleMu_1032_NoIso.cff"
 path HLT1MuonNonIso = { singleMuNoIso }
 
 // include "HLTrigger/Muon/data/PathDiMuon_2x1033_Iso.cff"
-include "HLTrigger/Muon/data/PathDiMuon_1033_Iso.cff"
+include "HLTrigger/Muon/data/PathDiMuon_1032_Iso.cff"
 path HLT2MuonIso = { diMuonIso }
 
 // include "HLTrigger/Muon/data/PathDiMuon_2x1033_NoIso.cff"
-include "HLTrigger/Muon/data/PathDiMuon_1033_NoIso.cff"
+include "HLTrigger/Muon/data/PathDiMuon_1032_NoIso.cff"
 path HLT2MuonNonIso = { diMuonNoIso }
 
 
@@ -33,7 +33,7 @@ include "HLTrigger/Muon/data/PathZmumu.cff"
 path HLT2MuonZ = { zMM }
 
 // include "HLTrigger/Muon/data/PathMultiMuon_2x1033_NoIso.cff"
-include "HLTrigger/Muon/data/PathMultiMuon_1033_NoIso.cff"
+include "HLTrigger/Muon/data/PathMultiMuon_1032_NoIso.cff"
 path HLTNMuonNonIso = { multiMuonNoIso }
 
 // include "HLTrigger/Muon/data/PathSingleMu_Startup.cff"
