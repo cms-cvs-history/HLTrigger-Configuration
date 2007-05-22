@@ -12,7 +12,9 @@ sequence hltBegin = { hltGetDigi & (l1emulator , l1extra) }
 // 2: from Raw+L1Extra on input file - needs raw2digi unpacking but no L1
 include "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
-sequence hltBegin = { hltGetRaw }
+// Ecal preshower not ready - reuse digis on file read by special getDigis module
+// sequence hltBegin = { hltGetRaw }
+sequence hltBegin = { hltGetRaw & getDigis }
 */
 
 /*

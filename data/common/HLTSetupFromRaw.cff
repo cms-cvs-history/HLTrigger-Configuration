@@ -21,7 +21,10 @@ sequence doLocalTracker = { doLocalPixel & doLocalStrip }
 // Calorimeter = Ecal and Hcal
 //
 include "HLTrigger/Configuration/data/common/LocalCalo.cff"
-sequence doLocalEcal    = { (ecalDigis & ecalPreshowerDigis) , ecalLocalRecoSequence }
+// Ecal preshower not ready - reuse original digis read by special "getDigis" in hltBegin
+// sequence doLocalEcal    = { (ecalDigis & ecalPreshowerDigis) , ecalLocalRecoSequence }
+sequence doLocalEcal    = {  ecalDigis , ecalLocalRecoSequence }
+//
 sequence doLocalHcal    = {  hcalDigis , hcalLocalRecoSequence }
 sequence doLocalHcalWithoutHO = {hcalDigis , hcalLocalRecoWithoutHO }
 // combined
