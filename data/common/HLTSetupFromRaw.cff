@@ -22,11 +22,11 @@ sequence doLocalTracker = { doLocalPixel & doLocalStrip }
 //
 include "HLTrigger/Configuration/data/common/LocalCalo.cff"
 // Ecal preshower not ready - reuse original digis read by special "getDigis" in hltBegin
-// sequence doLocalEcal    = { (ecalDigis & ecalPreshowerDigis) , ecalLocalRecoSequence }
-sequence doLocalEcal    = {  ecalDigis , ecalLocalRecoSequence }
+// sequence doLocalEcal       = { (ecalDigis & ecalPreshowerDigis) , ecalLocalRecoSequence }
+sequence doLocalEcal          = {  ecalDigis , ecalLocalRecoSequence }
 //
-sequence doLocalHcal    = {  hcalDigis , hcalLocalRecoSequence }
-sequence doLocalHcalWithoutHO = {hcalDigis , hcalLocalRecoWithoutHO }
+sequence doLocalHcal          = {doHcalDigis , hcalLocalRecoSequence }
+sequence doLocalHcalWithoutHO = {doHcalDigis , hcalLocalRecoWithoutHO }
 // combined
 sequence doLocalCalo    = { doLocalEcal & doLocalHcal }
 sequence doLocalCaloWithoutHO = {doLocalEcal & doLocalHcalWithoutHO }
