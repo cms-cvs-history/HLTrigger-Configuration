@@ -1,35 +1,36 @@
 // B and Tau trigger paths
 
+//
 // B trigger paths
+//
 
+//
 // tracking-based b-tag
-include "HLTrigger/btau/data/jetTag/L1_for_LifetimeTrigger.cff"
-include "HLTrigger/btau/data/jetTag/bHLT_LifetimeTrigger.cff"
-include "HLTrigger/btau/data/jetTag/triggerSeq.cff"
-
+include "HLTrigger/btau/data/jetTag/lifetimeHLT.cff"
 path HLTB1Jet = {b1jetTrig}
 path HLTB2Jet = {b2jetTrig}
 path HLTB3Jet = {b3jetTrig}
 path HLTB4Jet = {b4jetTrig}
 path HLTBHT   = {  bHTTrig}
 
+//
 // muon-based b-tag
-include "HLTrigger/btau/data/jetTag/L1_for_bSoftmuTrigger.cff"
-include "HLTrigger/btau/data/jetTag/bHLT_bSoftmuTrigger.cff"
-include "HLTrigger/btau/data/jetTag/triggerSeqMu.cff"
-
+include "HLTrigger/btau/data/jetTag/softmuonHLT.cff"
 path HLTB1JetMu = {bmu1jetTrig}
 path HLTB2JetMu = {bmu2jetTrig}
 path HLTB3JetMu = {bmu3jetTrig}
 path HLTB4JetMu = {bmu4jetTrig}
 path HLTBHTMu   = {  bmuHTTrig}
 
+//
 // special B -> J/Psi -> dimuon trigger
 include "HLTrigger/btau/data/displacedmumu/PathBToJpsiToMumu.cff"
 path HLTBJPsiMuMu = {btoJpsitoMumu}	
 
 
+//
 // Tau trigger paths
+//
 
 include "HLTrigger/btau/data/tau/TauHLT.cff"
 path HLT1Tau     = {      singleTauL1HLT }
