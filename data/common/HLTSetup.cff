@@ -45,9 +45,13 @@ sequence hltBegin = { hltGetDigi & (DigiToRaw , doL1RawToDigi , l1emulator , l1e
 // This is put into a separate path run before all other paths - subsequent
 // paths then simply re-use the EDProducts already produced!
 //
-path HLTBegin = {hltBegin}
+// Make sure path HLTBegin does not accept any event
+module  prescalerBegin = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
+replace prescalerBegin.prescaleFactor = 4294967295 // = 2**32-1
+path HLTBegin = {hltBegin , prescalerBegin}
 //
 // Note: path HLTBegin should be excluded from HLTtable timing considerations
+// Note: path HLTBegin must of course be removed from the HLT table for online running
 //
 
 //
