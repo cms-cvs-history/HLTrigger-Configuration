@@ -6,6 +6,6 @@
 #
 
 module muonCSCDigis = cscunpacker from "EventFilter/CSCRawToDigi/data/cscUnpacker.cfi"
-replace muonCSCDigis.InputObjects = rawDataCollector
+replace muonCSCDigis.InputObjects = source
 
 sequence CSCRawToDigi = { hltGetRaw,muonCSCDigis }

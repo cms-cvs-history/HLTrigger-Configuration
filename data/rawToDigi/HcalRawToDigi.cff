@@ -6,6 +6,4 @@
 #
 
 module hcalDigis = hcalDigis from "HLTrigger/Configuration/data/rawToDigi/HcalRawToDigi-mtcc.cfi"
-replace hcalDigis.InputLabel = "rawDataCollector"
-
 sequence HcalRawToDigi = { hltGetRaw,hcalDigis }

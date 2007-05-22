@@ -18,7 +18,7 @@ include "HLTrigger/Configuration/data/rawToDigi/DTDigiToRaw.cff"
 include "HLTrigger/Configuration/data/rawToDigi/RPCDigiToRaw.cff"
 
 #--- Collect everything together ---#
-module rawDataCollector = RawDataCollectorModule {}
+module source = RawDataCollectorModule {}
   
 sequence DigiToRaw = {
                         SiPixelDigiToRaw,
@@ -29,5 +29,5 @@ sequence DigiToRaw = {
                         CSCDigiToRaw,
                         DTDigiToRaw,
                         RPCDigiToRaw,
-                        rawDataCollector
+                        source
                      }

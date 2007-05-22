@@ -6,6 +6,4 @@
 #
 
 module ecalDigis = ecalEBunpacker from "HLTrigger/Configuration/data/rawToDigi/ecalUnpacker.cfi"
-replace ecalDigis.InputLabel = "rawDataCollector"
-
 sequence EcalRawToDigi = { hltGetRaw,ecalDigis }

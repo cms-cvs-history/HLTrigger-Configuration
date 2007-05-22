@@ -8,7 +8,8 @@
 include "HLTrigger/Configuration/data/rawToDigi/SetupRawToDigi.cff"
 
 #--- Grab the raw source ---#
-include "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
+module hltGetRaw = hltGetRaw from "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
+replace hltGetRaw.RawDataCollection = source
 
 #--- Using hltGetDigi for EcalES,DT, and RPC until they are ready ---#
 module getDigis = hltGetDigi from "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"

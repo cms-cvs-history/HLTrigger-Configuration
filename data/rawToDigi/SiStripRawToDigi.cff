@@ -6,6 +6,4 @@
 #
 
 module siStripDigis = SiStripDigis from "EventFilter/SiStripRawToDigi/data/SiStripDigis.cfi"
-replace siStripDigis.ProductLabel = "rawDataCollector"
-
 sequence SiStripRawToDigi = { hltGetRaw,siStripDigis }     
