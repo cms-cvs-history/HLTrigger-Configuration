@@ -5,6 +5,7 @@
 // 1: from Digis on input file
 include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
 include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
+replace l1extraParticleMap.A_SingleMu10_prescale = 1
 include "HLTrigger/Configuration/data/common/HLTSetupFromDigis.cff"
 sequence hltBegin = { hltGetDigi & (l1emulator , l1extra) }
 
@@ -21,6 +22,7 @@ sequence hltBegin = { hltGetRaw & getDigis }
 // 3: from Raw on input (file or online) - needs raw2digi unpacking and L1
 include "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
 include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
+replace l1extraParticleMap.A_SingleMu10_prescale = 1
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
 sequence hltBegin = { hltGetRaw & (doL1RawToDigi , l1emulator , l1extra) }
 */
@@ -30,6 +32,7 @@ sequence hltBegin = { hltGetRaw & (doL1RawToDigi , l1emulator , l1extra) }
 include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
 include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
 include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
+replace l1extraParticleMap.A_SingleMu10_prescale = 1
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
 sequence hltBegin = { hltGetDigi & (DigiToRaw , doL1RawToDigi , l1emulator , l1extra) }
 */
