@@ -1,16 +1,35 @@
 //
-// Sequences for Local Calo reconstruction (see RecoLocalCalo)
+// Sequences for Local Calo reconstruction (see RecoLocalCalo/Configuration/data)
 //
-//   Combines Ecal local reco and Hcal local reco with or without ZS
+//   Combines Ecal local reco and Hcal local reco with or without Hcal ZS
+//   also defining sequence for Hcal excluding horeco - horeco not needed for Egamma
 //
 
 //
-// Pick one of the two sets: without or with HCAL ZeroSuppression and
-// sequence for HCAL excluding horeco - horeco not needed for Egamma)
+// Pick one and only one of the following three choices:
 //
-// include "RecoLocalCalo/Configuration/data/RecoLocalCalo.cff"
-// sequence hcalLocalRecoWithoutHO = { hbhereco & hfreco }
-//
+
+
+/*
+// 1: Using non-ZS Hcal data on input (Digis/Raw2Digi), using non-ZS processing
+include "RecoLocalCalo/Configuration/data/RecoLocalCalo.cff"
+sequence hcalLocalRecoWithoutHO = { hbhereco & hfreco }
+*/
+
+
+// 2: Using non-ZS Hcal data on input (Digis/Raw2Digi), doing ZS, then using ZS processing
 include "RecoLocalCalo/Configuration/data/RecoLocalCalo_hcalZS.cff"
 sequence hcalLocalRecoWithoutHO = {hcalZeroSuppressedDigis & hbhereco & hfreco}
-//
+
+
+/*
+// 3: Using ZS Hcal data on input (Digis/Raw2Digi), then using ZS processing
+include "RecoLocalCalo/Configuration/data/ecalLocalRecoSequence.cff"
+include "Geometry/CaloEventSetup/data/CaloGeometry.cff"
+include "RecoLocalCalo/HcalRecProducers/data/HcalSimpleReconstructor-hbhe-zs.cfi"
+include "RecoLocalCalo/HcalRecProducers/data/HcalSimpleReconstructor-ho-zs.cfi"
+include "RecoLocalCalo/HcalRecProducers/data/HcalSimpleReconstructor-hf-zs.cfi" 
+sequence hcalLocalRecoSequence = { hbhereco & hfreco & horeco }
+sequence calolocalreco = {ecalLocalRecoSequence & hcalLocalRecoSequence}
+sequence hcalLocalRecoWithoutHO = { hbhereco & hfreco }
+*/
