@@ -28,8 +28,8 @@ sequence doLocalEcal          = {  ecalDigis , ecalLocalRecoSequence }
 sequence doLocalHcal          = {doHcalDigis , hcalLocalRecoSequence }
 sequence doLocalHcalWithoutHO = {doHcalDigis , hcalLocalRecoWithoutHO }
 // combined
-// sequence doLocalCalo    = { doLocalEcal & doLocalHcal }
-// sequence doLocalCaloWithoutHO = {doLocalEcal & doLocalHcalWithoutHO }
+sequence doLocalCalo    = { doLocalEcal & doLocalHcal }
+sequence doLocalCaloWithoutHO = {doLocalEcal & doLocalHcalWithoutHO }
 
 // include "HLTrigger/Configuration/data/common/ecalRegionalEgammaRecoSequence.cff"
 // sequence doRegionalEgammaEcal = { ecalPreshowerDigis & ecalRegionalEgammaRecoSequence }
@@ -43,4 +43,4 @@ sequence doLocalCSC     = { muonCSCDigis , csclocalreco }
 sequence doLocalDT      = { muonDTDigis  , dtlocalreco }
 sequence doLocalRPC     = { muonRPCDigis , rpcRecHits }
 // combined
-// sequence doLocalMuon    = { doLocalDT & doLocalCSC & doLocalRPC}
+sequence doLocalMuon    = { doLocalDT & doLocalCSC & doLocalRPC}

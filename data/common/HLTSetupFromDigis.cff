@@ -21,8 +21,8 @@ sequence doLocalEcal    = { ecalLocalRecoSequence }
 sequence doLocalHcal    = { hcalLocalRecoSequence }
 sequence doLocalHcalWithoutHO = {hcalLocalRecoWithoutHO }
 // combined
-// sequence doLocalCalo    = { doLocalEcal & doLocalHcal }
-// sequence doLocalCaloWithoutHO = {doLocalEcal & doLocalHcalWithoutHO }
+sequence doLocalCalo    = { doLocalEcal & doLocalHcal }
+sequence doLocalCaloWithoutHO = {doLocalEcal & doLocalHcalWithoutHO }
 
 
 //
@@ -33,4 +33,4 @@ sequence doLocalCSC     = { csclocalreco }
 sequence doLocalDT      = { dtlocalreco }
 sequence doLocalRPC     = { rpcRecHits }
 // combined
-// sequence doLocalMuon    = { doLocalDT & doLocalCSC & doLocalRPC}
+sequence doLocalMuon    = { doLocalDT & doLocalCSC & doLocalRPC}
