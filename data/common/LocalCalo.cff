@@ -11,21 +11,23 @@
 
 
 /*
-// 1+2: Using non-ZS Hcal data on input (1=Digis/2=Raw2Digi), using non-ZS processing
+// 1+2: Using non-ZS Hcal (1=Digis/2=Raw2Digi), using non-ZS processing
 include "RecoLocalCalo/Configuration/data/RecoLocalCalo.cff"
 sequence hcalLocalRecoWithoutHO = { hbhereco & hfreco }
 //
-// sequence doHcalDigis {hcalDigis} // uncomment for case 2: raw only!
+// Uncomment for case 2 = raw only:
+// sequence doHcalDigis {hcalDigis}
 */
 
-// 3+4: Using non-ZS Hcal data on input (3=Digis/4=Raw2Digi), doing ZS, then using ZS processing
+// 3+4: Using non-ZS Hcal (3=Digis/4=Raw2Digi), doing ZS, then using ZS processing
 include "RecoLocalCalo/Configuration/data/RecoLocalCalo_hcalZS.cff"
 sequence hcalLocalRecoWithoutHO = {hcalZeroSuppressedDigis & hbhereco & hfreco}
 //
-// sequence doHcalDigis {hcalDigis} // uncomment for case 4: raw only!
+// Uncomment for case 4 = raw only:
+// sequence doHcalDigis {hcalDigis}
 
 /*
-// 5+6: Using ZS Hcal data on input (5=Digis/6=Raw2Digi), then using ZS processing
+// 5+6: Using ZS Hcal input (5=Digis/6=Raw2Digi), then using ZS processing
 include "RecoLocalCalo/Configuration/data/ecalLocalRecoSequence.cff"
 include "Geometry/CaloEventSetup/data/CaloGeometry.cff"
 include "RecoLocalCalo/HcalRecProducers/data/HcalSimpleReconstructor-hbhe-zs.cfi"
@@ -35,5 +37,6 @@ sequence hcalLocalRecoSequence = { hbhereco & hfreco & horeco }
 sequence calolocalreco = {ecalLocalRecoSequence & hcalLocalRecoSequence}
 sequence hcalLocalRecoWithoutHO = { hbhereco & hfreco }
 //
-// sequence doHcalDigis = {hcalZeroSuppressedDigis} // uncomment for case 6: raw only
+// Uncomment for case 6 = raw only:
+// sequence doHcalDigis = {hcalZeroSuppressedDigis}
 */
