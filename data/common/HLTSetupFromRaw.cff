@@ -31,9 +31,15 @@ sequence doLocalHcalWithoutHO = {doHcalDigis , hcalLocalRecoWithoutHO }
 sequence doLocalCalo    = { doLocalEcal & doLocalHcal }
 sequence doLocalCaloWithoutHO = {doLocalEcal & doLocalHcalWithoutHO }
 
-// include "HLTrigger/Configuration/data/common/ecalRegionalEgammaRecoSequence.cff"
+include "HLTrigger/Configuration/data/common/EcalRegionalReco.cff"
 // sequence doRegionalEgammaEcal = { ecalPreshowerDigis & ecalRegionalEgammaRecoSequence }
-// sequence doRegionalEgammaEcal = { ecalRegionalEgammaRecoSequence }
+sequence doRegionalEgammaEcal = { ecalRegionalEgammaRecoSequence }
+// sequence doRegionalMuonsEcal  = { ecalPreshowerDigis & ecalRegionalMuonsRecoSequence }
+sequence doRegionalMuonsEcal  = { ecalRegionalEgammaRecoSequence }
+/* taus not yet
+// sequence doRegionalTausEcal   = { ecalPreshowerDigis & ecalRegionalTausRecoSequence }
+sequence doRegionalTausEcal   = { ecalRegionalEgammaRecoSequence }
+*/
 
 //
 // Muon = CSC and DT and RPC
