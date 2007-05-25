@@ -12,7 +12,9 @@ sequence doL1RawToDigi = { ecalDigis & ecalPreshowerDigis & hcalDigis &
 //
 include "RecoLocalTracker/Configuration/data/RecoLocalTracker.cff"
 sequence doLocalPixel   = { siPixelDigis , pixeltrackerlocalreco }
-sequence doLocalStrip   = { siStripDigis , striptrackerlocalreco }
+// Strips not ready - reuse original digis read by special "getDigis" in hltBegin
+//sequence doLocalStrip   = { siStripDigis , striptrackerlocalreco }
+sequence doLocalStrip   = { striptrackerlocalreco }
 // combined
 sequence doLocalTracker = { doLocalPixel & doLocalStrip }
 
