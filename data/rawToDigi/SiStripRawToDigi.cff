@@ -5,5 +5,8 @@
 # Definition of SiStripRawToDigi sequence
 #
 
-module siStripDigis = SiStripDigis from "EventFilter/SiStripRawToDigi/data/SiStripDigis.cfi"
-sequence SiStripRawToDigi = { hltGetRaw,siStripDigis }     
+# module siStripDigis = SiStripDigis from "EventFilter/SiStripRawToDigi/data/SiStripDigis.cfi"
+# sequence SiStripRawToDigi = { hltGetRaw,siStripDigis }     
+
+# Temporary fix until raw->rechit becomes available
+sequence SiStripRawToDigi = { getDigis }

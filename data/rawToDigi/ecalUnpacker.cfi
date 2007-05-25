@@ -5,6 +5,7 @@ module ecalEBunpacker = EcalRawToDigiDev {
    untracked bool headerUnpacking = false 
    untracked bool srpUnpacking    = false 
    untracked bool feUnpacking     = true 
+   untracked bool syncCheck       = false
 
    untracked string InputLabel = "source" 
    untracked vint32 FEDs = {}
