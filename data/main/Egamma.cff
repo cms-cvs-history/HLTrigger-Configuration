@@ -4,30 +4,31 @@
 
 // NEW: Local Reco
 
-include "HLTrigger/Egamma/data/EgammaHLTLocal_1032.cff"
+include "HLTrigger/Egamma/data/EgammaHLTLocal.cff"
 
-
-include "HLTrigger/Egamma/data/SingleElectronL1Isolated_1032.cff"
+include "HLTrigger/Egamma/data/SingleElectronL1Isolated.cff"
 path HLT1Electron        =    {singleElectronL1Isolated}
 
-include "HLTrigger/Egamma/data/SingleElectronL1NonIsolated_1032.cff"
+include "HLTrigger/Egamma/data/SingleElectronL1NonIsolated.cff"
 path HLT1ElectronRelaxed =    {singleElectronL1NonIsolated}
 
-include "HLTrigger/Egamma/data/DoubleElectronL1Isolated_1032.cff"
+include "HLTrigger/Egamma/data/DoubleElectronL1Isolated.cff"
 path HLT2Electron        =    {doubleElectronL1Isolated}
 
-include "HLTrigger/Egamma/data/DoubleElectronL1NonIsolated_1032.cff"
+include "HLTrigger/Egamma/data/DoubleElectronL1NonIsolated.cff"
 path HLT2ElectronRelaxed =    {doubleElectronL1NonIsolated}
 
 
-include "HLTrigger/Egamma/data/SinglePhotonL1Isolated_1032.cff"
-include "HLTrigger/Egamma/data/SinglePhotonL1NonIsolated_1032.cff"
-include "HLTrigger/Egamma/data/DoublePhotonL1Isolated_1032.cff"
-include "HLTrigger/Egamma/data/DoublePhotonL1NonIsolated_1032.cff"
-
+include "HLTrigger/Egamma/data/SinglePhotonL1Isolated.cff"
 path HLT1Photon          =    {singlePhotonL1Isolated}
+
+include "HLTrigger/Egamma/data/SinglePhotonL1NonIsolated.cff"
 path HLT1PhotonRelaxed   =    {singlePhotonL1NonIsolated}
+
+include "HLTrigger/Egamma/data/DoublePhotonL1Isolated.cff"
 path HLT2Photon          =    {doublePhotonL1Isolated}
+
+include "HLTrigger/Egamma/data/DoublePhotonL1NonIsolated.cff"
 path HLT2PhotonRelaxed   =    {doublePhotonL1NonIsolated}
 
 
