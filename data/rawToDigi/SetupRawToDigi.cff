@@ -29,8 +29,7 @@ replace SiStripNoise.catalog = "file:///afs/cern.ch/cms/data/CMSSW/HLTrigger/Con
 #--- ECAL ---#
 include "HLTrigger/Configuration/data/rawToDigi/EcalGeometrySetup.cff"
 #--- HCAL ---#
-es_module = HcalDbProducer {}
-include "HLTrigger/Configuration/data/rawToDigi/HcalHardcodeCalibrations.cfi"
+include "CalibCalorimetry/HcalPlugins/data/hardwired_conditions.cfi"
 #--- DT ---#
 include "HLTrigger/Configuration/data/rawToDigi/DTDBCabling.cfi"
 include "Geometry/DTGeometry/data/dtGeometry.cfi"

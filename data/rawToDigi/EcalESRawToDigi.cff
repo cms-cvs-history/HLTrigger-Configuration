@@ -5,9 +5,5 @@
 # Definition of EcalESRawToDigi sequence
 #
 
-# Use hltGetDigi as a placeholder until EcalES is ready
-# module ecalPreshowerDigis = esRawToDigi from "HLTrigger/Configuration/data/rawToDigi/esRawToDigi.cfi"
-# replace ecalPreshowerDigis.Label = "rawDataCollector" 
-# replace ecalPreshowerDigis.debugMode = true
-# sequence EcalESRawToDigi = { hltGetRaw,ecalPreshowerDigis }
-sequence EcalESRawToDigi = { getDigis }
+module ecalPreshowerDigis = esRawToDigi from "HLTrigger/Configuration/data/rawToDigi/esRawToDigi.cfi"
+sequence EcalESRawToDigi = { hltGetRaw,ecalPreshowerDigis }
