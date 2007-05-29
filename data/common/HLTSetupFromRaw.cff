@@ -3,8 +3,9 @@
 //
 
 include "HLTrigger/Configuration/data/rawToDigi/RawToDigi.cff"
-
-sequence doL1RawToDigi = { ecalDigis & ecalPreshowerDigis & hcalDigis & 
+// Ecal preshower not ready - reuse original digis read by special "getDigis" in hltBegin
+//sequence doL1RawToDigi = { ecalDigis & ecalPreshowerDigis & hcalDigis & 
+sequence doL1RawToDigi = { ecalDigis & doHcalDigis & 
                            muonCSCDigis & muonDTDigis & muonRPCDigis  }
 
 //

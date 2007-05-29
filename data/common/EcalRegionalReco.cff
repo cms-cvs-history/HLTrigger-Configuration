@@ -34,7 +34,7 @@ replace ecalRegionalTausDigis.FedLabel = "ecalRegionalTausFEDs"
 //   with updated InputTags
 //
 # Calo geometry service model
-include "Geometry/CaloEventSetup/data/CaloGeometry.cff"
+include "Geometry/CaloEventSetup/data/CaloGeometry.cfi"
 
 module  ecalRegionalEgammaWeightUncalibRecHit = ecalWeightUncalibRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalWeightUncalibRecHit.cfi"
 replace ecalRegionalEgammaWeightUncalibRecHit.EBdigiCollection = ecalRegionalEgammaDigis:ebDigis
