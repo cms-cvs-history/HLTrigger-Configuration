@@ -5,5 +5,10 @@
 # Definition of EcalESDigiToRaw sequence
 #
 
-module esPacker = esDigiToRaw from "HLTrigger/Configuration/data/rawToDigi/esDigiToRaw.cfi"
-sequence EcalESDigiToRaw = { esPacker }
+# Use a prescaler at a placeholder until EcalES is ready
+module EcalESprescD2R = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
+sequence EcalESDigiToRaw = { EcalESprescD2R }
+
+# module esPacker = esDigiToRaw from "HLTrigger/Configuration/data/rawToDigi/esDigiToRaw.cfi"
+# replace esPacker.debugMode = true
+# sequence EcalESDigiToRaw = { esPacker }

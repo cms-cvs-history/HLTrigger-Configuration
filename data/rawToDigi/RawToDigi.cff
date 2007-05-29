@@ -14,7 +14,6 @@ replace hltGetRaw.RawDataCollection = source
 #--- Using hltGetDigi for EcalES,DT, and RPC until they are ready ---#
 module getDigis = hltGetDigi from "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
 replace getDigis.getEcal   = false
-replace getDigis.getEcalES = false
 replace getDigis.getHcal   = false
 replace getDigis.getPixels = false
 # replace getDigis.getStrips = false
