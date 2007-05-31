@@ -4,7 +4,7 @@
 
 include "HLTrigger/Configuration/data/rawToDigi/RawToDigi.cff"
 
-sequence doL1RawToDigi = { ecalDigis & ecalPreshowerDigis & hcalDigis & 
+sequence doL1RawToDigi = { ecalDigis & ecalPreshowerDigis & doHcalDigis & 
                            muonCSCDigis & muonDTDigis & muonRPCDigis  }
 
 //
