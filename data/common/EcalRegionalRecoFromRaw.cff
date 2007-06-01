@@ -1,0 +1,86 @@
+//
+// Regional Ecal reco based on Level-1 seeds for Egamma, Muons and Taus
+//
+
+
+//
+// Getting the list of Ecal FEDs
+//   uses EcalListOfFedsProducer module in RecoEgamma/EgammaHLTProducers
+//
+include "RecoEgamma/EgammaHLTProducers/data/ecalRegionalEgammaFEDs.cfi"
+include "RecoEgamma/EgammaHLTProducers/data/ecalRegionalMuonsFEDs.cfi"
+/* taus not yet
+include "RecoEgamma/EgammaHLTProducers/data/ecalRegionalTausFEDs.cfi"
+*/
+
+
+//
+// Unpacking Digis based on FED lists
+//   uses EcalRawToDigiDev module in EventFilter/EcalRawToDigiDev
+//   with cfi file in HLTrigger/Configuration/data/rawToDigi
+//
+module  ecalRegionalEgammaDigis = ecalRawToDigiDev from "HLTrigger/Configuration/data/rawToDigi/ecalRawToDigiDev.cfi"
+replace ecalRegionalEgammaDigis.FedLabel = "ecalRegionalEgammaFEDs"
+module  ecalRegionalMuonsDigis = ecalRawToDigiDev from "HLTrigger/Configuration/data/rawToDigi/ecalRawToDigiDev.cfi"
+replace ecalRegionalMuonsDigis.FedLabel = "ecalRegionalMuonsFEDs"
+/* taus not yet
+module ecalRegionalTausDigis = ecalRawToDigiDev from "HLTrigger/Configuration/data/rawToDigi/ecalRawToDigiDev.cfi"
+replace ecalRegionalTausDigis.FedLabel = "ecalRegionalTausFEDs"
+*/
+
+
+//
+// From here on simply cloning ecalLocalRecoSequence.cff
+//   with updated InputTags
+//
+# Calo geometry service model
+include "Geometry/CaloEventSetup/data/CaloGeometry.cfi"
+
+module  ecalRegionalEgammaWeightUncalibRecHit = ecalWeightUncalibRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalWeightUncalibRecHit.cfi"
+replace ecalRegionalEgammaWeightUncalibRecHit.EBdigiCollection = ecalRegionalEgammaDigis
+replace ecalRegionalEgammaWeightUncalibRecHit.EEdigiCollection = ecalRegionalEgammaDigis
+
+module  ecalRegionalEgammaRecHit = ecalRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalRecHit.cfi"
+replace ecalRegionalEgammaRecHit.EBuncalibRecHitCollection = ecalRegionalEgammaWeightUncalibRecHit:EcalUncalibRecHitsEB
+replace ecalRegionalEgammaRecHit.EEuncalibRecHitCollection = ecalRegionalEgammaWeightUncalibRecHit:EcalUncalibRecHitsEE
+
+module  ecalRegionalMuonsWeightUncalibRecHit = ecalWeightUncalibRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalWeightUncalibRecHit.cfi"
+replace ecalRegionalMuonsWeightUncalibRecHit.EBdigiCollection = ecalRegionalMuonsDigis
+replace ecalRegionalMuonsWeightUncalibRecHit.EEdigiCollection = ecalRegionalMuonsDigis
+
+module  ecalRegionalMuonsRecHit = ecalRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalRecHit.cfi"
+replace ecalRegionalMuonsRecHit.EBuncalibRecHitCollection = ecalRegionalMuonsWeightUncalibRecHit:EcalUncalibRecHitsEB
+replace ecalRegionalMuonsRecHit.EEuncalibRecHitCollection = ecalRegionalMuonsWeightUncalibRecHit:EcalUncalibRecHitsEE
+
+/* taus not yet
+module  ecalRegionalTausWeightUncalibRecHit = ecalWeightUncalibRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalWeightUncalibRecHit.cfi"
+replace ecalRegionalTausWeightUncalibRecHit.EBdigiCollection = ecalRegionalTausDigis
+replace ecalRegionalTausWeightUncalibRecHit.EEdigiCollection = ecalRegionalTausDigis
+
+module  ecalRegionalTausRecHit = ecalRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalRecHit.cfi"
+replace ecalRegionalTausRecHit.EBuncalibRecHitCollection = ecalRegionalTausWeightUncalibRecHit:EcalUncalibRecHitsEB
+replace ecalRegionalTausRecHit.EEuncalibRecHitCollection = ecalRegionalTausWeightUncalibRecHit:EcalUncalibRecHitsEE
+*/
+
+//
+// Preshower is unchanged!
+//
+include "RecoLocalCalo/EcalRecProducers/data/ecalPreshowerRecHit.cfi"
+
+//
+// sequence definition
+//
+sequence ecalRegionalEgammaRecoSequence = { 
+  ecalRegionalEgammaFEDs , ecalRegionalEgammaDigis ,  
+  ecalRegionalEgammaWeightUncalibRecHit , ecalRegionalEgammaRecHit &
+  ecalPreshowerRecHit }
+sequence ecalRegionalMuonsRecoSequence = { 
+  ecalRegionalMuonsFEDs , ecalRegionalMuonsDigis ,
+  ecalRegionalMuonsWeightUncalibRecHit , ecalRegionalMuonsRecHit &
+  ecalPreshowerRecHit }
+/*
+sequence ecalRegionalTausRecoSequence = {
+  ecalRegionalTausFEDs , ecalRegionalTausDigis ,
+  ecalRegionalTausWeightUncalibRecHit , ecalRegionalTausRecHit &
+  ecalPreshowerRecHit }
+*/

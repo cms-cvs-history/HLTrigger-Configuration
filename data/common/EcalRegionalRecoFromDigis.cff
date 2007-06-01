@@ -1,32 +1,11 @@
 //
-// Regional Ecal reco based on Level-1 seeds for Egamma, Muons and Taus
+// When starting from digis, there are of course no "regional digis" and no "regional rechits".
+// In order not to duplicate too much the modules in the Egamma paths, we define
+// here the modules "ecalRegionalEgammaWeightUncalibRecHit", "ecalRegionalEgammaRecHit" etc..
+// and the sequences ecalRegionalEgammaRecoSequence etc..
+// This way, the subsequent clustering modules always start from the RecHits created
+// by "ecalRegionalEgammaRecHit", both in the "FromDigis" and the "FromRaw" cases.
 //
-
-
-//
-// Getting the list of Ecal FEDs
-//   uses EcalListOfFedsProducer module in RecoEgamma/EgammaHLTProducers
-//
-include "RecoEgamma/EgammaHLTProducers/data/ecalRegionalEgammaFEDs.cfi"
-include "RecoEgamma/EgammaHLTProducers/data/ecalRegionalMuonsFEDs.cfi"
-/* taus not yet
-include "RecoEgamma/EgammaHLTProducers/data/ecalRegionalTausFEDs.cfi"
-*/
-
-
-//
-// Unpacking Digis based on FED lists
-//   uses EcalRawToDigiDev module in EventFilter/EcalRawToDigiDev
-//   with cfi file in HLTrigger/Configuration/data/rawToDigi
-//
-module  ecalRegionalEgammaDigis = ecalRawToDigiDev from "HLTrigger/Configuration/data/rawToDigi/ecalRawToDigiDev.cfi"
-replace ecalRegionalEgammaDigis.FedLabel = "ecalRegionalEgammaFEDs"
-module  ecalRegionalMuonsDigis = ecalRawToDigiDev from "HLTrigger/Configuration/data/rawToDigi/ecalRawToDigiDev.cfi"
-replace ecalRegionalMuonsDigis.FedLabel = "ecalRegionalMuonsFEDs"
-/* taus not yet
-module ecalRegionalTausDigis = ecalRawToDigiDev from "HLTrigger/Configuration/data/rawToDigi/ecalRawToDigiDev.cfi"
-replace ecalRegionalTausDigis.FedLabel = "ecalRegionalTausFEDs"
-*/
 
 
 //
@@ -37,16 +16,16 @@ replace ecalRegionalTausDigis.FedLabel = "ecalRegionalTausFEDs"
 include "Geometry/CaloEventSetup/data/CaloGeometry.cfi"
 
 module  ecalRegionalEgammaWeightUncalibRecHit = ecalWeightUncalibRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalWeightUncalibRecHit.cfi"
-replace ecalRegionalEgammaWeightUncalibRecHit.EBdigiCollection = ecalRegionalEgammaDigis:ebDigis
-replace ecalRegionalEgammaWeightUncalibRecHit.EEdigiCollection = ecalRegionalEgammaDigis:eeDigis
+# replace ecalRegionalEgammaWeightUncalibRecHit.EBdigiCollection = ecalDigis
+# replace ecalRegionalEgammaWeightUncalibRecHit.EEdigiCollection = ecalDigis
 
 module  ecalRegionalEgammaRecHit = ecalRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalRecHit.cfi"
 replace ecalRegionalEgammaRecHit.EBuncalibRecHitCollection = ecalRegionalEgammaWeightUncalibRecHit:EcalUncalibRecHitsEB
 replace ecalRegionalEgammaRecHit.EEuncalibRecHitCollection = ecalRegionalEgammaWeightUncalibRecHit:EcalUncalibRecHitsEE
 
 module  ecalRegionalMuonsWeightUncalibRecHit = ecalWeightUncalibRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalWeightUncalibRecHit.cfi"
-replace ecalRegionalMuonsWeightUncalibRecHit.EBdigiCollection = ecalRegionalMuonsDigis:ebDigis
-replace ecalRegionalMuonsWeightUncalibRecHit.EEdigiCollection = ecalRegionalMuonsDigis:eeDigis
+# replace ecalRegionalMuonsWeightUncalibRecHit.EBdigiCollection = ecalDigis
+# replace ecalRegionalMuonsWeightUncalibRecHit.EEdigiCollection = ecalDigis
 
 module  ecalRegionalMuonsRecHit = ecalRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalRecHit.cfi"
 replace ecalRegionalMuonsRecHit.EBuncalibRecHitCollection = ecalRegionalMuonsWeightUncalibRecHit:EcalUncalibRecHitsEB
@@ -54,8 +33,8 @@ replace ecalRegionalMuonsRecHit.EEuncalibRecHitCollection = ecalRegionalMuonsWei
 
 /* taus not yet
 module  ecalRegionalTausWeightUncalibRecHit = ecalWeightUncalibRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalWeightUncalibRecHit.cfi"
-replace ecalRegionalTausWeightUncalibRecHit.EBdigiCollection = ecalRegionalTausDigis:ebDigis
-replace ecalRegionalTausWeightUncalibRecHit.EEdigiCollection = ecalRegionalTausDigis:eeDigis
+# replace ecalRegionalTausWeightUncalibRecHit.EBdigiCollection = ecalDigis
+# replace ecalRegionalTausWeightUncalibRecHit.EEdigiCollection = ecalDigis
 
 module  ecalRegionalTausRecHit = ecalRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalRecHit.cfi"
 replace ecalRegionalTausRecHit.EBuncalibRecHitCollection = ecalRegionalTausWeightUncalibRecHit:EcalUncalibRecHitsEB
@@ -67,20 +46,19 @@ replace ecalRegionalTausRecHit.EEuncalibRecHitCollection = ecalRegionalTausWeigh
 //
 include "RecoLocalCalo/EcalRecProducers/data/ecalPreshowerRecHit.cfi"
 
+
 //
 // sequence definition
 //
 sequence ecalRegionalEgammaRecoSequence = { 
-  ecalRegionalEgammaFEDs , ecalRegionalEgammaDigis ,  
-  ecalRegionalEgammaWeightUncalibRecHit , ecalRegionalEgammaRecHit & 
+  ecalRegionalEgammaWeightUncalibRecHit , ecalRegionalEgammaRecHit &
   ecalPreshowerRecHit }
+
 sequence ecalRegionalMuonsRecoSequence = { 
-  ecalRegionalMuonsFEDs , ecalRegionalMuonsDigis ,
   ecalRegionalMuonsWeightUncalibRecHit , ecalRegionalMuonsRecHit &
   ecalPreshowerRecHit }
 /*
 sequence ecalRegionalTausRecoSequence = {
-  ecalRegionalTausFEDs , ecalRegionalTausDigis ,
   ecalRegionalTausWeightUncalibRecHit , ecalRegionalTausRecHit &
   ecalPreshowerRecHit }
 */

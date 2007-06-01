@@ -3,7 +3,6 @@
 //
 
 include "HLTrigger/Configuration/data/rawToDigi/RawToDigi.cff"
-
 sequence doL1RawToDigi = { ecalDigis & ecalPreshowerDigis & doHcalDigis & 
                            muonCSCDigis & muonDTDigis & muonRPCDigis  }
 
@@ -23,7 +22,10 @@ sequence doLocalTracker = { doLocalPixel & doLocalStrip }
 // Calorimeter = Ecal and Hcal
 //
 include "HLTrigger/Configuration/data/common/LocalCalo.cff"
-sequence doLocalEcal          = { (ecalDigis & ecalPreshowerDigis) , ecalLocalRecoSequence }
+//       in doLocalEcal : need to "decouple" ecalDigis from ecalLocalRecoSequence, 
+//       because ecalLocalRecoSequence includes the ecalPreshowerRecHit,
+//       which appears in several sequences.
+sequence doLocalEcal          = {  ecalDigis & ecalPreshowerDigis & ecalLocalRecoSequence }
 //
 sequence doLocalHcal          = {doHcalDigis , hcalLocalRecoSequence }
 sequence doLocalHcalWithoutHO = {doHcalDigis , hcalLocalRecoWithoutHO }
@@ -31,10 +33,7 @@ sequence doLocalHcalWithoutHO = {doHcalDigis , hcalLocalRecoWithoutHO }
 sequence doLocalCalo    = { doLocalEcal & doLocalHcal }
 sequence doLocalCaloWithoutHO = {doLocalEcal & doLocalHcalWithoutHO }
 
-//
-// Regional Ecal
-//
-include "HLTrigger/Configuration/data/common/EcalRegionalReco.cff"
+include "HLTrigger/Configuration/data/common/EcalRegionalRecoFromRaw.cff"
 sequence doRegionalEgammaEcal = { ecalPreshowerDigis & ecalRegionalEgammaRecoSequence }
 sequence doRegionalMuonsEcal  = { ecalPreshowerDigis & ecalRegionalMuonsRecoSequence }
 /* taus not yet
