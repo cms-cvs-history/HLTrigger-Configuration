@@ -3,3 +3,17 @@
 //
 include "RecoJets/Configuration/data/CaloTowersRec.cff"
 sequence doCalo = {doLocalCalo , caloTowersRec}
+
+//
+// Regional:
+//
+module towerMakerForMuons = towerMaker from "RecoJets/JetProducers/data/CaloTowerSchemeB.cfi"
+replace towerMakerForMuons.ecalInputs = { ecalRegionalMuonsRecHit:EcalRecHitsEB, ecalRegionalMuonsRecHit:EcalRecHitsEE }
+
+module caloTowersForMuons = CaloTowerCandidateCreator {
+           InputTag src = towerMakerForMuons
+           double minimumEt = -1
+           double minimumE = -1
+}
+
+sequence doRegionalCaloForMuons = { (doRegionalMuonsEcal & doLocalHcal), towerMakerForMuons, caloTowersForMuons }
