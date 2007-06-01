@@ -36,4 +36,4 @@ include "HLTrigger/btau/data/tau/TauHLT.cff"
 path HLT1Tau      = {      singleTauL1HLT }
 path HLT1Tau1MET  = {   singleTauMETL1HLT }
 path HLT2TauPixel = {   caloPixelTauL1HLT }
-path HLT2TauStrip = { caloSiStripTauL1HLT }
+// path HLT2TauStrip = { caloSiStripTauL1HLT } // removed for 1e32
