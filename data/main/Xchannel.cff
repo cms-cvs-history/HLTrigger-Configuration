@@ -14,15 +14,13 @@ include "HLTrigger/xchannel/data/PathMuBsoftMu.cff"
 path HLTXMuonBJetSoftMuon = { MuBsmu }
 
 
-/*
 // electron+jet
 include "HLTrigger/xchannel/data/PathElectronPlusJet.cff"
-sequence pdigireco = {doLocalTrackerFromDigis & doHLTJetReco}
+// sequence pdigireco = {doLocalTrackerFromDigis & doHLTJetReco}
 path HLTXElectron1Jet = { HLTEplus1jet }
 path HLTXElectron2Jet = { HLTEplus2jet }
 path HLTXElectron3Jet = { HLTEplus3jet }
 path HLTXElectron4Jet = { HLTEplus4jet }
-*/
 
 
 // muon+jet
