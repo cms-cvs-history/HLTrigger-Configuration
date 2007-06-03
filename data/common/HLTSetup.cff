@@ -11,9 +11,15 @@ sequence hltBegin = { hltGetDigi & (l1emulator , l1extra) }
 /*
 // 2: from Raw+L1Extra on input file - needs raw2digi unpacking but no L1
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
+// getData functionality for L1 products used by HLTLevel1Seed
+module  l1sBegin = hltLevel1Seed from "HLTrigger/HLTfilters/data/hltLevel1Seed.cfi"
+replace l1seedBegin.L1Seeds = { }
+replace l1seedBegin.L1ExtraCollections = l1extraParticles
+replace l1seedBegin.L1ExtraParticleMap = l1extraParticleMap
+replace l1seedBegin.L1GTReadoutRecord  = l1extraParticleMap
 // Some dets not ready - reuse digis on file read by special getDigis module
-// sequence hltBegin = { hltGetRaw }
-sequence hltBegin = { hltGetRaw & getDigis }
+// sequence hltBegin = { hltGetRaw & l1seedBegin}
+sequence hltBegin = { hltGetRaw & getDigis & l1seedBegin}
 */
 
 /*
