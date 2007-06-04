@@ -2,5 +2,9 @@
 # cabling
 include "HLTrigger/Configuration/data/rawToDigi/SiStripDBCabling.cfi"
 
-# build cabling objects of det and fec views
 es_module = SiStripConnectivity {}
+es_module = SiStripRegionConnectivity {
+   untracked uint32 EtaDivisions = 50
+   untracked uint32 PhiDivisions = 50
+   untracked double EtaMax = 2.4
+}

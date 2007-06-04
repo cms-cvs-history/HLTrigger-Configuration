@@ -19,13 +19,6 @@ include "Geometry/TrackerGeometryBuilder/data/trackerGeometry.cfi"
 include "Geometry/TrackerNumberingBuilder/data/trackerNumberingGeometry.cfi"
 #--- Strips ---#
 include "HLTrigger/Configuration/data/rawToDigi/SiStripDBCabling.cff"
-#--- Changes to SiStrip unpacking begins here ---#
-# include "EventFilter/SiStripRawToDigi/test/data/RegionCabling.cfi"
-#--- End of changes to SiStrip unpacking ---#
-es_source SiStripNoise = pool2 from "EventFilter/SiStripRawToDigi/data/DBNoise.cfi"
-replace SiStripNoise.DBParameters.authenticationPath = "/afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration"
-replace SiStripNoise.connect = "sqlite_file:///afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration/SiStrip/noise_0.0.db"
-replace SiStripNoise.catalog = "file:///afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration/SiStrip/noise_0.0.xml"
 #--- ECAL ---#
 include "HLTrigger/Configuration/data/rawToDigi/EcalGeometrySetup.cff"
 #--- HCAL ---#

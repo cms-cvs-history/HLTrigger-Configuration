@@ -1,0 +1,34 @@
+#
+# Bryan Dahmes LLNL
+# June 4, 2007
+#
+# Definition of SiStripRawToRecHit sequence
+#
+
+# Raw->Clusters
+include "CommonTools/SiStripClusterization/data/SiStripClusterization.cfi"
+module SiStripRawToClustersFacility = SiStripRawToClusters {
+    untracked string ProductLabel = "source"
+    untracked string ProductInstance = ""
+    using SiStripClusterization
+}
+replace SiStripRawToClustersFacility.UseCalibDataFromDB  = false
+
+# raw-to-clusters regions of interest module
+include "EventFilter/SiStripRawToDigi/test/data/SiStripRawToClustersDummyRoI.cfi"
+
+# raw to clusters DSV builder (temporary, for compatibility with rech-hits converter)
+include "EventFilter/SiStripRawToDigi/test/data/SiStripClustersDSVBuilder.cfi"
+
+sequence siStripRawToClusters = {SiStripRawToClustersFacility, DummyRoI, siStripClusters}
+
+# Clusters->RecHits
+include "RecoLocalTracker/SiStripRecHitConverter/data/SiStripRecHitMatcher.cfi"
+include "RecoLocalTracker/SiStripRecHitConverter/data/SiStripRecHitConverter.cfi"
+include "RecoLocalTracker/SiStripRecHitConverter/data/StripCPEfromTrackAngle.cfi"
+
+sequence SiStripRawToRecHit = { 
+                                hltGetRaw,
+                                siStripRawToClusters,
+                                siStripMatchedRecHits 
+                              }     
