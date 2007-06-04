@@ -3,17 +3,29 @@
 //
 
 include "HLTrigger/Configuration/data/rawToDigi/RawToDigi.cff"
+// L1 does not use Pixel or Strips
 sequence doL1RawToDigi = { ecalDigis & ecalPreshowerDigis & doHcalDigis & 
                            muonCSCDigis & muonDTDigis & muonRPCDigis  }
 
 //
 // Tracker = Pixel and Strip
 //
-include "RecoLocalTracker/Configuration/data/RecoLocalTracker.cff"
-sequence doLocalPixel   = { siPixelDigis , pixeltrackerlocalreco }
-// Strips not ready - reuse original digis read by special "getDigis" in hltBegin
-//sequence doLocalStrip   = { siStripDigis , striptrackerlocalreco }
-sequence doLocalStrip   = { striptrackerlocalreco }
+// Pixels: copy non-Strip part from:
+// include "RecoLocalTracker/Configuration/data/RecoLocalTracker.cff"
+include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
+include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"  
+include "Geometry/TrackerGeometryBuilder/data/trackerGeometry.cfi"
+include "Geometry/TrackerNumberingBuilder/data/trackerNumberingGeometry.cfi"
+include "RecoLocalTracker/SiPixelClusterizer/data/SiPixelClusterizer.cfi"
+include "RecoLocalTracker/SiPixelRecHits/data/SiPixelRecHits.cfi"
+// sequence pixeltrackerlocalreco = {siPixelClusters, siPixelRecHits}
+sequence doLocalPixel   = { siPixelDigis , siPixelClusters, siPixelRecHits}
+//
+// Strips: mimick RecoLocalTracker.cff for Strips using stuff from:
+include "HLTrigger/Configuration/data/rawToDigi/SiStripRawToRecHit.cff"
+// sequence striptrackerlocalreco = {siStripClusters, siStripMatchedRecHits}
+sequence doLocalStrip   = { SiStripRawToClustersFacility , DummyRoI , 
+                            siStripClusters , siStripMatchedRecHits }
 // combined
 sequence doLocalTracker = { doLocalPixel & doLocalStrip }
 
