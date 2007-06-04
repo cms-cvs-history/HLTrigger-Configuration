@@ -32,6 +32,12 @@ include "HLTrigger/Egamma/data/DoublePhotonL1NonIsolated.cff"
 path HLT2PhotonRelaxed   =    {doublePhotonL1NonIsolated}
 
 
+include "HLTrigger/Egamma/data/SingleEMHighEtL1NonIsolated.cff"
+path HLT1EMHighEt     = {singleEMHighEtL1NonIsolated}
+
+include "HLTrigger/Egamma/data/SingleEMVeryHighEtL1NonIsolated.cff"
+path HLT1EMVeryHighEt = {   singleEMVHEL1NonIsolated}
+
 
 /*
 // OLD: Global Reco
