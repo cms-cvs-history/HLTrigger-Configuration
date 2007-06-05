@@ -1,5 +1,5 @@
 //
-// Running the HLT table from Digis on input file
+// Running the HLT table directly from Digis on input file
 //
 
 
@@ -16,12 +16,23 @@ sequence doLocalTracker = { doLocalPixel & doLocalStrip }
 //
 // Calorimeter = Ecal and Hcal
 //
-include "HLTrigger/Configuration/data/common/LocalCalo.cff"
-sequence doLocalEcal    = { ecalLocalRecoSequence }
-sequence doLocalHcal    = { hcalLocalRecoSequence }
-sequence doLocalHcalWithoutHO = {hcalLocalRecoWithoutHO }
+// 1: nonZS digis on file, nonZS processing (only for comparisons)
+// include "RecoLocalCalo/Configuration/data/RecoLocalCalo.cff"
+// sequence hcalLocalRecoWithoutHO = { hbhereco & hfreco }
+//
+// 2: nonZS digis on file, ZS processing (current MC files)
+include "RecoLocalCalo/Configuration/data/RecoLocalCalo_hcalZS.cff"
+sequence hcalLocalRecoWithoutHO = {hcalZeroSuppressedDigis & hbhereco & hfreco}
+//
+// 3:    ZS digis on file, ZS processing (future MC files?)
+// include "HLTrigger/Configuration/data/common/RecoLocalCalo_hcalZS_withoutZSmodule.cff"
+// sequence hcalLocalRecoWithoutHO = { hbhereco & hfreco }
+//
+sequence doLocalEcal          = { ecalLocalRecoSequence }
+sequence doLocalHcal          = { hcalLocalRecoSequence }
+sequence doLocalHcalWithoutHO = { hcalLocalRecoWithoutHO }
 // combined
-sequence doLocalCalo    = { doLocalEcal & doLocalHcal }
+sequence doLocalCalo          = { doLocalEcal & doLocalHcal }
 sequence doLocalCaloWithoutHO = {doLocalEcal & doLocalHcalWithoutHO }
 
 

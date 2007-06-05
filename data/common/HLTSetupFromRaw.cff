@@ -4,7 +4,7 @@
 
 include "HLTrigger/Configuration/data/rawToDigi/RawToDigi.cff"
 // L1 does not use Pixel or Strips
-sequence doL1RawToDigi = { ecalDigis & ecalPreshowerDigis & doHcalDigis & 
+sequence doL1RawToDigi = { ecalDigis & ecalPreshowerDigis & hcalZeroSuppressedDigis & 
                            muonCSCDigis & muonDTDigis & muonRPCDigis  }
 
 //
@@ -33,16 +33,19 @@ sequence doLocalTracker = { doLocalPixel & doLocalStrip }
 //
 // Calorimeter = Ecal and Hcal
 //
-include "HLTrigger/Configuration/data/common/LocalCalo.cff"
+include "HLTrigger/Configuration/data/common/RecoLocalCalo_hcalZS_withoutZSmodule.cff"
+replace ecalWeightUncalibRecHit.EBdigiCollection = ecalDigis
+replace ecalWeightUncalibRecHit.EEdigiCollection = ecalDigis
+sequence hcalLocalRecoWithoutHO = { hbhereco & hfreco }
 //       in doLocalEcal : need to "decouple" ecalDigis from ecalLocalRecoSequence, 
 //       because ecalLocalRecoSequence includes the ecalPreshowerRecHit,
 //       which appears in several sequences.
 sequence doLocalEcal          = {  ecalDigis & ecalPreshowerDigis & ecalLocalRecoSequence }
 //
-sequence doLocalHcal          = {doHcalDigis , hcalLocalRecoSequence }
-sequence doLocalHcalWithoutHO = {doHcalDigis , hcalLocalRecoWithoutHO }
+sequence doLocalHcal          = {hcalZeroSuppressedDigis , hcalLocalRecoSequence }
+sequence doLocalHcalWithoutHO = {hcalZeroSuppressedDigis , hcalLocalRecoWithoutHO }
 // combined
-sequence doLocalCalo    = { doLocalEcal & doLocalHcal }
+sequence doLocalCalo          = { doLocalEcal & doLocalHcal }
 sequence doLocalCaloWithoutHO = {doLocalEcal & doLocalHcalWithoutHO }
 
 include "HLTrigger/Configuration/data/common/EcalRegionalRecoFromRaw.cff"
