@@ -13,8 +13,9 @@ include "HLTrigger/Muon/data/PathSingleMu_1032_NoIso.cff"
 path HLT1MuonNonIso = { singleMuNoIso }
 
 // include "HLTrigger/Muon/data/PathDiMuon_2x1033_Iso.cff"
-include "HLTrigger/Muon/data/PathDiMuon_1032_Iso.cff"
-path HLT2MuonIso = { diMuonIso }
+// include "HLTrigger/Muon/data/PathDiMuon_1032_Iso.cff"
+// path HLT2MuonIso = { diMuonIso }
+// should be selected by HLT2MuonNonIso
 
 // include "HLTrigger/Muon/data/PathDiMuon_2x1033_NoIso.cff"
 include "HLTrigger/Muon/data/PathDiMuon_1032_NoIso.cff"
