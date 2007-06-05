@@ -1,5 +1,5 @@
 //
-// RecoLocalCalo_hcalZS.cff - but without the module "hcalZeroSuppressedDigis".
+// Same as RecoLocalCalo_hcalZS.cff - but without the module "hcalZeroSuppressedDigis".
 //
 
 include "RecoLocalCalo/Configuration/data/ecalLocalRecoSequence.cff"

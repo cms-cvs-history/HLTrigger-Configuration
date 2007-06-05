@@ -25,7 +25,7 @@ include "RecoLocalCalo/Configuration/data/RecoLocalCalo_hcalZS.cff"
 sequence hcalLocalRecoWithoutHO = {hcalZeroSuppressedDigis & hbhereco & hfreco}
 //
 // 3:    ZS digis on file, ZS processing (future MC files?)
-// include "HLTrigger/Configuration/data/common/RecoLocalCalo_hcalZS_withoutZSmodule.cff"
+// include "HLTrigger/Configuration/data/common/RecoLocalCalo_hcalZS_0.cff"
 // sequence hcalLocalRecoWithoutHO = { hbhereco & hfreco }
 //
 sequence doLocalEcal          = { ecalLocalRecoSequence }

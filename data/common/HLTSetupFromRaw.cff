@@ -33,7 +33,7 @@ sequence doLocalTracker = { doLocalPixel & doLocalStrip }
 //
 // Calorimeter = Ecal and Hcal
 //
-include "HLTrigger/Configuration/data/common/RecoLocalCalo_hcalZS_withoutZSmodule.cff"
+include "HLTrigger/Configuration/data/common/RecoLocalCalo_hcalZS_0.cff"
 replace ecalWeightUncalibRecHit.EBdigiCollection = ecalDigis
 replace ecalWeightUncalibRecHit.EEdigiCollection = ecalDigis
 sequence hcalLocalRecoWithoutHO = { hbhereco & hfreco }
