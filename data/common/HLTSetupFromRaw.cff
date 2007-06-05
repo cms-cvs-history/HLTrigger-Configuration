@@ -1,5 +1,5 @@
 //
-// Running the HLT table from Raw on input file
+// Running the HLT table from Raw (on input file or after on-the-fly digi2raw)
 //
 
 include "HLTrigger/Configuration/data/rawToDigi/RawToDigi.cff"
