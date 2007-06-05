@@ -28,9 +28,6 @@ path HLT2jet1MET = {JetMET2jet1MET}
 path HLT3jet1MET = {JetMET3jet1MET}
 path HLT4jet1MET = {JetMET4jet1MET}
 
-// vbf trigger
-path HLT2jetvbfMET = {JetMET2jetvbfMET}
-
 // HT triggers
 // path HLT1HT     = {JetMET1HT}
 path HLT1MET1HT = {JetMET1MET1HT}
@@ -39,5 +36,12 @@ path HLT1MET1HT = {JetMET1MET1HT}
 path HLT1jetPE1 = {JetMET1jetPE1}
 path HLT1jetPE3 = {JetMET1jetPE3}
 path HLT1jetPE5 = {JetMET1jetPE5}
+
+// vbf trigger
+path HLT2jetvbfMET = {JetMET2jetvbfMET}
+
+// SUSY triggers
+path HLT2jet1METNV  = {JetMETNV}
+path HLT2jet1METAco = {JetMETPhi2METaco}
 
 //
