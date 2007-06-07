@@ -28,7 +28,6 @@ include "RecoLocalTracker/SiStripRecHitConverter/data/SiStripRecHitConverter.cfi
 include "RecoLocalTracker/SiStripRecHitConverter/data/StripCPEfromTrackAngle.cfi"
 
 sequence SiStripRawToRecHit = { 
-                                hltGetRaw,
                                 siStripRawToClusters,
                                 siStripMatchedRecHits 
                               }     

@@ -6,4 +6,4 @@
 #
 
 module ecalPreshowerDigis = esRawToDigi from "HLTrigger/Configuration/data/rawToDigi/esRawToDigi.cfi"
-sequence EcalESRawToDigi = { hltGetRaw,ecalPreshowerDigis }
+sequence EcalESRawToDigi = { ecalPreshowerDigis }

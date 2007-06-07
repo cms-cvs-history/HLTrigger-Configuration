@@ -7,21 +7,6 @@
 #--- Database and Geometry setup ---#
 include "HLTrigger/Configuration/data/rawToDigi/SetupRawToDigi.cff"
 
-#--- Grab the raw source ---#
-module hltGetRaw = hltGetRaw from "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
-replace hltGetRaw.RawDataCollection = source
-
-#--- Using hltGetDigi for EcalES,DT, and RPC until they are ready ---#
-module getDigis = hltGetDigi from "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
-replace getDigis.getEcal   = false
-replace getDigis.getEcalES = false
-replace getDigis.getHcal   = false
-replace getDigis.getPixels = false
-replace getDigis.getStrips = false
-replace getDigis.getCSC    = false
-replace getDigis.getDT     = false
-replace getDigis.getRPC    = false
-
 #--- Subsystem raw->digi conversion ---#
 include "HLTrigger/Configuration/data/rawToDigi/SiPixelRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/SiStripRawToRecHit.cff"
