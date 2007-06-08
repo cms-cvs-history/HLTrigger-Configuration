@@ -3,31 +3,37 @@
 //
 
 
-// 1: from Digis on input file
+// 1: from Digis on input file, running L1
 include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
 include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
 include "HLTrigger/Configuration/data/common/HLTSetupFromDigis.cff"
+//
 sequence hltBegin = { hltGetDigi & (l1emulator , l1extra) }
+
 
 /*
 // 2: from Raw+L1Extra on input file - needs raw2digi unpacking but no L1
+module  hltGetRaw = hltGetRaw from "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
+replace hltGetRaw.RawDataCollection = source
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
-// getData functionality for L1 products used by HLTLevel1Seed
+//
+// HLTLevel1Seed instance to mimick getData functionality for L1 products:
 module  l1seedBegin = hltLevel1Seed from "HLTrigger/HLTexample/data/hltLevel1Seed.cfi"
 replace l1seedBegin.L1Seeds = { }
 replace l1seedBegin.L1ExtraCollections = l1extraParticles
 replace l1seedBegin.L1ExtraParticleMap = l1extraParticleMap
 replace l1seedBegin.L1GTReadoutRecord  = l1extraParticleMap
-// Some dets not ready - reuse digis on file read by special getDigis module
-// sequence hltBegin = { hltGetRaw & l1seedBegin}
-sequence hltBegin = { hltGetRaw & getDigis & l1seedBegin}
+//
+sequence hltBegin = { hltGetRaw & l1seedBegin}
 */
 
 /*
 // 3: from Raw on input (file or online) - needs raw2digi unpacking and L1
-include "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
+module  hltGetRaw = hltGetRaw from "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
+replace hltGetRaw.RawDataCollection = source
 include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
+//
 sequence hltBegin = { hltGetRaw & (doL1RawToDigi , l1emulator , l1extra) }
 */
 
@@ -37,6 +43,7 @@ include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
 include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
 include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
+//
 sequence hltBegin = { hltGetDigi & DigiToRaw & (doL1RawToDigi , l1emulator , l1extra) }
 */
 
