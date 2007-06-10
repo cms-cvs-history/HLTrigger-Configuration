@@ -32,6 +32,8 @@ path HLTXMuonJets = { HLTMuIsoJet }
 // include "HLTrigger/xchannel/data/electronmuon.cff"
 include "HLTrigger/xchannel/data/electronmuon-local.cff"
 path HLTXElectronMuon = {emuonsequence}
+include "HLTrigger/xchannel/data/electronmuonNonIsolated.cff"
+path HLTXElectronMuonRelaxed = {NonIsoElectronMuonSequence}
 
 
 // electron+tau (global or local Egamma reco) and muon+tau
