@@ -22,10 +22,9 @@ include "RecoLocalTracker/SiPixelRecHits/data/SiPixelRecHits.cfi"
 sequence doLocalPixel   = { siPixelDigis , siPixelClusters, siPixelRecHits}
 //
 // Strips: mimick RecoLocalTracker.cff for Strips using stuff from:
-include "HLTrigger/Configuration/data/rawToDigi/SiStripRawToRecHit.cff"
+include "HLTrigger/Configuration/data/rawToDigi/SiStripRawToClusters.cff"
 // sequence striptrackerlocalreco = {siStripClusters, siStripMatchedRecHits}
-sequence doLocalStrip   = { SiStripRawToClustersFacility , DummyRoI , 
-                            siStripClusters , siStripMatchedRecHits }
+sequence doLocalStrip   = { SiStripRawToClustersFacility , siStripClusters }
 // combined
 sequence doLocalTracker = { doLocalPixel & doLocalStrip }
 
