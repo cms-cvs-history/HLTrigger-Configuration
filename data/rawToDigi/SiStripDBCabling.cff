@@ -1,10 +1,5 @@
 
 # cabling
 include "HLTrigger/Configuration/data/rawToDigi/SiStripDBCabling.cfi"
-
-es_module = SiStripConnectivity {}
-es_module = SiStripRegionConnectivity {
-   untracked uint32 EtaDivisions = 50
-   untracked uint32 PhiDivisions = 50
-   untracked double EtaMax = 2.4
-}
+include "CalibTracker/SiStripConnectivity/data/SiStripConnectivity.cfi"
+include "CalibTracker/SiStripConnectivity/data/SiStripRegionConnectivity.cfi"

@@ -1,0 +1,20 @@
+#
+# Bryan Dahmes LLNL
+# June 4, 2007
+#
+# Definition of SiStripRawToClusters sequence
+#
+
+# Raw->Clusters
+include "CommonTools/SiStripClusterization/data/SiStripClusterization.cfi"
+module SiStripRawToClustersFacility = SiStripRawToClusters {
+    untracked string ProductLabel = "source"
+    untracked string ProductInstance = ""
+    using SiStripClusterization
+}
+replace SiStripRawToClustersFacility.UseCalibDataFromDB  = false
+
+# raw-to-clusters regions of interest module
+module siStripClusters = SiStripRoI from "EventFilter/SiStripRawToDigi/data/SiStripRawToClustersRoI.cfi"
+
+sequence SiStripRawToClusters = {SiStripRawToClustersFacility, siStripClusters}

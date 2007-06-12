@@ -9,7 +9,7 @@ include "HLTrigger/Configuration/data/rawToDigi/SetupRawToDigi.cff"
 
 #--- Subsystem raw->digi conversion ---#
 include "HLTrigger/Configuration/data/rawToDigi/SiPixelRawToDigi.cff"
-include "HLTrigger/Configuration/data/rawToDigi/SiStripRawToRecHit.cff"
+include "HLTrigger/Configuration/data/rawToDigi/SiStripRawToClusters.cff"
 
 include "HLTrigger/Configuration/data/rawToDigi/EcalRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/EcalESRawToDigi.cff"
@@ -21,7 +21,7 @@ include "HLTrigger/Configuration/data/rawToDigi/RPCRawToDigi.cff"
 
 sequence RawToDigi = { 
                         SiPixelRawToDigi &
-                        SiStripRawToRecHit &
+                        SiStripRawToClusters &
                         EcalRawToDigi &
                         EcalESRawToDigi &
                         HcalRawToDigi &
