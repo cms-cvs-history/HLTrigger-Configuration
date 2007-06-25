@@ -5,10 +5,11 @@
 
 // 1: from Digis on input file, running L1
 include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
-include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
+include "L1Trigger/Configuration/data/L1Emulator.cff"
+include "L1Trigger/L1ExtraFromDigis/data/l1extraParticleMap.cfi"
 include "HLTrigger/Configuration/data/common/HLTSetupFromDigis.cff"
 //
-sequence hltBegin = { hltGetDigi & (l1emulator , l1extra) }
+sequence hltBegin = { hltGetDigi & (L1Emulator , l1extraParticleMap) }
 
 
 /*
