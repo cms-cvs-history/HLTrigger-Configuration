@@ -9,7 +9,7 @@ include "L1Trigger/Configuration/data/L1Emulator.cff"
 include "L1Trigger/L1ExtraFromDigis/data/l1extraParticleMap.cfi"
 include "HLTrigger/Configuration/data/common/HLTSetupFromDigis.cff"
 //
-sequence hltBegin = { hltGetDigi & (L1Emulator , l1extraParticleMap) }
+sequence hltBegin = { hltGetDigi & (l1emulator , l1extraParticleMap) }
 
 
 /*
