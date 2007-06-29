@@ -33,20 +33,24 @@ sequence hltBegin = { hltGetRaw & l1seedBegin}
 // 3: from Raw on input (file or online) - needs raw2digi unpacking and L1
 module  hltGetRaw = hltGetRaw from "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
 replace hltGetRaw.RawDataCollection = source
-include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
+include "L1Trigger/Configuration/data/CaloTriggerPrimitives.cff"
+include "L1Trigger/Configuration/data/L1Emulator.cff"
+include "L1Trigger/L1ExtraFromDigis/data/l1extraParticleMap.cfi"
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
 //
-sequence hltBegin = { hltGetRaw & (doL1RawToDigi , l1emulator , l1extra) }
+sequence hltBegin = { hltGetRaw & (doL1RawToDigi , l1emulator , l1extra, l1extraParticleMap) }
 */
 
 /*
 // 4: from Digis on input via Raw on the fly - needs digi2raw and raw2digi and L1
 include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
 include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
-include "L1Trigger/L1ExtraFromDigis/data/l1extra.cff"
+include "L1Trigger/Configuration/data/CaloTriggerPrimitives.cff"
+include "L1Trigger/Configuration/data/L1Emulator.cff"
+include "L1Trigger/L1ExtraFromDigis/data/l1extraParticleMap.cfi"
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
 //
-sequence hltBegin = { hltGetDigi & DigiToRaw & (doL1RawToDigi , l1emulator , l1extra) }
+sequence hltBegin = { hltGetDigi & DigiToRaw & (doL1RawToDigi , l1emulator , l1extra, l1extraParticleMap) }
 */
 
 
