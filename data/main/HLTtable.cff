@@ -13,11 +13,11 @@ include "HLTrigger/Configuration/data/main/JetMET.cff"
 
 //
 // Muon triggers
-// include "HLTrigger/Configuration/data/main/Muon.cff"
+include "HLTrigger/Configuration/data/main/Muon.cff"
 
 //
 // B and Tau triggers
-// include "HLTrigger/Configuration/data/main/BTau.cff"
+include "HLTrigger/Configuration/data/main/BTau.cff"
 
 //
 // Cross triggers
