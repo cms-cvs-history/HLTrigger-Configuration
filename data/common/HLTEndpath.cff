@@ -1,7 +1,15 @@
 //
-// Construct tree of HLT filter objects
+// Want FW's HLT Trig and Time report in log file & TriggerResults object
 
-	module hltMSO = HLTMakeSummaryObjects { }
+	untracked PSet options = {
+		untracked bool wantSummary = true        # default is false
+		untracked bool makeTriggerResults = true # default is false
+	}
+
+//
+// Construct tree: HLT global object -> HLT path objects -> HLT filter objects
+
+	module hltMSO = hltMakeSummaryObjects from "HLTrigger/HLTcore/data/hltMakeSummaryObjects.cfi"
 
 //
 // L1 Trigger Report (print to log file)
@@ -14,24 +22,15 @@
 	module hltTR = hlTrigReport from "HLTrigger/HLTanalyzers/data/hlTrigReport.cfi"
 
 //
-// Want HLT trigger table summary in log file & trigger results object
-
-	untracked PSet options = {
-		untracked bool wantSummary = true  # default is false
-		untracked bool makeTriggerResults = true 
-		vstring listOfTriggers = {"*"}
-	}
-
-//
 // Want timing per event and module in output root file (myTimer module)
 	include "HLTrigger/Timer/data/timer.cfi"
 
 //
 // Want extended timing and performance info in output root file (PathTimer)
-	module pts = PathTimerInserter{}
 	service = PathTimerService{}
+	module hltPathTimer = PathTimerInserter{}
 
 //
 // Put all these modules into a common endpath
 
-	endpath endl1hlt = {hltMSO & l1tTR & hltTR & myTimer & pts}
+	endpath HLTL1endpath = {hltMSO & l1tTR & hltTR & myTimer & hltPathTimer}
