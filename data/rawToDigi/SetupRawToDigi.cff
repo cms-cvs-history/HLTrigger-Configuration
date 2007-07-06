@@ -14,19 +14,20 @@ include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"
 #--- Database setup and configuration ---#
 #----------------------------------------#
 #--- Pixels ---#
-include "HLTrigger/Configuration/data/rawToDigi/SiPixelDBCabling.cfi"
+include "HLTrigger/Configuration/data/rawToDigi/SiPixelDBCabling.cff"
 include "Geometry/TrackerGeometryBuilder/data/trackerGeometry.cfi"
 include "Geometry/TrackerNumberingBuilder/data/trackerNumberingGeometry.cfi"
 #--- Strips ---#
-include "HLTrigger/Configuration/data/rawToDigi/SiStripDBCabling.cff"
+#--- "no data available in SiStripFedCablingRcd" for 150 root file ---#
+# include "HLTrigger/Configuration/data/rawToDigi/SiStripDBCabling.cff"
 #--- ECAL ---#
 include "HLTrigger/Configuration/data/rawToDigi/EcalGeometrySetup.cff"
 #--- HCAL ---#
-include "CalibCalorimetry/HcalPlugins/data/hardwired_conditions.cfi"
+include "CalibCalorimetry/HcalPlugins/data/Hcal_FakeConditions.cff"
 #--- DT ---#
-include "HLTrigger/Configuration/data/rawToDigi/DTDBCabling.cfi"
+include "HLTrigger/Configuration/data/rawToDigi/DTDBCabling.cff"
 include "Geometry/DTGeometry/data/dtGeometry.cfi"
 #--- RPC ---#
-include "HLTrigger/Configuration/data/rawToDigi/RPCDBCabling.cfi"
+include "HLTrigger/Configuration/data/rawToDigi/RPCDBCabling.cff"
 include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
 include "Geometry/RPCGeometry/data/rpcGeometry.cfi"

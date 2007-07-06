@@ -6,5 +6,8 @@
 #
 
 # In raw file produced by doDigiToRaw, HCAL digis are zero-suppressed
-module hcalZeroSuppressedDigis = hcalDigis from "HLTrigger/Configuration/data/rawToDigi/HcalRawToDigi-mtcc.cfi"
-sequence HcalRawToDigi = { hcalZeroSuppressedDigis }
+# module hcalZeroSuppressedDigis = hcalDigis from "HLTrigger/Configuration/data/rawToDigi/HcalRawToDigi-mtcc.cfi"
+# sequence HcalRawToDigi = { hcalZeroSuppressedDigis }
+
+# Temporary fix: get digis
+sequence HcalRawToDigi = { getDigis }

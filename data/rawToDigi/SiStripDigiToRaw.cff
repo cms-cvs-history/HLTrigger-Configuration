@@ -5,8 +5,13 @@
 # Definition of SiStripDigiToRaw sequence
 #
 
-module siStripPacker = DigiToRaw from "EventFilter/SiStripRawToDigi/data/DigiToRaw.cfi"
-replace siStripPacker.InputModuleLabel = "siStripDigis"  
-replace siStripPacker.FedReadoutMode = "ZERO_SUPPRESSED" 
+# module siStripPacker = DigiToRaw from "EventFilter/SiStripRawToDigi/data/DigiToRaw.cfi"
+# replace siStripPacker.InputModuleLabel = "siStripDigis"  
+# replace siStripPacker.FedReadoutMode = "ZERO_SUPPRESSED" 
 
-sequence SiStripDigiToRaw = { siStripPacker }
+# sequence SiStripDigiToRaw = { siStripPacker }
+
+# Prescaler placeholder until digi->raw becomes available in 1_6_X
+module siStripPlaceholder = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
+replace siStripPlaceholder.prescaleFactor = 1
+sequence SiStripDigiToRaw = { siStripPlaceholder }

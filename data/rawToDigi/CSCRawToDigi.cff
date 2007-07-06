@@ -5,7 +5,9 @@
 # Definition of CSCRawToDigi sequence
 #
 
-module muonCSCDigis = cscunpacker from "EventFilter/CSCRawToDigi/data/cscUnpacker.cfi"
-replace muonCSCDigis.InputObjects = source
+# module muonCSCDigis = CSCDCCUnpacker from "EventFilter/CSCRawToDigi/data/cscUnpacker.cfi"
+# module muonCSCDigis = cscunpacker from "EventFilter/CSCRawToDigi/data/cscUnpacker.cfi"
+include "EventFilter/CSCRawToDigi/data/cscUnpacker.cfi"
+# replace muonCSCDigis.InputObjects = source
 
 sequence CSCRawToDigi = { muonCSCDigis }

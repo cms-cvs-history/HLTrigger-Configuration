@@ -5,12 +5,19 @@
 # Definition of HcalDigiToRaw sequence
 #
 
-include "SimCalorimetry/HcalZeroSuppressionProducers/data/HcalSimpleAmpl-hbhe.cfi" 
-include "SimCalorimetry/HcalZeroSuppressionProducers/data/HcalSimpleAmpl-hf.cfi" 
-include "SimCalorimetry/HcalZeroSuppressionProducers/data/HcalSimpleAmpl-ho.cfi" 
-module hcalPacker = hcalRawData from "HLTrigger/Configuration/data/rawToDigi/HcalDigiToRaw.cfi"
+# include "SimCalorimetry/HcalZeroSuppressionProducers/data/HcalSimpleAmpl-hbhe.cfi" 
+# include "SimCalorimetry/HcalZeroSuppressionProducers/data/HcalSimpleAmpl-hf.cfi" 
+# include "SimCalorimetry/HcalZeroSuppressionProducers/data/HcalSimpleAmpl-ho.cfi" 
+# module hcalPacker = hcalRawData from "HLTrigger/Configuration/data/rawToDigi/HcalDigiToRaw.cfi"
 
-sequence HcalDigiToRaw = { hbheZeroSuppressedDigis,
-                           hfZeroSuppressedDigis,
-                           hoZeroSuppressedDigis,
-                           hcalPacker }
+# sequence HcalDigiToRaw = { 
+#                            hbheZeroSuppressedDigis,
+#                            hfZeroSuppressedDigis,
+#                            hoZeroSuppressedDigis,
+#                            hcalPacker
+#                          }
+
+# Prescaler placeholder until digi->raw becomes available in 1_6_X
+module HcalPlaceholder = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
+replace HcalPlaceholder.prescaleFactor = 1
+sequence HcalDigiToRaw = { HcalPlaceholder }

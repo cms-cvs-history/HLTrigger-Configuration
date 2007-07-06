@@ -6,15 +6,18 @@
 #
 
 # Raw->Clusters
-include "CommonTools/SiStripClusterization/data/SiStripClusterization.cfi"
-module SiStripRawToClustersFacility = SiStripRawToClusters {
-    untracked string ProductLabel = "source"
-    untracked string ProductInstance = ""
-    using SiStripClusterization
-}
-replace SiStripRawToClustersFacility.UseCalibDataFromDB  = false
+# include "CommonTools/SiStripClusterization/data/SiStripClusterization.cfi"
+# module SiStripRawToClustersFacility = SiStripRawToClusters {
+#     untracked string ProductLabel = "source"
+#     untracked string ProductInstance = ""
+#     using SiStripClusterization
+# }
+# replace SiStripRawToClustersFacility.UseCalibDataFromDB  = false
 
 # raw-to-clusters regions of interest module
-module siStripClusters = SiStripRoI from "EventFilter/SiStripRawToDigi/data/SiStripRawToClustersRoI.cfi"
+# module siStripClusters = SiStripRoI from "EventFilter/SiStripRawToDigi/data/SiStripRawToClustersRoI.cfi"
 
-sequence SiStripRawToClusters = {SiStripRawToClustersFacility, siStripClusters}
+# sequence SiStripRawToClusters = {SiStripRawToClustersFacility, siStripClusters}
+
+# Temporary fix: get digis
+sequence SiStripRawToDigi = { getDigis }

@@ -1,5 +1,6 @@
 
 # cabling
+include "CondCore/DBCommon/data/CondDBSetup.cfi"
 include "HLTrigger/Configuration/data/rawToDigi/SiStripDBCabling.cfi"
 include "CalibTracker/SiStripConnectivity/data/SiStripConnectivity.cfi"
 include "CalibTracker/SiStripConnectivity/data/SiStripRegionConnectivity.cfi"

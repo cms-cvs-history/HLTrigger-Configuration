@@ -5,5 +5,10 @@
 # Definition of SiPixelDigiToRaw sequence
 #
 
-module siPixelPacker = siPixelRawData from "EventFilter/SiPixelRawToDigi/data/SiPixelDigiToRaw.cfi"
-sequence SiPixelDigiToRaw = { siPixelPacker }
+# module siPixelPacker = siPixelRawData from "EventFilter/SiPixelRawToDigi/data/SiPixelDigiToRaw.cfi"
+# sequence SiPixelDigiToRaw = { siPixelPacker }
+
+# Prescaler placeholder until digi->raw becomes available in 1_6_X
+module siPixelPlaceholder = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
+replace siPixelPlaceholder.prescaleFactor = 1
+sequence SiPixelDigiToRaw = { siPixelPlaceholder }
