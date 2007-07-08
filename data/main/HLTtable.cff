@@ -9,7 +9,7 @@ include "HLTrigger/Configuration/data/main/JetMET.cff"
 
 //
 // Electron Photon triggers
-// include "HLTrigger/Configuration/data/main/Egamma.cff"
+include "HLTrigger/Configuration/data/main/Egamma.cff"
 
 //
 // Muon triggers
