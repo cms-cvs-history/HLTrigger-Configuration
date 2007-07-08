@@ -5,12 +5,16 @@
 
 // 1: from Digis on input file, running L1
 include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
-include "L1Trigger/Configuration/data/CaloTriggerPrimitives.cff"
 include "L1Trigger/Configuration/data/L1Emulator.cff"
 include "L1Trigger/L1ExtraFromDigis/data/l1extraParticleMap.cfi"
 include "HLTrigger/Configuration/data/common/HLTSetupFromDigis.cff"
 //
-sequence hltBegin = { hltGetDigi & (caloTriggerPrimitives, l1emulator , l1extraParticleMap) }
+// 14x digis - need to add caloTriggerPrimitives digis
+// include "L1Trigger/Configuration/data/CaloTriggerPrimitives.cff"
+// sequence hltBegin = { hltGetDigi & (caloTriggerPrimitives, l1emulator , l1extraParticleMap) }
+//
+// 15x and later digis - caloTriggerPrimitives part of normal digi production
+sequence hltBegin = { hltGetDigi & (l1emulator , l1extraParticleMap) }
 
 
 /*
@@ -21,10 +25,6 @@ include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
 //
 // HLTLevel1Seed instance to mimick getData functionality for L1 products:
 module  l1seedBegin = hltLevel1Seed from "HLTrigger/HLTfilters/data/hltLevel1Seed.cfi"
-replace l1seedBegin.L1Seeds = { }
-replace l1seedBegin.L1ExtraCollections = l1extraParticles
-replace l1seedBegin.L1ExtraParticleMap = l1extraParticleMap
-replace l1seedBegin.L1GTReadoutRecord  = l1extraParticleMap
 //
 sequence hltBegin = { hltGetRaw & l1seedBegin}
 */
