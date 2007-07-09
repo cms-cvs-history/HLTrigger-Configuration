@@ -5,10 +5,5 @@
 # Definition of EcalESDigiToRaw sequence
 #
 
-# module esPacker = esDigiToRaw from "HLTrigger/Configuration/data/rawToDigi/esDigiToRaw.cfi"
-# sequence EcalESDigiToRaw = { esPacker }
-
-# Prescaler placeholder until digi->raw becomes available in 1_6_X
-module EcalESPlaceholder = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-replace EcalESPlaceholder.prescaleFactor = 1
-sequence EcalESDigiToRaw = { EcalESPlaceholder }
+module esPacker = esDigiToRaw from "HLTrigger/Configuration/data/rawToDigi/esDigiToRaw.cfi"
+sequence EcalESDigiToRaw = { esPacker }

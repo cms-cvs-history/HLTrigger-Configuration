@@ -8,17 +8,16 @@
 
 include "HLTrigger/Configuration/data/rawToDigi/SetupRawToDigi.cff"
 
-#--- Running SiPixel Digi->Raw produces a segmentation violation ---#
+#--- Digi->Raw->Digi does not reproduce initial digis ---#
 include "HLTrigger/Configuration/data/rawToDigi/SiPixelDigiToRaw.cff"
 #--- "no data available in SiStripFedCablingRcd" for 150 root file ---#
 include "HLTrigger/Configuration/data/rawToDigi/SiStripDigiToRaw.cff"
 #--- "No "EcalTPParametersRcd" record found in the EventSetup." ---#
 include "HLTrigger/Configuration/data/rawToDigi/EcalDigiToRaw.cff" 
-#--- Preshower is not converted for new plugin manager.  Developer contacted ---#
-include "HLTrigger/Configuration/data/rawToDigi/EcalESDigiToRaw.cff" 
 #--- Digi->Raw conversion kills all output digis ---#
 include "HLTrigger/Configuration/data/rawToDigi/HcalDigiToRaw.cff"
 
+include "HLTrigger/Configuration/data/rawToDigi/EcalESDigiToRaw.cff" 
 include "HLTrigger/Configuration/data/rawToDigi/CSCDigiToRaw.cff"
 include "HLTrigger/Configuration/data/rawToDigi/DTDigiToRaw.cff"
 include "HLTrigger/Configuration/data/rawToDigi/RPCDigiToRaw.cff"
