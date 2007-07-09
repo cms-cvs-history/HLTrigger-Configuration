@@ -2,12 +2,15 @@
 // Special triggers
 //
 
+
+/*
 //
 // Pixel-Tracks based MinBias Trigger
 //
 include "SimGeneral/HepPDTESSource/data/pythiapdt.cfi"
 include "HLTrigger/special/data/MinBias-With-Pixel-Tracks.cff"
 path HLTMinBiasPixel = {hltMinBiasPixel}
+*/
 
 //
 // Simple Zero- and Minimum-Bias Triggers

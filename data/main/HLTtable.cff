@@ -25,4 +25,4 @@ include "HLTrigger/Configuration/data/main/BTau.cff"
 
 //
 // Special triggers
-// include "HLTrigger/Configuration/data/main/Special.cff"
+include "HLTrigger/Configuration/data/main/Special.cff"
