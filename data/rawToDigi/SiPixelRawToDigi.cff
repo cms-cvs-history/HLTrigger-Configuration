@@ -5,10 +5,7 @@
 # Definition of SiPixelRawToDigi sequence
 #
 
-# include "EventFilter/SiPixelRawToDigi/data/SiPixelRawToDigi.cfi"
-# replace siPixelDigis.InputLabel = "source"
+include "EventFilter/SiPixelRawToDigi/data/SiPixelRawToDigi.cfi"
+replace siPixelDigis.InputLabel = "source"
 
-# sequence SiPixelRawToDigi = { siPixelDigis }
-
-# Temporary fix: get digis
-sequence SiPixelRawToDigi = { getDigis }
+sequence SiPixelRawToDigi = { siPixelDigis }
