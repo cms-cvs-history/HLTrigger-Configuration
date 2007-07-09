@@ -5,16 +5,16 @@
 
 // 1: from Digis on input file, running L1
 include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
-include "L1Trigger/Configuration/data/L1Emulator.cff"
+include "Configuration/StandardSequences/data/L1Emulator.cff"
 include "L1Trigger/L1ExtraFromDigis/data/l1extraParticleMap.cfi"
 include "HLTrigger/Configuration/data/common/HLTSetupFromDigis.cff"
 //
 // 14x digis - need to add caloTriggerPrimitives digis
 // include "L1Trigger/Configuration/data/CaloTriggerPrimitives.cff"
-// sequence hltBegin = { hltGetDigi & (caloTriggerPrimitives, l1emulator , l1extraParticleMap) }
+// sequence hltBegin = { hltGetDigi & (caloTriggerPrimitives, L1Emulator , l1extraParticleMap) }
 //
 // 15x and later digis - caloTriggerPrimitives part of normal digi production
-sequence hltBegin = { hltGetDigi & (l1emulator , l1extraParticleMap) }
+sequence hltBegin = { hltGetDigi & (L1Emulator , l1extraParticleMap) }
 
 
 /*
@@ -34,11 +34,11 @@ sequence hltBegin = { hltGetRaw & l1seedBegin}
 module  hltGetRaw = hltGetRaw from "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
 replace hltGetRaw.RawDataCollection = source
 include "L1Trigger/Configuration/data/CaloTriggerPrimitives.cff"
-include "L1Trigger/Configuration/data/L1Emulator.cff"
+include "Configuration/StandardSequences/data/L1Emulator.cff"
 include "L1Trigger/L1ExtraFromDigis/data/l1extraParticleMap.cfi"
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
 //
-sequence hltBegin = { hltGetRaw & (doL1RawToDigi , l1emulator , l1extra, l1extraParticleMap) }
+sequence hltBegin = { hltGetRaw & (doL1RawToDigi , L1Emulator , l1extra, l1extraParticleMap) }
 */
 
 /*
@@ -46,11 +46,11 @@ sequence hltBegin = { hltGetRaw & (doL1RawToDigi , l1emulator , l1extra, l1extra
 include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
 include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
 include "L1Trigger/Configuration/data/CaloTriggerPrimitives.cff"
-include "L1Trigger/Configuration/data/L1Emulator.cff"
+include "Configuration/StandardSequences/data/L1Emulator.cff"
 include "L1Trigger/L1ExtraFromDigis/data/l1extraParticleMap.cfi"
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
 //
-sequence hltBegin = { hltGetDigi & DigiToRaw & (doL1RawToDigi , l1emulator , l1extra, l1extraParticleMap) }
+sequence hltBegin = { hltGetDigi & DigiToRaw & (doL1RawToDigi , L1Emulator , l1extra, l1extraParticleMap) }
 */
 
 
