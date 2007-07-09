@@ -23,11 +23,9 @@ path HLTXElectron2Jet = { HLTEplus2jet }
 path HLTXElectron3Jet = { HLTEplus3jet }
 path HLTXElectron4Jet = { HLTEplus4jet }
 
-/*
 // muon+jet
 include "HLTrigger/xchannel/data/PathMuJets.cff"
 path HLTXMuonJets = { HLTMuIsoJet }
-*/
 
 /*
 // electron+muon (global or local Egamma reco)
