@@ -4,7 +4,6 @@
 // B trigger paths
 //
 
-/*
 //
 // tracking-based b-tag
 include "HLTrigger/btau/data/jetTag/lifetimeHLT.cff"
@@ -13,9 +12,7 @@ path HLTB2Jet = {b2jetTrig}
 path HLTB3Jet = {b3jetTrig}
 path HLTB4Jet = {b4jetTrig}
 path HLTBHT   = {  bHTTrig}
-*/
 
-/*
 //
 // muon-based b-tag
 include "HLTrigger/btau/data/jetTag/softmuonHLT.cff"
@@ -24,7 +21,6 @@ path HLTB2JetMu = {bmu2jetTrig}
 path HLTB3JetMu = {bmu3jetTrig}
 path HLTB4JetMu = {bmu4jetTrig}
 path HLTBHTMu   = {  bmuHTTrig}
-*/
 
 /*
 //
