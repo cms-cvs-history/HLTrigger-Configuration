@@ -22,13 +22,14 @@
 	module hltTR = hlTrigReport from "HLTrigger/HLTanalyzers/data/hlTrigReport.cfi"
 
 //
-// Want timing per event and module in output root file (myTimer module)
+// Want timing info in output root file (myTimer module)
+	service = TimerService {}
 	include "HLTrigger/Timer/data/timer.cfi"
 
 //
 // Want extended timing and performance info in output root file (PathTimer)
-	service = PathTimerService{}
-	module hltPathTimer = PathTimerInserter{}
+	service = PathTimerService {}
+	module hltPathTimer = PathTimerInserter {}
 
 //
 // Put all these modules into a common endpath
