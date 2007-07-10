@@ -5,9 +5,6 @@
 # Definition of EcalRawToDigi sequence
 #
 
-# module ecalDigis = ecalRawToDigiDev from "HLTrigger/Configuration/data/rawToDigi/ecalRawToDigiDev.cfi"
-# replace ecalDigis.DoRegional = false 
-# sequence EcalRawToDigi = { ecalDigis }
-
-# Temporary fix: get digis
-sequence EcalRawToDigi = { getDigis }
+module ecalDigis = ecalRawToDigiDev from "HLTrigger/Configuration/data/rawToDigi/ecalRawToDigiDev.cfi"
+replace ecalDigis.DoRegional = false 
+sequence EcalRawToDigi = { ecalDigis }

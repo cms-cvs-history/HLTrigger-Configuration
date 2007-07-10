@@ -8,5 +8,5 @@ module ecalRawData = EcalDigiToRaw {
    untracked bool debug = false
    untracked bool DoBarrel = true
    untracked bool DoEndCap = true
-   InputTag labelTT = EcalTRPDigis
+   InputTag labelTT = ecalTriggerPrimitiveDigis
 }
