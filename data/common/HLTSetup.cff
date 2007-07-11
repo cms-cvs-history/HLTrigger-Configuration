@@ -18,6 +18,10 @@ include "HLTrigger/Configuration/data/common/HLTSetupFromDigis.cff"
 //
 // 15x and later digis - caloTriggerPrimitives part of normal digi production
 sequence hltBegin = { hltGetDigi & (L1Emulator , l1extraParticleMap) }
+//
+// Redo digis for HCAL noise
+// include "HLTrigger/Configuration/data/common/Digi.cff"
+// sequence hltBegin = { hltGetDigi & hltDoDigis & (L1Emulator , l1extraParticleMap) }
 
 
 /*
