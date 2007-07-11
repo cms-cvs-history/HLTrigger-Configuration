@@ -1,4 +1,7 @@
 //
+include "Configuration/StandardSequences/data/FakeConditions.cff"
+//
+//
 // Four cases of running the HLT table - pick one and only one:
 //
 
