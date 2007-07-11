@@ -37,6 +37,7 @@ service = RandomNumberGeneratorService
 include "Configuration/StandardSequences/data/MixingNoPileUp.cff"
 //
 // get actual digi sequence
+include "SimGeneral/HepPDTESSource/data/pythiapdt.cfi"
 include "Configuration/StandardSequences/data/Digi.cff"
 
 //
