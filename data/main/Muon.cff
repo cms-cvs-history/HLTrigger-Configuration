@@ -50,7 +50,13 @@ path HLT2MuonSameSign = { sameSignMu }
 // Prescaled single-muon triggers
 
 include "HLTrigger/Muon/data/PathSingleMu_1032_Prescale3.cff"
-path HLT1MuonPrescale3 = { singleMuPrescale3 }
+path HLT1MuonPrescalePt3 = { singleMuPrescale3 }
 
 include "HLTrigger/Muon/data/PathSingleMu_1032_Prescale5.cff"
-path HLT1MuonPrescale5 = { singleMuPrescale5 }
+path HLT1MuonPrescalePt5 = { singleMuPrescale5 }
+
+include "HLTrigger/Muon/data/PathSingleMu_1032_Prescale7-7.cff"
+path HLT1MuonPrescalePt7x7 = { singleMuPrescale77 }
+
+include "HLTrigger/Muon/data/PathSingleMu_1032_Prescale7-10.cff"
+path HLT1MuonPrescalePt7x10 = { singleMuPrescale710 }
