@@ -1,5 +1,6 @@
 // B and Tau trigger paths
 
+
 //
 // B trigger paths
 //
@@ -22,12 +23,11 @@ path HLTB3JetMu = {bmu3jetTrig}
 path HLTB4JetMu = {bmu4jetTrig}
 path HLTBHTMu   = {  bmuHTTrig}
 
-/*
 //
 // special B -> J/Psi -> dimuon trigger
 include "HLTrigger/btau/data/displacedmumu/PathBToJpsiToMumu.cff"
 path HLTBJPsiMuMu = {btoJpsitoMumu}	
-*/
+
 
 //
 // Tau trigger paths
