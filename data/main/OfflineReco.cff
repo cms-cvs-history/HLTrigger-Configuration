@@ -1,0 +1,16 @@
+//
+// Run standard offline reconstruction as just another "HLT path"
+//
+
+//
+// Requires Digis to be in the Event data structure:
+include "Configuration/StandardSequences/data/Reconstruction.cff"
+
+//
+// Make sure this "HLT path" does not accept any event:
+module  hltOfflineRecoPrescaler = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
+replace hltOfflineRecoPrescaler.prescaleFactor = 4294967295 // = 2**32-1
+
+//
+// Define this "HLT path"
+path HLTOfflineReco = {hltBegin & reconstruction_plusRS_plusGSF & hltOfflineRecoPrescaler}

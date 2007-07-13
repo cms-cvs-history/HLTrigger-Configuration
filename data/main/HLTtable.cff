@@ -26,3 +26,8 @@ include "HLTrigger/Configuration/data/main/Xchannel.cff"
 //
 // Special triggers
 include "HLTrigger/Configuration/data/main/Special.cff"
+
+
+//
+// Standard Offline Reconstruction
+// include "HLTrigger/Configuration/data/main/OfflineReco.cff"
