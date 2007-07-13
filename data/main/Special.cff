@@ -4,6 +4,13 @@
 
 
 //
+// Isolated-track trigger for HCAL
+//
+include "HLTrigger/special/data/hltHcalIsolatedTrack.cff"
+path HLTHcalIsolatedTrack = { hltHcalIsolatedTrack }
+
+
+//
 // Pixel-Tracks based MinBias Trigger
 //
 include "SimGeneral/HepPDTESSource/data/pythiapdt.cfi"
@@ -12,7 +19,7 @@ path HLTMinBiasPixel = {hltMinBiasPixel}
 
 
 //
-// Simple Zero- and Minimum-Bias Triggers
+// Simple Min.- and Zero-Bias Triggers
 //
 include "HLTrigger/special/data/SimpleBias.cff"
 path HLTMinBias  = {hltMinBias}
