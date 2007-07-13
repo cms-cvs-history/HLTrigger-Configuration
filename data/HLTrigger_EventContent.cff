@@ -40,7 +40,7 @@ block HLTriggerAOD = {
 	"keep recoHLTPathObject_*_*_*",
 	"keep recoHLTFilterObjectBase_*_*_*",
 	"keep recoHLTFilterObject_*_*_*",
-//	"keep recoHLTFilterObjectWithRefs_*_*_*",
+	"keep recoHLTFilterObjectWithRefs_*_*_*",
 # Timing / Performance
 	"keep edmEventTime_*_*_*",
 	"keep HLTPerformanceInfo_*_*_*",
