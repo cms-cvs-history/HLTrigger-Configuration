@@ -1,8 +1,8 @@
 //
 // (Re-)Doing Digis: needed to the get HCAL noise correct:
 // * GEN-SIM files are ok
-// * 14x/15x produced digis are no good
-// * need to redo digis with 16x code
+// * 14x/150/151 produced digis are no good
+// * need to redo digis with 152/16x code
 //
 // Digi step requires the crossing frame, hence the mixing module.
 // For consistency, we then have to redo all subdetector digis (?)
