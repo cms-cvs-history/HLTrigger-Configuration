@@ -1,9 +1,6 @@
 // Egamma trigger paths
 
 
-
-// NEW: Local Reco
-
 include "HLTrigger/Egamma/data/EgammaHLTLocal.cff"
 
 include "HLTrigger/Egamma/data/SingleElectronL1Isolated.cff"
@@ -39,28 +36,5 @@ include "HLTrigger/Egamma/data/SingleEMVeryHighEtL1NonIsolated.cff"
 path HLT1EMVeryHighEt = {   singleEMVHEL1NonIsolated}
 
 
-/*
-// OLD: Global Reco
-
-include "HLTrigger/Egamma/data/EgammaHLT.cff"
-
-
-include "HLTrigger/Egamma/data/SingleElectron.cff"
-path HLT1Electron = {singleElectron}
-
-include "HLTrigger/Egamma/data/DoubleElectron.cff"
-path HLT2Electron = {doubleElectron}
-
-include "HLTrigger/Egamma/data/RelaxedDoubleElectron.cff"
-path HLT2ElectronRelaxed = {relaxedDoubleElectron}
-
-
-include "HLTrigger/Egamma/data/SinglePhoton.cff"
-path HLT1Photon = {singlePhoton}
-
-include "HLTrigger/Egamma/data/DoublePhoton.cff"
-path HLT2Photon = {doublePhoton}
-
-include "HLTrigger/Egamma/data/RelaxedDoublePhoton.cff"
-path HLT2PhotonRelaxed = {relaxedDoublePhoton}
-*/
+include "HLTrigger/Egamma/data/ZeeCounter.cff"
+path HLT2ElectronZCounter = { zeeCounter }
