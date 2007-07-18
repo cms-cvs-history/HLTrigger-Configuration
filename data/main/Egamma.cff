@@ -38,3 +38,10 @@ path HLT1EMVeryHighEt = {   singleEMVHEL1NonIsolated}
 
 include "HLTrigger/Egamma/data/ZeeCounter.cff"
 path HLT2ElectronZCounter = { zeeCounter }
+
+
+include "HLTrigger/Egamma/data/DoubleExclusiveElectronL1Isolated.cff"
+path HLT2ElectronExclusive = { doubleExclElectronL1Isolated }
+
+include "HLTrigger/Egamma/data/DoubleExclusivePhotonL1Isolated.cff"
+path HLT2PhotonExclusive = { doubleExclPhotonL1Isolated }
