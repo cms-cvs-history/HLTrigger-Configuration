@@ -8,16 +8,14 @@
 
 include "HLTrigger/Configuration/data/rawToDigi/SetupRawToDigi.cff"
 
-#--- Mapping-related problems ---#
+#--- Still a few issues being examined by the developers ---#
 include "HLTrigger/Configuration/data/rawToDigi/SiStripDigiToRaw.cff"
-#--- "No "EcalTPParametersRcd" record found in the EventSetup." ---#
-include "HLTrigger/Configuration/data/rawToDigi/EcalDigiToRaw.cff" 
-#--- Digi->Raw conversion kills all output digis ---#
-include "HLTrigger/Configuration/data/rawToDigi/HcalDigiToRaw.cff"
 
 #--- These subsystems appear to be in working order ---#
 include "HLTrigger/Configuration/data/rawToDigi/SiPixelDigiToRaw.cff"
+include "HLTrigger/Configuration/data/rawToDigi/EcalDigiToRaw.cff" 
 include "HLTrigger/Configuration/data/rawToDigi/EcalESDigiToRaw.cff" 
+include "HLTrigger/Configuration/data/rawToDigi/HcalDigiToRaw.cff"
 include "HLTrigger/Configuration/data/rawToDigi/CSCDigiToRaw.cff"
 include "HLTrigger/Configuration/data/rawToDigi/DTDigiToRaw.cff"
 include "HLTrigger/Configuration/data/rawToDigi/RPCDigiToRaw.cff"

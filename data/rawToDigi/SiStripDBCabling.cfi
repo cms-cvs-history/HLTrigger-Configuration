@@ -13,3 +13,5 @@ es_source SiStripDBCabling = PoolDBESSource {
     untracked uint32 messagelevel = 10
     using CondDBSetup
 }
+
+# CAUTION: Getting the wrong map will give an error

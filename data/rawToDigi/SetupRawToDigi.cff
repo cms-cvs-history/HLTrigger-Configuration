@@ -10,6 +10,12 @@ replace CondDBSetup.DBParameters.authenticationPath="/afs/cern.ch/cms/data/CMSSW
 #--- Obtain the ideal geometry record ---#
 include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"
 
+#--- Set up the L1 Emulator ---#
+# include "Configuration/StandardSequences/data/FakeConditions.cff"
+# include "Configuration/StandardSequences/data/L1Emulator.cff"
+# include "L1Trigger/L1ExtraFromDigis/data/l1extraParticleMap.cfi"
+# include "HLTrigger/Configuration/data/common/HLTSetupFromDigis.cff"
+
 #----------------------------------------#
 #--- Database setup and configuration ---#
 #----------------------------------------#

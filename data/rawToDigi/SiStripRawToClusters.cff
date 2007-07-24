@@ -5,7 +5,7 @@
 # Definition of SiStripRawToClusters sequence
 #
 
-# Raw->Clusters
+# Raw->Clusters (used in 1_3_1_HLTX)
 # include "CommonTools/SiStripClusterization/data/SiStripClusterization.cfi"
 # module SiStripRawToClustersFacility = SiStripRawToClusters {
 #     untracked string ProductLabel = "source"
@@ -18,6 +18,21 @@
 # module siStripClusters = SiStripRoI from "EventFilter/SiStripRawToDigi/data/SiStripRawToClustersRoI.cfi"
 
 # sequence SiStripRawToClusters = {SiStripRawToClustersFacility, siStripClusters}
+
+# Raw->Clusters (used in 1_6_X?)
+# include "CommonTools/SiStripClusterization/data/SiStripClusterization.cfi"
+# module siStripClusters =  SiStripRawToClustersModule {
+#     untracked string ProductLabel = "source"
+#     untracked string ProductInstance = ""
+#     untracked int32 AppendedBytes = 0 
+#     untracked int32 FedBufferDumpFreq = 0  
+#     untracked bool UseFedKey = false
+#     untracked int32 TriggerFedId = 0   
+#     using SiStripClusterization
+# }
+
+# replace siStripClusters.UseCalibDataFromDB  = false
+# sequence SiStripRawToClusters = { siStripClusters }
 
 # Temporary fix: get digis
 sequence SiStripRawToDigi = { getDigis }

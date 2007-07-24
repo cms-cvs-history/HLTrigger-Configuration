@@ -11,6 +11,7 @@ include "HLTrigger/Configuration/data/rawToDigi/SetupRawToDigi.cff"
 module getDigis = hltGetDigi from "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
 replace getDigis.getPixels = false
 replace getDigis.getEcalES = false
+replace getDigis.getHcal   = false
 replace getDigis.getEcal   = false
 replace getDigis.getCSC    = false 
 replace getDigis.getDT     = false 
@@ -20,13 +21,12 @@ replace getDigis.getRPC    = false
 
 # Mapping problems, so using getDigis
 include "HLTrigger/Configuration/data/rawToDigi/SiStripRawToClusters.cff"
-# Digi->Raw conversion kills HO.  Using getDigis
-include "HLTrigger/Configuration/data/rawToDigi/HcalRawToDigi.cff"
 
 # These appear to be fine
 include "HLTrigger/Configuration/data/rawToDigi/SiPixelRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/EcalRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/EcalESRawToDigi.cff"
+include "HLTrigger/Configuration/data/rawToDigi/HcalRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/CSCRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/DTRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/RPCRawToDigi.cff"
