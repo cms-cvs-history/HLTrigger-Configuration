@@ -1,0 +1,11 @@
+# 
+# Bryan Dahmes, LLNL
+# 23 July, 2007
+# 
+# Definition of GtRawToDigi sequence
+#
+
+include "EventFilter/L1GlobalTriggerRawToDigi/data/l1GtUnpack.cfi"
+replace l1GtUnpack.DaqGtInputTag = source
+
+sequence GtRawToDigi = { l1GtUnpack }

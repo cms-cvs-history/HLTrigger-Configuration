@@ -1,0 +1,11 @@
+# 
+# Bryan Dahmes, LLNL
+# 23 July, 2007
+# 
+# Definition of GctDigiToRaw sequence
+#
+
+include "EventFilter/GctRawToDigi/data/gctDigiToRaw.cfi"
+replace gctDigiToRaw.verbose = true
+
+sequence GctDigiToRaw = { gctDigiToRaw }

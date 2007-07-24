@@ -31,7 +31,13 @@ include "HLTrigger/Configuration/data/rawToDigi/CSCRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/DTRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/RPCRawToDigi.cff"
 
+# L1 Digis
+include "HLTrigger/Configuration/data/rawToDigi/GctRawToDigi.cff"
+include "HLTrigger/Configuration/data/rawToDigi/GtRawToDigi.cff"
+
 sequence RawToDigi = { 
+                        GctRawToDigi &
+                        GtRawToDigi &
                         SiPixelRawToDigi &
 #                        SiStripRawToClusters &
                         SiStripRawToDigi &

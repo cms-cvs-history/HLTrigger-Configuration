@@ -20,10 +20,17 @@ include "HLTrigger/Configuration/data/rawToDigi/CSCDigiToRaw.cff"
 include "HLTrigger/Configuration/data/rawToDigi/DTDigiToRaw.cff"
 include "HLTrigger/Configuration/data/rawToDigi/RPCDigiToRaw.cff"
 
+#--- L1 Digi->Raw ---#
+include "HLTrigger/Configuration/data/rawToDigi/GctDigiToRaw.cff"
+include "HLTrigger/Configuration/data/rawToDigi/GtDigiToRaw.cff"
+
 #--- Collect everything together ---#
 module source = RawDataCollectorModule {}
   
 sequence DigiToRaw = {
+                        L1Emulator, 
+                        GctDigiToRaw,
+                        GtDigiToRaw,
                         SiPixelDigiToRaw,
                         SiStripDigiToRaw,
                         EcalDigiToRaw,
