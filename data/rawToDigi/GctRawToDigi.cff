@@ -6,6 +6,6 @@
 #
 
 include "EventFilter/GctRawToDigi/data/l1GctHwDigis.cfi"
-replace l1GctHwDigis.Verbose = true
+replace l1GctHwDigis.inputLabel = source
 
 sequence GctRawToDigi = { l1GctHwDigis }
