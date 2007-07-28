@@ -1,30 +1,30 @@
 //
-// Want FW's HLT Trig and Time report in log file & TriggerResults object
+// Want FW's (HLT) TrigReport and TimeReport in log file
 
 	untracked PSet options = {
 		untracked bool wantSummary = true        # default is false
-		untracked bool makeTriggerResults = true # default is false
 	}
 
 //
-// Construct tree: HLT global object -> HLT path objects -> HLT filter objects
+// Construct tree of EDProducts:
+//   HLT global object -> HLT path objects -> HLT filter objects
 
-	module hltMSO = hltMakeSummaryObjects from "HLTrigger/HLTcore/data/hltMakeSummaryObjects.cfi"
+	module hltMakeSummaryObjects = hltMakeSummaryObjects from "HLTrigger/HLTcore/data/hltMakeSummaryObjects.cfi"
 
 //
 // L1 Trigger Report (print to log file)
 
-	module l1tTR = l1TrigReport from "HLTrigger/HLTanalyzers/data/l1TrigReport.cfi"
+	module l1tTrigReport = l1TrigReport from "HLTrigger/HLTanalyzers/data/l1TrigReport.cfi"
 
 //
 // HL Trigger Report (print to log file)
 
-	module hltTR = hlTrigReport from "HLTrigger/HLTanalyzers/data/hlTrigReport.cfi"
+	module hltTrigReport = hlTrigReport from "HLTrigger/HLTanalyzers/data/hlTrigReport.cfi"
 
 //
 // Want timing info in output root file (myTimer module)
 	service = TimerService {}
-	include "HLTrigger/Timer/data/timer.cfi"
+	module hltTimer = myTimer from "HLTrigger/Timer/data/timer.cfi"
 
 //
 // Want extended timing and performance info in output root file (PathTimer)
@@ -34,4 +34,4 @@
 //
 // Put all these modules into a common endpath
 
-	endpath HLTL1endpath = {hltMSO & l1tTR & hltTR & myTimer & hltPathTimer}
+	endpath HLTEndpath = {hltMakeSummaryObjects & l1tTrigReport & hltTrigReport & hltTimer & hltPathTimer}
