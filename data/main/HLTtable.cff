@@ -31,3 +31,7 @@ include "HLTrigger/Configuration/data/main/Special.cff"
 //
 // Standard Offline Reconstruction
 // include "HLTrigger/Configuration/data/main/OfflineReco.cff"
+
+//
+// Standard Fast Simulation Reconstruction (FAMOS)
+// include "HLTrigger/Configuration/data/main/Famos.cff"
