@@ -1,23 +1,19 @@
 // Xchannel trigger paths
 
 
-/*
 //
 // electron + b-jet (global or local Egamma reco)
 // include "HLTrigger/xchannel/data/PathElectronB.cff"
 include "HLTrigger/xchannel/data/PathElectronB-local.cff"
 path HLTXElectronBJet = { ElectronB }
-*/
 
 
-/*
 //
 // muon + b-jet
 include "HLTrigger/xchannel/data/PathMuB.cff"
 path HLTXMuonBJet = { MuB }
 include "HLTrigger/xchannel/data/PathMuBsoftMu.cff"
 path HLTXMuonBJetSoftMuon = { MuBsmu }
-*/
 
 
 //
