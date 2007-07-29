@@ -18,8 +18,9 @@ include "HLTrigger/Configuration/data/rawToDigi/SiPixelDBCabling.cff"
 include "Geometry/TrackerGeometryBuilder/data/trackerGeometry.cfi"
 include "Geometry/TrackerNumberingBuilder/data/trackerNumberingGeometry.cfi"
 #--- Strips ---#
-#--- "no data available in SiStripFedCablingRcd" for 150 root file ---#
-# include "HLTrigger/Configuration/data/rawToDigi/SiStripDBCabling.cff"
+include "HLTrigger/Configuration/data/rawToDigi/SiStripDBCabling.cff"
+include "CalibTracker/SiStripConnectivity/data/SiStripConnectivity.cfi"
+include "CalibTracker/SiStripConnectivity/data/SiStripRegionConnectivity.cfi"
 #--- ECAL ---#
 include "HLTrigger/Configuration/data/rawToDigi/EcalGeometrySetup.cff"
 #--- HCAL ---#

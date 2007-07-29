@@ -8,11 +8,8 @@
 
 include "HLTrigger/Configuration/data/rawToDigi/SetupRawToDigi.cff"
 
-#--- Still a few issues being examined by the developers ---#
-include "HLTrigger/Configuration/data/rawToDigi/SiStripDigiToRaw.cff"
-
-#--- These subsystems appear to be in working order ---#
 include "HLTrigger/Configuration/data/rawToDigi/SiPixelDigiToRaw.cff"
+include "HLTrigger/Configuration/data/rawToDigi/SiStripDigiToRaw.cff"
 include "HLTrigger/Configuration/data/rawToDigi/EcalDigiToRaw.cff" 
 include "HLTrigger/Configuration/data/rawToDigi/EcalESDigiToRaw.cff" 
 include "HLTrigger/Configuration/data/rawToDigi/HcalDigiToRaw.cff"
@@ -23,7 +20,7 @@ include "HLTrigger/Configuration/data/rawToDigi/RPCDigiToRaw.cff"
 #--- L1 Digi->Raw ---#
 include "Configuration/StandardSequences/data/L1Emulator.cff"
 include "HLTrigger/Configuration/data/rawToDigi/GctDigiToRaw.cff"
-# include "HLTrigger/Configuration/data/rawToDigi/GtDigiToRaw.cff"
+include "HLTrigger/Configuration/data/rawToDigi/GtDigiToRaw.cff"
 
 #--- Collect everything together ---#
 module source = RawDataCollectorModule {}
@@ -31,7 +28,7 @@ module source = RawDataCollectorModule {}
 sequence DigiToRaw = {
                         L1Emulator, 
                         GctDigiToRaw,
-#                        GtDigiToRaw,
+                        GtDigiToRaw,
                         SiPixelDigiToRaw,
                         SiStripDigiToRaw,
                         EcalDigiToRaw,

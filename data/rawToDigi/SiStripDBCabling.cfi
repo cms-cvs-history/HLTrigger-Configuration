@@ -6,12 +6,16 @@ es_source SiStripDBCabling = PoolDBESSource {
         } 
     }
     bool loadAll = true
-    string connect = "sqlite_file:///afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration/SiStrip/140/sistripfedcabling.db"
-    untracked string catalog = "file:///afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration/SiStrip/140/SiStripFedCablingCatalog.xml"
+    string connect = "sqlite_file:///afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration/SiStrip/152/sistripfedcabling.db"
+    untracked string catalog = "file:///afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration/SiStrip/152/SiStripFedCablingCatalog.xml"
     string timetype = "runnumber"
     untracked uint32 authenticationMethod = 1
     untracked uint32 messagelevel = 10
     using CondDBSetup
 }
 
-# CAUTION: Getting the wrong map will give an error
+# CAUTION: Getting the wrong map will give an error of the form
+# cms::Exception caught in cmsRun
+# ---- Conditions BEGIN
+# PoolDBESSource::setIntervalFor:  no data available in SiStripFedCablingRcd at time XXXX
+# ---- Conditions END
