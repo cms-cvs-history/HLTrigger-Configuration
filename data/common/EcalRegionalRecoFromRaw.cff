@@ -37,16 +37,16 @@ replace ecalRegionalTausDigis.FedLabel = "ecalRegionalTausFEDs"
 include "Geometry/CaloEventSetup/data/CaloGeometry.cfi"
 
 module  ecalRegionalEgammaWeightUncalibRecHit = ecalWeightUncalibRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalWeightUncalibRecHit.cfi"
-replace ecalRegionalEgammaWeightUncalibRecHit.EBdigiCollection = ecalRegionalEgammaDigis
-replace ecalRegionalEgammaWeightUncalibRecHit.EEdigiCollection = ecalRegionalEgammaDigis
+replace ecalRegionalEgammaWeightUncalibRecHit.EBdigiCollection = ecalRegionalEgammaDigis:ebDigis
+replace ecalRegionalEgammaWeightUncalibRecHit.EEdigiCollection = ecalRegionalEgammaDigis:eeDigis
 
 module  ecalRegionalEgammaRecHit = ecalRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalRecHit.cfi"
 replace ecalRegionalEgammaRecHit.EBuncalibRecHitCollection = ecalRegionalEgammaWeightUncalibRecHit:EcalUncalibRecHitsEB
 replace ecalRegionalEgammaRecHit.EEuncalibRecHitCollection = ecalRegionalEgammaWeightUncalibRecHit:EcalUncalibRecHitsEE
 
 module  ecalRegionalMuonsWeightUncalibRecHit = ecalWeightUncalibRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalWeightUncalibRecHit.cfi"
-replace ecalRegionalMuonsWeightUncalibRecHit.EBdigiCollection = ecalRegionalMuonsDigis
-replace ecalRegionalMuonsWeightUncalibRecHit.EEdigiCollection = ecalRegionalMuonsDigis
+replace ecalRegionalMuonsWeightUncalibRecHit.EBdigiCollection = ecalRegionalMuonsDigis:ebDigis
+replace ecalRegionalMuonsWeightUncalibRecHit.EEdigiCollection = ecalRegionalMuonsDigis:eeDigis
 
 module  ecalRegionalMuonsRecHit = ecalRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalRecHit.cfi"
 replace ecalRegionalMuonsRecHit.EBuncalibRecHitCollection = ecalRegionalMuonsWeightUncalibRecHit:EcalUncalibRecHitsEB
