@@ -46,5 +46,4 @@ path HLTXElectronMuonRelaxed = {NonIsoElectronMuonSequence}
 // path HLTXElectronTau = {electronTauL1HLT}
 include "HLTrigger/xchannel/data/LeptonTauHLTLocal.cff"
 path HLTXElectronTau = { hltElectronTau }
-// mu+tau needs more work for 160:
-// path HLTXMuonTau     = {muonPixelTauL1HLT }
+path HLTXMuonTau     = {muonPixelTauL1HLT }
