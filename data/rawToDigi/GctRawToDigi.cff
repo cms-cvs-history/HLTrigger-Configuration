@@ -5,7 +5,7 @@
 # Definition of GctRawToDigi sequence
 #
 
-include "EventFilter/GctRawToDigi/data/l1GctHwDigis.cfi"
-replace l1GctHwDigis.inputLabel = source
+module l1GctEmulDigis = l1GctHwDigis from "EventFilter/GctRawToDigi/data/l1GctHwDigis.cfi"
+replace l1GctEmulDigis.inputLabel = source
 
-sequence GctRawToDigi = { l1GctHwDigis }
+sequence GctRawToDigi = { l1GctEmulDigis }
