@@ -6,6 +6,5 @@
 #
 
 include "EventFilter/GctRawToDigi/data/gctDigiToRaw.cfi"
-replace gctDigiToRaw.verbose = true
 
 sequence GctDigiToRaw = { gctDigiToRaw }
