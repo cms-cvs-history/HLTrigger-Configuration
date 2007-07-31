@@ -6,7 +6,7 @@ include "Configuration/StandardSequences/data/FakeConditions.cff"
 //
 
 
-// 1: from Digis on input file, running L1
+// 1: from Digis on input file, running L1Emulator and L1Extra
 include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
 include "Configuration/StandardSequences/data/L1Emulator.cff"
 include "Configuration/StandardSequences/data/L1Extra.cff"
@@ -25,29 +25,27 @@ sequence hltBegin = { hltGetDigi & (L1Emulator , L1Extra) }
 
 
 /*
-// 2: from Raw+L1Extra on input file - needs raw2digi unpacking but no L1
+// 2: from Raw+L1Emulator on input file - needs raw2digi unpacking
 module  hltGetRaw = hltGetRaw from "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
 replace hltGetRaw.RawDataCollection = source
-include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
-//
-// HLTLevel1Seed instance to mimick getData functionality for L1 products:
-module  l1seedBegin = hltLevel1Seed from "HLTrigger/HLTfilters/data/hltLevel1Seed.cfi"
-//
-sequence hltBegin = { hltGetRaw & l1seedBegin}
-*/
-
-/*
-// 3: from Raw on input (file or online) - needs raw2digi unpacking and L1
-module  hltGetRaw = hltGetRaw from "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
-replace hltGetRaw.RawDataCollection = source
-include "Configuration/StandardSequences/data/L1Emulator.cff"
 include "Configuration/StandardSequences/data/L1Extra.cff"
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
 //
-sequence hltBegin = { hltGetRaw & (doL1RawToDigi , L1Emulator , L1Extra) }
+sequence hltBegin = { hltGetRaw & (doL1RawToDigi , L1Extra) }
 */
 
 /*
+// 3: from Raw on input (file or online) - needs raw2digi unpacking
+module  hltGetRaw = hltGetRaw from "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
+replace hltGetRaw.RawDataCollection = source
+include "Configuration/StandardSequences/data/L1Extra.cff"
+include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
+//
+sequence hltBegin = { hltGetRaw & (doL1RawToDigi , L1Extra) }
+*/
+
+/*
+// -- this option will not work unless L1 digis are on the input file!
 // 4: from Digis on input via Raw on the fly - needs digi2raw and raw2digi and L1
 include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
 include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
@@ -55,7 +53,7 @@ include "Configuration/StandardSequences/data/L1Emulator.cff"
 include "Configuration/StandardSequences/data/L1Extra.cff"
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
 //
-sequence hltBegin = { hltGetDigi & DigiToRaw & (doL1RawToDigi , L1Emulator , L1Extra) }
+sequence hltBegin = { hltGetDigi & L1Emulator & DigiToRaw & (doL1RawToDigi , L1Extra) }
 */
 
 
