@@ -59,3 +59,7 @@ path CandHLT1MuonPrescalePt7x7 = { singleMuPrescale77 }
 
 include "HLTrigger/Muon/data/PathSingleMu_1032_Prescale7-10.cff"
 path CandHLT1MuonPrescalePt7x10 = { singleMuPrescale710 }
+
+// Skim trigger
+include "HLTrigger/Muon/data/PathMuLevel1_1032.cff"
+path CandHLT1MuonLevel1 = { muLevel1Path }
