@@ -35,7 +35,7 @@ sequence hltBegin = { hltGetRaw & (doL1RawToDigi , L1Extra) }
 */
 
 /*
-// 3: from Raw on input (file or online) - needs raw2digi unpacking
+// 3: from "online" Raw on input (file or online) - needs raw2digi unpacking
 module  hltGetRaw = hltGetRaw from "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
 replace hltGetRaw.RawDataCollection = source
 include "Configuration/StandardSequences/data/L1Extra.cff"
@@ -49,11 +49,10 @@ sequence hltBegin = { hltGetRaw & (doL1RawToDigi , L1Extra) }
 // 4: from Digis on input via Raw on the fly - needs digi2raw and raw2digi and L1
 include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
 include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
-include "Configuration/StandardSequences/data/L1Emulator.cff"
 include "Configuration/StandardSequences/data/L1Extra.cff"
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
 //
-sequence hltBegin = { hltGetDigi & L1Emulator & DigiToRaw & (doL1RawToDigi , L1Extra) }
+sequence hltBegin = { hltGetDigi & DigiToRaw & (doL1RawToDigi , L1Extra) }
 */
 
 
