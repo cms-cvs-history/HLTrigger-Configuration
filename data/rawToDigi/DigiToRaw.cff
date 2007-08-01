@@ -19,16 +19,20 @@ include "HLTrigger/Configuration/data/rawToDigi/RPCDigiToRaw.cff"
 
 #--- L1 Digi->Raw ---#
 include "Configuration/StandardSequences/data/L1Emulator.cff"
-include "HLTrigger/Configuration/data/rawToDigi/GctDigiToRaw.cff"
-include "HLTrigger/Configuration/data/rawToDigi/GtDigiToRaw.cff"
+include "Configuration/StandardSequences/data/L1Extra.cff"
+
+#--- These sequences removed (descope) for now ---#
+# include "HLTrigger/Configuration/data/rawToDigi/GctDigiToRaw.cff"
+# include "HLTrigger/Configuration/data/rawToDigi/GtDigiToRaw.cff"
 
 #--- Collect everything together ---#
 module source = RawDataCollectorModule {}
   
 sequence DigiToRaw = {
                         L1Emulator, 
-                        GctDigiToRaw,
-                        GtDigiToRaw,
+                        L1Extra,
+#                        GctDigiToRaw,
+#                        GtDigiToRaw,
                         SiPixelDigiToRaw,
                         SiStripDigiToRaw,
                         EcalDigiToRaw,

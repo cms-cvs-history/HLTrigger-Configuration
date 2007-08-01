@@ -17,16 +17,15 @@ include "HLTrigger/Configuration/data/rawToDigi/CSCRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/DTRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/RPCRawToDigi.cff"
 
-#--- L1 Digis ---#
-include "L1TriggerConfig/L1ScalesProducers/data/L1MuTriggerScalesConfig.cff"
-include "L1TriggerConfig/L1ScalesProducers/data/L1MuGMTScalesConfig.cff"
-
-include "HLTrigger/Configuration/data/rawToDigi/GctRawToDigi.cff"
-include "HLTrigger/Configuration/data/rawToDigi/GtRawToDigi.cff"
+#--- L1 Digis: dropped temporarily ---#
+# include "L1TriggerConfig/L1ScalesProducers/data/L1MuTriggerScalesConfig.cff"
+# include "L1TriggerConfig/L1ScalesProducers/data/L1MuGMTScalesConfig.cff"
+# include "HLTrigger/Configuration/data/rawToDigi/GctRawToDigi.cff"
+# include "HLTrigger/Configuration/data/rawToDigi/GtRawToDigi.cff"
 
 sequence RawToDigi = { 
-                        GctRawToDigi &
-                        GtRawToDigi &
+#                        GctRawToDigi &
+#                        GtRawToDigi &
                         SiPixelRawToDigi &
                         SiStripRawToClusters &
                         EcalRawToDigi &
