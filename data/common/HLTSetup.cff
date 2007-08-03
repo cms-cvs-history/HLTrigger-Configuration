@@ -5,7 +5,7 @@ include "Configuration/StandardSequences/data/FakeConditions.cff"
 // Four cases of running the HLT table - pick one and only one:
 //
 
-
+/*
 // 1: from Digis on input file, running L1Emulator and L1Extra
 include "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
 include "Configuration/StandardSequences/data/L1Emulator.cff"
@@ -22,9 +22,9 @@ sequence hltBegin = { hltGetDigi & (L1Emulator , L1Extra) }
 // Redo digis for HCAL noise
 // include "HLTrigger/Configuration/data/common/Digi.cff"
 // sequence hltBegin = { hltGetDigi & hltDoDigis & (L1Emulator , L1Extra) }
+*/
 
 
-/*
 // 2: from Raw+L1 on input file - needs raw2digi unpacking
 module  hltGetRaw = hltGetRaw from "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
 replace hltGetRaw.RawDataCollection = source
@@ -33,7 +33,7 @@ include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
 module  l1seedBegin = hltLevel1Seed from "HLTrigger/HLTfilters/data/hltLevel1Seed.cfi"
 //
 sequence hltBegin = { hltGetRaw & l1seedBegin }
-*/
+
 
 /*
 // 3: from "online" Raw on input (file or online) - needs raw2digi unpacking
