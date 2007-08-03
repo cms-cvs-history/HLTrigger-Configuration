@@ -1,0 +1,21 @@
+#!/bin/tcsh
+
+eval `scramv1 runtime -csh`
+
+echo "Removing old testcfg.py"
+/bin/rm testcfg.py
+
+echo "Creating new testcfg.py using $1 :"
+cat  >  testcfg.py<<EOF
+#!/usr/bin/env python
+cfgFile="$1"
+from FWCore.ParameterSet.Config import include
+process = include(cfgFile)
+EOF
+
+echo " "
+cat testcfg.py
+echo " "
+
+echo "Running cmsRun testcfg.py ... be patient!"
+              cmsRun testcfg.py
