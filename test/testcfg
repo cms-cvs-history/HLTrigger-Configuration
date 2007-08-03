@@ -17,5 +17,8 @@ echo " "
 cat testcfg.py
 echo " "
 
+echo "Running python testcfg.py ... be patient!"
+              python testcfg.py
+
 echo "Running cmsRun testcfg.py ... be patient!"
               cmsRun testcfg.py
