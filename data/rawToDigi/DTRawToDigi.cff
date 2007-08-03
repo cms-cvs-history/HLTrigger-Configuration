@@ -6,4 +6,5 @@
 #
 
 module muonDTDigis = dtunpacker from "HLTrigger/Configuration/data/rawToDigi/dtUnpacker.cfi"
+replace muonDTDigis.fedColl = "rawDataCollector"
 sequence DTRawToDigi = { muonDTDigis }

@@ -6,4 +6,5 @@
 #
 
 module muonRPCDigis = rpcunpacker from "HLTrigger/Configuration/data/rawToDigi/rpcUnpacker.cfi"
+replace muonRPCDigis.InputLabel = rawDataCollector
 sequence RPCRawToDigi = { muonRPCDigis }

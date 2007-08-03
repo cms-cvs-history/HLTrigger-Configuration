@@ -6,4 +6,5 @@
 #
 
 module ecalPreshowerDigis = esRawToDigi from "HLTrigger/Configuration/data/rawToDigi/esRawToDigi.cfi"
+replace ecalPreshowerDigis.Label = "rawDataCollector"
 sequence EcalESRawToDigi = { ecalPreshowerDigis }

@@ -7,4 +7,5 @@
 
 # In raw file produced by doDigiToRaw, HCAL digis are zero-suppressed
 module hcalZeroSuppressedDigis = hcalDigis from "HLTrigger/Configuration/data/rawToDigi/HcalRawToDigi-mtcc.cfi"
+replace hcalZeroSuppressedDigis.InputLabel = rawDataCollector
 sequence HcalRawToDigi = { hcalZeroSuppressedDigis }

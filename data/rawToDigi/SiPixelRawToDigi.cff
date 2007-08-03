@@ -6,6 +6,6 @@
 #
 
 include "EventFilter/SiPixelRawToDigi/data/SiPixelRawToDigi.cfi"
-replace siPixelDigis.InputLabel = "source"
+replace siPixelDigis.InputLabel = "rawDataCollector"
 
 sequence SiPixelRawToDigi = { siPixelDigis }

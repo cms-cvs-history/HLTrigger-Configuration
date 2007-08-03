@@ -28,7 +28,7 @@ include "Configuration/StandardSequences/data/L1Extra.cff"
 # include "HLTrigger/Configuration/data/rawToDigi/GtDigiToRaw.cff"
 
 #--- Collect everything together ---#
-module source = RawDataCollectorModule {}
+module rawDataCollector = RawDataCollectorModule {}
   
 sequence DigiToRaw = {
                         L1Emulator, 
@@ -43,5 +43,5 @@ sequence DigiToRaw = {
                         CSCDigiToRaw,
                         DTDigiToRaw,
                         RPCDigiToRaw,
-                        source
+                        rawDataCollector
                      }

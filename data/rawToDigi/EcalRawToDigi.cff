@@ -7,4 +7,5 @@
 
 module ecalDigis = ecalRawToDigiDev from "HLTrigger/Configuration/data/rawToDigi/ecalRawToDigiDev.cfi"
 replace ecalDigis.DoRegional = false 
+replace ecalDigis.InputLabel = "rawDataCollector"
 sequence EcalRawToDigi = { ecalDigis }
