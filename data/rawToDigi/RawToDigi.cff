@@ -9,7 +9,7 @@ include "HLTrigger/Configuration/data/rawToDigi/SetupRawToDigi.cff"
 es_source eegeom = EmptyESSource {
    string recordName = "EcalMappingRcd"
    vuint32 firstValid = { 1 }
-   bool iovIsRunNotTime = false
+   bool iovIsRunNotTime = true
 }
 
 #--- Subsystem raw->digi conversion ---#
