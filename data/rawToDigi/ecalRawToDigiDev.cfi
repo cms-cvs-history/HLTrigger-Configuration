@@ -1,6 +1,6 @@
 module ecalRawToDigiDev = EcalRawToDigiDev {
 
-     untracked string InputLabel="source"
+     untracked string InputLabel="rawDataCollector"
 
     # By default these are true
 
