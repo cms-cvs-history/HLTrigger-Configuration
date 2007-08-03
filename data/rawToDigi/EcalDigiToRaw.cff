@@ -5,15 +5,22 @@
 # Definition of EcalDigiToRaw sequence
 #
 
-module EcalSRDigis = ecalDigis from "SimCalorimetry/EcalSelectiveReadoutProducers/data/ecalDigis.cfi"
-replace EcalSRDigis.digiProducer = "ecalDigis"
-replace EcalSRDigis.EBdigiCollection = "ebDigis"
-replace EcalSRDigis.EEdigiCollection = "eeDigis"
-replace EcalSRDigis.EBSRPdigiCollection = "SRPebDigis"
-replace EcalSRDigis.EESRPdigiCollection = "SRPeeDigis"
-replace EcalSRDigis.writeSrFlags = true
+#--- Changes for 1_6_x: Prefer running digi+digi2raw  ---#
+#--- In this case, selectiveReadout done by digi step ---#
+
+# module EcalSRDigis = ecalDigis from "SimCalorimetry/EcalSelectiveReadoutProducers/data/ecalDigis.cfi"
+# replace EcalSRDigis.digiProducer = "ecalDigis"
+# replace EcalSRDigis.EBdigiCollection = "ebDigis"
+# replace EcalSRDigis.EEdigiCollection = "eeDigis"
+# replace EcalSRDigis.EBSRPdigiCollection = "SRPebDigis"
+# replace EcalSRDigis.EESRPdigiCollection = "SRPeeDigis"
+# replace EcalSRDigis.writeSrFlags = true
 
 module ecalPacker = ecalRawData from "HLTrigger/Configuration/data/rawToDigi/ecalRawData.cfi"
-replace ecalPacker.Label = "EcalSRDigis"
+# replace ecalPacker.Label = "EcalSRDigis"
+replace ecalPacker.Label = "ecalDigis"
+replace ecalPacker.InstanceEB = "ebDigis"
+replace ecalPacker.InstanceEE = "eeDigis"
 
-sequence EcalDigiToRaw = { EcalSRDigis,ecalPacker }
+# sequence EcalDigiToRaw = { EcalSRDigis,ecalPacker }
+sequence EcalDigiToRaw = { ecalPacker }

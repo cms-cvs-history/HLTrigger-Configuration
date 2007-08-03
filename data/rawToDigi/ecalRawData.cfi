@@ -9,4 +9,7 @@ module ecalRawData = EcalDigiToRaw {
    untracked bool DoBarrel = true
    untracked bool DoEndCap = true
    InputTag labelTT = ecalTriggerPrimitiveDigis
+   #--- Changes for 1_6_x: Prefer running digi+digi2raw ---#
+   InputTag labelEBSRFlags = ecalDigis:ebSrFlags
+   InputTag labelEESRFlags = ecalDigis:eeSrFlags
 }
