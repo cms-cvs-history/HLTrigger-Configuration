@@ -1,12 +1,6 @@
 
 include "CalibCalorimetry/EcalTrivialCondModules/data/EcalTrivialCondRetriever.cfi"
 include "Geometry/EcalMapping/data/EcalMapping.cfi"
-#--- This is removed for 1_6_x: Preferred method of running is digi+digi2raw ---#
-# es_source eegeom = EmptyESSource {
-#    string recordName = "EcalMappingRcd"
-#    vuint32 firstValid = { 1 }
-#    bool iovIsRunNotTime = false
-# }
 include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
 include "Geometry/CaloEventSetup/data/CaloGeometry.cfi"
 include "Geometry/CaloEventSetup/data/EcalTrigTowerConstituents.cfi"

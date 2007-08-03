@@ -6,8 +6,7 @@
 #
 
 #--- Changes for 1_6_x: Prefer running digi+digi2raw  ---#
-#--- In this case, selectiveReadout done by digi step ---#
-
+#--- New since 1_5_X: SelectiveReadout done elsewhere ---#
 # module EcalSRDigis = ecalDigis from "SimCalorimetry/EcalSelectiveReadoutProducers/data/ecalDigis.cfi"
 # replace EcalSRDigis.digiProducer = "ecalDigis"
 # replace EcalSRDigis.EBdigiCollection = "ebDigis"

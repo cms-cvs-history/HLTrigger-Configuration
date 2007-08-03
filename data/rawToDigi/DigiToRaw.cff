@@ -7,6 +7,8 @@
 # (as is the case for data) to be read later by each subsystem's RawToDigi module.  
 
 include "HLTrigger/Configuration/data/rawToDigi/SetupRawToDigi.cff"
+#--- File should only be included if "EcalMappingRcd" not produced elsewhere ---#
+# include "HLTrigger/Configuration/data/rawToDigi/EcalRecord.cff"
 
 include "HLTrigger/Configuration/data/rawToDigi/SiPixelDigiToRaw.cff"
 include "HLTrigger/Configuration/data/rawToDigi/SiStripDigiToRaw.cff"

@@ -6,11 +6,8 @@
 
 #--- Database and Geometry setup ---#
 include "HLTrigger/Configuration/data/rawToDigi/SetupRawToDigi.cff"
-es_source eegeom = EmptyESSource {
-   string recordName = "EcalMappingRcd"
-   vuint32 firstValid = { 1 }
-   bool iovIsRunNotTime = true
-}
+#--- File should only be included if "EcalMappingRcd" not produced elsewhere ---#
+include "HLTrigger/Configuration/data/rawToDigi/EcalRecord.cff"
 
 #--- Subsystem raw->digi conversion ---#
 include "HLTrigger/Configuration/data/rawToDigi/SiPixelRawToDigi.cff"
