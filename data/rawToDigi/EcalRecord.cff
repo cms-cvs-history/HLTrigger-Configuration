@@ -1,4 +1,4 @@
-
+/*
 #--- This file should only be included if the record is not created ---#
 #--- created elsewhere.  Not needed when running digi + digi2raw    ---#
 es_source eegeom = EmptyESSource {
@@ -7,3 +7,5 @@ es_source eegeom = EmptyESSource {
    bool iovIsRunNotTime = true
 }
 
+*/
+include "SimCalorimetry/EcalTrigPrimProducers/data/ecalTriggerPrimitiveDigis.cff"
