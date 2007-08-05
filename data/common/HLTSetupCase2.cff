@@ -1,0 +1,18 @@
+//
+// 2: from Raw+L1 on input file - needs raw2digi unpacking
+//
+
+//
+include "HLTrigger/Configuration/data/common/HLTSetupCommon.cff"
+//
+
+//
+module hlt2GetRaw = hltGetRaw from "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
+// HLTLevel1Seed instance to mimick getData functionality for L1 products:
+module l1SeedBegin = hltLevel1Seed from "HLTrigger/HLTfilters/data/hltLevel1Seed.cfi"
+//
+sequence hltBegin = { hlt2GetRaw & l1SeedBegin }
+
+//
+include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
+//
