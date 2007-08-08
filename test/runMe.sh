@@ -4,6 +4,9 @@ eval `scramv1 runtime -csh`
 rehash
 
 echo " "
+echo " Quick tests (three jobs: digi2raw, raw2digi, HLT from raw):"
+
+echo " "
 echo "/bin/rm myDigiToRaw.root                ConvertDigiToRaw.log"
       /bin/rm myDigiToRaw.root                ConvertDigiToRaw.log
 echo "cmsRun --strict ConvertDigiToRaw.cfg >& ConvertDigiToRaw.log"
@@ -23,6 +26,9 @@ echo "cmsRun --strict HLTtable.cfg         >& HLTtable.log"
 
 
 echo " "
+echo " Production chain (three jobs: digi+digi2raw, HLT, reco):"
+
+echo " "
 echo "/bin/rm myDigiToRaw.root                RelVal_Digi_Digi2Raw.log"
       /bin/rm myDigiToRaw.root                RelVal_Digi_Digi2Raw.log
 echo "./testcfg RelVal_Digi_Digi2Raw.cfg   >& RelVal_Digi_Digi2Raw.log"
@@ -33,6 +39,12 @@ echo "/bin/rm HLTPoolOutput.root              RelVal_HLTFromRaw.log"
       /bin/rm HLTPoolOutput.root              RelVal_HLTFromRaw.log
 echo "./testcfg RelVal_HLTFromRaw.cfg      >& RelVal_HLTFromRaw.log"
       ./testcfg RelVal_HLTFromRaw.cfg      >& RelVal_HLTFromRaw.log
+
+echo " "
+echo "/bin/rm reco.root                       RelVal_Reco.log"
+      /bin/rm reco.root                       RelVal_Reco.log
+echo "./testcfg RelVal_Reco.cfg            >& RelVal_Reco.log"
+      ./testcfg RelVal_Reco.cfg            >& RelVal_Reco.log
 
 
 echo " "
