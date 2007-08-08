@@ -1,6 +1,8 @@
 # Full Event content
 block HLTriggerFEVT = {
     untracked vstring outputCommands = {
+# Raw data product
+	"keep FEDRawDataCollection_*_*_*",
 # HLT book-keeping products
 	"keep recoHLTGlobalObject_*_*_*",
 	"keep recoHLTPathObject_*_*_*",
@@ -18,6 +20,8 @@ block HLTriggerFEVT = {
 # RECO content
 block HLTriggerRECO = {
     untracked vstring outputCommands = {
+# Raw data product
+	"keep FEDRawDataCollection_*_*_*",
 # HLT book-keeping products
 	"keep recoHLTGlobalObject_*_*_*",
 	"keep recoHLTPathObject_*_*_*",
@@ -35,6 +39,8 @@ block HLTriggerRECO = {
 # AOD content
 block HLTriggerAOD = {
     untracked vstring outputCommands = {
+# Raw data product
+#	"keep FEDRawDataCollection_*_*_*",   # not for AOD
 # HLT book-keeping products
 	"keep recoHLTGlobalObject_*_*_*",
 	"keep recoHLTPathObject_*_*_*",
