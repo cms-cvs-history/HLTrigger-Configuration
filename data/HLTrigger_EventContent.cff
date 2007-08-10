@@ -48,8 +48,8 @@ block HLTriggerAOD = {
 	"keep recoHLTFilterObject_*_*_*",
 	"keep recoHLTFilterObjectWithRefs_*_*_*",
 # Timing / Performance
-	"keep edmEventTime_*_*_*",
-	"keep HLTPerformanceInfo_*_*_*",
+#	"keep edmEventTime_*_*_*",           # not for AOD
+#	"keep HLTPerformanceInfo_*_*_*",     # not for AOD
 # HLT trigger "bits" - hardwired EDProduct!
 	"keep edmTriggerResults_*_*_*"
     }
