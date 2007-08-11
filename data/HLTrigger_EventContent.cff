@@ -1,3 +1,9 @@
+//
+// EventContent for HLT related products.
+// See below for HLT-related physics collections,
+// which are specific to groups of triggers.
+//
+
 # Full Event content
 block HLTriggerFEVT = {
     untracked vstring outputCommands = {
@@ -54,3 +60,61 @@ block HLTriggerAOD = {
 	"keep edmTriggerResults_*_*_*"
     }
 }
+
+/* not yet available
+//
+// Egamma collections
+include "HLTrigger/Egamma/data/HLTEgamma_EventContent.cff"
+//
+replace HLTriggerFEVT.outputCommands += HLTEgammaFEVT.outputCommands
+replace HLTriggerRECO.outputCommands += HLTEgammaRECO.outputCommands
+replace HLTriggerAOD.outputCommands  += HLTEgammaAOD.outputCommands
+*/
+
+/* not yet available
+//
+// JetMET collections
+include "HLTrigger/JetMET/data/HLTJetMET_EventContent.cff"
+//
+replace HLTriggerFEVT.outputCommands += HLTJetMETFEVT.outputCommands
+replace HLTriggerRECO.outputCommands += HLTJetMETRECO.outputCommands
+replace HLTriggerAOD.outputCommands  += HLTJetMETAOD.outputCommands
+*/
+
+//
+// Muon collections
+include "HLTrigger/Muon/data/HLTMuon_EventContent.cff"
+//
+replace HLTriggerFEVT.outputCommands += HLTMuonFEVT.outputCommands
+replace HLTriggerRECO.outputCommands += HLTMuonRECO.outputCommands
+replace HLTriggerAOD.outputCommands  += HLTMuonAOD.outputCommands
+
+/* not yet available
+//
+// BTau collections
+include "HLTrigger/btau/data/HLTBTau_EventContent.cff"
+//
+replace HLTriggerFEVT.outputCommands += HLTBTauFEVT.outputCommands
+replace HLTriggerRECO.outputCommands += HLTBTauRECO.outputCommands
+replace HLTriggerAOD.outputCommands  += HLTBTauAOD.outputCommands
+*/
+
+/* not yet available
+//
+// Xchannel collections
+include "HLTrigger/xchannel/data/HLTXchannel_EventContent.cff"
+//
+replace HLTriggerFEVT.outputCommands += HLTXchannelFEVT.outputCommands
+replace HLTriggerRECO.outputCommands += HLTXchannelRECO.outputCommands
+replace HLTriggerAOD.outputCommands  += HLTXchannelAOD.outputCommands
+*/
+
+/* not yet available
+//
+// Special collections
+include "HLTrigger/special/data/HLTSpecial_EventContent.cff"
+//
+replace HLTriggerFEVT.outputCommands += HLTSpecialFEVT.outputCommands
+replace HLTriggerRECO.outputCommands += HLTSpecialRECO.outputCommands
+replace HLTriggerAOD.outputCommands  += HLTSpecialAOD.outputCommands
+*/
