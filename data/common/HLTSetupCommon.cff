@@ -11,6 +11,13 @@ include "Configuration/StandardSequences/data/FakeConditions.cff"
 // include "Configuration/StandardSequences/data/Frontier100pbConditions.cff"
 //
 
+//
+// For MC/CSA07 etc. production, need to reset all L1/HLT prescales to 1
+//
+include "Configuration/StandardSequences/data/L1Extra.cff"
+include "L1Trigger/L1ExtraFromDigis/data/unprescaleL1T.cff"
+include "HLTrigger/Configuration/data/common/HLTPrescaleReset.cff"
+//
 
 //
 // Each HLT path must start with sequence hltBegin (directly or after the
