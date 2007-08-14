@@ -12,14 +12,6 @@ include "Configuration/StandardSequences/data/FakeConditions.cff"
 //
 
 //
-// For MC/CSA07 etc. production, need to reset all L1/HLT prescales to 1
-//
-include "Configuration/StandardSequences/data/L1Extra.cff"
-include "L1Trigger/L1ExtraFromDigis/data/unprescaleL1T.cff"
-include "HLTrigger/Configuration/data/common/HLTPrescaleReset.cff"
-//
-
-//
 // Each HLT path must start with sequence hltBegin (directly or after the
 // HLTPrescaler module - but only if that is the first module on the path)
 // This sequence is defined in HLTSetupCase#.cff as it is case specific,
@@ -40,9 +32,8 @@ include "HLTrigger/Configuration/data/common/HLTPrescaleReset.cff"
 //
 // Hence path HLTBegin contains sequence hltBegin
 //
-// Make sure path HLTBegin does not accept any event
-module  prescalerBegin = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-replace prescalerBegin.prescaleFactor = 4294967295 // = 2**32-1
+// Make sure path HLTBegin does not accept any event (even with PrescaleService)
+module prescalerBegin = Prescaler {int32 prescaleFactor = 2147483647} // = 2**31-1
 //
 path HLTBegin = {hltBegin , prescalerBegin}
 //
