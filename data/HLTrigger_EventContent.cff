@@ -89,7 +89,6 @@ replace HLTriggerFEVT.outputCommands += HLTMuonFEVT.outputCommands
 replace HLTriggerRECO.outputCommands += HLTMuonRECO.outputCommands
 replace HLTriggerAOD.outputCommands  += HLTMuonAOD.outputCommands
 
-/* not yet available
 //
 // BTau collections
 include "HLTrigger/btau/data/HLTBTau_EventContent.cff"
@@ -97,7 +96,6 @@ include "HLTrigger/btau/data/HLTBTau_EventContent.cff"
 replace HLTriggerFEVT.outputCommands += HLTBTauFEVT.outputCommands
 replace HLTriggerRECO.outputCommands += HLTBTauRECO.outputCommands
 replace HLTriggerAOD.outputCommands  += HLTBTauAOD.outputCommands
-*/
 
 /* not yet available
 //
