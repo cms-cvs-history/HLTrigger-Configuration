@@ -65,9 +65,9 @@ block HLTriggerAOD = {
 // Egamma collections
 include "HLTrigger/Egamma/data/HLTEgamma_EventContent.cff"
 //
-replace HLTriggerFEVT.outputCommands += HLTEgammaFEVT.outputCommands
-replace HLTriggerRECO.outputCommands += HLTEgammaRECO.outputCommands
-replace HLTriggerAOD.outputCommands  += HLTEgammaAOD.outputCommands
+replace HLTriggerFEVT.outputCommands += HLTEgamma_FEVT.outputCommands
+replace HLTriggerRECO.outputCommands += HLTEgamma_RECO.outputCommands
+replace HLTriggerAOD.outputCommands  += HLTEgamma_AOD.outputCommands
 
 /* current recojets defaults ok
 //
