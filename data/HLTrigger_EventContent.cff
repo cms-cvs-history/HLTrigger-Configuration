@@ -61,7 +61,6 @@ block HLTriggerAOD = {
     }
 }
 
-/* not yet available
 //
 // Egamma collections
 include "HLTrigger/Egamma/data/HLTEgamma_EventContent.cff"
@@ -69,9 +68,8 @@ include "HLTrigger/Egamma/data/HLTEgamma_EventContent.cff"
 replace HLTriggerFEVT.outputCommands += HLTEgammaFEVT.outputCommands
 replace HLTriggerRECO.outputCommands += HLTEgammaRECO.outputCommands
 replace HLTriggerAOD.outputCommands  += HLTEgammaAOD.outputCommands
-*/
 
-/* not yet available
+/* current recojets defaults ok
 //
 // JetMET collections
 include "HLTrigger/JetMET/data/HLTJetMET_EventContent.cff"
