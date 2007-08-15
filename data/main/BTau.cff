@@ -25,7 +25,8 @@ path HLTBHTMu   = {  bmuHTTrig}
 
 //
 // special B -> J/Psi -> dimuon trigger
-include "HLTrigger/btau/data/displacedmumu/PathBToJpsiToMumu.cff"
+// include "HLTrigger/btau/data/displacedmumu/PathBToJpsiToMumu.cff"
+include "HLTrigger/btau/data/displacedmumu/PathBToJpsiToMumuLoose.cff"
 path HLTBJPsiMuMu = {btoJpsitoMumu}	
 
 
