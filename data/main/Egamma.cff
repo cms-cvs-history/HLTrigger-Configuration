@@ -47,5 +47,5 @@ include "HLTrigger/Egamma/data/DoubleExclusivePhotonL1Isolated.cff"
 path CandHLT2PhotonExclusive = { doubleExclPhotonL1Isolated }
 
 
-include "HLTrigger/Egamma/data/SinglePhotonL1IsolatedPrescaledEt12_1e32.cff
+include "HLTrigger/Egamma/data/SinglePhotonL1IsolatedPrescaledEt12_1e32.cff"
 path CandHLT1PhotonL1Isolated = { singlePhotonPrescaledL1Isolated }
