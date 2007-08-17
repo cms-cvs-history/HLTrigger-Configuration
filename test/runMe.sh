@@ -26,7 +26,7 @@ echo "cmsRun --strict HLTtable.cfg         >& HLTtable.log"
 
 
 echo " "
-echo " Production chain (three jobs: digi+digi2raw, HLT, reco):"
+echo " Production chain (four jobs: digi+digi2raw, HLT, split, reco):"
 
 echo " "
 echo "/bin/rm myDigiToRaw.root                RelVal_Digi_Digi2Raw.log"
