@@ -1,0 +1,269 @@
+# The purpose of this file is to save data into separate
+# files (primary datasets) based on which HLT trigger bits are set.
+
+# Each PoolOutputModule defines a file and HLT filter paths to
+# select the event from.
+include "Configuration/EventContent/data/EventContent.cff"
+
+module PDTau = PoolOutputModule {
+  using FEVTSIMEventContent
+  untracked string fileName = "file:PDTau.root"
+  untracked uint32 commitInterval = 10
+  untracked PSet dataset ={
+            untracked string dataTier = "GEN-SIM-DIGI-RECO"
+        }
+  untracked PSet SelectEvents = { 
+    vstring SelectEvents = { 
+      "HLT1Tau:HLT", 
+      "HLT1Tau1MET:HLT", 
+      "HLT2TauPixel:HLT",
+      "HLTXMuonTau:HLT",
+      "HLTXElectronTau:HLT"
+    }
+  }
+}
+replace PDTau.outputCommands += "drop *_*Digis_*_HLT"
+
+module PDPhoton = PoolOutputModule {
+  using FEVTSIMEventContent
+  untracked string fileName = "file:PDPhoton.root"
+  untracked uint32 commitInterval = 10
+  untracked PSet dataset ={
+            untracked string dataTier = "GEN-SIM-DIGI-RECO"
+        }
+  untracked PSet SelectEvents = { 
+    vstring SelectEvents = { 
+      "HLT1Photon:HLT", 
+      "HLT1PhotonRelaxed:HLT", 
+      "HLT2Photon:HLT", 
+      "HLT2PhotonRelaxed:HLT",
+      "CandHLT2PhotonExclusive:HLT"
+    }
+  }
+}
+replace PDPhoton.outputCommands += "drop *_*Digis_*_HLT"
+
+module PDMuon = PoolOutputModule {
+  using FEVTSIMEventContent
+  untracked string fileName = "file:PDMuon.root"
+  untracked uint32 commitInterval = 10
+  untracked PSet dataset ={
+            untracked string dataTier = "GEN-SIM-DIGI-RECO"
+        }
+  untracked PSet SelectEvents = { 
+    vstring SelectEvents = { 
+      "HLT1MuonIso:HLT", 
+      "HLT1MuonNonIso:HLT", 
+      "HLT2MuonNonIso:HLT", 
+      "HLT2MuonJPsi:HLT",
+      "HLT2MuonUpsilon:HLT", 
+      "HLT2MuonZ:HLT",
+      "HLTNMuonNonIso:HLT", 
+      "HLT2MuonSameSign:HLT",
+      "HLTXMuonJets:HLT", 
+      "HLTXElectronMuon:HLT",
+      "HLTXElectronMuonRelaxed:HLT", 
+      "HLTXMuonTau:HLT"
+    }
+  }
+}
+replace PDMuon.outputCommands += "drop *_*Digis_*_HLT"
+
+module PDMuonCalib = PoolOutputModule {
+  using FEVTSIMEventContent
+  untracked string fileName = "file:PDMuonCalib.root"
+  untracked uint32 commitInterval = 10
+  untracked PSet dataset ={
+            untracked string dataTier = "GEN-SIM-DIGI-RECO"
+        }
+  untracked PSet SelectEvents = { 
+    vstring SelectEvents = { 
+      "CandHLT1MuonPrescalePt3:HLT",
+      "CandHLT1MuonPrescalePt5:HLT",
+      "CandHLT1MuonPrescalePt7x7:HLT",
+      "CandHLT1MuonPrescalePt7x10:HLT",
+      "CandHLT1MuonLevel1:HLT"
+    }
+  }
+}
+replace PDMuonCalib.outputCommands += "drop *_*Digis_*_HLT"
+
+module PDElectron = PoolOutputModule {
+  using FEVTSIMEventContent
+  untracked string fileName = "file:PDElectron.root"
+  untracked uint32 commitInterval = 10
+  untracked PSet dataset ={
+            untracked string dataTier = "GEN-SIM-DIGI-RECO"
+        }
+  untracked PSet SelectEvents = { 
+    vstring SelectEvents = { 
+      "HLT1Electron:HLT",
+      "HLT1ElectronRelaxed:HLT", 
+      "HLT2Electron:HLT", 
+      "HLT2ElectronRelaxed:HLT",
+      "HLT1EMHighEt:HLT", 
+      "HLT1EMVeryHighEt:HLT",
+      "HLTXElectron1Jet:HLT", 
+      "HLTXElectron2Jet:HLT",
+      "HLTXElectron3Jet:HLT", 
+      "HLTXElectron4Jet:HLT", 
+      "HLTXElectronMuon:HLT", 
+      "HLTXElectronMuonRelaxed:HLT", 
+      "HLTXElectronTau:HLT",
+      "CandHLT2ElectronZCounter:HLT",
+      "CandHLT2ElectronExclusive:HLT"
+    }
+  }
+}
+replace PDElectron.outputCommands += "drop *_*Digis_*_HLT"
+
+module PDBJet = PoolOutputModule {
+  using FEVTSIMEventContent
+  untracked string fileName = "file:PDBJet.root"
+  untracked uint32 commitInterval = 10
+  untracked PSet dataset ={
+            untracked string dataTier = "GEN-SIM-DIGI-RECO"
+        }
+  untracked PSet SelectEvents = { 
+    vstring SelectEvents = { 
+      "HLTB2JetMu:HLT",
+      "HLTB3JetMu:HLT",
+      "HLTB4JetMu:HLT",
+      "HLTBHTMu:HLT",
+      "HLTBJPsiMuMu:HLT",
+      "HLTXMuonBJet:HLT",
+      "HLTXMuonBJetSoftMuon:HLT",
+      "HLTB1Jet:HLT",
+      "HLTB2Jet:HLT",
+      "HLTB3Jet:HLT",
+      "HLTB4Jet:HLT",
+      "HLTBHT:HLT",
+      "HLTXElectronBJet:HLT"
+    }
+  }
+}
+replace PDBJet.outputCommands += "drop *_*Digis_*_HLT"
+
+module PDBJetCalib = PoolOutputModule {
+  using FEVTSIMEventContent
+  untracked string fileName = "file:PDBJetCalib.root"
+  untracked uint32 commitInterval = 10
+  untracked PSet dataset ={
+            untracked string dataTier = "GEN-SIM-DIGI-RECO"
+        }
+  untracked PSet SelectEvents = { 
+    vstring SelectEvents = { 
+      "HLTB1JetMu:HLT"
+    }
+  }
+}
+replace PDBJetCalib.outputCommands += "drop *_*Digis_*_HLT"
+
+module PDJetMET = PoolOutputModule {
+  using FEVTSIMEventContent
+  untracked string fileName = "file:PDJetMET.root"
+  untracked uint32 commitInterval = 10
+  untracked PSet dataset ={
+            untracked string dataTier = "GEN-SIM-DIGI-RECO"
+        }
+  untracked PSet SelectEvents = { 
+    vstring SelectEvents = { 
+      "HLT1jet:HLT",
+      "HLT2jet:HLT",
+      "HLT3jet:HLT",
+      "HLT4jet:HLT",
+      "HLT1MET:HLT",
+      "HLT2jetAco:HLT",
+      "HLT1jet1METAco:HLT",
+      "HLT1jet1MET:HLT",
+      "HLT2jet1MET:HLT",
+      "HLT3jet1MET:HLT",
+      "HLT4jet1MET:HLT",
+      "HLT1MET1HT:HLT",
+      "HLT2jetvbfMET:HLT",
+      "HLTS2jet1METNV:HLT",
+      "HLTS2jet1METAco:HLT",
+      "CandHLTSjet1MET1Aco:HLT",
+      "CandHLTSjet2MET1Aco:HLT",
+      "CandHLTS2jetAco:HLT",
+      "CandHLTJetMETRapidityGap:HLT"
+    }
+  }
+}
+replace PDJetMET.outputCommands += "drop *_*Digis_*_HLT"
+
+module PDJetCalib = PoolOutputModule {
+  using FEVTSIMEventContent
+  untracked string fileName = "file:PDJetCalib.root"
+  untracked uint32 commitInterval = 10
+  untracked PSet dataset ={
+            untracked string dataTier = "GEN-SIM-DIGI-RECO"
+        }
+  untracked PSet SelectEvents = { 
+    vstring SelectEvents = { 
+      "HLT1jet:HLT",
+      "HLT1jetPE1:HLT",
+      "HLT1jetPE3:HLT",
+      "HLT1jetPE5:HLT",
+      "CandHLT1jetPE7:HLT",
+      "CandHLT2jetAve30:HLT",
+      "CandHLT2jetAve60:HLT",
+      "CandHLT2jetAve110:HLT",
+      "CandHLT2jetAve150:HLT",
+      "CandHLT2jetAve200:HLT",
+      "CandHLT1SumET:HLT",
+      "HLT1Photon:HLT",
+      "CandHLT1PhotonL1Isolated:HLT"
+    }
+  }
+}
+replace PDJetCalib.outputCommands += "drop *_*Digis_*_HLT"
+
+module PDMETCalib = PoolOutputModule {
+  using FEVTSIMEventContent
+  untracked string fileName = "file:PDMETCalib.root"
+  untracked uint32 commitInterval = 10
+  untracked PSet dataset ={
+            untracked string dataTier = "GEN-SIM-DIGI-RECO"
+        }
+  untracked PSet SelectEvents = { 
+    vstring SelectEvents = { 
+      "HLT1MET:HLT",
+      "CandHLT1METPre1:HLT",
+      "CandHLT1METPre2:HLT",
+      "CandHLT1METPre3:HLT"
+    }
+  }
+}
+replace PDMETCalib.outputCommands += "drop *_*Digis_*_HLT"
+
+# The failed dataset is supposed to contain events that failed all paths
+module PDFailed = PoolOutputModule {
+  using FEVTSIMEventContent
+  untracked string fileName = "file:PDFailed.root"
+  untracked uint32 commitInterval = 10
+  untracked PSet dataset ={
+            untracked string dataTier = "GEN-SIM-DIGI-RECO"
+        }
+  untracked PSet SelectEvents = { 
+    vstring SelectEvents = { 
+      "!*:HLT",
+      "HLTMinBiasPixel:HLT",
+      "HLTMinBias:HLT",
+      "HLTZeroBias:HLT" 
+    }
+  }
+}
+replace PDFailed.outputCommands += "drop *_*Digis_*_HLT"
+
+endpath ePDTau       = {PDTau}
+endpath ePDPhoton    = {PDPhoton}
+endpath ePDMuon      = {PDMuon}
+endpath ePDMuonCalib = {PDMuonCalib}
+endpath ePDElectron  = {PDElectron}
+endpath ePDBJet      = {PDBJet}
+endpath ePDBJetCalib = {PDBJetCalib}
+endpath ePDJetMET    = {PDJetMET}
+endpath ePDJetCalib  = {PDJetCalib}
+endpath ePDMETCalib  = {PDMETCalib}
+endpath ePDFailed    = {PDFailed}

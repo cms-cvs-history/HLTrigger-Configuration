@@ -27,19 +27,16 @@ include "Configuration/StandardSequences/data/FakeConditions.cff"
 // The corresponding modules are put into a separate path called HLTBegin
 // to run before all other paths - subsequent HLT paths then simply re-use
 // these products - already produced and/or in the Event data structure!
-//
-
-//
-// Hence path HLTBegin contains sequence hltBegin
-//
-// Make sure path HLTBegin does not accept any event (even with PrescaleService)
-module prescalerBegin = Prescaler {int32 prescaleFactor = 2147483647} // = 2**31-1
-//
-path HLTBegin = {hltBegin , prescalerBegin}
+// Hence path HLTBegin contains the sequence hltBegin
 //
 // Note:
 //   path HLTBegin should be excluded from HLT table timing considerations
-//   path HLTBegin should be removed from the HLT table for online running
+//   path HLTBegin should be removed for online / production  running
+/*
+// Make sure path HLTBegin does not accept any event (even with PrescaleService)
+module prescalerBegin = Prescaler {int32 prescaleFactor = 2147483647} // = 2**31-1
+path HLTBegin = {hltBegin , prescalerBegin}
+*/
 //
 
 //
