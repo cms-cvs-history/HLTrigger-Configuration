@@ -41,6 +41,12 @@ echo "./testcfg RelVal_HLTFromRaw.cfg      >& RelVal_HLTFromRaw.log"
       ./testcfg RelVal_HLTFromRaw.cfg      >& RelVal_HLTFromRaw.log
 
 echo " "
+echo "/bin/rm PD*.root                        RelVal_PrimaryDatasets.log"
+      /bin/rm PD*.root                        RelVal_PrimaryDatasets.log
+echo "./testcfg RelVal_PrimaryDatasets.cfg >& RelVal_PrimaryDatasets.log"
+      ./testcfg RelVal_PrimaryDatasets.cfg >& RelVal_PrimaryDatasets.log
+
+echo " "
 echo "/bin/rm reco.root                       RelVal_Reco.log"
       /bin/rm reco.root                       RelVal_Reco.log
 echo "./testcfg RelVal_Reco.cfg            >& RelVal_Reco.log"
