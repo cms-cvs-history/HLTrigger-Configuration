@@ -3,15 +3,22 @@
 
 # Each PoolOutputModule defines a file and HLT filter paths to
 # select the event from.
+
 include "Configuration/EventContent/data/EventContent.cff"
+replace FEVTSIMEventContent.outputCommands += "drop *_*Digis_*_HLT"
+
+block HLTPrimaryDatasetsDefaults = {
+  using FEVTSIMEventContent
+# untracked uint32 commitInterval = 10
+  untracked PSet dataset ={
+    untracked string dataTier = "GEN-SIM-DIGI-RECO"
+  }
+}
+
 
 module PDTau = PoolOutputModule {
-  using FEVTSIMEventContent
+  using HLTPrimaryDatasetsDefaults
   untracked string fileName = "file:PDTau.root"
-  untracked uint32 commitInterval = 10
-  untracked PSet dataset ={
-            untracked string dataTier = "GEN-SIM-DIGI-RECO"
-        }
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
       "HLT1Tau:HLT", 
@@ -22,15 +29,10 @@ module PDTau = PoolOutputModule {
     }
   }
 }
-replace PDTau.outputCommands += "drop *_*Digis_*_HLT"
 
 module PDPhoton = PoolOutputModule {
-  using FEVTSIMEventContent
+  using HLTPrimaryDatasetsDefaults
   untracked string fileName = "file:PDPhoton.root"
-  untracked uint32 commitInterval = 10
-  untracked PSet dataset ={
-            untracked string dataTier = "GEN-SIM-DIGI-RECO"
-        }
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
       "HLT1Photon:HLT", 
@@ -41,15 +43,10 @@ module PDPhoton = PoolOutputModule {
     }
   }
 }
-replace PDPhoton.outputCommands += "drop *_*Digis_*_HLT"
 
 module PDMuon = PoolOutputModule {
-  using FEVTSIMEventContent
+  using HLTPrimaryDatasetsDefaults
   untracked string fileName = "file:PDMuon.root"
-  untracked uint32 commitInterval = 10
-  untracked PSet dataset ={
-            untracked string dataTier = "GEN-SIM-DIGI-RECO"
-        }
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
       "HLT1MuonIso:HLT", 
@@ -60,6 +57,7 @@ module PDMuon = PoolOutputModule {
       "HLT2MuonZ:HLT",
       "HLTNMuonNonIso:HLT", 
       "HLT2MuonSameSign:HLT",
+      "HLTBJPsiMuMu:HLT",
       "HLTXMuonJets:HLT", 
       "HLTXElectronMuon:HLT",
       "HLTXElectronMuonRelaxed:HLT", 
@@ -67,15 +65,10 @@ module PDMuon = PoolOutputModule {
     }
   }
 }
-replace PDMuon.outputCommands += "drop *_*Digis_*_HLT"
 
 module PDMuonCalib = PoolOutputModule {
-  using FEVTSIMEventContent
+  using HLTPrimaryDatasetsDefaults
   untracked string fileName = "file:PDMuonCalib.root"
-  untracked uint32 commitInterval = 10
-  untracked PSet dataset ={
-            untracked string dataTier = "GEN-SIM-DIGI-RECO"
-        }
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
       "CandHLT1MuonPrescalePt3:HLT",
@@ -86,15 +79,10 @@ module PDMuonCalib = PoolOutputModule {
     }
   }
 }
-replace PDMuonCalib.outputCommands += "drop *_*Digis_*_HLT"
 
 module PDElectron = PoolOutputModule {
-  using FEVTSIMEventContent
+  using HLTPrimaryDatasetsDefaults
   untracked string fileName = "file:PDElectron.root"
-  untracked uint32 commitInterval = 10
-  untracked PSet dataset ={
-            untracked string dataTier = "GEN-SIM-DIGI-RECO"
-        }
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
       "HLT1Electron:HLT",
@@ -115,22 +103,16 @@ module PDElectron = PoolOutputModule {
     }
   }
 }
-replace PDElectron.outputCommands += "drop *_*Digis_*_HLT"
 
 module PDBJet = PoolOutputModule {
-  using FEVTSIMEventContent
+  using HLTPrimaryDatasetsDefaults
   untracked string fileName = "file:PDBJet.root"
-  untracked uint32 commitInterval = 10
-  untracked PSet dataset ={
-            untracked string dataTier = "GEN-SIM-DIGI-RECO"
-        }
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
       "HLTB2JetMu:HLT",
       "HLTB3JetMu:HLT",
       "HLTB4JetMu:HLT",
       "HLTBHTMu:HLT",
-      "HLTBJPsiMuMu:HLT",
       "HLTXMuonBJet:HLT",
       "HLTXMuonBJetSoftMuon:HLT",
       "HLTB1Jet:HLT",
@@ -142,30 +124,20 @@ module PDBJet = PoolOutputModule {
     }
   }
 }
-replace PDBJet.outputCommands += "drop *_*Digis_*_HLT"
 
 module PDBJetCalib = PoolOutputModule {
-  using FEVTSIMEventContent
+  using HLTPrimaryDatasetsDefaults
   untracked string fileName = "file:PDBJetCalib.root"
-  untracked uint32 commitInterval = 10
-  untracked PSet dataset ={
-            untracked string dataTier = "GEN-SIM-DIGI-RECO"
-        }
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
       "HLTB1JetMu:HLT"
     }
   }
 }
-replace PDBJetCalib.outputCommands += "drop *_*Digis_*_HLT"
 
 module PDJetMET = PoolOutputModule {
-  using FEVTSIMEventContent
+  using HLTPrimaryDatasetsDefaults
   untracked string fileName = "file:PDJetMET.root"
-  untracked uint32 commitInterval = 10
-  untracked PSet dataset ={
-            untracked string dataTier = "GEN-SIM-DIGI-RECO"
-        }
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
       "HLT1jet:HLT",
@@ -190,15 +162,10 @@ module PDJetMET = PoolOutputModule {
     }
   }
 }
-replace PDJetMET.outputCommands += "drop *_*Digis_*_HLT"
 
 module PDJetCalib = PoolOutputModule {
-  using FEVTSIMEventContent
+  using HLTPrimaryDatasetsDefaults
   untracked string fileName = "file:PDJetCalib.root"
-  untracked uint32 commitInterval = 10
-  untracked PSet dataset ={
-            untracked string dataTier = "GEN-SIM-DIGI-RECO"
-        }
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
       "HLT1jet:HLT",
@@ -217,15 +184,10 @@ module PDJetCalib = PoolOutputModule {
     }
   }
 }
-replace PDJetCalib.outputCommands += "drop *_*Digis_*_HLT"
 
 module PDMETCalib = PoolOutputModule {
-  using FEVTSIMEventContent
+  using HLTPrimaryDatasetsDefaults
   untracked string fileName = "file:PDMETCalib.root"
-  untracked uint32 commitInterval = 10
-  untracked PSet dataset ={
-            untracked string dataTier = "GEN-SIM-DIGI-RECO"
-        }
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
       "HLT1MET:HLT",
@@ -235,16 +197,11 @@ module PDMETCalib = PoolOutputModule {
     }
   }
 }
-replace PDMETCalib.outputCommands += "drop *_*Digis_*_HLT"
 
 # The failed dataset is supposed to contain events that failed all paths
 module PDFailed = PoolOutputModule {
-  using FEVTSIMEventContent
+  using HLTPrimaryDatasetsDefaults
   untracked string fileName = "file:PDFailed.root"
-  untracked uint32 commitInterval = 10
-  untracked PSet dataset ={
-            untracked string dataTier = "GEN-SIM-DIGI-RECO"
-        }
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
       "!*:HLT",
@@ -254,7 +211,6 @@ module PDFailed = PoolOutputModule {
     }
   }
 }
-replace PDFailed.outputCommands += "drop *_*Digis_*_HLT"
 
 endpath ePDTau       = {PDTau}
 endpath ePDPhoton    = {PDPhoton}
