@@ -7,12 +7,14 @@
 include "Configuration/EventContent/data/EventContent.cff"
 
 block HLTPrimaryDatasetsDefaults = {
-  using FEVTSIMEventContent
-# untracked uint32 commitInterval = 10
+  untracked vstring outputCommands = {
+     "drop *"
+  }
   untracked PSet dataset ={
     untracked string dataTier = "GEN-SIM-DIGI-RECO"
   }
 }
+replace HLTPrimaryDatasetsDefaults.outputCommands += FEVTSIMEventContent.outputCommands
 replace HLTPrimaryDatasetsDefaults.outputCommands += "drop *_*Digis_*_HLT"
 
 
