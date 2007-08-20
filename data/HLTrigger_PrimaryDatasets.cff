@@ -5,7 +5,6 @@
 # select the event from.
 
 include "Configuration/EventContent/data/EventContent.cff"
-replace FEVTSIMEventContent.outputCommands += "drop *_*Digis_*_HLT"
 
 block HLTPrimaryDatasetsDefaults = {
   using FEVTSIMEventContent
@@ -14,6 +13,7 @@ block HLTPrimaryDatasetsDefaults = {
     untracked string dataTier = "GEN-SIM-DIGI-RECO"
   }
 }
+replace HLTPrimaryDatasets.outputCommands += "drop *_*Digis_*_HLT"
 
 
 module PDTau = PoolOutputModule {
