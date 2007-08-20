@@ -13,7 +13,7 @@ block HLTPrimaryDatasetsDefaults = {
     untracked string dataTier = "GEN-SIM-DIGI-RECO"
   }
 }
-replace HLTPrimaryDatasets.outputCommands += "drop *_*Digis_*_HLT"
+replace HLTPrimaryDatasetsDefaults.outputCommands += "drop *_*Digis_*_HLT"
 
 
 module PDTau = PoolOutputModule {
