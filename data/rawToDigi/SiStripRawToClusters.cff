@@ -12,7 +12,7 @@ module SiStripRawToClustersFacility = SiStripRawToClusters {
     untracked string ProductInstance = ""
     using SiStripClusterization
 }
-replace SiStripRawToClustersFacility.UseCalibDataFromDB  = false
+# replace SiStripRawToClustersFacility.UseCalibDataFromDB  = false
 module siStripClusters = SiStripRoI from "EventFilter/SiStripRawToDigi/data/SiStripRawToClustersRoI.cfi"
 sequence rawtoclusters = {SiStripRawToClustersFacility, siStripClusters}
 
