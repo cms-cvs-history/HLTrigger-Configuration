@@ -182,7 +182,10 @@ module PDJetCalib = PoolOutputModule {
       "CandHLT2jetAve200:HLT",
       "CandHLT1SumET:HLT",
       "HLT1Photon:HLT",
-      "CandHLT1PhotonL1Isolated:HLT"
+      "CandHLT1PhotonL1Isolated:HLT",
+      "HLTMinBiasPixel:HLT",
+      "HLTMinBias:HLT",
+      "HLTZeroBias:HLT"	
     }
   }
 }
@@ -206,10 +209,7 @@ module PDFailed = PoolOutputModule {
   untracked string fileName = "file:PDFailed.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
-      "!*:HLT",
-      "HLTMinBiasPixel:HLT",
-      "HLTMinBias:HLT",
-      "HLTZeroBias:HLT" 
+      "!*:HLT"
     }
   }
 }
