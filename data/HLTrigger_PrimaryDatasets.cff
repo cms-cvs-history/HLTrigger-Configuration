@@ -4,22 +4,31 @@
 # Each PoolOutputModule defines a file and HLT filter paths to
 # select the event from.
 
-include "Configuration/EventContent/data/EventContent.cff"
 
+# Common defaults:
+
+include "Configuration/EventContent/data/EventContent.cff"
 block HLTPrimaryDatasetsDefaults = {
   untracked vstring outputCommands = {
      "drop *"
-  }
-  untracked PSet dataset ={
-    untracked string dataTier = "GEN-SIM-DIGI-RECO"
   }
 }
 replace HLTPrimaryDatasetsDefaults.outputCommands += FEVTSIMEventContent.outputCommands
 replace HLTPrimaryDatasetsDefaults.outputCommands += "drop *_*Digis_*_HLT"
 
+block HLTPrimaryDatasetsDefaultPSet = {
+    untracked string dataTier = "GEN-SIM-DIGI-RECO"
+}
+
+
+# The PoolOutputModules:
 
 module PDTau = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDTau"
+  }
   untracked string fileName = "file:PDTau.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
@@ -34,6 +43,10 @@ module PDTau = PoolOutputModule {
 
 module PDPhoton = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDPhoton"
+  }
   untracked string fileName = "file:PDPhoton.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
@@ -48,6 +61,10 @@ module PDPhoton = PoolOutputModule {
 
 module PDMuon = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDMuon"
+  }
   untracked string fileName = "file:PDMuon.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
@@ -70,6 +87,10 @@ module PDMuon = PoolOutputModule {
 
 module PDMuonCalib = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDMuonCalib"
+  }
   untracked string fileName = "file:PDMuonCalib.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
@@ -84,6 +105,10 @@ module PDMuonCalib = PoolOutputModule {
 
 module PDElectron = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDElectron"
+  }
   untracked string fileName = "file:PDElectron.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
@@ -108,6 +133,10 @@ module PDElectron = PoolOutputModule {
 
 module PDBJet = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDBJet"
+  }
   untracked string fileName = "file:PDBJet.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
@@ -129,6 +158,10 @@ module PDBJet = PoolOutputModule {
 
 module PDBJetCalib = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDBJetCalib"
+  }
   untracked string fileName = "file:PDBJetCalib.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
@@ -139,6 +172,10 @@ module PDBJetCalib = PoolOutputModule {
 
 module PDJetMET = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDJetMET"
+  }
   untracked string fileName = "file:PDJetMET.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
@@ -167,6 +204,10 @@ module PDJetMET = PoolOutputModule {
 
 module PDJetCalib = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDJetCalib"
+  }
   untracked string fileName = "file:PDJetCalib.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
@@ -192,6 +233,10 @@ module PDJetCalib = PoolOutputModule {
 
 module PDMETCalib = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDMETCalib"
+  }
   untracked string fileName = "file:PDMETCalib.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
@@ -206,6 +251,10 @@ module PDMETCalib = PoolOutputModule {
 # The failed dataset is supposed to contain events that failed all paths
 module PDFailed = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDFailed"
+  }
   untracked string fileName = "file:PDFailed.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
@@ -214,6 +263,9 @@ module PDFailed = PoolOutputModule {
   }
 }
 
+
+# Endpaths with PoolOutputModules:
+ 
 endpath ePDTau       = {PDTau}
 endpath ePDPhoton    = {PDPhoton}
 endpath ePDMuon      = {PDMuon}
