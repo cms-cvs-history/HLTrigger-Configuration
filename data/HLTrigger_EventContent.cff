@@ -95,7 +95,6 @@ replace HLTriggerFEVT.outputCommands += HLTBTauFEVT.outputCommands
 replace HLTriggerRECO.outputCommands += HLTBTauRECO.outputCommands
 replace HLTriggerAOD.outputCommands  += HLTBTauAOD.outputCommands
 
-/* not yet available
 //
 // Xchannel collections
 include "HLTrigger/xchannel/data/HLTXchannel_EventContent.cff"
@@ -103,7 +102,6 @@ include "HLTrigger/xchannel/data/HLTXchannel_EventContent.cff"
 replace HLTriggerFEVT.outputCommands += HLTXchannelFEVT.outputCommands
 replace HLTriggerRECO.outputCommands += HLTXchannelRECO.outputCommands
 replace HLTriggerAOD.outputCommands  += HLTXchannelAOD.outputCommands
-*/
 
 /* not yet available
 //
