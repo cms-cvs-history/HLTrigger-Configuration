@@ -21,6 +21,8 @@
 
 	module hltTrigReport = hlTrigReport from "HLTrigger/HLTanalyzers/data/hlTrigReport.cfi"
 
+//removing timing/performance info from the path for 1_6_0/CSA07
+/*
 //
 // Want timing info in output root file (myTimer module)
 	service = TimerService {}
@@ -30,8 +32,8 @@
 // Want extended timing and performance info in output root file (PathTimer)
 	service = PathTimerService {}
 	module hltPathTimer = PathTimerInserter {}
-
+*/
 //
 // Put all these modules into a common endpath
-
-	endpath HLTEndpath = {hltMakeSummaryObjects & l1tTrigReport & hltTrigReport & hltTimer & hltPathTimer}
+	//endpath HLTEndpath = {hltMakeSummaryObjects & l1tTrigReport & hltTrigReport & hltTimer & hltPathTimer}
+         endpath HLTEndpath = {hltMakeSummaryObjects & l1tTrigReport & hltTrigReport}
