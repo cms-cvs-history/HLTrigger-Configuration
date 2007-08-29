@@ -5,7 +5,6 @@
 
 #--- Allow for multiple calls to the database ---#
 include "CondCore/DBCommon/data/CondDBSetup.cfi" 
-replace CondDBSetup.DBParameters.authenticationPath="/afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration"
 
 #--- Obtain the ideal geometry record ---#
 include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"
