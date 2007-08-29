@@ -61,7 +61,9 @@ sequence doRegionalTausEcal   = { ecalPreshowerDigis & ecalRegionalTausRecoSeque
 //
 include "RecoLocalMuon/Configuration/data/RecoLocalMuon.cff"
 sequence doLocalCSC     = { muonCSCDigis , csclocalreco }
-sequence doLocalDT      = { muonDTDigis  , dtlocalreco }
+/////TEMPORARY FOR DT PROBLEMS
+//sequence doLocalDT      = { muonDTDigis  , dtlocalreco }
+sequence doLocalDT      = { dtlocalreco }
 sequence doLocalRPC     = { muonRPCDigis , rpcRecHits }
 // combined
 sequence doLocalMuon    = { doLocalDT & doLocalCSC & doLocalRPC}

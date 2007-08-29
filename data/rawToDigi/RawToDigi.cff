@@ -16,7 +16,7 @@ include "HLTrigger/Configuration/data/rawToDigi/EcalRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/EcalESRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/HcalRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/CSCRawToDigi.cff"
-include "HLTrigger/Configuration/data/rawToDigi/DTRawToDigi.cff"
+#include "HLTrigger/Configuration/data/rawToDigi/DTRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/RPCRawToDigi.cff"
 
 #--- L1 Digis: dropped temporarily ---#
@@ -34,6 +34,6 @@ sequence RawToDigi = {
                         EcalESRawToDigi &
                         HcalRawToDigi &
                         CSCRawToDigi &
-                        DTRawToDigi &
+ #                       DTRawToDigi &
                         RPCRawToDigi
                      }
