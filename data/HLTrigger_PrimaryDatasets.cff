@@ -10,15 +10,15 @@ block HLTPrimaryDatasetsDefaults = {
   untracked vstring outputCommands = {
      "drop *"
   }
-  untracked PSet dataset ={
-    untracked string dataTier = "GEN-SIM-DIGI-RECO"
-  }
 }
 replace HLTPrimaryDatasetsDefaults.outputCommands += FEVTSIMEventContent.outputCommands
 replace HLTPrimaryDatasetsDefaults.outputCommands += "drop *_*Digis_*_HLT"
 
+block HLTPrimaryDatasetsDefaultPSet = {
+    untracked string dataTier = "GEN-SIM-DIGI-RECO"
+}
+
 module pdTauFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdTauFilter.TriggerResultsTag = TriggerResults::HLT
 replace pdTauFilter.HLTPaths = {
       "HLT1Tau",
       "HLT1Tau1MET",
@@ -31,7 +31,10 @@ path pdTauPath = {pdTauFilter}
 
 module PDTau = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
-  untracked string filterName = "PDTau"
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDTau"
+  }
   untracked string fileName = "file:PDTau.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = {"pdTauPath" }
@@ -41,7 +44,6 @@ module PDTau = PoolOutputModule {
 
 
 module pdPhotonFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdPhotonFilter.TriggerResultsTag = TriggerResults::HLT
 replace pdPhotonFilter.HLTPaths = { 
       "HLT1Photon",
       "HLT1PhotonRelaxed",
@@ -53,7 +55,10 @@ path pdPhotonPath = {pdPhotonFilter}
 
 module PDPhoton = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
-  untracked string filterName = "PDPhoton"
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDPhoton"
+  }
   untracked string fileName = "file:PDPhoton.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { "pdPhotonPath"    }
@@ -62,7 +67,6 @@ module PDPhoton = PoolOutputModule {
 }
 
 module pdMuonFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdMuonFilter.TriggerResultsTag = TriggerResults::HLT
 replace pdMuonFilter.HLTPaths = {
       "HLT1MuonIso",
       "HLT1MuonNonIso",
@@ -83,7 +87,10 @@ path pdMuonPath = {pdMuonFilter}
 
 module PDMuon = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
-  untracked string filterName = "PDMuon"
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDMuon"
+  }
   untracked string fileName = "file:PDMuon.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { "pdMuonPath"  }
@@ -92,7 +99,6 @@ module PDMuon = PoolOutputModule {
 }
 
 module pdMuonCalibFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdMuonCalibFilter.TriggerResultsTag = TriggerResults::HLT
 replace pdMuonCalibFilter.HLTPaths = {      
       "CandHLT1MuonPrescalePt3",
       "CandHLT1MuonPrescalePt5",
@@ -105,7 +111,10 @@ path pdMuonCalibPath = {pdMuonCalibFilter}
 
 module PDMuonCalib = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
-  untracked string filterName = "PDMuonCalib"
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDMuonCalib"
+  }
   untracked string fileName = "file:PDMuonCalib.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = {"pdMuonCalibPath"} 
@@ -114,7 +123,6 @@ module PDMuonCalib = PoolOutputModule {
 }
 
 module pdElectronFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdElectronFilter.TriggerResultsTag = TriggerResults::HLT
 replace pdElectronFilter.HLTPaths = {
       "HLT1Electron",
       "HLT1ElectronRelaxed",
@@ -137,7 +145,10 @@ path pdElectronPath = {pdElectronFilter}
 
 module PDElectron = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
-  untracked string filterName = "PDElectron"
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDElectron"
+  }
   untracked string fileName = "file:PDElectron.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { "pdElectronPath" }
@@ -146,7 +157,6 @@ module PDElectron = PoolOutputModule {
 }
 
 module pdBJetFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdBJetFilter.TriggerResultsTag = TriggerResults::HLT
 replace pdBJetFilter.HLTPaths = {
       "HLTB2JetMu",
       "HLTB3JetMu",
@@ -166,7 +176,10 @@ path pdBJet = {pdBJetFilter}
 
 module PDBJet = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
-  untracked string filterName = "PDBJet"
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDBJet"
+  }
   untracked string fileName = "file:PDBJet.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = {"pdBJet"}
@@ -175,14 +188,16 @@ module PDBJet = PoolOutputModule {
 }
 
 module pdBJetCalibFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdBJetCalibFilter.TriggerResultsTag = TriggerResults::HLT
 replace pdBJetCalibFilter.HLTPaths = { "HLTB1JetMu" }
 
 path pdBJetCalibPath = {pdBJetCalibFilter}
 
 module PDBJetCalib = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
-  untracked string filterName = "PDBJetCalib"
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDBJetCalib"
+  }
   untracked string fileName = "file:PDBJetCalib.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { "pdBJetCalibPath" }
@@ -191,7 +206,6 @@ module PDBJetCalib = PoolOutputModule {
 }
 
 module pdJetMETFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdJetMETFilter.TriggerResultsTag = TriggerResults::HLT
 replace pdJetMETFilter.HLTPaths = {
       "HLT1jet",
       "HLT2jet",
@@ -217,7 +231,10 @@ path pdJetMETPath = { pdJetMETFilter}
 
 module PDJetMET = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
-  untracked string filterName = "PDJetMET"
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDJetMET"
+  }
   untracked string fileName = "file:PDJetMET.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = {"pdJetMETPath"} 
@@ -226,7 +243,6 @@ module PDJetMET = PoolOutputModule {
 }
 
 module pdJetMETCalibFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdJetMETCalibFilter.TriggerResultsTag = TriggerResults::HLT
 replace pdJetMETCalibFilter.HLTPaths = {
       "HLT1jetPE1",
       "HLT1jetPE3",
@@ -251,7 +267,10 @@ path pdJetMETCalibPath = {!pdJetMETFilter, pdJetMETCalibFilter}
 # because they will simply be overlaps
 module PDJetMETCalib = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
-  untracked string filterName = "PDJetMETCalib"
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDJetMETCalib"
+  }
   untracked string fileName = "file:PDJetMETCalib.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
@@ -264,7 +283,10 @@ module PDJetMETCalib = PoolOutputModule {
 # The failed dataset is supposed to contain events that failed all paths
 module PDFailed = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
-  untracked string filterName = "PDFailed"
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "PDFailed"
+  }
   untracked string fileName = "file:PDFailed.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { 
