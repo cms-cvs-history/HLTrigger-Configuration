@@ -10,6 +10,7 @@ block HLTPrimaryDatasetsDefaults = {
   untracked vstring outputCommands = {
      "drop *"
   }
+  untracked int32 basketSize = 4096
 }
 replace HLTPrimaryDatasetsDefaults.outputCommands += FEVTSIMEventContent.outputCommands
 replace HLTPrimaryDatasetsDefaults.outputCommands += "drop *_*Digis_*_HLT"
@@ -39,7 +40,6 @@ module PDTau = PoolOutputModule {
   untracked PSet SelectEvents = { 
     vstring SelectEvents = {"pdTauPath" }
   }
-  untracked int32 basketSize = 4096 
 }
 
 
@@ -63,7 +63,6 @@ module PDPhoton = PoolOutputModule {
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { "pdPhotonPath"    }
   }
-  untracked int32 basketSize = 4096
 }
 
 module pdMuonFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
@@ -95,31 +94,6 @@ module PDMuon = PoolOutputModule {
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { "pdMuonPath"  }
   }
-  untracked int32 basketSize = 4096
-}
-
-module pdMuonCalibFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdMuonCalibFilter.HLTPaths = {      
-      "CandHLT1MuonPrescalePt3",
-      "CandHLT1MuonPrescalePt5",
-      "CandHLT1MuonPrescalePt7x7",
-      "CandHLT1MuonPrescalePt7x10",
-      "CandHLT1MuonLevel1"
-}
-
-path pdMuonCalibPath = {pdMuonCalibFilter}
-
-module PDMuonCalib = PoolOutputModule {
-  using HLTPrimaryDatasetsDefaults
-  untracked PSet dataset = {
-    using HLTPrimaryDatasetsDefaultPSet
-    untracked string filterName = "PDMuonCalib"
-  }
-  untracked string fileName = "file:PDMuonCalib.root"
-  untracked PSet SelectEvents = { 
-    vstring SelectEvents = {"pdMuonCalibPath"} 
-  }
-  untracked int32 basketSize = 4096
 }
 
 module pdElectronFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
@@ -153,7 +127,6 @@ module PDElectron = PoolOutputModule {
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { "pdElectronPath" }
   }
-  untracked int32 basketSize = 4096
 }
 
 module pdBJetFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
@@ -184,25 +157,6 @@ module PDBJet = PoolOutputModule {
   untracked PSet SelectEvents = { 
     vstring SelectEvents = {"pdBJet"}
   }
-  untracked int32 basketSize = 4096
-}
-
-module pdBJetCalibFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdBJetCalibFilter.HLTPaths = { "HLTB1JetMu" }
-
-path pdBJetCalibPath = {pdBJetCalibFilter}
-
-module PDBJetCalib = PoolOutputModule {
-  using HLTPrimaryDatasetsDefaults
-  untracked PSet dataset = {
-    using HLTPrimaryDatasetsDefaultPSet
-    untracked string filterName = "PDBJetCalib"
-  }
-  untracked string fileName = "file:PDBJetCalib.root"
-  untracked PSet SelectEvents = { 
-    vstring SelectEvents = { "pdBJetCalibPath" }
-  }
-  untracked int32 basketSize = 4096
 }
 
 module pdJetMETFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
@@ -239,73 +193,13 @@ module PDJetMET = PoolOutputModule {
   untracked PSet SelectEvents = { 
     vstring SelectEvents = {"pdJetMETPath"} 
   }
-  untracked int32 basketSize = 4096
 }
 
-module pdJetMETCalibFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdJetMETCalibFilter.HLTPaths = {
-      "HLT1jetPE1",
-      "HLT1jetPE3",
-      "HLT1jetPE5",
-      "CandHLT1jetPE7",
-      "CandHLT2jetAve30",
-      "CandHLT2jetAve60",
-      "CandHLT2jetAve110",
-      "CandHLT2jetAve150",
-      "CandHLT2jetAve200",
-      "CandHLT1SumET",
-      "HLT1Photon",
-      "CandHLT1PhotonL1Isolated",
-      "CandHLT1METPre1",
-      "CandHLT1METPre2",
-      "CandHLT1METPre3"
-}
-
-path pdJetMETCalibPath = {!pdJetMETFilter, pdJetMETCalibFilter}
-
-# Veto those events which are already in pdJetMET to keep the size down
-# because they will simply be overlaps
-module PDJetMETCalib = PoolOutputModule {
-  using HLTPrimaryDatasetsDefaults
-  untracked PSet dataset = {
-    using HLTPrimaryDatasetsDefaultPSet
-    untracked string filterName = "PDJetMETCalib"
-  }
-  untracked string fileName = "file:PDJetMETCalib.root"
-  untracked PSet SelectEvents = { 
-    vstring SelectEvents = { 
-	"pdJetMETCalibPath"
-    }
-  }
-  untracked int32 basketSize = 4096
-}
-
-# The failed dataset is supposed to contain events that failed all paths
-module PDFailed = PoolOutputModule {
-  using HLTPrimaryDatasetsDefaults
-  untracked PSet dataset = {
-    using HLTPrimaryDatasetsDefaultPSet
-    untracked string filterName = "PDFailed"
-  }
-  untracked string fileName = "file:PDFailed.root"
-  untracked PSet SelectEvents = { 
-    vstring SelectEvents = { 
-      "!*:HLT",
-      "HLTMinBiasPixel:HLT",
-      "HLTMinBias:HLT",
-      "HLTZeroBias:HLT" 
-    }
-  }
-  untracked int32 basketSize = 4096
-}
 
 endpath ePDTau          = {PDTau}
 endpath ePDPhoton       = {PDPhoton}
 endpath ePDMuon         = {PDMuon}
-endpath ePDMuonCalib    = {PDMuonCalib}
 endpath ePDElectron     = {PDElectron}
 endpath ePDBJet         = {PDBJet}
-endpath ePDBJetCalib    = {PDBJetCalib}
 endpath ePDJetMET       = {PDJetMET}
-endpath ePDJetMETCalib  = {PDJetMETCalib}
-endpath ePDFailed       = {PDFailed}
+
