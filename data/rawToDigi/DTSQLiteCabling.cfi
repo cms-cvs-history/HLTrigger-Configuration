@@ -1,0 +1,8 @@
+# To be used on SQLite files.  AFS access not required.
+es_source DTCabling = PoolDBESSource { 
+   using CondDBSetup
+   string connect = "/local/DTFullMap.db"
+   FileInPath InPathCatalog = "CondCore/SQLiteData/data/localCondDBCatalog.xml"
+   string timetype = "runnumber"
+   VPSet toGet = {{ string record = "DTReadOutMappingRcd" string tag = "cmssw_map"}}
+}

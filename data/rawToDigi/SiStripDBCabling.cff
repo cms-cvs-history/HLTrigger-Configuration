@@ -1,4 +1,0 @@
-
-# cabling
-include "CondCore/DBCommon/data/CondDBSetup.cfi"
-include "HLTrigger/Configuration/data/rawToDigi/SiStripDBCabling.cfi"

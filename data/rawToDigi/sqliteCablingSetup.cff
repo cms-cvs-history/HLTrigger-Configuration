@@ -1,0 +1,4 @@
+include "HLTrigger/Configuration/data/rawToDigi/SiPixelSQLiteCabling.cfi"
+include "HLTrigger/Configuration/data/rawToDigi/SiStripSQLiteCabling.cfi"
+include "HLTrigger/Configuration/data/rawToDigi/DTSQLiteCabling.cfi"
+include "HLTrigger/Configuration/data/rawToDigi/RPCSQLiteCabling.cfi"

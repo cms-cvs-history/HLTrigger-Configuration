@@ -9,15 +9,17 @@ include "CondCore/DBCommon/data/CondDBSetup.cfi"
 #--- Obtain the ideal geometry record ---#
 include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"
 
+#--- Setup the cabling maps: Access to Frontier or SQLite files ---#
+# include "HLTrigger/Configuration/data/rawToDigi/frontierCablingSetup.cff"
+include "HLTrigger/Configuration/data/rawToDigi/sqliteCablingSetup.cff"
+
 #----------------------------------------#
 #--- Database setup and configuration ---#
 #----------------------------------------#
 #--- Pixels ---#
-include "HLTrigger/Configuration/data/rawToDigi/SiPixelDBCabling.cff"
 include "Geometry/TrackerGeometryBuilder/data/trackerGeometry.cfi"
 include "Geometry/TrackerNumberingBuilder/data/trackerNumberingGeometry.cfi"
 #--- Strips ---#
-include "HLTrigger/Configuration/data/rawToDigi/SiStripDBCabling.cff"
 include "CalibTracker/SiStripConnectivity/data/SiStripConnectivity.cfi"
 include "CalibTracker/SiStripConnectivity/data/SiStripRegionConnectivity.cfi"
 include "CalibTracker/Configuration/data/SiStrip_FakeGain.cff"
@@ -27,9 +29,7 @@ include "HLTrigger/Configuration/data/rawToDigi/EcalGeometrySetup.cff"
 #--- HCAL ---#
 include "CalibCalorimetry/HcalPlugins/data/Hcal_FakeConditions.cff"
 #--- DT ---#
-include "HLTrigger/Configuration/data/rawToDigi/DTDBCabling.cff"
 include "Geometry/DTGeometry/data/dtGeometry.cfi"
 #--- RPC ---#
-include "HLTrigger/Configuration/data/rawToDigi/RPCDBCabling.cff"
 include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
 include "Geometry/RPCGeometry/data/rpcGeometry.cfi"
