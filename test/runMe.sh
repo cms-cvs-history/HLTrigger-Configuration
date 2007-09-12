@@ -3,6 +3,17 @@
 eval `scramv1 runtime -csh`
 rehash
 
+
+echo " "
+echo " Quick test running HLTtable:"
+
+echo " "
+echo "/bin/rm HLTPoolOutput.root              HLTtable.log"
+      /bin/rm HLTPoolOutput.root              HLTtable.log
+echo "cmsRun --strict HLTtable.cfg         >& HLTtable.log"
+      cmsRun --strict HLTtable.cfg         >& HLTtable.log
+
+
 echo " "
 echo " Production chain (four jobs: digi+digi2raw, HLT, split, reco):"
 
@@ -29,6 +40,7 @@ echo "/bin/rm reco.root                       RelVal_Reco.log"
       /bin/rm reco.root                       RelVal_Reco.log
 echo "./testcfg RelVal_Reco.cfg            >& RelVal_Reco.log"
       ./testcfg RelVal_Reco.cfg            >& RelVal_Reco.log
+
 
 echo " "
 echo "Finished!"
