@@ -1,0 +1,22 @@
+
+include "CondCore/DBCommon/data/CondDBSetup.cfi" 
+
+es_source siPixelCabling = PoolDBESSource {
+   using CondDBSetup
+   string connect = "frontier://FrontierDev/CMS_COND_PIXEL"
+   untracked bool siteLocalConfig = true
+   untracked uint32 authenticationMethod = 0
+   string timetype = "runnumber"
+   VPSet toGet = {{ string record="SiPixelFedCablingMapRcd" string tag="SiPixelFedCablingMap_v1" }}
+}
+
+# Use this when running with SQLite files on AFS
+# es_source siPixelCabling = PoolDBESSource {
+#    using CondDBSetup
+#    string connect = "sqlite_file:///afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration/SiPixel/150/siPixelCabling.db"
+#    untracked string catalog = "file:///afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration/SiPixel/150/siPixelCablingCatalog.xml"
+#    string timetype = "runnumber"
+#    VPSet toGet = {{ string record="SiPixelFedCablingMapRcd" string tag="SiPixelFedCablingMap_v1" }}
+# }
+# replace siPixelCabling.DBParameters.authenticationPath="/afs/cern.ch/cms/data/CMSSW/HLTrigger/Configuration" 
+
