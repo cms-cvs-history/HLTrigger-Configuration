@@ -3,20 +3,9 @@
 eval `scramv1 runtime -csh`
 rehash
 
-echo " "
-echo " Quick tests (three jobs: digi2raw, raw2digi, HLT from raw):"
 
 echo " "
-echo "/bin/rm myDigiToRaw.root                ConvertDigiToRaw.log"
-      /bin/rm myDigiToRaw.root                ConvertDigiToRaw.log
-echo "cmsRun --strict ConvertDigiToRaw.cfg >& ConvertDigiToRaw.log"
-      cmsRun --strict ConvertDigiToRaw.cfg >& ConvertDigiToRaw.log
-
-echo " "
-echo "/bin/rm myRawToDigi.root                ConvertRawToDigi.log"
-      /bin/rm myRawToDigi.root                ConvertRawToDigi.log
-echo "cmsRun --strict ConvertRawToDigi.cfg >& ConvertRawToDigi.log"
-      cmsRun --strict ConvertRawToDigi.cfg >& ConvertRawToDigi.log
+echo " Quick test running HLTtable:"
 
 echo " "
 echo "/bin/rm HLTPoolOutput.root              HLTtable.log"

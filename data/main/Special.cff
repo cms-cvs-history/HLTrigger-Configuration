@@ -11,11 +11,15 @@ path CandHLTHcalIsolatedTrack = { hltHcalIsolatedTrack }
 
 
 //
-// Pixel-Tracks based MinBias Trigger
+// Pixel-Tracks based MinBias Triggers
 //
 include "SimGeneral/HepPDTESSource/data/pythiapdt.cfi"
+
 include "HLTrigger/special/data/MinBias-With-Pixel-Tracks.cff"
 path HLTMinBiasPixel = {hltMinBiasPixel}
+
+include "HLTrigger/special/data/MBForAlignment.cff"
+path CandHLTMinBiasForAlignment = {hltMBForAlignment}
 
 
 //
