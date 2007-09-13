@@ -16,7 +16,8 @@ include "HLTrigger/Configuration/data/rawToDigi/EcalDigiToRaw.cff"
 include "HLTrigger/Configuration/data/rawToDigi/EcalESDigiToRaw.cff" 
 include "HLTrigger/Configuration/data/rawToDigi/HcalDigiToRaw.cff"
 include "HLTrigger/Configuration/data/rawToDigi/CSCDigiToRaw.cff"
-include "HLTrigger/Configuration/data/rawToDigi/DTDigiToRaw.cff"
+#--- DT removed due to memory leaks ---#
+# include "HLTrigger/Configuration/data/rawToDigi/DTDigiToRaw.cff"
 include "HLTrigger/Configuration/data/rawToDigi/RPCDigiToRaw.cff"
 
 #--- L1 Digi->Raw ---#
@@ -41,7 +42,7 @@ sequence DigiToRaw = {
                         EcalESDigiToRaw,
                         HcalDigiToRaw,
                         CSCDigiToRaw,
-                        DTDigiToRaw,
+#                        DTDigiToRaw,
                         RPCDigiToRaw,
                         rawDataCollector
                      }

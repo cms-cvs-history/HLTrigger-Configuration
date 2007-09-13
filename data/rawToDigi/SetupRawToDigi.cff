@@ -9,9 +9,9 @@ include "CondCore/DBCommon/data/CondDBSetup.cfi"
 #--- Obtain the ideal geometry record ---#
 include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"
 
-#--- Setup the cabling maps: Access to Frontier or SQLite files ---#
+#--- Cabling map setup moved to top-level *.cfg files ---#
 # include "HLTrigger/Configuration/data/rawToDigi/frontierCablingSetup.cff"
-include "HLTrigger/Configuration/data/rawToDigi/sqliteCablingSetup.cff"
+# include "HLTrigger/Configuration/data/rawToDigi/sqliteCablingSetup.cff"
 
 #----------------------------------------#
 #--- Database setup and configuration ---#
@@ -24,11 +24,8 @@ include "CalibTracker/SiStripConnectivity/data/SiStripConnectivity.cfi"
 include "CalibTracker/SiStripConnectivity/data/SiStripRegionConnectivity.cfi"
 #--- ECAL ---#
 include "HLTrigger/Configuration/data/rawToDigi/EcalGeometrySetup.cff"
-#Removing fake conditions includes
-#--- HCAL ---#
-#include "CalibCalorimetry/HcalPlugins/data/Hcal_FakeConditions.cff"
-#--- DT ---#
-include "Geometry/DTGeometry/data/dtGeometry.cfi"
+#--- DT currently disabled ---#
+# include "Geometry/DTGeometry/data/dtGeometry.cfi"
 #--- RPC ---#
 include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
 include "Geometry/RPCGeometry/data/rpcGeometry.cfi"
