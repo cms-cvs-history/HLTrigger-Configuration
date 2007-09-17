@@ -7,7 +7,8 @@
 // Isolated-track trigger for HCAL
 //
 include "HLTrigger/special/data/hltHcalIsolatedTrack.cff"
-path CandHLTHcalIsolatedTrack = { hltHcalIsolatedTrack }
+path CandHLTHcalIsolatedTrack           = { hltHcalIsolatedTrack }
+path CandHLTHcalIsolatedTrackNoEcalIsol = { hltHcalIsolatedTrackNoEcalIsol }
 
 
 //
