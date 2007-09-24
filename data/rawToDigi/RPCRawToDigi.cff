@@ -5,6 +5,6 @@
 # Definition of RPCRawToDigi sequence
 #
 
-module muonRPCDigis = rpcunpacker from "HLTrigger/Configuration/data/rawToDigi/rpcUnpacker.cfi"
+module muonRPCDigis = rpcunpacker from "EventFilter/RPCRawToDigi/data/rpcUnpacker.cfi"
 replace muonRPCDigis.InputLabel = rawDataCollector
 sequence RPCRawToDigi = { muonRPCDigis }

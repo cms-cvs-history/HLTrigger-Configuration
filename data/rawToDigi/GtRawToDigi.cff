@@ -6,6 +6,6 @@
 #
 
 module l1GmtEmulDigis = l1GtUnpack from "EventFilter/L1GlobalTriggerRawToDigi/data/l1GtUnpack.cfi"
-replace l1GmtEmulDigis.DaqGtInputTag = source
+replace l1GmtEmulDigis.DaqGtInputTag = rawDataCollector
 
 sequence GtRawToDigi = { l1GmtEmulDigis }

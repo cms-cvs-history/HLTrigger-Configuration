@@ -5,5 +5,5 @@
 # Definition of EcalESDigiToRaw sequence
 #
 
-module esPacker = esDigiToRaw from "HLTrigger/Configuration/data/rawToDigi/esDigiToRaw.cfi"
+module esPacker = esDigiToRaw from "EventFilter/ESDigiToRaw/data/esDigiToRaw.cfi"
 sequence EcalESDigiToRaw = { esPacker }

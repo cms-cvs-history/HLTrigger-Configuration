@@ -5,6 +5,6 @@
 # Definition of EcalESRawToDigi sequence
 #
 
-module ecalPreshowerDigis = esRawToDigi from "HLTrigger/Configuration/data/rawToDigi/esRawToDigi.cfi"
+module ecalPreshowerDigis = esRawToDigi from "EventFilter/ESRawToDigi/data/esRawToDigi.cfi"
 replace ecalPreshowerDigis.Label = "rawDataCollector"
 sequence EcalESRawToDigi = { ecalPreshowerDigis }

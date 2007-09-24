@@ -25,7 +25,7 @@ sequence doLocalPixel   = { siPixelDigis , siPixelClusters, siPixelRecHits}
 // Strips: mimick RecoLocalTracker.cff for Strips using stuff from:
 include "HLTrigger/Configuration/data/rawToDigi/SiStripRawToClusters.cff"
 // sequence striptrackerlocalreco = {siStripClusters, siStripMatchedRecHits}
-sequence doLocalStrip   = { SiStripRawToClustersFacility , siStripClusters }
+sequence doLocalStrip   = { SiStripRawToClusters }
 // also need to update subsequent RecoTracker module config
 replace MeasurementTracker.Regional = true
 // combined
