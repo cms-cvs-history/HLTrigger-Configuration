@@ -24,8 +24,8 @@ include "CalibTracker/SiStripConnectivity/data/SiStripConnectivity.cfi"
 include "CalibTracker/SiStripConnectivity/data/SiStripRegionConnectivity.cfi"
 #--- ECAL ---#
 include "HLTrigger/Configuration/data/rawToDigi/EcalGeometrySetup.cff"
-#--- DT currently disabled ---#
-# include "Geometry/DTGeometry/data/dtGeometry.cfi"
+#--- DT ---#
+include "Geometry/DTGeometry/data/dtGeometry.cfi"
 #--- RPC ---#
 include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
 include "Geometry/RPCGeometry/data/rpcGeometry.cfi"

@@ -1,5 +1,4 @@
 include "HLTrigger/Configuration/data/rawToDigi/SiPixelFrontierCabling.cfi"
 include "HLTrigger/Configuration/data/rawToDigi/SiStripFrontierCabling.cfi"
-#--- DT currently disabled ---#
-# include "HLTrigger/Configuration/data/rawToDigi/DTFrontierCabling.cfi"
+include "HLTrigger/Configuration/data/rawToDigi/DTFrontierCabling.cfi"
 include "HLTrigger/Configuration/data/rawToDigi/RPCFrontierCabling.cfi"

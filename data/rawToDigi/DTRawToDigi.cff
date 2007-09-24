@@ -5,6 +5,6 @@
 # Definition of DTRawToDigi sequence
 #
 
-module muonDTDigis = dtunpacker from "HLTrigger/Configuration/data/rawToDigi/dtUnpacker.cfi"
+module muonDTDigis = muonDTDigis from "EventFilter/DTRawToDigi/data/dtunpacker.cfi"
 replace muonDTDigis.fedColl = "rawDataCollector"
 sequence DTRawToDigi = { muonDTDigis }
