@@ -20,8 +20,10 @@ echo " Production chain (four jobs: digi+digi2raw, HLT, split, reco):"
 echo " "
 echo "/bin/rm myDigiToRaw.root                RelVal_Digi_Digi2Raw.log"
       /bin/rm myDigiToRaw.root                RelVal_Digi_Digi2Raw.log
-echo "./testcfg RelVal_Digi_Digi2Raw.cfg   >& RelVal_Digi_Digi2Raw.log"
-      ./testcfg RelVal_Digi_Digi2Raw.cfg   >& RelVal_Digi_Digi2Raw.log
+#echo "./testcfg RelVal_Digi_Digi2Raw.cfg   >& RelVal_Digi_Digi2Raw.log"
+#      ./testcfg RelVal_Digi_Digi2Raw.cfg   >& RelVal_Digi_Digi2Raw.log
+echo "cmsRun --strict RelVal_Digi_Digi2Raw.cfg   >& RelVal_Digi_Digi2Raw.log"
+      cmsRun --strict RelVal_Digi_Digi2Raw.cfg   >& RelVal_Digi_Digi2Raw.log
 
 echo " "
 echo "/bin/rm HLTPoolOutput.root              RelVal_HLTFromRaw.log"
