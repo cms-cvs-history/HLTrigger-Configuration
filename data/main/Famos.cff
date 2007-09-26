@@ -16,7 +16,6 @@ include "FastSimulation/Configuration/data/MisCalibration.cff"
 
 //
 // Make sure this "HLT path" does not accept any event:
-module  hltFamosPrescaler = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-replace hltFamosPrescaler.prescaleFactor = 4294967295 // = 2**32-1
+module hltBoolFamos = hltBool from "HLTrigger/HLTfilters/data/hltBool.cfi"
 
-path HLTFamos = { hltBegin & famosWithEverything & hltFamosPrescaler}
+path HLTFamos = { hltBegin & famosWithEverything & hltBoolFamos}

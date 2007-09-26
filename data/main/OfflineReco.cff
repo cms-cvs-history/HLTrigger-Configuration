@@ -8,9 +8,8 @@ include "Configuration/StandardSequences/data/Reconstruction.cff"
 
 //
 // Make sure this "HLT path" does not accept any event:
-module  hltOfflineRecoPrescaler = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-replace hltOfflineRecoPrescaler.prescaleFactor = 4294967295 // = 2**32-1
+module hltBoolOfflineReco = hltBool from "HLTrigger/HLTfilters/data/hltBool.cfi"
 
 //
 // Define this "HLT path"
-path HLTOfflineReco = {hltBegin & reconstruction_plusRS_plusGSF & hltOfflineRecoPrescaler}
+path HLTOfflineReco = {hltBegin & reconstruction_plusRS_plusGSF & hltBoolOfflineReco}
