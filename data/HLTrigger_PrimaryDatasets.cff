@@ -14,9 +14,10 @@ block HLTPrimaryDatasetsDefaults = {
 }
 replace HLTPrimaryDatasetsDefaults.outputCommands += FEVTSIMEventContent.outputCommands
 replace HLTPrimaryDatasetsDefaults.outputCommands += "drop *_*Digis_*_HLT"
+replace HLTPrimaryDatasetsDefaults.outputCommands += "drop recoIsolatedTauTagInfos_*_*_*"
 
 block HLTPrimaryDatasetsDefaultPSet = {
-    untracked string dataTier = "GEN-SIM-DIGI-RECO"
+    untracked string dataTier = "GEN-SIM-DIGI-RAW"
 }
 
 module pdTauFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
@@ -30,13 +31,13 @@ replace pdTauFilter.HLTPaths = {
 
 path pdTauPath = {pdTauFilter}
 
-module PDTau = PoolOutputModule {
+module CSA07Tau = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
   untracked PSet dataset = {
     using HLTPrimaryDatasetsDefaultPSet
-    untracked string filterName = "PDTau"
+    untracked string filterName = "CSA07Tau"
   }
-  untracked string fileName = "file:PDTau.root"
+  untracked string fileName = "file:CSA07Tau.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = {"pdTauPath" }
   }
@@ -53,13 +54,13 @@ replace pdPhotonFilter.HLTPaths = {
 
 path pdPhotonPath = {pdPhotonFilter}
 
-module PDPhoton = PoolOutputModule {
+module CSA07Photon = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
   untracked PSet dataset = {
     using HLTPrimaryDatasetsDefaultPSet
-    untracked string filterName = "PDPhoton"
+    untracked string filterName = "CSA07Photon"
   }
-  untracked string fileName = "file:PDPhoton.root"
+  untracked string fileName = "file:CSA07Photon.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { "pdPhotonPath"    }
   }
@@ -84,13 +85,13 @@ replace pdMuonFilter.HLTPaths = {
 
 path pdMuonPath = {pdMuonFilter}
 
-module PDMuon = PoolOutputModule {
+module CSA07Muon = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
   untracked PSet dataset = {
     using HLTPrimaryDatasetsDefaultPSet
-    untracked string filterName = "PDMuon"
+    untracked string filterName = "CSA07Muon"
   }
-  untracked string fileName = "file:PDMuon.root"
+  untracked string fileName = "file:CSA07Muon.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { "pdMuonPath"  }
   }
@@ -117,13 +118,13 @@ replace pdElectronFilter.HLTPaths = {
 
 path pdElectronPath = {pdElectronFilter} 
 
-module PDElectron = PoolOutputModule {
+module CSA07Electron = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
   untracked PSet dataset = {
     using HLTPrimaryDatasetsDefaultPSet
-    untracked string filterName = "PDElectron"
+    untracked string filterName = "CSA07Electron"
   }
-  untracked string fileName = "file:PDElectron.root"
+  untracked string fileName = "file:CSA07Electron.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { "pdElectronPath" }
   }
@@ -147,13 +148,13 @@ replace pdBJetFilter.HLTPaths = {
 
 path pdBJet = {pdBJetFilter}
 
-module PDBJet = PoolOutputModule {
+module CSA07BJet = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
   untracked PSet dataset = {
     using HLTPrimaryDatasetsDefaultPSet
-    untracked string filterName = "PDBJet"
+    untracked string filterName = "CSA07BJet"
   }
-  untracked string fileName = "file:PDBJet.root"
+  untracked string fileName = "file:CSA07BJet.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = {"pdBJet"}
   }
@@ -183,23 +184,34 @@ replace pdJetMETFilter.HLTPaths = {
 }
 path pdJetMETPath = { pdJetMETFilter}
 
-module PDJetMET = PoolOutputModule {
+module CSA07JetMET = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
   untracked PSet dataset = {
     using HLTPrimaryDatasetsDefaultPSet
-    untracked string filterName = "PDJetMET"
+    untracked string filterName = "CSA07JetMET"
   }
-  untracked string fileName = "file:PDJetMET.root"
+  untracked string fileName = "file:CSA07JetMET.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = {"pdJetMETPath"} 
   }
 }
 
 
-endpath ePDTau          = {PDTau}
-endpath ePDPhoton       = {PDPhoton}
-endpath ePDMuon         = {PDMuon}
-endpath ePDElectron     = {PDElectron}
-endpath ePDBJet         = {PDBJet}
-endpath ePDJetMET       = {PDJetMET}
+module CSA07AllEvents = PoolOutputModule {
+  using HLTPrimaryDatasetsDefaults
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "CSA07AllEvents"
+  }
+  untracked string fileName = "file:CSA07BJet.root"
+}
+
+
+endpath eCSA07Tau          = {CSA07Tau}
+endpath eCSA07Photon       = {CSA07Photon}
+endpath eCSA07Muon         = {CSA07Muon}
+endpath eCSA07Electron     = {CSA07Electron}
+endpath eCSA07BJet         = {CSA07BJet}
+endpath eCSA07JetMET       = {CSA07JetMET}
+endpath eCSA07AllEvents    = {CSA07AllEvents}
 
