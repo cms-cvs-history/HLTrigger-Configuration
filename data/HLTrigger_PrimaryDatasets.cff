@@ -203,7 +203,7 @@ module CSA07AllEvents = PoolOutputModule {
     using HLTPrimaryDatasetsDefaultPSet
     untracked string filterName = "CSA07AllEvents"
   }
-  untracked string fileName = "file:CSA07BJet.root"
+  untracked string fileName = "file:CSA07AllEvents.root"
 }
 
 
