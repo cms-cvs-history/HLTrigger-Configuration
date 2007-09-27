@@ -29,15 +29,12 @@ echo "cmsRun --strict RelVal_Digi_Digi2Raw.cfg   >& RelVal_Digi_Digi2Raw.log"
 echo " "
 echo "/bin/rm HLTPoolOutput.root              RelVal_HLTFromRaw.log"
       /bin/rm HLTPoolOutput.root              RelVal_HLTFromRaw.log
-#echo "./testcfg RelVal_HLTFromRaw.cfg      >& RelVal_HLTFromRaw.log"
-#SiStripRoILabels
-#      ./testcfg RelVal_HLTFromRaw.cfg      >& RelVal_HLTFromRaw.log
-echo "cmsRun --strict RelVal_HLTFromRaw.cfg      >& RelVal_HLTFromRaw.log"
-      cmsRun --strict RelVal_HLTFromRaw.cfg      >& RelVal_HLTFromRaw.log
+echo "./testcfg RelVal_HLTFromRaw.cfg      >& RelVal_HLTFromRaw.log"
+      ./testcfg RelVal_HLTFromRaw.cfg      >& RelVal_HLTFromRaw.log
 
 echo " "
-echo "/bin/rm PD*.root                        RelVal_PrimaryDatasets.log"
-      /bin/rm PD*.root                        RelVal_PrimaryDatasets.log
+echo "/bin/rm CSA07*.root                     RelVal_PrimaryDatasets.log"
+      /bin/rm CSA07*.root                     RelVal_PrimaryDatasets.log
 echo "./testcfg RelVal_PrimaryDatasets.cfg >& RelVal_PrimaryDatasets.log"
       ./testcfg RelVal_PrimaryDatasets.cfg >& RelVal_PrimaryDatasets.log
 
