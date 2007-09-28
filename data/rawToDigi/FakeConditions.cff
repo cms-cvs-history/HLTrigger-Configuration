@@ -1,1 +1,1 @@
-include "HLTrigger/Configuration/data/rawToDigi/frontierCablingSetup.cff"
+include "HLTrigger/Configuration/data/rawToDigi/sqliteCablingSetup.cff"

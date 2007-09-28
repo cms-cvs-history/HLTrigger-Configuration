@@ -5,5 +5,5 @@
 # Definition of DTDigiToRaw sequence
 #
 
-module packDT = dtpacker from "HLTrigger/Configuration/data/rawToDigi/dtPacker.cfi"
-sequence DTDigiToRaw = { packDT }
+include "EventFilter/DTRawToDigi/data/dtPacker.cfi"
+sequence DTDigiToRaw = { dtpacker }

@@ -6,7 +6,7 @@ include "HLTrigger/Configuration/data/rawToDigi/RawToDigi.cff"
 // L1 does not use Pixel or Strips
 #sequence doL1RawToDigi = { ecalDigis & ecalPreshowerDigis & hcalZeroSuppressedDigis & 
 #                           muonCSCDigis & muonDTDigis & muonRPCDigis  }
-#sequence doL1RawToDigi = { GctRawToDigi & GtRawToDigi }
+sequence doL1RawToDigi = { GctRawToDigi & GtRawToDigi }
 
 //
 // Tracker = Pixel and Strip

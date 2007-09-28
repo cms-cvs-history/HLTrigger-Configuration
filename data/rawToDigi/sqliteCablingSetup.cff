@@ -1,5 +1,4 @@
 include "HLTrigger/Configuration/data/rawToDigi/SiPixelSQLiteCabling.cfi"
 include "EventFilter/SiStripRawToDigi/data/SiStripSQLiteCabling.cfi"
-#--- DT currently diabled ---#
-# include "HLTrigger/Configuration/data/rawToDigi/DTSQLiteCabling.cfi"
+include "HLTrigger/Configuration/data/rawToDigi/DTSQLiteCabling.cfi"
 include "HLTrigger/Configuration/data/rawToDigi/RPCSQLiteCabling.cfi"
