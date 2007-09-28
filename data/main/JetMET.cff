@@ -6,7 +6,7 @@ include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
 sequence recoJetMETPath = {doCalo & (doHLTJetReco & doHLTMETReco & doHLTHTReco)}
 
 // L1 seed modules
-include "HLTrigger/JetMET/data/l1seeds_fromGCT.cff"
+include "HLTrigger/JetMET/data/l1seeds_fromGT.cff"
 // the JetMet trigger sequences
 include "HLTrigger/JetMET/data/JetMET_hlt.cff"
 
