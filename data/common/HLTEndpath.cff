@@ -14,7 +14,10 @@
 //
 // L1 Trigger Report (print to log file)
 
+// "fake" emulator
 	module l1tTrigReport = l1TrigReport from "HLTrigger/HLTanalyzers/data/l1TrigReport.cfi"
+// real (GT) emulator
+	module l1gtTrigReport = l1GtTrigReport from "L1Trigger/GlobalTriggerAnalyzer/data/l1GtTrigReport.cfi"
 
 //
 // HL Trigger Report (print to log file)
@@ -35,5 +38,5 @@
 */
 //
 // Put all these modules into a common endpath
-	//endpath HLTEndpath = {hltMakeSummaryObjects & l1tTrigReport & hltTrigReport & hltTimer & hltPathTimer}
-         endpath HLTEndpath = {hltMakeSummaryObjects & l1tTrigReport & hltTrigReport}
+//	endpath HLTEndpath = {hltMakeSummaryObjects & l1tTrigReport & l1gtTrigReport & hltTrigReport & hltTimer & hltPathTimer}
+	endpath HLTEndpath = {hltMakeSummaryObjects & l1tTrigReport & l1gtTrigReport & hltTrigReport}
