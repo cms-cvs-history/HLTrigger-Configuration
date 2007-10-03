@@ -16,17 +16,8 @@ sequence doLocalTracker = { doLocalPixel & doLocalStrip }
 //
 // Calorimeter = Ecal and Hcal
 //
-// 1: nonZS digis on file, nonZS processing (only for comparisons)
-// include "RecoLocalCalo/Configuration/data/RecoLocalCalo.cff"
-// sequence hcalLocalRecoWithoutHO = { hbhereco & hfreco }
-//
-// 2: nonZS digis on file, ZS processing (current MC files)
-include "RecoLocalCalo/Configuration/data/RecoLocalCalo_hcalZS.cff"
-sequence hcalLocalRecoWithoutHO = {hcalZeroSuppressedDigis & hbhereco & hfreco}
-//
-// 3:    ZS digis on file, ZS processing (future MC files?)
-// include "HLTrigger/Configuration/data/common/RecoLocalCalo_hcalZS_0.cff"
-// sequence hcalLocalRecoWithoutHO = { hbhereco & hfreco }
+include "RecoLocalCalo/Configuration/data/RecoLocalCalo.cff"
+sequence hcalLocalRecoWithoutHO = {hbhereco & hfreco}
 //
 sequence doLocalEcal          = { ecalLocalRecoSequence }
 sequence doLocalHcal          = { hcalLocalRecoSequence }
