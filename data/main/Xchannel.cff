@@ -30,6 +30,10 @@ path HLTXElectron4Jet = { HLTEplus4jet }
 // muon+jet
 include "HLTrigger/xchannel/data/PathMuJets.cff"
 path HLTXMuonJets = { HLTMuIsoJet }
+include "HLTrigger/xchannel/data/PathMuNoL2IsoJets.cff"
+path CandHLTXMuonNoL2IsoJets = { HLTMuNoL2IsoJet }
+include "HLTrigger/xchannel/data/PathMuNoIsoJets.cff"
+path CandHLTXMuonNoIsoJets = { HLTMuNoIsoJet }
 
 
 //
