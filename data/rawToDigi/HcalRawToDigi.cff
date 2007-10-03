@@ -5,8 +5,6 @@
 # Definition of HcalRawToDigi sequence
 #
 
-# In raw file produced by doDigiToRaw, HCAL digis are zero-suppressed
-# module hcalZeroSuppressedDigis = hcalDigis from "HLTrigger/Configuration/data/rawToDigi/HcalRawToDigi-mtcc.cfi"
-module hcalZeroSuppressedDigis = hcalDigis from "EventFilter/HcalRawToDigi/data/HcalRawToDigi.cfi"
-replace hcalZeroSuppressedDigis.InputLabel = rawDataCollector
+module hcalDigis = hcalDigis from "EventFilter/HcalRawToDigi/data/HcalRawToDigi.cfi"
+replace hcalDigis.InputLabel = rawDataCollector
 sequence HcalRawToDigi = { hcalZeroSuppressedDigis }
