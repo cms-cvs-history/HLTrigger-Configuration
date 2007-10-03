@@ -5,14 +5,6 @@
 # Definition of HcalDigiToRaw sequence
 #
 
-# include "SimCalorimetry/HcalZeroSuppressionProducers/data/HcalSimpleAmpl-hbhe.cfi" 
-# include "SimCalorimetry/HcalZeroSuppressionProducers/data/HcalSimpleAmpl-hf.cfi" 
-# include "SimCalorimetry/HcalZeroSuppressionProducers/data/HcalSimpleAmpl-ho.cfi" 
-include "SimCalorimetry/HcalZeroSuppressionProducers/data/HcalSimpleAmpl-all.cfi" 
-# module hcalPacker = hcalRawData from "HLTrigger/Configuration/data/rawToDigi/HcalDigiToRaw.cfi"
 module hcalPacker = hcalRawData from "EventFilter/HcalRawToDigi/data/HcalDigiToRaw.cfi"
-replace hcalPacker.HBHE = hcalZeroSuppressedDigis
-replace hcalPacker.HF = hcalZeroSuppressedDigis
-replace hcalPacker.HO = hcalZeroSuppressedDigis
 
-sequence HcalDigiToRaw = { hcalZeroSuppressedDigis,hcalPacker }
+sequence HcalDigiToRaw = { hcalPacker }
