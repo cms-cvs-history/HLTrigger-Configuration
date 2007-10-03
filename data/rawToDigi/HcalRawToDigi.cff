@@ -7,4 +7,5 @@
 
 module hcalDigis = hcalDigis from "EventFilter/HcalRawToDigi/data/HcalRawToDigi.cfi"
 replace hcalDigis.InputLabel = rawDataCollector
-sequence HcalRawToDigi = { hcalZeroSuppressedDigis }
+
+sequence HcalRawToDigi = { hcalDigis }
