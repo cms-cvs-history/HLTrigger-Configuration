@@ -179,7 +179,7 @@ replace pdJetMETFilter.HLTPaths = {
       "HLTS2jet1METAco",
       "CandHLTSjet1MET1Aco",
       "CandHLTSjet2MET1Aco",
-      "CandHLTS2jetAco",
+      "CandHLTS2jetMET1Aco",
       "CandHLTJetMETRapidityGap"
 }
 path pdJetMETPath = { pdJetMETFilter}
