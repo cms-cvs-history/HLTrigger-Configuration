@@ -1,6 +1,7 @@
 //
 // Common part of HLTSetup, for all cases
 //
+include "CondCore/DBCommon/data/CondDBSetup.cfi"
 
 //
 // Each HLT path must start with sequence hltBegin (directly or after the
