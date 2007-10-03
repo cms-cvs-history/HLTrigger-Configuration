@@ -59,7 +59,7 @@ path HLTS2jet1METNV  = {JetMETNV}
 path HLTS2jet1METAco = {JetMETPhi2METaco}
 path CandHLTSjet1MET1Aco = {JetMETPhiJet1METaco}
 path CandHLTSjet2MET1Aco = {JetMETPhiJet2METaco}
-path CandHLTS2jetAco     = {JetMETPhiJet1Jet2aco}
+path CandHLTS2jetMET1Aco = {JetMETPhiJet1Jet2aco}
 
 // Diffractive triggers
 path CandHLTJetMETRapidityGap = {JetMETRapGap}
