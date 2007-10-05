@@ -1,0 +1,16 @@
+//
+// Same as RecoLocalCalo_hcalZS.cff - but without the module "hcalZeroSuppressedDigis".
+//
+
+include "RecoLocalCalo/Configuration/data/ecalLocalRecoSequence.cff"
+
+include "Geometry/CaloEventSetup/data/CaloGeometry.cfi"
+
+include "RecoLocalCalo/HcalRecProducers/data/HcalSimpleReconstructor-hbhe-zs.cfi"
+include "RecoLocalCalo/HcalRecProducers/data/HcalSimpleReconstructor-ho-zs.cfi"
+include "RecoLocalCalo/HcalRecProducers/data/HcalSimpleReconstructor-hf-zs.cfi"
+
+sequence hcalLocalRecoSequence = { hbhereco & hfreco & horeco }
+sequence calolocalreco = {ecalLocalRecoSequence & hcalLocalRecoSequence}
+
+//
