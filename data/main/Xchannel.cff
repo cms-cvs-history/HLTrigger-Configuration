@@ -45,9 +45,7 @@ include "HLTrigger/xchannel/data/electronmuonNonIsolated.cff"
 path HLTXElectronMuonRelaxed = {NonIsoElectronMuonSequence}
 
 //
-// electron+tau (global or local Egamma reco), and muon+tau
-// include "HLTrigger/xchannel/data/LeptonTauHLT.cff"
-// path HLTXElectronTau = {electronTauL1HLT}
-// include "HLTrigger/xchannel/data/LeptonTauHLTLocal.cff"
-// path HLTXElectronTau = { hltElectronTau }
-// path HLTXMuonTau     = {muonPixelTauL1HLT }
+// electron+tau and muon+tau
+include "HLTrigger/xchannel/data/LeptonTauHLT.cff"
+path HLTXElectronTau = { hltElectronTau }
+path HLTXMuonTau     = {muonPixelTauL1HLT }
