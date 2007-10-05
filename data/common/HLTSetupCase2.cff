@@ -5,14 +5,14 @@
 //
 module hlt2GetRaw = hltGetRaw from "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
 // HLTLevel1Seed instance to mimick getData functionality for L1 products:
-module l1SeedBegin = hltLevel1Seed from "HLTrigger/HLTfilters/data/hltLevel1Seed.cfi"
+// module l1SeedBegin = hltLevel1Seed from "HLTrigger/HLTfilters/data/hltLevel1Seed.cfi"
 //
-include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
-include "Configuration/StandardSequences/data/L1Extra.cff"
-include "L1Trigger/L1ExtraFromDigis/data/unprescaleL1T.cff"
-//
-//
-sequence hltBegin = { hlt2GetRaw & (doL1RawToDigi , L1Extra) & l1SeedBegin }
+// sequence hltBegin = { hlt2GetRaw & l1SeedBegin }
+sequence hltBegin = { hlt2GetRaw }
 //
 include "HLTrigger/Configuration/data/common/HLTSetupCommon.cff"
+//
+
+//
+include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
 //
