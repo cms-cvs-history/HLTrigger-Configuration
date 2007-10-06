@@ -14,9 +14,7 @@
 //
 // L1 Trigger Report (print to log file)
 
-// "fake" emulator
 //	module l1tTrigReport = l1TrigReport from "HLTrigger/HLTanalyzers/data/l1TrigReport.cfi"
-// real (GT) emulator
 	module l1gtTrigReport = l1GtTrigReport from "L1Trigger/GlobalTriggerAnalyzer/data/l1GtTrigReport.cfi"
 
 //
@@ -36,10 +34,11 @@
 	service = PathTimerService {}
 	module hltPathTimer = PathTimerInserter {}
 */
+
 //
 // Put all these modules into a common endpath
 // Remove timer for standard production
 //	endpath HLTEndpath = {hltMakeSummaryObjects & l1tTrigReport & l1gtTrigReport & hltTrigReport & hltTimer & hltPathTimer}
-// Use only proper L1GtTrigReport
+// Use only L1GtTrigReport
 //	endpath HLTEndpath = {hltMakeSummaryObjects & l1tTrigReport & l1gtTrigReport & hltTrigReport}
 	endpath HLTEndpath = {hltMakeSummaryObjects & l1gtTrigReport & hltTrigReport}
