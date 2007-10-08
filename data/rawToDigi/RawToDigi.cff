@@ -22,8 +22,8 @@ include "HLTrigger/Configuration/data/rawToDigi/RPCRawToDigi.cff"
 #--- L1 raw->digi conversion ---#
 include "L1TriggerConfig/L1ScalesProducers/data/L1MuTriggerScalesConfig.cff"
 include "L1TriggerConfig/L1ScalesProducers/data/L1MuGMTScalesConfig.cff"
-include "HLTrigger/Configuration/data/rawToDigi/GctRawToDigi.cff"
 include "L1TriggerConfig/GctConfigProducers/data/L1GctConfig.cff"
+include "HLTrigger/Configuration/data/rawToDigi/GctRawToDigi.cff"
 include "HLTrigger/Configuration/data/rawToDigi/GtRawToDigi.cff"
 
 sequence RawToDigi = { 

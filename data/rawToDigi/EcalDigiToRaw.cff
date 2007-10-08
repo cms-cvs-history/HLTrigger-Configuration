@@ -5,21 +5,14 @@
 # Definition of EcalDigiToRaw sequence
 #
 
-#--- Changes for 1_6_x: Prefer running digi+digi2raw  ---#
-#--- New since 1_5_X: SelectiveReadout done elsewhere ---#
-# module EcalSRDigis = ecalDigis from "SimCalorimetry/EcalSelectiveReadoutProducers/data/ecalDigis.cfi"
-# replace EcalSRDigis.digiProducer = "ecalDigis"
-# replace EcalSRDigis.EBdigiCollection = "ebDigis"
-# replace EcalSRDigis.EEdigiCollection = "eeDigis"
-# replace EcalSRDigis.EBSRPdigiCollection = "SRPebDigis"
-# replace EcalSRDigis.EESRPdigiCollection = "SRPeeDigis"
-# replace EcalSRDigis.writeSrFlags = true
+module ecalPacker = ecaldigitorawzerosup from "EventFilter/EcalDigiToRaw/data/ecalDigiToRaw.cfi"
 
-module ecalPacker = ecalRawData from "HLTrigger/Configuration/data/rawToDigi/ecalRawData.cfi"
-# replace ecalPacker.Label = "EcalSRDigis"
 replace ecalPacker.Label = "ecalDigis"
 replace ecalPacker.InstanceEB = "ebDigis"
 replace ecalPacker.InstanceEE = "eeDigis"
 
-# sequence EcalDigiToRaw = { EcalSRDigis,ecalPacker }
+#--- Changes for 1_6_x and beyond: Prefer running digi+digi2raw ---#
+replace ecalPacker.labelEBSRFlags = ecalDigis:ebSrFlags
+replace ecalPacker.labelEESRFlags = ecalDigis:eeSrFlags
+
 sequence EcalDigiToRaw = { ecalPacker }

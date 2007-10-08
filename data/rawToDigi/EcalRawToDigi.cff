@@ -5,7 +5,7 @@
 # Definition of EcalRawToDigi sequence
 #
 
-module ecalDigis = ecalRawToDigiDev from "HLTrigger/Configuration/data/rawToDigi/ecalRawToDigiDev.cfi"
+module ecalDigis = ecalEBunpacker from "EventFilter/EcalRawToDigiDev/data/EcalUnpackerData.cfi"
 replace ecalDigis.DoRegional = false 
 replace ecalDigis.InputLabel = "rawDataCollector"
 sequence EcalRawToDigi = { ecalDigis }
