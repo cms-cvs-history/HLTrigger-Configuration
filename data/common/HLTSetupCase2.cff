@@ -10,7 +10,7 @@ include "Configuration/StandardSequences/data/L1Extra.cff"
 //
 // sequence hltBegin = { hlt2GetRaw & l1t2GetRaw & (doL1RawToDigi , L1Extra) }
 // problem with l1t2GetRaw - remove
-sequence hltBegin = { hlt2GetRaw (doL1RawToDigi , L1Extra) }
+sequence hltBegin = { hlt2GetRaw & (doL1RawToDigi , L1Extra) }
 //
 include "HLTrigger/Configuration/data/common/HLTSetupCommon.cff"
 //
