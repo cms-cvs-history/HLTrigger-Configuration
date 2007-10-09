@@ -3,8 +3,10 @@
 //
 
 include "HLTrigger/Configuration/data/rawToDigi/RawToDigi.cff"
-include "Configuration/StandardSequences/data/L1Emulator.cff"
-sequence doL1RawToDigi = { GctRawToDigi & GtRawToDigi & l1GtEmulDigi}
+// Define only l1GtEmulDigis from L1Emulator.cff"
+include "L1Trigger/Configuration/data/L1DummyConfig.cff"
+include "L1Trigger/GlobalTrigger/data/l1GtEmulDigis.cfi"
+sequence doL1RawToDigi = { GctRawToDigi & GtRawToDigi & l1GtEmulDigis}
 
 //
 // Tracker = Pixel and Strip

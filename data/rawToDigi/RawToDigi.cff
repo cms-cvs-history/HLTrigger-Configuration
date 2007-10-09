@@ -7,7 +7,7 @@
 #--- Database and Geometry setup ---#
 include "HLTrigger/Configuration/data/rawToDigi/SetupRawToDigi.cff"
 #--- File should only be included if "EcalMappingRcd" not produced elsewhere ---#
-#include "HLTrigger/Configuration/data/rawToDigi/EcalRecord.cff"
+include "HLTrigger/Configuration/data/rawToDigi/EcalRecord.cff"
 
 #--- Subsystem raw->digi conversion ---#
 include "HLTrigger/Configuration/data/rawToDigi/SiPixelRawToDigi.cff"
