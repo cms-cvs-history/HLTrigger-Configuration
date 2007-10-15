@@ -17,14 +17,16 @@ include "RecoEgamma/EgammaHLTProducers/data/ecalRegionalTausFEDs.cfi"
 //
 // Unpacking Digis based on FED lists
 //   uses EcalRawToDigiDev module in EventFilter/EcalRawToDigiDev
-//   with cfi file in HLTrigger/Configuration/data/rawToDigi
 //
-module  ecalRegionalEgammaDigis = ecalRawToDigiDev from "HLTrigger/Configuration/data/rawToDigi/ecalRawToDigiDev.cfi"
+module  ecalRegionalEgammaDigis = ecalEBunpacker from "EventFilter/EcalRawToDigiDev/data/EcalUnpackerData.cfi"
+replace ecalRegionalEgammaDigis.DoRegional = true
 replace ecalRegionalEgammaDigis.FedLabel = "ecalRegionalEgammaFEDs"
-module  ecalRegionalMuonsDigis = ecalRawToDigiDev from "HLTrigger/Configuration/data/rawToDigi/ecalRawToDigiDev.cfi"
+module  ecalRegionalMuonsDigis = ecalEBunpacker from "EventFilter/EcalRawToDigiDev/data/EcalUnpackerData.cfi"
+replace ecalRegionalMuonsDigis.DoRegional = true
 replace ecalRegionalMuonsDigis.FedLabel = "ecalRegionalMuonsFEDs"
 /* taus not yet
-module ecalRegionalTausDigis = ecalRawToDigiDev from "HLTrigger/Configuration/data/rawToDigi/ecalRawToDigiDev.cfi"
+module  ecalRegionalTausDigis = ecalEBunpacker from "EventFilter/EcalRawToDigiDev/data/EcalUnpackerData.cfi"
+replace ecalRegionalTausDigis.DoRegional = true
 replace ecalRegionalTausDigis.FedLabel = "ecalRegionalTausFEDs"
 */
 
