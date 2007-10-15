@@ -2,7 +2,7 @@
 // Pick one of the following:
 //
 // without energy corrections
-// include "HLTrigger/Configuration/data/common/RecoJetMETCor0.cff"
+include "HLTrigger/Configuration/data/common/RecoJetMETCor0.cff"
 //
 // with    energy corrections
-include "HLTrigger/Configuration/data/common/RecoJetMETCor1.cff"
+// include "HLTrigger/Configuration/data/common/RecoJetMETCor1.cff"
