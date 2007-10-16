@@ -1,4 +1,4 @@
 include "HLTrigger/Configuration/data/rawToDigi/SiPixelSQLiteCabling.cfi"
 include "EventFilter/SiStripRawToDigi/data/SiStripSQLiteCabling.cfi"
 include "HLTrigger/Configuration/data/rawToDigi/DTSQLiteCabling.cfi"
-include "HLTrigger/Configuration/data/rawToDigi/RPCSQLiteCabling.cfi"
+include "EventFilter/RPCRawToDigi/data/RPCSQLiteCabling.cfi"
