@@ -8,8 +8,9 @@ include "RecoJets/Configuration/data/RecoJets.cff"
 include "RecoMET/Configuration/data/RecoMET.cff"
 //
 // setup the sequences for the Jet and MET corrections
-include "JetMETCorrections/Modules/data/JetMETCorrections.cff"
-//
+// include "JetMETCorrections/Modules/data/JetMETCorrections.cff"
+include "JetMETCorrections/Configuration/data/MCJetCorrectionsHLT.cff"
+
 // HT reco sequence for HLT paths
 include "RecoMET/Configuration/data/RecoHTMET.cff"
 
