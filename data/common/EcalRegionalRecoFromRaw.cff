@@ -19,13 +19,16 @@ include "RecoEgamma/EgammaHLTProducers/data/ecalRegionalTausFEDs.cfi"
 //   uses EcalRawToDigiDev module in EventFilter/EcalRawToDigiDev
 //
 module  ecalRegionalEgammaDigis = ecalEBunpacker from "EventFilter/EcalRawToDigiDev/data/EcalUnpackerData.cfi"
+replace ecalRegionalEgammaDigis.InputLabel="rawDataCollector"
 replace ecalRegionalEgammaDigis.DoRegional = true
 replace ecalRegionalEgammaDigis.FedLabel = "ecalRegionalEgammaFEDs"
 module  ecalRegionalMuonsDigis = ecalEBunpacker from "EventFilter/EcalRawToDigiDev/data/EcalUnpackerData.cfi"
+replace ecalRegionalMuonDigis.InputLabel="rawDataCollector"
 replace ecalRegionalMuonsDigis.DoRegional = true
 replace ecalRegionalMuonsDigis.FedLabel = "ecalRegionalMuonsFEDs"
 /* taus not yet
 module  ecalRegionalTausDigis = ecalEBunpacker from "EventFilter/EcalRawToDigiDev/data/EcalUnpackerData.cfi"
+replace ecalRegionalTausDigis.InputLabel="rawDataCollector"
 replace ecalRegionalTausDigis.DoRegional = true
 replace ecalRegionalTausDigis.FedLabel = "ecalRegionalTausFEDs"
 */
