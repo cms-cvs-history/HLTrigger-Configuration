@@ -1,4 +1,7 @@
 include "HLTrigger/Configuration/data/rawToDigi/SiPixelSQLiteCabling.cfi"
 include "EventFilter/SiStripRawToDigi/data/SiStripSQLiteCabling.cfi"
 include "HLTrigger/Configuration/data/rawToDigi/DTSQLiteCabling.cfi"
-include "EventFilter/RPCRawToDigi/data/RPCSQLiteCabling.cfi"
+# include "EventFilter/RPCRawToDigi/data/RPCSQLiteCabling.cfi" // HACK
+include "EventFilter/RPCRawToDigi/data/RPCFrontierCabling.cfi"
+# HACK #2
+include "EventFilter/CSCRawToDigi/data/CSCFrontierChamberMap.cfi"
