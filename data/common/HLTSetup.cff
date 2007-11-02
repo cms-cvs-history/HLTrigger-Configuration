@@ -14,7 +14,7 @@ include "HLTrigger/Configuration/data/common/HLTSetupCase2.cff"
 //
 
 //
-// 3: from "online Raw" on input (file or online) - needs raw2digi and L1Extra
+// 3: from "online Raw" on input (file or online) - needs raw2digi, GTemul for the map, and L1Extra
 // include "HLTrigger/Configuration/data/common/HLTSetupCase3.cff"
 // -- case 3 is not yet defined in detail so does not work yet!
 //
