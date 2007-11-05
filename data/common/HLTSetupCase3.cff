@@ -1,17 +1,13 @@
 //
 // 3: from "online Raw" on input (file or online) - needs raw2digi, GTemul for the map, and L1Extra
-// -- case 3 is not yet defined in detail so does not work yet!
 //
 
 //
 module hlt3GetRaw = hltGetRaw from "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
-//include "Configuration/StandardSequences/data/L1Emulator.cff"
-//include "L1Trigger/Configuration/data/L1DummyConfig.cff"
-//include "L1Trigger/GlobalTrigger/data/l1GtEmulDigis.cfi"
 include "Configuration/StandardSequences/data/L1Extra.cff"
 //
-sequence hltBegin = { hlt3GetRaw & (doL1RawToDigi, L1Extra) }
+sequence hltBegin = { hlt3GetRaw & (doL1RawToDigi , L1Extra) }
 //
 include "HLTrigger/Configuration/data/common/HLTSetupCommon.cff"
 //

@@ -4,11 +4,10 @@
 
 //
 module hlt2GetRaw = hltGetRaw from "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
-module l1t2GetRaw = l1GetDigi from "HLTrigger/HLTanalyzers/data/l1GetDigi.cfi"
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
 include "Configuration/StandardSequences/data/L1Extra.cff"
 //
-sequence hltBegin = { hlt2GetRaw & l1t2GetRaw & (doL1RawToDigi , L1Extra) }
+sequence hltBegin = { hlt2GetRaw & (doL1RawToDigi , L1Extra) }
 //
 include "HLTrigger/Configuration/data/common/HLTSetupCommon.cff"
 //
