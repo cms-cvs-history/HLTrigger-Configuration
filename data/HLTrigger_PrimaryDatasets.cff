@@ -10,15 +10,17 @@ block HLTPrimaryDatasetsDefaults = {
   untracked vstring outputCommands = {
      "drop *"
   }
-  untracked PSet dataset ={
-    untracked string dataTier = "GEN-SIM-DIGI-RECO"
-  }
+  untracked int32 basketSize = 4096
 }
 replace HLTPrimaryDatasetsDefaults.outputCommands += FEVTSIMEventContent.outputCommands
 replace HLTPrimaryDatasetsDefaults.outputCommands += "drop *_*Digis_*_HLT"
+replace HLTPrimaryDatasetsDefaults.outputCommands += "drop recoIsolatedTauTagInfos_*_*_*"
+
+block HLTPrimaryDatasetsDefaultPSet = {
+    untracked string dataTier = "GEN-SIM-DIGI-RAW"
+}
 
 module pdTauFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdTauFilter.TriggerResultsTag = TriggerResults::HLT
 replace pdTauFilter.HLTPaths = {
       "HLT1Tau",
       "HLT1Tau1MET",
@@ -29,19 +31,20 @@ replace pdTauFilter.HLTPaths = {
 
 path pdTauPath = {pdTauFilter}
 
-module PDTau = PoolOutputModule {
+module CSA07Tau = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
-  untracked string filterName = "PDTau"
-  untracked string fileName = "file:PDTau.root"
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "CSA07Tau"
+  }
+  untracked string fileName = "file:CSA07Tau.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = {"pdTauPath" }
   }
-  untracked int32 basketSize = 4096 
 }
 
 
 module pdPhotonFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdPhotonFilter.TriggerResultsTag = TriggerResults::HLT
 replace pdPhotonFilter.HLTPaths = { 
       "HLT1Photon",
       "HLT1PhotonRelaxed",
@@ -51,18 +54,19 @@ replace pdPhotonFilter.HLTPaths = {
 
 path pdPhotonPath = {pdPhotonFilter}
 
-module PDPhoton = PoolOutputModule {
+module CSA07Photon = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
-  untracked string filterName = "PDPhoton"
-  untracked string fileName = "file:PDPhoton.root"
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "CSA07Photon"
+  }
+  untracked string fileName = "file:CSA07Photon.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { "pdPhotonPath"    }
   }
-  untracked int32 basketSize = 4096
 }
 
 module pdMuonFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdMuonFilter.TriggerResultsTag = TriggerResults::HLT
 replace pdMuonFilter.HLTPaths = {
       "HLT1MuonIso",
       "HLT1MuonNonIso",
@@ -81,40 +85,19 @@ replace pdMuonFilter.HLTPaths = {
 
 path pdMuonPath = {pdMuonFilter}
 
-module PDMuon = PoolOutputModule {
+module CSA07Muon = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
-  untracked string filterName = "PDMuon"
-  untracked string fileName = "file:PDMuon.root"
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "CSA07Muon"
+  }
+  untracked string fileName = "file:CSA07Muon.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { "pdMuonPath"  }
   }
-  untracked int32 basketSize = 4096
-}
-
-module pdMuonCalibFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdMuonCalibFilter.TriggerResultsTag = TriggerResults::HLT
-replace pdMuonCalibFilter.HLTPaths = {      
-      "CandHLT1MuonPrescalePt3",
-      "CandHLT1MuonPrescalePt5",
-      "CandHLT1MuonPrescalePt7x7",
-      "CandHLT1MuonPrescalePt7x10",
-      "CandHLT1MuonLevel1"
-}
-
-path pdMuonCalibPath = {pdMuonCalibFilter}
-
-module PDMuonCalib = PoolOutputModule {
-  using HLTPrimaryDatasetsDefaults
-  untracked string filterName = "PDMuonCalib"
-  untracked string fileName = "file:PDMuonCalib.root"
-  untracked PSet SelectEvents = { 
-    vstring SelectEvents = {"pdMuonCalibPath"} 
-  }
-  untracked int32 basketSize = 4096
 }
 
 module pdElectronFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdElectronFilter.TriggerResultsTag = TriggerResults::HLT
 replace pdElectronFilter.HLTPaths = {
       "HLT1Electron",
       "HLT1ElectronRelaxed",
@@ -135,18 +118,19 @@ replace pdElectronFilter.HLTPaths = {
 
 path pdElectronPath = {pdElectronFilter} 
 
-module PDElectron = PoolOutputModule {
+module CSA07Electron = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
-  untracked string filterName = "PDElectron"
-  untracked string fileName = "file:PDElectron.root"
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "CSA07Electron"
+  }
+  untracked string fileName = "file:CSA07Electron.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = { "pdElectronPath" }
   }
-  untracked int32 basketSize = 4096
 }
 
 module pdBJetFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdBJetFilter.TriggerResultsTag = TriggerResults::HLT
 replace pdBJetFilter.HLTPaths = {
       "HLTB2JetMu",
       "HLTB3JetMu",
@@ -164,34 +148,19 @@ replace pdBJetFilter.HLTPaths = {
 
 path pdBJet = {pdBJetFilter}
 
-module PDBJet = PoolOutputModule {
+module CSA07BJet = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
-  untracked string filterName = "PDBJet"
-  untracked string fileName = "file:PDBJet.root"
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "CSA07BJet"
+  }
+  untracked string fileName = "file:CSA07BJet.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = {"pdBJet"}
   }
-  untracked int32 basketSize = 4096
-}
-
-module pdBJetCalibFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdBJetCalibFilter.TriggerResultsTag = TriggerResults::HLT
-replace pdBJetCalibFilter.HLTPaths = { "HLTB1JetMu" }
-
-path pdBJetCalibPath = {pdBJetCalibFilter}
-
-module PDBJetCalib = PoolOutputModule {
-  using HLTPrimaryDatasetsDefaults
-  untracked string filterName = "PDBJetCalib"
-  untracked string fileName = "file:PDBJetCalib.root"
-  untracked PSet SelectEvents = { 
-    vstring SelectEvents = { "pdBJetCalibPath" }
-  }
-  untracked int32 basketSize = 4096
 }
 
 module pdJetMETFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdJetMETFilter.TriggerResultsTag = TriggerResults::HLT
 replace pdJetMETFilter.HLTPaths = {
       "HLT1jet",
       "HLT2jet",
@@ -215,75 +184,34 @@ replace pdJetMETFilter.HLTPaths = {
 }
 path pdJetMETPath = { pdJetMETFilter}
 
-module PDJetMET = PoolOutputModule {
+module CSA07JetMET = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
-  untracked string filterName = "PDJetMET"
-  untracked string fileName = "file:PDJetMET.root"
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "CSA07JetMET"
+  }
+  untracked string fileName = "file:CSA07JetMET.root"
   untracked PSet SelectEvents = { 
     vstring SelectEvents = {"pdJetMETPath"} 
   }
-  untracked int32 basketSize = 4096
 }
 
-module pdJetMETCalibFilter = hltHighLevel  from "HLTrigger/HLTfilters/data/hltHighLevel.cfi"
-replace pdJetMETCalibFilter.TriggerResultsTag = TriggerResults::HLT
-replace pdJetMETCalibFilter.HLTPaths = {
-      "HLT1jetPE1",
-      "HLT1jetPE3",
-      "HLT1jetPE5",
-      "CandHLT1jetPE7",
-      "CandHLT2jetAve30",
-      "CandHLT2jetAve60",
-      "CandHLT2jetAve110",
-      "CandHLT2jetAve150",
-      "CandHLT2jetAve200",
-      "CandHLT1SumET",
-      "HLT1Photon",
-      "CandHLT1PhotonL1Isolated",
-      "CandHLT1METPre1",
-      "CandHLT1METPre2",
-      "CandHLT1METPre3"
-}
 
-path pdJetMETCalibPath = {!pdJetMETFilter, pdJetMETCalibFilter}
-
-# Veto those events which are already in pdJetMET to keep the size down
-# because they will simply be overlaps
-module PDJetMETCalib = PoolOutputModule {
+module CSA07AllEvents = PoolOutputModule {
   using HLTPrimaryDatasetsDefaults
-  untracked string filterName = "PDJetMETCalib"
-  untracked string fileName = "file:PDJetMETCalib.root"
-  untracked PSet SelectEvents = { 
-    vstring SelectEvents = { 
-	"pdJetMETCalibPath"
-    }
+  untracked PSet dataset = {
+    using HLTPrimaryDatasetsDefaultPSet
+    untracked string filterName = "CSA07AllEvents"
   }
-  untracked int32 basketSize = 4096
+  untracked string fileName = "file:CSA07AllEvents.root"
 }
 
-# The failed dataset is supposed to contain events that failed all paths
-module PDFailed = PoolOutputModule {
-  using HLTPrimaryDatasetsDefaults
-  untracked string filterName = "PDFailed"
-  untracked string fileName = "file:PDFailed.root"
-  untracked PSet SelectEvents = { 
-    vstring SelectEvents = { 
-      "!*:HLT",
-      "HLTMinBiasPixel:HLT",
-      "HLTMinBias:HLT",
-      "HLTZeroBias:HLT" 
-    }
-  }
-  untracked int32 basketSize = 4096
-}
 
-endpath ePDTau          = {PDTau}
-endpath ePDPhoton       = {PDPhoton}
-endpath ePDMuon         = {PDMuon}
-endpath ePDMuonCalib    = {PDMuonCalib}
-endpath ePDElectron     = {PDElectron}
-endpath ePDBJet         = {PDBJet}
-endpath ePDBJetCalib    = {PDBJetCalib}
-endpath ePDJetMET       = {PDJetMET}
-endpath ePDJetMETCalib  = {PDJetMETCalib}
-endpath ePDFailed       = {PDFailed}
+endpath eCSA07Tau          = {CSA07Tau}
+endpath eCSA07Photon       = {CSA07Photon}
+endpath eCSA07Muon         = {CSA07Muon}
+endpath eCSA07Electron     = {CSA07Electron}
+endpath eCSA07BJet         = {CSA07BJet}
+endpath eCSA07JetMET       = {CSA07JetMET}
+endpath eCSA07AllEvents    = {CSA07AllEvents}
+
