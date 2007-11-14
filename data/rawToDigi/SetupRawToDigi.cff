@@ -33,3 +33,15 @@ include "Geometry/DTGeometry/data/dtGeometry.cfi"
 include "HLTrigger/Configuration/data/rawToDigi/RPCDBCabling.cff"
 include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
 include "Geometry/RPCGeometry/data/rpcGeometry.cfi"
+
+replace siPixelCabling.catalog = "relationalcatalog_frontier://cms_conditions_data/CMS_COND_CSA07_FRONTIER"
+replace siPixelCabling.connect = "frontier://FrontierCSA07/CMS_COND_CSA07_PIXEL"
+
+replace SiStripDBCabling.catalog = "relationalcatalog_frontier://cms_conditions_data/CMS_COND_CSA07_FRONTIER"
+replace SiStripDBCabling.connect = "frontier://FrontierCSA07/CMS_COND_CSA07_STRIP"
+
+replace DTCabling.catalog = "relationalcatalog_frontier://cms_conditions_data/CMS_COND_CSA07_FRONTIER"
+replace DTCabling.connect = "frontier://FrontierCSA07/CMS_COND_CSA07_DT"
+
+replace RPCCabling.catalog = "relationalcatalog_frontier://cms_conditions_data/CMS_COND_CSA07_FRONTIER"
+replace RPCCabling.connect = "frontier://FrontierCSA07/CMS_COND_CSA07_RPC"
