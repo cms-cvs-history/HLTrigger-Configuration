@@ -60,6 +60,22 @@ path CandHLT1MuonPrescalePt7x7 = { singleMuPrescale77 }
 include "HLTrigger/Muon/data/PathSingleMu_1032_Prescale7-10.cff"
 path CandHLT1MuonPrescalePt7x10 = { singleMuPrescale710 }
 
+
 // Skim trigger
 include "HLTrigger/Muon/data/PathMuLevel1_1032.cff"
 path CandHLT1MuonLevel1 = { muLevel1Path }
+
+
+// Additional prescaled triggers for efficiency monitoring
+
+include "HLTrigger/Muon/data/PathSingleMu_1032_RelaxedVtx2cm.cff"
+path CandHLT1MuonPrescaleVtx2cm = {singleMuNoIsoRelaxedVtx2cm }
+
+include "HLTrigger/Muon/data/PathSingleMu_1032_RelaxedVtx2mm.cff"
+path CandHLT1MuonPrescaleVtx2mm = {singleMuNoIsoRelaxedVtx2mm }
+
+include "HLTrigger/Muon/data/PathDiMuon_1032_RelaxedVtx2cm.cff"
+path CandHLT2MuonPrescaleVtx2cm = {diMuonNoIsoRelaxedVtx2cm }
+
+include "HLTrigger/Muon/data/PathDiMuon_1032_RelaxedVtx2mm.cff"
+path CandHLT2MuonPrescaleVtx2mm = {diMuonNoIsoRelaxedVtx2mm }
