@@ -43,10 +43,9 @@ path HLTXElectronMuon = {emuonsequence}
 include "HLTrigger/xchannel/data/electronmuonNonIsolated.cff"
 path HLTXElectronMuonRelaxed = {NonIsoElectronMuonSequence}
 
-/*
+
 //
 // electron+tau and muon+tau
 include "HLTrigger/xchannel/data/LeptonTauHLT.cff"
 path HLTXElectronTau = { hltElectronTau }
 path HLTXMuonTau     = {muonPixelTauL1HLT }
-*/
