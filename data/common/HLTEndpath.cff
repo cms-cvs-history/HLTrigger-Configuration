@@ -10,6 +10,8 @@
 //   HLT global object -> HLT path objects -> HLT filter objects
 
 	module hltMakeSummaryObjects = hltMakeSummaryObjects from "HLTrigger/HLTcore/data/hltMakeSummaryObjects.cfi"
+        module triggerSummaryAOD = triggerSummaryProducerAOD from "HLTrigger/HLTcore/data/triggerSummaryProducerAOD.cfi"
+        module triggerSummaryRAW = triggerSummaryProducerRAW from "HLTrigger/HLTcore/data/triggerSummaryProducerRAW.cfi"
 
 //
 // L1 Trigger Report (print to log file)
@@ -41,4 +43,5 @@
 //	endpath HLTEndpath = {hltMakeSummaryObjects & l1tTrigReport & l1gtTrigReport & hltTrigReport & hltTimer & hltPathTimer}
 // Use only L1GtTrigReport
 //	endpath HLTEndpath = {hltMakeSummaryObjects & l1tTrigReport & l1gtTrigReport & hltTrigReport}
-	endpath HLTEndpath = {hltMakeSummaryObjects & l1gtTrigReport & hltTrigReport}
+//	endpath HLTEndpath = {hltMakeSummaryObjects & l1gtTrigReport & hltTrigReport}
+	endpath HLTEndpath = {hltMakeSummaryObjects & triggerSummaryRAW & triggerSummaryAOD & l1gtTrigReport & hltTrigReport}
