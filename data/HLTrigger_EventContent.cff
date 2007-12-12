@@ -55,6 +55,12 @@ block HLTriggerAOD = {
     }
 }
 
+//  AOD only
+block TriggerSummaryAOD = {
+    VInputTag collections = { }
+    VInputTag filters     = { }
+}
+
 //
 // Egamma collections
 include "HLTrigger/Egamma/data/HLTEgamma_EventContent.cff"
@@ -62,15 +68,9 @@ include "HLTrigger/Egamma/data/HLTEgamma_EventContent.cff"
 replace HLTriggerFEVT.outputCommands += HLTEgamma_FEVT.outputCommands
 replace HLTriggerRECO.outputCommands += HLTEgamma_RECO.outputCommands
 replace HLTriggerAOD.outputCommands  += HLTEgamma_AOD.outputCommands
-
-/* current recojets defaults ok
-//
-// JetMET collections
-include "HLTrigger/JetMET/data/HLTJetMET_EventContent.cff"
-//
-replace HLTriggerFEVT.outputCommands += HLTJetMETFEVT.outputCommands
-replace HLTriggerRECO.outputCommands += HLTJetMETRECO.outputCommands
-replace HLTriggerAOD.outputCommands  += HLTJetMETAOD.outputCommands
+/*
+replace TriggerSummaryAOD.collections += HLTEgamma_AOD.triggerCollections
+replace TriggerSummaryAOD.filters     += HLTEgamma_AOD.triggerFilters
 */
 
 //
@@ -80,6 +80,20 @@ include "HLTrigger/Muon/data/HLTMuon_EventContent.cff"
 replace HLTriggerFEVT.outputCommands += HLTMuonFEVT.outputCommands
 replace HLTriggerRECO.outputCommands += HLTMuonRECO.outputCommands
 replace HLTriggerAOD.outputCommands  += HLTMuonAOD.outputCommands
+replace TriggerSummaryAOD.collections += HLTMuonAOD.triggerCollections
+replace TriggerSummaryAOD.filters     += HLTMuonAOD.triggerFilters
+
+//
+// JetMET collections
+include "HLTrigger/JetMET/data/HLTJetMET_EventContent.cff"
+//
+replace HLTriggerFEVT.outputCommands += HLTJetMETFEVT.outputCommands
+replace HLTriggerRECO.outputCommands += HLTJetMETRECO.outputCommands
+replace HLTriggerAOD.outputCommands  += HLTJetMETAOD.outputCommands
+/* not yet
+replace TriggerSummaryAOD.collections += HLTJetMETAOD.triggerCollections
+replace TriggerSummaryAOD.filters     += HLTJetMETAOD.triggerFilters
+*/
 
 //
 // BTau collections
