@@ -90,10 +90,8 @@ include "HLTrigger/JetMET/data/HLTJetMET_EventContent.cff"
 replace HLTriggerFEVT.outputCommands += HLTJetMETFEVT.outputCommands
 replace HLTriggerRECO.outputCommands += HLTJetMETRECO.outputCommands
 replace HLTriggerAOD.outputCommands  += HLTJetMETAOD.outputCommands
-/* not yet
 replace TriggerSummaryAOD.collections += HLTJetMETAOD.triggerCollections
 replace TriggerSummaryAOD.filters     += HLTJetMETAOD.triggerFilters
-*/
 
 //
 // BTau collections
