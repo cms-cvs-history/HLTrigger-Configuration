@@ -68,10 +68,8 @@ include "HLTrigger/Egamma/data/HLTEgamma_EventContent.cff"
 replace HLTriggerFEVT.outputCommands += HLTEgamma_FEVT.outputCommands
 replace HLTriggerRECO.outputCommands += HLTEgamma_RECO.outputCommands
 replace HLTriggerAOD.outputCommands  += HLTEgamma_AOD.outputCommands
-/*
 replace TriggerSummaryAOD.collections += HLTEgamma_AOD.triggerCollections
 replace TriggerSummaryAOD.filters     += HLTEgamma_AOD.triggerFilters
-*/
 
 //
 // Muon collections
