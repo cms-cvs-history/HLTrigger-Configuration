@@ -9,9 +9,6 @@ block HLTriggerFEVT = {
     untracked vstring outputCommands = {
 # HLT trigger "bits" - hardwired EDProduct!
 	 "keep edmTriggerResults_*_*_*"
-# Combined Raw data product
-	,"keep FEDRawDataCollection_source_*_*"
-	,"keep FEDRawDataCollection_rawDataCollector_*_*"
 # HLT book-keeping products
 	,"keep triggerTriggerEvent_*_*_*"
 	,"keep triggerTriggerEventWithRefs_*_*_*"
@@ -26,9 +23,6 @@ block HLTriggerRECO = {
     untracked vstring outputCommands = {
 # HLT trigger "bits" - hardwired EDProduct!
 	 "keep edmTriggerResults_*_*_*"
-# Combined Raw data product
-	,"keep FEDRawDataCollection_source_*_*"
-	,"keep FEDRawDataCollection_rawDataCollector_*_*"
 # HLT book-keeping products
 	,"keep triggerTriggerEvent_*_*_*"
 	,"keep triggerTriggerEventWithRefs_*_*_*"
@@ -43,9 +37,6 @@ block HLTriggerAOD = {
     untracked vstring outputCommands = {
 # HLT trigger "bits" - hardwired EDProduct!
 	 "keep edmTriggerResults_*_*_*"
-# Combined Raw data product
-	,"keep FEDRawDataCollection_source_*_*"
-	,"keep FEDRawDataCollection_rawDataCollector_*_*"
 # HLT book-keeping products
 	,"keep triggerTriggerEvent_*_*_*"
 #	,"keep triggerTriggerEventWithRefs_*_*_*"         # not for AOD
