@@ -56,9 +56,9 @@ block TriggerSummaryAOD = {
 // Egamma collections
 include "HLTrigger/Egamma/data/HLTEgamma_EventContent.cff"
 //
-replace HLTriggerFEVT.outputCommands += HLTEgamma_FEVT.outputCommands
-replace HLTriggerRECO.outputCommands += HLTEgamma_RECO.outputCommands
-replace HLTriggerAOD.outputCommands  += HLTEgamma_AOD.outputCommands
+replace HLTriggerFEVT.outputCommands  += HLTEgamma_FEVT.outputCommands
+replace HLTriggerRECO.outputCommands  += HLTEgamma_RECO.outputCommands
+replace HLTriggerAOD.outputCommands   += HLTEgamma_AOD.outputCommands
 replace TriggerSummaryAOD.collections += HLTEgamma_AOD.triggerCollections
 replace TriggerSummaryAOD.filters     += HLTEgamma_AOD.triggerFilters
 
@@ -66,9 +66,9 @@ replace TriggerSummaryAOD.filters     += HLTEgamma_AOD.triggerFilters
 // Muon collections
 include "HLTrigger/Muon/data/HLTMuon_EventContent.cff"
 //
-replace HLTriggerFEVT.outputCommands += HLTMuonFEVT.outputCommands
-replace HLTriggerRECO.outputCommands += HLTMuonRECO.outputCommands
-replace HLTriggerAOD.outputCommands  += HLTMuonAOD.outputCommands
+replace HLTriggerFEVT.outputCommands  += HLTMuonFEVT.outputCommands
+replace HLTriggerRECO.outputCommands  += HLTMuonRECO.outputCommands
+replace HLTriggerAOD.outputCommands   += HLTMuonAOD.outputCommands
 replace TriggerSummaryAOD.collections += HLTMuonAOD.triggerCollections
 replace TriggerSummaryAOD.filters     += HLTMuonAOD.triggerFilters
 
@@ -76,9 +76,9 @@ replace TriggerSummaryAOD.filters     += HLTMuonAOD.triggerFilters
 // JetMET collections
 include "HLTrigger/JetMET/data/HLTJetMET_EventContent.cff"
 //
-replace HLTriggerFEVT.outputCommands += HLTJetMETFEVT.outputCommands
-replace HLTriggerRECO.outputCommands += HLTJetMETRECO.outputCommands
-replace HLTriggerAOD.outputCommands  += HLTJetMETAOD.outputCommands
+replace HLTriggerFEVT.outputCommands  += HLTJetMETFEVT.outputCommands
+replace HLTriggerRECO.outputCommands  += HLTJetMETRECO.outputCommands
+replace HLTriggerAOD.outputCommands   += HLTJetMETAOD.outputCommands
 replace TriggerSummaryAOD.collections += HLTJetMETAOD.triggerCollections
 replace TriggerSummaryAOD.filters     += HLTJetMETAOD.triggerFilters
 
@@ -86,24 +86,30 @@ replace TriggerSummaryAOD.filters     += HLTJetMETAOD.triggerFilters
 // BTau collections
 include "HLTrigger/btau/data/HLTBTau_EventContent.cff"
 //
-replace HLTriggerFEVT.outputCommands += HLTBTauFEVT.outputCommands
-replace HLTriggerRECO.outputCommands += HLTBTauRECO.outputCommands
-replace HLTriggerAOD.outputCommands  += HLTBTauAOD.outputCommands
+replace HLTriggerFEVT.outputCommands  += HLTBTauFEVT.outputCommands
+replace HLTriggerRECO.outputCommands  += HLTBTauRECO.outputCommands
+replace HLTriggerAOD.outputCommands   += HLTBTauAOD.outputCommands
+replace TriggerSummaryAOD.collections += HLTBTauAOD.triggerCollections
+replace TriggerSummaryAOD.filters     += HLTBTauAOD.triggerFilters
 
 //
 // Xchannel collections
 include "HLTrigger/xchannel/data/HLTXchannel_EventContent.cff"
 //
-replace HLTriggerFEVT.outputCommands += HLTXchannelFEVT.outputCommands
-replace HLTriggerRECO.outputCommands += HLTXchannelRECO.outputCommands
-replace HLTriggerAOD.outputCommands  += HLTXchannelAOD.outputCommands
+replace HLTriggerFEVT.outputCommands  += HLTXchannelFEVT.outputCommands
+replace HLTriggerRECO.outputCommands  += HLTXchannelRECO.outputCommands
+replace HLTriggerAOD.outputCommands   += HLTXchannelAOD.outputCommands
+replace TriggerSummaryAOD.collections += HLTXchannelAOD.triggerCollections
+replace TriggerSummaryAOD.filters     += HLTXchannelAOD.triggerFilters
 
 /* not yet available
 //
 // Special collections
 include "HLTrigger/special/data/HLTSpecial_EventContent.cff"
 //
-replace HLTriggerFEVT.outputCommands += HLTSpecialFEVT.outputCommands
-replace HLTriggerRECO.outputCommands += HLTSpecialRECO.outputCommands
-replace HLTriggerAOD.outputCommands  += HLTSpecialAOD.outputCommands
+replace HLTriggerFEVT.outputCommands  += HLTSpecialFEVT.outputCommands
+replace HLTriggerRECO.outputCommands  += HLTSpecialRECO.outputCommands
+replace HLTriggerAOD.outputCommands   += HLTSpecialAOD.outputCommands
+replace TriggerSummaryAOD.collections += HLTSpecialAOD.triggerCollections
+replace TriggerSummaryAOD.filters     += HLTSpecialAOD.triggerFilters
 */
