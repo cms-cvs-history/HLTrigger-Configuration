@@ -35,14 +35,14 @@ path CandHLTXMuonNoL2IsoJets = { HLTMuNoL2IsoJet }
 include "HLTrigger/xchannel/data/PathMuNoIsoJets.cff"
 path CandHLTXMuonNoIsoJets = { HLTMuNoIsoJet }
 
-/*
+
 //
 // electron+muon
 include "HLTrigger/xchannel/data/electronmuon.cff"
 path HLTXElectronMuon = {emuonsequence}
 include "HLTrigger/xchannel/data/electronmuonNonIsolated.cff"
 path HLTXElectronMuonRelaxed = {NonIsoElectronMuonSequence}
-*/
+
 
 //
 // electron+tau and muon+tau
