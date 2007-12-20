@@ -49,3 +49,16 @@ path CandHLT2PhotonExclusive = { doubleExclPhotonL1Isolated }
 
 include "HLTrigger/Egamma/data/SinglePhotonL1IsolatedPrescaledEt12_1e32.cff"
 path CandHLT1PhotonL1Isolated = { singlePhotonPrescaledL1Isolated }
+
+
+include "HLTrigger/Egamma/data/SingleElectronL1IsolatedLargeWindow_1e32.cff"
+path CandHLT1ElectronStartup        =    {singleElectronL1IsolatedLargeWindow}
+
+include "HLTrigger/Egamma/data/SingleElectronL1NonIsolatedLargeWindow_1e32.cff"
+path CandHLT1ElectronRelaxedStartup = {singleElectronL1NonIsolatedLargeWindow}
+
+include "HLTrigger/Egamma/data/DoubleElectronL1IsolatedLargeWindow_1e32.cff"
+path CandHLT2ElectronStartup        =    {doubleElectronL1IsolatedLargeWindow}
+
+include "HLTrigger/Egamma/data/DoubleElectronL1NonIsolatedLargeWindow_1e32.cff"
+path CandHLT2ElectronRelaxedStartup = {doubleElectronL1NonIsolatedLargeWindow}
