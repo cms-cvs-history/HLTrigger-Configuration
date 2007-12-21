@@ -5,7 +5,7 @@
 
 //
 module hlt4GetDigi = hltGetDigi from "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
-include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
+include "Configuration/StandardSequences/data/DigiToRaw.cff"
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
 include "Configuration/StandardSequences/data/L1Extra.cff"
 //
