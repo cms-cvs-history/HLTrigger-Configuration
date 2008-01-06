@@ -52,9 +52,10 @@ sequence doLocalCaloWithoutHO = {doLocalEcal & doLocalHcalWithoutHO }
 include "HLTrigger/Configuration/data/common/EcalRegionalRecoFromRaw.cff"
 sequence doRegionalEgammaEcal = { ecalPreshowerDigis & ecalRegionalEgammaRecoSequence }
 sequence doRegionalMuonsEcal  = { ecalPreshowerDigis & ecalRegionalMuonsRecoSequence }
-/* taus not yet
 sequence doRegionalTausEcal   = { ecalPreshowerDigis & ecalRegionalTausRecoSequence }
-*/
+sequence doRegionalJetsEcal = { ecalPreshowerDigis & ecalRegionalJetsRecoSequence }
+sequence doEcalAll = { ecalPreshowerDigis & ecalAllRecoSequence }
+
 
 //
 // Muon = CSC and DT and RPC

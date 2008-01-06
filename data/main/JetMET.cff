@@ -5,6 +5,10 @@ include "HLTrigger/Configuration/data/common/CaloTowers.cff"
 include "HLTrigger/Configuration/data/common/RecoJetMET.cff"
 sequence recoJetMETPath = {doCalo & (doHLTJetReco & doHLTMETReco & doHLTHTReco)}
 
+// -- Seeded by High Pt L1 jets :
+sequence recoJetRegional = { doRegionalCaloForJets & doRegionalHLTJetReco }
+
+
 // L1 seed modules
 include "HLTrigger/JetMET/data/l1seeds_fromGT.cff"
 // the JetMet trigger sequences

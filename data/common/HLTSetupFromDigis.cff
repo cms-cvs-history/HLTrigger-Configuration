@@ -30,9 +30,9 @@ sequence doLocalCaloWithoutHO = {doLocalEcal & doLocalHcalWithoutHO }
 include "HLTrigger/Configuration/data/common/EcalRegionalRecoFromDigis.cff"
 sequence doRegionalEgammaEcal = { ecalRegionalEgammaRecoSequence }
 sequence doRegionalMuonsEcal  = { ecalRegionalMuonsRecoSequence }
-/* taus not yet
 sequence doRegionalTausEcal   = { ecalRegionalTausRecoSequence }
-*/
+sequence doRegionalJetsEcal = {  ecalRegionalJetsRecoSequence }
+sequence doEcalAll = { ecalAllRecoSequence }
 
 
 //

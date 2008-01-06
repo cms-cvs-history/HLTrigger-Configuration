@@ -9,9 +9,9 @@
 //
 include "RecoEgamma/EgammaHLTProducers/data/ecalRegionalEgammaFEDs.cfi"
 include "RecoEgamma/EgammaHLTProducers/data/ecalRegionalMuonsFEDs.cfi"
-/* taus not yet
 include "RecoEgamma/EgammaHLTProducers/data/ecalRegionalTausFEDs.cfi"
-*/
+include "RecoEgamma/EgammaHLTProducers/data/ecalRegionalJetsFEDs.cfi"
+include "RecoEgamma/EgammaHLTProducers/data/ecalRegionalRestFEDs.cfi"
 
 
 //
@@ -22,16 +22,26 @@ module  ecalRegionalEgammaDigis = ecalEBunpacker from "EventFilter/EcalRawToDigi
 replace ecalRegionalEgammaDigis.InputLabel="rawDataCollector"
 replace ecalRegionalEgammaDigis.DoRegional = true
 replace ecalRegionalEgammaDigis.FedLabel = "ecalRegionalEgammaFEDs"
+
 module  ecalRegionalMuonsDigis = ecalEBunpacker from "EventFilter/EcalRawToDigiDev/data/EcalUnpackerData.cfi"
 replace ecalRegionalMuonsDigis.InputLabel="rawDataCollector"
 replace ecalRegionalMuonsDigis.DoRegional = true
 replace ecalRegionalMuonsDigis.FedLabel = "ecalRegionalMuonsFEDs"
-/* taus not yet
+
 module  ecalRegionalTausDigis = ecalEBunpacker from "EventFilter/EcalRawToDigiDev/data/EcalUnpackerData.cfi"
 replace ecalRegionalTausDigis.InputLabel="rawDataCollector"
 replace ecalRegionalTausDigis.DoRegional = true
 replace ecalRegionalTausDigis.FedLabel = "ecalRegionalTausFEDs"
-*/
+
+module ecalRegionalJetsDigis = ecalEBunpacker from "EventFilter/EcalRawToDigiDev/data/EcalUnpackerData.cfi"
+replace ecalRegionalJetsDigis.InputLabel="rawDataCollector"
+replace ecalRegionalJetsDigis.DoRegional = true
+replace ecalRegionalJetsDigis.FedLabel = "ecalRegionalJetsFEDs"
+
+module ecalRegionalRestDigis = ecalEBunpacker from "EventFilter/EcalRawToDigiDev/data/EcalUnpackerData.cfi"
+replace ecalRegionalRestDigis.InputLabel="rawDataCollector"
+replace ecalRegionalRestDigis.DoRegional = true
+replace ecalRegionalRestDigis.FedLabel = "ecalRegionalRestFEDs"
 
 
 //
@@ -44,28 +54,45 @@ include "Geometry/CaloEventSetup/data/CaloGeometry.cfi"
 module  ecalRegionalEgammaWeightUncalibRecHit = ecalWeightUncalibRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalWeightUncalibRecHit.cfi"
 replace ecalRegionalEgammaWeightUncalibRecHit.EBdigiCollection = ecalRegionalEgammaDigis:ebDigis
 replace ecalRegionalEgammaWeightUncalibRecHit.EEdigiCollection = ecalRegionalEgammaDigis:eeDigis
+module  ecalRegionalEgammaRecHitTmp = ecalRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalRecHit.cfi"
+replace ecalRegionalEgammaRecHitTmp.EBuncalibRecHitCollection = ecalRegionalEgammaWeightUncalibRecHit:EcalUncalibRecHitsEB
+replace ecalRegionalEgammaRecHitTmp.EEuncalibRecHitCollection = ecalRegionalEgammaWeightUncalibRecHit:EcalUncalibRecHitsEE
+module ecalRegionalEgammaRecHit = ecalRecHitMerger from "RecoEgamma/EgammaHLTProducers/data/ecalRecHitMerger.cfi"
 
-module  ecalRegionalEgammaRecHit = ecalRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalRecHit.cfi"
-replace ecalRegionalEgammaRecHit.EBuncalibRecHitCollection = ecalRegionalEgammaWeightUncalibRecHit:EcalUncalibRecHitsEB
-replace ecalRegionalEgammaRecHit.EEuncalibRecHitCollection = ecalRegionalEgammaWeightUncalibRecHit:EcalUncalibRecHitsEE
 
 module  ecalRegionalMuonsWeightUncalibRecHit = ecalWeightUncalibRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalWeightUncalibRecHit.cfi"
 replace ecalRegionalMuonsWeightUncalibRecHit.EBdigiCollection = ecalRegionalMuonsDigis:ebDigis
 replace ecalRegionalMuonsWeightUncalibRecHit.EEdigiCollection = ecalRegionalMuonsDigis:eeDigis
+module  ecalRegionalMuonsRecHitTmp = ecalRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalRecHit.cfi"
+replace ecalRegionalMuonsRecHitTmp.EBuncalibRecHitCollection = ecalRegionalMuonsWeightUncalibRecHit:EcalUncalibRecHitsEB
+replace ecalRegionalMuonsRecHitTmp.EEuncalibRecHitCollection = ecalRegionalMuonsWeightUncalibRecHit:EcalUncalibRecHitsEE
+module ecalRegionalMuonsRecHit = ecalRecHitMerger from "RecoEgamma/EgammaHLTProducers/data/ecalRecHitMerger.cfi"
 
-module  ecalRegionalMuonsRecHit = ecalRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalRecHit.cfi"
-replace ecalRegionalMuonsRecHit.EBuncalibRecHitCollection = ecalRegionalMuonsWeightUncalibRecHit:EcalUncalibRecHitsEB
-replace ecalRegionalMuonsRecHit.EEuncalibRecHitCollection = ecalRegionalMuonsWeightUncalibRecHit:EcalUncalibRecHitsEE
 
-/* taus not yet
 module  ecalRegionalTausWeightUncalibRecHit = ecalWeightUncalibRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalWeightUncalibRecHit.cfi"
-replace ecalRegionalTausWeightUncalibRecHit.EBdigiCollection = ecalRegionalTausDigis
-replace ecalRegionalTausWeightUncalibRecHit.EEdigiCollection = ecalRegionalTausDigis
+replace ecalRegionalTausWeightUncalibRecHit.EBdigiCollection = ecalRegionalTausDigis:ebDigis
+replace ecalRegionalTausWeightUncalibRecHit.EEdigiCollection = ecalRegionalTausDigis:eeDigis
+module  ecalRegionalTausRecHitTmp = ecalRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalRecHit.cfi"
+replace ecalRegionalTausRecHitTmp.EBuncalibRecHitCollection = ecalRegionalTausWeightUncalibRecHit:EcalUncalibRecHitsEB
+replace ecalRegionalTausRecHitTmp.EEuncalibRecHitCollection = ecalRegionalTausWeightUncalibRecHit:EcalUncalibRecHitsEE
+module ecalRegionalTausRecHit = ecalRecHitMerger from "RecoEgamma/EgammaHLTProducers/data/ecalRecHitMerger.cfi"
 
-module  ecalRegionalTausRecHit = ecalRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalRecHit.cfi"
-replace ecalRegionalTausRecHit.EBuncalibRecHitCollection = ecalRegionalTausWeightUncalibRecHit:EcalUncalibRecHitsEB
-replace ecalRegionalTausRecHit.EEuncalibRecHitCollection = ecalRegionalTausWeightUncalibRecHit:EcalUncalibRecHitsEE
-*/
+module ecalRegionalJetsWeightUncalibRecHit = ecalWeightUncalibRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalWeightUncalibRecHit.cfi"
+replace ecalRegionalJetsWeightUncalibRecHit.EBdigiCollection = ecalRegionalJetsDigis:ebDigis
+replace ecalRegionalJetsWeightUncalibRecHit.EEdigiCollection = ecalRegionalJetsDigis:eeDigis
+module  ecalRegionalJetsRecHitTmp = ecalRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalRecHit.cfi"
+replace ecalRegionalJetsRecHitTmp.EBuncalibRecHitCollection = ecalRegionalJetsWeightUncalibRecHit:EcalUncalibRecHitsEB
+replace ecalRegionalJetsRecHitTmp.EEuncalibRecHitCollection = ecalRegionalJetsWeightUncalibRecHit:EcalUncalibRecHitsEE
+module  ecalRegionalJetsRecHit = ecalRecHitMerger from "RecoEgamma/EgammaHLTProducers/data/ecalRecHitMerger.cfi"
+
+module ecalRegionalRestWeightUncalibRecHit = ecalWeightUncalibRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalWeightUncalibRecHit.cfi"
+replace ecalRegionalRestWeightUncalibRecHit.EBdigiCollection = ecalRegionalRestDigis:ebDigis
+replace ecalRegionalRestWeightUncalibRecHit.EEdigiCollection = ecalRegionalRestDigis:eeDigis
+module ecalRegionalRestRecHitTmp = ecalRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalRecHit.cfi"
+replace ecalRegionalRestRecHitTmp.EBuncalibRecHitCollection = ecalRegionalRestWeightUncalibRecHit:EcalUncalibRecHitsEB
+replace ecalRegionalRestRecHitTmp.EEuncalibRecHitCollection = ecalRegionalRestWeightUncalibRecHit:EcalUncalibRecHitsEE
+module ecalRecHitAll = ecalRecHitMerger from "RecoEgamma/EgammaHLTProducers/data/ecalRecHitMerger.cfi"
+
 
 //
 // Preshower is unchanged!
@@ -77,15 +104,27 @@ include "RecoLocalCalo/EcalRecProducers/data/ecalPreshowerRecHit.cfi"
 //
 sequence ecalRegionalEgammaRecoSequence = { 
   ecalRegionalEgammaFEDs , ecalRegionalEgammaDigis ,  
-  ecalRegionalEgammaWeightUncalibRecHit , ecalRegionalEgammaRecHit &
+  ecalRegionalEgammaWeightUncalibRecHit , ecalRegionalEgammaRecHitTmp, ecalRegionalEgammaRecHit &
   ecalPreshowerRecHit }
+
 sequence ecalRegionalMuonsRecoSequence = { 
   ecalRegionalMuonsFEDs , ecalRegionalMuonsDigis ,
-  ecalRegionalMuonsWeightUncalibRecHit , ecalRegionalMuonsRecHit &
+  ecalRegionalMuonsWeightUncalibRecHit , ecalRegionalMuonsRecHitTmp, ecalRegionalMuonsRecHit &
   ecalPreshowerRecHit }
-/*
+
 sequence ecalRegionalTausRecoSequence = {
   ecalRegionalTausFEDs , ecalRegionalTausDigis ,
-  ecalRegionalTausWeightUncalibRecHit , ecalRegionalTausRecHit &
+  ecalRegionalTausWeightUncalibRecHit , ecalRegionalTausRecHitTmp, ecalRegionalTausRecHit &
   ecalPreshowerRecHit }
-*/
+
+sequence ecalRegionalJetsRecoSequence = {
+  ecalRegionalJetsFEDs , ecalRegionalJetsDigis ,
+  ecalRegionalJetsWeightUncalibRecHit , ecalRegionalJetsRecHitTmp , ecalRegionalJetsRecHit &
+  ecalPreshowerRecHit }
+
+sequence ecalAllRecoSequence = {
+  ecalRegionalRestFEDs , ecalRegionalRestDigis ,
+  ecalRegionalRestWeightUncalibRecHit , ecalRegionalRestRecHitTmp , ecalRecHitAll &
+  ecalPreshowerRecHit }
+
+
