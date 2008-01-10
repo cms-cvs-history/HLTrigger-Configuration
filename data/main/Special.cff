@@ -6,8 +6,8 @@
 //
 // Ecal Pi0 trigger: Vladimir Litvine <litvin@hep.caltech.edu>
 //
-// include "HLTrigger/special/data/AlcastreamEcalPi0.cff"
-// path CandHLTEcalPi0 = {hltEcalPi0}
+include "HLTrigger/special/data/AlcastreamEcalPi0.cff"
+path CandHLTEcalPi0 = {hltEcalPi0}
 
 
 //
