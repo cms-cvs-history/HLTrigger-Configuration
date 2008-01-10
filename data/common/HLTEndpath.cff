@@ -6,10 +6,7 @@
 	}
 
 //
-// Construct tree of EDProducts:
-//   HLT global object -> HLT path objects -> HLT filter objects
-
-	module hltMakeSummaryObjects = hltMakeSummaryObjects from "HLTrigger/HLTcore/data/hltMakeSummaryObjects.cfi"
+// Construct new HLT-data-model summary objects
         module triggerSummaryAOD = triggerSummaryProducerAOD from "HLTrigger/HLTcore/data/triggerSummaryProducerAOD.cfi"
         module triggerSummaryRAW = triggerSummaryProducerRAW from "HLTrigger/HLTcore/data/triggerSummaryProducerRAW.cfi"
 
@@ -39,9 +36,4 @@
 
 //
 // Put all these modules into a common endpath
-// Remove timer for standard production
-//	endpath HLTEndpath = {hltMakeSummaryObjects & l1tTrigReport & l1gtTrigReport & hltTrigReport & hltTimer & hltPathTimer}
-// Use only L1GtTrigReport
-//	endpath HLTEndpath = {hltMakeSummaryObjects & l1tTrigReport & l1gtTrigReport & hltTrigReport}
-//	endpath HLTEndpath = {hltMakeSummaryObjects & l1gtTrigReport & hltTrigReport}
-	endpath HLTEndpath = {hltMakeSummaryObjects & triggerSummaryRAW & triggerSummaryAOD & l1gtTrigReport & hltTrigReport}
+	endpath HLTEndpath = {triggerSummaryRAW & triggerSummaryAOD & l1gtTrigReport & hltTrigReport}
