@@ -43,8 +43,8 @@ replace ecalRegionalJetsRecHit.EEuncalibRecHitCollection = ecalRegionalJetsWeigh
 
 module  ecalRegionalRestWeightUncalibRecHit = ecalWeightUncalibRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalWeightUncalibRecHit.cfi"
 module ecalRecHitAll = ecalRecHit from "RecoLocalCalo/EcalRecProducers/data/ecalRecHit.cfi"
-module ecalRecHitAll.EBuncalibRecHitCollection = ecalRegionalRestWeightUncalibRecHit:EcalUncalibRecHitsEB
-module ecalRecHitAll.EEuncalibRecHitCollection = ecalRegionalRestWeightUncalibRecHit:EcalUncalibRecHitsEE
+replace ecalRecHitAll.EBuncalibRecHitCollection = ecalRegionalRestWeightUncalibRecHit:EcalUncalibRecHitsEB
+replace ecalRecHitAll.EEuncalibRecHitCollection = ecalRegionalRestWeightUncalibRecHit:EcalUncalibRecHitsEE
 
 
 //
