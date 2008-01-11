@@ -38,6 +38,7 @@ include "HLTrigger/Configuration/data/common/CaloTowers.cff"
 include "HLTrigger/Configuration/data/common/TrackerTracks.cff"
 include "HLTrigger/Configuration/data/common/Vertexing.cff"
 //
+include "HLTrigger/Configuration/data/common/HLTFullReco.cff"
 
 //
 // Epilogue with endpath of modules for HLT:

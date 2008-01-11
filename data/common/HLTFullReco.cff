@@ -3,15 +3,15 @@
 // (as opposed to fast simulation)
 //
 
-include "HLTrigger/Egamma/data/HLTFullRecoForEgamma.cff"
+// include "HLTrigger/Egamma/data/HLTFullRecoForEgamma.cff"
 
-include "HLTrigger/JetMET/data/HLTFullRecoForJetMET.cff"
+// include "HLTrigger/JetMET/data/HLTFullRecoForJetMET.cff"
 
-include "HLTrigger/Muon/data/HLTFullRecoForMuon.cff"
+// include "HLTrigger/Muon/data/HLTFullRecoForMuon.cff"
 
-include "HLTrigger/btau/data/HLTFullRecoForB.cff"
-include "HLTrigger/btau/data/tau/HLTFullRecoForTau.cff"
+// include "HLTrigger/btau/data/HLTFullRecoForB.cff"
+// include "HLTrigger/btau/data/tau/HLTFullRecoForTau.cff"
 
-include "HLTrigger/special/data/HLTFullRecoForSpecial.cff"
+// include "HLTrigger/special/data/HLTFullRecoForSpecial.cff"
 
-include "HLTrigger/special/data/HLTFullRecoForXchannel.cff"
+// include "HLTrigger/special/data/HLTFullRecoForXchannel.cff"
