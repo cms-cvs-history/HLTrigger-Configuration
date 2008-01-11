@@ -80,13 +80,6 @@ module caloTowers = CaloTowerCandidateCreator {
            double minimumE = -1
 }
 
-sequence caloTowersRec = { towerMakerForAll, caloTowers }
+sequence caloTowersRec = { towerMakerForAll & caloTowers }
 
-sequence doCalo = { (doEcalAll & doLocalHcal), caloTowersRec }
-
-
-
-
-
-
-
+sequence doCalo = { (doEcalAll & doLocalHcal) & caloTowersRec }
