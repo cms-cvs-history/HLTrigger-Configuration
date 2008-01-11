@@ -13,8 +13,8 @@ path CandHLTEcalPi0 = {hltEcalPi0}
 //
 // Ecal/Hcal phi Phys symmetry triggers: Stefano Argiro <stefano.argiro@to.infn.it>
 //
-// include "HLTrigger/special/data/AlcastreamEcalPhiSym.cff"
-// path CandHLTEcalPhiSym = {alcaEcalPhiSymSequence}
+include "HLTrigger/special/data/AlcastreamEcalPhiSym.cff"
+path CandHLTEcalPhiSym = {alcaEcalPhiSymSequence}
 // include "HLTrigger/special/data/AlcastreamHcalPhiSym.cff"
 // path CandHLTHcalPhiSym = {alcaHcalPhiSymSequence}
 
