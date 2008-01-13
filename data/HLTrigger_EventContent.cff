@@ -102,7 +102,6 @@ replace HLTriggerAOD.outputCommands   += HLTXchannelAOD.outputCommands
 replace TriggerSummaryAOD.collections += HLTXchannelAOD.triggerCollections
 replace TriggerSummaryAOD.filters     += HLTXchannelAOD.triggerFilters
 
-/* not yet available
 //
 // Special collections
 include "HLTrigger/special/data/HLTSpecial_EventContent.cff"
@@ -112,4 +111,3 @@ replace HLTriggerRECO.outputCommands  += HLTSpecialRECO.outputCommands
 replace HLTriggerAOD.outputCommands   += HLTSpecialAOD.outputCommands
 replace TriggerSummaryAOD.collections += HLTSpecialAOD.triggerCollections
 replace TriggerSummaryAOD.filters     += HLTSpecialAOD.triggerFilters
-*/
