@@ -8,20 +8,20 @@
 //
 // tracking-based b-tag
 include "HLTrigger/btau/data/jetTag/lifetimeHLT.cff"
-path HLTB1Jet = {b1jetTrig}
-path HLTB2Jet = {b2jetTrig}
-path HLTB3Jet = {b3jetTrig}
-path HLTB4Jet = {b4jetTrig}
-path HLTBHT   = {  bHTTrig}
+path HLTB1Jet = {hltBLifetime1jet}
+path HLTB2Jet = {hltBLifetime2jet}
+path HLTB3Jet = {hltBLifetime3jet}
+path HLTB4Jet = {hltBLifetime4jet}
+path HLTBHT   = {  hltBLifetimeHT}
 
 //
 // muon-based b-tag
 include "HLTrigger/btau/data/jetTag/softmuonHLT.cff"
-path HLTB1JetMu = {bmu1jetTrig}
-path HLTB2JetMu = {bmu2jetTrig}
-path HLTB3JetMu = {bmu3jetTrig}
-path HLTB4JetMu = {bmu4jetTrig}
-path HLTBHTMu   = {  bmuHTTrig}
+path HLTB1JetMu = {hltBSoftmuon1jet}
+path HLTB2JetMu = {hltBSoftmuon2jet}
+path HLTB3JetMu = {hltBSoftmuon3jet}
+path HLTB4JetMu = {hltBSoftmuon4jet}
+path HLTBHTMu   = {  hltBSoftmuonHT}
 
 //
 // special B -> J/Psi -> dimuon trigger
