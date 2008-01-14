@@ -20,6 +20,7 @@ include "RecoLocalCalo/Configuration/data/RecoLocalCalo.cff"
 sequence hcalLocalRecoWithoutHO = {hbhereco & hfreco}
 //
 sequence doLocalEcal          = { ecalLocalRecoSequence }
+sequence doLocalEcal_nopreshower = { ecalLocalRecoSequence_nopreshower }
 sequence doLocalHcal          = { hcalLocalRecoSequence }
 sequence doLocalHcalWithoutHO = { hcalLocalRecoWithoutHO }
 // combined

@@ -42,6 +42,7 @@ sequence hcalLocalRecoWithoutHO = { hbhereco & hfreco }
 //       because ecalLocalRecoSequence includes the ecalPreshowerRecHit,
 //       which appears in several sequences.
 sequence doLocalEcal          = {  ecalDigis & ecalPreshowerDigis & ecalLocalRecoSequence }
+sequence doLocalEcal_nopreshower = {  ecalDigis & ecalLocalRecoSequence_nopreshower }
 //
 sequence doLocalHcal          = {hcalDigis & hcalLocalRecoSequence }
 sequence doLocalHcalWithoutHO = {hcalDigis & hcalLocalRecoWithoutHO }
