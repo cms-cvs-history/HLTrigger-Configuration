@@ -36,4 +36,11 @@
 
 //
 // Put all these modules into a common endpath
-	endpath HLTEndpath = {triggerSummaryRAW & triggerSummaryAOD & l1gtTrigReport & hltTrigReport}
+// (RAW producer only for a subset of events!)
+	endpath HLTEndpathALL = {l1gtTrigReport & hltTrigReport & triggerSummaryAOD}
+
+// This to be put at end of HLTpaths.cff as final path:
+	module triggerSummaryRAWprescaler = Prescaler {int32 prescaleFactor=10}
+	module  boolRAW = hltBool from "HLTrigger/HLTfilters/data/hltBool.cfi"
+	replace boolRAW.result=false
+	sequence HLTEndRAW = {triggerSummaryRAWprescaler & triggerSummaryRAW & boolRAW}
