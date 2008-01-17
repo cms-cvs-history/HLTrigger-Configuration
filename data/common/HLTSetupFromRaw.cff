@@ -4,10 +4,6 @@
 
 include "HLTrigger/Configuration/data/rawToDigi/RawToDigi.cff"
 include "L1Trigger/Configuration/data/L1HltSeed.cff"
-# include "L1Trigger/Configuration/data/L1DummyConfig.cff"
-// Define only l1GtEmulDigis from L1Emulator.cff"
-# include "L1Trigger/GlobalTrigger/data/l1GtEmulDigis.cfi"
-# sequence doL1RawToDigi = { GctRawToDigi & GtRawToDigi & l1GtEmulDigis}
 
 //
 // Tracker = Pixel and Strip
@@ -43,6 +39,7 @@ sequence hcalLocalRecoWithoutHO = { hbhereco & hfreco }
 //       because ecalLocalRecoSequence includes the ecalPreshowerRecHit,
 //       which appears in several sequences.
 sequence doLocalEcal          = {  ecalDigis & ecalPreshowerDigis & ecalLocalRecoSequence }
+sequence doLocalEcal_nopreshower = {  ecalDigis & ecalLocalRecoSequence_nopreshower }
 //
 sequence doLocalHcal          = {hcalDigis & hcalLocalRecoSequence }
 sequence doLocalHcalWithoutHO = {hcalDigis & hcalLocalRecoWithoutHO }
@@ -53,9 +50,10 @@ sequence doLocalCaloWithoutHO = {doLocalEcal & doLocalHcalWithoutHO }
 include "HLTrigger/Configuration/data/common/EcalRegionalRecoFromRaw.cff"
 sequence doRegionalEgammaEcal = { ecalPreshowerDigis & ecalRegionalEgammaRecoSequence }
 sequence doRegionalMuonsEcal  = { ecalPreshowerDigis & ecalRegionalMuonsRecoSequence }
-/* taus not yet
 sequence doRegionalTausEcal   = { ecalPreshowerDigis & ecalRegionalTausRecoSequence }
-*/
+sequence doRegionalJetsEcal = { ecalPreshowerDigis & ecalRegionalJetsRecoSequence }
+sequence doEcalAll = { ecalPreshowerDigis & ecalAllRecoSequence }
+
 
 //
 // Muon = CSC and DT and RPC
