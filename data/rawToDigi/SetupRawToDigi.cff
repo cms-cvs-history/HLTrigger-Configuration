@@ -20,7 +20,7 @@ include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"
 include "Geometry/TrackerGeometryBuilder/data/trackerGeometry.cfi"
 include "Geometry/TrackerNumberingBuilder/data/trackerNumberingGeometry.cfi"
 #--- Strips ---#
-include "CalibTracker/SiStripConnectivity/data/SiStripConnectivity.cfi"
+# include "CalibTracker/SiStripConnectivity/data/SiStripConnectivity.cfi"
 include "CalibTracker/SiStripConnectivity/data/SiStripRegionConnectivity.cfi"
 #--- ECAL ---#
 include "HLTrigger/Configuration/data/rawToDigi/EcalGeometrySetup.cff"
