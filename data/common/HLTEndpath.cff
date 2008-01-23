@@ -15,6 +15,7 @@
 
 //	module l1tTrigReport = l1TrigReport from "HLTrigger/HLTanalyzers/data/l1TrigReport.cfi"
 	module l1gtTrigReport = l1GtTrigReport from "L1Trigger/GlobalTriggerAnalyzer/data/l1GtTrigReport.cfi"
+	replace l1gtTrigReport.L1GtDaqInputTag = l1GmtEmulDigis
 
 //
 // HL Trigger Report (print to log file)
