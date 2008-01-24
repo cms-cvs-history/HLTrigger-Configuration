@@ -4,61 +4,61 @@
 include "HLTrigger/Egamma/data/EgammaHLTLocal.cff"
 
 include "HLTrigger/Egamma/data/SingleElectronL1Isolated.cff"
-path HLT1Electron        =    {singleElectronL1Isolated}
+path HLT1Electron        =    {singleElectronL1Isolated & hltEnd}
 
 include "HLTrigger/Egamma/data/SingleElectronL1NonIsolated.cff"
-path HLT1ElectronRelaxed =    {singleElectronL1NonIsolated}
+path HLT1ElectronRelaxed =    {singleElectronL1NonIsolated & hltEnd}
 
 include "HLTrigger/Egamma/data/DoubleElectronL1Isolated.cff"
-path HLT2Electron        =    {doubleElectronL1Isolated}
+path HLT2Electron        =    {doubleElectronL1Isolated & hltEnd}
 
 include "HLTrigger/Egamma/data/DoubleElectronL1NonIsolated.cff"
-path HLT2ElectronRelaxed =    {doubleElectronL1NonIsolated}
+path HLT2ElectronRelaxed =    {doubleElectronL1NonIsolated & hltEnd}
 
 
 include "HLTrigger/Egamma/data/SinglePhotonL1Isolated.cff"
-path HLT1Photon          =    {singlePhotonL1Isolated}
+path HLT1Photon          =    {singlePhotonL1Isolated & hltEnd}
 
 include "HLTrigger/Egamma/data/SinglePhotonL1NonIsolated.cff"
-path HLT1PhotonRelaxed   =    {singlePhotonL1NonIsolated}
+path HLT1PhotonRelaxed   =    {singlePhotonL1NonIsolated & hltEnd}
 
 include "HLTrigger/Egamma/data/DoublePhotonL1Isolated.cff"
-path HLT2Photon          =    {doublePhotonL1Isolated}
+path HLT2Photon          =    {doublePhotonL1Isolated & hltEnd}
 
 include "HLTrigger/Egamma/data/DoublePhotonL1NonIsolated.cff"
-path HLT2PhotonRelaxed   =    {doublePhotonL1NonIsolated}
+path HLT2PhotonRelaxed   =    {doublePhotonL1NonIsolated & hltEnd}
 
 
 include "HLTrigger/Egamma/data/SingleEMHighEtL1NonIsolated.cff"
-path HLT1EMHighEt     = {singleEMHighEtL1NonIsolated}
+path HLT1EMHighEt     = {singleEMHighEtL1NonIsolated & hltEnd}
 
 include "HLTrigger/Egamma/data/SingleEMVeryHighEtL1NonIsolated.cff"
-path HLT1EMVeryHighEt = {   singleEMVHEL1NonIsolated}
+path HLT1EMVeryHighEt = {   singleEMVHEL1NonIsolated & hltEnd}
 
 
 include "HLTrigger/Egamma/data/ZeeCounter.cff"
-path CandHLT2ElectronZCounter = { zeeCounter }
+path CandHLT2ElectronZCounter = { zeeCounter & hltEnd}
 
 
 include "HLTrigger/Egamma/data/DoubleExclusiveElectronL1Isolated.cff"
-path CandHLT2ElectronExclusive = { doubleExclElectronL1Isolated }
+path CandHLT2ElectronExclusive = { doubleExclElectronL1Isolated & hltEnd}
 
 include "HLTrigger/Egamma/data/DoubleExclusivePhotonL1Isolated.cff"
-path CandHLT2PhotonExclusive = { doubleExclPhotonL1Isolated }
+path CandHLT2PhotonExclusive = { doubleExclPhotonL1Isolated & hltEnd}
 
 
 include "HLTrigger/Egamma/data/SinglePhotonL1IsolatedPrescaledEt12_1e32.cff"
-path CandHLT1PhotonL1Isolated = { singlePhotonPrescaledL1Isolated }
+path CandHLT1PhotonL1Isolated = { singlePhotonPrescaledL1Isolated & hltEnd}
 
 
 include "HLTrigger/Egamma/data/SingleElectronL1IsolatedLargeWindow_1e32.cff"
-path CandHLT1ElectronStartup        =    {singleElectronL1IsolatedLargeWindow}
+path CandHLT1ElectronStartup        =    {singleElectronL1IsolatedLargeWindow & hltEnd}
 
 include "HLTrigger/Egamma/data/SingleElectronL1NonIsolatedLargeWindow_1e32.cff"
-path CandHLT1ElectronRelaxedStartup = {singleElectronL1NonIsolatedLargeWindow}
+path CandHLT1ElectronRelaxedStartup = {singleElectronL1NonIsolatedLargeWindow & hltEnd}
 
 include "HLTrigger/Egamma/data/DoubleElectronL1IsolatedLargeWindow_1e32.cff"
-path CandHLT2ElectronStartup        =    {doubleElectronL1IsolatedLargeWindow}
+path CandHLT2ElectronStartup        =    {doubleElectronL1IsolatedLargeWindow & hltEnd}
 
 include "HLTrigger/Egamma/data/DoubleElectronL1NonIsolatedLargeWindow_1e32.cff"
-path CandHLT2ElectronRelaxedStartup = {doubleElectronL1NonIsolatedLargeWindow}
+path CandHLT2ElectronRelaxedStartup = {doubleElectronL1NonIsolatedLargeWindow & hltEnd}

@@ -41,6 +41,13 @@ include "HLTrigger/Configuration/data/common/Vertexing.cff"
 include "HLTrigger/Configuration/data/common/HLTFullReco.cff"
 
 //
+// Common hltEnd sequence (e.g., for standard reco of accepted events - here dummy)
+//
+module boolEnd = hltBool from "HLTrigger/HLTfilters/data/hltBool.cfi"
+replace boolEnd.result = true
+sequence hltEnd = {boolEnd}
+
+//
 // Epilogue with endpath of modules for HLT:
 include "HLTrigger/Configuration/data/common/HLTEndpath.cff"
 //

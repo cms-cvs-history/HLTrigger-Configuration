@@ -8,26 +8,26 @@
 //
 // tracking-based b-tag
 include "HLTrigger/btau/data/jetTag/lifetimeHLT.cff"
-path HLTB1Jet = {hltBLifetime1jet}
-path HLTB2Jet = {hltBLifetime2jet}
-path HLTB3Jet = {hltBLifetime3jet}
-path HLTB4Jet = {hltBLifetime4jet}
-path HLTBHT   = {  hltBLifetimeHT}
+path HLTB1Jet = {hltBLifetime1jet & hltEnd}
+path HLTB2Jet = {hltBLifetime2jet & hltEnd}
+path HLTB3Jet = {hltBLifetime3jet & hltEnd}
+path HLTB4Jet = {hltBLifetime4jet & hltEnd}
+path HLTBHT   = {  hltBLifetimeHT & hltEnd}
 
 //
 // muon-based b-tag
 include "HLTrigger/btau/data/jetTag/softmuonHLT.cff"
-path HLTB1JetMu = {hltBSoftmuon1jet}
-path HLTB2JetMu = {hltBSoftmuon2jet}
-path HLTB3JetMu = {hltBSoftmuon3jet}
-path HLTB4JetMu = {hltBSoftmuon4jet}
-path HLTBHTMu   = {  hltBSoftmuonHT}
+path HLTB1JetMu = {hltBSoftmuon1jet & hltEnd}
+path HLTB2JetMu = {hltBSoftmuon2jet & hltEnd}
+path HLTB3JetMu = {hltBSoftmuon3jet & hltEnd}
+path HLTB4JetMu = {hltBSoftmuon4jet & hltEnd}
+path HLTBHTMu   = {  hltBSoftmuonHT & hltEnd}
 
 //
 // special B -> J/Psi -> dimuon trigger
 // include "HLTrigger/btau/data/displacedmumu/PathBToJpsiToMumu.cff"
 include "HLTrigger/btau/data/displacedmumu/PathBToJpsiToMumuLoose.cff"
-path HLTBJPsiMuMu = {btoJpsitoMumu}	
+path HLTBJPsiMuMu = {btoJpsitoMumu & hltEnd}
 
 
 //
@@ -35,7 +35,7 @@ path HLTBJPsiMuMu = {btoJpsitoMumu}
 //
 
 include "HLTrigger/btau/data/tau/TauHLT.cff"
-path HLT1Tau      = {      singleTauL1HLT }
-path HLT1Tau1MET  = {   singleTauMETL1HLT }
-path HLT2TauPixel = {   caloPixelTauL1HLT }
-// path HLT2TauStrip = { caloSiStripTauL1HLT } // removed for 1e32
+path HLT1Tau      = {      singleTauL1HLT & hltEnd}
+path HLT1Tau1MET  = {   singleTauMETL1HLT & hltEnd}
+path HLT2TauPixel = {   caloPixelTauL1HLT & hltEnd}
+// path HLT2TauStrip = { caloSiStripTauL1HLT & hltEnd} // removed for 1e32

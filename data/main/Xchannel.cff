@@ -5,48 +5,48 @@
 // electron + b-jet (global or local Egamma reco)
 // include "HLTrigger/xchannel/data/PathElectronB.cff"
 include "HLTrigger/xchannel/data/PathElectronB-local.cff"
-path HLTXElectronBJet = { ElectronB }
+path HLTXElectronBJet = { ElectronB & hltEnd }
 
 
 //
 // muon + b-jet
 include "HLTrigger/xchannel/data/PathMuB.cff"
-path HLTXMuonBJet = { MuB }
+path HLTXMuonBJet = { MuB & hltEnd }
 include "HLTrigger/xchannel/data/PathMuBsoftMu.cff"
-path HLTXMuonBJetSoftMuon = { MuBsmu }
+path HLTXMuonBJetSoftMuon = { MuBsmu & hltEnd }
 
 
 //
 // electron+jet
 include "HLTrigger/xchannel/data/PathElectronPlusJet.cff"
 // sequence pdigireco = {doLocalTrackerFromDigis & doHLTJetReco}
-path HLTXElectron1Jet = { HLTEplus1jet }
-path HLTXElectron2Jet = { HLTEplus2jet }
-path HLTXElectron3Jet = { HLTEplus3jet }
-path HLTXElectron4Jet = { HLTEplus4jet }
+path HLTXElectron1Jet = { HLTEplus1jet & hltEnd }
+path HLTXElectron2Jet = { HLTEplus2jet & hltEnd }
+path HLTXElectron3Jet = { HLTEplus3jet & hltEnd }
+path HLTXElectron4Jet = { HLTEplus4jet & hltEnd }
 
 
 //
 // muon+jet
 include "HLTrigger/xchannel/data/PathMuJets.cff"
-path HLTXMuonJets = { HLTMuIsoJet }
+path HLTXMuonJets = { HLTMuIsoJet & hltEnd }
 include "HLTrigger/xchannel/data/PathMuNoL2IsoJets.cff"
-path CandHLTXMuonNoL2IsoJets = { HLTMuNoL2IsoJet }
+path CandHLTXMuonNoL2IsoJets = { HLTMuNoL2IsoJet & hltEnd }
 include "HLTrigger/xchannel/data/PathMuNoIsoJets.cff"
-path CandHLTXMuonNoIsoJets = { HLTMuNoIsoJet }
+path CandHLTXMuonNoIsoJets = { HLTMuNoIsoJet & hltEnd }
 
 
 //
 // electron+muon
 include "HLTrigger/xchannel/data/electronmuon.cff"
-path HLTXElectronMuon = {emuonsequence}
+path HLTXElectronMuon = {emuonsequence & hltEnd}
 include "HLTrigger/xchannel/data/electronmuonNonIsolated.cff"
-path HLTXElectronMuonRelaxed = {NonIsoElectronMuonSequence}
+path HLTXElectronMuonRelaxed = {NonIsoElectronMuonSequence & hltEnd}
 
 
 //
 // electron+tau and muon+tau
 include "HLTrigger/xchannel/data/LeptonTauHLT.cff"
-path HLTXElectronTau          = {hltElectronTau}
-path CandHLTXElectronTauPixel = {hltElectronTauPixel}
-path HLTXMuonTau              = {muonPixelTauL1HLT}
+path HLTXElectronTau          = {hltElectronTau & hltEnd}
+path CandHLTXElectronTauPixel = {hltElectronTauPixel & hltEnd}
+path HLTXMuonTau              = {muonPixelTauL1HLT & hltEnd}

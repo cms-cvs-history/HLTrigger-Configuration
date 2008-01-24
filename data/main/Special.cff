@@ -7,24 +7,24 @@
 // Ecal Pi0 trigger: Vladimir Litvine <litvin@hep.caltech.edu>
 //
 include "HLTrigger/special/data/AlcastreamEcalPi0.cff"
-path CandHLTEcalPi0 = {hltEcalPi0}
+path CandHLTEcalPi0 = {hltEcalPi0 & hltEnd}
 
 
 //
 // Ecal/Hcal phi Phys symmetry triggers: Stefano Argiro <stefano.argiro@to.infn.it>
 //
 include "HLTrigger/special/data/AlcastreamEcalPhiSym.cff"
-path CandHLTEcalPhiSym = {alcaEcalPhiSymSequence}
+path CandHLTEcalPhiSym = {alcaEcalPhiSymSequence & hltEnd}
 include "HLTrigger/special/data/AlcastreamHcalPhiSym.cff"
-path CandHLTHcalPhiSym = {alcaHcalPhiSymSequence}
+path CandHLTHcalPhiSym = {alcaHcalPhiSymSequence & hltEnd}
 
 
 //
 // Isolated-track trigger for HCAL: Grigory Safronov <Grigory.Safronov@cern.ch>
 //
 include "HLTrigger/special/data/hltHcalIsolatedTrack.cff"
-path CandHLTHcalIsolatedTrack           = { hltHcalIsolatedTrack }
-path CandHLTHcalIsolatedTrackNoEcalIsol = { hltHcalIsolatedTrackNoEcalIsol }
+path CandHLTHcalIsolatedTrack           = { hltHcalIsolatedTrack & hltEnd }
+path CandHLTHcalIsolatedTrackNoEcalIsol = { hltHcalIsolatedTrackNoEcalIsol & hltEnd }
 
 
 //
@@ -33,14 +33,14 @@ path CandHLTHcalIsolatedTrackNoEcalIsol = { hltHcalIsolatedTrackNoEcalIsol }
 include "SimGeneral/HepPDTESSource/data/pythiapdt.cfi"
 //
 include "HLTrigger/special/data/MinBias-With-Pixel-Tracks.cff"
-path HLTMinBiasPixel = {hltMinBiasPixel}
+path HLTMinBiasPixel = {hltMinBiasPixel & hltEnd}
 include "HLTrigger/special/data/MBForAlignment.cff"
-path CandHLTMinBiasForAlignment = {hltMBForAlignment}
+path CandHLTMinBiasForAlignment = {hltMBForAlignment & hltEnd}
 
 
 //
 // Simple Min.- and Zero-Bias Triggers
 //
 include "HLTrigger/special/data/SimpleBias.cff"
-path HLTMinBias  = {hltMinBias}
-path HLTZeroBias = {hltZeroBias}
+path HLTMinBias  = {hltMinBias & hltEnd}
+path HLTZeroBias = {hltZeroBias & hltEnd}
