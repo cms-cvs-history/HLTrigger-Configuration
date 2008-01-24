@@ -15,8 +15,8 @@ path CandHLTEcalPi0 = {hltEcalPi0}
 //
 include "HLTrigger/special/data/AlcastreamEcalPhiSym.cff"
 path CandHLTEcalPhiSym = {alcaEcalPhiSymSequence}
-// include "HLTrigger/special/data/AlcastreamHcalPhiSym.cff"
-// path CandHLTHcalPhiSym = {alcaHcalPhiSymSequence}
+include "HLTrigger/special/data/AlcastreamHcalPhiSym.cff"
+path CandHLTHcalPhiSym = {alcaHcalPhiSymSequence}
 
 
 //
