@@ -5,7 +5,7 @@ rehash
 
 
 echo " "
-echo " Production chain (four jobs: digi+digi2raw, HLT, split, reco):"
+echo " Production chain (four jobs: digi+L1emu+digi2raw, HLT, split, reco):"
 
 echo " "
 echo "/bin/rm RelVal_Digi_Raw.root RelVal_Pure_Raw.root RelVal_Digi_Digi2Raw.log"
@@ -16,8 +16,8 @@ echo "./testcfg RelVal_Digi_Digi2Raw.cfg   >& RelVal_Digi_Digi2Raw.log"
 #      cmsRun --strict RelVal_Digi_Digi2Raw.cfg   >& RelVal_Digi_Digi2Raw.log
 
 echo " "
-echo "/bin/rm HLTFromDigiRaw.root             RelVal_HLTFromRaw.log"
-      /bin/rm HLTFromDigiRaw.root             RelVal_HLTFromRaw.log
+echo "/bin/rm HLTFromPureRaw.root             RelVal_HLTFromRaw.log"
+      /bin/rm HLTFromPureRaw.root             RelVal_HLTFromRaw.log
 echo "./testcfg RelVal_HLTFromRaw.cfg      >& RelVal_HLTFromRaw.log"
       ./testcfg RelVal_HLTFromRaw.cfg      >& RelVal_HLTFromRaw.log
 #echo "cmsRun --strict RelVal_HLTFromRaw.cfg      >& RelVal_HLTFromRaw.log"
@@ -37,17 +37,6 @@ echo "./testcfg RelVal_Reco.cfg            >& RelVal_Reco.log"
 #echo "cmsRun --strict RelVal_Reco.cfg            >& RelVal_Reco.log"
 #      cmsRun --strict RelVal_Reco.cfg            >& RelVal_Reco.log
 
-
-echo " "
-echo " Quick test running HLTtable from pure Raw:"
-
-echo " "
-echo "/bin/rm HLTFromPureRaw.root       HLTtable.log"
-      /bin/rm HLTFromPureRaw.root       HLTtable.log
-echo "./testcfg HLTtable.cfg         >& HLTtable.log"
-      ./testcfg HLTtable.cfg         >& HLTtable.log
-#echo "cmsRun --strict HLTtable.cfg         >& HLTtable.log"
-#      cmsRun --strict HLTtable.cfg         >& HLTtable.log
 
 echo " "
 echo "Finished!"
