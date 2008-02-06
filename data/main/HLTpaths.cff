@@ -32,5 +32,6 @@ include "HLTrigger/Configuration/data/main/Special.cff"
 // include "HLTrigger/Configuration/data/main/Famos.cff"
 
 //
-// RAW summary producer must be last (can't be in an endpath due to filter!)
-path HLTEndpathRAW = {HLTEndRAW}
+// summary producers must be in final path
+// (can't be in an endpath due to filter!)
+path HLTFinalPath = {hltFinalPath}

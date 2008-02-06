@@ -5,43 +5,48 @@
 		untracked bool wantSummary = true        # default is false
 	}
 
-//
-// Construct new HLT-data-model summary objects
-        module triggerSummaryAOD = triggerSummaryProducerAOD from "HLTrigger/HLTcore/data/triggerSummaryProducerAOD.cfi"
-        module triggerSummaryRAW = triggerSummaryProducerRAW from "HLTrigger/HLTcore/data/triggerSummaryProducerRAW.cfi"
 
 //
 // L1 Trigger Report (print to log file)
-
 //	module l1tTrigReport = l1TrigReport from "HLTrigger/HLTanalyzers/data/l1TrigReport.cfi"
 	module l1gtTrigReport = l1GtTrigReport from "L1Trigger/GlobalTriggerAnalyzer/data/l1GtTrigReport.cfi"
 	replace l1gtTrigReport.L1GtDaqInputTag = l1GmtEmulDigis
-
 //
 // HL Trigger Report (print to log file)
-
 	module hltTrigReport = hlTrigReport from "HLTrigger/HLTanalyzers/data/hlTrigReport.cfi"
+//
+// Put all these modules into a common endpath
+	endpath HLTEndpath1 = {l1gtTrigReport & hltTrigReport}
 
+
+//
 //removing timing/performance info from the path for 1_6_0/CSA07
 /*
 //
 // Want timing info in output root file (myTimer module)
 	service = TimerService {}
 	module hltTimer = myTimer from "HLTrigger/Timer/data/timer.cfi"
-
 //
 // Want extended timing and performance info in output root file (PathTimer)
 	service = PathTimerService {}
 	module hltPathTimer = PathTimerInserter {}
+//
+	endpath HLTEndpath2 = {myTimer & hltPathTimer}
 */
 
 //
-// Put all these modules into a common endpath
+// This to be put as a final path at the end of HLTpaths.cff:
+//
+// Construct new HLT-data-model summary objects
+        module triggerSummaryAOD = triggerSummaryProducerAOD from "HLTrigger/HLTcore/data/triggerSummaryProducerAOD.cfi"
+        module triggerSummaryRAW = triggerSummaryProducerRAW from "HLTrigger/HLTcore/data/triggerSummaryProducerRAW.cfi"
+//
 // (RAW producer only for a subset of events!)
-	endpath HLTEndpathALL = {l1gtTrigReport & hltTrigReport & triggerSummaryAOD}
-
-// This to be put at end of HLTpaths.cff as final path:
 	module triggerSummaryRAWprescaler = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-	module  boolRAW = hltBool from "HLTrigger/HLTfilters/data/hltBool.cfi"
-	replace boolRAW.result=false
-	sequence HLTEndRAW = {triggerSummaryRAWprescaler & triggerSummaryRAW & boolRAW}
+//
+// Final path not to accept any event
+	module  boolFinal = hltBool from "HLTrigger/HLTfilters/data/hltBool.cfi"
+	replace boolFinal.result=false
+//
+	sequence hltFinalPath = { triggerSummaryAOD &
+     triggerSummaryRAWprescaler & triggerSummaryRAW & boolFinal}
