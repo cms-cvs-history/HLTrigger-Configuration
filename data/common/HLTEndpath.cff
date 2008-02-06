@@ -42,7 +42,6 @@
 
 // This to be put at end of HLTpaths.cff as final path:
 	module triggerSummaryRAWprescaler = hltPrescaler from "HLTrigger/HLTcore/data/hltPrescaler.cfi"
-	replace triggerSummaryRAWprescaler.prescaleFactor = 10
 	module  boolRAW = hltBool from "HLTrigger/HLTfilters/data/hltBool.cfi"
 	replace boolRAW.result=false
 	sequence HLTEndRAW = {triggerSummaryRAWprescaler & triggerSummaryRAW & boolRAW}
