@@ -1,7 +1,4 @@
 # Using SQLite cabling maps.  No AFS required.
-
-include "CondCore/DBCommon/data/CondDBSetup.cfi"
-
 es_source siPixelCabling = PoolDBESSource {
    using CondDBSetup
    string connect = "sqlite_fip:CondCore/SQLiteData/data/siPixelCabling150.db"
