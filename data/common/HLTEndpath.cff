@@ -48,5 +48,5 @@
 	module  boolFinal = hltBool from "HLTrigger/HLTfilters/data/hltBool.cfi"
 	replace boolFinal.result=false
 //
-	sequence hltFinalPath = { triggerSummaryAOD &
-     triggerSummaryRAWprescaler & triggerSummaryRAW & boolFinal}
+	sequence triggerFinalPath = { triggerSummaryAOD &
+	 triggerSummaryRAWprescaler & triggerSummaryRAW & boolFinal}

@@ -34,4 +34,4 @@ include "HLTrigger/Configuration/data/main/Special.cff"
 //
 // summary producers must be in final path
 // (can't be in an endpath due to filter!)
-path HLTFinalPath = {hltFinalPath}
+path TriggerFinalPath = {triggerFinalPath}
