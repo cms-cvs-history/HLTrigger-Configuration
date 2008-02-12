@@ -5,8 +5,9 @@
 //
 module hlt2GetRaw = hltGetRaw from "HLTrigger/HLTanalyzers/data/hltGetRaw.cfi"
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
+include "RecoVertex/BeamSpotProducer/data/BeamSpot.cff"
 //
-sequence hltBegin = { hlt2GetRaw & L1HltSeed }
+sequence hltBegin = { hlt2GetRaw & L1HltSeed & offlineBeamSpot }
 //
 include "HLTrigger/Configuration/data/common/HLTSetupCommon.cff"
 //

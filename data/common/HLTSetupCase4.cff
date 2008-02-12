@@ -7,8 +7,9 @@
 module hlt4GetDigi = hltGetDigi from "HLTrigger/HLTanalyzers/data/hltGetDigi.cfi"
 include "HLTrigger/Configuration/data/rawToDigi/DigiToRaw.cff"
 include "HLTrigger/Configuration/data/common/HLTSetupFromRaw.cff"
+include "RecoVertex/BeamSpotProducer/data/BeamSpot.cff"
 //
-sequence hltBegin = { hlt4GetDigi & DigiToRaw & L1HltSeed }
+sequence hltBegin = { hlt4GetDigi & DigiToRaw & L1HltSeed & offlineBeamSpot }
 //
 include "HLTrigger/Configuration/data/common/HLTSetupCommon.cff"
 //
