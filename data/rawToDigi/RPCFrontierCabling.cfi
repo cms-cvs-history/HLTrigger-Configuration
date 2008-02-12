@@ -1,4 +1,5 @@
 # Cabling map acquired from frontier
+include "CondCore/DBCommon/data/CondDBSetup.cfi"
 es_source RPCCabling = PoolDBESSource {
    using CondDBSetup
    string connect = "frontier://FrontierDev/CMS_COND_RPC"
