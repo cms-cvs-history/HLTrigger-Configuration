@@ -14,7 +14,7 @@ path HLT1MuonNonIso = { singleMuNoIso & hltEnd }
 
 // include "HLTrigger/Muon/data/PathDiMuon_2x1033_Iso.cff"
 include "HLTrigger/Muon/data/PathDiMuon_1032_Iso.cff"
-path CandHLT2MuonIso = { diMuonIso & hltEnd } // should be selected by HLT2MuonNonIso
+path HLT2MuonIso = { diMuonIso & hltEnd } // should be selected by HLT2MuonNonIso
 
 // include "HLTrigger/Muon/data/PathDiMuon_2x1033_NoIso.cff"
 include "HLTrigger/Muon/data/PathDiMuon_1032_NoIso.cff"
@@ -49,21 +49,21 @@ path HLT2MuonSameSign = { sameSignMu & hltEnd }
 // Prescaled single-muon triggers
 
 include "HLTrigger/Muon/data/PathSingleMu_1032_Prescale3.cff"
-path CandHLT1MuonPrescalePt3 = { singleMuPrescale3 & hltEnd }
+path HLT1MuonPrescalePt3 = { singleMuPrescale3 & hltEnd }
 
 include "HLTrigger/Muon/data/PathSingleMu_1032_Prescale5.cff"
-path CandHLT1MuonPrescalePt5 = { singleMuPrescale5 & hltEnd }
+path HLT1MuonPrescalePt5 = { singleMuPrescale5 & hltEnd }
 
 include "HLTrigger/Muon/data/PathSingleMu_1032_Prescale7-7.cff"
-path CandHLT1MuonPrescalePt7x7 = { singleMuPrescale77 & hltEnd }
+path HLT1MuonPrescalePt7x7 = { singleMuPrescale77 & hltEnd }
 
 include "HLTrigger/Muon/data/PathSingleMu_1032_Prescale7-10.cff"
-path CandHLT1MuonPrescalePt7x10 = { singleMuPrescale710 & hltEnd }
+path HLT1MuonPrescalePt7x10 = { singleMuPrescale710 & hltEnd }
 
 
 // Skim trigger
 include "HLTrigger/Muon/data/PathMuLevel1_1032.cff"
-path CandHLT1MuonLevel1 = { muLevel1Path & hltEnd }
+path HLT1MuonLevel1 = { muLevel1Path & hltEnd }
 
 
 // Additional prescaled triggers for efficiency monitoring

@@ -23,7 +23,7 @@ path CandHLTHcalPhiSym = {alcaHcalPhiSymSequence & hltEnd}
 // Isolated-track trigger for HCAL: Grigory Safronov <Grigory.Safronov@cern.ch>
 //
 include "HLTrigger/special/data/hltHcalIsolatedTrack.cff"
-path CandHLTHcalIsolatedTrack           = { hltHcalIsolatedTrack & hltEnd }
+path HLTHcalIsolatedTrack           = { hltHcalIsolatedTrack & hltEnd }
 path CandHLTHcalIsolatedTrackNoEcalIsol = { hltHcalIsolatedTrackNoEcalIsol & hltEnd }
 
 

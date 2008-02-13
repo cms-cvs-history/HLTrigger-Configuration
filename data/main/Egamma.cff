@@ -37,18 +37,18 @@ path HLT1EMVeryHighEt = {   singleEMVHEL1NonIsolated & hltEnd}
 
 
 include "HLTrigger/Egamma/data/ZeeCounter.cff"
-path CandHLT2ElectronZCounter = { zeeCounter & hltEnd}
+path HLT2ElectronZCounter = { zeeCounter & hltEnd}
 
 
 include "HLTrigger/Egamma/data/DoubleExclusiveElectronL1Isolated.cff"
-path CandHLT2ElectronExclusive = { doubleExclElectronL1Isolated & hltEnd}
+path HLT2ElectronExclusive = { doubleExclElectronL1Isolated & hltEnd}
 
 include "HLTrigger/Egamma/data/DoubleExclusivePhotonL1Isolated.cff"
-path CandHLT2PhotonExclusive = { doubleExclPhotonL1Isolated & hltEnd}
+path HLT2PhotonExclusive = { doubleExclPhotonL1Isolated & hltEnd}
 
 
 include "HLTrigger/Egamma/data/SinglePhotonL1IsolatedPrescaledEt12_1e32.cff"
-path CandHLT1PhotonL1Isolated = { singlePhotonPrescaledL1Isolated & hltEnd}
+path HLT1PhotonL1Isolated = { singlePhotonPrescaledL1Isolated & hltEnd}
 
 
 include "HLTrigger/Egamma/data/SingleElectronL1IsolatedLargeWindow_1e32.cff"
