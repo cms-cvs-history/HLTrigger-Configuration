@@ -50,7 +50,7 @@ replace pdPhotonFilter.HLTPaths = {
       "HLT1PhotonRelaxed",
       "HLT2Photon",
       "HLT2PhotonRelaxed",
-      "CandHLT2PhotonExclusive" }
+      "HLT2PhotonExclusive" }
 
 path pdPhotonPath = {pdPhotonFilter}
 
@@ -112,8 +112,8 @@ replace pdElectronFilter.HLTPaths = {
       "HLTXElectronMuon",
       "HLTXElectronMuonRelaxed",
       "HLTXElectronTau",
-      "CandHLT2ElectronZCounter",
-      "CandHLT2ElectronExclusive"
+      "HLT2ElectronZCounter",
+      "HLT2ElectronExclusive"
 }
 
 path pdElectronPath = {pdElectronFilter} 
@@ -177,10 +177,10 @@ replace pdJetMETFilter.HLTPaths = {
       "HLT2jetvbfMET",
       "HLTS2jet1METNV",
       "HLTS2jet1METAco",
-      "CandHLTSjet1MET1Aco",
-      "CandHLTSjet2MET1Aco",
-      "CandHLTS2jetMET1Aco",
-      "CandHLTJetMETRapidityGap"
+      "HLTSjet1MET1Aco",
+      "HLTSjet2MET1Aco",
+      "HLTS2jetMET1Aco",
+      "HLTJetMETRapidityGap"
 }
 path pdJetMETPath = { pdJetMETFilter}
 
