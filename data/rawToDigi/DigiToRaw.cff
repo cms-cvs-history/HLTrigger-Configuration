@@ -24,7 +24,7 @@ include "HLTrigger/Configuration/data/rawToDigi/GctDigiToRaw.cff"
 include "HLTrigger/Configuration/data/rawToDigi/GtDigiToRaw.cff"
 
 #--- Collect everything together ---#
-module rawDataCollector = RawDataCollectorModule {}
+include "EventFilter/RawDataCollector/data/rawDataCollector.cfi"
   
 sequence DigiToRaw = {
                         GctDigiToRaw,
