@@ -3,10 +3,11 @@
 //
 
 include "HLTrigger/Configuration/data/rawToDigi/RawToDigi.cff"
+include "L1Trigger/Configuration/data/L1HltSeed.cff"
+# include "L1Trigger/Configuration/data/L1DummyConfig.cff"
 // Define only l1GtEmulDigis from L1Emulator.cff"
-include "L1Trigger/Configuration/data/L1DummyConfig.cff"
-include "L1Trigger/GlobalTrigger/data/l1GtEmulDigis.cfi"
-sequence doL1RawToDigi = { GctRawToDigi & GtRawToDigi & l1GtEmulDigis}
+# include "L1Trigger/GlobalTrigger/data/l1GtEmulDigis.cfi"
+# sequence doL1RawToDigi = { GctRawToDigi & GtRawToDigi & l1GtEmulDigis}
 
 //
 // Tracker = Pixel and Strip
@@ -27,7 +28,7 @@ include "HLTrigger/Configuration/data/rawToDigi/SiStripRawToClusters.cff"
 // sequence striptrackerlocalreco = {siStripClusters, siStripMatchedRecHits}
 sequence doLocalStrip   = { SiStripRawToClusters }
 // also need to update subsequent RecoTracker module config
-replace MeasurementTracker.Regional = true
+// replace MeasurementTracker.Regional = true
 // combined
 sequence doLocalTracker = { doLocalPixel & doLocalStrip }
 
