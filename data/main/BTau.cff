@@ -28,8 +28,7 @@ path HLTBHTMu   = {  hltBSoftmuonHT & hltEnd}
 // include "HLTrigger/btau/data/displacedmumu/PathBToJpsiToMumu.cff"
 include "HLTrigger/btau/data/displacedmumu/PathBToJpsiToMumuLoose.cff"
 path HLTBJPsiMuMu = {btoJpsitoMumu & hltEnd}
-include "HLTrigger/btau/data/displacedmumu/HLTmmkFilter.cff"
-path CandHLTBToMuMuK  = {BToMuMuK & hltEnd}
+
 
 //
 // Tau trigger paths
