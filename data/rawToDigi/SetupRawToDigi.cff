@@ -9,39 +9,23 @@ include "CondCore/DBCommon/data/CondDBSetup.cfi"
 #--- Obtain the ideal geometry record ---#
 include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"
 
+#--- Cabling map setup moved to top-level *.cfg files ---#
+# include "HLTrigger/Configuration/data/rawToDigi/frontierCablingSetup.cff"
+# include "HLTrigger/Configuration/data/rawToDigi/sqliteCablingSetup.cff"
+
 #----------------------------------------#
 #--- Database setup and configuration ---#
 #----------------------------------------#
 #--- Pixels ---#
-include "HLTrigger/Configuration/data/rawToDigi/SiPixelDBCabling.cff"
 include "Geometry/TrackerGeometryBuilder/data/trackerGeometry.cfi"
 include "Geometry/TrackerNumberingBuilder/data/trackerNumberingGeometry.cfi"
 #--- Strips ---#
-include "HLTrigger/Configuration/data/rawToDigi/SiStripDBCabling.cff"
-include "CalibTracker/SiStripConnectivity/data/SiStripConnectivity.cfi"
+# include "CalibTracker/SiStripConnectivity/data/SiStripConnectivity.cfi"
 include "CalibTracker/SiStripConnectivity/data/SiStripRegionConnectivity.cfi"
-#include "CalibTracker/Configuration/data/SiStrip_FakeGain.cff"
-#include "CalibTracker/Configuration/data/SiStrip_FakeNoise.cff"
 #--- ECAL ---#
 include "HLTrigger/Configuration/data/rawToDigi/EcalGeometrySetup.cff"
-#--- HCAL ---#
-#include "CalibCalorimetry/HcalPlugins/data/Hcal_FakeConditions.cff"
 #--- DT ---#
-include "HLTrigger/Configuration/data/rawToDigi/DTDBCabling.cff"
 include "Geometry/DTGeometry/data/dtGeometry.cfi"
 #--- RPC ---#
-include "HLTrigger/Configuration/data/rawToDigi/RPCDBCabling.cff"
 include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
 include "Geometry/RPCGeometry/data/rpcGeometry.cfi"
-
-replace siPixelCabling.catalog = "relationalcatalog_frontier://cms_conditions_data/CMS_COND_CSA07_FRONTIER"
-replace siPixelCabling.connect = "frontier://FrontierCSA07/CMS_COND_CSA07_PIXEL"
-
-replace SiStripDBCabling.catalog = "relationalcatalog_frontier://cms_conditions_data/CMS_COND_CSA07_FRONTIER"
-replace SiStripDBCabling.connect = "frontier://FrontierCSA07/CMS_COND_CSA07_STRIP"
-
-replace DTCabling.catalog = "relationalcatalog_frontier://cms_conditions_data/CMS_COND_CSA07_FRONTIER"
-replace DTCabling.connect = "frontier://FrontierCSA07/CMS_COND_CSA07_DT"
-
-replace RPCCabling.catalog = "relationalcatalog_frontier://cms_conditions_data/CMS_COND_CSA07_FRONTIER"
-replace RPCCabling.connect = "frontier://FrontierCSA07/CMS_COND_CSA07_RPC"

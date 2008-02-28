@@ -1,7 +1,9 @@
 //
 // Common part of HLTSetup, for all cases
 //
+include "CondCore/DBCommon/data/CondDBSetup.cfi"
 
+//
 // Each HLT path must start with sequence hltBegin (directly or after the
 // HLTPrescaler module - but only if that is the first module on the path)
 // This sequence is defined in HLTSetupCase#.cff as it is case specific,
@@ -23,9 +25,9 @@
 //   path HLTBegin should be excluded from HLT table timing considerations
 //   path HLTBegin should be removed for online / production  running
 /*
-// Make sure path HLTBegin does not accept any event (even with PrescaleService)
-module prescalerBegin = Prescaler {int32 prescaleFactor = 2147483647} // = 2**31-1
-path HLTBegin = {hltBegin , prescalerBegin}
+// Make sure path HLTBegin does not accept any event
+module boolBegin = hltBool from "HLTrigger/HLTfilters/data/hltBool.cfi"
+path    HLTBegin = {hltBegin , boolBegin}
 */
 //
 
@@ -36,6 +38,14 @@ include "HLTrigger/Configuration/data/common/CaloTowers.cff"
 include "HLTrigger/Configuration/data/common/TrackerTracks.cff"
 include "HLTrigger/Configuration/data/common/Vertexing.cff"
 //
+include "HLTrigger/Configuration/data/common/HLTFullReco.cff"
+
+//
+// Common hltEnd sequence (e.g., for standard reco of accepted events - here dummy)
+//
+module boolEnd = hltBool from "HLTrigger/HLTfilters/data/hltBool.cfi"
+replace boolEnd.result = true
+sequence hltEnd = {boolEnd}
 
 //
 // Epilogue with endpath of modules for HLT:
