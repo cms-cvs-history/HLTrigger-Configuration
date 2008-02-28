@@ -2,16 +2,6 @@
 // Common part of HLTSetup, for all cases
 //
 
-//
-// General conditions data - as such should be moved to top-level cfg files!
-//
-include "Configuration/StandardSequences/data/FakeConditions.cff"
-// include "Configuration/StandardSequences/data/FrontierConditions.cff"
-// include "Configuration/StandardSequences/data/Frontier10pbConditions.cff"
-// include "Configuration/StandardSequences/data/Frontier100pbConditions.cff"
-//
-
-//
 // Each HLT path must start with sequence hltBegin (directly or after the
 // HLTPrescaler module - but only if that is the first module on the path)
 // This sequence is defined in HLTSetupCase#.cff as it is case specific,
