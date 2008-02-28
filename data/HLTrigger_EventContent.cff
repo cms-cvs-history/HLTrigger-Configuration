@@ -49,10 +49,26 @@ block HLTriggerAOD = {
 #	"keep FEDRawDataCollection_*_*_*",   # not for AOD
 # HLT book-keeping products
 	"keep recoHLTGlobalObject_*_*_*",
-	"keep recoHLTPathObject_*_*_*",
-	"keep recoHLTFilterObjectBase_*_*_*",
-	"keep recoHLTFilterObject_*_*_*",
-	"keep recoHLTFilterObjectWithRefs_*_*_*",
+	#"keep recoHLTPathObject_*_*_*",
+	#"keep recoHLTFilterObjectBase_*_*_*",
+	#"keep recoHLTFilterObject_*_*_*",
+	#"keep recoHLTFilterObjectWithRefs_*_*_*",
+	"keep recoHLTFilterObject*_*L3*_*_*",
+        "keep recoHLTFilterObject*_*_*L25*Tau*_*",
+	"keep recoHLTFilterObject*_hltL1IsoSingleElectronTrackIsolFilter_*_*",
+	"keep recoHLTFilterObject*_hltL1NonIsoSingleElectronTrackIsolFilter_*_*",
+	"keep recoHLTFilterObject*_hltL1IsoDoubleElectronTrackIsolFilter_*_*",
+	"keep recoHLTFilterObject*_hltL1NonIsoDoubleElectronTrackIsolFilter_*_*",
+	"keep recoHLTFilterObject*_hltL1IsoSinglePhotonTrackIsolFilter_*_*",
+	"keep recoHLTFilterObject*_hltL1NonIsoSinglePhotonTrackIsolFilter_*_*",
+	"keep recoHLTFilterObject*_hltL1IsoDoublePhotonDoubleEtFilter_*_*",
+	"keep recoHLTFilterObject*_hltL1NonIsoDoublePhotonDoubleEtFilter_*_*",
+	"keep recoHLTFilterObject*_hltL1NonIsoSingleEMHighEtTrackIsolFilter_*_*",
+	"keep recoHLTFilterObject*_hltL1NonIsoSinglePhotonEMVeryHighEtEtFilter_*_*",
+	"keep recoHLTFilterObject*_hltL1IsoDoubleExclElectronTrackIsolFilter_*_*",
+	"keep recoHLTFilterObject*_hltL1IsoDoubleExclPhotonTrackIsolFilter_*_*",
+	"keep recoHLTFilterObject*_hltL1IsoDoubleElectronZeePMMassFilter_*_*",
+	"keep recoHLTFilterObject*_hltL1IsoSinglePhotonPrescaledTrackIsolFilter_*_*",
 # Timing / Performance
 #	"keep edmEventTime_*_*_*",           # not for AOD
 #	"keep HLTPerformanceInfo_*_*_*",     # not for AOD
