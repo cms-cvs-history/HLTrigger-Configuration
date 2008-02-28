@@ -2,6 +2,30 @@
 // Special triggers
 //
 
+//                                                                              
+// Technical triggers for alignment                                             
+//                                                                              
+include "HLTrigger/special/data/HLTBackwardBSC.cff"
+path CandHLTBackwardBSC = {hltBackwardBSC & hltEnd}
+
+include "HLTrigger/special/data/HLTForwardBSC.cff"
+path CandHLTForwardBSC = {hltForwardBSC & hltEnd}
+
+include "HLTrigger/special/data/HLTCSCBeamHalo.cff"
+path CandHLTCSCBeamHalo = {hltCSCBeamHalo & hltEnd}
+
+include "HLTrigger/special/data/HLTCSCBeamHaloOverlapRing1.cff"
+path CandHLTCSCBeamHaloOverlapRing1 = {hltCSCBeamHaloOverlapRing1 & hltEnd}
+
+include "HLTrigger/special/data/HLTCSCBeamHaloOverlapRing2.cff"
+path CandHLTCSCBeamHaloOverlapRing2 = {hltCSCBeamHaloOverlapRing2 & hltEnd}
+
+include "HLTrigger/special/data/HLTCSCBeamHaloRing2or3.cff"
+path CandHLTCSCBeamHaloRing2or3 = {hltCSCBeamHaloRing2or3 & hltEnd}
+
+include "HLTrigger/special/data/HLTTrackerCosmics.cff"
+path CandHLTTrackerCosmics = {hltTrackerCosmics & hltEnd}
+
 
 //
 // Ecal Pi0 trigger: Vladimir Litvine <litvin@hep.caltech.edu>
