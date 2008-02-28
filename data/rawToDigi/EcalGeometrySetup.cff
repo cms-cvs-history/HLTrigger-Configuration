@@ -1,5 +1,5 @@
 
-include "CalibCalorimetry/EcalTrivialCondModules/data/EcalTrivialCondRetriever.cfi"
+
 include "Geometry/EcalMapping/data/EcalMapping.cfi"
 include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
 include "Geometry/CaloEventSetup/data/CaloGeometry.cfi"
