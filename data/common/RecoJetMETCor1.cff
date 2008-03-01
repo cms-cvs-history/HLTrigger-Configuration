@@ -38,8 +38,5 @@ module MCJetCorJetIcone5Regional = JetCorrectionProducer {
        
 sequence doRegionalHLTJetReco = {iterativeCone5CaloJetsRegional & MCJetCorJetIcone5Regional}
 
-include "HLTrigger/HLTfilters/data/hlt1CaloJetRegional.cff"
-replace hlt1CaloJetRegional.inputTag = MCJetCorJetIcone5Regional
-
-
-
+include "HLTrigger/HLTfilters/data/hlt1CaloJetRegionalDefaults.cff"
+replace hlt1CaloJetRegionalDefaults.inputTag = MCJetCorJetIcone5Regional

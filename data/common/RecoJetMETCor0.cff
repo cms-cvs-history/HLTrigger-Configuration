@@ -27,5 +27,5 @@ replace iterativeCone5CaloJetsRegional.src = caloTowersForJets
 
 sequence doRegionalHLTJetReco = {iterativeCone5CaloJetsRegional}
 
-include "HLTrigger/HLTfilters/data/hlt1CaloJetRegional.cff"
-replace hlt1CaloJetRegional.inputTag = iterativeCone5CaloJetsRegional
+include "HLTrigger/HLTfilters/data/hlt1CaloJetRegionalDefaults.cff"
+replace hlt1CaloJetRegionalDefaults.inputTag = iterativeCone5CaloJetsRegional
