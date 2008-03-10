@@ -4,27 +4,12 @@
 // include "RecoJets/Configuration/data/CaloTowersRec.cff"
 // sequence doCalo = {doLocalCalo , caloTowersRec}
 
+
 # --------------------------------------------------------------------------------------
 
-# -- the following includes come from RecoJets/Configuration/data/CaloTowersRec.cff
-# -- can not include this cff here, since caloTowers is overloaded.
-                                                                                                                                      
-#
-# reconstruct CaloRecHits and create calotowers here
-#
-  include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"
-  include "Geometry/CaloEventSetup/data/CaloGeometry.cfi"
-  include "Geometry/CaloEventSetup/data/CaloTopology.cfi"
-  es_module = HcalTopologyIdealEP {}
-                                                                                                                                      
-                                                                                                                                      
-   #include "Geometry/CaloEventSetup/data/CaloTowerConstituents.cfi"
-  es_module = CaloTowerConstituentsMapBuilder {
-      untracked string MapFile="Geometry/CaloTopology/data/CaloTowerEEGeometric.map.gz"
-  }
-                                                                                                                                      
-# --------------------------------------------------------------------------------------
+include "RecoJets/Configuration/data/CaloTowersES.cfi"
 
+# --------------------------------------------------------------------------------------
 
 
 //
