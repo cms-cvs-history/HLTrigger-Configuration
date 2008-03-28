@@ -6,6 +6,7 @@ import sys
 import os
 import commands
 import getopt
+import fileinput
 
 def usage():
     print "Usage: ./getGEN-HLTcff.py <Version from ConfDB> <Name of cff> <optional process name>" 
@@ -85,6 +86,7 @@ else:
     essources += "-tpparams9,"
     essources += "-tpparams10,"
     essources += "-tpparams11,"
+    essources += "-magfield,"
     essources += "-XMLIdealGeometryESSource"
 
     esmodules = "--esmodules "
@@ -119,6 +121,9 @@ else:
     esmodules += "-l1GtTriggerMenuXml,"
     esmodules += "-sistripconn,"
     # 200pre6 additions
+    esmodules += "-TrackerDigiGeometryESModule,"
+    esmodules += "-TrackerGeometricDetESModule,"
+    esmodules += "-VolumeBasedMagneticFieldESProducer,"
     esmodules += "-l1GtPrescaleFactorsAlgoTrig,"
     esmodules += "-l1GtPrescaleFactorsTechTrig,"
     esmodules += "-l1GtTriggerMaskAlgoTrig,"
@@ -140,4 +145,10 @@ else:
     myReplaceTrigResults = "replace TriggerResults::HLT " + process + " -- " + cffName
     os.system(myReplaceTrigResults)
 
-
+    # Make replace statements at the beginning of the cff
+    for line in fileinput.input(cffName,inplace=1):
+        if line.find("sequence HLTBeginSequence") >= 0:
+            print "// Replace statements specific to the HLT"  
+            print "replace TrackerDigiGeometryESModule.applyAlignment = true"
+            print "// End of replace statements"  
+        print line[:-1]

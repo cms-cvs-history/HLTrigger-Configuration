@@ -1,5 +1,8 @@
 // HLT V1 (CMSSW_2_0_0_pre7_HLT1)
 
+// Replace statements specific to the HLT
+replace TrackerDigiGeometryESModule.applyAlignment = true
+// End of replace statements
 sequence HLTBeginSequence = { hlt2GetRaw & hltGtDigis & hltGctDigis & hltL1GtObjectMap & hltL1extraParticles & hltOfflineBeamSpot }
 sequence HLTRecoJetRegionalSequence = { hltEcalPreshowerDigis & hltEcalRegionalJetsFEDs & hltEcalRegionalJetsDigis & hltEcalRegionalJetsWeightUncalibRecHit & hltEcalRegionalJetsRecHitTmp & hltEcalRegionalJetsRecHit & hltEcalPreshowerRecHit & HLTDoLocalHcalSequence & hltTowerMakerForJets & hltCaloTowersForJets & hltIterativeCone5CaloJetsRegional & hltMCJetCorJetIcone5Regional }
 sequence HLTDoLocalHcalSequence = { hltHcalDigis & hltHbhereco & hltHfreco & hltHoreco }
@@ -201,11 +204,6 @@ es_source MCJetCorrectorktjet6 = MCJetCorrectionService {
   string tagName = "CMSSW_152_fastjet6"
   string label = "MCJetCorrectorktjet6"
 }
-es_source magfield = XMLIdealGeometryESSource {
-  string rootNodeName = "MagneticFieldVolumes:MAGF"
-  vstring geomXMLFiles = { "Geometry/CMSCommonData/data/normal/cmsextent.xml", "Geometry/CMSCommonData/data/cms.xml", "Geometry/CMSCommonData/data/cmsMagneticField.xml", "Geometry/CMSCommonData/data/MagneticFieldVolumes.xml" }
-}
-es_prefer magfield = XMLIdealGeometryESSource {}
 es_module CaloTopologyBuilder = CaloTopologyBuilder {}
 es_module CaloTowerConstituentsMapBuilder = CaloTowerConstituentsMapBuilder {
   untracked string MapFile = "Geometry/CaloTopology/data/CaloTowerEEGeometric.map.gz"
@@ -588,13 +586,6 @@ es_module TTRHBuilderAngleAndTemplate = TkTransientTrackingRecHitBuilderESProduc
   string PixelCPE = "PixelCPETemplateReco"
   string Matcher = "StandardMatcher"
 }
-es_module TrackerDigiGeometryESModule = TrackerDigiGeometryESModule {
-  untracked bool applyAlignment = true
-  bool fromDDD = true
-}
-es_module TrackerGeometricDetESModule = TrackerGeometricDetESModule {
-  bool fromDDD = true
-}
 es_module TrackerRecoGeometryESProducer = TrackerRecoGeometryESProducer {
 }
 es_module TrajectoryBuilderForPixelMatchElectronsL1Iso = CkfTrajectoryBuilderESProducer {
@@ -655,14 +646,6 @@ es_module TrajectoryBuilderForPixelMatchElectronsL1NonIsoLargeWindow = CkfTrajec
 }
 es_module TransientTrackBuilderESProducer = TransientTrackBuilderESProducer {
   string ComponentName = "TransientTrackBuilder"
-}
-es_module VolumeBasedMagneticFieldESProducer = VolumeBasedMagneticFieldESProducer {
-  untracked string label = ""
-  string version = "grid_85l_030919"
-  double findVolumeTolerance = 0.0
-  untracked bool cacheLastVolume = true
-  untracked bool timerOn = false
-  bool useParametrizedTrackerField = false
 }
 es_module bJetRegionalTrajectoryBuilder = CkfTrajectoryBuilderESProducer {
   string ComponentName = "bJetRegionalTrajectoryBuilder"
