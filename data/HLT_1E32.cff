@@ -1,7 +1,7 @@
 // HLT V1 (CMSSW_2_0_0_pre7_HLT1)
 
 // Replace statements specific to the HLT
-replace TrackerDigiGeometryESModule.applyAlignment = true
+//replace TrackerDigiGeometryESModule.applyAlignment = true
 // End of replace statements
 sequence HLTBeginSequence = { hlt2GetRaw & hltGtDigis & hltGctDigis & hltL1GtObjectMap & hltL1extraParticles & hltOfflineBeamSpot }
 sequence HLTRecoJetRegionalSequence = { hltEcalPreshowerDigis & hltEcalRegionalJetsFEDs & hltEcalRegionalJetsDigis & hltEcalRegionalJetsWeightUncalibRecHit & hltEcalRegionalJetsRecHitTmp & hltEcalRegionalJetsRecHit & hltEcalPreshowerRecHit & HLTDoLocalHcalSequence & hltTowerMakerForJets & hltCaloTowersForJets & hltIterativeCone5CaloJetsRegional & hltMCJetCorJetIcone5Regional }
