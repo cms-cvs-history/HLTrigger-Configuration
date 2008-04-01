@@ -1,8 +1,7 @@
-// HLT V1 (CMSSW_2_0_0_pre7_HLT1)
+// HLT1032 V1 (CMSSW_2_0_0_pre8)
 
-// Replace statements specific to the HLT
-//replace TrackerDigiGeometryESModule.applyAlignment = true
-// End of replace statements
+// Begin replace statements specific to the HLT
+// End replace statements specific to the HLT
 sequence HLTBeginSequence = { hlt2GetRaw & hltGtDigis & hltGctDigis & hltL1GtObjectMap & hltL1extraParticles & hltOfflineBeamSpot }
 sequence HLTRecoJetRegionalSequence = { hltEcalPreshowerDigis & hltEcalRegionalJetsFEDs & hltEcalRegionalJetsDigis & hltEcalRegionalJetsWeightUncalibRecHit & hltEcalRegionalJetsRecHitTmp & hltEcalRegionalJetsRecHit & hltEcalPreshowerRecHit & HLTDoLocalHcalSequence & hltTowerMakerForJets & hltCaloTowersForJets & hltIterativeCone5CaloJetsRegional & hltMCJetCorJetIcone5Regional }
 sequence HLTDoLocalHcalSequence = { hltHcalDigis & hltHbhereco & hltHfreco & hltHoreco }
@@ -168,7 +167,6 @@ path HLTZeroBias = { HLTBeginSequence & hltl1sZero & hltpreZero & HLTEndSequence
 path HLTriggerType = { HLTBeginSequence & hltPrescaleTriggerType & hltFilterTriggerType & HLTEndSequence }
 path TriggerFinalPath = { hltTriggerSummaryAOD & hltTriggerSummaryRAWprescaler & hltTriggerSummaryRAW & hltBoolFinal }
 endpath HLTEndpath1 = { hltL1gtTrigReport & hltTrigReport }
-path HLT1MuonL1Open = { hltPrescaleMuLevel1Open & hltMuLevel1PathLevel1OpenSeed & hltMuLevel1PathL1OpenFiltered & HLTEndSequence }
 path HLTXElectronTau = { hltPrescalerElectronTau & HLTBeginSequence & hltLevel1GTSeedElectronTau & HLTETauSingleElectronL1IsolatedHOneOEMinusOneOPFilterSequence & HLTL2TauJetsElectronTauSequnce & hltL2ElectronTauIsolationProducer & hltL2ElectronTauIsolationSelector & hltFilterEcalIsolatedTauJetsElectronTau & HLTRecopixelvertexingSequence & hltJetTracksAssociatorAtVertexL25ElectronTau & hltConeIsolationL25ElectronTau & hltIsolatedTauJetsSelectorL25ElectronTau & hltFilterIsolatedTauJetsL25ElectronTau & HLTEndSequence }
 path HLTXMuonTau = { hltPrescalerMuonTau & HLTBeginSequence & hltLevel1GTSeedMuonTau & hltMuonTauL1Filtered & HLTL2muonrecoSequence & hltMuonTauIsoL2PreFiltered & HLTL2muonisorecoSequence & hltMuonTauIsoL2IsoFiltered & HLTCaloTausCreatorRegionalSequence & hltL2TauJetsProviderMuonTau & hltL2MuonTauIsolationProducer & hltL2MuonTauIsolationSelector & hltFilterEcalIsolatedTauJetsMuonTau & HLTDoLocalPixelSequence & HLTRecopixelvertexingSequence & hltJetsPixelTracksAssociatorMuonTau & hltPixelTrackConeIsolationMuonTau & hltPixelTrackIsolatedTauJetsSelectorMuonTau & hltFilterPixelTrackIsolatedTauJetsMuonTau & HLTDoLocalStripSequence & HLTL3muonrecoSequence & hltMuonTauIsoL3PreFiltered & HLTL3muonisorecoSequence & hltMuonTauIsoL3IsoFiltered & HLTEndSequence }
 path HLT1Tau1MET = { hltSingleTauMETPrescaler & HLTBeginSequence & hltSingleTauMETL1SeedFilter & HLTCaloTausCreatorSequence & hltMet & hlt1METSingleTauMET & hltL2SingleTauMETJets & hltL2SingleTauMETIsolationProducer & hltL2SingleTauMETIsolationSelector & hltFilterSingleTauMETEcalIsolation & HLTDoLocalPixelSequence & HLTRecopixelvertexingSequence & hltAssociatorL25SingleTauMET & hltConeIsolationL25SingleTauMET & hltIsolatedL25SingleTauMET & hltFilterL25SingleTauMET & HLTDoLocalStripSequence & hltL3SingleTauMETPixelSeeds & hltCkfTrackCandidatesL3SingleTauMET & hltCtfWithMaterialTracksL3SingleTauMET & hltAssociatorL3SingleTauMET & hltConeIsolationL3SingleTauMET & hltIsolatedL3SingleTauMET & hltFilterL3SingleTauMET & HLTEndSequence }
@@ -1073,6 +1071,10 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   string StripCPE = "StripCPEfromTrackAngle"
   string PixelCPE = "PixelCPEfromTrackAngle"
   string Matcher = "StandardMatcher"
+}
+service = PrescaleService {
+  uint32 prescaleFactor = 1
+  vstring InitialConfig = { "0 * triggerSummaryRAWprescaler 1 * * 1" }
 }
   module hlt2GetRaw = HLTGetRaw {
     InputTag RawDataCollection = rawDataCollector
@@ -2300,7 +2302,6 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     int32 SeedThreshold = 3000
     double ClusterThreshold = 5050.0
     untracked bool MissCalibrate = true
-    untracked int32 VerbosityLevel = 1
   }
   module hltSiPixelRecHits = SiPixelRecHitConverter {
     InputTag src = hltSiPixelClusters
@@ -7673,35 +7674,26 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   module hltTrigReport = HLTrigReport {
     InputTag HLTriggerResults = TriggerResults::HLT
   }
-  module hltPrescaleMuLevel1Open = HLTPrescaler {
-    bool makeFilterObject = true
-    uint32 prescaleFactor = 1
-    uint32 eventOffset = 0
-  }
-  module hltMuLevel1PathLevel1OpenSeed = HLTLevel1GTSeed {
-    bool L1TechTriggerSeeding = false
-    string L1SeedsLogicalExpression = "L1_SingleMu3 OR L1_SingleMu5"
-    InputTag L1GtReadoutRecordTag = hltGtDigis
-    InputTag L1GtObjectMapTag = hltL1GtObjectMap
-    InputTag L1CollectionsTag = hltL1extraParticles
-    InputTag L1MuonCollectionTag = hltL1extraParticles
-  }
-  module hltMuLevel1PathL1OpenFiltered = HLTMuonL1Filter {
-    InputTag CandTag = hltMuLevel1PathLevel1OpenSeed
-    double MaxEta = 2.5
-    double MinPt = 0.0
-    int32 MinQuality = -1
-    int32 MinN = 1
-  }
   module hltL2ElectronTauIsolationProducer = L2TauIsolationProducer {
-    InputTag L2TauJetCollection = hltL2TauJetsProviderElectronTau 
+    InputTag L2TauJetCollection = hltL2TauJetsProviderElectronTau
     InputTag EBRecHits = hltEcalRegionalTausRecHit:EcalRecHitsEB
     InputTag EERecHits = hltEcalRegionalTausRecHit:EcalRecHitsEE
     double crystalThreshold = 0.1
     double towerThreshold = 0.2
-    PSet ECALIsolation = {}
-    PSet ECALClustering = {}
-    PSet TowerIsolation = {}
+    PSet ECALIsolation = {
+      bool runAlgorithm = true
+      double innerCone = 0.15
+      double outerCone = 0.5
+    }
+    PSet ECALClustering = {
+      bool runAlgorithm = false
+      double clusterRadius = 0.08
+    }
+    PSet TowerIsolation = {
+      bool runAlgorithm = false
+      double innerCone = 0.2
+      double outerCone = 0.5
+    }
   }
   module hltL2ElectronTauIsolationSelector = L2TauIsolationSelector {
     InputTag L2InfoAssociation = hltL2ElectronTauIsolationProducer:L2TauIsolationInfoAssociator
@@ -7712,7 +7704,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double ClusterDRRMS = 1000.0
     int32 ClusterNClusters = 1000
     double MinJetEt = 15.0
-    double SeedTowerEt = 0.0
+    double SeedTowerEt = -10.0
   }
   module hltJetTracksAssociatorAtVertexL25ElectronTau = JetTracksAssociatorAtVertex {
     InputTag jets = hltL2ElectronTauIsolationSelector:Isolated
@@ -7726,7 +7718,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     bool useBeamSpot = true
     InputTag BeamSpotProducer = hltOfflineBeamSpot
     int32 MinimumNumberOfPixelHits = 2
-    int32 MinimumNumberOfHits = 5
+    int32 MinimumNumberOfHits = 2
     double MaximumTransverseImpactParameter = 300.0
     double MinimumTransverseMomentum = 1.0
     double MaximumChiSquared = 100.0
@@ -7750,7 +7742,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double MinimumTransverseMomentumLeadingTrack = 5.0
     int32 MaximumNumberOfTracksIsolationRing = 0
     double DeltaZetTrackVertex = 0.2
-    bool UseVertex = true
+    bool UseVertex = false
     InputTag VertexSrc = hltPixelVertices
     bool UseInHLTOpen = false
     VInputTag JetSrc = { hltConeIsolationL25ElectronTau }
@@ -7806,14 +7798,25 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     VInputTag JetSrc = { hltIcone5Tau1Regional, hltIcone5Tau2Regional, hltIcone5Tau3Regional, hltIcone5Tau4Regional }
   }
   module hltL2MuonTauIsolationProducer = L2TauIsolationProducer {
-    InputTag L2TauJetCollection = hltL2TauJetsProviderMuonTau 
+    InputTag L2TauJetCollection = hltL2TauJetsProviderMuonTau
     InputTag EBRecHits = hltEcalRegionalTausRecHit:EcalRecHitsEB
     InputTag EERecHits = hltEcalRegionalTausRecHit:EcalRecHitsEE
     double crystalThreshold = 0.1
     double towerThreshold = 0.2
-    PSet ECALIsolation = {}
-    PSet ECALClustering = {}
-    PSet TowerIsolation = {}
+    PSet ECALIsolation = {
+      bool runAlgorithm = true
+      double innerCone = 0.15
+      double outerCone = 0.5
+    }
+    PSet ECALClustering = {
+      bool runAlgorithm = false
+      double clusterRadius = 0.08
+    }
+    PSet TowerIsolation = {
+      bool runAlgorithm = false
+      double innerCone = 0.2
+      double outerCone = 0.5
+    }
   }
   module hltL2MuonTauIsolationSelector = L2TauIsolationSelector {
     InputTag L2InfoAssociation = hltL2MuonTauIsolationProducer:L2TauIsolationInfoAssociator
@@ -7824,7 +7827,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double ClusterDRRMS = 1000.0
     int32 ClusterNClusters = 1000
     double MinJetEt = 15.0
-    double SeedTowerEt = 0.0
+    double SeedTowerEt = -10.0
   }
   module hltFilterEcalIsolatedTauJetsMuonTau = HLT1Tau {
     InputTag inputTag = hltL2MuonTauIsolationSelector:Isolated
@@ -7868,7 +7871,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double MinimumTransverseMomentumLeadingTrack = 5.0
     int32 MaximumNumberOfTracksIsolationRing = 0
     double DeltaZetTrackVertex = 0.2
-    bool UseVertex = true
+    bool UseVertex = false
     InputTag VertexSrc = hltPixelVertices
     bool UseInHLTOpen = false
     VInputTag JetSrc = { hltPixelTrackConeIsolationMuonTau }
@@ -8003,14 +8006,25 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     VInputTag JetSrc = { hltIcone5Tau1, hltIcone5Tau2, hltIcone5Tau3, hltIcone5Tau4 }
   }
   module hltL2SingleTauMETIsolationProducer = L2TauIsolationProducer {
-    InputTag L2TauJetCollection = hltL2SingleTauMETJets
+    InputTag L2TauJetCollection =  hltL2SingleTauMETJets
     InputTag EBRecHits = hltEcalRecHitAll:EcalRecHitsEB
     InputTag EERecHits = hltEcalRecHitAll:EcalRecHitsEE
     double crystalThreshold = 0.1
     double towerThreshold = 0.2
-    PSet ECALIsolation = {}
-    PSet ECALClustering = {}
-    PSet TowerIsolation = {}
+    PSet ECALIsolation = {
+      bool runAlgorithm = true
+      double innerCone = 0.15
+      double outerCone = 0.5
+    }
+    PSet ECALClustering = {
+      bool runAlgorithm = false
+      double clusterRadius = 0.08
+    }
+    PSet TowerIsolation = {
+      bool runAlgorithm = false
+      double innerCone = 0.2
+      double outerCone = 0.5
+    }
   }
   module hltL2SingleTauMETIsolationSelector = L2TauIsolationSelector {
     InputTag L2InfoAssociation = hltL2SingleTauMETIsolationProducer:L2TauIsolationInfoAssociator
@@ -8021,7 +8035,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double ClusterDRRMS = 1000.0
     int32 ClusterNClusters = 1000
     double MinJetEt = 15.0
-    double SeedTowerEt = 0.0
+    double SeedTowerEt = -10.0
   }
   module hltFilterSingleTauMETEcalIsolation = HLT1Tau {
     InputTag inputTag = hltL2SingleTauMETIsolationSelector:Isolated
@@ -8041,7 +8055,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     bool useBeamSpot = true
     InputTag BeamSpotProducer = hltOfflineBeamSpot
     int32 MinimumNumberOfPixelHits = 2
-    int32 MinimumNumberOfHits = 5
+    int32 MinimumNumberOfHits = 2
     double MaximumTransverseImpactParameter = 300.0
     double MinimumTransverseMomentum = 1.0
     double MaximumChiSquared = 100.0
@@ -8065,7 +8079,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double MinimumTransverseMomentumLeadingTrack = 5.0
     int32 MaximumNumberOfTracksIsolationRing = 0
     double DeltaZetTrackVertex = 0.2
-    bool UseVertex = true
+    bool UseVertex = false
     InputTag VertexSrc = hltPixelVertices
     bool UseInHLTOpen = false
     VInputTag JetSrc = { hltConeIsolationL25SingleTauMET }
@@ -8101,7 +8115,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     string TTRHBuilder = "WithTrackAngle"
   }
   module hltCkfTrackCandidatesL3SingleTauMET = CkfTrackCandidateMaker {
-    string SeedProducer = "l3SingleTauMETPixelSeeds"
+    string SeedProducer = "hltL3SingleTauMETPixelSeeds"
     string SeedLabel = ""
     string TrajectoryBuilder = "trajBuilderL3"
     string TrajectoryCleaner = "TrajectoryCleanerBySharedHits"
@@ -8162,7 +8176,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double MinimumTransverseMomentumLeadingTrack = 15.0
     int32 MaximumNumberOfTracksIsolationRing = 0
     double DeltaZetTrackVertex = 0.2
-    bool UseVertex = true
+    bool UseVertex = false
     InputTag VertexSrc = hltPixelVertices
     bool UseInHLTOpen = false
     VInputTag JetSrc = { hltConeIsolationL3SingleTauMET }
@@ -8198,9 +8212,20 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     InputTag EERecHits = hltEcalRegionalTausRecHit:EcalRecHitsEE
     double crystalThreshold = 0.1
     double towerThreshold = 0.2
-    PSet ECALIsolation = {}
-    PSet ECALClustering = {}
-    PSet TowerIsolation = {}
+    PSet ECALIsolation = {
+      bool runAlgorithm = true
+      double innerCone = 0.15
+      double outerCone = 0.5
+    }
+    PSet ECALClustering = {
+      bool runAlgorithm = false
+      double clusterRadius = 0.08
+    }
+    PSet TowerIsolation = {
+      bool runAlgorithm = false
+      double innerCone = 0.2
+      double outerCone = 0.5
+    }
   }
   module hltL2DoubleTauIsolationSelector = L2TauIsolationSelector {
     InputTag L2InfoAssociation = hltL2DoubleTauIsolationProducer:L2TauIsolationInfoAssociator
@@ -8211,7 +8236,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double ClusterDRRMS = 1000.0
     int32 ClusterNClusters = 1000
     double MinJetEt = 15.0
-    double SeedTowerEt = 0.0
+    double SeedTowerEt = -10.0
   }
   module hltFilterDoubleTauEcalIsolation = HLT1Tau {
     InputTag inputTag = hltL2DoubleTauIsolationSelector:Isolated
@@ -8250,12 +8275,12 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   module hltIsolatedL25PixelTau = IsolatedTauJetsSelector {
     double MatchingCone = 0.1
     double SignalCone = 0.07
-    double IsolationCone = 0.5
+    double IsolationCone = 0.3
     double MinimumTransverseMomentumInIsolationRing = 1.0
-    double MinimumTransverseMomentumLeadingTrack = 5.0
+    double MinimumTransverseMomentumLeadingTrack = 3.0
     int32 MaximumNumberOfTracksIsolationRing = 0
     double DeltaZetTrackVertex = 0.2
-    bool UseVertex = true
+    bool UseVertex = false
     InputTag VertexSrc = hltPixelVertices
     bool UseInHLTOpen = false
     VInputTag JetSrc = { hltConeIsolationL25PixelTauIsolated }
@@ -8297,9 +8322,20 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     InputTag EERecHits = hltEcalRecHitAll:EcalRecHitsEE
     double crystalThreshold = 0.1
     double towerThreshold = 0.2
-    PSet ECALIsolation = {}
-    PSet ECALClustering = {}
-    PSet TowerIsolation = {}
+    PSet ECALIsolation = {
+      bool runAlgorithm = true
+      double innerCone = 0.15
+      double outerCone = 0.5
+    }
+    PSet ECALClustering = {
+      bool runAlgorithm = false
+      double clusterRadius = 0.08
+    }
+    PSet TowerIsolation = {
+      bool runAlgorithm = false
+      double innerCone = 0.2
+      double outerCone = 0.5
+    }
   }
   module hltL2SingleTauIsolationSelector = L2TauIsolationSelector {
     InputTag L2InfoAssociation = hltL2SingleTauIsolationProducer:L2TauIsolationInfoAssociator
@@ -8310,7 +8346,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double ClusterDRRMS = 1000.0
     int32 ClusterNClusters = 1000
     double MinJetEt = 15.0
-    double SeedTowerEt = 0.0
+    double SeedTowerEt = -10.0
   }
   module hltFilterSingleTauEcalIsolation = HLT1Tau {
     InputTag inputTag = hltL2SingleTauIsolationSelector:Isolated
@@ -8330,7 +8366,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     bool useBeamSpot = true
     InputTag BeamSpotProducer = hltOfflineBeamSpot
     int32 MinimumNumberOfPixelHits = 2
-    int32 MinimumNumberOfHits = 5
+    int32 MinimumNumberOfHits = 2
     double MaximumTransverseImpactParameter = 300.0
     double MinimumTransverseMomentum = 1.0
     double MaximumChiSquared = 100.0
@@ -8354,7 +8390,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double MinimumTransverseMomentumLeadingTrack = 5.0
     int32 MaximumNumberOfTracksIsolationRing = 0
     double DeltaZetTrackVertex = 0.2
-    bool UseVertex = true
+    bool UseVertex = false
     InputTag VertexSrc = hltPixelVertices
     bool UseInHLTOpen = false
     VInputTag JetSrc = { hltConeIsolationL25SingleTau }
@@ -8390,7 +8426,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     string TTRHBuilder = "WithTrackAngle"
   }
   module hltCkfTrackCandidatesL3SingleTau = CkfTrackCandidateMaker {
-    string SeedProducer = "l3SingleTauPixelSeeds"
+    string SeedProducer = "hltL3SingleTauPixelSeeds"
     string SeedLabel = ""
     string TrajectoryBuilder = "trajBuilderL3"
     string TrajectoryCleaner = "TrajectoryCleanerBySharedHits"
@@ -8451,7 +8487,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double MinimumTransverseMomentumLeadingTrack = 20.0
     int32 MaximumNumberOfTracksIsolationRing = 0
     double DeltaZetTrackVertex = 0.2
-    bool UseVertex = true
+    bool UseVertex = false
     InputTag VertexSrc = hltPixelVertices
     bool UseInHLTOpen = false
     VInputTag JetSrc = { hltConeIsolationL3SingleTau }

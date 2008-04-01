@@ -137,6 +137,7 @@ else:
     psets = "--psets "
     psets += "-maxEvents,"
     psets += "-configurationMetadata,"
+    psets += "-PrescaleService,"
     psets += "-options,"
 
     myGetCff = "edmConfigFromDB --cff --configName " + dbName + " " + essources + " " + esmodules + " " + services + " " + psets + " > " + cffName
@@ -148,7 +149,6 @@ else:
     # Make replace statements at the beginning of the cff
     for line in fileinput.input(cffName,inplace=1):
         if line.find("sequence HLTBeginSequence") >= 0:
-            print "// Replace statements specific to the HLT"  
-            print "replace TrackerDigiGeometryESModule.applyAlignment = true"
-            print "// End of replace statements"  
+            print "// Begin replace statements specific to the HLT"  
+            print "// End replace statements specific to the HLT"  
         print line[:-1]
