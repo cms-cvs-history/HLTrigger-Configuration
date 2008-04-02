@@ -1,4 +1,4 @@
-// HLT V30 (CMSSW_2_0_0_pre8)
+// HLT V33 (CMSSW_2_0_0_pre8)
 
 // Begin replace statements specific to the HLT
 // End replace statements specific to the HLT
@@ -96,6 +96,9 @@ sequence HLTDoubleElectronLWonlyPMEt10L1NonIsoHLTNonIsoSequence = { HLTBeginSequ
 sequence HLTDoubleElectronLWonlyPMEt12L1NonIsoHLTNonIsoSequence = { HLTBeginSequence & hltL1seedRelaxedDoubleEt10 & PreHLT2ElectronLWonlyPMEt12L1RHNonIso & HLTDoRegionalEgammaEcalSequence & HLTL1IsolatedEcalClustersSequence & HLTL1NonIsolatedEcalClustersSequence & hltL1IsoRecoEcalCandidate & hltL1NonIsoRecoEcalCandidate & hltL1NonIsoHLTNonIsoDoubleElectronLWonlyPMEt12L1MatchFilterRegional & hltL1NonIsoHLTNonIsoDoubleElectronLWonlyPMEt12EtFilter & HLTDoLocalHcalWithoutHOSequence & hltL1IsolatedElectronHcalIsol & hltL1NonIsolatedElectronHcalIsol & hltL1NonIsoHLTNonIsoDoubleElectronLWonlyPMEt12HcalIsolFilter & HLTDoLocalPixelSequence & HLTDoLocalStripSequence & hltL1IsoLargeWindowElectronPixelSeeds & hltL1NonIsoLargeWindowElectronPixelSeeds & hltL1NonIsoHLTNonIsoDoubleElectronLWonlyPMEt12PixelMatchFilter }
 sequence HLTDoublePhoton20L1NonIsolatedHLTNonIsoSequence = { HLTBeginSequence & hltL1seedRelaxedDoubleEt10 & PreHLT2Photon20L1RHNonIso & HLTDoRegionalEgammaEcalSequence & HLTL1IsolatedEcalClustersSequence & HLTL1NonIsolatedEcalClustersSequence & hltL1IsoRecoEcalCandidate & hltL1NonIsoRecoEcalCandidate & hltL1NonIsoHLTNonIsoDoublePhotonEt20L1MatchFilterRegional & hltL1NonIsoHLTNonIsoDoublePhotonEt20EtFilter & hltL1IsolatedPhotonEcalIsol & hltL1NonIsolatedPhotonEcalIsol & hltL1NonIsoHLTNonIsoDoublePhotonEt20EcalIsolFilter & HLTDoLocalHcalWithoutHOSequence & hltL1IsolatedPhotonHcalIsol & hltL1NonIsolatedPhotonHcalIsol & hltL1NonIsoHLTNonIsoDoublePhotonEt20HcalIsolFilter & HLTDoLocalTrackerSequence & HLTL1IsoEgammaRegionalRecoTrackerSequence & HLTL1NonIsoEgammaRegionalRecoTrackerSequence & hltL1IsoPhotonTrackIsol & hltL1NonIsoPhotonTrackIsol & hltL1NonIsoHLTNonIsoDoublePhotonEt20TrackIsolFilter }
 sequence HLTDoublePhoton10L1NonIsolatedHLTLooseIsoSequence = { HLTBeginSequence & hltL1seedRelaxedDoubleEt5 & PreHLT2Photon10L1RHLooseIso & HLTDoRegionalEgammaEcalSequence & HLTL1IsolatedEcalClustersSequence & HLTL1NonIsolatedEcalClustersSequence & hltL1IsoRecoEcalCandidate & hltL1NonIsoRecoEcalCandidate & hltL1NonIsoHLTLooseIsoDoublePhotonEt10L1MatchFilterRegional & hltL1NonIsoHLTLooseIsoDoublePhotonEt10EtFilter & hltL1IsolatedPhotonEcalIsol & hltL1NonIsolatedPhotonEcalIsol & hltL1NonIsoHLTLooseIsoDoublePhotonEt10EcalIsolFilter & HLTDoLocalHcalWithoutHOSequence & hltL1IsolatedPhotonHcalIsol & hltL1NonIsolatedPhotonHcalIsol & hltL1NonIsoHLTLooseIsoDoublePhotonEt10HcalIsolFilter & HLTDoLocalTrackerSequence & HLTL1IsoEgammaRegionalRecoTrackerSequence & HLTL1NonIsoEgammaRegionalRecoTrackerSequence & hltL1IsoPhotonTrackIsol & hltL1NonIsoPhotonTrackIsol & hltL1NonIsoHLTLooseIsoDoublePhotonEt10TrackIsolFilter }
+sequence HLTSingleElectronEt15L1NonIsoHLTLooseIsoSequence = { HLTBeginSequence & hltL1seedRelaxedSingleEt12 & PreHLT1Electron15L1RHLooseIso & HLTDoRegionalEgammaEcalSequence & HLTL1IsolatedEcalClustersSequence & HLTL1NonIsolatedEcalClustersSequence & hltL1IsoRecoEcalCandidate & hltL1NonIsoRecoEcalCandidate & hltL1NonIsoHLTLooseIsoSingleElectronEt15L1MatchFilterRegional & hltL1NonIsoHLTLooseIsoSingleElectronEt15EtFilter & HLTDoLocalHcalWithoutHOSequence & hltL1IsolatedElectronHcalIsol & hltL1NonIsolatedElectronHcalIsol & hltL1NonIsoHLTLooseIsoSingleElectronEt15HcalIsolFilter & HLTDoLocalPixelSequence & HLTDoLocalStripSequence & hltL1IsoStartUpElectronPixelSeeds & hltL1NonIsoStartUpElectronPixelSeeds & hltL1NonIsoHLTLooseIsoSingleElectronEt15PixelMatchFilter & HLTPixelMatchStartUpElectronL1IsoTrackingSequence & HLTPixelMatchElectronL1NonIsoStartUpTrackingSequence & hltL1NonIsoHLTLooseIsoSingleElectronEt15HOneOEMinusOneOPFilter & HLTL1IsoStartUpElectronsRegionalRecoTrackerSequence & HLTL1NonIsoStartUpElectronsRegionalRecoTrackerSequence & hltL1IsoStartUpElectronTrackIsol & hltL1NonIsoStartupElectronTrackIsol & hltL1NonIsoHLTLooseIsoSingleElectronEt15TrackIsolFilter }
+sequence HLTSinglePhoton40L1NonIsolatedHLTLooseIsoSequence = { HLTBeginSequence & hltL1seedRelaxedSingleEt15 & PreHLT1Photon40L1RHLooseIso & HLTDoRegionalEgammaEcalSequence & HLTL1IsolatedEcalClustersSequence & HLTL1NonIsolatedEcalClustersSequence & hltL1IsoRecoEcalCandidate & hltL1NonIsoRecoEcalCandidate & hltL1NonIsoHLTLooseIsoSinglePhotonEt40L1MatchFilterRegional & hltL1NonIsoHLTLooseIsoSinglePhotonEt40EtFilter & hltL1IsolatedPhotonEcalIsol & hltL1NonIsolatedPhotonEcalIsol & hltL1NonIsoHLTLooseIsoSinglePhotonEt40EcalIsolFilter & HLTDoLocalHcalWithoutHOSequence & hltL1IsolatedPhotonHcalIsol & hltL1NonIsolatedPhotonHcalIsol & hltL1NonIsoHLTLooseIsoSinglePhotonEt40HcalIsolFilter & HLTDoLocalTrackerSequence & HLTL1IsoEgammaRegionalRecoTrackerSequence & HLTL1NonIsoEgammaRegionalRecoTrackerSequence & hltL1IsoPhotonTrackIsol & hltL1NonIsoPhotonTrackIsol & hltL1NonIsoHLTLooseIsoSinglePhotonEt40TrackIsolFilter }
+sequence HLTDoublePhoton20L1NonIsolatedHLTLooseIsoSequence = { HLTBeginSequence & hltL1seedRelaxedDoubleEt10 & PreHLT2Photon20L1RHLooseIso & HLTDoRegionalEgammaEcalSequence & HLTL1IsolatedEcalClustersSequence & HLTL1NonIsolatedEcalClustersSequence & hltL1IsoRecoEcalCandidate & hltL1NonIsoRecoEcalCandidate & hltL1NonIsoHLTLooseIsoDoublePhotonEt20L1MatchFilterRegional & hltL1NonIsoHLTLooseIsoDoublePhotonEt20EtFilter & hltL1IsolatedPhotonEcalIsol & hltL1NonIsolatedPhotonEcalIsol & hltL1NonIsoHLTLooseIsoDoublePhotonEt20EcalIsolFilter & HLTDoLocalHcalWithoutHOSequence & hltL1IsolatedPhotonHcalIsol & hltL1NonIsolatedPhotonHcalIsol & hltL1NonIsoHLTLooseIsoDoublePhotonEt20HcalIsolFilter & HLTDoLocalTrackerSequence & HLTL1IsoEgammaRegionalRecoTrackerSequence & HLTL1NonIsoEgammaRegionalRecoTrackerSequence & hltL1IsoPhotonTrackIsol & hltL1NonIsoPhotonTrackIsol & hltL1NonIsoHLTLooseIsoDoublePhotonEt20TrackIsolFilter }
 path HLT1jet = { HLTBeginSequence & hltL1s1jet & hltPre1jet & HLTRecoJetRegionalSequence & hlt1jet200 & HLTEndSequence }
 path HLT2jet = { HLTBeginSequence & hltL1s2jet & hltPre2jet & HLTRecoJetRegionalSequence & hlt2jet150 & HLTEndSequence }
 path HLT3jet = { HLTBeginSequence & hltL1s3jet & hltPre3jet & HLTRecoJetRegionalSequence & hlt3jet85 & HLTEndSequence }
@@ -265,8 +268,11 @@ path HLT2ElectronLWonlyPMEt10_L1R_NI = { HLTDoubleElectronLWonlyPMEt10L1NonIsoHL
 path HLT2ElectronLWonlyPMEt12_L1R_NI = { HLTDoubleElectronLWonlyPMEt12L1NonIsoHLTNonIsoSequence & HLTEndSequence }
 path HLT2PhotonEt20_L1R_NI = { HLTDoublePhoton20L1NonIsolatedHLTNonIsoSequence & HLTEndSequence }
 path HLT2PhotonEt10_L1R_LI = { HLTDoublePhoton10L1NonIsolatedHLTLooseIsoSequence & HLTEndSequence }
-# path HLTMinBiasHcal = { HLTBeginSequence & hltl1sMinHcal & hltpreMinHcal & HLTEndSequence }
-# path HLTMinBiasEcal = { HLTBeginSequence & hltl1sMinEcal & hltpreMinEcal & HLTEndSequence }
+path HLTMinBiasHcal = { HLTBeginSequence & hltl1sMinHcal & hltpreMinHcal & HLTEndSequence }
+path HLTMinBiasEcal = { HLTBeginSequence & hltl1sMinEcal & hltpreMinEcal & HLTEndSequence }
+path HLT1ElectronEt15_L1R_LI = { HLTSingleElectronEt15L1NonIsoHLTLooseIsoSequence & HLTEndSequence }
+path HLT1PhotonEt40_L1R_LI = { HLTSinglePhoton40L1NonIsolatedHLTLooseIsoSequence & HLTEndSequence }
+path HLT2PhotonEt20_L1R_LI = { HLTDoublePhoton20L1NonIsolatedHLTLooseIsoSequence & HLTEndSequence }
 es_source BTagRecord = EmptyESSource {
   string recordName = "JetTagComputerRecord"
   bool iovIsRunNotTime = true
@@ -1412,7 +1418,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltL1s4jet = HLTLevel1GTSeed {
     bool L1TechTriggerSeeding = false
-    string L1SeedsLogicalExpression = "L1_SingleJet150 OR L1_DoubleJet70 OR L1_TripleJet50 OR L1_QuadJet40"
+    string L1SeedsLogicalExpression = "L1_SingleJet150 OR L1_DoubleJet70 OR L1_TripleJet50 OR L1_QuadJet30"
     InputTag L1GtReadoutRecordTag = hltGtDigis
     InputTag L1GtObjectMapTag = hltL1GtObjectMap
     InputTag L1CollectionsTag = hltL1extraParticles
@@ -3817,10 +3823,10 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
       double hOverEConeSize = 0.1
       string hbheInstance = ""
       string hbheModule = "hbhereco"
-      double pPhiMax1 = 0.035
-      double pPhiMin1 = -0.02
-      double ePhiMax1 = 0.02
-      double ePhiMin1 = -0.035
+      double pPhiMax1 = 0.045
+      double pPhiMin1 = -0.03
+      double ePhiMax1 = 0.03
+      double ePhiMin1 = -0.045
       double DeltaPhi2 = 0.0040
       double DeltaPhi1High = 0.08
       double DeltaPhi1Low = 0.23
@@ -3829,14 +3835,14 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
       double LowPtThreshold = 5.0
       bool searchInTIDTEC = true
       bool dynamicPhiRoad = false
-      double rMaxI = 0.11
-      double rMinI = -0.11
-      double r2MaxF = 0.16
-      double r2MinF = -0.16
-      double z2MaxB = 0.1
-      double z2MinB = -0.1
-      double PhiMax2 = 0.0020
-      double PhiMin2 = -0.0020
+      double rMaxI = 0.2
+      double rMinI = -0.2
+      double r2MaxF = 0.3
+      double r2MinF = -0.3
+      double z2MaxB = 0.2
+      double z2MinB = -0.2
+      double PhiMax2 = 0.01
+      double PhiMin2 = -0.01
       InputTag hcalRecHits = hltHbhereco
     }
   }
@@ -3999,10 +4005,10 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
       double hOverEConeSize = 0.1
       string hbheInstance = ""
       string hbheModule = "hbhereco"
-      double pPhiMax1 = 0.035
-      double pPhiMin1 = -0.02
-      double ePhiMax1 = 0.02
-      double ePhiMin1 = -0.035
+      double pPhiMax1 = 0.045
+      double pPhiMin1 = -0.03
+      double ePhiMax1 = 0.03
+      double ePhiMin1 = -0.045
       double DeltaPhi2 = 0.0040
       double DeltaPhi1High = 0.08
       double DeltaPhi1Low = 0.23
@@ -4011,14 +4017,14 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
       double LowPtThreshold = 5.0
       bool searchInTIDTEC = true
       bool dynamicPhiRoad = false
-      double rMaxI = 0.11
-      double rMinI = -0.11
-      double r2MaxF = 0.16
-      double r2MinF = -0.16
-      double z2MaxB = 0.1
-      double z2MinB = -0.1
-      double PhiMax2 = 0.0020
-      double PhiMin2 = -0.0020
+      double rMaxI = 0.2
+      double rMinI = -0.2
+      double r2MaxF = 0.3
+      double r2MinF = -0.3
+      double z2MaxB = 0.2
+      double z2MinB = -0.2
+      double PhiMax2 = 0.01
+      double PhiMin2 = -0.01
       InputTag hcalRecHits = hltHbhereco
     }
   }
@@ -5910,7 +5916,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltBLifetimeL1seeds = HLTLevel1GTSeed {
     bool L1TechTriggerSeeding = false
-    string L1SeedsLogicalExpression = "L1_SingleJet150 OR L1_DoubleJet100 OR L1_TripleJet50 OR L1_QuadJet40 OR L1_HTT300"
+    string L1SeedsLogicalExpression = "L1_SingleJet150 OR L1_DoubleJet100 OR L1_TripleJet50 OR L1_QuadJet30 OR L1_HTT300"
     InputTag L1GtReadoutRecordTag = hltGtDigis
     InputTag L1GtObjectMapTag = hltL1GtObjectMap
     InputTag L1CollectionsTag = hltL1extraParticles
@@ -7490,7 +7496,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltL1sEcalPi0 = HLTLevel1GTSeed {
     bool L1TechTriggerSeeding = false
-    string L1SeedsLogicalExpression = "L1_SingleJet15 OR L1_SingleJet20 OR L1_SingleJet30 OR L1_SingleJet50 OR L1_SingleJet70 OR L1_SingleJet100 OR L1_SingleJet150 OR L1_SingleJet200 OR L1_DoubleJet70 OR L1_DoubleJet100"
+    string L1SeedsLogicalExpression = "L1_SingleJet15 OR L1_SingleJet30 OR L1_SingleJet50 OR L1_SingleJet70 OR L1_SingleJet100 OR L1_SingleJet150 OR L1_SingleJet200 OR L1_DoubleJet70 OR L1_DoubleJet100"
     InputTag L1GtReadoutRecordTag = hltGtDigis
     InputTag L1GtObjectMapTag = hltL1GtObjectMap
     InputTag L1CollectionsTag = hltL1extraParticles
@@ -7740,7 +7746,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltMuLevel1PathLevel1OpenSeed = HLTLevel1GTSeed {
     bool L1TechTriggerSeeding = false
-    string L1SeedsLogicalExpression = "L1_SingleMu3 OR L1_SingleMu5"
+    string L1SeedsLogicalExpression = "L1_SingleMuOpen OR L1_SingleMu3 OR L1_SingleMu5"
     InputTag L1GtReadoutRecordTag = hltGtDigis
     InputTag L1GtObjectMapTag = hltL1GtObjectMap
     InputTag L1CollectionsTag = hltL1extraParticles
@@ -9607,7 +9613,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double SeedTowerEt = 0.0
   }
   module hltFilterSingleTauEcalIsolationRelaxed = HLT1Tau {
-    InputTag inputTag = l2SingleTauIsolationSelectorRelaxed:Isolated
+    InputTag inputTag = hltL2SingleTauIsolationSelectorRelaxed:Isolated
     double MinPt = 1.0
     double MaxEta = 5.0
     int32 MinN = 1
@@ -11120,6 +11126,165 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     bool makeFilterObject = true
     uint32 prescaleFactor = 1
     uint32 eventOffset = 0
+  }
+  module PreHLT1Electron15L1RHLooseIso = HLTPrescaler {
+    bool makeFilterObject = true
+    uint32 prescaleFactor = 1
+    uint32 eventOffset = 0
+  }
+  module hltL1NonIsoHLTLooseIsoSingleElectronEt15L1MatchFilterRegional = HLTEgammaL1MatchFilterRegional {
+    InputTag candIsolatedTag = hltL1IsoRecoEcalCandidate
+    InputTag l1IsolatedTag = hltL1extraParticles:Isolated
+    InputTag candNonIsolatedTag = hltL1NonIsoRecoEcalCandidate
+    InputTag l1NonIsolatedTag = hltL1extraParticles:NonIsolated
+    InputTag L1SeedFilterTag = hltL1seedRelaxedSingleEt12
+    int32 ncandcut = 1
+    bool doIsolated = false
+    double region_eta_size = 0.522
+    double region_eta_size_ecap = 1.0
+    double region_phi_size = 1.044
+    double barrel_end = 1.4791
+    double endcap_end = 2.65
+  }
+  module hltL1NonIsoHLTLooseIsoSingleElectronEt15EtFilter = HLTEgammaEtFilter {
+    InputTag inputTag = hltL1NonIsoHLTLooseIsoSingleElectronEt15L1MatchFilterRegional
+    double etcut = 15.0
+    int32 ncandcut = 1
+  }
+  module hltL1NonIsoHLTLooseIsoSingleElectronEt15HcalIsolFilter = HLTEgammaHcalIsolFilter {
+    InputTag candTag = hltL1NonIsoHLTLooseIsoSingleElectronEt15EtFilter
+    InputTag isoTag = hltL1IsolatedElectronHcalIsol
+    InputTag nonIsoTag = hltL1NonIsolatedElectronHcalIsol
+    double hcalisolbarrelcut = 6.0
+    double hcalisolendcapcut = 6.0
+    double HoverEcut = 0.1
+    int32 ncandcut = 1
+    bool doIsolated = false
+  }
+  module hltL1NonIsoHLTLooseIsoSingleElectronEt15PixelMatchFilter = HLTElectronPixelMatchFilter {
+    InputTag candTag = hltL1NonIsoHLTLooseIsoSingleElectronEt15HcalIsolFilter
+    InputTag L1IsoPixelSeedsTag = hltL1IsoStartUpElectronPixelSeeds
+    InputTag L1NonIsoPixelSeedsTag = hltL1NonIsoStartUpElectronPixelSeeds
+    double npixelmatchcut = 1.0
+    int32 ncandcut = 1
+    bool doIsolated = false
+  }
+  module hltL1NonIsoHLTLooseIsoSingleElectronEt15HOneOEMinusOneOPFilter = HLTElectronOneOEMinusOneOPFilterRegional {
+    InputTag candTag = hltL1NonIsoHLTLooseIsoSingleElectronEt15PixelMatchFilter
+    InputTag electronIsolatedProducer = hltPixelMatchStartUpElectronsL1Iso
+    InputTag electronNonIsolatedProducer = hltPixelMatchStartUpElectronsL1NonIso
+    double barrelcut = 999.03
+    double endcapcut = 999.03
+    int32 ncandcut = 1
+    bool doIsolated = false
+  }
+  module hltL1NonIsoHLTLooseIsoSingleElectronEt15TrackIsolFilter = HLTElectronTrackIsolFilterRegional {
+    InputTag candTag = hltL1NonIsoHLTLooseIsoSingleElectronEt15HOneOEMinusOneOPFilter
+    InputTag isoTag = hltL1IsoStartUpElectronTrackIsol
+    InputTag nonIsoTag = hltL1NonIsoStartupElectronTrackIsol
+    double pttrackisolcut = 0.12
+    int32 ncandcut = 1
+    bool doIsolated = false
+  }
+  module PreHLT1Photon40L1RHLooseIso = HLTPrescaler {
+    bool makeFilterObject = true
+    uint32 prescaleFactor = 1
+    uint32 eventOffset = 0
+  }
+  module hltL1NonIsoHLTLooseIsoSinglePhotonEt40L1MatchFilterRegional = HLTEgammaL1MatchFilterRegional {
+    InputTag candIsolatedTag = hltL1IsoRecoEcalCandidate
+    InputTag l1IsolatedTag = hltL1extraParticles:Isolated
+    InputTag candNonIsolatedTag = hltL1NonIsoRecoEcalCandidate
+    InputTag l1NonIsolatedTag = hltL1extraParticles:NonIsolated
+    InputTag L1SeedFilterTag = hltL1seedRelaxedSingleEt15
+    int32 ncandcut = 1
+    bool doIsolated = false
+    double region_eta_size = 0.522
+    double region_eta_size_ecap = 1.0
+    double region_phi_size = 1.044
+    double barrel_end = 1.4791
+    double endcap_end = 2.65
+  }
+  module hltL1NonIsoHLTLooseIsoSinglePhotonEt40EtFilter = HLTEgammaEtFilter {
+    InputTag inputTag = hltL1NonIsoHLTLooseIsoSinglePhotonEt40L1MatchFilterRegional
+    double etcut = 40.0
+    int32 ncandcut = 1
+  }
+  module hltL1NonIsoHLTLooseIsoSinglePhotonEt40EcalIsolFilter = HLTEgammaEcalIsolFilter {
+    InputTag candTag = hltL1NonIsoHLTLooseIsoSinglePhotonEt40EtFilter
+    InputTag isoTag = hltL1IsolatedPhotonEcalIsol
+    InputTag nonIsoTag = hltL1NonIsolatedPhotonEcalIsol
+    double ecalisolcut = 3.0
+    int32 ncandcut = 1
+    bool doIsolated = false
+  }
+  module hltL1NonIsoHLTLooseIsoSinglePhotonEt40HcalIsolFilter = HLTEgammaHcalIsolFilter {
+    InputTag candTag = hltL1NonIsoHLTLooseIsoSinglePhotonEt40EcalIsolFilter
+    InputTag isoTag = hltL1IsolatedPhotonHcalIsol
+    InputTag nonIsoTag = hltL1NonIsolatedPhotonHcalIsol
+    double hcalisolbarrelcut = 12.0
+    double hcalisolendcapcut = 8.0
+    double HoverEcut = 0.1
+    int32 ncandcut = 1
+    bool doIsolated = false
+  }
+  module hltL1NonIsoHLTLooseIsoSinglePhotonEt40TrackIsolFilter = HLTPhotonTrackIsolFilter {
+    InputTag candTag = hltL1NonIsoHLTLooseIsoSinglePhotonEt40HcalIsolFilter
+    InputTag isoTag = hltL1IsoPhotonTrackIsol
+    InputTag nonIsoTag = hltL1NonIsoPhotonTrackIsol
+    double numtrackisolcut = 3.0
+    int32 ncandcut = 1
+    bool doIsolated = false
+  }
+  module PreHLT2Photon20L1RHLooseIso = HLTPrescaler {
+    bool makeFilterObject = true
+    uint32 prescaleFactor = 1
+    uint32 eventOffset = 0
+  }
+  module hltL1NonIsoHLTLooseIsoDoublePhotonEt20L1MatchFilterRegional = HLTEgammaL1MatchFilterRegional {
+    InputTag candIsolatedTag = hltL1IsoRecoEcalCandidate
+    InputTag l1IsolatedTag = hltL1extraParticles:Isolated
+    InputTag candNonIsolatedTag = hltL1NonIsoRecoEcalCandidate
+    InputTag l1NonIsolatedTag = hltL1extraParticles:NonIsolated
+    InputTag L1SeedFilterTag = hltL1seedRelaxedDoubleEt10
+    int32 ncandcut = 2
+    bool doIsolated = false
+    double region_eta_size = 0.522
+    double region_eta_size_ecap = 1.0
+    double region_phi_size = 1.044
+    double barrel_end = 1.4791
+    double endcap_end = 2.65
+  }
+  module hltL1NonIsoHLTLooseIsoDoublePhotonEt20EtFilter = HLTEgammaEtFilter {
+    InputTag inputTag = hltL1NonIsoHLTLooseIsoDoublePhotonEt20L1MatchFilterRegional
+    double etcut = 20.0
+    int32 ncandcut = 2
+  }
+  module hltL1NonIsoHLTLooseIsoDoublePhotonEt20EcalIsolFilter = HLTEgammaEcalIsolFilter {
+    InputTag candTag = hltL1NonIsoHLTLooseIsoDoublePhotonEt20EtFilter
+    InputTag isoTag = hltL1IsolatedPhotonEcalIsol
+    InputTag nonIsoTag = hltL1NonIsolatedPhotonEcalIsol
+    double ecalisolcut = 3.0
+    int32 ncandcut = 2
+    bool doIsolated = false
+  }
+  module hltL1NonIsoHLTLooseIsoDoublePhotonEt20HcalIsolFilter = HLTEgammaHcalIsolFilter {
+    InputTag candTag = hltL1NonIsoHLTLooseIsoDoublePhotonEt20EcalIsolFilter
+    InputTag isoTag = hltL1IsolatedPhotonHcalIsol
+    InputTag nonIsoTag = hltL1NonIsolatedPhotonHcalIsol
+    double hcalisolbarrelcut = 12.0
+    double hcalisolendcapcut = 8.0
+    double HoverEcut = 0.1
+    int32 ncandcut = 2
+    bool doIsolated = false
+  }
+  module hltL1NonIsoHLTLooseIsoDoublePhotonEt20TrackIsolFilter = HLTPhotonTrackIsolFilter {
+    InputTag candTag = hltL1NonIsoHLTLooseIsoDoublePhotonEt20HcalIsolFilter
+    InputTag isoTag = hltL1IsoPhotonTrackIsol
+    InputTag nonIsoTag = hltL1NonIsoPhotonTrackIsol
+    double numtrackisolcut = 3.0
+    int32 ncandcut = 2
+    bool doIsolated = false
   }
 
 
