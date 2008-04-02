@@ -132,12 +132,12 @@ else:
     esmodules += "-l1GtTriggerMaskVetoTechTrig"
 
     services = "--services "
+    services += "-PrescaleService,"
     services += "-MessageLogger"
 
     psets = "--psets "
     psets += "-maxEvents,"
     psets += "-configurationMetadata,"
-    psets += "-PrescaleService,"
     psets += "-options,"
 
     myGetCff = "edmConfigFromDB --cff --configName " + dbName + " " + essources + " " + esmodules + " " + services + " " + psets + " > " + cffName
