@@ -15,6 +15,41 @@ block HLTriggerFEVT = {
 # Timing / Performance
 	,"keep edmEventTime_*_*_*"
 	,"keep HLTPerformanceInfo_*_*_*"
+# L1
+	,"keep *_hltGtDigis_*_*",
+    	"keep *_hltL1GtRecord_*_*",
+    	"keep *_hltL1GtObjectMap_*_*",
+    	"keep *_hltL1extraParticles_*_*",
+# DT 
+	"keep *_hltDt1DRecHits_*_*",  
+	"keep *_hltDt4DSegments_*_*",  
+# CSC
+	"keep *_hltCsc2DRecHits_*_*",  
+	"keep *_hltCscSegments_*_*",  
+# RPC
+	"keep *_hltRpcRecHits_*_*",
+#HCAL
+	"keep *_hltHbhereco_*_*",
+	"keep *_hltHfreco_*_*",
+	"keep *_hltHoreco_*_*",
+#EB + EE Uncalibrated RecHits
+	"keep *_hltEcalWeightUncalibRecHit_*_*",
+#Calibrated RecHits
+	"keep *_hltEcalPreshowerRecHit_*_*",
+	"keep *_hltEcalRecHit_*_*",
+#Clusters
+   "keep *_hltSiPixelClusters_*_*",
+   "keep *_hltSiStripClusters_*_*",
+#Si Pixel hits
+    "keep *_hltSiPixelRecHits_*_*",
+#Si Strip hits
+    "keep *_hltSiStripRecHits_*_*",
+    "keep *_hltSiStripMatchedRecHits_*_*",
+#save digis sim link and trigger infos
+    "keep StripDigiSimLinkedmDetSetVector_hltMuonCSCDigis_*_*",
+    "keep CSCDetIdCSCComparatorDigiMuonDigiCollection_hltMuonCSCDigis_*_*",
+#beamspot
+    "keep *_hltOfflineBeamSpot_*_*"
     }
 }
 
@@ -29,6 +64,29 @@ block HLTriggerRECO = {
 # Timing / Performance
 	,"keep edmEventTime_*_*_*"
 	,"keep HLTPerformanceInfo_*_*_*"
+# L1
+        ,"keep *_hltGtDigis_*_*",
+        "keep *_hltL1GtRecord_*_*",        
+	"keep *_hltL1GtObjectMap_*_*",
+        "keep *_hltL1extraParticles_*_*",
+# DT
+        "keep *_hltDt1DRecHits_*_*",
+        "keep *_hltDt4DSegments_*_*",
+# CSC
+        "keep *_hltCsc2DRecHits_*_*",
+        "keep *_hltCscSegments_*_*",
+# RPC
+        "keep *_hltRpcRecHits_*_*",
+#HCAL
+        "keep *_hltHbhereco_*_*",
+        "keep *_hltHfreco_*_*",
+        "keep *_hltHoreco_*_*",
+#ECAL
+        #Calibrated RecHits
+        "keep *_hltEcalPreshowerRecHit_*_*",
+        "keep *_hltEcalRecHit_*_*",
+#beamspot
+    "keep *_hltOfflineBeamSpot_*_*"
     }
 }
 
@@ -43,6 +101,12 @@ block HLTriggerAOD = {
 # Timing / Performance
 #	,"keep edmEventTime_*_*_*"                        # not for AOD
 #	,"keep HLTPerformanceInfo_*_*_*"                  # not for AOD
+# L1
+        ,"keep *_hltL1GtRecord_*_*"        
+	,"keep *_hltL1GtObjectMap_*_*"
+        ,"keep *_hltL1extraParticles_*_*",
+#beamspot
+    "keep *_hltOfflineBeamSpot_*_*"
     }
 }
 
