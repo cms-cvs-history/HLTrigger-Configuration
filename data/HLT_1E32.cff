@@ -1,4 +1,4 @@
-// HLT1032 V1 (CMSSW_2_0_0_pre8)
+// HLT1032 V2 (CMSSW_2_0_0_pre8)
 
 // Begin replace statements specific to the HLT
 // End replace statements specific to the HLT
@@ -4983,7 +4983,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
       string KFFitter = "L3MuKFFitter"
       string StateOnTrackerBoundOutPropagator = "SmartPropagatorAny"
       InputTag l3SeedLabel = ""
-      InputTag tkTrajLabel = hltL3TrajectoryCandidateFromL2
+      InputTag tkTrajLabel = hltL3TrackCandidateFromL2
       string TkTrackBuilder = "muonCkfTrajectoryBuilder"
       PSet SeedGeneratorParameters = {
         string ComponentName = "TSGFromOrderedHits"
