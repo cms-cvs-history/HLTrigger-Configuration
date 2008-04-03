@@ -44,3 +44,10 @@ path CandHLTMinBiasForAlignment = {hltMBForAlignment & hltEnd}
 include "HLTrigger/special/data/SimpleBias.cff"
 path HLTMinBias  = {hltMinBias & hltEnd}
 path HLTZeroBias = {hltZeroBias & hltEnd}
+
+
+//
+// TriggerTypeFilter
+//
+include "HLTrigger/special/data/TriggerTypeSequence.cff"
+path HLTriggerType = {sequenceTriggerType & hltEnd}
