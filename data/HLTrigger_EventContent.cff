@@ -16,8 +16,8 @@ block HLTriggerFEVT = {
 	,"keep edmEventTime_*_*_*"
 	,"keep HLTPerformanceInfo_*_*_*"
 # L1
-	,"keep *_hltGtDigis_*_*",
-    	"keep *_hltL1GtRecord_*_*",
+	,"keep *_hltGctDigis_*_*", 
+	"keep *_hltGtDigis_*_*",    	
     	"keep *_hltL1GtObjectMap_*_*",
     	"keep *_hltL1extraParticles_*_*",
 # DT 
@@ -65,8 +65,8 @@ block HLTriggerRECO = {
 	,"keep edmEventTime_*_*_*"
 	,"keep HLTPerformanceInfo_*_*_*"
 # L1
-        ,"keep *_hltGtDigis_*_*",
-        "keep *_hltL1GtRecord_*_*",        
+	,"keep *_hltGctDigis_*_*",
+        "keep *_hltGtDigis_*_*",        
 	"keep *_hltL1GtObjectMap_*_*",
         "keep *_hltL1extraParticles_*_*",
 # DT
