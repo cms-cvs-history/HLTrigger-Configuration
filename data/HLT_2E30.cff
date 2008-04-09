@@ -11034,10 +11034,13 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double MaxEta = 5.0
     int32 MinN = 1
   }
+
+  include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
   module hltTriggerSummaryAOD = TriggerSummaryProducerAOD {
     string processName = "@"
     using TriggerSummaryAOD
   }
+
   module hltTriggerSummaryRAWprescaler = HLTPrescaler {
     bool makeFilterObject = true
     uint32 prescaleFactor = 1
@@ -11049,6 +11052,3 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   module hltBoolFinal = HLTBool {
     bool result = false
   }
-
-
-
