@@ -131,6 +131,8 @@ else:
     esmodules += "-l1GtTriggerMaskVetoAlgoTrig,"
     esmodules += "-l1GtTriggerMaskVetoTechTrig"
 
+    modules = "--modules -hltTriggerSummaryAOD"
+
     services = "--services "
     services += "-PrescaleService,"
     services += "-MessageLogger"
@@ -140,7 +142,7 @@ else:
     psets += "-configurationMetadata,"
     psets += "-options,"
 
-    myGetCff = "edmConfigFromDB --cff --configName " + dbName + " " + essources + " " + esmodules + " " + services + " " + psets + " > " + cffName
+    myGetCff = "edmConfigFromDB --cff --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + psets + " > " + cffName
     os.system(myGetCff)
 
     myReplaceTrigResults = "replace TriggerResults::HLT " + process + " -- " + cffName
@@ -149,6 +151,11 @@ else:
     # Make replace statements at the beginning of the cff
     for line in fileinput.input(cffName,inplace=1):
         if line.find("sequence HLTBeginSequence") >= 0:
-            print "// Begin replace statements specific to the HLT"  
+            print "// Begin replace statements specific to the HLT"
+            print "include \"HLTrigger/Configuration/data/HLTrigger_EventContent.cff\""
+            print "module hltTriggerSummaryAOD = TriggerSummaryProducerAOD {"
+            print "  string processName = \"@\""
+            print "  using TriggerSummaryAOD"
+            print "}"
             print "// End replace statements specific to the HLT"  
         print line[:-1]
