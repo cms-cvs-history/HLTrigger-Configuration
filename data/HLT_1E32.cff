@@ -1,6 +1,11 @@
-// HLT1032 V10 (CMSSW_2_0_0_pre8)
+// /dev/CMSSW_2_0_0_pre8/HLT1032/V10  (CMSSW_2_0_0_pre8)
 
 // Begin replace statements specific to the HLT
+include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
+module hltTriggerSummaryAOD = TriggerSummaryProducerAOD {
+  string processName = "@"
+  using TriggerSummaryAOD
+}
 // End replace statements specific to the HLT
 sequence HLTBeginSequence = { hlt2GetRaw & hltGtDigis & hltGctDigis & hltL1GtObjectMap & hltL1extraParticles & hltOfflineBeamSpot }
 sequence HLTRecoJetRegionalSequence = { hltEcalPreshowerDigis & hltEcalRegionalJetsFEDs & hltEcalRegionalJetsDigis & hltEcalRegionalJetsWeightUncalibRecHit & hltEcalRegionalJetsRecHitTmp & hltEcalRegionalJetsRecHit & hltEcalPreshowerRecHit & HLTDoLocalHcalSequence & hltTowerMakerForJets & hltCaloTowersForJets & hltIterativeCone5CaloJetsRegional & hltMCJetCorJetIcone5Regional }
@@ -8478,13 +8483,6 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double MaxEta = 5.0
     int32 MinN = 1
   }
-
-  include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
-  module hltTriggerSummaryAOD = TriggerSummaryProducerAOD {
-    string processName = "@"
-    using TriggerSummaryAOD
-  }
-
   module hltTriggerSummaryRAWprescaler = HLTPrescaler {
     bool makeFilterObject = true
     uint32 prescaleFactor = 1
