@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_0_0_pre8/HLT/V69  (CMSSW_2_0_0_pre8)
+// /dev/CMSSW_2_0_0/HLT/V12  (CMSSW_2_0_0)
 
 // Begin replace statements specific to the HLT
 include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
@@ -94,9 +94,10 @@ sequence HLTDoublePhoton20L1NonIsolatedHLTNonIsoSequence = { HLTBeginSequence & 
 sequence HLTSingleElectronEt15L1NonIsoHLTLooseIsoSequence = { HLTBeginSequence & hltL1seedRelaxedSingleEt12 & PreHLT1Electron15L1RHLooseIso & HLTDoRegionalEgammaEcalSequence & HLTL1IsolatedEcalClustersSequence & HLTL1NonIsolatedEcalClustersSequence & hltL1IsoRecoEcalCandidate & hltL1NonIsoRecoEcalCandidate & hltL1NonIsoHLTLooseIsoSingleElectronEt15L1MatchFilterRegional & hltL1NonIsoHLTLooseIsoSingleElectronEt15EtFilter & HLTDoLocalHcalWithoutHOSequence & hltL1IsolatedElectronHcalIsol & hltL1NonIsolatedElectronHcalIsol & hltL1NonIsoHLTLooseIsoSingleElectronEt15HcalIsolFilter & HLTDoLocalPixelSequence & HLTDoLocalStripSequence & hltL1IsoStartUpElectronPixelSeeds & hltL1NonIsoStartUpElectronPixelSeeds & hltL1NonIsoHLTLooseIsoSingleElectronEt15PixelMatchFilter & HLTPixelMatchStartUpElectronL1IsoTrackingSequence & HLTPixelMatchElectronL1NonIsoStartUpTrackingSequence & hltL1NonIsoHLTLooseIsoSingleElectronEt15HOneOEMinusOneOPFilter & HLTL1IsoStartUpElectronsRegionalRecoTrackerSequence & HLTL1NonIsoStartUpElectronsRegionalRecoTrackerSequence & hltL1IsoStartUpElectronTrackIsol & hltL1NonIsoStartupElectronTrackIsol & hltL1NonIsoHLTLooseIsoSingleElectronEt15TrackIsolFilter }
 sequence HLTSinglePhoton40L1NonIsolatedHLTLooseIsoSequence = { HLTBeginSequence & hltL1seedRelaxedSingleEt15 & PreHLT1Photon40L1RHLooseIso & HLTDoRegionalEgammaEcalSequence & HLTL1IsolatedEcalClustersSequence & HLTL1NonIsolatedEcalClustersSequence & hltL1IsoRecoEcalCandidate & hltL1NonIsoRecoEcalCandidate & hltL1NonIsoHLTLooseIsoSinglePhotonEt40L1MatchFilterRegional & hltL1NonIsoHLTLooseIsoSinglePhotonEt40EtFilter & hltL1IsolatedPhotonEcalIsol & hltL1NonIsolatedPhotonEcalIsol & hltL1NonIsoHLTLooseIsoSinglePhotonEt40EcalIsolFilter & HLTDoLocalHcalWithoutHOSequence & hltL1IsolatedPhotonHcalIsol & hltL1NonIsolatedPhotonHcalIsol & hltL1NonIsoHLTLooseIsoSinglePhotonEt40HcalIsolFilter & HLTDoLocalTrackerSequence & HLTL1IsoEgammaRegionalRecoTrackerSequence & HLTL1NonIsoEgammaRegionalRecoTrackerSequence & hltL1IsoPhotonTrackIsol & hltL1NonIsoPhotonTrackIsol & hltL1NonIsoHLTLooseIsoSinglePhotonEt40TrackIsolFilter }
 sequence HLTDoublePhoton20L1NonIsolatedHLTLooseIsoSequence = { HLTBeginSequence & hltL1seedRelaxedDoubleEt10 & PreHLT2Photon20L1RHLooseIso & HLTDoRegionalEgammaEcalSequence & HLTL1IsolatedEcalClustersSequence & HLTL1NonIsolatedEcalClustersSequence & hltL1IsoRecoEcalCandidate & hltL1NonIsoRecoEcalCandidate & hltL1NonIsoHLTLooseIsoDoublePhotonEt20L1MatchFilterRegional & hltL1NonIsoHLTLooseIsoDoublePhotonEt20EtFilter & hltL1IsolatedPhotonEcalIsol & hltL1NonIsolatedPhotonEcalIsol & hltL1NonIsoHLTLooseIsoDoublePhotonEt20EcalIsolFilter & HLTDoLocalHcalWithoutHOSequence & hltL1IsolatedPhotonHcalIsol & hltL1NonIsolatedPhotonHcalIsol & hltL1NonIsoHLTLooseIsoDoublePhotonEt20HcalIsolFilter & HLTDoLocalTrackerSequence & HLTL1IsoEgammaRegionalRecoTrackerSequence & HLTL1NonIsoEgammaRegionalRecoTrackerSequence & hltL1IsoPhotonTrackIsol & hltL1NonIsoPhotonTrackIsol & hltL1NonIsoHLTLooseIsoDoublePhotonEt20TrackIsolFilter }
-sequence HLTL1EplusJet30Sequence = { HLTBeginSequence & hltL1seedEJet30 }
 sequence HLTBLifetimeL25recoSequenceRelaxed = { hltBLifetimeHighestEtJets & hltBLifetimeL25JetsRelaxed & HLTDoLocalPixelSequence & HLTRecopixelvertexingSequence & hltBLifetimeL25AssociatorRelaxed & hltBLifetimeL25TagInfosRelaxed & hltBLifetimeL25BJetTagsRelaxed }
 sequence HLTBLifetimeL3recoSequenceRelaxed = { hltBLifetimeL3JetsRelaxed & HLTDoLocalPixelSequence & HLTDoLocalStripSequence & hltBLifetimeRegionalPixelSeedGeneratorRelaxed & hltBLifetimeRegionalCkfTrackCandidatesRelaxed & hltBLifetimeRegionalCtfWithMaterialTracksRelaxed & hltBLifetimeL3AssociatorRelaxed & hltBLifetimeL3TagInfosRelaxed & hltBLifetimeL3BJetTagsRelaxed }
+sequence HLTL1EplusJet30Sequence = { HLTBeginSequence & hltL1seedEJet30 }
+sequence HLTE3Jet30ElectronSequence = { HLTDoRegionalEgammaEcalSequence & HLTL1IsolatedEcalClustersSequence & hltL1IsoRecoEcalCandidate & hltL1IsoSingleEJet30L1MatchFilter & hltL1IsoEJetSingleEEt5Filter & HLTDoLocalHcalWithoutHOSequence & hltL1IsolatedElectronHcalIsol & hltL1IsoEJetSingleEEt5HcalIsolFilter & HLTDoLocalPixelSequence & HLTDoLocalStripSequence & HLTPixelMatchElectronL1IsoSequence & hltL1IsoEJetSingleEEt5PixelMatchFilter & HLTPixelMatchElectronL1IsoTrackingSequence & hltL1IsoEJetSingleEEt5EoverpFilter & HLTL1IsoElectronsRegionalRecoTrackerSequence & hltL1IsoElectronTrackIsol & hltL1IsoEJetSingleEEt5TrackIsolFilter & hltSingleElectronL1IsoPresc }
 path HLT2jet = { HLTBeginSequence & hltL1s2jet & hltPre2jet & HLTRecoJetRegionalSequence & hlt2jet150 & HLTEndSequence }
 path HLT3jet = { HLTBeginSequence & hltL1s3jet & hltPre3jet & HLTRecoJetRegionalSequence & hlt3jet85 & HLTEndSequence }
 path HLT4jet = { HLTBeginSequence & hltL1s4jet & hltPre4jet & HLTRecoJetMETSequence & hlt4jet60 & HLTEndSequence }
@@ -188,7 +189,6 @@ path HLTMinBias = { HLTBeginSequence & hltl1sMin & hltpreMin & HLTEndSequence }
 path HLTZeroBias = { HLTBeginSequence & hltl1sZero & hltpreZero & HLTEndSequence }
 path HLTriggerType = { HLTBeginSequence & hltPrescaleTriggerType & hltFilterTriggerType & HLTEndSequence }
 endpath HLTEndpath1 = { hltL1gtTrigReport & hltTrigReport }
-path HLT1MuonL1Open = { hltPrescaleMuLevel1Open & hltMuLevel1PathLevel1OpenSeed & hltMuLevel1PathL1OpenFiltered & HLTEndSequence }
 path HLTXElectronTau = { hltPrescalerElectronTau & HLTBeginSequence & hltLevel1GTSeedElectronTau & HLTETauSingleElectronL1IsolatedHOneOEMinusOneOPFilterSequence & HLTL2TauJetsElectronTauSequnce & hltL2ElectronTauIsolationProducer & hltL2ElectronTauIsolationSelector & hltFilterEcalIsolatedTauJetsElectronTau & HLTRecopixelvertexingSequence & hltJetTracksAssociatorAtVertexL25ElectronTau & hltConeIsolationL25ElectronTau & hltIsolatedTauJetsSelectorL25ElectronTau & hltFilterIsolatedTauJetsL25ElectronTau & HLTEndSequence }
 path HLTXMuonTau = { hltPrescalerMuonTau & HLTBeginSequence & hltLevel1GTSeedMuonTau & hltMuonTauL1Filtered & HLTL2muonrecoSequence & hltMuonTauIsoL2PreFiltered & HLTL2muonisorecoSequence & hltMuonTauIsoL2IsoFiltered & HLTCaloTausCreatorRegionalSequence & hltL2TauJetsProviderMuonTau & hltL2MuonTauIsolationProducer & hltL2MuonTauIsolationSelector & hltFilterEcalIsolatedTauJetsMuonTau & HLTDoLocalPixelSequence & HLTRecopixelvertexingSequence & hltJetsPixelTracksAssociatorMuonTau & hltPixelTrackConeIsolationMuonTau & hltPixelTrackIsolatedTauJetsSelectorMuonTau & hltFilterPixelTrackIsolatedTauJetsMuonTau & HLTDoLocalStripSequence & HLTL3muonrecoSequence & hltMuonTauIsoL3PreFiltered & HLTL3muonisorecoSequence & hltMuonTauIsoL3IsoFiltered & HLTEndSequence }
 path HLT1Tau1MET = { hltSingleTauMETPrescaler & HLTBeginSequence & hltSingleTauMETL1SeedFilter & HLTCaloTausCreatorSequence & hltMet & hlt1METSingleTauMET & hltL2SingleTauMETJets & hltL2SingleTauMETIsolationProducer & hltL2SingleTauMETIsolationSelector & hltFilterSingleTauMETEcalIsolation & HLTDoLocalPixelSequence & HLTRecopixelvertexingSequence & hltAssociatorL25SingleTauMET & hltConeIsolationL25SingleTauMET & hltIsolatedL25SingleTauMET & hltFilterL25SingleTauMET & HLTDoLocalStripSequence & hltL3SingleTauMETPixelSeeds & hltCkfTrackCandidatesL3SingleTauMET & hltCtfWithMaterialTracksL3SingleTauMET & hltAssociatorL3SingleTauMET & hltConeIsolationL3SingleTauMET & hltIsolatedL3SingleTauMET & hltFilterL3SingleTauMET & HLTEndSequence }
@@ -234,8 +234,6 @@ path HLT1ElectronEt15_L1R_LI = { HLTSingleElectronEt15L1NonIsoHLTLooseIsoSequenc
 path HLT1PhotonEt40_L1R_LI = { HLTSinglePhoton40L1NonIsolatedHLTLooseIsoSequence & HLTEndSequence }
 path HLT2PhotonEt20_L1R_LI = { HLTDoublePhoton20L1NonIsolatedHLTLooseIsoSequence & HLTEndSequence }
 path HLT4jet30 = { HLTBeginSequence & hltL1s4jet30 & hltPre4jet30 & HLTRecoJetMETSequence & hlt4jet30 & HLTEndSequence }
-path HLTXElectron3Jet30 = { HLTL1EplusJet30Sequence & HLTEJetElectronSequence & HLTDoCaloSequence & HLTDoJetRecoSequence & hltej3jet30 & HLTEndSequence }
-path HLTXMuonNoIso3Jets30 = { hltMuNoIsoJetsPrescale & HLTBeginSequence & HLTL1muonrecoSequence & hltMuNoIsoJets30Level1Seed & hltMuNoIsoJetsMinPt4L1Filtered & HLTL2muonrecoSequence & hltMuNoIsoJetsMinPt4L2PreFiltered & HLTL3muonrecoSequence & hltMuNoIsoJetsMinPtL3PreFiltered & HLTDoCaloSequence & HLTDoJetRecoSequence & hltMuNoIsoJetsHLT1jet30 & HLTEndSequence }
 path HLT1TauRelaxed = { hltSingleTauPrescaler & HLTBeginSequence & hltSingleTauL1SeedFilter & HLTCaloTausCreatorSequence & hltMet & hlt1METSingleTauRelaxed & hltL2SingleTauJets & hltL2SingleTauIsolationProducer & hltL2SingleTauIsolationSelectorRelaxed & hltFilterSingleTauEcalIsolationRelaxed & HLTDoLocalPixelSequence & HLTRecopixelvertexingSequence & hltAssociatorL25SingleTauRelaxed & hltConeIsolationL25SingleTauRelaxed & hltIsolatedL25SingleTauRelaxed & hltFilterL25SingleTauRelaxed & HLTDoLocalStripSequence & hltL3SingleTauPixelSeedsRelaxed & hltCkfTrackCandidatesL3SingleTauRelaxed & hltCtfWithMaterialTracksL3SingleTauRelaxed & hltAssociatorL3SingleTauRelaxed & hltConeIsolationL3SingleTauRelaxed & hltIsolatedL3SingleTauRelaxed & hltFilterL3SingleTauRelaxed & HLTEndSequence }
 path HLT1Tau1METRelaxed = { hltSingleTauMETPrescaler & HLTBeginSequence & hltSingleTauMETL1SeedFilter & HLTCaloTausCreatorSequence & hltMet & hlt1METSingleTauMETRelaxed & hltL2SingleTauMETJets & hltL2SingleTauMETIsolationProducer & hltL2SingleTauMETIsolationSelectorRelaxed & hltFilterSingleTauMETEcalIsolationRelaxed & HLTDoLocalPixelSequence & HLTRecopixelvertexingSequence & hltAssociatorL25SingleTauMETRelaxed & hltConeIsolationL25SingleTauMETRelaxed & hltIsolatedL25SingleTauMETRelaxed & hltFilterL25SingleTauMETRelaxed & HLTDoLocalStripSequence & hltL3SingleTauMETPixelSeedsRelaxed & hltCkfTrackCandidatesL3SingleTauMETRelaxed & hltCtfWithMaterialTracksL3SingleTauMETRelaxed & hltAssociatorL3SingleTauMETRelaxed & hltConeIsolationL3SingleTauMETRelaxed & hltIsolatedL3SingleTauMETRelaxed & hltFilterL3SingleTauMETRelaxed & HLTEndSequence }
 path HLT2TauPixelRelaxed = { hltDoubleTauPrescaler & HLTBeginSequence & hltDoubleTauL1SeedFilterRelaxed & HLTCaloTausCreatorRegionalSequence & hltL2DoubleTauJetsRelaxed & hltL2DoubleTauIsolationProducerRelaxed & hltL2DoubleTauIsolationSelectorRelaxed & hltFilterDoubleTauEcalIsolationRelaxed & HLTDoLocalPixelSequence & HLTRecopixelvertexingSequence & hltAssociatorL25PixelTauIsolatedRelaxed & hltConeIsolationL25PixelTauIsolatedRelaxed & hltIsolatedL25PixelTauRelaxed & hltFilterL25PixelTauRelaxed & HLTEndSequence }
@@ -260,13 +258,6 @@ path HLT2jetAve50 = { HLTBeginSequence & hltL1sdijetave50 & hltPredijetave50 & H
 path HLT2jetAve70 = { HLTBeginSequence & hltL1sdijetave70 & hltPredijetave70 & HLTRecoJetMETSequence & hltdijetave70 & HLTEndSequence }
 path HLT2jetAve130 = { HLTBeginSequence & hltL1sdijetave130 & hltPredijetave130 & HLTRecoJetMETSequence & hltdijetave130 & HLTEndSequence }
 path HLT2jetAve220 = { HLTBeginSequence & hltL1sdijetave220 & hltPredijetave220 & HLTRecoJetMETSequence & hltdijetave220 & HLTEndSequence }
-path HLT1MuonNonIso9 = { hltPrescaleSingleMuNoIso9 & hltSingleMuNoIsoLevel1Seed & hltSingleMuNoIsoL1Filtered & hltSingleMuNoIsoL2PreFiltered9 & hltSingleMuNoIsoL3PreFiltered9 }
-path HLT1MuonNonIso11 = { hltPrescaleSingleMuNoIso11 & hltSingleMuNoIsoLevel1Seed & hltSingleMuNoIsoL1Filtered & hltSingleMuNoIsoL2PreFiltered11 & hltSingleMuNoIsoL3PreFiltered11 }
-path HLT1MuonNonIso13 = { hltPrescaleSingleMuNoIso13 & hltSingleMuNoIsoLevel1Seed10 & hltSingleMuNoIsoL1Filtered10 & hltSingleMuNoIsoL2PreFiltered13 & hltSingleMuNoIsoL3PreFiltered13 }
-path HLT1MuonNonIso15 = { hltPrescaleSingleMuNoIso15 & hltSingleMuNoIsoLevel1Seed10 & hltSingleMuNoIsoL1Filtered10 & hltSingleMuNoIsoL2PreFiltered15 & hltSingleMuNoIsoL3PreFiltered15 }
-path HLT1MuonIso9 = { hltPrescaleSingleMuIso9 & hltSingleMuIsoLevel1Seed & hltSingleMuIsoL1Filtered & hltSingleMuIsoL2PreFiltered9 & hltSingleMuIsoL2IsoFiltered9 & hltSingleMuIsoL3PreFiltered9 & hltSingleMuIsoL3IsoFiltered9 }
-path HLT1MuonIso13 = { hltPrescaleSingleMuIso13 & hltSingleMuIsoLevel1Seed10 & hltSingleMuIsoL1Filtered10 & hltSingleMuIsoL2PreFiltered13 & hltSingleMuIsoL2IsoFiltered13 & hltSingleMuIsoL3PreFiltered13 & hltSingleMuIsoL3IsoFiltered13 }
-path HLT1MuonIso15 = { hltPrescaleSingleMuIso15 & hltSingleMuIsoLevel1Seed10 & hltSingleMuIsoL1Filtered10 & hltSingleMuIsoL2PreFiltered15 & hltSingleMuIsoL2IsoFiltered15 & hltSingleMuIsoL3PreFiltered15 & hltSingleMuIsoL3IsoFiltered15 }
 path HLTB1Jet120 = { hltPrescalerBLifetime1jet120 & HLTBeginSequence & hltBLifetimeL1seedsLowEnergy & HLTBCommonL2recoSequence & hltBLifetime1jetL2filter120 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
 path HLTB1Jet160 = { hltPrescalerBLifetime1jet160 & HLTBeginSequence & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetime1jetL2filter160 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
 path HLTB2Jet100 = { hltPrescalerBLifetime2jet100 & HLTBeginSequence & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetime2jetL2filter100 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
@@ -285,6 +276,16 @@ path HLTBHT320 = { hltPrescalerBLifetimeHT320 & HLTBeginSequence & hltBLifetimeL
 path HLTBHT420 = { hltPrescalerBLifetimeHT420 & HLTBeginSequence & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetimeHTL2filter420 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
 path HLTBHTMu250 = { hltPrescalerBSoftmuonHT250 & HLTBeginSequence & hltBSoftmuonHTL1seedsLowEnergy & HLTBCommonL2recoSequence & hltBSoftmuonHTL2filter250 & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filterRelaxed & HLTEndSequence }
 path HLTBHTMu330 = { hltPrescalerBSoftmuonHT330 & HLTBeginSequence & hltBSoftmuonHTL1seeds & HLTBCommonL2recoSequence & hltBSoftmuonHTL2filter330 & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filterRelaxed & HLTEndSequence }
+path HLTXElectron3Jet30 = { HLTL1EplusJet30Sequence & HLTE3Jet30ElectronSequence & HLTDoCaloSequence & HLTDoJetRecoSequence & hltej3jet30 & HLTEndSequence }
+path HLTXMuonNoIso3Jets30 = { hltMuNoIsoJetsPrescale & HLTBeginSequence & HLTL1muonrecoSequence & hltMuNoIsoJets30Level1Seed & hltMuNoIsoJetsMinPt4L1Filtered & HLTL2muonrecoSequence & hltMuNoIsoJetsMinPt4L2PreFiltered & HLTL3muonrecoSequence & hltMuNoIsoJetsMinPtL3PreFiltered & HLTDoCaloSequence & HLTDoJetRecoSequence & hltMuNoIsoHLTJets3jet30 & HLTEndSequence }
+path HLT1MuonL1Open = { hltPrescaleMuLevel1Open & HLTL1muonrecoSequence & hltMuLevel1PathLevel1OpenSeed & hltMuLevel1PathL1OpenFiltered & HLTEndSequence }
+path HLT1MuonNonIso9 = { hltPrescaleSingleMuNoIso9 & HLTL1muonrecoSequence & hltSingleMuNoIsoLevel1Seed & hltSingleMuNoIsoL1Filtered & HLTL2muonrecoSequence & hltSingleMuNoIsoL2PreFiltered9 & HLTL3muonrecoSequence & hltSingleMuNoIsoL3PreFiltered9 }
+path HLT1MuonNonIso11 = { hltPrescaleSingleMuNoIso11 & HLTL1muonrecoSequence & hltSingleMuNoIsoLevel1Seed & hltSingleMuNoIsoL1Filtered & HLTL2muonrecoSequence & hltSingleMuNoIsoL2PreFiltered11 & HLTL3muonrecoSequence & hltSingleMuNoIsoL3PreFiltered11 }
+path HLT1MuonNonIso13 = { hltPrescaleSingleMuNoIso13 & HLTL1muonrecoSequence & hltSingleMuNoIsoLevel1Seed10 & hltSingleMuNoIsoL1Filtered10 & HLTL2muonrecoSequence & hltSingleMuNoIsoL2PreFiltered13 & HLTL3muonrecoSequence & hltSingleMuNoIsoL3PreFiltered13 }
+path HLT1MuonNonIso15 = { hltPrescaleSingleMuNoIso15 & HLTL1muonrecoSequence & hltSingleMuNoIsoLevel1Seed10 & hltSingleMuNoIsoL1Filtered10 & HLTL2muonrecoSequence & hltSingleMuNoIsoL2PreFiltered15 & HLTL3muonrecoSequence & hltSingleMuNoIsoL3PreFiltered15 }
+path HLT1MuonIso9 = { hltPrescaleSingleMuIso9 & HLTL1muonrecoSequence & hltSingleMuIsoLevel1Seed & hltSingleMuIsoL1Filtered & HLTL2muonrecoSequence & hltSingleMuIsoL2PreFiltered9 & HLTL2muonisorecoSequence & hltSingleMuIsoL2IsoFiltered9 & HLTL3muonrecoSequence & hltSingleMuIsoL3PreFiltered9 & HLTL3muonisorecoSequence & hltSingleMuIsoL3IsoFiltered9 }
+path HLT1MuonIso13 = { hltPrescaleSingleMuIso13 & HLTL1muonrecoSequence & hltSingleMuIsoLevel1Seed10 & hltSingleMuIsoL1Filtered10 & HLTL2muonrecoSequence & hltSingleMuIsoL2PreFiltered13 & HLTL2muonisorecoSequence & hltSingleMuIsoL2IsoFiltered13 & HLTL3muonrecoSequence & hltSingleMuIsoL3PreFiltered13 & HLTL3muonisorecoSequence & hltSingleMuIsoL3IsoFiltered13 }
+path HLT1MuonIso15 = { hltPrescaleSingleMuIso15 & HLTL1muonrecoSequence & hltSingleMuIsoLevel1Seed10 & hltSingleMuIsoL1Filtered10 & HLTL2muonrecoSequence & hltSingleMuIsoL2PreFiltered15 & HLTL2muonisorecoSequence & hltSingleMuIsoL2IsoFiltered15 & HLTL3muonrecoSequence & hltSingleMuIsoL3PreFiltered15 & HLTL3muonisorecoSequence & hltSingleMuIsoL3IsoFiltered15 }
 path HLTriggerFinalPath = { hltTriggerSummaryAOD & hltTriggerSummaryRAWprescaler & hltTriggerSummaryRAW & hltBoolFinal }
 es_source BTagRecord = EmptyESSource {
   string recordName = "JetTagComputerRecord"
@@ -7134,8 +7135,8 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     uint32 eventOffset = 0
   }
   module hltLevel1seedHLTCSCBeamHalo = HLTLevel1GTSeed {
-    bool L1TechTriggerSeeding = true
-    string L1SeedsLogicalExpression = "3"
+    bool L1TechTriggerSeeding = false
+    string L1SeedsLogicalExpression = "L1_SingleMuBeamHalo"
     InputTag L1GtReadoutRecordTag = hltGtDigis
     InputTag L1GtObjectMapTag = hltG1GtObjectMap
     InputTag L1CollectionsTag = hltL1extraParticles
@@ -7147,8 +7148,8 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     uint32 eventOffset = 0
   }
   module hltLevel1seedHLTCSCBeamHaloOverlapRing1 = HLTLevel1GTSeed {
-    bool L1TechTriggerSeeding = true
-    string L1SeedsLogicalExpression = "3"
+    bool L1TechTriggerSeeding = false
+    string L1SeedsLogicalExpression = "L1_SingleMuBeamHalo"
     InputTag L1GtReadoutRecordTag = hltGtDigis
     InputTag L1GtObjectMapTag = hltL1GtObjectMap
     InputTag L1CollectionsTag = hltL1extraParticles
@@ -7169,8 +7170,8 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     bool fillHists = false
   }
   module hltLevel1seedHLTCSCBeamHaloOverlapRing2 = HLTLevel1GTSeed {
-    bool L1TechTriggerSeeding = true
-    string L1SeedsLogicalExpression = "3"
+    bool L1TechTriggerSeeding = false
+    string L1SeedsLogicalExpression = "L1_SingleMuBeamHalo"
     InputTag L1GtReadoutRecordTag = hltGtDigis
     InputTag L1GtObjectMapTag = hltL1GtObjectMap
     InputTag L1CollectionsTag = hltL1extraParticles
@@ -7191,8 +7192,8 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     bool fillHists = false
   }
   module hltLevel1seedHLTCSCBeamHaloRing2or3 = HLTLevel1GTSeed {
-    bool L1TechTriggerSeeding = true
-    string L1SeedsLogicalExpression = "3"
+    bool L1TechTriggerSeeding = false
+    string L1SeedsLogicalExpression = "L1_SingleMuBeamHalo"
     InputTag L1GtReadoutRecordTag = hltGtDigis
     InputTag L1GtObjectMapTag = hltL1GtObjectMap
     InputTag L1CollectionsTag = hltL1extraParticles
@@ -7340,26 +7341,6 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltTrigReport = HLTrigReport {
     InputTag HLTriggerResults = TriggerResults::HLT
-  }
-  module hltPrescaleMuLevel1Open = HLTPrescaler {
-    bool makeFilterObject = true
-    uint32 prescaleFactor = 1
-    uint32 eventOffset = 0
-  }
-  module hltMuLevel1PathLevel1OpenSeed = HLTLevel1GTSeed {
-    bool L1TechTriggerSeeding = false
-    string L1SeedsLogicalExpression = "L1_SingleMuOpen OR L1_SingleMu3 OR L1_SingleMu5"
-    InputTag L1GtReadoutRecordTag = hltGtDigis
-    InputTag L1GtObjectMapTag = hltL1GtObjectMap
-    InputTag L1CollectionsTag = hltL1extraParticles
-    InputTag L1MuonCollectionTag = hltL1extraParticles
-  }
-  module hltMuLevel1PathL1OpenFiltered = HLTMuonL1Filter {
-    InputTag CandTag = hltMuLevel1PathLevel1OpenSeed
-    double MaxEta = 2.5
-    double MinPt = 0.0
-    int32 MinQuality = -1
-    int32 MinN = 1
   }
   module hltL2ElectronTauIsolationProducer = L2TauIsolationProducer {
     InputTag L2TauJetCollection = hltL2TauJetsProviderElectronTau
@@ -10228,67 +10209,6 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double MaxEta = 5.0
     int32 MinN = 4
   }
-  module hltL1seedEJet30 = HLTLevel1GTSeed {
-    bool L1TechTriggerSeeding = false
-    string L1SeedsLogicalExpression = "L1_EG5_TripleJet15"
-    InputTag L1GtReadoutRecordTag = hltGtDigis
-    InputTag L1GtObjectMapTag = hltL1GtObjectMap
-    InputTag L1CollectionsTag = hltL1extraParticles
-    InputTag L1MuonCollectionTag = hltL1extraParticles
-  }
-  module hltej3jet30 = HLT1CaloJet {
-    InputTag inputTag = hltMCJetCorJetIcone5
-    double MinPt = 30.0
-    double MaxEta = 5.0
-    int32 MinN = 3
-  }
-  module hltMuNoIsoJets30Level1Seed = HLTLevel1GTSeed {
-    bool L1TechTriggerSeeding = false
-    string L1SeedsLogicalExpression = "L1_Mu3_Jet15"
-    InputTag L1GtReadoutRecordTag = hltGtDigis
-    InputTag L1GtObjectMapTag = hltL1GtObjectMap
-    InputTag L1CollectionsTag = hltL1extraParticles
-    InputTag L1MuonCollectionTag = hltL1extraParticles
-  }
-  module hltMuNoIsoJetsMinPt4L1Filtered = HLTMuonL1Filter {
-    InputTag CandTag = hltMuNoIsoJets30Level1Seed
-    double MaxEta = 2.5
-    double MinPt = 5.0
-    int32 MinQuality = -1
-    int32 MinN = 1
-  }
-  module hltMuNoIsoJetsMinPt4L2PreFiltered = HLTMuonL2PreFilter {
-    InputTag BeamSpotTag = hltOfflineBeamSpot
-    InputTag CandTag = hltL2MuonCandidates
-    InputTag SeedTag = hltL2MuonSeeds
-    InputTag PreviousCandTag = hltMuNoIsoJetsMinPt4L1Filtered
-    int32 MinN = 1
-    double MaxEta = 2.5
-    int32 MinNhits = 0
-    double MaxDr = 9999.0
-    double MaxDz = 9999.0
-    double MinPt = 5.0
-    double NSigmaPt = 3.9
-  }
-  module hltMuNoIsoJetsMinPtL3PreFiltered = HLTMuonL3PreFilter {
-    InputTag BeamSpotTag = hltOfflineBeamSpot
-    InputTag CandTag = hltL3MuonCandidates
-    InputTag LinksTag = hltL3Muons
-    InputTag PreviousCandTag = hltMuNoIsoJetsMinPt4L2PreFiltered
-    int32 MinN = 1
-    double MaxEta = 2.5
-    int32 MinNhits = 0
-    double MaxDr = 2.0
-    double MaxDz = 9999.0
-    double MinPt = 5.0
-    double NSigmaPt = 0.0
-  }
-  module hltMuNoIsoJetsHLT1jet30 = HLT1CaloJet {
-    InputTag inputTag = hltMCJetCorJetIcone5
-    double MinPt = 30.0
-    double MaxEta = 5.0
-    int32 MinN = 1
-  }
   module hlt1METSingleTauRelaxed = HLT1CaloMET {
     InputTag inputTag = hltMet
     double MinPt = 30.0
@@ -11189,283 +11109,6 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double minEtJet3 = 3000.0
     double minDphi = 0.0
   }
-  module hltPrescaleSingleMuNoIso9 = HLTPrescaler {
-    bool makeFilterObject = true
-    uint32 prescaleFactor = 1
-    uint32 eventOffset = 0
-  }
-  module hltSingleMuNoIsoL2PreFiltered9 = HLTMuonL2PreFilter {
-    InputTag BeamSpotTag = hltOfflineBeamSpot
-    InputTag CandTag = hltL2MuonCandidates
-    InputTag SeedTag = hltL2MuonSeeds
-    InputTag PreviousCandTag = hltSingleMuNoIsoL1Filtered
-    int32 MinN = 1
-    double MaxEta = 2.5
-    int32 MinNhits = 0
-    double MaxDr = 9999.0
-    double MaxDz = 9999.0
-    double MinPt = 9.0
-    double NSigmaPt = 3.9
-  }
-  module hltSingleMuNoIsoL3PreFiltered9 = HLTMuonL3PreFilter {
-    InputTag BeamSpotTag = hltOfflineBeamSpot
-    InputTag CandTag = hltL3MuonCandidates
-    InputTag LinksTag = hltL3Muons
-    InputTag PreviousCandTag = hltSingleMuNoIsoL2PreFiltered9
-    int32 MinN = 1
-    double MaxEta = 2.5
-    int32 MinNhits = 0
-    double MaxDr = 2.0
-    double MaxDz = 9999.0
-    double MinPt = 9.0
-    double NSigmaPt = 2.2
-  }
-  module hltPrescaleSingleMuNoIso11 = HLTPrescaler {
-    bool makeFilterObject = true
-    uint32 prescaleFactor = 1
-    uint32 eventOffset = 0
-  }
-  module hltSingleMuNoIsoL2PreFiltered11 = HLTMuonL2PreFilter {
-    InputTag BeamSpotTag = hltOfflineBeamSpot
-    InputTag CandTag = hltL2MuonCandidates
-    InputTag SeedTag = hltL2MuonSeeds
-    InputTag PreviousCandTag = hltSingleMuNoIsoL1Filtered
-    int32 MinN = 1
-    double MaxEta = 2.5
-    int32 MinNhits = 0
-    double MaxDr = 9999.0
-    double MaxDz = 9999.0
-    double MinPt = 11.0
-    double NSigmaPt = 3.9
-  }
-  module hltSingleMuNoIsoL3PreFiltered11 = HLTMuonL3PreFilter {
-    InputTag BeamSpotTag = hltOfflineBeamSpot
-    InputTag CandTag = hltL3MuonCandidates
-    InputTag LinksTag = hltL3Muons
-    InputTag PreviousCandTag = hltSingleMuNoIsoL2PreFiltered11
-    int32 MinN = 1
-    double MaxEta = 2.5
-    int32 MinNhits = 0
-    double MaxDr = 2.0
-    double MaxDz = 9999.0
-    double MinPt = 11.0
-    double NSigmaPt = 2.2
-  }
-  module hltPrescaleSingleMuNoIso13 = HLTPrescaler {
-    bool makeFilterObject = true
-    uint32 prescaleFactor = 1
-    uint32 eventOffset = 0
-  }
-  module hltSingleMuNoIsoLevel1Seed10 = HLTLevel1GTSeed {
-    bool L1TechTriggerSeeding = false
-    string L1SeedsLogicalExpression = "L1_SingleMu10"
-    InputTag L1GtReadoutRecordTag = hltGtDigis
-    InputTag L1GtObjectMapTag = hltL1GtObjectMap
-    InputTag L1CollectionsTag = hltL1extraParticles
-    InputTag L1MuonCollectionTag = hltL1extraParticles
-  }
-  module hltSingleMuNoIsoL1Filtered10 = HLTMuonL1Filter {
-    InputTag CandTag = hltSingleMuNoIsoLevel1Seed10
-    double MaxEta = 2.5
-    double MinPt = 0.0
-    int32 MinQuality = -1
-    int32 MinN = 1
-  }
-  module hltSingleMuNoIsoL2PreFiltered13 = HLTMuonL2PreFilter {
-    InputTag BeamSpotTag = hltOfflineBeamSpot
-    InputTag CandTag = hltL2MuonCandidates
-    InputTag SeedTag = hltL2MuonSeeds
-    InputTag PreviousCandTag = hltSingleMuNoIsoL1Filtered
-    int32 MinN = 1
-    double MaxEta = 2.5
-    int32 MinNhits = 0
-    double MaxDr = 9999.0
-    double MaxDz = 9999.0
-    double MinPt = 13.0
-    double NSigmaPt = 3.9
-  }
-  module hltSingleMuNoIsoL3PreFiltered13 = HLTMuonL3PreFilter {
-    InputTag BeamSpotTag = hltOfflineBeamSpot
-    InputTag CandTag = hltL3MuonCandidates
-    InputTag LinksTag = hltL3Muons
-    InputTag PreviousCandTag = hltSingleMuNoIsoL2PreFiltered13
-    int32 MinN = 1
-    double MaxEta = 2.5
-    int32 MinNhits = 0
-    double MaxDr = 2.0
-    double MaxDz = 9999.0
-    double MinPt = 13.0
-    double NSigmaPt = 2.2
-  }
-  module hltPrescaleSingleMuNoIso15 = HLTPrescaler {
-    bool makeFilterObject = true
-    uint32 prescaleFactor = 1
-    uint32 eventOffset = 0
-  }
-  module hltSingleMuNoIsoL2PreFiltered15 = HLTMuonL2PreFilter {
-    InputTag BeamSpotTag = hltOfflineBeamSpot
-    InputTag CandTag = hltL2MuonCandidates
-    InputTag SeedTag = hltL2MuonSeeds
-    InputTag PreviousCandTag = hltSingleMuNoIsoL1Filtered
-    int32 MinN = 1
-    double MaxEta = 2.5
-    int32 MinNhits = 0
-    double MaxDr = 9999.0
-    double MaxDz = 9999.0
-    double MinPt = 15.0
-    double NSigmaPt = 3.9
-  }
-  module hltSingleMuNoIsoL3PreFiltered15 = HLTMuonL3PreFilter {
-    InputTag BeamSpotTag = hltOfflineBeamSpot
-    InputTag CandTag = hltL3MuonCandidates
-    InputTag LinksTag = hltL3Muons
-    InputTag PreviousCandTag = hltSingleMuNoIsoL2PreFiltered15
-    int32 MinN = 1
-    double MaxEta = 2.5
-    int32 MinNhits = 0
-    double MaxDr = 2.0
-    double MaxDz = 9999.0
-    double MinPt = 15.0
-    double NSigmaPt = 2.2
-  }
-  module hltPrescaleSingleMuIso9 = HLTPrescaler {
-    bool makeFilterObject = true
-    uint32 prescaleFactor = 1
-    uint32 eventOffset = 0
-  }
-  module hltSingleMuIsoL2PreFiltered9 = HLTMuonL2PreFilter {
-    InputTag BeamSpotTag = hltOfflineBeamSpot
-    InputTag CandTag = hltL2MuonCandidates
-    InputTag SeedTag = hltL2MuonSeeds
-    InputTag PreviousCandTag = hltSingleMuIsoL1Filtered
-    int32 MinN = 1
-    double MaxEta = 2.5
-    int32 MinNhits = 0
-    double MaxDr = 9999.0
-    double MaxDz = 9999.0
-    double MinPt = 9.0
-    double NSigmaPt = 3.9
-  }
-  module hltSingleMuIsoL2IsoFiltered9 = HLTMuonIsoFilter {
-    InputTag CandTag = hltSingleMuIsoL2PreFiltered9
-    InputTag IsoTag = hltL2MuonIsolations
-    int32 MinN = 1
-  }
-  module hltSingleMuIsoL3PreFiltered9 = HLTMuonL3PreFilter {
-    InputTag BeamSpotTag = hltOfflineBeamSpot
-    InputTag CandTag = hltL3MuonCandidates
-    InputTag LinksTag = hltL3Muons
-    InputTag PreviousCandTag = hltSingleMuIsoL2IsoFiltered9
-    int32 MinN = 1
-    double MaxEta = 2.5
-    int32 MinNhits = 0
-    double MaxDr = 2.0
-    double MaxDz = 9999.0
-    double MinPt = 9.0
-    double NSigmaPt = 2.2
-  }
-  module hltSingleMuIsoL3IsoFiltered9 = HLTMuonIsoFilter {
-    InputTag CandTag = hltSingleMuIsoL3PreFiltered9
-    InputTag IsoTag = hltL3MuonIsolations
-    int32 MinN = 1
-  }
-  module hltPrescaleSingleMuIso13 = HLTPrescaler {
-    bool makeFilterObject = true
-    uint32 prescaleFactor = 1
-    uint32 eventOffset = 0
-  }
-  module hltSingleMuIsoLevel1Seed10 = HLTLevel1GTSeed {
-    bool L1TechTriggerSeeding = false
-    string L1SeedsLogicalExpression = "L1_SingleMu10"
-    InputTag L1GtReadoutRecordTag = hltGtDigis
-    InputTag L1GtObjectMapTag = hltL1GtObjectMap
-    InputTag L1CollectionsTag = hltL1extraParticles
-    InputTag L1MuonCollectionTag = hltL1extraParticles
-  }
-  module hltSingleMuIsoL1Filtered10 = HLTMuonL1Filter {
-    InputTag CandTag = hltSingleMuIsoLevel1Seed10
-    double MaxEta = 2.5
-    double MinPt = 0.0
-    int32 MinQuality = -1
-    int32 MinN = 1
-  }
-  module hltSingleMuIsoL2PreFiltered13 = HLTMuonL2PreFilter {
-    InputTag BeamSpotTag = hltOfflineBeamSpot
-    InputTag CandTag = hltL2MuonCandidates
-    InputTag SeedTag = hltL2MuonSeeds
-    InputTag PreviousCandTag = hltSingleMuIsoL1Filtered10
-    int32 MinN = 1
-    double MaxEta = 2.5
-    int32 MinNhits = 0
-    double MaxDr = 9999.0
-    double MaxDz = 9999.0
-    double MinPt = 13.0
-    double NSigmaPt = 3.9
-  }
-  module hltSingleMuIsoL2IsoFiltered13 = HLTMuonIsoFilter {
-    InputTag CandTag = hltSingleMuIsoL2PreFiltered13
-    InputTag IsoTag = hltL2MuonIsolations
-    int32 MinN = 1
-  }
-  module hltSingleMuIsoL3PreFiltered13 = HLTMuonL3PreFilter {
-    InputTag BeamSpotTag = hltOfflineBeamSpot
-    InputTag CandTag = hltL3MuonCandidates
-    InputTag LinksTag = hltL3Muons
-    InputTag PreviousCandTag = hltSingleMuIsoL2IsoFiltered13
-    int32 MinN = 1
-    double MaxEta = 2.5
-    int32 MinNhits = 0
-    double MaxDr = 2.0
-    double MaxDz = 9999.0
-    double MinPt = 13.0
-    double NSigmaPt = 2.2
-  }
-  module hltSingleMuIsoL3IsoFiltered13 = HLTMuonIsoFilter {
-    InputTag CandTag = hltSingleMuIsoL3PreFiltered13
-    InputTag IsoTag = hltL3MuonIsolations
-    int32 MinN = 1
-  }
-  module hltPrescaleSingleMuIso15 = HLTPrescaler {
-    bool makeFilterObject = true
-    uint32 prescaleFactor = 1
-    uint32 eventOffset = 0
-  }
-  module hltSingleMuIsoL2PreFiltered15 = HLTMuonL2PreFilter {
-    InputTag BeamSpotTag = hltOfflineBeamSpot
-    InputTag CandTag = hltL2MuonCandidates
-    InputTag SeedTag = hltL2MuonSeeds
-    InputTag PreviousCandTag = hltSingleMuIsoL1Filtered10
-    int32 MinN = 1
-    double MaxEta = 2.5
-    int32 MinNhits = 0
-    double MaxDr = 9999.0
-    double MaxDz = 9999.0
-    double MinPt = 15.0
-    double NSigmaPt = 3.9
-  }
-  module hltSingleMuIsoL2IsoFiltered15 = HLTMuonIsoFilter {
-    InputTag CandTag = hltSingleMuIsoL2PreFiltered15
-    InputTag IsoTag = hltL2MuonIsolations
-    int32 MinN = 1
-  }
-  module hltSingleMuIsoL3PreFiltered15 = HLTMuonL3PreFilter {
-    InputTag BeamSpotTag = hltOfflineBeamSpot
-    InputTag CandTag = hltL3MuonCandidates
-    InputTag LinksTag = hltL3Muons
-    InputTag PreviousCandTag = hltSingleMuIsoL2IsoFiltered15
-    int32 MinN = 1
-    double MaxEta = 2.5
-    int32 MinNhits = 0
-    double MaxDr = 2.0
-    double MaxDz = 9999.0
-    double MinPt = 15.0
-    double NSigmaPt = 2.2
-  }
-  module hltSingleMuIsoL3IsoFiltered15 = HLTMuonIsoFilter {
-    InputTag CandTag = hltSingleMuIsoL3PreFiltered15
-    InputTag IsoTag = hltL3MuonIsolations
-    int32 MinN = 1
-  }
   module hltPrescalerBLifetime1jet120 = HLTPrescaler {
     bool makeFilterObject = true
     uint32 prescaleFactor = 1
@@ -11804,6 +11447,418 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     string observable = "sumEt"
     double Min = 330.0
     double Max = -1.0
+    int32 MinN = 1
+  }
+  module hltL1seedEJet30 = HLTLevel1GTSeed {
+    bool L1TechTriggerSeeding = false
+    string L1SeedsLogicalExpression = "L1_EG5_TripleJet15"
+    InputTag L1GtReadoutRecordTag = hltGtDigis
+    InputTag L1GtObjectMapTag = hltL1GtObjectMap
+    InputTag L1CollectionsTag = hltL1extraParticles
+    InputTag L1MuonCollectionTag = hltL1extraParticles
+  }
+  module hltL1IsoSingleEJet30L1MatchFilter = HLTEgammaL1MatchFilterRegional {
+    InputTag candIsolatedTag = hltL1IsoRecoEcalCandidate
+    InputTag l1IsolatedTag = hltL1extraParticles:Isolated
+    InputTag candNonIsolatedTag = hltRecoNonIsolatedEcalCandidate
+    InputTag l1NonIsolatedTag = hltL1extraParticles:NonIsolated
+    InputTag L1SeedFilterTag = hltL1seedEJet30
+    int32 ncandcut = 1
+    bool doIsolated = true
+    double region_eta_size = 0.522
+    double region_eta_size_ecap = 1.0
+    double region_phi_size = 1.044
+    double barrel_end = 1.4791
+    double endcap_end = 2.65
+  }
+  module hltL1IsoEJetSingleEEt5Filter = HLTEgammaEtFilter {
+    InputTag inputTag = hltL1IsoSingleEJet30L1MatchFilter
+    double etcut = 5.0
+    int32 ncandcut = 1
+  }
+  module hltL1IsoEJetSingleEEt5HcalIsolFilter = HLTEgammaHcalIsolFilter {
+    InputTag candTag = hltL1IsoEJetSingleEEt5Filter
+    InputTag isoTag = hltL1IsolatedElectronHcalIsol
+    InputTag nonIsoTag = hltSingleEgammaHcalNonIsol
+    double hcalisolbarrelcut = 3.0
+    double hcalisolendcapcut = 3.0
+    double HoverEcut = 0.05
+    int32 ncandcut = 1
+    bool doIsolated = true
+  }
+  module hltL1IsoEJetSingleEEt5PixelMatchFilter = HLTElectronPixelMatchFilter {
+    InputTag candTag = hltL1IsoEJetSingleEEt5HcalIsolFilter
+    InputTag L1IsoPixelSeedsTag = hltL1IsoElectronPixelSeeds
+    InputTag L1NonIsoPixelSeedsTag = electronPixelSeeds
+    double npixelmatchcut = 1.0
+    int32 ncandcut = 1
+    bool doIsolated = true
+  }
+  module hltL1IsoEJetSingleEEt5EoverpFilter = HLTElectronEoverpFilterRegional {
+    InputTag candTag = hltL1IsoEJetSingleEEt5PixelMatchFilter
+    InputTag electronIsolatedProducer = hltPixelMatchElectronsL1Iso
+    InputTag electronNonIsolatedProducer = pixelMatchElectronsForHLT
+    double eoverpbarrelcut = 2.0
+    double eoverpendcapcut = 2.45
+    int32 ncandcut = 1
+    bool doIsolated = true
+  }
+  module hltL1IsoEJetSingleEEt5TrackIsolFilter = HLTElectronTrackIsolFilterRegional {
+    InputTag candTag = hltL1IsoEJetSingleEEt5EoverpFilter
+    InputTag isoTag = hltL1IsoElectronTrackIsol
+    InputTag nonIsoTag = hltPhotonNonIsoTrackIsol
+    double pttrackisolcut = 0.06
+    int32 ncandcut = 1
+    bool doIsolated = true
+  }
+  module hltej3jet30 = HLT1CaloJet {
+    InputTag inputTag = hltMCJetCorJetIcone5
+    double MinPt = 30.0
+    double MaxEta = 5.0
+    int32 MinN = 3
+  }
+  module hltMuNoIsoJets30Level1Seed = HLTLevel1GTSeed {
+    bool L1TechTriggerSeeding = false
+    string L1SeedsLogicalExpression = "L1_Mu3_TripleJet15"
+    InputTag L1GtReadoutRecordTag = hltGtDigis
+    InputTag L1GtObjectMapTag = hltL1GtObjectMap
+    InputTag L1CollectionsTag = hltL1extraParticles
+    InputTag L1MuonCollectionTag = hltL1extraParticles
+  }
+  module hltMuNoIsoJetsMinPt4L1Filtered = HLTMuonL1Filter {
+    InputTag CandTag = hltMuNoIsoJets30Level1Seed
+    double MaxEta = 2.5
+    double MinPt = 5.0
+    int32 MinQuality = -1
+    int32 MinN = 1
+  }
+  module hltMuNoIsoJetsMinPt4L2PreFiltered = HLTMuonL2PreFilter {
+    InputTag BeamSpotTag = hltOfflineBeamSpot
+    InputTag CandTag = hltL2MuonCandidates
+    InputTag SeedTag = hltL2MuonSeeds
+    InputTag PreviousCandTag = hltMuNoIsoJetsMinPt4L1Filtered
+    int32 MinN = 1
+    double MaxEta = 2.5
+    int32 MinNhits = 0
+    double MaxDr = 9999.0
+    double MaxDz = 9999.0
+    double MinPt = 5.0
+    double NSigmaPt = 3.9
+  }
+  module hltMuNoIsoJetsMinPtL3PreFiltered = HLTMuonL3PreFilter {
+    InputTag BeamSpotTag = hltOfflineBeamSpot
+    InputTag CandTag = hltL3MuonCandidates
+    InputTag LinksTag = hltL3Muons
+    InputTag PreviousCandTag = hltMuNoIsoJetsMinPt4L2PreFiltered
+    int32 MinN = 1
+    double MaxEta = 2.5
+    int32 MinNhits = 0
+    double MaxDr = 2.0
+    double MaxDz = 9999.0
+    double MinPt = 5.0
+    double NSigmaPt = 0.0
+  }
+  module hltMuNoIsoHLTJets3jet30 = HLT1CaloJet {
+    InputTag inputTag = hltMCJetCorJetIcone5
+    double MinPt = 30.0
+    double MaxEta = 5.0
+    int32 MinN = 3
+  }
+  module hltPrescaleMuLevel1Open = HLTPrescaler {
+    bool makeFilterObject = true
+    uint32 prescaleFactor = 1
+    uint32 eventOffset = 0
+  }
+  module hltMuLevel1PathLevel1OpenSeed = HLTLevel1GTSeed {
+    bool L1TechTriggerSeeding = false
+    string L1SeedsLogicalExpression = "L1_SingleMuOpen OR L1_SingleMu3 OR L1_SingleMu5"
+    InputTag L1GtReadoutRecordTag = hltGtDigis
+    InputTag L1GtObjectMapTag = hltL1GtObjectMap
+    InputTag L1CollectionsTag = hltL1extraParticles
+    InputTag L1MuonCollectionTag = hltL1extraParticles
+  }
+  module hltMuLevel1PathL1OpenFiltered = HLTMuonL1Filter {
+    InputTag CandTag = hltMuLevel1PathLevel1OpenSeed
+    double MaxEta = 2.5
+    double MinPt = 0.0
+    int32 MinQuality = -1
+    int32 MinN = 1
+  }
+  module hltPrescaleSingleMuNoIso9 = HLTPrescaler {
+    bool makeFilterObject = true
+    uint32 prescaleFactor = 1
+    uint32 eventOffset = 0
+  }
+  module hltSingleMuNoIsoL2PreFiltered9 = HLTMuonL2PreFilter {
+    InputTag BeamSpotTag = hltOfflineBeamSpot
+    InputTag CandTag = hltL2MuonCandidates
+    InputTag SeedTag = hltL2MuonSeeds
+    InputTag PreviousCandTag = hltSingleMuNoIsoL1Filtered
+    int32 MinN = 1
+    double MaxEta = 2.5
+    int32 MinNhits = 0
+    double MaxDr = 9999.0
+    double MaxDz = 9999.0
+    double MinPt = 9.0
+    double NSigmaPt = 3.9
+  }
+  module hltSingleMuNoIsoL3PreFiltered9 = HLTMuonL3PreFilter {
+    InputTag BeamSpotTag = hltOfflineBeamSpot
+    InputTag CandTag = hltL3MuonCandidates
+    InputTag LinksTag = hltL3Muons
+    InputTag PreviousCandTag = hltSingleMuNoIsoL2PreFiltered9
+    int32 MinN = 1
+    double MaxEta = 2.5
+    int32 MinNhits = 0
+    double MaxDr = 2.0
+    double MaxDz = 9999.0
+    double MinPt = 9.0
+    double NSigmaPt = 2.2
+  }
+  module hltPrescaleSingleMuNoIso11 = HLTPrescaler {
+    bool makeFilterObject = true
+    uint32 prescaleFactor = 1
+    uint32 eventOffset = 0
+  }
+  module hltSingleMuNoIsoL2PreFiltered11 = HLTMuonL2PreFilter {
+    InputTag BeamSpotTag = hltOfflineBeamSpot
+    InputTag CandTag = hltL2MuonCandidates
+    InputTag SeedTag = hltL2MuonSeeds
+    InputTag PreviousCandTag = hltSingleMuNoIsoL1Filtered
+    int32 MinN = 1
+    double MaxEta = 2.5
+    int32 MinNhits = 0
+    double MaxDr = 9999.0
+    double MaxDz = 9999.0
+    double MinPt = 11.0
+    double NSigmaPt = 3.9
+  }
+  module hltSingleMuNoIsoL3PreFiltered11 = HLTMuonL3PreFilter {
+    InputTag BeamSpotTag = hltOfflineBeamSpot
+    InputTag CandTag = hltL3MuonCandidates
+    InputTag LinksTag = hltL3Muons
+    InputTag PreviousCandTag = hltSingleMuNoIsoL2PreFiltered11
+    int32 MinN = 1
+    double MaxEta = 2.5
+    int32 MinNhits = 0
+    double MaxDr = 2.0
+    double MaxDz = 9999.0
+    double MinPt = 11.0
+    double NSigmaPt = 2.2
+  }
+  module hltPrescaleSingleMuNoIso13 = HLTPrescaler {
+    bool makeFilterObject = true
+    uint32 prescaleFactor = 1
+    uint32 eventOffset = 0
+  }
+  module hltSingleMuNoIsoLevel1Seed10 = HLTLevel1GTSeed {
+    bool L1TechTriggerSeeding = false
+    string L1SeedsLogicalExpression = "L1_SingleMu10"
+    InputTag L1GtReadoutRecordTag = hltGtDigis
+    InputTag L1GtObjectMapTag = hltL1GtObjectMap
+    InputTag L1CollectionsTag = hltL1extraParticles
+    InputTag L1MuonCollectionTag = hltL1extraParticles
+  }
+  module hltSingleMuNoIsoL1Filtered10 = HLTMuonL1Filter {
+    InputTag CandTag = hltSingleMuNoIsoLevel1Seed10
+    double MaxEta = 2.5
+    double MinPt = 0.0
+    int32 MinQuality = -1
+    int32 MinN = 1
+  }
+  module hltSingleMuNoIsoL2PreFiltered13 = HLTMuonL2PreFilter {
+    InputTag BeamSpotTag = hltOfflineBeamSpot
+    InputTag CandTag = hltL2MuonCandidates
+    InputTag SeedTag = hltL2MuonSeeds
+    InputTag PreviousCandTag = hltSingleMuNoIsoL1Filtered
+    int32 MinN = 1
+    double MaxEta = 2.5
+    int32 MinNhits = 0
+    double MaxDr = 9999.0
+    double MaxDz = 9999.0
+    double MinPt = 13.0
+    double NSigmaPt = 3.9
+  }
+  module hltSingleMuNoIsoL3PreFiltered13 = HLTMuonL3PreFilter {
+    InputTag BeamSpotTag = hltOfflineBeamSpot
+    InputTag CandTag = hltL3MuonCandidates
+    InputTag LinksTag = hltL3Muons
+    InputTag PreviousCandTag = hltSingleMuNoIsoL2PreFiltered13
+    int32 MinN = 1
+    double MaxEta = 2.5
+    int32 MinNhits = 0
+    double MaxDr = 2.0
+    double MaxDz = 9999.0
+    double MinPt = 13.0
+    double NSigmaPt = 2.2
+  }
+  module hltPrescaleSingleMuNoIso15 = HLTPrescaler {
+    bool makeFilterObject = true
+    uint32 prescaleFactor = 1
+    uint32 eventOffset = 0
+  }
+  module hltSingleMuNoIsoL2PreFiltered15 = HLTMuonL2PreFilter {
+    InputTag BeamSpotTag = hltOfflineBeamSpot
+    InputTag CandTag = hltL2MuonCandidates
+    InputTag SeedTag = hltL2MuonSeeds
+    InputTag PreviousCandTag = hltSingleMuNoIsoL1Filtered
+    int32 MinN = 1
+    double MaxEta = 2.5
+    int32 MinNhits = 0
+    double MaxDr = 9999.0
+    double MaxDz = 9999.0
+    double MinPt = 15.0
+    double NSigmaPt = 3.9
+  }
+  module hltSingleMuNoIsoL3PreFiltered15 = HLTMuonL3PreFilter {
+    InputTag BeamSpotTag = hltOfflineBeamSpot
+    InputTag CandTag = hltL3MuonCandidates
+    InputTag LinksTag = hltL3Muons
+    InputTag PreviousCandTag = hltSingleMuNoIsoL2PreFiltered15
+    int32 MinN = 1
+    double MaxEta = 2.5
+    int32 MinNhits = 0
+    double MaxDr = 2.0
+    double MaxDz = 9999.0
+    double MinPt = 15.0
+    double NSigmaPt = 2.2
+  }
+  module hltPrescaleSingleMuIso9 = HLTPrescaler {
+    bool makeFilterObject = true
+    uint32 prescaleFactor = 1
+    uint32 eventOffset = 0
+  }
+  module hltSingleMuIsoL2PreFiltered9 = HLTMuonL2PreFilter {
+    InputTag BeamSpotTag = hltOfflineBeamSpot
+    InputTag CandTag = hltL2MuonCandidates
+    InputTag SeedTag = hltL2MuonSeeds
+    InputTag PreviousCandTag = hltSingleMuIsoL1Filtered
+    int32 MinN = 1
+    double MaxEta = 2.5
+    int32 MinNhits = 0
+    double MaxDr = 9999.0
+    double MaxDz = 9999.0
+    double MinPt = 9.0
+    double NSigmaPt = 3.9
+  }
+  module hltSingleMuIsoL2IsoFiltered9 = HLTMuonIsoFilter {
+    InputTag CandTag = hltSingleMuIsoL2PreFiltered9
+    InputTag IsoTag = hltL2MuonIsolations
+    int32 MinN = 1
+  }
+  module hltSingleMuIsoL3PreFiltered9 = HLTMuonL3PreFilter {
+    InputTag BeamSpotTag = hltOfflineBeamSpot
+    InputTag CandTag = hltL3MuonCandidates
+    InputTag LinksTag = hltL3Muons
+    InputTag PreviousCandTag = hltSingleMuIsoL2IsoFiltered9
+    int32 MinN = 1
+    double MaxEta = 2.5
+    int32 MinNhits = 0
+    double MaxDr = 2.0
+    double MaxDz = 9999.0
+    double MinPt = 9.0
+    double NSigmaPt = 2.2
+  }
+  module hltSingleMuIsoL3IsoFiltered9 = HLTMuonIsoFilter {
+    InputTag CandTag = hltSingleMuIsoL3PreFiltered9
+    InputTag IsoTag = hltL3MuonIsolations
+    int32 MinN = 1
+  }
+  module hltPrescaleSingleMuIso13 = HLTPrescaler {
+    bool makeFilterObject = true
+    uint32 prescaleFactor = 1
+    uint32 eventOffset = 0
+  }
+  module hltSingleMuIsoLevel1Seed10 = HLTLevel1GTSeed {
+    bool L1TechTriggerSeeding = false
+    string L1SeedsLogicalExpression = "L1_SingleMu10"
+    InputTag L1GtReadoutRecordTag = hltGtDigis
+    InputTag L1GtObjectMapTag = hltL1GtObjectMap
+    InputTag L1CollectionsTag = hltL1extraParticles
+    InputTag L1MuonCollectionTag = hltL1extraParticles
+  }
+  module hltSingleMuIsoL1Filtered10 = HLTMuonL1Filter {
+    InputTag CandTag = hltSingleMuIsoLevel1Seed10
+    double MaxEta = 2.5
+    double MinPt = 0.0
+    int32 MinQuality = -1
+    int32 MinN = 1
+  }
+  module hltSingleMuIsoL2PreFiltered13 = HLTMuonL2PreFilter {
+    InputTag BeamSpotTag = hltOfflineBeamSpot
+    InputTag CandTag = hltL2MuonCandidates
+    InputTag SeedTag = hltL2MuonSeeds
+    InputTag PreviousCandTag = hltSingleMuIsoL1Filtered10
+    int32 MinN = 1
+    double MaxEta = 2.5
+    int32 MinNhits = 0
+    double MaxDr = 9999.0
+    double MaxDz = 9999.0
+    double MinPt = 13.0
+    double NSigmaPt = 3.9
+  }
+  module hltSingleMuIsoL2IsoFiltered13 = HLTMuonIsoFilter {
+    InputTag CandTag = hltSingleMuIsoL2PreFiltered13
+    InputTag IsoTag = hltL2MuonIsolations
+    int32 MinN = 1
+  }
+  module hltSingleMuIsoL3PreFiltered13 = HLTMuonL3PreFilter {
+    InputTag BeamSpotTag = hltOfflineBeamSpot
+    InputTag CandTag = hltL3MuonCandidates
+    InputTag LinksTag = hltL3Muons
+    InputTag PreviousCandTag = hltSingleMuIsoL2IsoFiltered13
+    int32 MinN = 1
+    double MaxEta = 2.5
+    int32 MinNhits = 0
+    double MaxDr = 2.0
+    double MaxDz = 9999.0
+    double MinPt = 13.0
+    double NSigmaPt = 2.2
+  }
+  module hltSingleMuIsoL3IsoFiltered13 = HLTMuonIsoFilter {
+    InputTag CandTag = hltSingleMuIsoL3PreFiltered13
+    InputTag IsoTag = hltL3MuonIsolations
+    int32 MinN = 1
+  }
+  module hltPrescaleSingleMuIso15 = HLTPrescaler {
+    bool makeFilterObject = true
+    uint32 prescaleFactor = 1
+    uint32 eventOffset = 0
+  }
+  module hltSingleMuIsoL2PreFiltered15 = HLTMuonL2PreFilter {
+    InputTag BeamSpotTag = hltOfflineBeamSpot
+    InputTag CandTag = hltL2MuonCandidates
+    InputTag SeedTag = hltL2MuonSeeds
+    InputTag PreviousCandTag = hltSingleMuIsoL1Filtered10
+    int32 MinN = 1
+    double MaxEta = 2.5
+    int32 MinNhits = 0
+    double MaxDr = 9999.0
+    double MaxDz = 9999.0
+    double MinPt = 15.0
+    double NSigmaPt = 3.9
+  }
+  module hltSingleMuIsoL2IsoFiltered15 = HLTMuonIsoFilter {
+    InputTag CandTag = hltSingleMuIsoL2PreFiltered15
+    InputTag IsoTag = hltL2MuonIsolations
+    int32 MinN = 1
+  }
+  module hltSingleMuIsoL3PreFiltered15 = HLTMuonL3PreFilter {
+    InputTag BeamSpotTag = hltOfflineBeamSpot
+    InputTag CandTag = hltL3MuonCandidates
+    InputTag LinksTag = hltL3Muons
+    InputTag PreviousCandTag = hltSingleMuIsoL2IsoFiltered15
+    int32 MinN = 1
+    double MaxEta = 2.5
+    int32 MinNhits = 0
+    double MaxDr = 2.0
+    double MaxDz = 9999.0
+    double MinPt = 15.0
+    double NSigmaPt = 2.2
+  }
+  module hltSingleMuIsoL3IsoFiltered15 = HLTMuonIsoFilter {
+    InputTag CandTag = hltSingleMuIsoL3PreFiltered15
+    InputTag IsoTag = hltL3MuonIsolations
     int32 MinN = 1
   }
   module hltTriggerSummaryRAWprescaler = HLTPrescaler {
