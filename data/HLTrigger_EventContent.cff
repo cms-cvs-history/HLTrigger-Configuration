@@ -11,7 +11,7 @@
 //
 // Default (non-debug) products
 //
-block HLTDefault
+block HLTDefault = {
     untracked vstring outputCommands = {
 # HLT trigger "bits" - hardwired EDProduct!
 	 "keep edmTriggerResults_*_*_*"
