@@ -32,19 +32,19 @@ block HLTDefault = {
 //
 # Full Event content
 block HLTriggerFEVT = {
-    untracked vstring outputCommands = { }
+    untracked vstring outputCommands = { "drop *_hlt*_*_*" }
 }
 replace HLTriggerFEVT.outputCommands += HLTDefault.outputCommands
 
 # RECO content
 block HLTriggerRECO = {
-    untracked vstring outputCommands = { }
+    untracked vstring outputCommands = { "drop *_hlt*_*_*" }
 }
 replace HLTriggerRECO.outputCommands += HLTDefault.outputCommands
 
 # AOD content
 block HLTriggerAOD = {
-    untracked vstring outputCommands = { }
+    untracked vstring outputCommands = { "drop *_hlt*_*_*" }
 }
 replace HLTriggerAOD.outputCommands += HLTDefault.outputCommands
 
@@ -104,19 +104,19 @@ replace HLTDebug.outputCommands += HLTDefault.outputCommands
 //
 # Full Event content
 block HLTDebugFEVT = {
-    untracked vstring outputCommands = { }
+    untracked vstring outputCommands = { "drop *_hlt*_*_*" }
 }
 replace HLTDebugFEVT.outputCommands += HLTDebug.outputCommands
 
 # RECO content
 block HLTDebugRECO = {
-    untracked vstring outputCommands = { }
+    untracked vstring outputCommands = { "drop *_hlt*_*_*" }
 }
 replace HLTDebugRECO.outputCommands += HLTDebug.outputCommands
 
 # AOD content
 block HLTDebugAOD = {
-    untracked vstring outputCommands = { }
+    untracked vstring outputCommands = { "drop *_hlt*_*_*" }
 }
 replace HLTDebugAOD.outputCommands += HLTDebug.outputCommands
 
