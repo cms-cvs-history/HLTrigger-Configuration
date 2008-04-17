@@ -4,7 +4,7 @@
 // This cff file exports the following six EventContent blocks:
 //   HLTriggerFEVT  HLTriggerRECO  HLTriggerAOD (without DEBUG products)
 //   HLTDebugFEVT   HLTDebugRECO   HLTDebugAOD  (with    DEBUG products)
-// All else is internal and should not be used externally!
+// All else is internal and should not be used directly by non-HLT users.
 //
 
 
