@@ -18,6 +18,7 @@ block HLTDefault = {
 # HLT book-keeping product (non-debug version)
 	,"keep triggerTriggerEvent_*_*_*"
 # L1 products
+	,"keep *_hltGtDigis_*_*"
 	,"keep *_hltL1GtObjectMap_*_*"
 	,"keep *_hltL1extraParticles_*_*"
 # beamspot
@@ -59,7 +60,6 @@ block HLTDebug = {
 	,"keep edmEventTime_*_*_*"
 	,"keep HLTPerformanceInfo_*_*_*"
 # L1
-	,"keep *_hltGtDigis_*_*"
 	,"keep *_hltGctDigis_*_*"
 # DT
 	,"keep *_hltDt1DRecHits_*_*"
