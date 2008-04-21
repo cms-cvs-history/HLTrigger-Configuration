@@ -11768,6 +11768,3 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   module hltBoolFinal = HLTBool {
     bool result = false
   }
-
-
-
