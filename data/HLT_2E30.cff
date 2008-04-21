@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_0_0/HLT/V30  (CMSSW_2_0_0)
+// /dev/CMSSW_2_0_0/HLT/V31  (CMSSW_2_0_0)
 
 // Begin replace statements specific to the HLT
 include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
@@ -6846,7 +6846,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     bool L1TechTriggerSeeding = false
     string L1SeedsLogicalExpression = "L1_SingleMuBeamHalo"
     InputTag L1GtReadoutRecordTag = hltGtDigis
-    InputTag L1GtObjectMapTag = hltG1GtObjectMap
+    InputTag L1GtObjectMapTag = hltL1GtObjectMap
     InputTag L1CollectionsTag = hltL1extraParticles
     InputTag L1MuonCollectionTag = hltL1extraParticles
   }
@@ -11768,6 +11768,3 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   module hltBoolFinal = HLTBool {
     bool result = false
   }
-
-
-
