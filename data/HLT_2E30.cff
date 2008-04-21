@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_0_0/HLT/V31  (CMSSW_2_0_0)
+// /dev/CMSSW_2_0_0/HLT/V32  (CMSSW_2_0_0)
 
 // Begin replace statements specific to the HLT
 include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
@@ -6920,7 +6920,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltLevel1seedHLTTrackerCosmics = HLTLevel1GTSeed {
     bool L1TechTriggerSeeding = true
-    string L1SeedsLogicalExpression = "0"
+    string L1SeedsLogicalExpression = "24 OR 25 OR 26 OR 27 OR 28"
     InputTag L1GtReadoutRecordTag = hltGtDigis
     InputTag L1GtObjectMapTag = hltL1GtObjectMap
     InputTag L1CollectionsTag = hltL1extraParticles
