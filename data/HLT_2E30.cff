@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_0_0/HLT/V32  (CMSSW_2_0_0)
+// /dev/CMSSW_2_0_0/HLT/V33  (CMSSW_2_0_0)
 
 // Begin replace statements specific to the HLT
 include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
@@ -2487,7 +2487,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     string preshRecHitProducer = "hltEcalPreshowerRecHit"
     string preshRecHitCollection = "EcalRecHitsES"
     string endcapSClusterCollection = ""
-    string endcapSClusterProducer = "hltCorrectedIslandEndcapSuperClustersL1Isolated"
+    string endcapSClusterProducer = "hltCorrectedIslandEndcapSuperClustersL1NonIsolated"
     string preshClusterCollectionX = "preshowerXClusters"
     string preshClusterCollectionY = "preshowerYClusters"
     int32 preshNclust = 4
@@ -11768,3 +11768,6 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   module hltBoolFinal = HLTBool {
     bool result = false
   }
+
+
+
