@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_0_0/HLT/V33  (CMSSW_2_0_0)
+// /dev/CMSSW_2_0_0/HLT/V35  (CMSSW_2_0_3)
 
 // Begin replace statements specific to the HLT
 include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
@@ -8625,7 +8625,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double seleMinvMaxPi0 = 0.16
     double seleMinvMinPi0 = 0.09
     double seleXtalMinEnergy = 0.0
-    int32 seleNRHMax = 75
+    int32 seleNRHMax = 1000
   }
   module hltPrescaleSingleMuLevel2 = HLTPrescaler {
     bool makeFilterObject = true
