@@ -4,9 +4,15 @@
 // HLT config files for HLT paths.
 //
 
+// new PrescaleService/HLTPrescaler handling
+// if PrescaleService not present, then all HLT prescales are 1
+// thus simply remove the PrescaleService
+
+/*
 service = PrescaleService {
 # InitialConfig: one string per:
 # "LS# path module prescale [path module prescale] ..."
 	vstring InitialConfig = { "0 * triggerSummaryRAWprescaler 1 * hltTriggerSummaryRAWprescaler 1 * * 1"}
 //	vstring InitialConfig = { "0 * * 4294967295" } # set all to 2**32-1
 }
+*/

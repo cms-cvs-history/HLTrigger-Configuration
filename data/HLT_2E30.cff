@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_0_0/HLT/V35  (CMSSW_2_0_3)
+// /dev/CMSSW_2_1_0_pre3/HLT/V33  (CMSSW_2_1_0_pre3)
 
 // Begin replace statements specific to the HLT
 include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
@@ -161,8 +161,8 @@ path HLTB2JetMu = { HLTBeginSequence & hltPrescalerBSoftmuon2jet & hltBSoftmuonN
 path HLTB3JetMu = { HLTBeginSequence & hltPrescalerBSoftmuon3jet & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon3jetL2filter & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filter & HLTEndSequence }
 path HLTB4JetMu = { HLTBeginSequence & hltPrescalerBSoftmuon4jet & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon4jetL2filter & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filter & HLTEndSequence }
 path HLTBHTMu = { HLTBeginSequence & hltPrescalerBSoftmuonHT & hltBSoftmuonHTL1seeds & HLTBCommonL2recoSequence & hltBSoftmuonHTL2filter & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filter & HLTEndSequence }
-path HLTBJPsiMuMu = { HLTBeginSequence & hltJpsitoMumuL1Seed & hltJpsitoMumuL1Filtered & HLTL2muonrecoSequence & hltJpsitoMumuL2Filtered & HLTL3displacedMumurecoSequence & hltDisplacedJpsitoMumuFilter & HLTEndSequence }
-path HLTTauTo3Mu = { HLTBeginSequence & hltMuMukL1Seed & hltMuMukL1Filtered & HLTL2muonrecoSequence & hltMuMukL2Filtered & HLTL3displacedMumurecoSequence & hltDisplacedMuMukFilter & HLTDoLocalPixelSequence & HLTDoLocalStripSequence & HLTRecopixelvertexingSequence & hltMumukPixelSeedFromL2Candidate & hltCkfTrackCandidatesMumuk & hltCtfWithMaterialTracksMumuk & hltMumukAllConeTracks & hltmmkFilter & HLTEndSequence }
+path HLTBJPsiMuMu = { HLTBeginSequence & hltJpsitoMumuL1Seed & hltJpsitoMumuL1Filtered & HLTL2muonrecoSequence & HLTL3displacedMumurecoSequence & hltDisplacedJpsitoMumuFilter & HLTEndSequence }
+path HLTTauTo3Mu = { HLTBeginSequence & hltMuMukL1Seed & hltMuMukL1Filtered & HLTL2muonrecoSequence & HLTL3displacedMumurecoSequence & hltDisplacedMuMukFilter & HLTDoLocalPixelSequence & HLTDoLocalStripSequence & HLTRecopixelvertexingSequence & hltMumukPixelSeedFromL2Candidate & hltCkfTrackCandidatesMumuk & hltCtfWithMaterialTracksMumuk & hltMumukAllConeTracks & hltmmkFilter & HLTEndSequence }
 path HLTXElectronBJet = { HLTBeginSequence & hltElectronBPrescale & hltElectronBL1Seed & HLTDoRegionalEgammaEcalSequence & HLTL1IsolatedEcalClustersSequence & HLTL1NonIsolatedEcalClustersSequence & hltL1IsoRecoEcalCandidate & hltL1NonIsoRecoEcalCandidate & hltElBElectronL1MatchFilter & hltElBElectronEtFilter & HLTDoLocalHcalWithoutHOSequence & hltL1IsolatedElectronHcalIsol & hltL1NonIsolatedElectronHcalIsol & hltElBElectronHcalIsolFilter & HLTBCommonL2recoSequence & HLTDoLocalPixelSequence & HLTDoLocalStripSequence & HLTPixelMatchElectronL1NonIsoSequence & HLTPixelMatchElectronL1IsoSequence & hltElBElectronPixelMatchFilter & HLTBLifetimeL25recoSequence & hltBLifetimeL25filter & HLTBLifetimeL3recoSequence & hltBLifetimeL3filter & HLTPixelMatchElectronL1IsoTrackingSequence & HLTPixelMatchElectronL1NonIsoTrackingSequence & hltElBElectronEoverpFilter & HLTL1IsoElectronsRegionalRecoTrackerSequence & HLTL1NonIsoElectronsRegionalRecoTrackerSequence & hltL1IsoElectronTrackIsol & hltL1NonIsoElectronTrackIsol & hltElBElectronTrackIsolFilter & HLTEndSequence }
 path HLTXMuonBJet = { HLTBeginSequence & hltMuBPrescale & hltMuBLevel1Seed & hltMuBLifetimeL1Filtered & HLTL2muonrecoSequence & hltMuBLifetimeIsoL2PreFiltered & HLTL2muonisorecoSequence & hltMuBLifetimeIsoL2IsoFiltered & HLTBCommonL2recoSequence & HLTBLifetimeL25recoSequence & hltBLifetimeL25filter & HLTL3muonrecoSequence & hltMuBLifetimeIsoL3PreFiltered & HLTL3muonisorecoSequence & hltMuBLifetimeIsoL3IsoFiltered & HLTBLifetimeL3recoSequence & hltBLifetimeL3filter & HLTEndSequence }
 path HLTXMuonBJetSoftMuon = { HLTBeginSequence & hltMuBsoftMuPrescale & hltMuBLevel1Seed & hltMuBSoftL1Filtered & HLTL2muonrecoSequence & hltMuBSoftIsoL2PreFiltered & HLTL2muonisorecoSequence & hltMuBSoftIsoL2IsoFiltered & HLTBCommonL2recoSequence & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTL3muonrecoSequence & hltMuBSoftIsoL3PreFiltered & HLTL3muonisorecoSequence & hltMuBSoftIsoL3IsoFiltered & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filter & HLTEndSequence }
@@ -201,7 +201,7 @@ path AlCaHcalPhiSym = { HLTBeginSequence & hltL1sHcalPhiSym & hltHcalPhiSymPresc
 path AlCaEcalPhiSym = { HLTBeginSequence & hltL1sEcalPhiSym & hltEcalPhiSymPresc & hltEcalDigis & hltEcalWeightUncalibRecHit & hltEcalRecHit & hltAlCaPhiSymStream & HLTEndSequence }
 path AlCaEcalPi0 = { HLTBeginSequence & hltPrePi0Ecal & hltL1sEcalPi0 & HLTDoRegionalEgammaEcalSequence & hltAlCaPi0RegRecHits & HLTEndSequence }
 path HLT1MuonLevel2 = { HLTL1muonrecoSequence & hltPrescaleSingleMuLevel2 & hltSingleMuNoIsoLevel1Seed & hltSingleMuNoIsoL1Filtered & HLTL2muonrecoSequence & hltSingleMuNoIsoL2PreFiltered & HLTEndSequence }
-path HLTBJPsiMuMuRelaxed = { HLTBeginSequence & hltJpsitoMumuL1SeedRelaxed & hltJpsitoMumuL1FilteredRelaxed & HLTL2muonrecoSequence & hltJpsitoMumuL2FilteredRelaxed & HLTL3displacedMumurecoSequence & hltDisplacedJpsitoMumuFilterRelaxed & HLTEndSequence }
+path HLTBJPsiMuMuRelaxed = { HLTBeginSequence & hltJpsitoMumuL1SeedRelaxed & hltJpsitoMumuL1FilteredRelaxed & HLTL2muonrecoSequence & HLTL3displacedMumurecoSequence & hltDisplacedJpsitoMumuFilterRelaxed & HLTEndSequence }
 path HLT2PhotonEt10_L1R_NI = { HLTDoublePhoton10L1NonIsolatedHLTNonIsoSequence & HLTEndSequence }
 path HLT2PhotonEt8_L1R_NI = { HLTDoublePhoton8L1NonIsolatedHLTNonIsoSequence & HLTEndSequence }
 path HLT1ElectronLWEt12_L1R_NI = { HLTSingleElectronLWEt12L1NonIsoHLTNonIsoSequence & HLTEndSequence }
@@ -298,23 +298,6 @@ es_source MCJetCorrectorIcone5 = MCJetCorrectionService {
   string tagName = "CMSSW_152_iterativeCone5"
   string label = "MCJetCorrectorIcone5"
 }
-es_source MCJetCorrectorScone5 = MCJetCorrectionService {
-  string tagName = "CMSSW_152_sisCone5"
-  string label = "MCJetCorrectorScone5"
-}
-es_source MCJetCorrectorScone7 = MCJetCorrectionService {
-  string tagName = "CMSSW_152_sisCone7"
-  string label = "MCJetCorrectorScone7"
-}
-es_source MCJetCorrectorktjet4 = MCJetCorrectionService {
-  string tagName = "CMSSW_152_fastjet4"
-  string label = "MCJetCorrectorktjet4"
-}
-es_source MCJetCorrectorktjet6 = MCJetCorrectionService {
-  string tagName = "CMSSW_152_fastjet6"
-  string label = "MCJetCorrectorktjet6"
-}
-es_module CaloTopologyBuilder = CaloTopologyBuilder {}
 es_module CaloTowerConstituentsMapBuilder = CaloTowerConstituentsMapBuilder {
   untracked string MapFile = "Geometry/CaloTopology/data/CaloTowerEEGeometric.map.gz"
 }
@@ -367,14 +350,6 @@ es_module FittingSmootherRK = KFFittingSmootherESProducer {
   int32 MinNumberOfHits = 5
   bool RejectTracks = true
 }
-es_module FittingSmootherWithOutlierRejection = KFFittingSmootherESProducer {
-  string ComponentName = "FittingSmootherWithOutlierRejection"
-  string Fitter = "RKFitter"
-  string Smoother = "RKSmoother"
-  double EstimateCut = 20.0
-  int32 MinNumberOfHits = 3
-  bool RejectTracks = true
-}
 es_module GlobalTrackingGeometryESProducer = GlobalTrackingGeometryESProducer {}
 es_module GroupedCkfTrajectoryBuilder = GroupedCkfTrajectoryBuilderESProducer {
   string ComponentName = "GroupedCkfTrajectoryBuilder"
@@ -404,21 +379,6 @@ es_module KFFitterForRefitInsideOut = KFTrajectoryFitterESProducer {
   string Estimator = "Chi2EstimatorForRefit"
   int32 minHits = 3
 }
-es_module KFFitterForRefitOutsideIn = KFTrajectoryFitterESProducer {
-  string ComponentName = "KFFitterForRefitOutsideIn"
-  string Propagator = "SmartPropagatorAnyOpposite"
-  string Updator = "KFUpdator"
-  string Estimator = "Chi2EstimatorForRefit"
-  int32 minHits = 3
-}
-es_module KFFittingSmoother = KFFittingSmootherESProducer {
-  string ComponentName = "KFFittingSmoother"
-  string Fitter = "KFFitter"
-  string Smoother = "KFSmoother"
-  double EstimateCut = -1.0
-  int32 MinNumberOfHits = 5
-  bool RejectTracks = true
-}
 es_module KFSmootherForMuonTrackLoader = KFTrajectorySmootherESProducer {
   string ComponentName = "KFSmootherForMuonTrackLoader"
   string Propagator = "SmartPropagatorAnyOpposite"
@@ -432,29 +392,6 @@ es_module KFSmootherForRefitInsideOut = KFTrajectorySmootherESProducer {
   string Propagator = "SmartPropagatorAnyOpposite"
   string Updator = "KFUpdator"
   string Estimator = "Chi2EstimatorForRefit"
-  double errorRescaling = 100.0
-  int32 minHits = 3
-}
-es_module KFSmootherForRefitOutsideIn = KFTrajectorySmootherESProducer {
-  string ComponentName = "KFSmootherForRefitOutsideIn"
-  string Propagator = "SmartPropagator"
-  string Updator = "KFUpdator"
-  string Estimator = "Chi2EstimatorForRefit"
-  double errorRescaling = 100.0
-  int32 minHits = 3
-}
-es_module KFTrajectoryFitter = KFTrajectoryFitterESProducer {
-  string ComponentName = "KFFitter"
-  string Propagator = "PropagatorWithMaterial"
-  string Updator = "KFUpdator"
-  string Estimator = "Chi2"
-  int32 minHits = 3
-}
-es_module KFTrajectorySmoother = KFTrajectorySmootherESProducer {
-  string ComponentName = "KFSmoother"
-  string Propagator = "PropagatorWithMaterial"
-  string Updator = "KFUpdator"
-  string Estimator = "Chi2"
   double errorRescaling = 100.0
   int32 minHits = 3
 }
@@ -532,11 +469,6 @@ es_module PixelCPEGenericESProducer = PixelCPEGenericESProducer {
   string PixelErrorParametrization = "NOTcmsim"
   bool Alpha2Order = true
 }
-es_module PixelCPEInitialESProducer = PixelCPEInitialESProducer {
-  string ComponentName = "PixelCPEInitial"
-  string PixelErrorParametrization = "NOTcmsim"
-  bool Alpha2Order = true
-}
 es_module PixelCPEParmErrorESProducer = PixelCPEParmErrorESProducer {
   string ComponentName = "PixelCPEfromTrackAngle"
   string PixelErrorParametrization = "NOTcmsim"
@@ -544,35 +476,12 @@ es_module PixelCPEParmErrorESProducer = PixelCPEParmErrorESProducer {
   bool UseNewParametrization = true
   bool UseSigma = true
 }
-es_module RKFittingSmoother = KFFittingSmootherESProducer {
-  string ComponentName = "RKFittingSmoother"
-  string Fitter = "RKFitter"
-  string Smoother = "RKSmoother"
-  double EstimateCut = -1.0
-  int32 MinNumberOfHits = 5
-  bool RejectTracks = true
-}
 es_module RKTrackerPropagator = PropagatorWithMaterialESProducer {
   string ComponentName = "RKTrackerPropagator"
   string PropagationDirection = "alongMomentum"
   double Mass = 0.105
   double MaxDPhi = 1.6
   bool useRungeKutta = true
-}
-es_module RKTrajectoryFitter = KFTrajectoryFitterESProducer {
-  string ComponentName = "RKFitter"
-  string Propagator = "RungeKuttaTrackerPropagator"
-  string Updator = "KFUpdator"
-  string Estimator = "Chi2"
-  int32 minHits = 3
-}
-es_module RKTrajectorySmoother = KFTrajectorySmootherESProducer {
-  string ComponentName = "RKSmoother"
-  string Propagator = "RungeKuttaTrackerPropagator"
-  string Updator = "KFUpdator"
-  string Estimator = "Chi2"
-  double errorRescaling = 100.0
-  int32 minHits = 3
 }
 es_module RungeKuttaTrackerPropagator = PropagatorWithMaterialESProducer {
   string ComponentName = "RungeKuttaTrackerPropagator"
@@ -687,15 +596,6 @@ es_module SteppingHelixPropagatorOpposite = SteppingHelixPropagatorESProducer {
   bool sendLogWarning = false
   bool useTuningForL2Speed = false
 }
-es_module StripCPEESProducer = StripCPEESProducer {
-  string ComponentName = "SimpleStripCPE"
-}
-es_module TTRHBuilderAngleAndTemplate = TkTransientTrackingRecHitBuilderESProducer {
-  string ComponentName = "WithAngleAndTemplate"
-  string StripCPE = "StripCPEfromTrackAngle"
-  string PixelCPE = "PixelCPETemplateReco"
-  string Matcher = "StandardMatcher"
-}
 es_module TrackerRecoGeometryESProducer = TrackerRecoGeometryESProducer {
 }
 es_module TrajectoryBuilderForPixelMatchElectronsL1Iso = CkfTrajectoryBuilderESProducer {
@@ -785,9 +685,6 @@ es_module bJetRegionalTrajectoryFilter = TrajectoryFilterESProducer {
     string ComponentType = "CkfBaseTrajectoryFilter"
   }
 }
-es_module beamHaloNavigationSchoolESProducer = NavigationSchoolESProducer {
-  string ComponentName = "BeamHaloNavigationSchool"
-}
 es_module ckfBaseTrajectoryFilter = TrajectoryFilterESProducer {
   string ComponentName = "ckfBaseTrajectoryFilter"
   PSet filterPset = {
@@ -801,13 +698,6 @@ es_module ckfBaseTrajectoryFilter = TrajectoryFilterESProducer {
     double chargeSignificance = -1.0
     string ComponentType = "CkfBaseTrajectoryFilter"
   }
-}
-es_module compositeTrajectoryFilterESProducer = CompositeTrajectoryFilterESProducer {
-  string ComponentName = "compositeTrajectoryFilter"
-  vstring filterNames = {  }
-}
-es_module cosmicsNavigationSchoolESProducer = NavigationSchoolESProducer {
-  string ComponentName = "CosmicNavigationSchool"
 }
 es_module egammaHLTChi2MeasurementEstimatorESProducer = Chi2MeasurementEstimatorESProducer {
   string ComponentName = "egammaHLTChi2"
@@ -870,80 +760,6 @@ es_module hltCkfTrajectoryFilterMumuk = TrajectoryFilterESProducer {
     string ComponentType = "CkfBaseTrajectoryFilter"
   }
 }
-es_module impactParameterMVAComputer = GenericMVAJetTagESProducer {
-  bool useCategories = false
-  string calibrationRecord = "ImpactParameterMVA"
-}
-es_module jetBProbability = JetBProbabilityESProducer {
-  uint32 numberOfBTracks = 4
-  int32 trackIpSign = 1
-  int32 impactParamterType = 0
-  double deltaR = -1.0
-  double minimumProbability = 0.0050
-  double maximumDecayLength = 5.0
-  double maximumDistanceToJetAxis = 0.07
-  string trackQualityClass = "any"
-}
-es_module jetProbability = JetProbabilityESProducer {
-  int32 impactParamterType = 0
-  int32 trackIpSign = 1
-  double deltaR = 0.3
-  double minimumProbability = 0.0050
-  double maximumDecayLength = 5.0
-  double maximumDistanceToJetAxis = 0.07
-  string trackQualityClass = "any"
-}
-es_module mixedlayerpairs = MixedLayerPairsESProducer {
-  string ComponentName = "MixedLayerPairs"
-  vstring layerList = { "BPix1+BPix2", "BPix1+BPix3", "BPix2+BPix3", "BPix1+FPix1_pos", "BPix1+FPix1_neg", "BPix1+FPix2_pos", "BPix1+FPix2_neg", "BPix2+FPix1_pos", "BPix2+FPix1_neg", "BPix2+FPix2_pos", "BPix2+FPix2_neg", "FPix1_pos+FPix2_pos", "FPix1_neg+FPix2_neg", "FPix2_pos+TEC1_pos", "FPix2_pos+TEC2_pos", "TEC1_pos+TEC2_pos", "TEC2_pos+TEC3_pos", "FPix2_neg+TEC1_neg", "FPix2_neg+TEC2_neg", "TEC1_neg+TEC2_neg", "TEC2_neg+TEC3_neg" }
-  PSet BPix = {
-    string HitProducer = "hltSiPixelRecHits"
-    string TTRHBuilder = "TTRHBuilderWithoutAngle4MixedPairs"
-    untracked bool useErrorsFromParam = true
-    double hitErrorRPhi = 0.0027
-    double hitErrorRZ = 0.0060
-  }
-  PSet FPix = {
-    string HitProducer = "hltSiPixelRecHits"
-    string TTRHBuilder = "TTRHBuilderWithoutAngle4MixedPairs"
-    untracked bool useErrorsFromParam = true
-    double hitErrorRPhi = 0.0051
-    double hitErrorRZ = 0.0036
-  }
-  PSet TEC = {
-    InputTag matchedRecHits = siStripMatchedRecHits:matchedRecHit
-    string TTRHBuilder = "WithTrackAngle"
-    untracked bool useRingSlector = true
-    int32 minRing = 1
-    int32 maxRing = 1
-  }
-}
-es_module mixedlayertriplets = MixedLayerTripletsESProducer {
-  string ComponentName = "MixedLayerTriplets"
-  vstring layerList = { "BPix1+BPix2+BPix3", "BPix1+BPix2+FPix1_pos", "BPix1+BPix2+FPix1_neg", "BPix1+FPix1_pos+FPix2_pos", "BPix1+FPix1_neg+FPix2_neg", "BPix1+BPix2+TIB1", "BPix1+BPix3+TIB1", "BPix2+BPix3+TIB1" }
-  PSet BPix = {
-    string HitProducer = "hltSiPixelRecHits"
-    string TTRHBuilder = "TTRHBuilderWithoutAngle4MixedTriplets"
-    untracked bool useErrorsFromParam = true
-    double hitErrorRPhi = 0.0027
-    double hitErrorRZ = 0.0060
-  }
-  PSet FPix = {
-    string HitProducer = "hltSiPixelRecHits"
-    string TTRHBuilder = "TTRHBuilderWithoutAngle4MixedTriplets"
-    untracked bool useErrorsFromParam = true
-    double hitErrorRPhi = 0.0051
-    double hitErrorRZ = 0.0036
-  }
-  PSet TIB = {
-    InputTag matchedRecHits = siStripMatchedRecHits:matchedRecHit
-    string TTRHBuilder = "WithTrackAngle"
-  }
-  PSet TID = {
-    InputTag matchedRecHits = siStripMatchedRecHits:matchedRecHit
-    string TTRHBuilder = "WithTrackAngle"
-  }
-}
 es_module muonCkfTrajectoryFilter = TrajectoryFilterESProducer {
   string ComponentName = "muonCkfTrajectoryFilter"
   PSet filterPset = {
@@ -958,34 +774,8 @@ es_module muonCkfTrajectoryFilter = TrajectoryFilterESProducer {
     double chargeSignificance = -1.0
   }
 }
-es_module muonRoadTrajectoryBuilderESProducer = MuonRoadTrajectoryBuilderESProducer {
-  string ComponentName = "muonRoadTrajectoryBuilder"
-  string measurementTrackerName = ""
-  string propagatorName = "SteppingHelixPropagatorAny"
-  double maxChi2Road = 40.0
-  double maxChi2Hit = 40.0
-  uint32 maxTrajectories = 30
-  bool dynamicMaxNumberOfHitPerModule = true
-  uint32 numberOfHitPerModule = 1000
-  uint32 minNumberOfHitOnCandidate = 4
-  bool outputAllTraj = true
-  vuint32 maxTrajectoriesThreshold = { 10, 25 }
-  vuint32 numberOfHitPerModuleThreshold = { 3, 1 }
-}
 es_module myTTRHBuilderWithoutAngle = TkTransientTrackingRecHitBuilderESProducer {
   string ComponentName = "PixelTTRHBuilderWithoutAngle"
-  string StripCPE = "Fake"
-  string PixelCPE = "PixelCPEfromTrackAngle"
-  string Matcher = "StandardMatcher"
-}
-es_module myTTRHBuilderWithoutAngle4MixedPairs = TkTransientTrackingRecHitBuilderESProducer {
-  string ComponentName = "TTRHBuilderWithoutAngle4MixedPairs"
-  string StripCPE = "Fake"
-  string PixelCPE = "PixelCPEfromTrackAngle"
-  string Matcher = "StandardMatcher"
-}
-es_module myTTRHBuilderWithoutAngle4MixedTriplets = TkTransientTrackingRecHitBuilderESProducer {
-  string ComponentName = "TTRHBuilderWithoutAngle4MixedTriplets"
   string StripCPE = "Fake"
   string PixelCPE = "PixelCPEfromTrackAngle"
   string Matcher = "StandardMatcher"
@@ -1004,39 +794,6 @@ es_module myTTRHBuilderWithoutAngle4PixelTriplets = TkTransientTrackingRecHitBui
 }
 es_module navigationSchoolESProducer = NavigationSchoolESProducer {
   string ComponentName = "SimpleNavigationSchool"
-}
-es_module newTrajectoryBuilder = GroupedCkfTrajectoryBuilderESProducer {
-  string ComponentName = "newTrajectoryBuilder"
-  string updator = "KFUpdator"
-  string propagatorAlong = "PropagatorWithMaterial"
-  string propagatorOpposite = "PropagatorWithMaterialOpposite"
-  string estimator = "Chi2"
-  string TTRHBuilder = "WithTrackAngle"
-  string MeasurementTrackerName = ""
-  string trajectoryFilterName = "newTrajectoryFilter"
-  int32 maxCand = 5
-  double lostHitPenalty = 30.0
-  double foundHitBonus = 5.0
-  bool intermediateCleaning = true
-  bool alwaysUseInvalidHits = true
-  bool lockHits = true
-  bool bestHitOnly = true
-  bool requireSeedHitsInRebuild = true
-  int32 minNrOfHitsForRebuild = 5
-}
-es_module newTrajectoryFilter = TrajectoryFilterESProducer {
-  string ComponentName = "newTrajectoryFilter"
-  PSet filterPset = {
-    int32 minHitsMinPt = 3
-    double nSigmaMinPt = 5.0
-    double minPt = 0.3
-    int32 minimumNumberOfHits = 3
-    int32 maxNumberOfHits = -1
-    int32 maxConsecLostHits = 1
-    int32 maxLostHits = 1
-    double chargeSignificance = -1.0
-    string ComponentType = "CkfBaseTrajectoryFilter"
-  }
 }
 es_module pixellayerpairs = PixelLayerPairsESProducer {
   string ComponentName = "PixelLayerPairs"
@@ -1074,29 +831,10 @@ es_module pixellayertriplets = PixelLayerTripletsESProducer {
     double hitErrorRZ = 0.0036
   }
 }
-es_module rings = RingMakerESProducer {
-  string ComponentName = ""
-  untracked string RingAsciiFileName = "rings.dat"
-  untracked string DetIdsDumpFileName = "tracker_detids.dat"
-}
-es_module roads = RoadMapMakerESProducer {
-  string ComponentName = ""
-  string RingsLabel = ""
-  untracked string RoadMapAsciiFile = "roads.dat"
-  string GeometryStructure = "FullDetector"
-  string SeedingType = "FourRingSeeds"
-}
 es_module softLeptonByDistance = LeptonTaggerByDistanceESProducer {
   double distance = 0.5
 }
 es_module softLeptonByPt = LeptonTaggerByPtESProducer {}
-es_module templates = PixelCPETemplateRecoESProducer {
-  string ComponentName = "PixelCPETemplateReco"
-  int32 speed = 0
-  double TanLorentzAnglePerTesla = 0.106
-  string PixelErrorParametrization = "NOTcmsim"
-  bool Alpha2Order = true
-}
 es_module trackCounting3D2nd = TrackCountingESProducer {
   int32 nthTrack = 2
   int32 impactParamterType = 0
@@ -1104,28 +842,6 @@ es_module trackCounting3D2nd = TrackCountingESProducer {
   double maximumDecayLength = 5.0
   double maximumDistanceToJetAxis = 0.07
   string trackQualityClass = "any"
-}
-es_module trackCounting3D3rd = TrackCountingESProducer {
-  int32 nthTrack = 3
-  int32 impactParamterType = 0
-  double deltaR = -1.0
-  double maximumDecayLength = 5.0
-  double maximumDistanceToJetAxis = 0.07
-  string trackQualityClass = "any"
-}
-es_module trajBuilderL25 = CkfTrajectoryBuilderESProducer {
-  string ComponentName = "trajBuilderL25"
-  string updator = "KFUpdator"
-  string propagatorAlong = "PropagatorWithMaterial"
-  string propagatorOpposite = "PropagatorWithMaterialOpposite"
-  string estimator = "Chi2"
-  string TTRHBuilder = "WithTrackAngle"
-  string MeasurementTrackerName = ""
-  string trajectoryFilterName = "trajFilterL25"
-  int32 maxCand = 1
-  double lostHitPenalty = 30.0
-  bool intermediateCleaning = true
-  bool alwaysUseInvalidHits = false
 }
 es_module trajBuilderL3 = CkfTrajectoryBuilderESProducer {
   string ComponentName = "trajBuilderL3"
@@ -1140,20 +856,6 @@ es_module trajBuilderL3 = CkfTrajectoryBuilderESProducer {
   double lostHitPenalty = 30.0
   bool intermediateCleaning = true
   bool alwaysUseInvalidHits = false
-}
-es_module trajFilterL25 = TrajectoryFilterESProducer {
-  string ComponentName = "trajFilterL25"
-  PSet filterPset = {
-    int32 minHitsMinPt = 3
-    double nSigmaMinPt = 5.0
-    double minPt = 5.0
-    int32 minimumNumberOfHits = 5
-    int32 maxNumberOfHits = 7
-    int32 maxConsecLostHits = 1
-    int32 maxLostHits = 1
-    double chargeSignificance = -1.0
-    string ComponentType = "CkfBaseTrajectoryFilter"
-  }
 }
 es_module trajFilterL3 = TrajectoryFilterESProducer {
   string ComponentName = "trajFilterL3"
@@ -1172,18 +874,13 @@ es_module trajFilterL3 = TrajectoryFilterESProducer {
 es_module trajectoryCleanerBySharedHits = TrajectoryCleanerESProducer {
   string ComponentName = "TrajectoryCleanerBySharedHits"
 }
-es_module ttrhbwor = TkTransientTrackingRecHitBuilderESProducer {
-  string ComponentName = "WithoutRefit"
-  string StripCPE = "Fake"
-  string PixelCPE = "Fake"
-  string Matcher = "Fake"
-}
 es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   string ComponentName = "WithTrackAngle"
   string StripCPE = "StripCPEfromTrackAngle"
   string PixelCPE = "PixelCPEfromTrackAngle"
   string Matcher = "StandardMatcher"
 }
+service = UpdaterService {}
   module hlt2GetRaw = HLTGetRaw {
     InputTag RawDataCollection = rawDataCollector
   }
@@ -1263,7 +960,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     untracked bool eventPut = true
     untracked string InputLabel = "rawDataCollector"
     untracked bool DoRegional = true
-    untracked string FedLabel = "hltEcalRegionalJetsFEDs"
+    untracked InputTag FedLabel = hltEcalRegionalJetsFEDs
     untracked vint32 orderedFedList = { 601, 602, 603, 604, 605, 606, 607, 608, 609, 610, 611, 612, 613, 614, 615, 616, 617, 618, 619, 620, 621, 622, 623, 624, 625, 626, 627, 628, 629, 630, 631, 632, 633, 634, 635, 636, 637, 638, 639, 640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 650, 651, 652, 653, 654 }
     untracked vint32 orderedDCCIdList = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54 }
   }
@@ -1433,7 +1130,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     untracked bool eventPut = true
     untracked string InputLabel = "rawDataCollector"
     untracked bool DoRegional = true
-    untracked string FedLabel = "hltEcalRegionalRestFEDs"
+    untracked InputTag FedLabel = hltEcalRegionalRestFEDs
     untracked vint32 orderedFedList = { 601, 602, 603, 604, 605, 606, 607, 608, 609, 610, 611, 612, 613, 614, 615, 616, 617, 618, 619, 620, 621, 622, 623, 624, 625, 626, 627, 628, 629, 630, 631, 632, 633, 634, 635, 636, 637, 638, 639, 640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 650, 651, 652, 653, 654 }
     untracked vint32 orderedDCCIdList = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54 }
   }
@@ -1878,7 +1575,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     untracked bool eventPut = true
     untracked string InputLabel = "rawDataCollector"
     untracked bool DoRegional = true
-    untracked string FedLabel = "hltEcalRegionalEgammaFEDs"
+    untracked InputTag FedLabel = hltEcalRegionalEgammaFEDs
     untracked vint32 orderedFedList = { 601, 602, 603, 604, 605, 606, 607, 608, 609, 610, 611, 612, 613, 614, 615, 616, 617, 618, 619, 620, 621, 622, 623, 624, 625, 626, 627, 628, 629, 630, 631, 632, 633, 634, 635, 636, 637, 638, 639, 640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 650, 651, 652, 653, 654 }
     untracked vint32 orderedDCCIdList = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54 }
   }
@@ -2008,10 +1705,8 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltCorrectedIslandEndcapSuperClustersL1Isolated = EgammaSCCorrectionMaker {
     string VerbosityLevel = "ERROR"
-    string recHitProducer = "hltEcalRegionalEgammaRecHit"
-    string recHitCollection = "EcalRecHitsEE"
-    string rawSuperClusterProducer = "hltIslandSuperClustersL1Isolated"
-    string rawSuperClusterCollection = "islandEndcapSuperClusters"
+    InputTag recHitProducer = hltEcalRegionalEgammaRecHit:EcalRecHitsEE
+    InputTag rawSuperClusterProducer = hltIslandSuperClustersL1Isolated:islandEndcapSuperClusters
     string superClusterAlgo = "Island"
     bool applyEnergyCorrection = true
     double sigmaElectronicNoise = 0.15
@@ -2021,18 +1716,17 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     PSet isl_fCorrPset = {
       vdouble fBremVec = { 0.0 }
       vdouble fEtEtaVec = { 0.0 }
-      double brLinearThr = 0.0
+      vint32 corrF = { 0 }
+      double brLinearLowThr = 0.0
+      double brLinearHighThr = 0.0
     }
     PSet dyn_fCorrPset = {}
     PSet fix_fCorrPset = {}
-    bool applyOldCorrection = true
   }
   module hltCorrectedIslandBarrelSuperClustersL1Isolated = EgammaSCCorrectionMaker {
     string VerbosityLevel = "ERROR"
-    string recHitProducer = "hltEcalRegionalEgammaRecHit"
-    string recHitCollection = "EcalRecHitsEB"
-    string rawSuperClusterProducer = "hltIslandSuperClustersL1Isolated"
-    string rawSuperClusterCollection = "islandBarrelSuperClusters"
+    InputTag recHitProducer = hltEcalRegionalEgammaRecHit:EcalRecHitsEB
+    InputTag rawSuperClusterProducer = hltIslandSuperClustersL1Isolated:islandBarrelSuperClusters
     string superClusterAlgo = "Island"
     bool applyEnergyCorrection = true
     double sigmaElectronicNoise = 0.03
@@ -2042,38 +1736,36 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     PSet isl_fCorrPset = {
       vdouble fBremVec = { 0.0 }
       vdouble fEtEtaVec = { 0.0 }
-      double brLinearThr = 0.0
+      vint32 corrF = { 0 }
+      double brLinearLowThr = 0.0
+      double brLinearHighThr = 0.0
     }
     PSet dyn_fCorrPset = {}
     PSet fix_fCorrPset = {}
-    bool applyOldCorrection = true
   }
   module hltCorrectedHybridSuperClustersL1Isolated = EgammaSCCorrectionMaker {
     string VerbosityLevel = "ERROR"
-    string recHitProducer = "hltEcalRegionalEgammaRecHit"
-    string recHitCollection = "EcalRecHitsEB"
-    string rawSuperClusterProducer = "hltHybridSuperClustersL1Isolated"
-    string rawSuperClusterCollection = ""
+    InputTag recHitProducer = hltEcalRegionalEgammaRecHit:EcalRecHitsEB
+    InputTag rawSuperClusterProducer = hltHybridSuperClustersL1Isolated
     string superClusterAlgo = "Hybrid"
     bool applyEnergyCorrection = true
     double sigmaElectronicNoise = 0.03
     double etThresh = 5.0
     string corectedSuperClusterCollection = ""
     PSet hyb_fCorrPset = {
-      vdouble fBremVec = { -0.01258, 0.03154, 0.9888, -7.973E-4, 1.59 }
-      vdouble fEtEtaVec = { 1.0, -0.8206, 3.16, 0.8637, 44.88, 2.292, 1.023, 8.0 }
-      double brLinearThr = 12.0
+      vdouble fBremVec = { -0.01217, 0.031, 0.9887, -3.776E-4, 1.598 }
+      vdouble fEtEtaVec = { 1.001, -0.8654, 3.131, 0.0, 0.735, 20.72, 1.169, 8.0, 1.023, -0.00181, 0.0 }
+      vint32 corrF = { 1, 1, 0 }
+      double brLinearLowThr = 0.7
+      double brLinearHighThr = 8.0
     }
     PSet isl_fCorrPset = {}
     PSet dyn_fCorrPset = {}
     PSet fix_fCorrPset = {}
-    bool applyOldCorrection = true
   }
   module hltCorrectedEndcapSuperClustersWithPreshowerL1Isolated = PreshowerClusterProducer {
-    string preshRecHitProducer = "hltEcalPreshowerRecHit"
-    string preshRecHitCollection = "EcalRecHitsES"
-    string endcapSClusterCollection = ""
-    string endcapSClusterProducer = "hltCorrectedIslandEndcapSuperClustersL1Isolated"
+    InputTag preshRecHitProducer = hltEcalPreshowerRecHit:EcalRecHitsES
+    InputTag endcapSClusterProducer = hltCorrectedIslandEndcapSuperClustersL1Isolated
     string preshClusterCollectionX = "preshowerXClusters"
     string preshClusterCollectionY = "preshowerYClusters"
     int32 preshNclust = 4
@@ -2143,15 +1835,6 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   module hltSiPixelRecHits = SiPixelRecHitConverter {
     InputTag src = hltSiPixelClusters
     string CPE = "PixelCPEGeneric"
-    double TanLorentzAnglePerTesla = 0.106
-    bool Alpha2Order = true
-    int32 speed = 0
-    untracked double eff_charge_cut_lowX = 0.0
-    untracked double eff_charge_cut_lowY = 0.0
-    untracked double eff_charge_cut_highX = 1.0
-    untracked double eff_charge_cut_highY = 1.0
-    untracked double size_cutX = 3.0
-    untracked double size_cutY = 3.0
   }
   module hltSiStripRawToClustersFacility = SiStripRawToClusters {
     untracked string ProductLabel = "rawDataCollector"
@@ -2196,6 +1879,9 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
       double PhiMax2 = 0.0010
       double PhiMin2 = -0.0010
       InputTag hcalRecHits = hltHbhereco
+      bool fromTrackerSeeds = false
+      bool preFilteredSeeds = false
+      InputTag initialSeeds = globalMixedSeeds
     }
   }
   module hltL1IsoSingleElectronPixelMatchFilter = HLTElectronPixelMatchFilter {
@@ -2422,10 +2108,8 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltCorrectedIslandEndcapSuperClustersL1NonIsolated = EgammaSCCorrectionMaker {
     string VerbosityLevel = "ERROR"
-    string recHitProducer = "hltEcalRegionalEgammaRecHit"
-    string recHitCollection = "EcalRecHitsEE"
-    string rawSuperClusterProducer = "hltIslandSuperClustersL1NonIsolated"
-    string rawSuperClusterCollection = "islandEndcapSuperClusters"
+    InputTag recHitProducer = hltEcalRegionalEgammaRecHit:EcalRecHitsEE
+    InputTag rawSuperClusterProducer = hltIslandSuperClustersL1NonIsolated:islandEndcapSuperClusters
     string superClusterAlgo = "Island"
     bool applyEnergyCorrection = true
     double sigmaElectronicNoise = 0.15
@@ -2435,18 +2119,17 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     PSet isl_fCorrPset = {
       vdouble fBremVec = { 0.0 }
       vdouble fEtEtaVec = { 0.0 }
-      double brLinearThr = 0.0
+      vint32 corrF = { 0 }
+      double brLinearLowThr = 0.0
+      double brLinearHighThr = 0.0
     }
     PSet dyn_fCorrPset = {}
     PSet fix_fCorrPset = {}
-    bool applyOldCorrection = true
   }
   module hltCorrectedIslandBarrelSuperClustersL1NonIsolated = EgammaSCCorrectionMaker {
     string VerbosityLevel = "ERROR"
-    string recHitProducer = "hltEcalRegionalEgammaRecHit"
-    string recHitCollection = "EcalRecHitsEB"
-    string rawSuperClusterProducer = "hltIslandSuperClustersL1NonIsolated"
-    string rawSuperClusterCollection = "islandBarrelSuperClusters"
+    InputTag recHitProducer = hltEcalRegionalEgammaRecHit:EcalRecHitsEB
+    InputTag rawSuperClusterProducer = hltIslandSuperClustersL1NonIsolated:islandBarrelSuperClusters
     string superClusterAlgo = "Island"
     bool applyEnergyCorrection = true
     double sigmaElectronicNoise = 0.03
@@ -2456,38 +2139,36 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     PSet isl_fCorrPset = {
       vdouble fBremVec = { 0.0 }
       vdouble fEtEtaVec = { 0.0 }
-      double brLinearThr = 0.0
+      vint32 corrF = { 0 }
+      double brLinearLowThr = 0.0
+      double brLinearHighThr = 0.0
     }
     PSet dyn_fCorrPset = {}
     PSet fix_fCorrPset = {}
-    bool applyOldCorrection = true
   }
   module hltCorrectedHybridSuperClustersL1NonIsolated = EgammaSCCorrectionMaker {
     string VerbosityLevel = "ERROR"
-    string recHitProducer = "hltEcalRegionalEgammaRecHit"
-    string recHitCollection = "EcalRecHitsEB"
-    string rawSuperClusterProducer = "hltHybridSuperClustersL1NonIsolated"
-    string rawSuperClusterCollection = ""
+    InputTag recHitProducer = hltEcalRegionalEgammaRecHit:EcalRecHitsEB
+    InputTag rawSuperClusterProducer = hltHybridSuperClustersL1NonIsolated
     string superClusterAlgo = "Hybrid"
     bool applyEnergyCorrection = true
     double sigmaElectronicNoise = 0.03
     double etThresh = 5.0
     string corectedSuperClusterCollection = ""
     PSet hyb_fCorrPset = {
-      vdouble fBremVec = { -0.01258, 0.03154, 0.9888, -7.973E-4, 1.59 }
-      vdouble fEtEtaVec = { 1.0, -0.8206, 3.16, 0.8637, 44.88, 2.292, 1.023, 8.0 }
-      double brLinearThr = 12.0
+      vdouble fBremVec = { -0.01217, 0.031, 0.9887, -3.776E-4, 1.598 }
+      vdouble fEtEtaVec = { 1.001, -0.8654, 3.131, 0.0, 0.735, 20.72, 1.169, 8.0, 1.023, -0.00181, 0.0 }
+      vint32 corrF = { 1, 1, 0 }
+      double brLinearLowThr = 0.7
+      double brLinearHighThr = 8.0
     }
     PSet isl_fCorrPset = {}
     PSet dyn_fCorrPset = {}
     PSet fix_fCorrPset = {}
-    bool applyOldCorrection = true
   }
   module hltCorrectedEndcapSuperClustersWithPreshowerL1NonIsolated = PreshowerClusterProducer {
-    string preshRecHitProducer = "hltEcalPreshowerRecHit"
-    string preshRecHitCollection = "EcalRecHitsES"
-    string endcapSClusterCollection = ""
-    string endcapSClusterProducer = "hltCorrectedIslandEndcapSuperClustersL1NonIsolated"
+    InputTag preshRecHitProducer = hltEcalPreshowerRecHit:EcalRecHitsES
+    InputTag endcapSClusterProducer = hltCorrectedIslandEndcapSuperClustersL1NonIsolated
     string preshClusterCollectionX = "preshowerXClusters"
     string preshClusterCollectionY = "preshowerYClusters"
     int32 preshNclust = 4
@@ -2574,6 +2255,9 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
       double PhiMax2 = 0.0010
       double PhiMin2 = -0.0010
       InputTag hcalRecHits = hltHbhereco
+      bool fromTrackerSeeds = false
+      bool preFilteredSeeds = false
+      InputTag initialSeeds = globalMixedSeeds
     }
   }
   module hltL1NonIsoSingleElectronPixelMatchFilter = HLTElectronPixelMatchFilter {
@@ -3584,6 +3268,9 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
       double PhiMax2 = 0.01
       double PhiMin2 = -0.01
       InputTag hcalRecHits = hltHbhereco
+      bool fromTrackerSeeds = false
+      bool preFilteredSeeds = false
+      InputTag initialSeeds = globalMixedSeeds
     }
   }
   module hltL1IsoLargeWindowSingleElectronPixelMatchFilter = HLTElectronPixelMatchFilter {
@@ -3766,6 +3453,9 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
       double PhiMax2 = 0.01
       double PhiMin2 = -0.01
       InputTag hcalRecHits = hltHbhereco
+      bool fromTrackerSeeds = false
+      bool preFilteredSeeds = false
+      InputTag initialSeeds = globalMixedSeeds
     }
   }
   module hltL1NonIsoLargeWindowSingleElectronPixelMatchFilter = HLTElectronPixelMatchFilter {
@@ -4140,17 +3830,38 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     string CSCStripDigiProducer = "hltMuonCSCDigis"
     string CSCWireDigiProducer = "hltMuonCSCDigis"
     untracked bool CSCUseCalibrations = true
-    untracked bool CSCDebug = false
     untracked int32 CSCstripWireDeltaTime = 8
-    untracked bool CSCproduce1DHits = false
-    untracked int32 CSCStripClusterSize = 3
     untracked double CSCStripPeakThreshold = 10.0
     untracked double CSCStripClusterChargeCut = 25.0
     untracked int32 CSCWireClusterDeltaT = 1
     untracked double CSCStripxtalksOffset = 0.03
-    untracked double NoiseLevel = 7.0
-    untracked double XTasymmetry = 0.0050
-    untracked double ConstSyst = 0.03
+    untracked double NoiseLevel_ME1a = 7.0
+    untracked double XTasymmetry_ME1a = 0.0
+    untracked double ConstSyst_ME1a = 0.022
+    untracked double NoiseLevel_ME1b = 7.0
+    untracked double XTasymmetry_ME1b = 0.0
+    untracked double ConstSyst_ME1b = 0.02
+    untracked double NoiseLevel_ME12 = 7.0
+    untracked double XTasymmetry_ME12 = 0.025
+    untracked double ConstSyst_ME12 = 0.045
+    untracked double NoiseLevel_ME13 = 7.0
+    untracked double XTasymmetry_ME13 = 0.025
+    untracked double ConstSyst_ME13 = 0.065
+    untracked double NoiseLevel_ME21 = 7.0
+    untracked double XTasymmetry_ME21 = 0.025
+    untracked double ConstSyst_ME21 = 0.06
+    untracked double NoiseLevel_ME22 = 7.0
+    untracked double XTasymmetry_ME22 = 0.025
+    untracked double ConstSyst_ME22 = 0.06
+    untracked double NoiseLevel_ME31 = 7.0
+    untracked double XTasymmetry_ME31 = 0.025
+    untracked double ConstSyst_ME31 = 0.06
+    untracked double NoiseLevel_ME32 = 7.0
+    untracked double XTasymmetry_ME32 = 0.025
+    untracked double ConstSyst_ME32 = 0.06
+    untracked double NoiseLevel_ME41 = 7.0
+    untracked double XTasymmetry_ME41 = 0.025
+    untracked double ConstSyst_ME41 = 0.06
     bool readBadChannels = false
   }
   module hltCscSegments = CSCSegmentProducer {
@@ -4402,7 +4113,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     untracked bool eventPut = true
     untracked string InputLabel = "rawDataCollector"
     untracked bool DoRegional = true
-    untracked string FedLabel = "hltEcalRegionalMuonsFEDs"
+    untracked InputTag FedLabel = hltEcalRegionalMuonsFEDs
     untracked vint32 orderedFedList = { 601, 602, 603, 604, 605, 606, 607, 608, 609, 610, 611, 612, 613, 614, 615, 616, 617, 618, 619, 620, 621, 622, 623, 624, 625, 626, 627, 628, 629, 630, 631, 632, 633, 634, 635, 636, 637, 638, 639, 640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 650, 651, 652, 653, 654 }
     untracked vint32 orderedDCCIdList = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54 }
   }
@@ -4520,8 +4231,8 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
       double PhiR_UpperLimit_Par1 = 0.6
       double PhiR_UpperLimit_Par2 = 0.2
       InputTag vertexCollection = pixelVertices
-      double Phifixed = 0.2
-      double Etafixed = 0.2
+      double Eta_fixed = 0.2
+      double Phi_fixed = 0.2
     }
     PSet TrackerSeedCleaner = {}
     PSet TSGFromMixedPairs = {
@@ -4737,6 +4448,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     }
   }
   module hltL3TrackCandidateFromL2 = CkfTrajectoryMaker {
+    bool trackCandidateAlso = true
     string SeedProducer = "hltL3TrajectorySeed"
     string SeedLabel = ""
     string TrajectoryBuilder = "muonCkfTrajectoryBuilder"
@@ -4748,7 +4460,6 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
       string propagatorAlongTISE = "PropagatorWithMaterial"
       string propagatorOppositeTISE = "PropagatorWithMaterialOpposite"
     }
-    bool trackCandidateAlso = true
     bool doSeedingRegionRebuilding = false
   }
   module hltL3Muons = L3MuonProducer {
@@ -4818,10 +4529,9 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
         double PhiR_UpperLimit_Par1 = 0.6
         double PhiR_UpperLimit_Par2 = 0.2
         InputTag vertexCollection = pixelVertices
-        double Phifixed = 0.2
-        double Etafixed = 0.2
+        double Eta_fixed = 0.2
+        double Phi_fixed = 0.2
       }
-      string KFFitter = "L3MuKFFitter"
       string StateOnTrackerBoundOutPropagator = "SmartPropagatorAny"
       InputTag l3SeedLabel = ""
       InputTag tkTrajLabel = hltL3TrackCandidateFromL2
@@ -4834,6 +4544,8 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
           string SeedingLayers = "PixelLayerPairs"
         }
       }
+      string OutPropagator = "SmartPropagator"
+      string KFFitter = "L3MuKFFitter"
     }
   }
   module hltL3MuonCandidates = L3MuonCandidateProducer {
@@ -4887,6 +4599,8 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
       double ptMin = 0.0
       double tipMax = 1.0
       double chi2 = 1000.0
+      double nSigmaInvPtTolerance = 0.0
+      double nSigmaTipMaxTolerance = 0.0
     }
     PSet CleanerPSet = {
       string ComponentName = "PixelTrackCleanerBySharedHits"
@@ -5992,26 +5706,6 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     int32 MinQuality = -1
     int32 MinN = 2
   }
-  module hltJpsitoMumuL2Filtered = HLTMuonDimuonFilter {
-    InputTag BeamSpotTag = hltOfflineBeamSpot
-    InputTag CandTag = hltL2MuonCandidates
-    bool FastAccept = false
-    double MaxEta = 2.5
-    int32 MinNhits = 0
-    double MaxDr = 100.0
-    double MaxDz = 9999.0
-    int32 ChargeOpt = -1
-    double MinPtPair = 0.0
-    double MinPtMax = 4.0
-    double MinPtMin = 4.0
-    double MinInvMass = 0.0
-    double MaxInvMass = 10.0
-    double MinAcop = 2.0
-    double MaxAcop = 3.15
-    double MinPtBalance = -1.0
-    double MaxPtBalance = 999999.0
-    double NSigmaPt = 0.0
-  }
   module hltMumuPixelSeedFromL2Candidate = SeedGeneratorFromRegionHitsEDProducer {
     PSet RegionFactoryPSet = {
       string ComponentName = "L3MumuTrackingRegion"
@@ -6092,26 +5786,6 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double MinPt = 3.0
     int32 MinQuality = -1
     int32 MinN = 2
-  }
-  module hltMuMukL2Filtered = HLTMuonDimuonFilter {
-    InputTag BeamSpotTag = hltOfflineBeamSpot
-    InputTag CandTag = hltL2MuonCandidates
-    bool FastAccept = false
-    double MaxEta = 2.5
-    int32 MinNhits = 0
-    double MaxDr = 100.0
-    double MaxDz = 9999.0
-    int32 ChargeOpt = 0
-    double MinPtPair = 0.0
-    double MinPtMax = 3.0
-    double MinPtMin = 3.0
-    double MinInvMass = 0.2
-    double MaxInvMass = 1000.0
-    double MinAcop = 2.0
-    double MaxAcop = 3.15
-    double MinPtBalance = -1.0
-    double MaxPtBalance = 999999.0
-    double NSigmaPt = 0.0
   }
   module hltDisplacedMuMukFilter = HLTDisplacedmumuFilter {
     double MinLxySignificance = 3.0
@@ -6979,6 +6653,8 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
       double ptMin = 0.0
       double tipMax = 1.0
       double chi2 = 1000.0
+      double nSigmaInvPtTolerance = 0.0
+      double nSigmaTipMaxTolerance = 0.0
     }
     PSet CleanerPSet = {
       string ComponentName = "PixelTrackCleanerBySharedHits"
@@ -7133,7 +6809,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     untracked bool eventPut = true
     untracked string InputLabel = "rawDataCollector"
     untracked bool DoRegional = true
-    untracked string FedLabel = "hltEcalRegionalTausFEDs"
+    untracked InputTag FedLabel = hltEcalRegionalTausFEDs
     untracked vint32 orderedFedList = { 601, 602, 603, 604, 605, 606, 607, 608, 609, 610, 611, 612, 613, 614, 615, 616, 617, 618, 619, 620, 621, 622, 623, 624, 625, 626, 627, 628, 629, 630, 631, 632, 633, 634, 635, 636, 637, 638, 639, 640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 650, 651, 652, 653, 654 }
     untracked vint32 orderedDCCIdList = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54 }
   }
@@ -8079,6 +7755,9 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
       double PhiMax2 = 0.0050
       double PhiMin2 = -0.0050
       InputTag hcalRecHits = hltHbhereco
+      bool fromTrackerSeeds = false
+      bool preFilteredSeeds = false
+      InputTag initialSeeds = globalMixedSeeds
     }
   }
   module hltL1NonIsoStartUpElectronPixelSeeds = ElectronPixelSeedProducer {
@@ -8112,6 +7791,9 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
       double PhiMax2 = 0.0050
       double PhiMin2 = -0.0050
       InputTag hcalRecHits = hltHbhereco
+      bool fromTrackerSeeds = false
+      bool preFilteredSeeds = false
+      InputTag initialSeeds = globalMixedSeeds
     }
   }
   module hltL1NonIsoHLTNonIsoSingleElectronEt10PixelMatchFilter = HLTElectronPixelMatchFilter {
@@ -8646,26 +8328,6 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double MinPt = 3.0
     int32 MinQuality = -1
     int32 MinN = 2
-  }
-  module hltJpsitoMumuL2FilteredRelaxed = HLTMuonDimuonFilter {
-    InputTag BeamSpotTag = hltOfflineBeamSpot
-    InputTag CandTag = hltL2MuonCandidates
-    bool FastAccept = false
-    double MaxEta = 2.5
-    int32 MinNhits = 0
-    double MaxDr = 100.0
-    double MaxDz = 9999.0
-    int32 ChargeOpt = -1
-    double MinPtPair = 0.0
-    double MinPtMax = 4.0
-    double MinPtMin = 4.0
-    double MinInvMass = 0.0
-    double MaxInvMass = 10.0
-    double MinAcop = 2.0
-    double MaxAcop = 3.15
-    double MinPtBalance = -1.0
-    double MaxPtBalance = 999999.0
-    double NSigmaPt = 0.0
   }
   module hltDisplacedJpsitoMumuFilterRelaxed = HLTDisplacedmumuFilter {
     double MinLxySignificance = 3.0
@@ -11768,3 +11430,6 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   module hltBoolFinal = HLTBool {
     bool result = false
   }
+
+
+
