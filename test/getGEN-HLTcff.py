@@ -129,8 +129,9 @@ else:
     esmodules += "-l1GtTriggerMaskAlgoTrig,"
     esmodules += "-l1GtTriggerMaskTechTrig,"
     esmodules += "-l1GtTriggerMaskVetoAlgoTrig,"
-    esmodules += "-l1GtTriggerMaskVetoTechTrig"
-
+    esmodules += "-l1GtTriggerMaskVetoTechTrig,"
+    esmodules += "-HcalTopologyIdealEP"
+    
     modules = "--modules -hltTriggerSummaryAOD"
 
     services = "--services "
