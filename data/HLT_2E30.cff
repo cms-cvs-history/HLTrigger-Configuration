@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_1_X_2008-05-06-0200/HLT/V7  (CMSSW_2_1_X_2008-05-09-0200)
+// /dev/CMSSW_2_1_X_2008-05-06-0200/HLT/V16  (CMSSW_2_1_X_2008-05-09-0200)
 
 // Begin replace statements specific to the HLT
 include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
@@ -41,7 +41,8 @@ sequence HLTL2muonrecoSequence = { HLTL2muonrecoNocandSequence & hltL2MuonCandid
 sequence HLTL2muonrecoNocandSequence = { hltMuonDTDigis & hltDt1DRecHits & hltDt4DSegments & hltMuonCSCDigis & hltCsc2DRecHits & hltCscSegments & hltMuonRPCDigis & hltRpcRecHits & hltL2MuonSeeds & hltL2Muons }
 sequence HLTL2muonisorecoSequence = { hltEcalPreshowerDigis & hltEcalRegionalMuonsFEDs & hltEcalRegionalMuonsDigis & hltEcalRegionalMuonsWeightUncalibRecHit & hltEcalRegionalMuonsRecHitTmp & hltEcalRegionalMuonsRecHit & hltEcalPreshowerRecHit & HLTDoLocalHcalSequence & hltTowerMakerForMuons & hltCaloTowersForMuons & hltL2MuonIsolations }
 sequence HLTL3muonrecoSequence = { HLTL3muonrecoNocandSequence & hltL3MuonCandidates }
-sequence HLTL3muonrecoNocandSequence = { HLTDoLocalPixelSequence & HLTDoLocalStripSequence & hltL3TrajectorySeed & hltL3TrackCandidateFromL2 & hltL3Muons }
+sequence HLTL3muonrecoNocandSequence = { HLTL3muonTkCandidateSequence & hltL3Muons }
+sequence HLTL3muonTkCandidateSequence = { HLTDoLocalPixelSequence & HLTDoLocalStripSequence & hltL3TrajectorySeed & hltL3TrackCandidateFromL2 }
 sequence HLTL3muonisorecoSequence = { hltPixelTracks & hltL3MuonIsolations }
 sequence HLTBCommonL2recoSequence = { HLTDoCaloSequence & HLTDoJetRecoSequence & HLTDoHTRecoSequence }
 sequence HLTBLifetimeL25recoSequence = { hltBLifetimeHighestEtJets & hltBLifetimeL25Jets & HLTDoLocalPixelSequence & HLTRecopixelvertexingSequence & hltBLifetimeL25Associator & hltBLifetimeL25TagInfos & hltBLifetimeL25BJetTags }
@@ -98,7 +99,6 @@ sequence HLTBLifetimeL3recoSequenceRelaxed = { hltBLifetimeL3JetsRelaxed & HLTDo
 sequence HLTL1EplusJet30Sequence = { HLTBeginSequence & hltL1seedEJet30 }
 sequence HLTE3Jet30ElectronSequence = { HLTDoRegionalEgammaEcalSequence & HLTL1IsolatedEcalClustersSequence & hltL1IsoRecoEcalCandidate & hltL1IsoSingleEJet30L1MatchFilter & hltL1IsoEJetSingleEEt5Filter & HLTDoLocalHcalWithoutHOSequence & hltL1IsolatedElectronHcalIsol & hltL1IsoEJetSingleEEt5HcalIsolFilter & HLTDoLocalPixelSequence & HLTDoLocalStripSequence & HLTPixelMatchElectronL1IsoSequence & hltL1IsoEJetSingleEEt5PixelMatchFilter & HLTPixelMatchElectronL1IsoTrackingSequence & hltL1IsoEJetSingleEEt5EoverpFilter & HLTL1IsoElectronsRegionalRecoTrackerSequence & hltL1IsoElectronTrackIsol & hltL1IsoEJetSingleEEt5TrackIsolFilter & hltSingleElectronL1IsoPresc }
 sequence HLTL3TkmuonrecoNocandSequence = { HLTL3muonTkCandidateSequence & hltL3TkMuons }
-sequence HLTL3muonTkCandidateSequence = { HLTDoLocalPixelSequence & HLTDoLocalStripSequence & hltL3TrajectorySeed & hltL3TrackCandidateFromL2 }
 path HLTriggerFirstPath = { HLTBeginSequence & hltBoolFirst & HLTEndSequence }
 path HLT2jet = { HLTBeginSequence & hltL1s2jet & hltPre2jet & HLTRecoJetRegionalSequence & hlt2jet150 & HLTEndSequence }
 path HLT3jet = { HLTBeginSequence & hltL1s3jet & hltPre3jet & HLTRecoJetRegionalSequence & hlt3jet85 & HLTEndSequence }
@@ -153,21 +153,21 @@ path CandHLT1MuonPrescaleVtx2cm = { HLTL1muonrecoSequence & hltPrescaleSingleMuN
 path CandHLT1MuonPrescaleVtx2mm = { HLTL1muonrecoSequence & hltPrescaleSingleMuNoIsoRelaxedVtx2mm & hltSingleMuNoIsoLevel1Seed & hltSingleMuNoIsoL1Filtered & HLTL2muonrecoSequence & hltSingleMuNoIsoL2PreFiltered & HLTL3muonrecoSequence & hltSingleMuNoIsoL3PreFilteredRelaxedVtx2mm & HLTEndSequence }
 path CandHLT2MuonPrescaleVtx2cm = { HLTL1muonrecoSequence & hltPrescaleDiMuonNoIsoRelaxedVtx2cm & hltDiMuonNoIsoLevel1Seed & hltDiMuonNoIsoL1Filtered & HLTL2muonrecoSequence & hltDiMuonNoIsoL2PreFiltered & HLTL3muonrecoSequence & hltDiMuonNoIsoL3PreFilteredRelaxedVtx2cm & HLTEndSequence }
 path CandHLT2MuonPrescaleVtx2mm = { HLTL1muonrecoSequence & hltPrescaleDiMuonNoIsoRelaxedVtx2mm & hltDiMuonNoIsoLevel1Seed & hltDiMuonNoIsoL1Filtered & HLTL2muonrecoSequence & hltDiMuonNoIsoL2PreFiltered & HLTL3muonrecoSequence & hltDiMuonNoIsoL3PreFilteredRelaxedVtx2mm & HLTEndSequence }
-// path HLTB1Jet = { HLTBeginSequence & hltPrescalerBLifetime1jet & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetime1jetL2filter & HLTBLifetimeL25recoSequence & hltBLifetimeL25filter & HLTBLifetimeL3recoSequence & hltBLifetimeL3filter & HLTEndSequence }
-// path HLTB2Jet = { HLTBeginSequence & hltPrescalerBLifetime2jet & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetime2jetL2filter & HLTBLifetimeL25recoSequence & hltBLifetimeL25filter & HLTBLifetimeL3recoSequence & hltBLifetimeL3filter & HLTEndSequence }
-// path HLTB3Jet = { HLTBeginSequence & hltPrescalerBLifetime3jet & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetime3jetL2filter & HLTBLifetimeL25recoSequence & hltBLifetimeL25filter & HLTBLifetimeL3recoSequence & hltBLifetimeL3filter & HLTEndSequence }
-// path HLTB4Jet = { HLTBeginSequence & hltPrescalerBLifetime4jet & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetime4jetL2filter & HLTBLifetimeL25recoSequence & hltBLifetimeL25filter & HLTBLifetimeL3recoSequence & hltBLifetimeL3filter & HLTEndSequence }
-// path HLTBHT = { HLTBeginSequence & hltPrescalerBLifetimeHT & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetimeHTL2filter & HLTBLifetimeL25recoSequence & hltBLifetimeL25filter & HLTBLifetimeL3recoSequence & hltBLifetimeL3filter & HLTEndSequence }
-// path HLTB1JetMu = { HLTBeginSequence & hltPrescalerBSoftmuon1jet & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon1jetL2filter & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonByDRL3filter & HLTEndSequence }
-// path HLTB2JetMu = { HLTBeginSequence & hltPrescalerBSoftmuon2jet & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon2jetL2filter & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filter & HLTEndSequence }
-// path HLTB3JetMu = { HLTBeginSequence & hltPrescalerBSoftmuon3jet & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon3jetL2filter & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filter & HLTEndSequence }
-// path HLTB4JetMu = { HLTBeginSequence & hltPrescalerBSoftmuon4jet & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon4jetL2filter & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filter & HLTEndSequence }
-// path HLTBHTMu = { HLTBeginSequence & hltPrescalerBSoftmuonHT & hltBSoftmuonHTL1seeds & HLTBCommonL2recoSequence & hltBSoftmuonHTL2filter & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filter & HLTEndSequence }
-// path HLTBJPsiMuMu = { HLTBeginSequence & hltJpsitoMumuL1Seed & hltJpsitoMumuL1Filtered & HLTL2muonrecoSequence & HLTL3displacedMumurecoSequence & hltDisplacedJpsitoMumuFilter & HLTEndSequence }
+path HLTB1Jet = { HLTBeginSequence & hltPrescalerBLifetime1jet & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetime1jetL2filter & HLTBLifetimeL25recoSequence & hltBLifetimeL25filter & HLTBLifetimeL3recoSequence & hltBLifetimeL3filter & HLTEndSequence }
+path HLTB2Jet = { HLTBeginSequence & hltPrescalerBLifetime2jet & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetime2jetL2filter & HLTBLifetimeL25recoSequence & hltBLifetimeL25filter & HLTBLifetimeL3recoSequence & hltBLifetimeL3filter & HLTEndSequence }
+path HLTB3Jet = { HLTBeginSequence & hltPrescalerBLifetime3jet & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetime3jetL2filter & HLTBLifetimeL25recoSequence & hltBLifetimeL25filter & HLTBLifetimeL3recoSequence & hltBLifetimeL3filter & HLTEndSequence }
+path HLTB4Jet = { HLTBeginSequence & hltPrescalerBLifetime4jet & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetime4jetL2filter & HLTBLifetimeL25recoSequence & hltBLifetimeL25filter & HLTBLifetimeL3recoSequence & hltBLifetimeL3filter & HLTEndSequence }
+path HLTBHT = { HLTBeginSequence & hltPrescalerBLifetimeHT & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetimeHTL2filter & HLTBLifetimeL25recoSequence & hltBLifetimeL25filter & HLTBLifetimeL3recoSequence & hltBLifetimeL3filter & HLTEndSequence }
+path HLTB1JetMu = { HLTBeginSequence & hltPrescalerBSoftmuon1jet & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon1jetL2filter & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonByDRL3filter & HLTEndSequence }
+path HLTB2JetMu = { HLTBeginSequence & hltPrescalerBSoftmuon2jet & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon2jetL2filter & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filter & HLTEndSequence }
+path HLTB3JetMu = { HLTBeginSequence & hltPrescalerBSoftmuon3jet & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon3jetL2filter & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filter & HLTEndSequence }
+path HLTB4JetMu = { HLTBeginSequence & hltPrescalerBSoftmuon4jet & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon4jetL2filter & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filter & HLTEndSequence }
+path HLTBHTMu = { HLTBeginSequence & hltPrescalerBSoftmuonHT & hltBSoftmuonHTL1seeds & HLTBCommonL2recoSequence & hltBSoftmuonHTL2filter & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filter & HLTEndSequence }
+path HLTBJPsiMuMu = { HLTBeginSequence & hltJpsitoMumuL1Seed & hltJpsitoMumuL1Filtered & HLTL2muonrecoSequence & HLTL3displacedMumurecoSequence & hltDisplacedJpsitoMumuFilter & HLTEndSequence }
 path HLTTauTo3Mu = { HLTBeginSequence & hltMuMukL1Seed & hltMuMukL1Filtered & HLTL2muonrecoSequence & HLTL3displacedMumurecoSequence & hltDisplacedMuMukFilter & HLTDoLocalPixelSequence & HLTDoLocalStripSequence & HLTRecopixelvertexingSequence & hltMumukPixelSeedFromL2Candidate & hltCkfTrackCandidatesMumuk & hltCtfWithMaterialTracksMumuk & hltMumukAllConeTracks & hltmmkFilter & HLTEndSequence }
-// path HLTXElectronBJet = { HLTBeginSequence & hltElectronBPrescale & hltElectronBL1Seed & HLTDoRegionalEgammaEcalSequence & HLTL1IsolatedEcalClustersSequence & HLTL1NonIsolatedEcalClustersSequence & hltL1IsoRecoEcalCandidate & hltL1NonIsoRecoEcalCandidate & hltElBElectronL1MatchFilter & hltElBElectronEtFilter & HLTDoLocalHcalWithoutHOSequence & hltL1IsolatedElectronHcalIsol & hltL1NonIsolatedElectronHcalIsol & hltElBElectronHcalIsolFilter & HLTBCommonL2recoSequence & HLTDoLocalPixelSequence & HLTDoLocalStripSequence & HLTPixelMatchElectronL1NonIsoSequence & HLTPixelMatchElectronL1IsoSequence & hltElBElectronPixelMatchFilter & HLTBLifetimeL25recoSequence & hltBLifetimeL25filter & HLTBLifetimeL3recoSequence & hltBLifetimeL3filter & HLTPixelMatchElectronL1IsoTrackingSequence & HLTPixelMatchElectronL1NonIsoTrackingSequence & hltElBElectronEoverpFilter & HLTL1IsoElectronsRegionalRecoTrackerSequence & HLTL1NonIsoElectronsRegionalRecoTrackerSequence & hltL1IsoElectronTrackIsol & hltL1NonIsoElectronTrackIsol & hltElBElectronTrackIsolFilter & HLTEndSequence }
-// path HLTXMuonBJet = { HLTBeginSequence & hltMuBPrescale & hltMuBLevel1Seed & hltMuBLifetimeL1Filtered & HLTL2muonrecoSequence & hltMuBLifetimeIsoL2PreFiltered & HLTL2muonisorecoSequence & hltMuBLifetimeIsoL2IsoFiltered & HLTBCommonL2recoSequence & HLTBLifetimeL25recoSequence & hltBLifetimeL25filter & HLTL3muonrecoSequence & hltMuBLifetimeIsoL3PreFiltered & HLTL3muonisorecoSequence & hltMuBLifetimeIsoL3IsoFiltered & HLTBLifetimeL3recoSequence & hltBLifetimeL3filter & HLTEndSequence }
-// path HLTXMuonBJetSoftMuon = { HLTBeginSequence & hltMuBsoftMuPrescale & hltMuBLevel1Seed & hltMuBSoftL1Filtered & HLTL2muonrecoSequence & hltMuBSoftIsoL2PreFiltered & HLTL2muonisorecoSequence & hltMuBSoftIsoL2IsoFiltered & HLTBCommonL2recoSequence & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTL3muonrecoSequence & hltMuBSoftIsoL3PreFiltered & HLTL3muonisorecoSequence & hltMuBSoftIsoL3IsoFiltered & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filter & HLTEndSequence }
+path HLTXElectronBJet = { HLTBeginSequence & hltElectronBPrescale & hltElectronBL1Seed & HLTDoRegionalEgammaEcalSequence & HLTL1IsolatedEcalClustersSequence & HLTL1NonIsolatedEcalClustersSequence & hltL1IsoRecoEcalCandidate & hltL1NonIsoRecoEcalCandidate & hltElBElectronL1MatchFilter & hltElBElectronEtFilter & HLTDoLocalHcalWithoutHOSequence & hltL1IsolatedElectronHcalIsol & hltL1NonIsolatedElectronHcalIsol & hltElBElectronHcalIsolFilter & HLTBCommonL2recoSequence & HLTDoLocalPixelSequence & HLTDoLocalStripSequence & HLTPixelMatchElectronL1NonIsoSequence & HLTPixelMatchElectronL1IsoSequence & hltElBElectronPixelMatchFilter & HLTBLifetimeL25recoSequence & hltBLifetimeL25filter & HLTBLifetimeL3recoSequence & hltBLifetimeL3filter & HLTPixelMatchElectronL1IsoTrackingSequence & HLTPixelMatchElectronL1NonIsoTrackingSequence & hltElBElectronEoverpFilter & HLTL1IsoElectronsRegionalRecoTrackerSequence & HLTL1NonIsoElectronsRegionalRecoTrackerSequence & hltL1IsoElectronTrackIsol & hltL1NonIsoElectronTrackIsol & hltElBElectronTrackIsolFilter & HLTEndSequence }
+path HLTXMuonBJet = { HLTBeginSequence & hltMuBPrescale & hltMuBLevel1Seed & hltMuBLifetimeL1Filtered & HLTL2muonrecoSequence & hltMuBLifetimeIsoL2PreFiltered & HLTL2muonisorecoSequence & hltMuBLifetimeIsoL2IsoFiltered & HLTBCommonL2recoSequence & HLTBLifetimeL25recoSequence & hltBLifetimeL25filter & HLTL3muonrecoSequence & hltMuBLifetimeIsoL3PreFiltered & HLTL3muonisorecoSequence & hltMuBLifetimeIsoL3IsoFiltered & HLTBLifetimeL3recoSequence & hltBLifetimeL3filter & HLTEndSequence }
+path HLTXMuonBJetSoftMuon = { HLTBeginSequence & hltMuBsoftMuPrescale & hltMuBLevel1Seed & hltMuBSoftL1Filtered & HLTL2muonrecoSequence & hltMuBSoftIsoL2PreFiltered & HLTL2muonisorecoSequence & hltMuBSoftIsoL2IsoFiltered & HLTBCommonL2recoSequence & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTL3muonrecoSequence & hltMuBSoftIsoL3PreFiltered & HLTL3muonisorecoSequence & hltMuBSoftIsoL3IsoFiltered & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filter & HLTEndSequence }
 path HLTXElectron1Jet = { HLTL1EplusJetSequence & HLTEJetElectronSequence & HLTDoCaloSequence & HLTDoJetRecoSequence & hltej1jet40 & HLTEndSequence }
 path HLTXElectron2Jet = { HLTL1EplusJetSequence & HLTEJetElectronSequence & HLTDoCaloSequence & HLTDoJetRecoSequence & hltej2jet80 & HLTEndSequence }
 path HLTXElectron3Jet = { HLTL1EplusJetSequence & HLTEJetElectronSequence & HLTDoCaloSequence & HLTDoJetRecoSequence & hltej3jet60 & HLTEndSequence }
@@ -202,7 +202,7 @@ path AlCaIsoTrack = { HLTBeginSequence & HLTL1SeedFilterSequence & hltPreIsolTra
 path AlCaHcalPhiSym = { HLTBeginSequence & hltL1sHcalPhiSym & hltHcalPhiSymPresc & HLTDoLocalHcalSequence & hltAlCaHcalPhiSymStream & HLTEndSequence }
 path AlCaEcalPhiSym = { HLTBeginSequence & hltL1sEcalPhiSym & hltEcalPhiSymPresc & hltEcalDigis & hltEcalWeightUncalibRecHit & hltEcalRecHit & hltAlCaPhiSymStream & HLTEndSequence }
 path AlCaEcalPi0 = { HLTBeginSequence & hltPrePi0Ecal & hltL1sEcalPi0 & HLTDoRegionalEgammaEcalSequence & hltAlCaPi0RegRecHits & HLTEndSequence }
-path HLT1MuonLevel2 = { HLTL1muonrecoSequence & hltPrescaleSingleMuLevel2 & hltSingleMuNoIsoLevel1Seed & hltSingleMuNoIsoL1Filtered & HLTL2muonrecoSequence & hltSingleMuNoIsoL2PreFiltered9 & HLTEndSequence }
+path HLT1MuonLevel2 = { HLTL1muonrecoSequence & hltPrescaleSingleMuLevel2 & hltSingleMuNoIsoLevel1Seed & hltSingleMuNoIsoL1Filtered & HLTL2muonrecoSequence & hltSingleMuLevel2NoIsoL2PreFiltered & HLTEndSequence }
 path HLTBJPsiMuMuRelaxed = { HLTBeginSequence & hltJpsitoMumuL1SeedRelaxed & hltJpsitoMumuL1FilteredRelaxed & HLTL2muonrecoSequence & HLTL3displacedMumurecoSequence & hltDisplacedJpsitoMumuFilterRelaxed & HLTEndSequence }
 path HLT2PhotonEt10_L1R_NI = { HLTDoublePhoton10L1NonIsolatedHLTNonIsoSequence & HLTEndSequence }
 path HLT2PhotonEt8_L1R_NI = { HLTDoublePhoton8L1NonIsolatedHLTNonIsoSequence & HLTEndSequence }
@@ -257,24 +257,24 @@ path HLT2jetAve50 = { HLTBeginSequence & hltL1sdijetave50 & hltPredijetave50 & H
 path HLT2jetAve70 = { HLTBeginSequence & hltL1sdijetave70 & hltPredijetave70 & HLTRecoJetMETSequence & hltdijetave70 & HLTEndSequence }
 path HLT2jetAve130 = { HLTBeginSequence & hltL1sdijetave130 & hltPredijetave130 & HLTRecoJetMETSequence & hltdijetave130 & HLTEndSequence }
 path HLT2jetAve220 = { HLTBeginSequence & hltL1sdijetave220 & hltPredijetave220 & HLTRecoJetMETSequence & hltdijetave220 & HLTEndSequence }
-// path HLTB1Jet120 = { HLTBeginSequence & hltPrescalerBLifetime1jet120 & hltBLifetimeL1seedsLowEnergy & HLTBCommonL2recoSequence & hltBLifetime1jetL2filter120 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
-// path HLTB1Jet160 = { HLTBeginSequence & hltPrescalerBLifetime1jet160 & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetime1jetL2filter160 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
-// path HLTB2Jet100 = { HLTBeginSequence & hltPrescalerBLifetime2jet100 & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetime2jetL2filter100 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
-// path HLTB2Jet60 = { HLTBeginSequence & hltPrescalerBLifetime2jet60 & hltBLifetimeL1seedsLowEnergy & HLTBCommonL2recoSequence & hltBLifetime2jetL2filter60 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
-// path HLTB2JetMu100 = { HLTBeginSequence & hltPrescalerBSoftmuon2jet100 & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon2jetL2filter100 & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filterRelaxed & HLTEndSequence }
-// path HLTB2JetMu60 = { HLTBeginSequence & hltPrescalerBSoftmuon2jet60 & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon2jetL2filter60 & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filterRelaxed & HLTEndSequence }
-// path HLTB3Jet40 = { HLTBeginSequence & hltPrescalerBLifetime3jet40 & hltBLifetimeL1seedsLowEnergy & HLTBCommonL2recoSequence & hltBLifetime3jetL2filter40 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
-// path HLTB3Jet60 = { HLTBeginSequence & hltPrescalerBLifetime3jet60 & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetime3jetL2filter60 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
-// path HLTB3JetMu40 = { HLTBeginSequence & hltPrescalerBSoftmuon3jet40 & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon3jetL2filter40 & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filterRelaxed & HLTEndSequence }
-// path HLTB3JetMu60 = { HLTBeginSequence & hltPrescalerBSoftmuon3jet60 & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon3jetL2filter60 & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filterRelaxed & HLTEndSequence }
-// path HLTB4Jet30 = { HLTBeginSequence & hltPrescalerBLifetime4jet30 & hltBLifetimeL1seedsLowEnergy & HLTBCommonL2recoSequence & hltBLifetime4jetL2filter30 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
-// path HLTB4Jet35 = { HLTBeginSequence & hltPrescalerBLifetime4jet35 & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetime4jetL2filter35 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
-// path HLTB4JetMu30 = { HLTBeginSequence & hltPrescalerBSoftmuon4jet30 & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon4jetL2filter30 & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filterRelaxed & HLTEndSequence }
-// path HLTB4JetMu35 = { HLTBeginSequence & hltPrescalerBSoftmuon4jet35 & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon4jetL2filter35 & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filterRelaxed & HLTEndSequence }
-// path HLTBHT320 = { HLTBeginSequence & hltPrescalerBLifetimeHT320 & hltBLifetimeL1seedsLowEnergy & HLTBCommonL2recoSequence & hltBLifetimeHTL2filter320 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
-// path HLTBHT420 = { HLTBeginSequence & hltPrescalerBLifetimeHT420 & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetimeHTL2filter420 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
-// path HLTBHTMu250 = { HLTBeginSequence & hltPrescalerBSoftmuonHT250 & hltBSoftmuonHTL1seedsLowEnergy & HLTBCommonL2recoSequence & hltBSoftmuonHTL2filter250 & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filterRelaxed & HLTEndSequence }
-// path HLTBHTMu330 = { HLTBeginSequence & hltPrescalerBSoftmuonHT330 & hltBSoftmuonHTL1seeds & HLTBCommonL2recoSequence & hltBSoftmuonHTL2filter330 & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filterRelaxed & HLTEndSequence }
+path HLTB1Jet120 = { HLTBeginSequence & hltPrescalerBLifetime1jet120 & hltBLifetimeL1seedsLowEnergy & HLTBCommonL2recoSequence & hltBLifetime1jetL2filter120 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
+path HLTB1Jet160 = { HLTBeginSequence & hltPrescalerBLifetime1jet160 & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetime1jetL2filter160 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
+path HLTB2Jet100 = { HLTBeginSequence & hltPrescalerBLifetime2jet100 & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetime2jetL2filter100 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
+path HLTB2Jet60 = { HLTBeginSequence & hltPrescalerBLifetime2jet60 & hltBLifetimeL1seedsLowEnergy & HLTBCommonL2recoSequence & hltBLifetime2jetL2filter60 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
+path HLTB2JetMu100 = { HLTBeginSequence & hltPrescalerBSoftmuon2jet100 & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon2jetL2filter100 & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filterRelaxed & HLTEndSequence }
+path HLTB2JetMu60 = { HLTBeginSequence & hltPrescalerBSoftmuon2jet60 & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon2jetL2filter60 & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filterRelaxed & HLTEndSequence }
+path HLTB3Jet40 = { HLTBeginSequence & hltPrescalerBLifetime3jet40 & hltBLifetimeL1seedsLowEnergy & HLTBCommonL2recoSequence & hltBLifetime3jetL2filter40 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
+path HLTB3Jet60 = { HLTBeginSequence & hltPrescalerBLifetime3jet60 & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetime3jetL2filter60 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
+path HLTB3JetMu40 = { HLTBeginSequence & hltPrescalerBSoftmuon3jet40 & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon3jetL2filter40 & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filterRelaxed & HLTEndSequence }
+path HLTB3JetMu60 = { HLTBeginSequence & hltPrescalerBSoftmuon3jet60 & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon3jetL2filter60 & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filterRelaxed & HLTEndSequence }
+path HLTB4Jet30 = { HLTBeginSequence & hltPrescalerBLifetime4jet30 & hltBLifetimeL1seedsLowEnergy & HLTBCommonL2recoSequence & hltBLifetime4jetL2filter30 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
+path HLTB4Jet35 = { HLTBeginSequence & hltPrescalerBLifetime4jet35 & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetime4jetL2filter35 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
+path HLTB4JetMu30 = { HLTBeginSequence & hltPrescalerBSoftmuon4jet30 & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon4jetL2filter30 & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filterRelaxed & HLTEndSequence }
+path HLTB4JetMu35 = { HLTBeginSequence & hltPrescalerBSoftmuon4jet35 & hltBSoftmuonNjetL1seeds & HLTBCommonL2recoSequence & hltBSoftmuon4jetL2filter35 & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filterRelaxed & HLTEndSequence }
+path HLTBHT320 = { HLTBeginSequence & hltPrescalerBLifetimeHT320 & hltBLifetimeL1seedsLowEnergy & HLTBCommonL2recoSequence & hltBLifetimeHTL2filter320 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
+path HLTBHT420 = { HLTBeginSequence & hltPrescalerBLifetimeHT420 & hltBLifetimeL1seeds & HLTBCommonL2recoSequence & hltBLifetimeHTL2filter420 & HLTBLifetimeL25recoSequenceRelaxed & hltBLifetimeL25filterRelaxed & HLTBLifetimeL3recoSequenceRelaxed & hltBLifetimeL3filterRelaxed & HLTEndSequence }
+path HLTBHTMu250 = { HLTBeginSequence & hltPrescalerBSoftmuonHT250 & hltBSoftmuonHTL1seedsLowEnergy & HLTBCommonL2recoSequence & hltBSoftmuonHTL2filter250 & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filterRelaxed & HLTEndSequence }
+path HLTBHTMu330 = { HLTBeginSequence & hltPrescalerBSoftmuonHT330 & hltBSoftmuonHTL1seeds & HLTBCommonL2recoSequence & hltBSoftmuonHTL2filter330 & HLTBSoftmuonL25recoSequence & hltBSoftmuonL25filter & HLTBSoftmuonL3recoSequence & hltBSoftmuonL3filterRelaxed & HLTEndSequence }
 path HLTXElectron3Jet30 = { HLTL1EplusJet30Sequence & HLTE3Jet30ElectronSequence & HLTDoCaloSequence & HLTDoJetRecoSequence & hltej3jet30 & HLTEndSequence }
 path HLTXMuonNoIso3Jets30 = { HLTL1muonrecoSequence & hltMuNoIsoJetsPrescale & hltMuNoIsoJets30Level1Seed & hltMuNoIsoJetsMinPt4L1Filtered & HLTL2muonrecoSequence & hltMuNoIsoJetsMinPt4L2PreFiltered & HLTL3muonrecoSequence & hltMuNoIsoJetsMinPtL3PreFiltered & HLTDoCaloSequence & HLTDoJetRecoSequence & hltMuNoIsoHLTJets3jet30 & HLTEndSequence }
 path HLT1MuonL1Open = { HLTL1muonrecoSequence & hltPrescaleMuLevel1Open & hltMuLevel1PathLevel1OpenSeed & hltMuLevel1PathL1OpenFiltered & HLTEndSequence }
@@ -285,8 +285,8 @@ path HLT1MuonNonIso15 = { HLTL1muonrecoSequence & hltPrescaleSingleMuNoIso15 & h
 path HLT1MuonIso9 = { HLTL1muonrecoSequence & hltPrescaleSingleMuIso9 & hltSingleMuIsoLevel1Seed & hltSingleMuIsoL1Filtered & HLTL2muonrecoSequence & hltSingleMuIsoL2PreFiltered7 & HLTL2muonisorecoSequence & hltSingleMuIsoL2IsoFiltered7 & HLTL3muonrecoSequence & hltSingleMuIsoL3PreFiltered9 & HLTL3muonisorecoSequence & hltSingleMuIsoL3IsoFiltered9 & HLTEndSequence }
 path HLT1MuonIso13 = { HLTL1muonrecoSequence & hltPrescaleSingleMuIso13 & hltSingleMuIsoLevel1Seed10 & hltSingleMuIsoL1Filtered10 & HLTL2muonrecoSequence & hltSingleMuIsoL2PreFiltered11 & HLTL2muonisorecoSequence & hltSingleMuIsoL2IsoFiltered11 & HLTL3muonrecoSequence & hltSingleMuIsoL3PreFiltered13 & HLTL3muonisorecoSequence & hltSingleMuIsoL3IsoFiltered13 & HLTEndSequence }
 path HLT1MuonIso15 = { HLTL1muonrecoSequence & hltPrescaleSingleMuIso15 & hltSingleMuIsoLevel1Seed10 & hltSingleMuIsoL1Filtered10 & HLTL2muonrecoSequence & hltSingleMuIsoL2PreFiltered12 & HLTL2muonisorecoSequence & hltSingleMuIsoL2IsoFiltered12 & HLTL3muonrecoSequence & hltSingleMuIsoL3PreFiltered15 & HLTL3muonisorecoSequence & hltSingleMuIsoL3IsoFiltered15 & HLTEndSequence }
-path CandHLT2MuonPsi2S = { HLTBeginSequence & hltPrescalePsi2SMM & hltJpsiMMLevel1Seed & hltJpsiMML1Filtered & hltPsi2SMML2Filtered & hltPsi2SMML3Filtered & HLTEndSequence }
-path HLT1MuonTrackerNonIso = { HLTL1muonrecoSequence & hltPrescaleSingleMuNoIso & hltSingleMuNoIsoLevel1Seed & hltSingleMuNoIsoL1Filtered & HLTL2muonrecoSequence & hltSingleMuNoIsoL2PreFiltered & HLTL3TkmuonrecoNocandSequence & hltSingleMuNoIsoL3TkPreFilter & HLTEndSequence }
+path CandHLT2MuonPsi2S = { HLTBeginSequence & hltPrescalePsi2SMM & hltJpsiMMLevel1Seed & hltJpsiMML1Filtered & HLTL2muonrecoSequence & hltPsi2SMML2Filtered & HLTL3muonrecoSequence & hltPsi2SMML3Filtered & HLTEndSequence }
+path HLT1MuonTrackerNonIso = { HLTL1muonrecoSequence & hltPrescaleSingleMuNoIso & hltSingleMuNoIsoLevel1Seed & hltSingleMuNoIsoL1Filtered & HLTL2muonrecoSequence & hltSingleMuNoIsoL2PreFiltered & HLTL3TkmuonrecoNocandSequence & hltL3TkMuonCandidates & hltSingleMuNoIsoL3TkPreFilter & HLTEndSequence }
 path HLTriggerFinalPath = { hltTriggerSummaryAOD & hltTriggerSummaryRAWprescaler & hltTriggerSummaryRAW & hltBoolFinal }
 es_source BTagRecord = EmptyESSource {
   string recordName = "JetTagComputerRecord"
@@ -3826,8 +3826,8 @@ service = UpdaterService {}
   module hltMuonCSCDigis = CSCDCCUnpacker {
     untracked bool PrintEventNumber = false
     untracked bool UseExaminer = false
-    untracked uint32 ExaminerMask = 0x164bf3f6
-    untracked uint32 ErrorMask = 0xdfcfefff
+    untracked uint32 ExaminerMask = 0x1febf3f6
+    untracked uint32 ErrorMask = 0x0
     InputTag InputObjects = rawDataCollector
   }
   module hltCsc2DRecHits = CSCRecHitDProducer {
@@ -4231,8 +4231,8 @@ service = UpdaterService {}
       double DeltaZ_Region = 15.9
       double DeltaR = 0.2
       double EscapePt = 1.5
-      double Phi_min = 0.05
-      double Eta_min = 0.05
+      double Phi_min = 0.1
+      double Eta_min = 0.1
       bool UseFixedRegion = false
       double EtaR_UpperLimit_Par1 = 0.25
       double EtaR_UpperLimit_Par2 = 0.15
@@ -4242,7 +4242,13 @@ service = UpdaterService {}
       double Eta_fixed = 0.2
       double Phi_fixed = 0.2
     }
-    PSet TrackerSeedCleaner = {}
+    PSet TrackerSeedCleaner = {
+      string TTRHBuilder = "WithTrackAngle"
+      InputTag beamSpot = hltOfflineBeamSpot
+      bool directionCleaner = false
+      bool cleanerFromSharedHits = true
+      bool ptCleaner = false
+    }
     PSet TSGFromMixedPairs = {
       string ComponentName = "TSGFromOrderedHits"
       string TTRHBuilder = "WithTrackAngle"
@@ -4671,8 +4677,8 @@ service = UpdaterService {}
     int32 MinNhits = 0
     double MaxDr = 9999.0
     double MaxDz = 9999.0
-    double MinPt = 11.0
-    double NSigmaPt = 3.9
+    double MinPt = 12.0
+    double NSigmaPt = 0.0
   }
   module hltSingleMuNoIsoL3PreFiltered = HLTMuonL3PreFilter {
     InputTag BeamSpotTag = hltOfflineBeamSpot
@@ -4686,6 +4692,7 @@ service = UpdaterService {}
     double MaxDz = 9999.0
     double MinPt = 15.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltPrescaleDiMuonIso = HLTPrescaler {}
   module hltDiMuonIsoLevel1Seed = HLTLevel1GTSeed {
@@ -4738,6 +4745,7 @@ service = UpdaterService {}
     InputTag CandTag = hltDiMuonIsoL3PreFiltered
     InputTag IsoTag = hltL3MuonIsolations
     int32 MinN = 1
+    untracked bool SaveTag = true
   }
   module hltPrescaleDiMuonNoIso = HLTPrescaler {}
   module hltDiMuonNoIsoLevel1Seed = HLTLevel1GTSeed {
@@ -4766,7 +4774,7 @@ service = UpdaterService {}
     double MaxDr = 9999.0
     double MaxDz = 9999.0
     double MinPt = 3.0
-    double NSigmaPt = 3.9
+    double NSigmaPt = 0.0
   }
   module hltDiMuonNoIsoL3PreFiltered = HLTMuonL3PreFilter {
     InputTag BeamSpotTag = hltOfflineBeamSpot
@@ -4780,6 +4788,7 @@ service = UpdaterService {}
     double MaxDz = 9999.0
     double MinPt = 3.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltPrescaleJPsiMM = HLTPrescaler {}
   module hltJpsiMMLevel1Seed = HLTLevel1GTSeed {
@@ -4840,6 +4849,7 @@ service = UpdaterService {}
     double MinPtBalance = -1.0
     double MaxPtBalance = 999999.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltPrescaleUpsilonMM = HLTPrescaler {}
   module hltUpsilonMMLevel1Seed = HLTLevel1GTSeed {
@@ -4900,6 +4910,7 @@ service = UpdaterService {}
     double MinPtBalance = -1.0
     double MaxPtBalance = 999999.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltPrescaleZMM = HLTPrescaler {}
   module hltZMMLevel1Seed = HLTLevel1GTSeed {
@@ -4960,6 +4971,7 @@ service = UpdaterService {}
     double MinPtBalance = -1.0
     double MaxPtBalance = 999999.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltPrescaleMultiMuonNoIso = HLTPrescaler {}
   module hltMultiMuonNoIsoLevel1Seed = HLTLevel1GTSeed {
@@ -5002,6 +5014,7 @@ service = UpdaterService {}
     double MaxDz = 9999.0
     double MinPt = 3.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltPrescaleSameSignMu = HLTPrescaler {}
   module hltSameSignMuLevel1Seed = HLTLevel1GTSeed {
@@ -5062,6 +5075,7 @@ service = UpdaterService {}
     double MinPtBalance = -1.0
     double MaxPtBalance = 999999.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltPrescaleSingleMuPrescale3 = HLTPrescaler {}
   module hltSingleMuPrescale3Level1Seed = HLTLevel1GTSeed {
@@ -5104,6 +5118,7 @@ service = UpdaterService {}
     double MaxDz = 9999.0
     double MinPt = 3.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltPrescaleSingleMuPrescale5 = HLTPrescaler {}
   module hltSingleMuPrescale5Level1Seed = HLTLevel1GTSeed {
@@ -5146,6 +5161,7 @@ service = UpdaterService {}
     double MaxDz = 9999.0
     double MinPt = 5.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltPreSingleMuPrescale77 = HLTPrescaler {}
   module hltSingleMuPrescale77Level1Seed = HLTLevel1GTSeed {
@@ -5188,6 +5204,7 @@ service = UpdaterService {}
     double MaxDz = 9999.0
     double MinPt = 7.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltPreSingleMuPrescale710 = HLTPrescaler {}
   module hltSingleMuPrescale710Level1Seed = HLTLevel1GTSeed {
@@ -5230,6 +5247,7 @@ service = UpdaterService {}
     double MaxDz = 9999.0
     double MinPt = 10.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltPrescaleMuLevel1Path = HLTPrescaler {}
   module hltMuLevel1PathLevel1Seed = HLTLevel1GTSeed {
@@ -5246,6 +5264,7 @@ service = UpdaterService {}
     double MinPt = 0.0
     int32 MinQuality = -1
     int32 MinN = 1
+    untracked bool SaveTag = true
   }
   module hltPrescaleSingleMuNoIsoRelaxedVtx2cm = HLTPrescaler {}
   module hltSingleMuNoIsoL3PreFilteredRelaxedVtx2cm = HLTMuonL3PreFilter {
@@ -5260,6 +5279,7 @@ service = UpdaterService {}
     double MaxDz = 9999.0
     double MinPt = 15.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltPrescaleSingleMuNoIsoRelaxedVtx2mm = HLTPrescaler {}
   module hltSingleMuNoIsoL3PreFilteredRelaxedVtx2mm = HLTMuonL3PreFilter {
@@ -5274,6 +5294,7 @@ service = UpdaterService {}
     double MaxDz = 9999.0
     double MinPt = 15.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltPrescaleDiMuonNoIsoRelaxedVtx2cm = HLTPrescaler {}
   module hltDiMuonNoIsoL3PreFilteredRelaxedVtx2cm = HLTMuonL3PreFilter {
@@ -5288,6 +5309,7 @@ service = UpdaterService {}
     double MaxDz = 9999.0
     double MinPt = 3.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltPrescaleDiMuonNoIsoRelaxedVtx2mm = HLTPrescaler {}
   module hltDiMuonNoIsoL3PreFilteredRelaxedVtx2mm = HLTMuonL3PreFilter {
@@ -5302,6 +5324,7 @@ service = UpdaterService {}
     double MaxDz = 9999.0
     double MinPt = 3.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltPrescalerBLifetime1jet = HLTPrescaler {}
   module hltBLifetimeL1seeds = HLTLevel1GTSeed {
@@ -5362,7 +5385,7 @@ service = UpdaterService {}
   }
   module hltBLifetimeL25BJetTags = JetTagProducer {
     string jetTagComputer = "trackCounting3D2nd"
-    VInputTag tagInfos = { impactParameterTagInfos, secondaryVertexTagInfos, softMuonTagInfos, softElectronTagInfos }
+    VInputTag tagInfos = { hltBLifetimeL25TagInfos }
     InputTag tagInfo = hltBLifetimeL25TagInfos
   }
   module hltBLifetimeL25filter = HLTJetTag {
@@ -5446,7 +5469,7 @@ service = UpdaterService {}
   }
   module hltBLifetimeL3BJetTags = JetTagProducer {
     string jetTagComputer = "trackCounting3D2nd"
-    VInputTag tagInfos = { impactParameterTagInfos, secondaryVertexTagInfos, softMuonTagInfos, softElectronTagInfos }
+    VInputTag tagInfos = { hltBLifetimeL3TagInfos }
     InputTag tagInfo = hltBLifetimeL3TagInfos
   }
   module hltBLifetimeL3filter = HLTJetTag {
@@ -5521,7 +5544,7 @@ service = UpdaterService {}
   }
   module hltBSoftmuonL25BJetTags = JetTagProducer {
     string jetTagComputer = "softLeptonByDistance"
-    VInputTag tagInfos = { impactParameterTagInfos, secondaryVertexTagInfos, softMuonTagInfos, softElectronTagInfos }
+    VInputTag tagInfos = { hltBSoftmuonL25TagInfos }
     InputTag tagInfo = hltBSoftmuonL25TagInfos
   }
   module hltBSoftmuonL25filter = HLTJetTag {
@@ -5542,12 +5565,12 @@ service = UpdaterService {}
   }
   module hltBSoftmuonL3BJetTags = JetTagProducer {
     string jetTagComputer = "softLeptonByPt"
-    VInputTag tagInfos = { impactParameterTagInfos, secondaryVertexTagInfos, softMuonTagInfos, softElectronTagInfos }
+    VInputTag tagInfos = { hltBSoftmuonL3TagInfos }
     InputTag tagInfo = hltBSoftmuonL3TagInfos
   }
   module hltBSoftmuonL3BJetTagsByDR = JetTagProducer {
     string jetTagComputer = "softLeptonByDistance"
-    VInputTag tagInfos = { impactParameterTagInfos, secondaryVertexTagInfos, softMuonTagInfos, softElectronTagInfos }
+    VInputTag tagInfos = { hltBSoftmuonL3TagInfos }
     InputTag tagInfo = hltBSoftmuonL3TagInfos
   }
   module hltBSoftmuonByDRL3filter = HLTJetTag {
@@ -5900,6 +5923,7 @@ service = UpdaterService {}
     InputTag CandTag = hltMuBLifetimeIsoL3PreFiltered
     InputTag IsoTag = hltL3MuonIsolations
     int32 MinN = 1
+    untracked bool SaveTag = true
   }
   module hltMuBsoftMuPrescale = HLTPrescaler {}
   module hltMuBSoftL1Filtered = HLTMuonL1Filter {
@@ -5944,6 +5968,7 @@ service = UpdaterService {}
     InputTag CandTag = hltMuBSoftIsoL3PreFiltered
     InputTag IsoTag = hltL3MuonIsolations
     int32 MinN = 1
+    untracked bool SaveTag = true
   }
   module hltL1seedEJet = HLTLevel1GTSeed {
     bool L1TechTriggerSeeding = false
@@ -6053,8 +6078,8 @@ service = UpdaterService {}
     int32 MinNhits = 0
     double MaxDr = 9999.0
     double MaxDz = 9999.0
-    double MinPt = 7.0
-    double NSigmaPt = 3.9
+    double MinPt = 5.0
+    double NSigmaPt = 0.0
   }
   module hltMuJetsL2IsoFiltered = HLTMuonIsoFilter {
     InputTag CandTag = hltMuJetsL2PreFiltered
@@ -6078,6 +6103,7 @@ service = UpdaterService {}
     InputTag CandTag = hltMuJetsL3PreFiltered
     InputTag IsoTag = hltL3MuonIsolations
     int32 MinN = 1
+    untracked bool SaveTag = true
   }
   module hltMuJetsHLT1jet40 = HLT1CaloJet {
     InputTag inputTag = hltMCJetCorJetIcone5
@@ -6111,8 +6137,8 @@ service = UpdaterService {}
     int32 MinNhits = 0
     double MaxDr = 9999.0
     double MaxDz = 9999.0
-    double MinPt = 8.0
-    double NSigmaPt = 3.9
+    double MinPt = 6.0
+    double NSigmaPt = 0.0
   }
   module hltMuNoL2IsoJetsL3PreFiltered = HLTMuonL3PreFilter {
     InputTag BeamSpotTag = hltOfflineBeamSpot
@@ -6131,6 +6157,7 @@ service = UpdaterService {}
     InputTag CandTag = hltMuNoL2IsoJetsL3PreFiltered
     InputTag IsoTag = hltL3MuonIsolations
     int32 MinN = 1
+    untracked bool SaveTag = true
   }
   module hltMuNoL2IsoJetsHLT1jet40 = HLT1CaloJet {
     InputTag inputTag = hltMCJetCorJetIcone5
@@ -6164,8 +6191,8 @@ service = UpdaterService {}
     int32 MinNhits = 0
     double MaxDr = 9999.0
     double MaxDz = 9999.0
-    double MinPt = 14.0
-    double NSigmaPt = 3.9
+    double MinPt = 11.0
+    double NSigmaPt = 0.0
   }
   module hltMuNoIsoJetsL3PreFiltered = HLTMuonL3PreFilter {
     InputTag BeamSpotTag = hltOfflineBeamSpot
@@ -6179,6 +6206,7 @@ service = UpdaterService {}
     double MaxDz = 9999.0
     double MinPt = 14.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltMuNoIsoJetsHLT1jet50 = HLT1CaloJet {
     InputTag inputTag = hltMCJetCorJetIcone5
@@ -6246,8 +6274,8 @@ service = UpdaterService {}
     int32 MinNhits = 0
     double MaxDr = 9999.0
     double MaxDz = 9999.0
-    double MinPt = 7.0
-    double NSigmaPt = 3.9
+    double MinPt = 5.0
+    double NSigmaPt = 0.0
   }
   module hltEMuL2MuonIsoFilter = HLTMuonIsoFilter {
     InputTag CandTag = hltEMuL2MuonPreFilter
@@ -6284,12 +6312,13 @@ service = UpdaterService {}
     double MaxDr = 2.0
     double MaxDz = 9999.0
     double MinPt = 7.0
-    double NSigmaPt = 2.2
+    double NSigmaPt = 0.0
   }
   module hltEMuL3MuonIsoFilter = HLTMuonIsoFilter {
     InputTag CandTag = hltEMuL3MuonPreFilter
     InputTag IsoTag = hltL3MuonIsolations
     int32 MinN = 1
+    untracked bool SaveTag = true
   }
   module hltemuL1IsoSingleElectronTrackIsolFilter = HLTElectronTrackIsolFilterRegional {
     InputTag candTag = hltemuL1IsoSingleElectronEoverpFilter
@@ -6362,8 +6391,8 @@ service = UpdaterService {}
     int32 MinNhits = 0
     double MaxDr = 9999.0
     double MaxDz = 9999.0
-    double MinPt = 10.0
-    double NSigmaPt = 3.9
+    double MinPt = 8.0
+    double NSigmaPt = 0.0
   }
   module hltemuNonIsoL1IsoPixelMatchFilter = HLTElectronPixelMatchFilter {
     InputTag candTag = hltemuNonIsoL1HcalIsolFilter
@@ -6395,7 +6424,8 @@ service = UpdaterService {}
     double MaxDr = 2.0
     double MaxDz = 9999.0
     double MinPt = 10.0
-    double NSigmaPt = 2.2
+    double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltemuNonIsoL1IsoTrackIsolFilter = HLTElectronTrackIsolFilterRegional {
     InputTag candTag = hltemuNonIsoL1IsoEoverpFilter
@@ -6916,6 +6946,7 @@ service = UpdaterService {}
   }
   module hltFilterIsolatedTauJetsL25ElectronTau = HLT1Tau {
     InputTag inputTag = hltIsolatedTauJetsSelectorL25ElectronTau
+    untracked bool saveTag = true
     double MinPt = 1.0
     double MaxEta = 5.0
     int32 MinN = 1
@@ -6946,8 +6977,8 @@ service = UpdaterService {}
     int32 MinNhits = 0
     double MaxDr = 9999.0
     double MaxDz = 9999.0
-    double MinPt = 15.0
-    double NSigmaPt = 3.9
+    double MinPt = 12.0
+    double NSigmaPt = 0.0
   }
   module hltMuonTauIsoL2IsoFiltered = HLTMuonIsoFilter {
     InputTag CandTag = hltMuonTauIsoL2PreFiltered
@@ -7055,13 +7086,14 @@ service = UpdaterService {}
     int32 MinNhits = 0
     double MaxDr = 2.0
     double MaxDz = 9999.0
-    double MinPt = 15.0
-    double NSigmaPt = 2.2
+    double MinPt = 14.0
+    double NSigmaPt = 0.0
   }
   module hltMuonTauIsoL3IsoFiltered = HLTMuonIsoFilter {
     InputTag CandTag = hltMuonTauIsoL3PreFiltered
     InputTag IsoTag = hltL3MuonIsolations
     int32 MinN = 1
+    untracked bool SaveTag = true
   }
   module hltSingleTauMETPrescaler = HLTPrescaler {}
   module hltSingleTauMETL1SeedFilter = HLTLevel1GTSeed {
@@ -7342,6 +7374,7 @@ service = UpdaterService {}
   }
   module hltFilterL3SingleTauMET = HLT1Tau {
     InputTag inputTag = hltIsolatedL3SingleTauMET
+    untracked bool saveTag = true
     double MinPt = 10.0
     double MaxEta = 5.0
     int32 MinN = 1
@@ -7545,6 +7578,7 @@ service = UpdaterService {}
   }
   module hltFilterL3SingleTau = HLT1Tau {
     InputTag inputTag = hltIsolatedL3SingleTau
+    untracked bool saveTag = true
     double MinPt = 1.0
     double MaxEta = 5.0
     int32 MinN = 1
@@ -8165,7 +8199,7 @@ service = UpdaterService {}
     int32 seleNRHMax = 1000
   }
   module hltPrescaleSingleMuLevel2 = HLTPrescaler {}
-  module hltSingleMuNoIsoL2PreFiltered9 = HLTMuonL2PreFilter {
+  module hltSingleMuLevel2NoIsoL2PreFiltered = HLTMuonL2PreFilter {
     InputTag BeamSpotTag = hltOfflineBeamSpot
     InputTag CandTag = hltL2MuonCandidates
     InputTag SeedTag = hltL2MuonSeeds
@@ -8177,6 +8211,7 @@ service = UpdaterService {}
     double MaxDz = 9999.0
     double MinPt = 9.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltJpsitoMumuL1SeedRelaxed = HLTLevel1GTSeed {
     bool L1TechTriggerSeeding = false
@@ -9932,6 +9967,7 @@ service = UpdaterService {}
   }
   module hltFilterL3SingleTauRelaxed = HLT1Tau {
     InputTag inputTag = hltIsolatedL3SingleTauRelaxed
+    untracked bool saveTag = true
     double MinPt = 1.0
     double MaxEta = 5.0
     int32 MinN = 1
@@ -10099,6 +10135,7 @@ service = UpdaterService {}
   }
   module hltFilterL3SingleTauMETRelaxed = HLT1Tau {
     InputTag inputTag = hltIsolatedL3SingleTauMETRelaxed
+    untracked bool saveTag = true
     double MinPt = 10.0
     double MaxEta = 5.0
     int32 MinN = 1
@@ -10199,6 +10236,7 @@ service = UpdaterService {}
   }
   module hltFilterL25PixelTauRelaxed = HLT1Tau {
     InputTag inputTag = hltIsolatedL25PixelTauRelaxed
+    untracked bool saveTag = true
     double MinPt = 0.0
     double MaxEta = 5.0
     int32 MinN = 2
@@ -10298,6 +10336,7 @@ service = UpdaterService {}
   }
   module hltFilterL25PixelTau = HLT1Tau {
     InputTag inputTag = hltIsolatedL25PixelTau
+    untracked bool saveTag = true
     double MinPt = 0.0
     double MaxEta = 5.0
     int32 MinN = 2
@@ -10626,7 +10665,7 @@ service = UpdaterService {}
   }
   module hltBLifetimeL25BJetTagsRelaxed = JetTagProducer {
     string jetTagComputer = "trackCounting3D2nd"
-    VInputTag tagInfos = { impactParameterTagInfos, secondaryVertexTagInfos, softMuonTagInfos, softElectronTagInfos }
+    VInputTag tagInfos = { hltBLifetimeL25TagInfosRelaxed }
     InputTag tagInfo = hltBLifetimeL25TagInfosRelaxed
   }
   module hltBLifetimeL25filterRelaxed = HLTJetTag {
@@ -10710,7 +10749,7 @@ service = UpdaterService {}
   }
   module hltBLifetimeL3BJetTagsRelaxed = JetTagProducer {
     string jetTagComputer = "trackCounting3D2nd"
-    VInputTag tagInfos = { impactParameterTagInfos, secondaryVertexTagInfos, softMuonTagInfos, softElectronTagInfos }
+    VInputTag tagInfos = { hltBLifetimeL3TagInfosRelaxed }
     InputTag tagInfo = hltBLifetimeL3TagInfosRelaxed
   }
   module hltBLifetimeL3filterRelaxed = HLTJetTag {
@@ -10961,8 +11000,8 @@ service = UpdaterService {}
     int32 MinNhits = 0
     double MaxDr = 9999.0
     double MaxDz = 9999.0
-    double MinPt = 5.0
-    double NSigmaPt = 3.9
+    double MinPt = 3.0
+    double NSigmaPt = 0.0
   }
   module hltMuNoIsoJetsMinPtL3PreFiltered = HLTMuonL3PreFilter {
     InputTag BeamSpotTag = hltOfflineBeamSpot
@@ -10976,6 +11015,7 @@ service = UpdaterService {}
     double MaxDz = 9999.0
     double MinPt = 5.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltMuNoIsoHLTJets3jet30 = HLT1CaloJet {
     InputTag inputTag = hltMCJetCorJetIcone5
@@ -10998,6 +11038,7 @@ service = UpdaterService {}
     double MinPt = 0.0
     int32 MinQuality = -1
     int32 MinN = 1
+    untracked bool SaveTag = true
   }
   module hltPrescaleSingleMuNoIso9 = HLTPrescaler {}
   module hltSingleMuNoIsoL2PreFiltered7 = HLTMuonL2PreFilter {
@@ -11025,8 +11066,22 @@ service = UpdaterService {}
     double MaxDz = 9999.0
     double MinPt = 9.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltPrescaleSingleMuNoIso11 = HLTPrescaler {}
+  module hltSingleMuNoIsoL2PreFiltered9 = HLTMuonL2PreFilter {
+    InputTag BeamSpotTag = hltOfflineBeamSpot
+    InputTag CandTag = hltL2MuonCandidates
+    InputTag SeedTag = hltL2MuonSeeds
+    InputTag PreviousCandTag = hltSingleMuNoIsoL1Filtered
+    int32 MinN = 1
+    double MaxEta = 2.5
+    int32 MinNhits = 0
+    double MaxDr = 9999.0
+    double MaxDz = 9999.0
+    double MinPt = 9.0
+    double NSigmaPt = 0.0
+  }
   module hltSingleMuNoIsoL3PreFiltered11 = HLTMuonL3PreFilter {
     InputTag BeamSpotTag = hltOfflineBeamSpot
     InputTag CandTag = hltL3MuonCandidates
@@ -11039,6 +11094,7 @@ service = UpdaterService {}
     double MaxDz = 9999.0
     double MinPt = 11.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltPrescaleSingleMuNoIso13 = HLTPrescaler {}
   module hltSingleMuNoIsoLevel1Seed10 = HLTLevel1GTSeed {
@@ -11081,6 +11137,7 @@ service = UpdaterService {}
     double MaxDz = 9999.0
     double MinPt = 13.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltPrescaleSingleMuNoIso15 = HLTPrescaler {}
   module hltSingleMuNoIsoL2PreFiltered12 = HLTMuonL2PreFilter {
@@ -11108,6 +11165,7 @@ service = UpdaterService {}
     double MaxDz = 9999.0
     double MinPt = 15.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltPrescaleSingleMuIso9 = HLTPrescaler {}
   module hltSingleMuIsoL2PreFiltered7 = HLTMuonL2PreFilter {
@@ -11145,6 +11203,7 @@ service = UpdaterService {}
     InputTag CandTag = hltSingleMuIsoL3PreFiltered9
     InputTag IsoTag = hltL3MuonIsolations
     int32 MinN = 1
+    untracked bool SaveTag = true
   }
   module hltPrescaleSingleMuIso13 = HLTPrescaler {}
   module hltSingleMuIsoLevel1Seed10 = HLTLevel1GTSeed {
@@ -11197,6 +11256,7 @@ service = UpdaterService {}
     InputTag CandTag = hltSingleMuIsoL3PreFiltered13
     InputTag IsoTag = hltL3MuonIsolations
     int32 MinN = 1
+    untracked bool SaveTag = true
   }
   module hltPrescaleSingleMuIso15 = HLTPrescaler {}
   module hltSingleMuIsoL2PreFiltered12 = HLTMuonL2PreFilter {
@@ -11234,6 +11294,7 @@ service = UpdaterService {}
     InputTag CandTag = hltSingleMuIsoL3PreFiltered15
     InputTag IsoTag = hltL3MuonIsolations
     int32 MinN = 1
+    untracked bool SaveTag = true
   }
   module hltPrescalePsi2SMM = HLTPrescaler {}
   module hltPsi2SMML2Filtered = HLTMuonDimuonL2Filter {
@@ -11279,6 +11340,7 @@ service = UpdaterService {}
     double MinPtBalance = -1.0
     double MaxPtBalance = 999999.0
     double NSigmaPt = 0.0
+    untracked bool SaveTag = true
   }
   module hltL3TkMuons = TrackProducer {
     bool TrajectoryInEvent = false
@@ -11291,6 +11353,9 @@ service = UpdaterService {}
     InputTag beamSpot = hltOfflineBeamSpot
     string TTRHBuilder = "WithTrackAngle"
     string AlgorithmName = "undefAlgorithm"
+  }
+  module hltL3TkMuonCandidates = L3MuonCandidateProducer {
+    InputTag InputObjects = hltL3TkMuons
   }
   module hltSingleMuNoIsoL3TkPreFilter = HLTMuonL3TkPreFilter {
     InputTag BeamSpotTag = hltOfflineBeamSpot
