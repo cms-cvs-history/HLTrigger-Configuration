@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_1_X_2008-05-06-0200/HLT/V18  (CMSSW_2_1_X_2008-05-09-0200)
+// /dev/CMSSW_2_1_X_2008-05-06-0200/HLT/V19  (CMSSW_2_1_X_2008-05-09-0200)
 
 // Begin replace statements specific to the HLT
 include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
@@ -197,6 +197,7 @@ path HLT2Electron5_L1R_NI = { HLTDoubleElectronEt5L1NonIsoHLTnonIsoSequence & HL
 path HLT1Photon10_L1R = { HLTSinglePhotonEt10L1NonIsolatedSequence & HLTEndSequence }
 path AlCaHcalPhiSym = { HLTBeginSequence & hltL1sHcalPhiSym & hltHcalPhiSymPresc & HLTDoLocalHcalSequence & hltAlCaHcalPhiSymStream & HLTEndSequence }
 path AlCaEcalPhiSym = { HLTBeginSequence & hltL1sEcalPhiSym & hltEcalPhiSymPresc & hltEcalDigis & hltEcalWeightUncalibRecHit & hltEcalRecHit & hltAlCaPhiSymStream & HLTEndSequence }
+path AlCaEcalPi0 = { HLTBeginSequence & hltPrePi0Ecal & hltL1sEcalPi0 & HLTDoRegionalEgammaEcalSequence & hltAlCaPi0RegRecHits & HLTEndSequence }
 path HLT1MuonLevel2 = { HLTL1muonrecoSequence & hltPrescaleSingleMuLevel2 & hltSingleMuNoIsoLevel1Seed & hltSingleMuNoIsoL1Filtered & HLTL2muonrecoSequence & hltSingleMuLevel2NoIsoL2PreFiltered & HLTEndSequence }
 path HLTBJPsiMuMuRelaxed = { HLTBeginSequence & hltJpsitoMumuL1SeedRelaxed & hltJpsitoMumuL1FilteredRelaxed & HLTL2muonrecoSequence & HLTL3displacedMumurecoSequence & hltDisplacedJpsitoMumuFilterRelaxed & HLTEndSequence }
 path HLT2PhotonEt10_L1R_NI = { HLTDoublePhoton10L1NonIsolatedHLTNonIsoSequence & HLTEndSequence }
@@ -8172,6 +8173,40 @@ service = UpdaterService {}
     string phiSymEndcapHitCollection = "phiSymEcalRecHitsEE"
     double eCut_barrel = 0.15
     double eCut_endcap = 0.75
+  }
+  module hltPrePi0Ecal = HLTPrescaler {}
+  module hltL1sEcalPi0 = HLTLevel1GTSeed {
+    bool L1TechTriggerSeeding = false
+    string L1SeedsLogicalExpression = "L1_SingleJet15 OR L1_SingleJet30 OR L1_SingleJet50 OR L1_SingleJet70 OR L1_SingleJet100 OR L1_SingleJet150 OR L1_SingleJet200 OR L1_DoubleJet70 OR L1_DoubleJet100"
+    InputTag L1GtReadoutRecordTag = hltGtDigis
+    InputTag L1GtObjectMapTag = hltL1GtObjectMap
+    InputTag L1CollectionsTag = hltL1extraParticles
+    InputTag L1MuonCollectionTag = hltL1extraParticles
+  }
+  module hltAlCaPi0RegRecHits = HLTPi0RecHitsFilter {
+    InputTag barrelHits = hltEcalRegionalEgammaRecHit:EcalRecHitsEB
+    string pi0BarrelHitCollection = "pi0EcalRecHitsEB"
+    int32 gammaCandEtaSize = 9
+    int32 gammaCandPhiSize = 21
+    double clusSeedThr = 0.5
+    int32 clusEtaSize = 3
+    int32 clusPhiSize = 3
+    double selePtGammaOne = 0.9
+    double selePtGammaTwo = 0.9
+    double seleS4S9GammaOne = 0.85
+    double seleS4S9GammaTwo = 0.85
+    double selePtPi0 = 2.5
+    double selePi0Iso = 0.5
+    double selePi0BeltDR = 0.2
+    double selePi0BeltDeta = 0.05
+    double seleMinvMaxPi0 = 0.22
+    double seleMinvMinPi0 = 0.06
+    double seleXtalMinEnergy = 0.
+    int32 seleNRHMax = 1000
+    bool ParameterLogWeighted = true
+    double ParameterX0 = 0.89
+    double ParameterT0_barl = 5.7
+    double ParameterW0 = 4.2
   }
   module hltPrescaleSingleMuLevel2 = HLTPrescaler {}
   module hltSingleMuLevel2NoIsoL2PreFiltered = HLTMuonL2PreFilter {
