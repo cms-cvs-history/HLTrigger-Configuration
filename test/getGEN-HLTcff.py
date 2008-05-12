@@ -133,6 +133,7 @@ else:
     esmodules += "-HcalTopologyIdealEP"
     
     modules = "--modules -hltTriggerSummaryAOD"
+    paths   = "--paths -AlCaIsoTrack,-AlCaEcalPi0,-HLT1MuonTrackerNonIso"
 
     services = "--services "
     services += "-PrescaleService,"
@@ -143,7 +144,7 @@ else:
     psets += "-configurationMetadata,"
     psets += "-options,"
 
-    myGetCff = "edmConfigFromDB --cff --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + psets + " > " + cffName
+    myGetCff = "edmConfigFromDB --cff --configName " + dbName + " " + essources + " " + esmodules + " " + paths + " " + modules + " " + services + " " + psets + " > " + cffName
     os.system(myGetCff)
 
     myReplaceTrigResults = "replace TriggerResults::HLT " + process + " -- " + cffName
