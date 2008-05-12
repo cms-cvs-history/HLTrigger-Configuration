@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_1_X_2008-05-06-0200/HLT/V16  (CMSSW_2_1_X_2008-05-09-0200)
+// /dev/CMSSW_2_1_X_2008-05-06-0200/HLT/V18  (CMSSW_2_1_X_2008-05-09-0200)
 
 // Begin replace statements specific to the HLT
 include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
@@ -301,6 +301,34 @@ es_prefer DummyCorrector = SimpleJetCorrectionService {}
 es_source MCJetCorrectorIcone5 = MCJetCorrectionService {
   string tagName = "CMSSW_152_iterativeCone5"
   string label = "MCJetCorrectorIcone5"
+}
+es_module Chi2EstimatorForL2Refit = Chi2MeasurementEstimatorESProducer {
+  string ComponentName = "Chi2EstimatorForL2Refit"
+  double MaxChi2 = 1000.0
+  double nSigma = 3.0
+}
+es_module KFTrajectoryFitterForL2Muon = KFTrajectoryFitterESProducer {
+  string ComponentName = "KFTrajectoryFitterForL2Muon"
+  string Propagator = "SteppingHelixPropagatorAny"
+  string Updator = "KFUpdator"
+  string Estimator = "Chi2EstimatorForL2Refit"
+  int32 minHits = 3
+}
+es_module KFTrajectorySmootherForL2Muon = KFTrajectorySmootherESProducer {
+  string ComponentName = "KFTrajectorySmootherForL2Muon"
+  string Propagator = "SteppingHelixPropagatorOpposite"
+  string Updator = "KFUpdator"
+  string Estimator = "Chi2EstimatorForL2Refit"
+  double errorRescaling = 100.0
+  int32 minHits = 3
+}
+es_module KFFitterSmootherForL2Muon = KFFittingSmootherESProducer {
+  string ComponentName = "KFFitterSmootherForL2Muon"
+  string Fitter = "KFTrajectoryFitterForL2Muon"
+  string Smoother = "KFTrajectorySmootherForL2Muon"
+  double EstimateCut = -1.0
+  int32 MinNumberOfHits = 5
+  bool RejectTracks = true
 }
 es_module CaloTowerConstituentsMapBuilder = CaloTowerConstituentsMapBuilder {
   untracked string MapFile = "Geometry/CaloTopology/data/CaloTowerEEGeometric.map.gz"
@@ -4026,7 +4054,73 @@ service = UpdaterService {}
       untracked vstring Propagators = { "SteppingHelixPropagatorAny", "SteppingHelixPropagatorAlong", "SteppingHelixPropagatorOpposite", "PropagatorWithMaterial", "PropagatorWithMaterialOpposite", "SmartPropagator", "SmartPropagatorOpposite", "SmartPropagatorAnyOpposite", "SmartPropagatorAny", "SmartPropagatorRK", "SmartPropagatorAnyRK" }
     }
   }
-
+  module hltL2Muons = L2MuonProducer {
+    InputTag InputObjects = hltL2MuonSeeds
+    PSet ServiceParameters = {
+      untracked bool UseMuonNavigation = true
+      bool RPCLayers = true
+      untracked vstring Propagators = { "SteppingHelixPropagatorAny", "SteppingHelixPropagatorAlong", "SteppingHelixPropagatorOpposite", "PropagatorWithMaterial", "PropagatorWithMaterialOpposite", "SmartPropagator", "SmartPropagatorOpposite", "SmartPropagatorAnyOpposite", "SmartPropagatorAny", "SmartPropagatorRK", "SmartPropagatorAnyRK" }
+    }
+    PSet TrackLoaderParameters = {
+      PSet MuonUpdatorAtVertexParameters = {
+        string Propagator = "SteppingHelixPropagatorOpposite"
+        vdouble BeamSpotPosition = { 0.0, 0.0, 0.0 }
+        vdouble BeamSpotPositionErrors = { 0.1, 0.1, 5.3 }
+        double MaxChi2 = 1000000.0
+      }
+      bool VertexConstraint = true
+      bool DoSmoothing = false
+      string Smoother = "KFSmootherForMuonTrackLoader"
+    }
+    PSet L2TrajBuilderParameters = {
+      string SeedPosition = "in"
+      string SeedPropagator = "SteppingHelixPropagatorAny"
+      string NavigationType = "Standard"
+      PSet RefitterParameters = {
+        string FitterName = "KFFitterSmootherForL2Muon"
+        int32 Option = 1
+      }
+      PSet BWFilterParameters = {
+        InputTag DTRecSegmentLabel = hltDt4DSegments
+        InputTag CSCRecSegmentLabel = hltCscSegments
+        InputTag RPCRecSegmentLabel = hltRpcRecHits
+        bool EnableDTMeasurement = true
+        bool EnableCSCMeasurement = true
+        bool EnableRPCMeasurement = true
+        string BWSeedType = "fromGenerator"
+        string FitDirection = "outsideIn"
+        string Propagator = "SteppingHelixPropagatorAny"
+        double MaxChi2 = 25.0
+        double NumberOfSigma = 3.0
+        PSet MuonTrajectoryUpdatorParameters = {
+          double MaxChi2 = 25.0
+          int32 Granularity = 2
+          bool RescaleError = false
+          double RescaleErrorFactor = 100.0
+        }
+      }
+      bool DoRefit = false
+      PSet FilterParameters = {
+        InputTag DTRecSegmentLabel = hltDt4DSegments
+        InputTag CSCRecSegmentLabel = hltCscSegments
+        InputTag RPCRecSegmentLabel = hltRpcRecHits
+        bool EnableDTMeasurement = true
+        bool EnableCSCMeasurement = true
+        bool EnableRPCMeasurement = true
+        string FitDirection = "insideOut"
+        string Propagator = "SteppingHelixPropagatorAny"
+        double MaxChi2 = 1000.0
+        double NumberOfSigma = 3.0
+        PSet MuonTrajectoryUpdatorParameters = {
+          double MaxChi2 = 1000.0
+          int32 Granularity = 0
+          bool RescaleError = false
+          double RescaleErrorFactor = 100.0
+        }
+      }
+      bool DoBackwardFilter = true
+    }
+  }
   module hltL2MuonCandidates = L2MuonCandidateProducer {
     InputTag InputObjects = hltL2Muons:UpdatedAtVtx
   }
@@ -6377,7 +6471,7 @@ service = UpdaterService {}
   }
   module hltLevel1seedHLTBackwardBSC = HLTLevel1GTSeed {
     bool L1TechTriggerSeeding = true
-    string L1SeedsLogicalExpression = "2"
+    string L1SeedsLogicalExpression = "38 OR 39"
     InputTag L1GtReadoutRecordTag = hltGtDigis
     InputTag L1GtObjectMapTag = hltL1GtObjectMap
     InputTag L1CollectionsTag = hltL1extraParticles
@@ -6386,7 +6480,7 @@ service = UpdaterService {}
   module hltPrescaleHLTBackwardBSC = HLTPrescaler {}
   module hltLevel1seedHLTForwardBSC = HLTLevel1GTSeed {
     bool L1TechTriggerSeeding = true
-    string L1SeedsLogicalExpression = "1"
+    string L1SeedsLogicalExpression = "36 OR 37"
     InputTag L1GtReadoutRecordTag = hltGtDigis
     InputTag L1GtObjectMapTag = hltL1GtObjectMap
     InputTag L1CollectionsTag = hltL1extraParticles
@@ -11313,100 +11407,6 @@ service = UpdaterService {}
   module hltBoolFinal = HLTBool {
     bool result = false
   }
-  es_module KFFitterSmootherForL2Muon = KFFittingSmootherESProducer {
-    string ComponentName = "KFFitterSmootherForL2Muon"
-    string Fitter = "KFFitterSTA"
-    string Smoother = "KFSmootherSTA"
-    double EstimateCut = -1.0
-    int32 MinNumberOfHits = 5
-    bool RejectTracks = true
-  }
-  es_module KFTrajectorySmootherForL2Muon = KFTrajectorySmootherESProducer {
-    string ComponentName = "KFTrajectorySmootherForL2Muon"
-    string Propagator = "SteppingHelixPropagatorOpposite"
-    string Updator = "KFUpdator"
-    string Estimator = "Chi2EstimatorForL2Refit"
-    double errorRescaling = 100.0
-    int32 minHits = 3
-  }
-  es_module KFTrajectoryFitterForL2Muon = KFTrajectoryFitterESProducer {
-    string ComponentName = "KFTrajectoryFitterForL2Muon"
-    string Propagator = "SteppingHelixPropagatorAny"
-    string Updator = "KFUpdator"
-    string Estimator = "Chi2EstimatorForL2Refit"
-    int32 minHits = 3
-  }
-  es_module Chi2EstimatorForL2Refit = Chi2MeasurementEstimatorESProducer {
-    string ComponentName = "Chi2EstimatorForL2Refit"
-    double MaxChi2 = 1000.0
-    double nSigma = 3.0
-  }
 
- module hltL2Muons = L2MuonProducer {
-    InputTag InputObjects = hltL2MuonSeeds
-    PSet ServiceParameters = {
-      untracked bool UseMuonNavigation = true
-      bool RPCLayers = true
-      untracked vstring Propagators = { "SteppingHelixPropagatorAny", "SteppingHelixPropagatorAlong", "SteppingHelixPropagatorOpposite", "PropagatorWithMaterial", "PropagatorWithMaterialOpposite", "SmartPropagator", "SmartPropagatorOpposite", "SmartPropagatorAnyOpposite", "SmartPropagatorAny", "SmartPropagatorRK", "SmartPropagatorAnyRK" }
-    }
-    PSet TrackLoaderParameters = {
-      PSet MuonUpdatorAtVertexParameters = {
-        string Propagator = "SteppingHelixPropagatorOpposite"
-        vdouble BeamSpotPosition = { 0.0, 0.0, 0.0 }
-        vdouble BeamSpotPositionErrors = { 0.1, 0.1, 5.3 }
-        double MaxChi2 = 1000000.0
-      }
-      bool VertexConstraint = true
-      bool DoSmoothing = false
-      string Smoother = "KFSmootherForMuonTrackLoader"
-    }
-    PSet L2TrajBuilderParameters = {
-      string SeedPosition = "in"
-      string SeedPropagator = "SteppingHelixPropagatorAny"
-      string NavigationType = "Standard"
-      PSet RefitterParameters = {
-        string FitterName = "KFFitterSmootherForL2Muon"
-        int32 Option = 1
-      }
-      PSet BWFilterParameters = {
-        InputTag DTRecSegmentLabel = hltDt4DSegments
-        InputTag CSCRecSegmentLabel = hltCscSegments
-        InputTag RPCRecSegmentLabel = hltRpcRecHits
-        bool EnableDTMeasurement = true
-        bool EnableCSCMeasurement = true
-        bool EnableRPCMeasurement = true
-        string BWSeedType = "fromGenerator"
-        string FitDirection = "outsideIn"
-        string Propagator = "SteppingHelixPropagatorAny"
-        double MaxChi2 = 25.0
-        double NumberOfSigma = 3.0
-        PSet MuonTrajectoryUpdatorParameters = {
-          double MaxChi2 = 25.0
-          int32 Granularity = 2
-          bool RescaleError = false
-          double RescaleErrorFactor = 100.0
-        }
-      }
-      bool DoRefit = false
-      PSet FilterParameters = {
-        InputTag DTRecSegmentLabel = hltDt4DSegments
-        InputTag CSCRecSegmentLabel = hltCscSegments
-        InputTag RPCRecSegmentLabel = hltRpcRecHits
-        bool EnableDTMeasurement = true
-        bool EnableCSCMeasurement = true
-        bool EnableRPCMeasurement = true
-        string FitDirection = "insideOut"
-        string Propagator = "SteppingHelixPropagatorAny"
-        double MaxChi2 = 1000.0
-        double NumberOfSigma = 3.0
-        PSet MuonTrajectoryUpdatorParameters = {
-          double MaxChi2 = 1000.0
-          int32 Granularity = 0
-          bool RescaleError = false
-          double RescaleErrorFactor = 100.0
-        }
-      }
-      bool DoBackwardFilter = true
-    }
-  }
+
 
