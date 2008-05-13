@@ -2514,6 +2514,9 @@ service = UpdaterService {}
     InputTag recoEcalCandidateProducer = hltL1IsoRecoEcalCandidate
     double egEcalIsoEtMin = 0.0
     double egEcalIsoConeSize = 0.3
+
+    int32 SCAlgoType = 0
+
   }
   module hltL1IsoSinglePhotonEcalIsolFilter = HLTEgammaEcalIsolFilter {
     InputTag candTag = hltL1IsoSinglePhotonEtFilter
@@ -2637,6 +2640,9 @@ service = UpdaterService {}
     InputTag recoEcalCandidateProducer = hltL1NonIsoRecoEcalCandidate
     double egEcalIsoEtMin = 0.0
     double egEcalIsoConeSize = 0.3
+
+    int32 SCAlgoType = 0
+
   }
   module hltL1NonIsoSinglePhotonEcalIsolFilter = HLTEgammaEcalIsolFilter {
     InputTag candTag = hltL1NonIsoSinglePhotonEtFilter
