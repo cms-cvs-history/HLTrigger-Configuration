@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_1_X_2008-05-06-0200/HLT/V21  (CMSSW_2_1_X_2008-05-13-0300)
+// /dev/CMSSW_2_1_X_2008-05-06-0200/HLT/V23  (CMSSW_2_1_X_2008-05-13-0300)
 
 // Begin replace statements specific to the HLT
 include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
@@ -4592,8 +4592,9 @@ service = UpdaterService {}
           string SeedingLayers = "PixelLayerPairs"
         }
       }
-      string OutPropagator = "SmartPropagator"
       string KFFitter = "L3MuKFFitter"
+      string TransformerOutPropagator = "SmartPropagatorAny"
+      string MatcherOutPropagator = "SmartPropagator"
     }
   }
   module hltL3MuonCandidates = L3MuonCandidateProducer {

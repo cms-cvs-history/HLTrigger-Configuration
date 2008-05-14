@@ -115,7 +115,6 @@ else:
     esmodules += "-l1CaloGeometry,"
     esmodules += "-l1CaloScales,"
     esmodules += "-l1GtBoardMaps,"
-    esmodules += "-l1GtFactors,"
     esmodules += "-l1GtParameters,"
     esmodules += "-l1GtStableParameters,"
     esmodules += "-l1GtTriggerMenuXml,"
