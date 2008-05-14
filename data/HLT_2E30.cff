@@ -3860,8 +3860,10 @@ service = UpdaterService {}
     InputTag InputObjects = rawDataCollector
   }
   module hltCsc2DRecHits = CSCRecHitDProducer {
-    string CSCStripDigiProducer = "hltMuonCSCDigis"
-    string CSCWireDigiProducer = "hltMuonCSCDigis"
+#    string CSCStripDigiProducer = "hltMuonCSCDigis"
+#    string CSCWireDigiProducer = "hltMuonCSCDigis"
+    InputTag stripDigiTag = hltMuonCSCDigis:MuonCSCStripDigi
+    InputTag wireDigiTag  = hltMuonCSCDigis:MuonCSCWireDigi
     untracked bool CSCUseCalibrations = true
     untracked int32 CSCstripWireDeltaTime = 8
     untracked double CSCStripPeakThreshold = 10.0
