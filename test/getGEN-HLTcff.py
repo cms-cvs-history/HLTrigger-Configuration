@@ -131,7 +131,7 @@ else:
     esmodules += "-l1GtTriggerMaskVetoTechTrig,"
     esmodules += "-HcalTopologyIdealEP"
     
-    modules = "--modules -hltTriggerSummaryAOD"
+    modules = "  " # "--modules -hltTriggerSummaryAOD"
     paths   = "--paths -CandHLT1MuonTrackerNonIso"
 
     services = "--services "
@@ -153,10 +153,6 @@ else:
     for line in fileinput.input(cffName,inplace=1):
         if line.find("sequence HLTBeginSequence") >= 0:
             print "// Begin replace statements specific to the HLT"
-            print "include \"HLTrigger/Configuration/data/HLTrigger_EventContent.cff\""
-            print "module hltTriggerSummaryAOD = TriggerSummaryProducerAOD {"
-            print "  string processName = \"@\""
-            print "  using TriggerSummaryAOD"
-            print "}"
+            print "#"
             print "// End replace statements specific to the HLT"  
         print line[:-1]
