@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_1_0_pre4/HLT/V5  (CMSSW_2_1_0_pre4)
+// /dev/CMSSW_2_1_0_pre4/HLT/V6  (CMSSW_2_1_0_pre4)
 
 // Begin replace statements specific to the HLT
 include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
@@ -8148,7 +8148,7 @@ service = UpdaterService {}
     InputTag rawInputLabel = rawDataCollector
   }
   module hltEcalRegFED = ECALRegFEDSelector {
-    InputTag regSeedLabel = hltPixelIsolTrackFilter
+    InputTag regSeedLabel = hltIsolPixelTrackFilter
     double delta = 1.0
     InputTag rawInputLabel = rawDataCollector
   }
