@@ -132,7 +132,7 @@ else:
     esmodules += "-HcalTopologyIdealEP"
     
     modules = "--modules -hltTriggerSummaryAOD"
-    paths   = "--paths -CandHLT1MuonTrackerNonIso"
+    paths   = "--paths -CandHLT1MuonTrackerNonIso,-AlCaEcalPi0"
 
     services = "--services "
     services += "-PrescaleService,"
