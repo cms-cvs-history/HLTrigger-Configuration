@@ -933,6 +933,9 @@ service = UpdaterService {}
     bool ProduceL1GtObjectMapRecord = true
     bool WritePsbL1GtDaqRecord = false
     bool ReadTechnicalTriggerRecords = true
+#
+    int32 EmulateBxInEvent = 1
+#
   }
   module hltL1extraParticles = L1ExtraParticlesProd {
     bool produceMuonParticles = true
