@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_1_0_pre4/HLT/V6  (CMSSW_2_1_0_pre4)
+// /dev/CMSSW_2_1_0_pre4/HLT/V9  (CMSSW_2_1_X_2008-05-19-0200)
 
 // Begin replace statements specific to the HLT
 #
@@ -933,9 +933,7 @@ service = UpdaterService {}
     bool ProduceL1GtObjectMapRecord = true
     bool WritePsbL1GtDaqRecord = false
     bool ReadTechnicalTriggerRecords = true
-#
     int32 EmulateBxInEvent = 1
-#
   }
   module hltL1extraParticles = L1ExtraParticlesProd {
     bool produceMuonParticles = true
@@ -1896,7 +1894,7 @@ service = UpdaterService {}
     string AlgorithmName = "undefAlgorithm"
   }
   module hltPixelMatchElectronsL1Iso = EgammaHLTPixelMatchElectronProducers {
-    InputTag TrackProducer = hltCtfL1NonIsoWithMaterialTracks
+    InputTag TrackProducer = hltCtfL1IsoWithMaterialTracks
     InputTag BSProducer = hltOfflineBeamSpot
   }
   module hltL1IsoSingleElectronHOneOEMinusOneOPFilter = HLTElectronOneOEMinusOneOPFilterRegional {
@@ -3347,7 +3345,7 @@ service = UpdaterService {}
     string AlgorithmName = "undefAlgorithm"
   }
   module hltPixelMatchElectronsL1IsoLargeWindow = EgammaHLTPixelMatchElectronProducers {
-    InputTag TrackProducer = hltCtfL1NonIsoWithMaterialTracks
+    InputTag TrackProducer = hltCtfL1IsoLargeWindowWithMaterialTracks
     InputTag BSProducer = hltOfflineBeamSpot
   }
   module hltL1IsoLargeWindowSingleElectronHOneOEMinusOneOPFilter = HLTElectronOneOEMinusOneOPFilterRegional {
@@ -3528,7 +3526,7 @@ service = UpdaterService {}
     string AlgorithmName = "undefAlgorithm"
   }
   module hltPixelMatchElectronsL1NonIsoLargeWindow = EgammaHLTPixelMatchElectronProducers {
-    InputTag TrackProducer = hltCtfL1NonIsoWithMaterialTracks
+    InputTag TrackProducer = hltCtfL1NonIsoLargeWindowWithMaterialTracks
     InputTag BSProducer = hltOfflineBeamSpot
   }
   module hltL1NonIsoLargeWindowSingleElectronHOneOEMinusOneOPFilter = HLTElectronOneOEMinusOneOPFilterRegional {
@@ -7761,7 +7759,7 @@ service = UpdaterService {}
     string AlgorithmName = "undefAlgorithm"
   }
   module hltPixelMatchStartUpElectronsL1Iso = EgammaHLTPixelMatchElectronProducers {
-    InputTag TrackProducer = hltCtfL1NonIsoWithMaterialTracks
+    InputTag TrackProducer = hltCtfL1IsoStartUpWithMaterialTracks
     InputTag BSProducer = hltOfflineBeamSpot
   }
   module hltCkfL1NonIsoStartUpTrackCandidates = CkfTrackCandidateMaker {
@@ -7791,7 +7789,7 @@ service = UpdaterService {}
     string AlgorithmName = "undefAlgorithm"
   }
   module hltPixelMatchStartUpElectronsL1NonIso = EgammaHLTPixelMatchElectronProducers {
-    InputTag TrackProducer = hltCtfL1NonIsoWithMaterialTracks
+    InputTag TrackProducer = hltCtfL1NonIsoStartUpWithMaterialTracks
     InputTag BSProducer = hltOfflineBeamSpot
   }
   module hltL1NonIsoHLTnonIsoSingleElectronEt10HOneOEMinusOneOPFilter = HLTElectronOneOEMinusOneOPFilterRegional {
