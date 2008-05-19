@@ -1,14 +1,14 @@
-// /dev/CMSSW_2_1_0_pre4/HLT/V9  (CMSSW_2_1_X_2008-05-19-0200)
+// /dev/CMSSW_2_1_0_pre4/HLT/V10  (CMSSW_2_1_X_2008-05-19-0200)
 
 // Begin replace statements specific to the HLT
 #
 // End replace statements specific to the HLT
 sequence HLTBeginSequence = { hlt2GetRaw & hltGtDigis & hltGctDigis & hltL1GtObjectMap & hltL1extraParticles & hltOfflineBeamSpot }
 sequence HLTEndSequence = { hltBoolEnd }
-sequence HLTRecoJetRegionalSequence = { hltEcalPreshowerDigis & hltEcalRegionalJetsFEDs & hltEcalRegionalJetsDigis & hltEcalRegionalJetsWeightUncalibRecHit & hltEcalRegionalJetsRecHitTmp & hltEcalRegionalJetsRecHit & hltEcalPreshowerRecHit & HLTDoLocalHcalSequence & hltTowerMakerForJets & hltCaloTowersForJets & hltIterativeCone5CaloJetsRegional & hltMCJetCorJetIcone5Regional }
+sequence HLTRecoJetRegionalSequence = { hltEcalPreshowerDigis & hltEcalRegionalJetsFEDs & hltEcalRegionalJetsDigis & hltEcalRegionalJetsWeightUncalibRecHit & hltEcalRegionalJetsRecHitTmp & hltEcalRegionalJetsRecHit & hltEcalPreshowerRecHit & HLTDoLocalHcalSequence & hltTowerMakerForJets & hltIterativeCone5CaloJetsRegional & hltMCJetCorJetIcone5Regional }
 sequence HLTDoLocalHcalSequence = { hltHcalDigis & hltHbhereco & hltHfreco & hltHoreco }
 sequence HLTRecoJetMETSequence = { HLTDoCaloSequence & HLTDoJetRecoSequence & hltMet & HLTDoHTRecoSequence }
-sequence HLTDoCaloSequence = { hltEcalPreshowerDigis & hltEcalRegionalRestFEDs & hltEcalRegionalRestDigis & hltEcalRegionalRestWeightUncalibRecHit & hltEcalRegionalRestRecHitTmp & hltEcalRecHitAll & hltEcalPreshowerRecHit & HLTDoLocalHcalSequence & hltTowerMakerForAll & hltCaloTowers }
+sequence HLTDoCaloSequence = { hltEcalPreshowerDigis & hltEcalRegionalRestFEDs & hltEcalRegionalRestDigis & hltEcalRegionalRestWeightUncalibRecHit & hltEcalRegionalRestRecHitTmp & hltEcalRecHitAll & hltEcalPreshowerRecHit & HLTDoLocalHcalSequence & hltTowerMakerForAll }
 sequence HLTDoJetRecoSequence = { hltIterativeCone5CaloJets & hltMCJetCorJetIcone5 }
 sequence HLTDoHTRecoSequence = { hltHtMet }
 sequence HLTDoRegionalEgammaEcalSequence = { hltEcalPreshowerDigis & hltEcalRegionalEgammaFEDs & hltEcalRegionalEgammaDigis & hltEcalRegionalEgammaWeightUncalibRecHit & hltEcalRegionalEgammaRecHitTmp & hltEcalRegionalEgammaRecHit & hltEcalPreshowerRecHit }
@@ -1088,11 +1088,6 @@ service = UpdaterService {}
     InputTag hfInput = hltHfreco
     VInputTag ecalInputs = { hltEcalRegionalJetsRecHit:EcalRecHitsEB, hltEcalRegionalJetsRecHit:EcalRecHitsEE }
   }
-  module hltCaloTowersForJets = CaloTowerCandidateCreator {
-    InputTag src = hltTowerMakerForJets
-    double minimumEt = -1.0
-    double minimumE = -1.0
-  }
   module hltIterativeCone5CaloJetsRegional = IterativeConeJetProducer {
     double seedThreshold = 1.0
     double coneRadius = 0.5
@@ -1214,11 +1209,6 @@ service = UpdaterService {}
     InputTag hfInput = hltHfreco
     VInputTag ecalInputs = { hltEcalRecHitAll:EcalRecHitsEB, hltEcalRecHitAll:EcalRecHitsEE }
   }
-  module hltCaloTowers = CaloTowerCandidateCreator {
-    InputTag src = hltTowerMakerForAll
-    double minimumEt = -1.0
-    double minimumE = -1.0
-  }
   module hltIterativeCone5CaloJets = IterativeConeJetProducer {
     double seedThreshold = 1.0
     double coneRadius = 0.5
@@ -1237,7 +1227,7 @@ service = UpdaterService {}
     vstring correctors = { "MCJetCorrectorIcone5" }
   }
   module hltMet = METProducer {
-    InputTag src = hltCaloTowers
+    InputTag src = hltTowerMakerForAll
     string InputType = "CandidateCollection"
     string METType = "CaloMET"
     string alias = "RawCaloMET"
