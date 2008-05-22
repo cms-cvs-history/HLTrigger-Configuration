@@ -33,7 +33,7 @@ else:
     # Initialize everything
     essources = "  " 
     esmodules = "  " 
-
+    
     if useCase == "GEN-HLT":
         essources = "--essources "
         essources += "-GlobalTag,"
@@ -68,7 +68,6 @@ else:
         esmodules += "-EcalLaserCorrectionService,"    
         esmodules += "-EcalPreshowerGeometryEP,"
         esmodules += "-HcalHardcodeGeometryEP,"
-        esmodules += "-HcalTopologyIdealEP,"
         esmodules += "-L1GctConfigProducers,"
         esmodules += "-L1MuTriggerScales,"
         esmodules += "-MuonNumberingInitialization,"
