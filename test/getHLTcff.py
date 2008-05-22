@@ -11,7 +11,7 @@ import fileinput
 def usage():
     print "Usage: ./getHLTcff.py <Version from ConfDB> <Name of cff> <cff use case>"
     print "If \"GEN-HLT\" is specified for cff use case, a stripped HLT.cff is generated for the GEN-HLT workflow"
-    print "The default is to create an HLT.cff from the ConfDB with minimal modifications"
+    print "The default is to create an HLT.cff from the ConfDB with minimal modifications for validation"
     sys.exit(1)
 
 argc = len(sys.argv)
