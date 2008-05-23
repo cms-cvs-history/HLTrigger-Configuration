@@ -1,11 +1,7 @@
 // /dev/CMSSW_2_1_0_pre4/HLT/V13  (CMSSW_2_1_X_2008-05-19-0200)
 
 // Begin replace statements specific to the HLT
-include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
-module hltTriggerSummaryAOD = TriggerSummaryProducerAOD {
-  string processName = "@"
-  using TriggerSummaryAOD
-}
+#
 // End replace statements specific to the HLT
 sequence HLTBeginSequence = { hlt2GetRaw & hltGtDigis & hltGctDigis & hltL1GtObjectMap & hltL1extraParticles & hltOfflineBeamSpot }
 sequence HLTEndSequence = { hltBoolEnd }
@@ -11350,6 +11346,9 @@ service = UpdaterService {}
     double MaxDz = 99999.0
     double MinPt = 15.0
     double NSigmaPt = 0.0
+  }
+  module hltTriggerSummaryAOD = TriggerSummaryProducerAOD {
+    string processName = "@"
   }
   module hltTriggerSummaryRAWprescaler = HLTPrescaler {}
   module hltTriggerSummaryRAW = TriggerSummaryProducerRAW {
