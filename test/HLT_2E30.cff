@@ -284,8 +284,81 @@ path HLT1MuonIso9 = { HLTL1muonrecoSequence & hltPrescaleSingleMuIso9 & hltSingl
 path HLT1MuonIso13 = { HLTL1muonrecoSequence & hltPrescaleSingleMuIso13 & hltSingleMuIsoLevel1Seed10 & hltSingleMuIsoL1Filtered10 & HLTL2muonrecoSequence & hltSingleMuIsoL2PreFiltered13 & HLTL2muonisorecoSequence & hltSingleMuIsoL2IsoFiltered13 & HLTL3muonrecoSequence & hltSingleMuIsoL3PreFiltered13 & HLTL3muonisorecoSequence & hltSingleMuIsoL3IsoFiltered13 & HLTEndSequence }
 path HLT1MuonIso15 = { HLTL1muonrecoSequence & hltPrescaleSingleMuIso15 & hltSingleMuIsoLevel1Seed10 & hltSingleMuIsoL1Filtered10 & HLTL2muonrecoSequence & hltSingleMuIsoL2PreFiltered15 & HLTL2muonisorecoSequence & hltSingleMuIsoL2IsoFiltered15 & HLTL3muonrecoSequence & hltSingleMuIsoL3PreFiltered15 & HLTL3muonisorecoSequence & hltSingleMuIsoL3IsoFiltered15 & HLTEndSequence }
 path HLTriggerFinalPath = { hltTriggerSummaryAOD & hltTriggerSummaryRAWprescaler & hltTriggerSummaryRAW & hltBoolFinal }
+es_source SiStripQualityFakeESSource = SiStripQualityFakeESSource {}
+es_source GlobalTag = PoolDBESSource {
+  untracked string BlobStreamerName = "TBufferBlobStreamingService"
+  string connect = "frontier://FrontierProd/CMS_COND_20X_GLOBALTAG"
+  untracked string globaltag = "IDEAL::All"
+  PSet DBParameters = {
+    untracked string authenticationPath = "."
+    untracked int32 messageLevel = 0
+    untracked int32 connectionTimeOut = 0
+    untracked int32 connectionRetrialPeriod = 10
+    untracked int32 connectionRetrialTimeOut = 60
+    untracked bool enableConnectionSharing = true
+    untracked bool enableReadOnlySessionOnUpdateConnection = false
+    untracked bool enablePoolAutomaticCleanUp = false
+    untracked int32 idleConnectionCleanupPeriod = 10
+  }
+  VPSet toGet = {
+  }
+  string timetype = "runnumber"
+}
 es_source BTagRecord = EmptyESSource {
   string recordName = "JetTagComputerRecord"
+  bool iovIsRunNotTime = true
+  vuint32 firstValid = { 1 }
+}
+es_source HepPDTESSource = HepPDTESSource {
+  FileInPath pdtFileName = "SimGeneral/HepPDTESSource/data/pythiaparticle.tbl"
+}
+es_source L1GtBoardMapsRcdSource = EmptyESSource {
+  string recordName = "L1GtBoardMapsRcd"
+  bool iovIsRunNotTime = true
+  vuint32 firstValid = { 1 }
+}
+es_source L1GtParametersRcdSource = EmptyESSource {
+  string recordName = "L1GtParametersRcd"
+  bool iovIsRunNotTime = true
+  vuint32 firstValid = { 1 }
+}
+es_source L1GtPrescaleFactorsAlgoTrigRcdSource = EmptyESSource {
+  string recordName = "L1GtPrescaleFactorsAlgoTrigRcd"
+  bool iovIsRunNotTime = true
+  vuint32 firstValid = { 1 }
+}
+es_source L1GtPrescaleFactorsTechTrigRcdSource = EmptyESSource {
+  string recordName = "L1GtPrescaleFactorsTechTrigRcd"
+  bool iovIsRunNotTime = true
+  vuint32 firstValid = { 1 }
+}
+es_source L1GtStableParametersRcdSource = EmptyESSource {
+  string recordName = "L1GtStableParametersRcd"
+  bool iovIsRunNotTime = true
+  vuint32 firstValid = { 1 }
+}
+es_source L1GtTriggerMaskAlgoTrigRcdSource = EmptyESSource {
+  string recordName = "L1GtTriggerMaskAlgoTrigRcd"
+  bool iovIsRunNotTime = true
+  vuint32 firstValid = { 1 }
+}
+es_source L1GtTriggerMaskTechTrigRcdSource = EmptyESSource {
+  string recordName = "L1GtTriggerMaskTechTrigRcd"
+  bool iovIsRunNotTime = true
+  vuint32 firstValid = { 1 }
+}
+es_source L1GtTriggerMaskVetoAlgoTrigRcdSource = EmptyESSource {
+  string recordName = "L1GtTriggerMaskVetoAlgoTrigRcd"
+  bool iovIsRunNotTime = true
+  vuint32 firstValid = { 1 }
+}
+es_source L1GtTriggerMaskVetoTechTrigRcdSource = EmptyESSource {
+  string recordName = "L1GtTriggerMaskVetoTechTrigRcd"
+  bool iovIsRunNotTime = true
+  vuint32 firstValid = { 1 }
+}
+es_source L1MuTriggerScalesRcdSource = EmptyESSource {
+  string recordName = "L1MuTriggerScalesRcd"
   bool iovIsRunNotTime = true
   vuint32 firstValid = { 1 }
 }
@@ -293,9 +366,52 @@ es_source MCJetCorrectorIcone5 = MCJetCorrectionService {
   string tagName = "CMSSW_152_iterativeCone5"
   string label = "MCJetCorrectorIcone5"
 }
+es_source XMLIdealGeometryESSource = XMLIdealGeometryESSource {
+  string rootNodeName = "cms:OCMS"
+  vstring geomXMLFiles = { "Geometry/CMSCommonData/data/materials.xml", "Geometry/CMSCommonData/data/rotations.xml", "Geometry/CMSCommonData/data/normal/cmsextent.xml", "Geometry/CMSCommonData/data/cms.xml", "Geometry/CMSCommonData/data/cmsMother.xml", "Geometry/CMSCommonData/data/cmsTracker.xml", "Geometry/CMSCommonData/data/caloBase.xml", "Geometry/CMSCommonData/data/cmsCalo.xml", "Geometry/CMSCommonData/data/muonBase.xml", "Geometry/CMSCommonData/data/cmsMuon.xml", "Geometry/CMSCommonData/data/mgnt.xml", "Geometry/CMSCommonData/data/beampipe.xml", "Geometry/CMSCommonData/data/cmsBeam.xml", "Geometry/CMSCommonData/data/muonMB.xml", "Geometry/CMSCommonData/data/muonMagnet.xml", "Geometry/TrackerCommonData/data/pixfwdMaterials.xml", "Geometry/TrackerCommonData/data/pixfwdCommon.xml", "Geometry/TrackerCommonData/data/pixfwdPlaq.xml", "Geometry/TrackerCommonData/data/pixfwdPlaq1x2.xml", "Geometry/TrackerCommonData/data/pixfwdPlaq1x5.xml", "Geometry/TrackerCommonData/data/pixfwdPlaq2x3.xml", "Geometry/TrackerCommonData/data/pixfwdPlaq2x4.xml", "Geometry/TrackerCommonData/data/pixfwdPlaq2x5.xml", "Geometry/TrackerCommonData/data/pixfwdPanelBase.xml", "Geometry/TrackerCommonData/data/pixfwdPanel.xml", "Geometry/TrackerCommonData/data/pixfwdBlade.xml", "Geometry/TrackerCommonData/data/pixfwdNipple.xml", "Geometry/TrackerCommonData/data/pixfwdDisk.xml", "Geometry/TrackerCommonData/data/pixfwdCylinder.xml", "Geometry/TrackerCommonData/data/pixfwd.xml", "Geometry/TrackerCommonData/data/pixbarmaterial.xml", "Geometry/TrackerCommonData/data/pixbarladder.xml", "Geometry/TrackerCommonData/data/pixbarladderfull.xml", "Geometry/TrackerCommonData/data/pixbarladderhalf.xml", "Geometry/TrackerCommonData/data/pixbarlayer.xml", "Geometry/TrackerCommonData/data/pixbarlayer0.xml", "Geometry/TrackerCommonData/data/pixbarlayer1.xml", "Geometry/TrackerCommonData/data/pixbarlayer2.xml", "Geometry/TrackerCommonData/data/pixbar.xml", "Geometry/TrackerCommonData/data/tibtidcommonmaterial.xml", "Geometry/TrackerCommonData/data/tibmaterial.xml", "Geometry/TrackerCommonData/data/tibmodpar.xml", "Geometry/TrackerCommonData/data/tibmodule0.xml", "Geometry/TrackerCommonData/data/tibmodule0a.xml", "Geometry/TrackerCommonData/data/tibmodule0b.xml", "Geometry/TrackerCommonData/data/tibmodule2.xml", "Geometry/TrackerCommonData/data/tibstringpar.xml", "Geometry/TrackerCommonData/data/tibstring0ll.xml", "Geometry/TrackerCommonData/data/tibstring0lr.xml", "Geometry/TrackerCommonData/data/tibstring0ul.xml", "Geometry/TrackerCommonData/data/tibstring0ur.xml", "Geometry/TrackerCommonData/data/tibstring0.xml", "Geometry/TrackerCommonData/data/tibstring1ll.xml", "Geometry/TrackerCommonData/data/tibstring1lr.xml", "Geometry/TrackerCommonData/data/tibstring1ul.xml", "Geometry/TrackerCommonData/data/tibstring1ur.xml", "Geometry/TrackerCommonData/data/tibstring1.xml", "Geometry/TrackerCommonData/data/tibstring2ll.xml", "Geometry/TrackerCommonData/data/tibstring2lr.xml", "Geometry/TrackerCommonData/data/tibstring2ul.xml", "Geometry/TrackerCommonData/data/tibstring2ur.xml", "Geometry/TrackerCommonData/data/tibstring2.xml", "Geometry/TrackerCommonData/data/tibstring3ll.xml", "Geometry/TrackerCommonData/data/tibstring3lr.xml", "Geometry/TrackerCommonData/data/tibstring3ul.xml", "Geometry/TrackerCommonData/data/tibstring3ur.xml", "Geometry/TrackerCommonData/data/tibstring3.xml", "Geometry/TrackerCommonData/data/tiblayerpar.xml", "Geometry/TrackerCommonData/data/tiblayer0.xml", "Geometry/TrackerCommonData/data/tiblayer1.xml", "Geometry/TrackerCommonData/data/tiblayer2.xml", "Geometry/TrackerCommonData/data/tiblayer3.xml", "Geometry/TrackerCommonData/data/tib.xml", "Geometry/TrackerCommonData/data/tidmaterial.xml", "Geometry/TrackerCommonData/data/tidmodpar.xml", "Geometry/TrackerCommonData/data/tidmodule0.xml", "Geometry/TrackerCommonData/data/tidmodule0r.xml", "Geometry/TrackerCommonData/data/tidmodule0l.xml", "Geometry/TrackerCommonData/data/tidmodule1.xml", "Geometry/TrackerCommonData/data/tidmodule1r.xml", "Geometry/TrackerCommonData/data/tidmodule1l.xml", "Geometry/TrackerCommonData/data/tidmodule2.xml", "Geometry/TrackerCommonData/data/tidringpar.xml", "Geometry/TrackerCommonData/data/tidring0.xml", "Geometry/TrackerCommonData/data/tidring0f.xml", "Geometry/TrackerCommonData/data/tidring0b.xml", "Geometry/TrackerCommonData/data/tidring1.xml", "Geometry/TrackerCommonData/data/tidring1f.xml", "Geometry/TrackerCommonData/data/tidring1b.xml", "Geometry/TrackerCommonData/data/tidring2.xml", "Geometry/TrackerCommonData/data/tid.xml", "Geometry/TrackerCommonData/data/tidf.xml", "Geometry/TrackerCommonData/data/tidb.xml", "Geometry/TrackerCommonData/data/tibtidservices.xml", "Geometry/TrackerCommonData/data/tibtidservicesf.xml", "Geometry/TrackerCommonData/data/tibtidservicesb.xml", "Geometry/TrackerCommonData/data/tobmaterial.xml", "Geometry/TrackerCommonData/data/tobmodpar.xml", "Geometry/TrackerCommonData/data/tobmodule0.xml", "Geometry/TrackerCommonData/data/tobmodule2.xml", "Geometry/TrackerCommonData/data/tobmodule4.xml", "Geometry/TrackerCommonData/data/tobrodpar.xml", "Geometry/TrackerCommonData/data/tobrod0c.xml", "Geometry/TrackerCommonData/data/tobrod0l.xml", "Geometry/TrackerCommonData/data/tobrod0h.xml", "Geometry/TrackerCommonData/data/tobrod0.xml", "Geometry/TrackerCommonData/data/tobrod1l.xml", "Geometry/TrackerCommonData/data/tobrod1h.xml", "Geometry/TrackerCommonData/data/tobrod1.xml", "Geometry/TrackerCommonData/data/tobrod2c.xml", "Geometry/TrackerCommonData/data/tobrod2l.xml", "Geometry/TrackerCommonData/data/tobrod2h.xml", "Geometry/TrackerCommonData/data/tobrod2.xml", "Geometry/TrackerCommonData/data/tobrod3l.xml", "Geometry/TrackerCommonData/data/tobrod3h.xml", "Geometry/TrackerCommonData/data/tobrod3.xml", "Geometry/TrackerCommonData/data/tobrod4c.xml", "Geometry/TrackerCommonData/data/tobrod4l.xml", "Geometry/TrackerCommonData/data/tobrod4h.xml", "Geometry/TrackerCommonData/data/tobrod4.xml", "Geometry/TrackerCommonData/data/tobrod5l.xml", "Geometry/TrackerCommonData/data/tobrod5h.xml", "Geometry/TrackerCommonData/data/tobrod5.xml", "Geometry/TrackerCommonData/data/tob.xml", "Geometry/TrackerCommonData/data/tecmaterial.xml", "Geometry/TrackerCommonData/data/tecmodpar.xml", "Geometry/TrackerCommonData/data/tecmodule0.xml", "Geometry/TrackerCommonData/data/tecmodule0r.xml", "Geometry/TrackerCommonData/data/tecmodule0s.xml", "Geometry/TrackerCommonData/data/tecmodule1.xml", "Geometry/TrackerCommonData/data/tecmodule1r.xml", "Geometry/TrackerCommonData/data/tecmodule1s.xml", "Geometry/TrackerCommonData/data/tecmodule2.xml", "Geometry/TrackerCommonData/data/tecmodule3.xml", "Geometry/TrackerCommonData/data/tecmodule4.xml", "Geometry/TrackerCommonData/data/tecmodule4r.xml", "Geometry/TrackerCommonData/data/tecmodule4s.xml", "Geometry/TrackerCommonData/data/tecmodule5.xml", "Geometry/TrackerCommonData/data/tecmodule6.xml", "Geometry/TrackerCommonData/data/tecpetpar.xml", "Geometry/TrackerCommonData/data/tecring0.xml", "Geometry/TrackerCommonData/data/tecring1.xml", "Geometry/TrackerCommonData/data/tecring2.xml", "Geometry/TrackerCommonData/data/tecring3.xml", "Geometry/TrackerCommonData/data/tecring4.xml", "Geometry/TrackerCommonData/data/tecring5.xml", "Geometry/TrackerCommonData/data/tecring6.xml", "Geometry/TrackerCommonData/data/tecring0f.xml", "Geometry/TrackerCommonData/data/tecring1f.xml", "Geometry/TrackerCommonData/data/tecring2f.xml", "Geometry/TrackerCommonData/data/tecring3f.xml", "Geometry/TrackerCommonData/data/tecring4f.xml", "Geometry/TrackerCommonData/data/tecring5f.xml", "Geometry/TrackerCommonData/data/tecring6f.xml", "Geometry/TrackerCommonData/data/tecring0b.xml", "Geometry/TrackerCommonData/data/tecring1b.xml", "Geometry/TrackerCommonData/data/tecring2b.xml", "Geometry/TrackerCommonData/data/tecring3b.xml", "Geometry/TrackerCommonData/data/tecring4b.xml", "Geometry/TrackerCommonData/data/tecring5b.xml", "Geometry/TrackerCommonData/data/tecring6b.xml", "Geometry/TrackerCommonData/data/tecpetalf.xml", "Geometry/TrackerCommonData/data/tecpetalb.xml", "Geometry/TrackerCommonData/data/tecpetal0.xml", "Geometry/TrackerCommonData/data/tecpetal0f.xml", "Geometry/TrackerCommonData/data/tecpetal0b.xml", "Geometry/TrackerCommonData/data/tecpetal3.xml", "Geometry/TrackerCommonData/data/tecpetal3f.xml", "Geometry/TrackerCommonData/data/tecpetal3b.xml", "Geometry/TrackerCommonData/data/tecpetal6f.xml", "Geometry/TrackerCommonData/data/tecpetal6b.xml", "Geometry/TrackerCommonData/data/tecpetal8f.xml", "Geometry/TrackerCommonData/data/tecpetal8b.xml", "Geometry/TrackerCommonData/data/tecwheel.xml", "Geometry/TrackerCommonData/data/tecwheela.xml", "Geometry/TrackerCommonData/data/tecwheelb.xml", "Geometry/TrackerCommonData/data/tecwheelc.xml", "Geometry/TrackerCommonData/data/tecwheeld.xml", "Geometry/TrackerCommonData/data/tecwheel6.xml", "Geometry/TrackerCommonData/data/tecservices.xml", "Geometry/TrackerCommonData/data/tecbackplate.xml", "Geometry/TrackerCommonData/data/tec.xml", "Geometry/TrackerCommonData/data/trackermaterial.xml", "Geometry/TrackerCommonData/data/tracker.xml", "Geometry/TrackerCommonData/data/trackerpixbar.xml", "Geometry/TrackerCommonData/data/trackerpixfwd.xml", "Geometry/TrackerCommonData/data/trackertibtidservices.xml", "Geometry/TrackerCommonData/data/trackertib.xml", "Geometry/TrackerCommonData/data/trackertid.xml", "Geometry/TrackerCommonData/data/trackertob.xml", "Geometry/TrackerCommonData/data/trackertec.xml", "Geometry/TrackerCommonData/data/trackerbulkhead.xml", "Geometry/TrackerCommonData/data/trackerother.xml", "Geometry/EcalCommonData/data/eregalgo.xml", "Geometry/EcalCommonData/data/ebalgo.xml", "Geometry/EcalCommonData/data/ebcon.xml", "Geometry/EcalCommonData/data/ebrot.xml", "Geometry/EcalCommonData/data/eecon.xml", "Geometry/EcalCommonData/data/eefixed.xml", "Geometry/EcalCommonData/data/eehier.xml", "Geometry/EcalCommonData/data/eealgo.xml", "Geometry/EcalCommonData/data/escon.xml", "Geometry/EcalCommonData/data/esalgo.xml", "Geometry/EcalCommonData/data/eeF.xml", "Geometry/EcalCommonData/data/eeB.xml", "Geometry/HcalCommonData/data/hcalrotations.xml", "Geometry/HcalCommonData/data/hcalalgo.xml", "Geometry/HcalCommonData/data/hcalbarrelalgo.xml", "Geometry/HcalCommonData/data/hcalendcapalgo.xml", "Geometry/HcalCommonData/data/hcalouteralgo.xml", "Geometry/HcalCommonData/data/hcalforwardalgo.xml", "Geometry/HcalCommonData/data/hcalforwardfibre.xml", "Geometry/HcalCommonData/data/hcalforwardmaterial.xml", "Geometry/MuonCommonData/data/mbCommon.xml", "Geometry/MuonCommonData/data/mb1.xml", "Geometry/MuonCommonData/data/mb2.xml", "Geometry/MuonCommonData/data/mb3.xml", "Geometry/MuonCommonData/data/mb4.xml", "Geometry/MuonCommonData/data/muonYoke.xml", "Geometry/MuonCommonData/data/mf.xml", "Geometry/ForwardCommonData/data/forward.xml", "Geometry/ForwardCommonData/data/forwardshield.xml", "Geometry/ForwardCommonData/data/brmrotations.xml", "Geometry/ForwardCommonData/data/brm.xml", "Geometry/ForwardCommonData/data/totemMaterials.xml", "Geometry/ForwardCommonData/data/totemRotations.xml", "Geometry/ForwardCommonData/data/totemt1.xml", "Geometry/ForwardCommonData/data/totemt2.xml", "Geometry/ForwardCommonData/data/ionpump.xml", "Geometry/MuonCommonData/data/muonNumbering.xml", "Geometry/TrackerCommonData/data/trackerStructureTopology.xml", "Geometry/TrackerSimData/data/trackersens.xml", "Geometry/TrackerRecoData/data/trackerRecoMaterial.xml", "Geometry/EcalSimData/data/ecalsens.xml", "Geometry/HcalCommonData/data/hcalsens.xml", "Geometry/HcalSimData/data/CaloUtil.xml", "Geometry/MuonSimData/data/muonSens.xml", "Geometry/DTGeometryBuilder/data/dtSpecsFilter.xml", "Geometry/CSCGeometryBuilder/data/cscSpecsFilter.xml", "Geometry/CSCGeometryBuilder/data/cscSpecs.xml", "Geometry/RPCGeometryBuilder/data/RPCSpecs.xml", "Geometry/ForwardCommonData/data/brmsens.xml", "Geometry/CMSCommonData/data/cmsMagneticField.xml", "Geometry/CMSCommonData/data/MagneticFieldVolumes.xml", "Geometry/HcalSimData/data/HcalProdCuts.xml", "Geometry/EcalSimData/data/EcalProdCuts.xml", "Geometry/TrackerSimData/data/trackerProdCuts.xml", "Geometry/TrackerSimData/data/trackerProdCutsBEAM.xml", "Geometry/MuonSimData/data/muonProdCuts.xml", "Geometry/ForwardSimData/data/TotemProdCuts.xml", "Geometry/CMSCommonData/data/FieldParameters.xml" }
+}
+es_source eegeom = EmptyESSource {
+  string recordName = "EcalMappingRcd"
+  bool iovIsRunNotTime = true
+  vuint32 firstValid = { 1 }
+}
+es_source emrcdsrc = EmptyESSource {
+  string recordName = "L1EmEtScaleRcd"
+  bool iovIsRunNotTime = true
+  vuint32 firstValid = { 1 }
+}
+es_source es_hardcode = HcalHardcodeCalibrations {
+  untracked vstring toGet = { "GainWidths", "channelQuality", "ZSThresholds" }
+}
+es_source jetrcdsrc = EmptyESSource {
+  string recordName = "L1JetEtScaleRcd"
+  bool iovIsRunNotTime = true
+  vuint32 firstValid = { 1 }
+}
+es_source l1CaloGeomRecordSource = EmptyESSource {
+  string recordName = "L1CaloGeometryRecord"
+  bool iovIsRunNotTime = true
+  vuint32 firstValid = { 1 }
+}
+es_source magfield = XMLIdealGeometryESSource {
+  string rootNodeName = "MagneticFieldVolumes:MAGF"
+  vstring geomXMLFiles = { "Geometry/CMSCommonData/data/normal/cmsextent.xml", "Geometry/CMSCommonData/data/cms.xml", "Geometry/CMSCommonData/data/cmsMagneticField.xml", "Geometry/CMSCommonData/data/MagneticFieldVolumes.xml" }
+}
+es_prefer magfield = XMLIdealGeometryESSource {}
+es_module CSCGeometryESModule = CSCGeometryESModule {
+  bool useRealWireGeometry = true
+  bool useOnlyWiresInME1a = false
+  bool useGangedStripsInME1a = true
+  bool useCentreTIOffsets = false
+  untracked bool applyAlignment = true
+}
+es_module CaloGeometryBuilder = CaloGeometryBuilder {
+  vstring SelectedCalos = { "HCAL", "ZDC", "EcalBarrel", "EcalEndcap", "EcalPreshower", "TOWER" }
+}
 es_module CaloTowerConstituentsMapBuilder = CaloTowerConstituentsMapBuilder {
   untracked string MapFile = "Geometry/CaloTopology/data/CaloTowerEEGeometric.map.gz"
 }
+es_module CaloTowerHardcodeGeometryEP = CaloTowerHardcodeGeometryEP {}
 es_module Chi2EstimatorForL3Refit = Chi2MeasurementEstimatorESProducer {
   string ComponentName = "Chi2EstimatorForL3Refit"
   double MaxChi2 = 100000.0
@@ -330,6 +446,16 @@ es_module CkfTrajectoryBuilder = CkfTrajectoryBuilderESProducer {
   bool intermediateCleaning = true
   bool alwaysUseInvalidHits = true
 }
+es_module DTGeometryESModule = DTGeometryESModule {
+  untracked bool applyAlignment = true
+}
+es_module EcalBarrelGeometryEP = EcalBarrelGeometryEP {}
+es_module EcalElectronicsMappingBuilder = EcalElectronicsMappingBuilder {
+  untracked string MapFile = "Geometry/EcalMapping/data/EEMap.txt"
+}
+es_module EcalEndcapGeometryEP = EcalEndcapGeometryEP {}
+es_module EcalLaserCorrectionService = EcalLaserCorrectionService {}
+es_module EcalPreshowerGeometryEP = EcalPreshowerGeometryEP {}
 es_module FitterRK = KFTrajectoryFitterESProducer {
   string ComponentName = "FitterRK"
   string Propagator = "RungeKuttaTrackerPropagator"
@@ -365,6 +491,7 @@ es_module GroupedCkfTrajectoryBuilder = GroupedCkfTrajectoryBuilderESProducer {
   bool requireSeedHitsInRebuild = true
   int32 minNrOfHitsForRebuild = 5
 }
+es_module HcalHardcodeGeometryEP = HcalHardcodeGeometryEP {}
 es_module HcalTopologyIdealEP = HcalTopologyIdealEP {
 }
 es_module KFFitterForRefitInsideOut = KFTrajectoryFitterESProducer {
@@ -393,6 +520,90 @@ es_module KFSmootherForRefitInsideOut = KFTrajectorySmootherESProducer {
 es_module KFUpdatorESProducer = KFUpdatorESProducer {
   string ComponentName = "KFUpdator"
 }
+es_module L1GctConfigProducers = L1GctConfigProducers {
+  uint32 JetFinderCentralJetSeed = 1
+  uint32 JetFinderForwardJetSeed = 1
+  double L1CaloHtScaleLsbInGeV = 1.0
+  double L1CaloJetZeroSuppressionThresholdInGeV = 5.0
+  string CalibrationStyle = "ORCAStyle"
+  PSet PowerSeriesCoefficients = {
+    vdouble nonTauJetCalib0 = {  }
+    vdouble nonTauJetCalib1 = {  }
+    vdouble nonTauJetCalib2 = {  }
+    vdouble nonTauJetCalib3 = {  }
+    vdouble nonTauJetCalib4 = {  }
+    vdouble nonTauJetCalib5 = {  }
+    vdouble nonTauJetCalib6 = {  }
+    vdouble nonTauJetCalib7 = {  }
+    vdouble nonTauJetCalib8 = {  }
+    vdouble nonTauJetCalib9 = {  }
+    vdouble nonTauJetCalib10 = {  }
+    vdouble tauJetCalib0 = {  }
+    vdouble tauJetCalib1 = {  }
+    vdouble tauJetCalib2 = {  }
+    vdouble tauJetCalib3 = {  }
+    vdouble tauJetCalib4 = {  }
+    vdouble tauJetCalib5 = {  }
+    vdouble tauJetCalib6 = {  }
+  }
+  PSet OrcaStyleCoefficients = {
+    vdouble nonTauJetCalib0 = { 47.4, -20.7, 0.7922, 9.53E-5 }
+    vdouble nonTauJetCalib1 = { 49.4, -22.5, 0.7867, 9.6E-5 }
+    vdouble nonTauJetCalib2 = { 47.1, -22.2, 0.7645, 1.209E-4 }
+    vdouble nonTauJetCalib3 = { 49.3, -22.9, 0.7331, 1.221E-4 }
+    vdouble nonTauJetCalib4 = { 48.2, -24.5, 0.7706, 1.28E-4 }
+    vdouble nonTauJetCalib5 = { 42.0, -23.9, 0.7945, 1.458E-4 }
+    vdouble nonTauJetCalib6 = { 33.8, -22.1, 0.8202, 1.403E-4 }
+    vdouble nonTauJetCalib7 = { 17.1, -6.6, 0.6958, 6.88E-5 }
+    vdouble nonTauJetCalib8 = { 13.1, -4.5, 0.7071, 7.26E-5 }
+    vdouble nonTauJetCalib9 = { 12.4, -3.8, 0.6558, 4.89E-4 }
+    vdouble nonTauJetCalib10 = { 9.3, 1.3, 0.2719, 0.003418 }
+    vdouble tauJetCalib0 = { 47.4, -20.7, 0.7922, 9.53E-5 }
+    vdouble tauJetCalib1 = { 49.4, -22.5, 0.7867, 9.6E-5 }
+    vdouble tauJetCalib2 = { 47.1, -22.2, 0.7645, 1.209E-4 }
+    vdouble tauJetCalib3 = { 49.3, -22.9, 0.7331, 1.221E-4 }
+    vdouble tauJetCalib4 = { 48.2, -24.5, 0.7706, 1.28E-4 }
+    vdouble tauJetCalib5 = { 42.0, -23.9, 0.7945, 1.458E-4 }
+    vdouble tauJetCalib6 = { 33.8, -22.1, 0.8202, 1.403E-4 }
+  }
+  PSet PiecewiseCubicCoefficients = {
+    vdouble nonTauJetCalib0 = { 500.0, 100.0, 17.7409, 0.351901, -7.01462E-4, 5.77204E-7, 5.0, 0.720604, 1.25179, -0.0150777, 7.13711E-5 }
+    vdouble nonTauJetCalib1 = { 500.0, 100.0, 20.0549, 0.321867, -6.4901E-4, 5.50042E-7, 5.0, 1.30465, 1.2774, -0.0159193, 7.64496E-5 }
+    vdouble nonTauJetCalib2 = { 500.0, 100.0, 24.3454, 0.257989, -4.50184E-4, 3.09951E-7, 5.0, 2.1034, 1.32441, -0.0173659, 8.50669E-5 }
+    vdouble nonTauJetCalib3 = { 500.0, 100.0, 27.7822, 0.155986, -2.66441E-4, 6.69814E-8, 5.0, 2.64613, 1.30745, -0.0180964, 8.83567E-5 }
+    vdouble nonTauJetCalib4 = { 500.0, 100.0, 26.6384, 0.0567369, -4.16292E-4, 2.60929E-7, 5.0, 2.63299, 1.16558, -0.0170351, 7.95703E-5 }
+    vdouble nonTauJetCalib5 = { 500.0, 100.0, 29.5396, 0.001137, -1.45232E-4, 6.91445E-8, 5.0, 4.16752, 1.08477, -0.016134, 7.69652E-5 }
+    vdouble nonTauJetCalib6 = { 500.0, 100.0, 30.1405, -0.14281, 5.55849E-4, -7.52446E-7, 5.0, 4.79283, 0.672125, -0.00879174, 3.65776E-5 }
+    vdouble nonTauJetCalib7 = { 300.0, 80.0, 30.2715, -0.539688, 0.00499898, -1.2204E-5, 5.0, 1.97284, 0.0610729, 0.00671548, -7.22583E-5 }
+    vdouble nonTauJetCalib8 = { 250.0, 150.0, 1.38861, 0.0362661, 0.0, 0.0, 5.0, 1.87993, 0.0329907, 0.0, 0.0 }
+    vdouble nonTauJetCalib9 = { 200.0, 80.0, 35.0095, -0.669677, 0.00208498, -1.50554E-6, 5.0, 3.16074, -0.114404, 0.0, 0.0 }
+    vdouble nonTauJetCalib10 = { 150.0, 80.0, 1.70475, -0.142171, 0.00104963, -1.62214E-5, 5.0, 1.70475, -0.142171, 0.00104963, -1.62214E-5 }
+    vdouble tauJetCalib0 = { 500.0, 100.0, 17.7409, 0.351901, -7.01462E-4, 5.77204E-7, 5.0, 0.720604, 1.25179, -0.0150777, 7.13711E-5 }
+    vdouble tauJetCalib1 = { 500.0, 100.0, 20.0549, 0.321867, -6.4901E-4, 5.50042E-7, 5.0, 1.30465, 1.2774, -0.0159193, 7.64496E-5 }
+    vdouble tauJetCalib2 = { 500.0, 100.0, 24.3454, 0.257989, -4.50184E-4, 3.09951E-7, 5.0, 2.1034, 1.32441, -0.0173659, 8.50669E-5 }
+    vdouble tauJetCalib3 = { 500.0, 100.0, 27.7822, 0.155986, -2.66441E-4, 6.69814E-8, 5.0, 2.64613, 1.30745, -0.0180964, 8.83567E-5 }
+    vdouble tauJetCalib4 = { 500.0, 100.0, 26.6384, 0.0567369, -4.16292E-4, 2.60929E-7, 5.0, 2.63299, 1.16558, -0.0170351, 7.95703E-5 }
+    vdouble tauJetCalib5 = { 500.0, 100.0, 29.5396, 0.001137, -1.45232E-4, 6.91445E-8, 5.0, 4.16752, 1.08477, -0.016134, 7.69652E-5 }
+    vdouble tauJetCalib6 = { 500.0, 100.0, 30.1405, -0.14281, 5.55849E-4, -7.52446E-7, 5.0, 4.79283, 0.672125, -0.00879174, 3.65776E-5 }
+  }
+  PSet jetCounterSetup = {
+    VPSet jetCountersNegativeWheel = {
+      { vstring cutDescriptionList = { "JC_minRank_1" } },
+      { vstring cutDescriptionList = { "JC_minRank_1", "JC_centralEta_6" } },
+      { vstring cutDescriptionList = { "JC_minRank_11" } },
+      { vstring cutDescriptionList = { "JC_minRank_11", "JC_centralEta_6" } },
+      { vstring cutDescriptionList = { "JC_minRank_19" } }
+    }
+    VPSet jetCountersPositiveWheel = {
+      { vstring cutDescriptionList = { "JC_minRank_1" } },
+      { vstring cutDescriptionList = { "JC_minRank_1", "JC_centralEta_6" } },
+      { vstring cutDescriptionList = { "JC_minRank_11" } },
+      { vstring cutDescriptionList = { "JC_minRank_11", "JC_centralEta_6" } },
+      { vstring cutDescriptionList = { "JC_minRank_19" } }
+    }
+  }
+}
+es_module L1MuTriggerScales = L1MuTriggerScalesProducer {}
 es_module L3MuKFFitter = KFTrajectoryFitterESProducer {
   string ComponentName = "L3MuKFFitter"
   string Propagator = "SmartPropagatorAny"
@@ -442,6 +653,7 @@ es_module MuonCkfTrajectoryBuilder = MuonCkfTrajectoryBuilderESProducer {
   bool alwaysUseInvalidHits = true
 }
 es_module MuonDetLayerGeometryESProducer = MuonDetLayerGeometryESProducer {}
+es_module MuonNumberingInitialization = MuonNumberingInitialization {}
 es_module MuonTransientTrackingRecHitBuilderESProducer = MuonTransientTrackingRecHitBuilderESProducer {
   string ComponentName = "MuonRecHitBuilder"
 }
@@ -478,12 +690,23 @@ es_module RKTrackerPropagator = PropagatorWithMaterialESProducer {
   double MaxDPhi = 1.6
   bool useRungeKutta = true
 }
+es_module RPCGeometryESModule = RPCGeometryESModule {
+}
 es_module RungeKuttaTrackerPropagator = PropagatorWithMaterialESProducer {
   string ComponentName = "RungeKuttaTrackerPropagator"
   string PropagationDirection = "alongMomentum"
   double Mass = 0.105
   double MaxDPhi = 1.6
   bool useRungeKutta = true
+}
+es_module SiStripGainESProducer = SiStripGainESProducer {
+  bool AutomaticNormalization = false
+  double NormalizationFactor = 1.0
+  untracked bool printDebug = false
+}
+es_module SiStripRecHitMatcherESProducer = SiStripRecHitMatcherESProducer {
+  string ComponentName = "StandardMatcher"
+  double NSigmaInside = 3.0
 }
 es_module SiStripRegionConnectivity = SiStripRegionConnectivity {
   untracked uint32 EtaDivisions = 20
@@ -591,11 +814,30 @@ es_module SteppingHelixPropagatorOpposite = SteppingHelixPropagatorESProducer {
   bool sendLogWarning = false
   bool useTuningForL2Speed = false
 }
+es_module StripCPEfromTrackAngleESProducer = StripCPEfromTrackAngleESProducer {
+  string ComponentName = "StripCPEfromTrackAngle"
+}
+es_module TrackerDigiGeometryESModule = TrackerDigiGeometryESModule {
+  untracked bool applyAlignment = true
+  bool fromDDD = true
+}
+es_module TrackerGeometricDetESModule = TrackerGeometricDetESModule {
+  bool fromDDD = true
+}
 es_module TrackerRecoGeometryESProducer = TrackerRecoGeometryESProducer {
 }
 es_module TransientTrackBuilderESProducer = TransientTrackBuilderESProducer {
   string ComponentName = "TransientTrackBuilder"
 }
+es_module VolumeBasedMagneticFieldESProducer = VolumeBasedMagneticFieldESProducer {
+  untracked string label = ""
+  string version = "grid_85l_030919"
+  double findVolumeTolerance = 0.0
+  untracked bool cacheLastVolume = true
+  untracked bool timerOn = false
+  bool useParametrizedTrackerField = false
+}
+es_module ZdcHardcodeGeometryEP = ZdcHardcodeGeometryEP {}
 es_module bJetRegionalTrajectoryBuilder = CkfTrajectoryBuilderESProducer {
   string ComponentName = "bJetRegionalTrajectoryBuilder"
   string updator = "KFUpdator"
@@ -637,6 +879,9 @@ es_module ckfBaseTrajectoryFilter = TrajectoryFilterESProducer {
     double chargeSignificance = -1.0
     string ComponentType = "CkfBaseTrajectoryFilter"
   }
+}
+es_module hcal_db_producer = HcalDbProducer {
+  untracked vstring dump = { "" }
 }
 es_module hltCkfTrajectoryBuilderMumu = CkfTrajectoryBuilderESProducer {
   string ComponentName = "hltCkfTrajectoryBuilderMumu"
@@ -693,6 +938,73 @@ es_module hltCkfTrajectoryFilterMumuk = TrajectoryFilterESProducer {
     double chargeSignificance = -1.0
     string ComponentType = "CkfBaseTrajectoryFilter"
   }
+}
+es_module l1CaloGeometry = L1CaloGeometryProd {}
+es_module l1CaloScales = L1ScalesTrivialProducer {
+  double L1CaloEmEtScaleLSB = 0.5
+  double L1CaloRegionEtScaleLSB = 0.5
+  vdouble L1CaloEmThresholds = { 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0, 21.0, 22.0, 23.0, 24.0, 25.0, 26.0, 27.0, 28.0, 29.0, 30.0, 31.0, 32.0, 33.0, 34.0, 35.0, 36.0, 37.0, 38.0, 39.0, 40.0, 41.0, 42.0, 43.0, 44.0, 45.0, 46.0, 47.0, 48.0, 49.0, 50.0, 51.0, 52.0, 53.0, 54.0, 55.0, 56.0, 57.0, 58.0, 59.0, 60.0, 61.0, 62.0, 63.0 }
+  vdouble L1CaloJetThresholds = { 0.0, 10.0, 12.0, 14.0, 15.0, 18.0, 20.0, 22.0, 24.0, 25.0, 28.0, 30.0, 32.0, 35.0, 37.0, 40.0, 45.0, 50.0, 55.0, 60.0, 65.0, 70.0, 75.0, 80.0, 85.0, 90.0, 100.0, 110.0, 120.0, 125.0, 130.0, 140.0, 150.0, 160.0, 170.0, 175.0, 180.0, 190.0, 200.0, 215.0, 225.0, 235.0, 250.0, 275.0, 300.0, 325.0, 350.0, 375.0, 400.0, 425.0, 450.0, 475.0, 500.0, 525.0, 550.0, 575.0, 600.0, 625.0, 650.0, 675.0, 700.0, 725.0, 750.0, 775.0 }
+}
+es_module l1GtBoardMaps = L1GtBoardMapsTrivialProducer {
+  vstring BoardList = { "GTFE", "FDL", "PSB", "PSB", "PSB", "PSB", "PSB", "PSB", "PSB", "GMT", "TCS", "TIM" }
+  vint32 BoardIndex = { 0, 0, 0, 1, 2, 3, 4, 5, 6, 0, 0, 0 }
+  vint32 BoardPositionDaqRecord = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -1, -1 }
+  vint32 BoardPositionEvmRecord = { 1, 3, -1, -1, -1, -1, -1, -1, -1, -1, 2, -1 }
+  vint32 ActiveBoardsDaqRecord = { -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, -1, -1 }
+  vint32 ActiveBoardsEvmRecord = { -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, 0, -1 }
+  vint32 BoardSlotMap = { 17, 10, 9, 13, 14, 15, 19, 20, 21, 18, 7, 16 }
+  vint32 BoardHexNameMap = { 0, 253, 187, 187, 187, 187, 187, 187, 187, 221, 204, 173 }
+  vstring CableList = { "TechTr", "Free", "Free", "Free", "IsoEGQ", "NoIsoEGQ", "CenJetQ", "ForJetQ", "TauJetQ", "ESumsQ", "JetCountsQ", "Free", "Free", "Free", "Free", "Free", "MQB1", "MQB2", "MQF3", "MQF4", "MQB5", "MQB6", "MQF7", "MQF8", "MQB9", "MQB10", "MQF11", "MQF12" }
+  vint32 CableToPsbMap = { 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6 }
+}
+es_module l1GtParameters = L1GtParametersTrivialProducer {
+  int32 TotalBxInEvent = 1
+  uint32 DaqActiveBoards = 0xffff
+  uint32 EvmActiveBoards = 0xffff
+}
+es_module l1GtPrescaleFactorsAlgoTrig = L1GtPrescaleFactorsAlgoTrigTrivialProducer {
+  vint32 PrescaleFactors = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 10000, 10000, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+}
+es_module l1GtPrescaleFactorsTechTrig = L1GtPrescaleFactorsTechTrigTrivialProducer {
+  vint32 PrescaleFactors = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+}
+es_module l1GtStableParameters = L1GtStableParametersTrivialProducer {
+  uint32 NumberPhysTriggers = 128
+  uint32 NumberPhysTriggersExtended = 64
+  uint32 NumberTechnicalTriggers = 64
+  uint32 NumberL1Mu = 4
+  uint32 NumberL1NoIsoEG = 4
+  uint32 NumberL1IsoEG = 4
+  uint32 NumberL1CenJet = 4
+  uint32 NumberL1ForJet = 4
+  uint32 NumberL1TauJet = 4
+  uint32 NumberL1JetCounts = 12
+  uint32 NumberConditionChips = 2
+  uint32 PinsOnConditionChip = 96
+  int32 NumberPsbBoards = 7
+  uint32 IfCaloEtaNumberBits = 4
+  uint32 IfMuEtaNumberBits = 6
+  int32 WordLength = 64
+  int32 UnitLength = 8
+  vint32 OrderConditionChip = { 2, 1 }
+}
+es_module l1GtTriggerMaskAlgoTrig = L1GtTriggerMaskAlgoTrigTrivialProducer {
+  vuint32 TriggerMask = { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xff, 0x0, 0xff, 0x0, 0x0, 0x0, 0x0, 0xff, 0xff, 0xff, 0x0, 0x0, 0xff, 0x0, 0x0, 0x0, 0x0, 0xff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xff, 0x0, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x0, 0xff, 0xff, 0xff, 0x0, 0x0, 0xff, 0x0, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x0, 0x0, 0x0, 0x0, 0x0, 0xff, 0xff, 0xff, 0x0, 0xff, 0xff, 0xff, 0xff, 0x0, 0xff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
+}
+es_module l1GtTriggerMaskTechTrig = L1GtTriggerMaskTechTrigTrivialProducer {
+  vuint32 TriggerMask = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+}
+es_module l1GtTriggerMaskVetoAlgoTrig = L1GtTriggerMaskVetoAlgoTrigTrivialProducer {
+  vuint32 TriggerMask = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+}
+es_module l1GtTriggerMaskVetoTechTrig = L1GtTriggerMaskVetoTechTrigTrivialProducer {
+  vuint32 TriggerMask = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+}
+es_module l1GtTriggerMenuXml = L1GtTriggerMenuXmlProducer {
+  string TriggerMenuLuminosity = "lumi1030"
+  string DefXmlFile = "L1Menu2008_2E30.xml"
+  string VmeXmlFile = ""
 }
 es_module muonCkfTrajectoryFilter = TrajectoryFilterESProducer {
   string ComponentName = "muonCkfTrajectoryFilter"
@@ -765,6 +1077,7 @@ es_module pixellayertriplets = PixelLayerTripletsESProducer {
     double hitErrorRZ = 0.0036
   }
 }
+es_module sistripconn = SiStripConnectivity {}
 es_module softLeptonByDistance = LeptonTaggerByDistanceESProducer {
   double distance = 0.5
 }
