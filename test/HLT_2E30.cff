@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_1_0_pre4/HLT/V13  (CMSSW_2_1_X_2008-05-19-0200)
+// /dev/CMSSW_2_1_0_pre4/HLT/V16  (CMSSW_2_1_X_2008-05-19-0200)
 
 // Begin replace statements specific to the HLT
 #
@@ -679,7 +679,7 @@ es_module MaterialPropagator = PropagatorWithMaterialESProducer {
 }
 es_module MeasurementTracker = MeasurementTrackerESProducer {
   string ComponentName = ""
-  string PixelCPE = "PixelCPEfromTrackAngle"
+  string PixelCPE = "PixelCPEGeneric"
   string StripCPE = "StripCPEfromTrackAngle"
   string HitMatcher = "StandardMatcher"
   bool Regional = true
@@ -734,13 +734,6 @@ es_module PixelCPEGenericESProducer = PixelCPEGenericESProducer {
   double TanLorentzAnglePerTesla = 0.106
   string PixelErrorParametrization = "NOTcmsim"
   bool Alpha2Order = true
-}
-es_module PixelCPEParmErrorESProducer = PixelCPEParmErrorESProducer {
-  string ComponentName = "PixelCPEfromTrackAngle"
-  string PixelErrorParametrization = "NOTcmsim"
-  bool Alpha2Order = true
-  bool UseNewParametrization = true
-  bool UseSigma = true
 }
 es_module RKTrackerPropagator = PropagatorWithMaterialESProducer {
   string ComponentName = "RKTrackerPropagator"
@@ -1089,24 +1082,6 @@ es_module muonCkfTrajectoryFilter = TrajectoryFilterESProducer {
     double chargeSignificance = -1.0
   }
 }
-es_module myTTRHBuilderWithoutAngle = TkTransientTrackingRecHitBuilderESProducer {
-  string ComponentName = "PixelTTRHBuilderWithoutAngle"
-  string StripCPE = "Fake"
-  string PixelCPE = "PixelCPEfromTrackAngle"
-  string Matcher = "StandardMatcher"
-}
-es_module myTTRHBuilderWithoutAngle4PixelPairs = TkTransientTrackingRecHitBuilderESProducer {
-  string ComponentName = "TTRHBuilderWithoutAngle4PixelPairs"
-  string StripCPE = "Fake"
-  string PixelCPE = "PixelCPEfromTrackAngle"
-  string Matcher = "StandardMatcher"
-}
-es_module myTTRHBuilderWithoutAngle4PixelTriplets = TkTransientTrackingRecHitBuilderESProducer {
-  string ComponentName = "TTRHBuilderWithoutAngle4PixelTriplets"
-  string StripCPE = "Fake"
-  string PixelCPE = "PixelCPEfromTrackAngle"
-  string Matcher = "StandardMatcher"
-}
 es_module navigationSchoolESProducer = NavigationSchoolESProducer {
   string ComponentName = "SimpleNavigationSchool"
 }
@@ -1115,32 +1090,44 @@ es_module pixellayerpairs = PixelLayerPairsESProducer {
   vstring layerList = { "BPix1+BPix2", "BPix1+BPix3", "BPix2+BPix3", "BPix1+FPix1_pos", "BPix1+FPix1_neg", "BPix1+FPix2_pos", "BPix1+FPix2_neg", "BPix2+FPix1_pos", "BPix2+FPix1_neg", "BPix2+FPix2_pos", "BPix2+FPix2_neg", "FPix1_pos+FPix2_pos", "FPix1_neg+FPix2_neg" }
   PSet BPix = {
     string HitProducer = "hltSiPixelRecHits"
-    string TTRHBuilder = "TTRHBuilderWithoutAngle4PixelPairs"
+    string TTRHBuilder = "TTRHBuilderPixelOnly"
     untracked bool useErrorsFromParam = true
     double hitErrorRPhi = 0.0027
     double hitErrorRZ = 0.0060
   }
   PSet FPix = {
     string HitProducer = "hltSiPixelRecHits"
-    string TTRHBuilder = "TTRHBuilderWithoutAngle4PixelPairs"
+    string TTRHBuilder = "TTRHBuilderPixelOnly"
     untracked bool useErrorsFromParam = true
     double hitErrorRPhi = 0.0051
     double hitErrorRZ = 0.0036
   }
+}
+es_module TTRHBuilderPixelOnly = TkTransientTrackingRecHitBuilderESProducer {
+  string ComponentName = "TTRHBuilderPixelOnly"
+  string StripCPE = "Fake"
+  string PixelCPE = "PixelCPEGeneric"
+  string Matcher = "StandardMatcher"
+}
+es_module WithTrackAngle = TkTransientTrackingRecHitBuilderESProducer {
+  string ComponentName = "WithTrackAngle"
+  string StripCPE = "StripCPEfromTrackAngle"
+  string PixelCPE = "PixelCPEGeneric"
+  string Matcher = "StandardMatcher"
 }
 es_module pixellayertriplets = PixelLayerTripletsESProducer {
   string ComponentName = "PixelLayerTriplets"
   vstring layerList = { "BPix1+BPix2+BPix3", "BPix1+BPix2+FPix1_pos", "BPix1+BPix2+FPix1_neg", "BPix1+FPix1_pos+FPix2_pos", "BPix1+FPix1_neg+FPix2_neg" }
   PSet BPix = {
     string HitProducer = "hltSiPixelRecHits"
-    string TTRHBuilder = "TTRHBuilderWithoutAngle4PixelTriplets"
+    string TTRHBuilder = "TTRHBuilderPixelOnly"
     untracked bool useErrorsFromParam = true
     double hitErrorRPhi = 0.0027
     double hitErrorRZ = 0.0060
   }
   PSet FPix = {
     string HitProducer = "hltSiPixelRecHits"
-    string TTRHBuilder = "TTRHBuilderWithoutAngle4PixelTriplets"
+    string TTRHBuilder = "TTRHBuilderPixelOnly"
     untracked bool useErrorsFromParam = true
     double hitErrorRPhi = 0.0051
     double hitErrorRZ = 0.0036
@@ -1189,12 +1176,6 @@ es_module trajFilterL3 = TrajectoryFilterESProducer {
 }
 es_module trajectoryCleanerBySharedHits = TrajectoryCleanerESProducer {
   string ComponentName = "TrajectoryCleanerBySharedHits"
-}
-es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
-  string ComponentName = "WithTrackAngle"
-  string StripCPE = "StripCPEfromTrackAngle"
-  string PixelCPE = "PixelCPEfromTrackAngle"
-  string Matcher = "StandardMatcher"
 }
 service = UpdaterService {}
   module hlt2GetRaw = HLTGetRaw {
@@ -4912,7 +4893,7 @@ service = UpdaterService {}
     }
     PSet FitterPSet = {
       string ComponentName = "PixelFitterByHelixProjections"
-      string TTRHBuilder = "PixelTTRHBuilderWithoutAngle"
+      string TTRHBuilder = "TTRHBuilderPixelOnly"
     }
     PSet FilterPSet = {
       string ComponentName = "PixelTrackFilterByKinematics"
@@ -6868,7 +6849,7 @@ service = UpdaterService {}
     }
     PSet FitterPSet = {
       string ComponentName = "PixelFitterByHelixProjections"
-      string TTRHBuilder = "PixelTTRHBuilderWithoutAngle"
+      string TTRHBuilder = "TTRHBuilderPixelOnly"
     }
     PSet FilterPSet = {
       string ComponentName = "PixelTrackFilterByKinematics"
