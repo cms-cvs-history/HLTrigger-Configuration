@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_1_0_pre4/HLT/V16  (CMSSW_2_1_X_2008-05-19-0200)
+// /dev/CMSSW_2_1_0_pre4/HLT/V23  (CMSSW_2_1_X_2008-05-27-0300)
 
 // Begin replace statements specific to the HLT
 #
@@ -5729,6 +5729,7 @@ service = UpdaterService {}
     double MinLxySignificance = 3.0
     double MinCosinePointingAngle = 0.9
     bool FastAccept = false
+    untracked bool SaveTag = true
     InputTag MuCand = hltMuTracks
     InputTag TrackCand = hltMumukAllConeTracks
   }
