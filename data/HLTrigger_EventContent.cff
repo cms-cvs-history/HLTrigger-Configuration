@@ -29,15 +29,19 @@ block HLTDefault = {
 
 
 //
+// Loading ALCA event content definition - needed for ALCARECO
+include "HLTrigger/special/data/HLTSpecial_EventContent.cff"
+
+
+//
 // Corresponding three data-tier blocks
+//
 //
 # Full Event content
 block HLTriggerFEVT = {
     untracked vstring outputCommands = { "drop *_hlt*_*_*" }
 }
 replace HLTriggerFEVT.outputCommands += HLTDefault.outputCommands
-# Adding ALCA event content needed for ALCARECO
-include "HLTrigger/special/data/HLTSpecial_EventContent.cff"
 replace HLTriggerFEVT.outputCommands += HLTSpecialFEVT.outputCommands
 
 # RECO content
@@ -54,6 +58,7 @@ block HLTriggerAOD = {
 replace HLTriggerAOD.outputCommands += HLTDefault.outputCommands
 replace HLTriggerAOD.outputCommands += HLTSpecialAOD.outputCommands
 
+
 //
 // DEBUG: Additional products for Trigger debugging
 //
@@ -62,36 +67,36 @@ block HLTDebug = {
 # HLT book-keeping product (debug version)
 	 "keep triggerTriggerEventWithRefs_*_*_*"
 # Timing / Performance
-	,"keep edmEventTime_*_*_*"
-	,"keep HLTPerformanceInfo_*_*_*"
+#	,"keep edmEventTime_*_*_*"
+#	,"keep HLTPerformanceInfo_*_*_*"
 # DT
-	,"keep *_hltDt1DRecHits_*_*"
-	,"keep *_hltDt4DSegments_*_*"
+#	,"keep *_hltDt1DRecHits_*_*"
+#	,"keep *_hltDt4DSegments_*_*"
 # CSC
-	,"keep *_hltCsc2DRecHits_*_*"
-	,"keep *_hltCscSegments_*_*"
+#	,"keep *_hltCsc2DRecHits_*_*"
+#	,"keep *_hltCscSegments_*_*"
 # RPC
-	,"keep *_hltRpcRecHits_*_*"
-#HCAL
-	,"keep *_hltHbhereco_*_*"
-	,"keep *_hltHfreco_*_*"
-	,"keep *_hltHoreco_*_*"
-#EB + EE Uncalibrated RecHits
-	,"keep *_hltEcalWeightUncalibRecHit_*_*"
-#Ecal Calibrated RecHits
-	,"keep *_hltEcalPreshowerRecHit_*_*"
-	,"keep *_hltEcalRecHit_*_*"
-#Clusters
+#	,"keep *_hltRpcRecHits_*_*"
+# HCAL
+#	,"keep *_hltHbhereco_*_*"
+#	,"keep *_hltHfreco_*_*"
+#	,"keep *_hltHoreco_*_*"
+# EB + EE Uncalibrated RecHits
+#	,"keep *_hltEcalWeightUncalibRecHit_*_*"
+# Ecal Calibrated RecHits
+#	,"keep *_hltEcalPreshowerRecHit_*_*"
+#	,"keep *_hltEcalRecHit_*_*"
+# Clusters
 	,"keep *_hltSiPixelClusters_*_*"
 	,"keep *_hltSiStripClusters_*_*"
-#Si Pixel hits
+# Si Pixel hits
 	,"keep *_hltSiPixelRecHits_*_*"
-#Si Strip hits
+# Si Strip hits
 	,"keep *_hltSiStripRecHits_*_*"
 	,"keep *_hltSiStripMatchedRecHits_*_*"
-#save digis sim link and trigger infos
-	,"keep StripDigiSimLinkedmDetSetVector_hltMuonCSCDigis_*_*"
-	,"keep CSCDetIdCSCComparatorDigiMuonDigiCollection_hltMuonCSCDigis_*_*"
+# save digis sim link and trigger infos
+#	,"keep StripDigiSimLinkedmDetSetVector_hltMuonCSCDigis_*_*"
+#	,"keep CSCDetIdCSCComparatorDigiMuonDigiCollection_hltMuonCSCDigis_*_*"
     }
 }
 
@@ -110,28 +115,22 @@ block HLTDebugFEVT = {
     untracked vstring outputCommands = { "drop *_hlt*_*_*" }
 }
 replace HLTDebugFEVT.outputCommands += HLTDebug.outputCommands
+replace HLTDebugFEVT.outputCommands += HLTSpecialFEVT.outputCommands
 
 # RECO content
 block HLTDebugRECO = {
     untracked vstring outputCommands = { "drop *_hlt*_*_*" }
 }
 replace HLTDebugRECO.outputCommands += HLTDebug.outputCommands
+replace HLTDebugRECO.outputCommands += HLTSpecialReco.outputCommands
 
 # AOD content
 block HLTDebugAOD = {
     untracked vstring outputCommands = { "drop *_hlt*_*_*" }
 }
 replace HLTDebugAOD.outputCommands += HLTDebug.outputCommands
+replace HLTDebugAOD.outputCommands += HLTSpecialAOD.outputCommands
 
-
-//
-// Add what trigger groups want:
-// -> products (now for FEVT/RECO/AOD DEBUG case only!)
-// -> TriggerSummaryAOD configuration
-block TriggerSummaryAOD = {
-    VInputTag collections = { }
-    VInputTag filters     = { }
-}
 
 //
 // Egamma collections
@@ -140,8 +139,6 @@ include "HLTrigger/Egamma/data/HLTEgamma_EventContent.cff"
 replace HLTDebugFEVT.outputCommands   += HLTEgamma_FEVT.outputCommands
 replace HLTDebugRECO.outputCommands   += HLTEgamma_RECO.outputCommands
 replace HLTDebugAOD.outputCommands    += HLTEgamma_AOD.outputCommands
-replace TriggerSummaryAOD.collections += HLTEgamma_AOD.triggerCollections
-replace TriggerSummaryAOD.filters     += HLTEgamma_AOD.triggerFilters
 
 //
 // Muon collections
@@ -150,8 +147,6 @@ include "HLTrigger/Muon/data/HLTMuon_EventContent.cff"
 replace HLTDebugFEVT.outputCommands   += HLTMuonFEVT.outputCommands
 replace HLTDebugRECO.outputCommands   += HLTMuonRECO.outputCommands
 replace HLTDebugAOD.outputCommands    += HLTMuonAOD.outputCommands
-replace TriggerSummaryAOD.collections += HLTMuonAOD.triggerCollections
-replace TriggerSummaryAOD.filters     += HLTMuonAOD.triggerFilters
 
 //
 // JetMET collections
@@ -160,8 +155,6 @@ include "HLTrigger/JetMET/data/HLTJetMET_EventContent.cff"
 replace HLTDebugFEVT.outputCommands   += HLTJetMETFEVT.outputCommands
 replace HLTDebugRECO.outputCommands   += HLTJetMETRECO.outputCommands
 replace HLTDebugAOD.outputCommands    += HLTJetMETAOD.outputCommands
-replace TriggerSummaryAOD.collections += HLTJetMETAOD.triggerCollections
-replace TriggerSummaryAOD.filters     += HLTJetMETAOD.triggerFilters
 
 //
 // BTau collections
@@ -170,8 +163,6 @@ include "HLTrigger/btau/data/HLTBTau_EventContent.cff"
 replace HLTDebugFEVT.outputCommands   += HLTBTauFEVT.outputCommands
 replace HLTDebugRECO.outputCommands   += HLTBTauRECO.outputCommands
 replace HLTDebugAOD.outputCommands    += HLTBTauAOD.outputCommands
-replace TriggerSummaryAOD.collections += HLTBTauAOD.triggerCollections
-replace TriggerSummaryAOD.filters     += HLTBTauAOD.triggerFilters
 
 //
 // Xchannel collections
@@ -180,8 +171,6 @@ include "HLTrigger/xchannel/data/HLTXchannel_EventContent.cff"
 replace HLTDebugFEVT.outputCommands   += HLTXchannelFEVT.outputCommands
 replace HLTDebugRECO.outputCommands   += HLTXchannelRECO.outputCommands
 replace HLTDebugAOD.outputCommands    += HLTXchannelAOD.outputCommands
-replace TriggerSummaryAOD.collections += HLTXchannelAOD.triggerCollections
-replace TriggerSummaryAOD.filters     += HLTXchannelAOD.triggerFilters
 
 //
 // Special collections
@@ -190,5 +179,3 @@ replace TriggerSummaryAOD.filters     += HLTXchannelAOD.triggerFilters
 replace HLTDebugFEVT.outputCommands   += HLTSpecialFEVT.outputCommands
 replace HLTDebugRECO.outputCommands   += HLTSpecialRECO.outputCommands
 replace HLTDebugAOD.outputCommands    += HLTSpecialAOD.outputCommands
-replace TriggerSummaryAOD.collections += HLTSpecialAOD.triggerCollections
-replace TriggerSummaryAOD.filters     += HLTSpecialAOD.triggerFilters
