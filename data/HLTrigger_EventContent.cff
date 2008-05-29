@@ -122,7 +122,7 @@ block HLTDebugRECO = {
     untracked vstring outputCommands = { "drop *_hlt*_*_*" }
 }
 replace HLTDebugRECO.outputCommands += HLTDebug.outputCommands
-replace HLTDebugRECO.outputCommands += HLTSpecialReco.outputCommands
+replace HLTDebugRECO.outputCommands += HLTSpecialRECO.outputCommands
 
 # AOD content
 block HLTDebugAOD = {
