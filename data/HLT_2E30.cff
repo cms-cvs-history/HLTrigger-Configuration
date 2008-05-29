@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_1_0_pre4/HLT/V23  (CMSSW_2_1_X_2008-05-27-0300)
+// /dev/CMSSW_2_1_0_pre4/HLT/V24  (CMSSW_2_1_X_2008-05-27-0300)
 
 // Begin replace statements specific to the HLT
 #
@@ -1705,7 +1705,7 @@ service = UpdaterService {}
   }
   module hltSiPixelClusters = SiPixelClusterProducer {
     InputTag src = hltSiPixelDigis
-    string payloadType = "Offline"
+    string payloadType = "HLT"
     int32 ChannelThreshold = 2500
     int32 SeedThreshold = 3000
     double ClusterThreshold = 5050.0
