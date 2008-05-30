@@ -4,7 +4,7 @@
 include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
 module hltTriggerSummaryAOD = TriggerSummaryProducerAOD {
   string processName = "@"
-  using TriggerSummaryAOD
+# using TriggerSummaryAOD
 }
 // End replace statements specific to the HLT
 sequence HLTBeginSequence = { hlt2GetRaw & hltGtDigis & hltGctDigis & hltL1GtObjectMap & hltL1extraParticles & hltOfflineBeamSpot }
