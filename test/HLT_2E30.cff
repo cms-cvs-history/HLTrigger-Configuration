@@ -1,8 +1,5 @@
-// /dev/CMSSW_2_1_0_pre4/HLT/V24  (CMSSW_2_1_X_2008-05-27-0300)
+// /dev/CMSSW_2_1_0_pre5/HLT/V1  (CMSSW_2_1_0_pre5)
 
-// Begin replace statements specific to the HLT
-#
-// End replace statements specific to the HLT
 sequence HLTBeginSequence = { hlt2GetRaw & hltGtDigis & hltGctDigis & hltL1GtObjectMap & hltL1extraParticles & hltOfflineBeamSpot }
 sequence HLTEndSequence = { hltBoolEnd }
 sequence HLTRecoJetRegionalSequence = { hltEcalPreshowerDigis & hltEcalRegionalJetsFEDs & hltEcalRegionalJetsDigis & hltEcalRegionalJetsWeightUncalibRecHit & hltEcalRegionalJetsRecHitTmp & hltEcalRegionalJetsRecHit & hltEcalPreshowerRecHit & HLTDoLocalHcalSequence & hltTowerMakerForJets & hltIterativeCone5CaloJetsRegional & hltMCJetCorJetIcone5Regional }
@@ -1280,9 +1277,6 @@ service = UpdaterService {}
   module hltEcalRegionalJetsRecHitTmp = EcalRecHitProducer {
     InputTag EBuncalibRecHitCollection = hltEcalRegionalJetsWeightUncalibRecHit:EcalUncalibRecHitsEB
     InputTag EEuncalibRecHitCollection = hltEcalRegionalJetsWeightUncalibRecHit:EcalUncalibRecHitsEE
-    string EBrechitCollection = "EcalRecHitsEB"
-    string EErechitCollection = "EcalRecHitsEE"
-    vint32 ChannelStatusToBeExcluded = {  }
   }
   module hltEcalRegionalJetsRecHit = EcalRecHitsMerger {
     untracked bool debug = false
@@ -1440,9 +1434,6 @@ service = UpdaterService {}
   module hltEcalRegionalRestRecHitTmp = EcalRecHitProducer {
     InputTag EBuncalibRecHitCollection = hltEcalRegionalRestWeightUncalibRecHit:EcalUncalibRecHitsEB
     InputTag EEuncalibRecHitCollection = hltEcalRegionalRestWeightUncalibRecHit:EcalUncalibRecHitsEE
-    string EBrechitCollection = "EcalRecHitsEB"
-    string EErechitCollection = "EcalRecHitsEE"
-    vint32 ChannelStatusToBeExcluded = {  }
   }
   module hltEcalRecHitAll = EcalRecHitsMerger {
     untracked bool debug = false
@@ -1828,9 +1819,6 @@ service = UpdaterService {}
   module hltEcalRegionalEgammaRecHitTmp = EcalRecHitProducer {
     InputTag EBuncalibRecHitCollection = hltEcalRegionalEgammaWeightUncalibRecHit:EcalUncalibRecHitsEB
     InputTag EEuncalibRecHitCollection = hltEcalRegionalEgammaWeightUncalibRecHit:EcalUncalibRecHitsEE
-    string EBrechitCollection = "EcalRecHitsEB"
-    string EErechitCollection = "EcalRecHitsEE"
-    vint32 ChannelStatusToBeExcluded = {  }
   }
   module hltEcalRegionalEgammaRecHit = EcalRecHitsMerger {
     untracked bool debug = false
@@ -4433,9 +4421,6 @@ service = UpdaterService {}
   module hltEcalRegionalMuonsRecHitTmp = EcalRecHitProducer {
     InputTag EBuncalibRecHitCollection = hltEcalRegionalMuonsWeightUncalibRecHit:EcalUncalibRecHitsEB
     InputTag EEuncalibRecHitCollection = hltEcalRegionalMuonsWeightUncalibRecHit:EcalUncalibRecHitsEE
-    string EBrechitCollection = "EcalRecHitsEB"
-    string EErechitCollection = "EcalRecHitsEE"
-    vint32 ChannelStatusToBeExcluded = {  }
   }
   module hltEcalRegionalMuonsRecHit = EcalRecHitsMerger {
     untracked bool debug = false
@@ -7027,9 +7012,6 @@ service = UpdaterService {}
   module hltEcalRegionalTausRecHitTmp = EcalRecHitProducer {
     InputTag EBuncalibRecHitCollection = hltEcalRegionalTausWeightUncalibRecHit:EcalUncalibRecHitsEB
     InputTag EEuncalibRecHitCollection = hltEcalRegionalTausWeightUncalibRecHit:EcalUncalibRecHitsEE
-    string EBrechitCollection = "EcalRecHitsEB"
-    string EErechitCollection = "EcalRecHitsEE"
-    vint32 ChannelStatusToBeExcluded = {  }
   }
   module hltEcalRegionalTausRecHit = EcalRecHitsMerger {
     untracked bool debug = false
@@ -8478,9 +8460,6 @@ service = UpdaterService {}
   module hltEcalRecHit = EcalRecHitProducer {
     InputTag EBuncalibRecHitCollection = hltEcalWeightUncalibRecHit:EcalUncalibRecHitsEB
     InputTag EEuncalibRecHitCollection = hltEcalWeightUncalibRecHit:EcalUncalibRecHitsEE
-    string EBrechitCollection = "EcalRecHitsEB"
-    string EErechitCollection = "EcalRecHitsEE"
-    vint32 ChannelStatusToBeExcluded = {  }
   }
   module hltAlCaPhiSymStream = HLTEcalPhiSymFilter {
     InputTag barrelHitCollection = hltEcalRecHit:EcalRecHitsEB

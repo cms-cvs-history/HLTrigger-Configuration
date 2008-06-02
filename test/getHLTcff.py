@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-# Usage: ./getHLTcff.py <Version from ConfDB> <Name of cff file> <process Name>
-
 import sys
 import os
 import commands
@@ -9,9 +7,9 @@ import getopt
 import fileinput
 
 def usage():
-    print "Usage: ./getHLTcff.py <Version from ConfDB> <Name of cff> <cff use case>"
-    print "If \"GEN-HLT\" is specified for cff use case, a stripped HLT.cff is generated for the GEN-HLT workflow"
-    print "The default is to create an HLT.cff from the ConfDB with minimal modifications for validation"
+    print "Usage: ./getHLTcff.py <Version from ConfDB> <Id in output file> <use case>"
+    print "If use case \"GEN-HLT\" is specified, a stripped file is generated for the GEN-HLT workflow"
+    print "The default is to create file from the ConfDB with minimal modifications for validation"
     sys.exit(1)
 
 argc = len(sys.argv)
@@ -19,16 +17,20 @@ argc = len(sys.argv)
 useCase = "ONLINE"
 if argc == 3:
     dbName = sys.argv[1]
-    cffName = sys.argv[2]
+    cffName = "HLT_"+sys.argv[2]+".cff"
+    cffNamePy = "HLT_"+sys.argv[2]+"_cff.py"
 elif argc == 4:
     dbName = sys.argv[1]
-    cffName = sys.argv[2]
+    cffName = "HLT_"+sys.argv[2]+".cff"
+    cffNamePy = "HLT_"+sys.argv[2]+"_cff.py"
     useCase = sys.argv[3]
 else:
     usage()
 
 if os.path.exists(cffName):
     print cffName, "already exists"
+elif os.path.exists(cffNamePy):
+    print cffNamePy, "already exists"
 else:
     # Initialize everything
     essources = "  " 
@@ -163,13 +165,16 @@ else:
     myGetCff = "edmConfigFromDB --cff --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + psets + " > " + cffName
     os.system(myGetCff)
 
+    myGetCffPy = "edmConfigFromDB --format Python --cff --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + psets + " > " + cffNamePy
+    os.system(myGetCffPy)
+
     # myReplaceTrigResults = "replace TriggerResults::HLT " + process + " -- " + cffName
     # os.system(myReplaceTrigResults)
 
     # Make replace statements at the beginning of the cff
-    for line in fileinput.input(cffName,inplace=1):
-        if line.find("sequence HLTBeginSequence") >= 0:
-            print "// Begin replace statements specific to the HLT"
-            print "#"
-            print "// End replace statements specific to the HLT"  
-        print line[:-1]
+    #for line in fileinput.input(cffName,inplace=1):
+    #    if line.find("sequence HLTBeginSequence") >= 0:
+    #        print "// Begin replace statements specific to the HLT"
+    #        print "#"
+    #        print "// End replace statements specific to the HLT"  
+    #    print line[:-1]
