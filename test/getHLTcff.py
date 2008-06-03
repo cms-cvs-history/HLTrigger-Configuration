@@ -7,7 +7,7 @@ import getopt
 import fileinput
 
 def usage():
-    print "Usage: ./getHLTcff.py <Version from ConfDB> <Id in output file> <use case>"
+    print "Usage: ./getHLTcff.py <Version from ConfDB> <Id in file name> <use case>"
     print "If use case \"GEN-HLT\" is specified, a stripped file is generated for the GEN-HLT workflow"
     print "The default is to create file from the ConfDB with minimal modifications for validation"
     sys.exit(1)
@@ -17,11 +17,11 @@ argc = len(sys.argv)
 useCase = "ONLINE"
 if argc == 3:
     dbName = sys.argv[1]
-    cffName = "HLT_"+sys.argv[2]+".cff"
+    cffName   = "HLT_"+sys.argv[2]+".cff"
     cffNamePy = "HLT_"+sys.argv[2]+"_cff.py"
 elif argc == 4:
     dbName = sys.argv[1]
-    cffName = "HLT_"+sys.argv[2]+".cff"
+    cffName   = "HLT_"+sys.argv[2]+".cff"
     cffNamePy = "HLT_"+sys.argv[2]+"_cff.py"
     useCase = sys.argv[3]
 else:
@@ -34,7 +34,10 @@ elif os.path.exists(cffNamePy):
 else:
     # Initialize everything
     essources = "  " 
-    esmodules = "  " 
+    esmodules = "  "
+    modules   = "  "
+    services  = "--services -PrescaleService"
+    psets     = "  "
 
     if useCase == "GEN-HLT":
         essources = "--essources "
@@ -99,68 +102,14 @@ else:
         esmodules += "-l1GtTriggerMenuXml,"
         esmodules += "-sistripconn"
 
-    #essources += "-trackerAlignment,"
-    #essources += "-muonAlignment,"
-    #essources += "-siPixelGainCalibration,"
-    #essources += "-siPixelCabling,"
-    #essources += "-siPixelLorentzAngle,"
-    #essources += "-siStripApvGain,"
-    #essources += "-siStripNoise,"
-    #essources += "-siStripLorentzAngle,"
-    #essources += "-siStripFedCabling,"
-    #essources += "-SiStripPedestalsFakeESSource,"
-    #essources += "-maps_frontier,"
-    #essources += "-cscConditions,"
-    #essources += "-es_pool,"
-    #essources += "-ecalConditions,"
-    #essources += "-trackProbabilityFrontierCond,"
-    #essources += "-BTauMVAJetTagComputerRecord,"
-    #essources += "-BeamSpotEarlyCollision,"
-    #essources += "-DTCabling,"
-    #essources += "-RPCCabling,"
-    #essources += "-cscPackingCabling,"
-    #essources += "-cscUnpackingCabling,"
-    #essources += "-GlobalPosition,"
+        services  += ",-MessageLogger"
 
+        psets = "--psets "
+        psets += "-maxEvents,"
+        psets += "-options,"
 
-    #essources += "-L1GtPrescaleFactorsRcdSource,"
-    #essources += "-L1GtTriggerMaskRcdSource,"
-    #essources += "-L1GtTriggerMenuRcdSource,"
-    #essources += "-L1MuGMTScalesRcdSource,"
-    #essources += "-l1GctConfigRecords,"
-    #essources += "-l1GctJcNegParsRecords,"
-    #essources += "-l1GctJcPosParsRecords,"
-    #essources += "-l1GctParamsRecords,"
-    #essources += "-tpparams,"
-    #essources += "-tpparams2,"
-    #essources += "-tpparams3,"
-    #essources += "-tpparams4,"
-    #essources += "-tpparams5,"
-    #essources += "-tpparams6,"
-    #essources += "-tpparams7,"
-    #essources += "-tpparams8,"
-    #essources += "-tpparams9,"
-    #essources += "-tpparams10,"
-    #essources += "-tpparams11,"
+    # end useCase == "GEN-HLT"
 
-
-
-    #esmodules += "-EcalTrigPrimESProducer,"
-    #esmodules += "-EcalTrigTowerConstituentsMapBuilder,"
-    #esmodules += "-L1MuGMTScales,"
-    #esmodules += "-l1GtFactors,"
-    # 200pre6 additions
-
-    modules = "  " # "--modules -hltTriggerSummaryAOD"
-
-    services = "--services "
-    services += "-PrescaleService,"
-    services += "-MessageLogger"
-
-    psets = "--psets "
-    psets += "-maxEvents,"
-    psets += "-configurationMetadata,"
-    psets += "-options,"
 
     myGetCff = "edmConfigFromDB --cff --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + psets + " > " + cffName
     os.system(myGetCff)

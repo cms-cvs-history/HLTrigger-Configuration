@@ -2,6 +2,9 @@
 
 import FWCore.ParameterSet.Config as cms
 
+maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( -1 ) )
+options = cms.untracked.PSet(  wantSummary = cms.untracked.bool( True ) )
+
 L1MuTriggerPtScaleRcdSource = cms.ESSource( "EmptyESSource",
   recordName = cms.string( "L1MuTriggerPtScaleRcd" ),
   iovIsRunNotTime = cms.bool( True ),
@@ -909,6 +912,40 @@ trajectoryCleanerBySharedHits = cms.ESProducer( "TrajectoryCleanerESProducer",
 )
 
 UpdaterService = cms.Service( "UpdaterService",
+)
+MessageLogger = cms.Service( "MessageLogger",
+  destinations = cms.untracked.vstring( 'warnings', 'errors', 'infos', 'debugs', 'cout', 'cerr' ),
+  categories = cms.untracked.vstring( 'FwkJob', 'FwkReport', 'FwkSummary', 'Root_NoDictionary' ),
+  statistics = cms.untracked.vstring( 'cerr' ),
+  cerr = cms.untracked.PSet( 
+    noTimeStamps = cms.untracked.bool( False ),
+    threshold = cms.untracked.string( "INFO" ),
+    INFO = cms.untracked.PSet(  limit = cms.untracked.int32( 0 ) ),
+    default = cms.untracked.PSet(  limit = cms.untracked.int32( 10000000 ) ),
+    FwkReport = cms.untracked.PSet( 
+      limit = cms.untracked.int32( 10000000 ),
+      reportEvery = cms.untracked.int32( 1 )
+    ),
+    FwkSummary = cms.untracked.PSet( 
+      limit = cms.untracked.int32( 10000000 ),
+      reportEvery = cms.untracked.int32( 1 )
+    ),
+    FwkJob = cms.untracked.PSet(  limit = cms.untracked.int32( 0 ) ),
+    Root_NoDictionary = cms.untracked.PSet(  limit = cms.untracked.int32( 0 ) )
+  ),
+  cout = cms.untracked.PSet(  placeholder = cms.untracked.bool( True ) ),
+  errors = cms.untracked.PSet(  placeholder = cms.untracked.bool( True ) ),
+  warnings = cms.untracked.PSet(  placeholder = cms.untracked.bool( True ) ),
+  infos = cms.untracked.PSet( 
+    placeholder = cms.untracked.bool( True ),
+    Root_NoDictionary = cms.untracked.PSet(  limit = cms.untracked.int32( 0 ) )
+  ),
+  debugs = cms.untracked.PSet(  placeholder = cms.untracked.bool( True ) ),
+  fwkJobReports = cms.untracked.vstring( 'FrameworkJobReport' ),
+  FrameworkJobReport = cms.untracked.PSet( 
+    default = cms.untracked.PSet(  limit = cms.untracked.int32( 0 ) ),
+    FwkJob = cms.untracked.PSet(  limit = cms.untracked.int32( 10000000 ) )
+  ),
 )
 
 hlt2GetRaw = cms.EDAnalyzer( "HLTGetRaw",
