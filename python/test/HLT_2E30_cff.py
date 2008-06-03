@@ -1,4 +1,4 @@
-# /dev/CMSSW_2_1_0_pre5/HLT/V1 (CMSSW_2_1_0_pre5)
+# /dev/CMSSW_2_1_0_pre5/HLT/V3 (CMSSW_2_1_0_pre5)
 
 import FWCore.ParameterSet.Config as cms
 
@@ -10,8 +10,8 @@ L1MuTriggerPtScaleRcdSource = cms.ESSource( "EmptyESSource",
 SiStripQualityFakeESSource = cms.ESSource( "SiStripQualityFakeESSource" )
 GlobalTag = cms.ESSource( "PoolDBESSource",
   BlobStreamerName = cms.untracked.string( "TBufferBlobStreamingService" ),
-  connect = cms.string( "frontier://FrontierProd/CMS_COND_20X_GLOBALTAG" ),
-  globaltag = cms.untracked.string( "IDEAL::All" ),
+  connect = cms.string( "frontier://FrontierInt/CMS_COND_21X_GLOBALTAG" ),
+  globaltag = cms.untracked.string( "STARTUP::All" ),
   DBParameters = cms.PSet( 
     authenticationPath = cms.untracked.string( "." ),
     messageLevel = cms.untracked.int32( 0 ),
