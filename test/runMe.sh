@@ -24,6 +24,14 @@ echo "./testcfg RelVal_HLTFromRaw_2E30.cfg >& RelVal_HLTFromRaw_2E30.log"
 #      cmsRun --strict RelVal_HLTFromRaw_2E30.cfg >& RelVal_HLTFromRaw_2E30.log
 
 echo " "
+echo "/bin/rm HLTFromPureRaw.root             OnLine_HLTFromRaw_2E30.log"
+      /bin/rm HLTFromPureRaw.root             OnLine_HLTFromRaw_2E30.log
+echo "./testcfg OnLine_HLTFromRaw_2E30.cfg >& OnLine_HLTFromRaw_2E30.log"
+      ./testcfg OnLine_HLTFromRaw_2E30.cfg >& OnLine_HLTFromRaw_2E30.log
+#echo "cmsRun --strict OnLine_HLTFromRaw_2E30.cfg >& OnLine_HLTFromRaw_2E30.log"
+#      cmsRun --strict OnLine_HLTFromRaw_2E30.cfg >& OnLine_HLTFromRaw_2E30.log
+
+echo " "
 echo "/bin/rm CSA07*.root                     RelVal_PrimaryDatasets.log"
       /bin/rm CSA07*.root                     RelVal_PrimaryDatasets.log
 echo "./testcfg RelVal_PrimaryDatasets.cfg >& RelVal_PrimaryDatasets.log"
