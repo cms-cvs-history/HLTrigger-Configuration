@@ -3,9 +3,14 @@
 eval `scramv1 runtime -csh`
 rehash
 
-
 echo " "
 echo " Production chain (four jobs: digi+L1emu+digi2raw, HLT, split, reco):"
+
+echo " "
+echo "/bin/rm OnLine_HLTFromRaw_2E30.cfg OnLine_HLTFromRaw_2E30_cfg.py"
+      /bin/rm OnLine_HLTFromRaw_2E30.cfg OnLine_HLTFromRaw_2E30_cfg.py
+echo "./getHLT.csh"
+      ./getHLT.csh 
 
 echo " "
 echo "/bin/rm RelVal_Digi_Raw.root RelVal_Pure_Raw.root RelVal_Digi_Digi2Raw.log"
