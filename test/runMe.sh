@@ -20,8 +20,6 @@ echo "./testcfg RelVal_Digi_Digi2Raw.cfg   >& RelVal_Digi_Digi2Raw.log"
 #echo "cmsRun --strict RelVal_Digi_Digi2Raw.cfg   >& RelVal_Digi_Digi2Raw.log"
 #      cmsRun --strict RelVal_Digi_Digi2Raw.cfg   >& RelVal_Digi_Digi2Raw.log
 
-/bin/mv -f HLTFromPureRaw.root HLTFromPureRel.root
-
 echo " "
 echo "/bin/rm HLTFromPureRaw.root             RelVal_HLTFromRaw_2E30.log"
       /bin/rm HLTFromPureRaw.root             RelVal_HLTFromRaw_2E30.log
@@ -29,6 +27,8 @@ echo "./testcfg RelVal_HLTFromRaw_2E30.cfg >& RelVal_HLTFromRaw_2E30.log"
       ./testcfg RelVal_HLTFromRaw_2E30.cfg >& RelVal_HLTFromRaw_2E30.log
 #echo "cmsRun --strict RelVal_HLTFromRaw_2E30.cfg >& RelVal_HLTFromRaw_2E30.log"
 #      cmsRun --strict RelVal_HLTFromRaw_2E30.cfg >& RelVal_HLTFromRaw_2E30.log
+
+/bin/mv -f HLTFromPureRaw.root HLTFromPureRel.root
 
 echo " "
 echo "/bin/rm HLTFromPureRaw.root             OnLine_HLTFromRaw_2E30.log"
