@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_0_6/HLT/V5  (CMSSW_2_0_6)
+// /dev/CMSSW_2_0_8/HLT/V1  (CMSSW_2_0_8)
 
 // Begin replace statements specific to the HLT
 include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
@@ -2001,9 +2001,9 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double etThresh = 5.0
     string corectedSuperClusterCollection = ""
     PSet hyb_fCorrPset = {
-      vdouble fBremVec = { -0.01258, 0.03154, 0.9888, -7.973E-4, 1.59 }
-      vdouble fEtEtaVec = { 1.0, -0.8206, 3.16, 0.8637, 44.88, 2.292, 1.023, 8.0 }
-      double brLinearThr = 12.0
+      vdouble fBremVec = { -0.01217, 0.031, 0.9887, -3.776E-4, 1.598 }
+      vdouble fEtEtaVec = { 1.001, -0.8654, 3.131, 0.0, 0.735, 20.72, 1.169, 8.0, 1.023, -0.00181, 0.0, 1.0, 0.0 }
+      double brLinearThr = 8.0
     }
     PSet isl_fCorrPset = {}
     PSet dyn_fCorrPset = {}
@@ -2412,9 +2412,9 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double etThresh = 5.0
     string corectedSuperClusterCollection = ""
     PSet hyb_fCorrPset = {
-      vdouble fBremVec = { -0.01258, 0.03154, 0.9888, -7.973E-4, 1.59 }
-      vdouble fEtEtaVec = { 1.0, -0.8206, 3.16, 0.8637, 44.88, 2.292, 1.023, 8.0 }
-      double brLinearThr = 12.0
+      vdouble fBremVec = { -0.01217, 0.031, 0.9887, -3.776E-4, 1.598 }
+      vdouble fEtEtaVec = { 1.001, -0.8654, 3.131, 0.0, 0.735, 20.72, 1.169, 8.0, 1.023, -0.00181, 0.0, 1.0, 0.0 }
+      double brLinearThr = 8.0
     }
     PSet isl_fCorrPset = {}
     PSet dyn_fCorrPset = {}
