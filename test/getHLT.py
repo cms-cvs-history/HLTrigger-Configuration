@@ -111,7 +111,7 @@ else:
         myGetCff = "edmConfigFromDB --cff --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + cffName
         os.system(myGetCff)
 
-        myGetCffPy = "edmConfigFromDB --cff --format Python --cff --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + cffNamePy
+        myGetCffPy = "edmConfigFromDB --cff --format Python --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + cffNamePy
         os.system(myGetCffPy)
 
     else:
@@ -119,5 +119,5 @@ else:
         myGetCff = "edmConfigFromDB       --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + cffName
         os.system(myGetCff)
 
-        myGetCffPy = "edmConfigFromDB       --format Python --cff --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + cffNamePy
+        myGetCffPy = "edmConfigFromDB       --format Python --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + cffNamePy
         os.system(myGetCffPy)
