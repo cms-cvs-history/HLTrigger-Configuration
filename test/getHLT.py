@@ -12,18 +12,17 @@ def usage():
     print "The default is to create file from the ConfDB with minimal modifications for validation"
     sys.exit(1)
 
-argc = len(sys.argv)
+dbName = sys.argv[1]
 
-useCase = "ONLINE"
+argc = len(sys.argv)
 if argc == 3:
-    dbName = sys.argv[1]
-    cffName   = "HLT_"+sys.argv[2]+".cff"
-    cffNamePy = "HLT_"+sys.argv[2]+"_cff.py"
+    useCase = "ONLINE"
+    cffName   = "OnLine_HLTFromRaw_"+sys.argv[2]+".cfg"
+    cffNamePy = "OnLine_HLTFromRaw_"+sys.argv[2]+"_cfg.py"
 elif argc == 4:
-    dbName = sys.argv[1]
+    useCase = sys.argv[3]
     cffName   = "HLT_"+sys.argv[2]+".cff"
     cffNamePy = "HLT_"+sys.argv[2]+"_cff.py"
-    useCase = sys.argv[3]
 else:
     usage()
 
@@ -37,6 +36,7 @@ else:
     esmodules = "  "
     modules   = "  "
     services  = "--services -PrescaleService"
+    paths     = "--paths -AlCaOutput"
     psets     = "  "
 
     if useCase == "GEN-HLT":
@@ -108,22 +108,16 @@ else:
         psets += "-maxEvents,"
         psets += "-options,"
 
-    # end useCase == "GEN-HLT"
+        myGetCff = "edmConfigFromDB --cff --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + cffName
+        os.system(myGetCff)
 
+        myGetCffPy = "edmConfigFromDB --cff --format Python --cff --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + cffNamePy
+        os.system(myGetCffPy)
 
-    myGetCff = "edmConfigFromDB --cff --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + psets + " > " + cffName
-    os.system(myGetCff)
+    else:
+    
+        myGetCff = "edmConfigFromDB       --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + cffName
+        os.system(myGetCff)
 
-    myGetCffPy = "edmConfigFromDB --format Python --cff --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + psets + " > " + cffNamePy
-    os.system(myGetCffPy)
-
-    # myReplaceTrigResults = "replace TriggerResults::HLT " + process + " -- " + cffName
-    # os.system(myReplaceTrigResults)
-
-    # Make replace statements at the beginning of the cff
-    #for line in fileinput.input(cffName,inplace=1):
-    #    if line.find("sequence HLTBeginSequence") >= 0:
-    #        print "// Begin replace statements specific to the HLT"
-    #        print "#"
-    #        print "// End replace statements specific to the HLT"  
-    #    print line[:-1]
+        myGetCffPy = "edmConfigFromDB       --format Python --cff --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + cffNamePy
+        os.system(myGetCffPy)
