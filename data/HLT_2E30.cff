@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_1_0_pre5/HLT/V23  (CMSSW_2_1_X_2008-06-10-0200_HLT1)
+// /dev/CMSSW_2_1_0_pre5/HLT/V24  (CMSSW_2_1_X_2008-06-10-0200_HLT1)
 
 sequence HLTBeginSequence = { hlt2GetRaw & hltGtDigis & hltGctDigis & hltL1GtObjectMap & hltL1extraParticles & hltOfflineBeamSpot }
 sequence HLTEndSequence = { hltBoolEnd }
@@ -185,7 +185,7 @@ path HLTZeroBias = { HLTBeginSequence & hltl1sZero & hltpreZero & HLTEndSequence
 path HLTriggerType = { HLTBeginSequence & hltPrescaleTriggerType & hltFilterTriggerType & HLTEndSequence }
 endpath HLTEndpath1 = { hltL1gtTrigReport & hltTrigReport }
 path HLTXElectronTau = { HLTBeginSequence & hltPrescalerElectronTau & hltLevel1GTSeedElectronTau & HLTETauSingleElectronL1IsolatedHOneOEMinusOneOPFilterSequence & HLTL2TauJetsElectronTauSequnce & hltL2ElectronTauIsolationProducer & hltL2ElectronTauIsolationSelector & hltFilterEcalIsolatedTauJetsElectronTau & HLTRecopixelvertexingSequence & hltJetTracksAssociatorAtVertexL25ElectronTau & hltConeIsolationL25ElectronTau & hltIsolatedTauJetsSelectorL25ElectronTauPtLeadTk & hltFilterIsolatedTauJetsL25ElectronTauPtLeadTk  & hltIsolatedTauJetsSelectorL25ElectronTau & hltFilterIsolatedTauJetsL25ElectronTau & HLTEndSequence }
-path HLTXMuonTau = { HLTBeginSequence & hltPrescalerMuonTau & hltLevel1GTSeedMuonTau & hltMuonTauL1Filtered & HLTL2muonrecoSequence & hltMuonTauIsoL2PreFiltered & HLTL2muonisorecoSequence & HLTDoLocalStripSequence & HLTL3muonrecoSequence & HLTL3muonisorecoSequence & hltMuonTauIsoL3PreFiltered & hltMuonTauIsoL3IsoFiltered & HLTCaloTausCreatorRegionalSequence & hltL2TauJetsProviderMuonTau & hltMuonTauIsoL2IsoFiltered & hltL2MuonTauIsolationProducer & hltL2MuonTauIsolationSelector & hltFilterEcalIsolatedTauJetsMuonTau & HLTDoLocalPixelSequence & HLTRecopixelvertexingSequence & hltJetsPixelTracksAssociatorMuonTau & hltPixelTrackConeIsolationMuonTau & hltIsolatedTauJetsSelectorL25MuonTauPtLeadTk & hltFilterL25MuonTauPtLeadTk & hltPixelTrackIsolatedTauJetsSelectorMuonTau & hltFilterPixelTrackIsolatedTauJetsMuonTau & HLTEndSequence }
+path HLTXMuonTau = { HLTBeginSequence & hltPrescalerMuonTau & hltLevel1GTSeedMuonTau & hltMuonTauL1Filtered & HLTL2muonrecoSequence & hltMuonTauIsoL2PreFiltered & HLTL2muonisorecoSequence & hltMuonTauIsoL2IsoFiltered & HLTDoLocalStripSequence & HLTL3muonrecoSequence & HLTL3muonisorecoSequence & hltMuonTauIsoL3PreFiltered & hltMuonTauIsoL3IsoFiltered & HLTCaloTausCreatorRegionalSequence & hltL2TauJetsProviderMuonTau & hltL2MuonTauIsolationProducer & hltL2MuonTauIsolationSelector & hltFilterEcalIsolatedTauJetsMuonTau & HLTDoLocalPixelSequence & HLTRecopixelvertexingSequence & hltJetsPixelTracksAssociatorMuonTau & hltPixelTrackConeIsolationMuonTau & hltIsolatedTauJetsSelectorL25MuonTauPtLeadTk & hltFilterL25MuonTauPtLeadTk & hltPixelTrackIsolatedTauJetsSelectorMuonTau & hltFilterPixelTrackIsolatedTauJetsMuonTau & HLTEndSequence }
 path HLT1Tau1MET = { HLTBeginSequence & hltSingleTauMETPrescaler & hltSingleTauMETL1SeedFilter & HLTCaloTausCreatorSequence & hltMet & hlt1METSingleTauMET & hltL2SingleTauMETJets & hltL2SingleTauMETIsolationProducer & hltL2SingleTauMETIsolationSelector & hltFilterSingleTauMETEcalIsolation & HLTDoLocalPixelSequence & HLTRecopixelvertexingSequence & hltAssociatorL25SingleTauMET & hltConeIsolationL25SingleTauMET & hltIsolatedL25SingleTauMET & hltFilterL25SingleTauMET & HLTDoLocalStripSequence & hltL3SingleTauMETPixelSeeds & hltCkfTrackCandidatesL3SingleTauMET & hltCtfWithMaterialTracksL3SingleTauMET & hltAssociatorL3SingleTauMET & hltConeIsolationL3SingleTauMET & hltIsolatedL3SingleTauMET & hltFilterL3SingleTauMET & HLTEndSequence }
 path HLT1Tau = { HLTBeginSequence & hltSingleTauPrescaler & hltSingleTauL1SeedFilter & HLTCaloTausCreatorSequence & hltMet & hlt1METSingleTau & hltL2SingleTauJets & hltL2SingleTauIsolationProducer & hltL2SingleTauIsolationSelector & hltFilterSingleTauEcalIsolation & HLTDoLocalPixelSequence & HLTRecopixelvertexingSequence & hltAssociatorL25SingleTau & hltConeIsolationL25SingleTau & hltIsolatedL25SingleTau & hltFilterL25SingleTau & HLTDoLocalStripSequence & hltL3SingleTauPixelSeeds & hltCkfTrackCandidatesL3SingleTau & hltCtfWithMaterialTracksL3SingleTau & hltAssociatorL3SingleTau & hltConeIsolationL3SingleTau & hltIsolatedL3SingleTau & hltFilterL3SingleTau & HLTEndSequence }
 path HLT1Electron10_L1R_NI = { HLTSingleElectronEt10L1NonIsoHLTnonIsoSequence & HLTEndSequence }
@@ -6939,6 +6939,11 @@ service = UpdaterService {}
     double MinPt = 12.0
     double NSigmaPt = 0.0
   }
+  module hltMuonTauIsoL2IsoFiltered = HLTMuonIsoFilter {
+    InputTag CandTag = hltMuonTauIsoL2PreFiltered
+    InputTag IsoTag = hltL2MuonIsolations
+    int32 MinN = 1
+  }
   module hltMuonTauIsoL3PreFiltered = HLTMuonL3PreFilter {
     InputTag BeamSpotTag = hltOfflineBeamSpot
     InputTag CandTag = hltL3MuonCandidates
@@ -6963,11 +6968,6 @@ service = UpdaterService {}
     InputTag L1TauTrigger = hltLevel1GTSeedMuonTau
     double EtMin = 15.0
     VInputTag JetSrc = { hltIcone5Tau1Regional, hltIcone5Tau2Regional, hltIcone5Tau3Regional, hltIcone5Tau4Regional }
-  }
-  module hltMuonTauIsoL2IsoFiltered = HLTMuonIsoFilter {
-    InputTag CandTag = hltMuonTauIsoL2PreFiltered
-    InputTag IsoTag = hltL2MuonIsolations
-    int32 MinN = 1
   }
   module hltL2MuonTauIsolationProducer = L2TauIsolationProducer {
     InputTag L2TauJetCollection = hltL2TauJetsProviderMuonTau
