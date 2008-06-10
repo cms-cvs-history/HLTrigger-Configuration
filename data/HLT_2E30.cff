@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_1_0_pre5/HLT/V22  (CMSSW_2_1_0_pre5_HLT3)
+// /dev/CMSSW_2_1_0_pre5/HLT/V23  (CMSSW_2_1_X_2008-06-10-0200_HLT1)
 
 sequence HLTBeginSequence = { hlt2GetRaw & hltGtDigis & hltGctDigis & hltL1GtObjectMap & hltL1extraParticles & hltOfflineBeamSpot }
 sequence HLTEndSequence = { hltBoolEnd }
@@ -319,10 +319,8 @@ es_module KFFitterSmootherForL2Muon = KFFittingSmootherESProducer {
   double EstimateCut = -1.0
   int32 MinNumberOfHits = 5
   bool RejectTracks = true
-
   bool BreakTrajWith2ConsecutiveMissing = false
-  bool NoInvalidHitsBeginEnd  = false
-
+  bool NoInvalidHitsBeginEnd = false
 }
 es_module CaloTowerConstituentsMapBuilder = CaloTowerConstituentsMapBuilder {
   untracked string MapFile = "Geometry/CaloTopology/data/CaloTowerEEGeometric.map.gz"
@@ -375,10 +373,8 @@ es_module FittingSmootherRK = KFFittingSmootherESProducer {
   double EstimateCut = -1.0
   int32 MinNumberOfHits = 5
   bool RejectTracks = true
-
   bool BreakTrajWith2ConsecutiveMissing = false
-  bool NoInvalidHitsBeginEnd  = false
-
+  bool NoInvalidHitsBeginEnd = false
 }
 es_module GlobalTrackingGeometryESProducer = GlobalTrackingGeometryESProducer {}
 es_module GroupedCkfTrajectoryBuilder = GroupedCkfTrajectoryBuilderESProducer {
