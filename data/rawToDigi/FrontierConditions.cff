@@ -1,6 +1,0 @@
-include "HLTrigger/Configuration/data/rawToDigi/frontierCablingSetup.cff"
-
-replace DTCabling.connect ="frontier://FrontierProd/CMS_COND_20X_DT"				 
-replace RPCCabling.connect ="frontier://FrontierProd/CMS_COND_20X_RPC"				 
-replace cscPackingCabling.connect = "frontier://FrontierProd/CMS_COND_20X_CSC"
-replace cscUnpackingCabling.connect = "frontier://FrontierProd/CMS_COND_20X_CSC"
