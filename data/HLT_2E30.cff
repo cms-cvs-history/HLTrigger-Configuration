@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_1_0_pre5/HLT/V21  (CMSSW_2_1_0_pre5_HLT3)
+// /dev/CMSSW_2_1_0_pre5/HLT/V22  (CMSSW_2_1_0_pre5_HLT3)
 
 sequence HLTBeginSequence = { hlt2GetRaw & hltGtDigis & hltGctDigis & hltL1GtObjectMap & hltL1extraParticles & hltOfflineBeamSpot }
 sequence HLTEndSequence = { hltBoolEnd }
@@ -230,7 +230,7 @@ path HLT4jet30 = { HLTBeginSequence & hltL1s4jet30 & hltPre4jet30 & HLTRecoJetME
 path HLT1TauRelaxed = { HLTBeginSequence & hltSingleTauPrescaler & hltSingleTauL1SeedFilter & HLTCaloTausCreatorSequence & hltMet & hlt1METSingleTauRelaxed & hltL2SingleTauJets & hltL2SingleTauIsolationProducer & hltL2SingleTauIsolationSelectorRelaxed & hltFilterSingleTauEcalIsolationRelaxed & HLTEndSequence }
 path HLT1Tau1METRelaxed = { HLTBeginSequence & hltSingleTauMETPrescaler & hltSingleTauMETL1SeedFilter & HLTCaloTausCreatorSequence & hltMet & hlt1METSingleTauMETRelaxed & hltL2SingleTauMETJets & hltL2SingleTauMETIsolationProducer & hltL2SingleTauMETIsolationSelectorRelaxed & hltFilterSingleTauMETEcalIsolationRelaxed & HLTEndSequence }
 path HLT2TauPixelRelaxed = { HLTBeginSequence & hltDoubleTauPrescaler & hltDoubleTauL1SeedFilterRelaxed & HLTCaloTausCreatorRegionalSequence & hltL2DoubleTauJetsRelaxed & hltL2DoubleTauIsolationProducerRelaxed & hltL2DoubleTauIsolationSelectorRelaxed & hltFilterDoubleTauEcalIsolationRelaxed & HLTEndSequence }
-path HLT2TauPixel = { HLTBeginSequence & hltDoubleTauPrescaler & hltDoubleTauL1SeedFilter & HLTCaloTausCreatorRegionalSequence & hltL2DoubleTauJets & hltL2DoubleTauIsolationProducer & hltL2DoubleTauIsolationSelector & hltFilterDoubleTauEcalIsolation & HLTDoLocalPixelSequence & HLTRecopixelvertexingSequence & hltAssociatorL25PixelTauIsolated & hltConeIsolationL25PixelTauIsolated & hltIsolatedL25PixelTau & hltFilterL25PixelTauPtLeadTk & hltIsolatedL25PixelTauForIsolation & hltFilterL25PixelTau & HLTEndSequence }
+path HLT2TauPixel = { HLTBeginSequence & hltDoubleTauPrescaler & hltDoubleTauL1SeedFilter & HLTCaloTausCreatorRegionalSequence & hltL2DoubleTauJets & hltL2DoubleTauIsolationProducer & hltL2DoubleTauIsolationSelector & hltFilterDoubleTauEcalIsolation & HLTDoLocalPixelSequence & HLTRecopixelvertexingSequence & hltAssociatorL25PixelTauIsolated & hltConeIsolationL25PixelTauIsolated & hltIsolatedL25PixelTauPtLeadTk & hltFilterL25PixelTauPtLeadTk & hltIsolatedL25PixelTau & hltFilterL25PixelTau & HLTEndSequence }
 path HLT1Level1jet15 = { HLTBeginSequence & hltPre1Level1jet15 & hltL1s1Level1jet15 & HLTEndSequence }
 path HLT1jet30 = { HLTBeginSequence & hltL1s1jet30 & hltPre1jet30 & HLTRecoJetMETSequence & hlt1jet30 & HLTEndSequence }
 path HLT1jet50 = { HLTBeginSequence & hltL1s1jet50 & hltPre1jet50 & HLTRecoJetMETSequence & hlt1jet50 & HLTEndSequence }
@@ -319,6 +319,10 @@ es_module KFFitterSmootherForL2Muon = KFFittingSmootherESProducer {
   double EstimateCut = -1.0
   int32 MinNumberOfHits = 5
   bool RejectTracks = true
+
+  bool BreakTrajWith2ConsecutiveMissing = false
+  bool NoInvalidHitsBeginEnd  = false
+
 }
 es_module CaloTowerConstituentsMapBuilder = CaloTowerConstituentsMapBuilder {
   untracked string MapFile = "Geometry/CaloTopology/data/CaloTowerEEGeometric.map.gz"
@@ -371,6 +375,10 @@ es_module FittingSmootherRK = KFFittingSmootherESProducer {
   double EstimateCut = -1.0
   int32 MinNumberOfHits = 5
   bool RejectTracks = true
+
+  bool BreakTrajWith2ConsecutiveMissing = false
+  bool NoInvalidHitsBeginEnd  = false
+
 }
 es_module GlobalTrackingGeometryESProducer = GlobalTrackingGeometryESProducer {}
 es_module GroupedCkfTrajectoryBuilder = GroupedCkfTrajectoryBuilderESProducer {
@@ -6891,7 +6899,7 @@ service = UpdaterService {}
     InputTag inputTag = hltIsolatedTauJetsSelectorL25ElectronTauPtLeadTk
     double MinPt = 0.0
     double MaxEta = 5.0
-    int32 MinN = 2
+    int32 MinN = 1
   }
   module hltIsolatedTauJetsSelectorL25ElectronTau = IsolatedTauJetsSelector {
     double MinimumTransverseMomentumLeadingTrack = 3.0
@@ -9946,27 +9954,27 @@ service = UpdaterService {}
     double VariableMaxCone = 0.17
     double VariableMinCone = 0.05
   }
-  module hltIsolatedL25PixelTau = IsolatedTauJetsSelector {
+  module hltIsolatedL25PixelTauPtLeadTk = IsolatedTauJetsSelector {
     double MinimumTransverseMomentumLeadingTrack = 3.0
     bool UseIsolationDiscriminator = false
     bool UseInHLTOpen = false
     VInputTag JetSrc = { hltConeIsolationL25PixelTauIsolated }
   }
   module hltFilterL25PixelTauPtLeadTk = HLT1Tau {
-    InputTag inputTag = hltIsolatedL25PixelTauRelaxed
+    InputTag inputTag = hltIsolatedL25PixelTauPtLeadTk
     untracked bool saveTag = true
     double MinPt = 0.0
     double MaxEta = 5.0
     int32 MinN = 2
   }
-  module hltIsolatedL25PixelTauForIsolation = IsolatedTauJetsSelector {
+  module hltIsolatedL25PixelTau = IsolatedTauJetsSelector {
     double MinimumTransverseMomentumLeadingTrack = 3.0
     bool UseIsolationDiscriminator = true
     bool UseInHLTOpen = false
     VInputTag JetSrc = { hltConeIsolationL25PixelTauIsolated }
   }
   module hltFilterL25PixelTau = HLT1Tau {
-    InputTag inputTag = hltIsolatedL25PixelTauForIsolation
+    InputTag inputTag = hltIsolatedL25PixelTau
     untracked bool saveTag = true
     double MinPt = 0.0
     double MaxEta = 5.0
