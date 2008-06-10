@@ -1,5 +1,0 @@
-include "EventFilter/DTRawToDigi/data/DTFrontierCabling.cfi"
-include "EventFilter/RPCRawToDigi/data/RPCFrontierCabling.cfi"
-
-include "EventFilter/CSCRawToDigi/data/cscFrontierCablingPack.cff"
-include "EventFilter/CSCRawToDigi/data/cscFrontierCablingUnpck.cff"
