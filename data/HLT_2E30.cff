@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_1_0_pre5/HLT/V24  (CMSSW_2_1_X_2008-06-10-0200_HLT1)
+// /dev/CMSSW_2_1_0_pre5/HLT/V25  (CMSSW_2_1_X_2008-06-10-0200_HLT1)
 
 sequence HLTBeginSequence = { hlt2GetRaw & hltGtDigis & hltGctDigis & hltL1GtObjectMap & hltL1extraParticles & hltOfflineBeamSpot }
 sequence HLTEndSequence = { hltBoolEnd }
@@ -4190,9 +4190,9 @@ service = UpdaterService {}
     PSet TrackerSeedCleaner = {
       string TTRHBuilder = "WithTrackAngle"
       InputTag beamSpot = hltOfflineBeamSpot
-      bool directionCleaner = false
+      bool directionCleaner = true
       bool cleanerFromSharedHits = true
-      bool ptCleaner = false
+      bool ptCleaner = true
     }
     PSet TSGFromMixedPairs = {
       string ComponentName = "TSGFromOrderedHits"
