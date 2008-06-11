@@ -1,181 +1,29 @@
 //
 // EventContent for HLT related products.
 //
-// This cff file exports the following six EventContent blocks:
+// This cff file exports the following four EventContent blocks:
 //   HLTriggerFEVT  HLTriggerRECO  HLTriggerAOD (without DEBUG products)
-//   HLTDebugFEVT   HLTDebugRECO   HLTDebugAOD  (with    DEBUG products)
+//   HLTDebugFEVT                               (with    DEBUG products)
+// as these are used in Configuration/EventContent
+//
 // All else is internal and should not be used directly by non-HLT users.
 //
 
 
-//
-// Default (non-debug) products
-//
-block HLTDefault = {
-    untracked vstring outputCommands = {
-# HLT trigger "bits" - hardwired EDProduct!
-	 "keep edmTriggerResults_*_*_*"
-# HLT book-keeping product (non-debug version)
-	,"keep triggerTriggerEvent_*_*_*"
-# L1 products
-	,"keep *_hltGtDigis_*_*"
-	,"keep *_hltGctDigis_*_*"
-	,"keep *_hltL1GtObjectMap_*_*"
-	,"keep *_hltL1extraParticles_*_*"
-# beamspot
-	,"keep *_hltOfflineBeamSpot_*_*"
-    }
-}
+include "HLTrigger/Configuration/data/HLTDefaultOutput.cff"
+include "HLTrigger/Configuration/data/HLTDebugOutput.cff"
+include "HLTrigger/Configuration/data/HLTDebugWithAlCaOutput.cff"
 
 
-//
-// Loading ALCA event content definition - needed for ALCARECO
-include "HLTrigger/special/data/HLTSpecial_EventContent.cff"
+block HLTriggerFEVT = { vstring outputCommands = { } }
+replace HLTriggerFEVT.outputCommands += block_hltDefaultOutput.outputCommands
+
+block HLTriggerRECO = { vstring outputCommands = { } }
+replace HLTriggerRECO.outputCommands += block_hltDefaultOutput.outputCommands
+
+block HLTriggerAOD  = { vstring outputCommands = { } }
+replace HLTriggerAOD.outputCommands += block_hltDefaultOutput.outputCommands
 
 
-//
-// Corresponding three data-tier blocks
-//
-//
-# Full Event content
-block HLTriggerFEVT = {
-    untracked vstring outputCommands = { "drop *_hlt*_*_*" }
-}
-replace HLTriggerFEVT.outputCommands += HLTDefault.outputCommands
-replace HLTriggerFEVT.outputCommands += HLTSpecialFEVT.outputCommands
-
-# RECO content
-block HLTriggerRECO = {
-    untracked vstring outputCommands = { "drop *_hlt*_*_*" }
-}
-replace HLTriggerRECO.outputCommands += HLTDefault.outputCommands
-replace HLTriggerRECO.outputCommands += HLTSpecialRECO.outputCommands
-
-# AOD content
-block HLTriggerAOD = {
-    untracked vstring outputCommands = { "drop *_hlt*_*_*" }
-}
-replace HLTriggerAOD.outputCommands += HLTDefault.outputCommands
-replace HLTriggerAOD.outputCommands += HLTSpecialAOD.outputCommands
-
-
-//
-// DEBUG: Additional products for Trigger debugging
-//
-block HLTDebug = {
-    untracked vstring outputCommands = {
-# HLT book-keeping product (debug version)
-	 "keep triggerTriggerEventWithRefs_*_*_*"
-# Timing / Performance
-#	,"keep edmEventTime_*_*_*"
-#	,"keep HLTPerformanceInfo_*_*_*"
-# DT
-#	,"keep *_hltDt1DRecHits_*_*"
-#	,"keep *_hltDt4DSegments_*_*"
-# CSC
-#	,"keep *_hltCsc2DRecHits_*_*"
-#	,"keep *_hltCscSegments_*_*"
-# RPC
-#	,"keep *_hltRpcRecHits_*_*"
-# HCAL
-#	,"keep *_hltHbhereco_*_*"
-#	,"keep *_hltHfreco_*_*"
-#	,"keep *_hltHoreco_*_*"
-# EB + EE Uncalibrated RecHits
-#	,"keep *_hltEcalWeightUncalibRecHit_*_*"
-# Ecal Calibrated RecHits
-#	,"keep *_hltEcalPreshowerRecHit_*_*"
-#	,"keep *_hltEcalRecHit_*_*"
-# Clusters
-	,"keep *_hltSiPixelClusters_*_*"
-	,"keep *_hltSiStripClusters_*_*"
-# Si Pixel hits
-	,"keep *_hltSiPixelRecHits_*_*"
-# Si Strip hits
-	,"keep *_hltSiStripRecHits_*_*"
-	,"keep *_hltSiStripMatchedRecHits_*_*"
-# save digis sim link and trigger infos
-#	,"keep StripDigiSimLinkedmDetSetVector_hltMuonCSCDigis_*_*"
-#	,"keep CSCDetIdCSCComparatorDigiMuonDigiCollection_hltMuonCSCDigis_*_*"
-    }
-}
-
-
-//
-// DEBUG must include the non-debug stuff
-//
-replace HLTDebug.outputCommands += HLTDefault.outputCommands
-
-
-//
-// Corresponding three data-tier blocks with DEBUG
-//
-# Full Event content
-block HLTDebugFEVT = {
-    untracked vstring outputCommands = { "drop *_hlt*_*_*" }
-}
-replace HLTDebugFEVT.outputCommands += HLTDebug.outputCommands
-replace HLTDebugFEVT.outputCommands += HLTSpecialFEVT.outputCommands
-
-# RECO content
-block HLTDebugRECO = {
-    untracked vstring outputCommands = { "drop *_hlt*_*_*" }
-}
-replace HLTDebugRECO.outputCommands += HLTDebug.outputCommands
-replace HLTDebugRECO.outputCommands += HLTSpecialRECO.outputCommands
-
-# AOD content
-block HLTDebugAOD = {
-    untracked vstring outputCommands = { "drop *_hlt*_*_*" }
-}
-replace HLTDebugAOD.outputCommands += HLTDebug.outputCommands
-replace HLTDebugAOD.outputCommands += HLTSpecialAOD.outputCommands
-
-
-//
-// Egamma collections
-include "HLTrigger/Egamma/data/HLTEgamma_EventContent.cff"
-//
-replace HLTDebugFEVT.outputCommands   += HLTEgamma_FEVT.outputCommands
-replace HLTDebugRECO.outputCommands   += HLTEgamma_RECO.outputCommands
-replace HLTDebugAOD.outputCommands    += HLTEgamma_AOD.outputCommands
-
-//
-// Muon collections
-include "HLTrigger/Muon/data/HLTMuon_EventContent.cff"
-//
-replace HLTDebugFEVT.outputCommands   += HLTMuonFEVT.outputCommands
-replace HLTDebugRECO.outputCommands   += HLTMuonRECO.outputCommands
-replace HLTDebugAOD.outputCommands    += HLTMuonAOD.outputCommands
-
-//
-// JetMET collections
-include "HLTrigger/JetMET/data/HLTJetMET_EventContent.cff"
-//
-replace HLTDebugFEVT.outputCommands   += HLTJetMETFEVT.outputCommands
-replace HLTDebugRECO.outputCommands   += HLTJetMETRECO.outputCommands
-replace HLTDebugAOD.outputCommands    += HLTJetMETAOD.outputCommands
-
-//
-// BTau collections
-include "HLTrigger/btau/data/HLTBTau_EventContent.cff"
-//
-replace HLTDebugFEVT.outputCommands   += HLTBTauFEVT.outputCommands
-replace HLTDebugRECO.outputCommands   += HLTBTauRECO.outputCommands
-replace HLTDebugAOD.outputCommands    += HLTBTauAOD.outputCommands
-
-//
-// Xchannel collections
-include "HLTrigger/xchannel/data/HLTXchannel_EventContent.cff"
-//
-replace HLTDebugFEVT.outputCommands   += HLTXchannelFEVT.outputCommands
-replace HLTDebugRECO.outputCommands   += HLTXchannelRECO.outputCommands
-replace HLTDebugAOD.outputCommands    += HLTXchannelAOD.outputCommands
-
-//
-// Special collections
-//include "HLTrigger/special/data/HLTSpecial_EventContent.cff"
-//
-replace HLTDebugFEVT.outputCommands   += HLTSpecialFEVT.outputCommands
-replace HLTDebugRECO.outputCommands   += HLTSpecialRECO.outputCommands
-replace HLTDebugAOD.outputCommands    += HLTSpecialAOD.outputCommands
+block HLTDebugFEVT = { vstring outputCommands = { } }
+replace HLTDebugFEVT.outputCommands += block_hltDebugWithAlCaOutput.outputCommands
