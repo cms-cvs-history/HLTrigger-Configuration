@@ -3,7 +3,7 @@
 eval `~/CMS/TDR/tdr runtime -csh`
 rehash
 
-setenv HLTtable /dev/CMSSW_2_1_0_pre5/HLT/V31
+setenv HLTtable /dev/CMSSW_2_1_0_pre5/HLT/V33
 setenv HLTid 2E30 
 
 if ($1 == CVS) then

@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_1_0_pre5/HLT/V31  (CMSSW_2_1_X_2008-06-10-0200_HLT1)
+// /dev/CMSSW_2_1_0_pre5/HLT/V33  (CMSSW_2_1_X_2008-06-10-0200_HLT1)
 
 sequence HLTBeginSequence = { hlt2GetRaw & hltGtDigis & hltGctDigis & hltL1GtObjectMap & hltL1extraParticles & hltOfflineBeamSpot }
 sequence HLTEndSequence = { hltBoolEnd }
@@ -7021,7 +7021,7 @@ service = UpdaterService {}
     double coneSize = 0.5
   }
   module hltPixelTrackConeIsolationMuonTau = ConeIsolation {
-    InputTag JetTrackSrc =  hltJetsPixelTracksAssociatorMuonTau
+    InputTag JetTrackSrc = hltJetsPixelTracksAssociatorMuonTau
     InputTag vertexSrc = hltPixelVertices
     bool useVertex = true
     bool useBeamSpot = true
@@ -7170,7 +7170,7 @@ service = UpdaterService {}
     VInputTag JetSrc = { hltIcone5Tau1, hltIcone5Tau2, hltIcone5Tau3, hltIcone5Tau4 }
   }
   module hltL2SingleTauMETIsolationProducer = L2TauIsolationProducer {
-    InputTag L2TauJetCollection =  hltL2SingleTauMETJets
+    InputTag L2TauJetCollection = hltL2SingleTauMETJets
     InputTag EBRecHits = hltEcalRecHitAll:EcalRecHitsEB
     InputTag EERecHits = hltEcalRecHitAll:EcalRecHitsEE
     double crystalThreshold = 0.1
