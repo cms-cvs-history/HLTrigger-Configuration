@@ -28,8 +28,6 @@ echo "./testcfg RelVal_HLTFromRaw_2E30.cfg >& RelVal_HLTFromRaw_2E30.log"
 #echo "cmsRun --strict RelVal_HLTFromRaw_2E30.cfg >& RelVal_HLTFromRaw_2E30.log"
 #      cmsRun --strict RelVal_HLTFromRaw_2E30.cfg >& RelVal_HLTFromRaw_2E30.log
 
-/bin/mv -f HLTFromPureRaw.root HLTFromPureRel.root
-
 echo " "
 echo "/bin/rm HLTFromPureRaw.root             OnLine_HLTFromRaw_2E30.log"
       /bin/rm HLTFromPureRaw.root             OnLine_HLTFromRaw_2E30.log
