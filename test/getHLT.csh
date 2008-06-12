@@ -1,6 +1,7 @@
 #!/bin/tcsh
 
-eval `~/CMS/TDR/tdr runtime -csh`
+cmsenv
+
 rehash
 
 setenv HLTtable /dev/CMSSW_2_1_0_pre5/HLT/V33
