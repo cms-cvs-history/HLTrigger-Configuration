@@ -4,6 +4,8 @@
 // This cff file exports the following four EventContent blocks:
 //   HLTriggerFEVT  HLTriggerRECO  HLTriggerAOD (without DEBUG products)
 //   HLTDebugFEVT                               (with    DEBUG products)
+// and the new HLTriggerRAW (to replace HLTriggerFEVT)
+//
 // as these are used in Configuration/EventContent
 //
 // All else is internal and should not be used directly by non-HLT users.
@@ -14,6 +16,9 @@ include "HLTrigger/Configuration/data/HLTDefaultOutput.cff"
 include "HLTrigger/Configuration/data/HLTDebugOutput.cff"
 include "HLTrigger/Configuration/data/HLTDebugWithAlCaOutput.cff"
 
+
+block HLTriggerRAW = { vstring outputCommands = { } }
+replace HLTriggerRAW.outputCommands += block_hltDefaultOutput.outputCommands
 
 block HLTriggerFEVT = { vstring outputCommands = { } }
 replace HLTriggerFEVT.outputCommands += block_hltDefaultOutput.outputCommands

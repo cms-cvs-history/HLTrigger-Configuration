@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_1_0_pre5/HLT/V42  (CMSSW_2_1_X_2008-06-10-0200_HLT1)
+// /dev/CMSSW_2_1_0_pre5/HLT/V43  (CMSSW_2_1_X_2008-06-10-0200_HLT1)
 
 sequence HLTBeginSequence = { hlt2GetRaw & hltGtDigis & hltGctDigis & hltL1GtObjectMap & hltL1extraParticles & hltOfflineBeamSpot }
 sequence HLTEndSequence = { hltBoolEnd }
@@ -277,7 +277,6 @@ path HLT_CSCBeamHaloOverlapRing2 = { HLTBeginSequence & hltLevel1seedHLTCSCBeamH
 path HLT_CSCBeamHaloRing2or3 = { HLTBeginSequence & hltLevel1seedHLTCSCBeamHaloRing2or3 & hltPrescaleHLTCSCBeamHaloRing2or3 & hltMuonCSCDigis & hltCsc2DRecHits & hltFilter23HLTCSCBeamHaloRing2or3 & HLTEndSequence }
 path HLT_TrackerCosmics = { HLTBeginSequence & hltLevel1seedHLTTrackerCosmics & hltPrescaleHLTTrackerCosmics & HLTEndSequence }
 path AlCa_IsoTrack = { HLTBeginSequence & HLTL1SeedFilterSequence & hltPreIsolTrackNoEcalIso & HLTL3PixelIsolFilterSequence & HLTIsoTrRegFEDSelection & HLTEndSequence }
-path AlCa_HcalPhiSym = { HLTBeginSequence & hltL1sHcalPhiSym & hltHcalPhiSymPresc & hcalFED & HLTEndSequence }
 path AlCa_EcalPhiSym = { HLTBeginSequence & hltL1sEcalPhiSym & hltEcalPhiSymPresc & hltEcalDigis & hltEcalWeightUncalibRecHit & hltEcalRecHit & hltAlCaPhiSymStream & HLTEndSequence }
 path AlCa_EcalPi0 = { HLTBeginSequence & hltPrePi0Ecal & hltL1sEcalPi0 & HLTDoRegionalEgammaEcalSequence & hltAlCaPi0RegRecHits & HLTEndSequence }
 path HLT_TriggerType = { HLTBeginSequence & hltPrescaleTriggerType & hltFilterTriggerType & HLTEndSequence }
@@ -10927,24 +10926,6 @@ service = UpdaterService {}
     bool getECAL = false
     bool getSiStrip = false
     bool getSiPixel = true
-    bool getHCAL = true
-    bool getMuon = false
-    bool getTrigger = true
-    InputTag rawInputLabel = rawDataCollector
-  }
-  module hltL1sHcalPhiSym = HLTLevel1GTSeed {
-    bool L1TechTriggerSeeding = false
-    string L1SeedsLogicalExpression = "L1_SingleEG2 OR L1_DoubleEG1"
-    InputTag L1GtReadoutRecordTag = hltGtDigis
-    InputTag L1GtObjectMapTag = hltL1GtObjectMap
-    InputTag L1CollectionsTag = hltL1extraParticles
-    InputTag L1MuonCollectionTag = hltL1extraParticles
-  }
-  module hltHcalPhiSymPresc = HLTPrescaler {}
-  module hcalFED = SubdetFEDSelector {
-    bool getECAL = false
-    bool getSiStrip = false
-    bool getSiPixel = false
     bool getHCAL = true
     bool getMuon = false
     bool getTrigger = true
