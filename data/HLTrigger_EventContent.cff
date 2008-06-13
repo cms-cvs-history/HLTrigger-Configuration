@@ -15,6 +15,10 @@ include "HLTrigger/Configuration/data/HLTDefaultOutput.cff"
 include "HLTrigger/Configuration/data/HLTDebugOutput.cff"
 include "HLTrigger/Configuration/data/HLTDebugWithAlCaOutput.cff"
 
+// temporarily
+block HLTriggerFEVT = { vstring outputCommands = { } }
+replace HLTriggerFEVT.outputCommands += block_hltDefaultOutput.outputCommands
+// temporarily
 
 block HLTriggerRAW  = { vstring outputCommands = { } }
 replace HLTriggerRAW.outputCommands += block_hltDefaultOutput.outputCommands
