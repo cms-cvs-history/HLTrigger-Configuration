@@ -4,7 +4,7 @@ eval `scramv1 runtime -csh`
 rehash
 
 echo " "
-echo " Production chain (four jobs: digi+L1emu+digi2raw, HLT, split, reco):"
+echo " Production chain (three jobs: digi+L1emu+digi2raw, HLT, reco):"
 
 echo " "
 echo "/bin/rm OnLine_HLTFromRaw_2E30.cfg OnLine_HLTFromRaw_2E30_cfg.py"
@@ -31,16 +31,12 @@ echo "./testcfg RelVal_HLTFromRaw_2E30.cfg >& RelVal_HLTFromRaw_2E30.log"
 echo " "
 echo "/bin/rm HLTDe*.root                     OnLine_HLTFromRaw_2E30.log"
       /bin/rm HLTDe*.root                     OnLine_HLTFromRaw_2E30.log
-echo "./testcfg OnLine_HLTFromRaw_2E30.cfg >& OnLine_HLTFromRaw_2E30.log"
-      ./testcfg OnLine_HLTFromRaw_2E30.cfg >& OnLine_HLTFromRaw_2E30.log
+echo "cmsRun OnLine_HLTFromRaw_2E30_cfg.py >& OnLine_HLTFromRaw_2E30.log"
+      cmsRun OnLine_HLTFromRaw_2E30_cfg.py >& OnLine_HLTFromRaw_2E30.log
+#echo "./testcfg OnLine_HLTFromRaw_2E30.cfg >& OnLine_HLTFromRaw_2E30.log"
+#      ./testcfg OnLine_HLTFromRaw_2E30.cfg >& OnLine_HLTFromRaw_2E30.log
 #echo "cmsRun --strict OnLine_HLTFromRaw_2E30.cfg >& OnLine_HLTFromRaw_2E30.log"
 #      cmsRun --strict OnLine_HLTFromRaw_2E30.cfg >& OnLine_HLTFromRaw_2E30.log
-
-echo " "
-echo "/bin/rm CSA07*.root                     RelVal_PrimaryDatasets.log"
-      /bin/rm CSA07*.root                     RelVal_PrimaryDatasets.log
-echo "./testcfg RelVal_PrimaryDatasets.cfg >& RelVal_PrimaryDatasets.log"
-      ./testcfg RelVal_PrimaryDatasets.cfg >& RelVal_PrimaryDatasets.log
 
 echo " "
 echo "/bin/rm RelVal_Reco.root                RelVal_Reco.log"
