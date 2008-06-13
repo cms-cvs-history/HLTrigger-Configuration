@@ -32,3 +32,6 @@ replace HLTriggerAOD.outputCommands += block_hltDefaultOutput.outputCommands
 
 block HLTDebugFEVT = { vstring outputCommands = { } }
 replace HLTDebugFEVT.outputCommands += block_hltDebugWithAlCaOutput.outputCommands
+
+block HLTDebugRAW = { vstring outputCommands = { } }
+replace HLTDebugRAW.outputCommands += block_hltDebugWithAlCaOutput.outputCommands
