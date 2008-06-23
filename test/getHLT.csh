@@ -4,7 +4,7 @@ cmsenv
 
 rehash
 
-setenv HLTtable /dev/CMSSW_2_1_0_pre5/HLT/V60
+setenv HLTtable /dev/CMSSW_2_1_0_pre6/HLT/V3
 setenv HLTid    2E30 
 
 if ($1 == CVS) then

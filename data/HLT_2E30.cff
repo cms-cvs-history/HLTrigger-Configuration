@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_1_0_pre5/HLT/V60  (CMSSW_2_1_X_2008-06-10-0200_HLT1)
+// /dev/CMSSW_2_1_0_pre6/HLT/V3  (CMSSW_2_1_0_pre6)
 
 sequence HLTBeginSequence = { hlt2GetRaw & hltGtDigis & hltGctDigis & hltL1GtObjectMap & hltL1extraParticles & hltOfflineBeamSpot }
 sequence HLTEndSequence = { hltBoolEnd }
@@ -6956,7 +6956,7 @@ service = UpdaterService {}
       PSet RegionPSet = {
         double ptMin = 0.9
         double originRadius = 0.2
-        double originHalfLength = 22.7
+        double originHalfLength = 15.9
         double originXPos = 0.0
         double originYPos = 0.0
         double originZPos = 0.0
@@ -7016,6 +7016,8 @@ service = UpdaterService {}
       vdouble EtaBounds = { 0.0435, 0.1305, 0.2175, 0.3045, 0.3915, 0.4785, 0.5655, 0.6525, 0.7395, 0.8265, 0.9135, 1.0005, 1.0875, 1.1745, 1.2615, 1.3485, 1.4355, 1.5225, 1.6095, 1.6965, 1.785, 1.88, 1.9865, 2.1075, 2.247, 2.411 }
       vdouble ConeSizes = { 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24 }
       vdouble Thresholds = { 1.1, 1.1, 1.1, 1.1, 1.2, 1.1, 1.2, 1.1, 1.2, 1.0, 1.1, 1.0, 1.0, 1.1, 1.0, 1.0, 1.1, 0.9, 1.1, 0.9, 1.1, 1.0, 1.0, 0.9, 0.8, 0.1 }
+      bool applyCutsORmaxNTracks = false
+      int32 maxNTracks = -1
     }
   }
   module hltSingleMuIsoL3IsoFiltered9 = HLTMuonIsoFilter {
