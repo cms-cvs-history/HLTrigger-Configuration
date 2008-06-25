@@ -66,11 +66,11 @@ process.GlobalTag.globaltag = 'STARTUP::All'
 
 process.load("Configuration.StandardSequences.Generator_cff")
 process.load("Configuration.StandardSequences.Sim_cff")
-process.load("Configuration.StandardSequences.Digi_cff")
 process.load("Configuration.StandardSequences.MixingNoPileUp_cff")
+process.load("Configuration.StandardSequences.Digi_cff")
 process.load("Configuration.StandardSequences.L1Emulator_cff")
 process.load("Configuration.StandardSequences.DigiToRaw_cff")
-# Choose a menu/prescale/mask from one of the choices in
+# Choose a menu/prescale/mask from one of the choices
 # in L1TriggerConfig.L1GtConfigProducers.Luminosity
 process.load("L1TriggerConfig.L1GtConfigProducers.Luminosity.lumi1030.L1Menu2008_2E30_Unprescaled_cff")
 import HLTrigger.HLTfilters.hltBool_cfi
