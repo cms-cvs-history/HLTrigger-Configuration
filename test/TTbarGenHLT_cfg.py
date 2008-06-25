@@ -65,7 +65,8 @@ process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
 process.GlobalTag.globaltag = 'STARTUP::All'
 
 process.load("Configuration.StandardSequences.Generator_cff")
-process.load("Configuration.StandardSequences.Simulation_cff")
+process.load("Configuration.StandardSequences.Sim_cff")
+process.load("Configuration.StandardSequences.Digi_cff")
 process.load("Configuration.StandardSequences.MixingNoPileUp_cff")
 process.load("Configuration.StandardSequences.L1Emulator_cff")
 process.load("Configuration.StandardSequences.DigiToRaw_cff")
