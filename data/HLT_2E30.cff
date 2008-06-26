@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_1_0_pre6/HLT/V4  (CMSSW_2_1_0_pre6)
+// /dev/CMSSW_2_1_0_pre6/HLT/V8  (CMSSW_2_1_X_2008-06-24-0000_HLT1)
 
 sequence HLTBeginSequence = { hlt2GetRaw & hltGtDigis & hltGctDigis & hltL1GtObjectMap & hltL1extraParticles & hltOfflineBeamSpot }
 sequence HLTEndSequence = { hltBoolEnd }
@@ -275,7 +275,7 @@ path HLT_CSCBeamHaloOverlapRing1 = { HLTBeginSequence & hltLevel1seedHLTCSCBeamH
 path HLT_CSCBeamHaloOverlapRing2 = { HLTBeginSequence & hltLevel1seedHLTCSCBeamHaloOverlapRing2 & hltPrescaleHLTCSCBeamHaloOverlapRing2 & hltMuonCSCDigis & hltCsc2DRecHits & hltOverlapsHLTCSCBeamHaloOverlapRing2 & HLTEndSequence }
 path HLT_CSCBeamHaloRing2or3 = { HLTBeginSequence & hltLevel1seedHLTCSCBeamHaloRing2or3 & hltPrescaleHLTCSCBeamHaloRing2or3 & hltMuonCSCDigis & hltCsc2DRecHits & hltFilter23HLTCSCBeamHaloRing2or3 & HLTEndSequence }
 path HLT_TrackerCosmics = { HLTBeginSequence & hltLevel1seedHLTTrackerCosmics & hltPrescaleHLTTrackerCosmics & HLTEndSequence }
-path AlCa_IsoTrack = { HLTBeginSequence & HLTL1SeedFilterSequence & hltPreIsolTrackNoEcalIso & HLTL3PixelIsolFilterSequence & HLTIsoTrRegFEDSelection & HLTEndSequence }
+path AlCa_IsoTrack = { HLTBeginSequence & HLTL1SeedFilterSequence & hltPreIsolTrackNoEcalIso & hltNever & HLTL3PixelIsolFilterSequence & HLTIsoTrRegFEDSelection & HLTEndSequence }
 path AlCa_EcalPhiSym = { HLTBeginSequence & hltL1sEcalPhiSym & hltEcalPhiSymPresc & hltEcalDigis & hltEcalWeightUncalibRecHit & hltEcalRecHit & hltAlCaPhiSymStream & HLTEndSequence }
 path AlCa_EcalPi0 = { HLTBeginSequence & hltPrePi0Ecal & hltL1sEcalPi0 & HLTDoRegionalEgammaEcalSequence & hltAlCaPi0RegRecHits & HLTEndSequence }
 path HLT_TriggerType = { HLTBeginSequence & hltPrescaleTriggerType & hltFilterTriggerType & HLTEndSequence }
@@ -8854,7 +8854,8 @@ service = UpdaterService {}
     int32 MinN = 1
   }
   module hltL2SingleTauJets = L2TauJetsProvider {
-    InputTag L1Particles = hltL1extraParticles:Tau
+    InputTag L1ParticlesTau = hltL1extraParticles:Tau
+    InputTag L1ParticlesJet = hltL1extraParticles:Central
     InputTag L1TauTrigger = hltSingleTauL1SeedFilter
     double EtMin = 15.0
     VInputTag JetSrc = { hltIcone5Tau1, hltIcone5Tau2, hltIcone5Tau3, hltIcone5Tau4 }
@@ -9044,7 +9045,8 @@ service = UpdaterService {}
     int32 MinN = 1
   }
   module hltL2SingleTauMETJets = L2TauJetsProvider {
-    InputTag L1Particles = hltL1extraParticles:Tau
+    InputTag L1ParticlesTau = hltL1extraParticles:Tau
+    InputTag L1ParticlesJet = hltL1extraParticles:Central
     InputTag L1TauTrigger = hltSingleTauMETL1SeedFilter
     double EtMin = 15.0
     VInputTag JetSrc = { hltIcone5Tau1, hltIcone5Tau2, hltIcone5Tau3, hltIcone5Tau4 }
@@ -9435,7 +9437,8 @@ service = UpdaterService {}
     untracked string alias = "IC5CaloJet"
   }
   module hltL2DoubleTauJets = L2TauJetsProvider {
-    InputTag L1Particles = hltL1extraParticles:Tau
+    InputTag L1ParticlesTau = hltL1extraParticles:Tau
+    InputTag L1ParticlesJet = hltL1extraParticles:Central
     InputTag L1TauTrigger = hltDoubleTauL1SeedFilter
     double EtMin = 15.0
     VInputTag JetSrc = { hltIcone5Tau1Regional, hltIcone5Tau2Regional, hltIcone5Tau3Regional, hltIcone5Tau4Regional }
@@ -9541,7 +9544,8 @@ service = UpdaterService {}
     InputTag L1MuonCollectionTag = hltL1extraParticles
   }
   module hltL2DoubleTauJetsRelaxed = L2TauJetsProvider {
-    InputTag L1Particles = hltL1extraParticles:Tau
+    InputTag L1ParticlesTau = hltL1extraParticles:Tau
+    InputTag L1ParticlesJet = hltL1extraParticles:Central
     InputTag L1TauTrigger = hltDoubleTauL1SeedFilterRelaxed
     double EtMin = 15.0
     VInputTag JetSrc = { hltIcone5Tau1Regional, hltIcone5Tau2Regional, hltIcone5Tau3Regional, hltIcone5Tau4Regional }
@@ -9882,7 +9886,8 @@ service = UpdaterService {}
     InputTag L1NonIsoCand = hltPixelMatchElectronsL1NonIso
   }
   module hltL2TauJetsProviderElectronTau = L2TauJetsProvider {
-    InputTag L1Particles = hltL1extraParticles:Tau
+    InputTag L1ParticlesTau = hltL1extraParticles:Tau
+    InputTag L1ParticlesJet = hltL1extraParticles:Central
     InputTag L1TauTrigger = hltLevel1GTSeedElectronTau
     double EtMin = 15.0
     VInputTag JetSrc = { hltIcone5Tau1Regional, hltIcone5Tau2Regional, hltIcone5Tau3Regional, hltIcone5Tau4Regional }
@@ -10284,7 +10289,8 @@ service = UpdaterService {}
     untracked bool SaveTag = true
   }
   module hltL2TauJetsProviderMuonTau = L2TauJetsProvider {
-    InputTag L1Particles = hltL1extraParticles:Tau
+    InputTag L1ParticlesTau = hltL1extraParticles:Tau
+    InputTag L1ParticlesJet = hltL1extraParticles:Central
     InputTag L1TauTrigger = hltLevel1GTSeedMuonTau
     double EtMin = 15.0
     VInputTag JetSrc = { hltIcone5Tau1Regional, hltIcone5Tau2Regional, hltIcone5Tau3Regional, hltIcone5Tau4Regional }
@@ -10907,11 +10913,20 @@ service = UpdaterService {}
     InputTag L1MuonCollectionTag = hltL1extraParticles
   }
   module hltPreIsolTrackNoEcalIso = HLTPrescaler {}
+  module hltNever = HLTBool {
+    bool result = false
+  }
   module hltIsolPixelTrackProd = IsolatedPixelTrackCandidateProducer {
     InputTag L1eTauJetsSource = hltL1extraParticles:Tau
+    double tauAssociationCone = 0.5
+    double tauUnbiasCone = 1.2
     InputTag PixelTracksSource = hltPixelTracks
+    double PixelIsolationConeSizeHB = 0.4
+    double PixelIsolationConeSizeHE = 0.5
     InputTag L1GTSeedLabel = hltL1sIsolTrack
-    InputTag ecalFilterLabel = aaa
+    double MaxVtxDXYSeed = 0.04
+    double MaxVtxDXYIsol = 10.0
+    InputTag VertexLabel = pixelVertices
   }
   module hltIsolPixelTrackFilter = HLTPixelIsolTrackFilter {
     InputTag candTag = hltIsolPixelTrackProd
@@ -10980,7 +10995,7 @@ service = UpdaterService {}
   module hltPrePi0Ecal = HLTPrescaler {}
   module hltL1sEcalPi0 = HLTLevel1GTSeed {
     bool L1TechTriggerSeeding = false
-    string L1SeedsLogicalExpression = "L1_SingleJet15 OR L1_SingleJet30 OR L1_SingleJet50 OR L1_SingleJet70 OR L1_SingleJet100 OR L1_SingleJet150 OR L1_SingleJet200 OR L1_DoubleJet70 OR L1_DoubleJet100"
+    string L1SeedsLogicalExpression = "L1_SingleIsoEG5 OR L1_SingleIsoEG8 OR L1_SingleIsoEG10 OR L1_SingleIsoEG12 OR L1_SingleIsoEG15 OR L1_SingleIsoEG20 OR L1_SingleIsoEG25 OR L1_SingleEG5 OR L1_SingleEG8 OR L1_SingleEG10 OR L1_SingleEG12 OR L1_SingleEG15 OR L1_SingleEG20 OR L1_SingleEG25"
     InputTag L1GtReadoutRecordTag = hltGtDigis
     InputTag L1GtObjectMapTag = hltL1GtObjectMap
     InputTag L1CollectionsTag = hltL1extraParticles
@@ -11010,12 +11025,12 @@ service = UpdaterService {}
     double ParameterX0 = 0.89
     double ParameterT0_barl = 5.7
     double ParameterW0 = 4.2
-    double detaL1 = 0.2
-    double dphiL1 = 0.2
     InputTag l1IsolatedTag = hltL1extraParticles:Isolated
     InputTag l1NonIsolatedTag = hltL1extraParticles:NonIsolated
     InputTag l1SeedFilterTag = hltL1sEcalPi0
-    bool UseMatchedL1Seed = true
+    double ptMinEMObj = 5.0
+    double EMregionEtaMargin = 0.25
+    double EMregionPhiMargin = 0.4
   }
   module hltPrescaleTriggerType = HLTPrescaler {}
   module hltFilterTriggerType = TriggerTypeFilter {
