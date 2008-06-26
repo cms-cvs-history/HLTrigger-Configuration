@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_1_0_pre6/HLT/V9  (CMSSW_2_1_X_2008-06-24-0000_HLT1)
+// /dev/CMSSW_2_1_0_pre6/HLT/V11  (CMSSW_2_1_X_2008-06-24-0000_HLT1)
 
 sequence HLTBeginSequence = { hlt2GetRaw & hltGtDigis & hltGctDigis & hltL1GtObjectMap & hltL1extraParticles & hltOfflineBeamSpot }
 sequence HLTEndSequence = { hltBoolEnd }
@@ -91,7 +91,7 @@ sequence HLTL1EplusJet30Sequence = { HLTBeginSequence & hltL1seedEJet30 }
 sequence HLTE3Jet30ElectronSequence = { HLTDoRegionalEgammaEcalSequence & HLTL1IsolatedEcalClustersSequence & hltL1IsoRecoEcalCandidate & hltL1IsoSingleEJet30L1MatchFilter & hltL1IsoEJetSingleEEt5Filter & HLTDoLocalHcalWithoutHOSequence & hltL1IsolatedElectronHcalIsol & hltL1IsoEJetSingleEEt5HcalIsolFilter & HLTDoLocalPixelSequence & HLTDoLocalStripSequence & HLTPixelMatchElectronL1IsoSequence & hltL1IsoEJetSingleEEt5PixelMatchFilter & HLTPixelMatchElectronL1IsoTrackingSequence & hltL1IsoEJetSingleEEt5EoverpFilter & HLTL1IsoElectronsRegionalRecoTrackerSequence & hltL1IsoElectronTrackIsol & hltL1IsoEJetSingleEEt5TrackIsolFilter & hltSingleElectronL1IsoPresc }
 sequence HLTPixelTrackingForMinBiasSequence = { hltPixelTracksForMinBias }
 sequence HLTL1SeedFilterSequence = { hltL1sIsolTrack }
-sequence HLTL3PixelIsolFilterSequence = { HLTDoLocalPixelSequence & hltPixelTracks & hltIsolPixelTrackProd & hltIsolPixelTrackFilter }
+sequence HLTL3PixelIsolFilterSequence = { HLTDoLocalPixelSequence & hltPixelTracks & hltPixelVertices & hltIsolPixelTrackProd & hltIsolPixelTrackFilter }
 sequence HLTIsoTrRegFEDSelection = { hltSiStripRegFED & hltEcalRegFED & hltSubdetFED }
 path HLTriggerFirstPath = { HLTBeginSequence & hltBoolFirst & HLTEndSequence }
 path HLT_L1Jet15 = { HLTBeginSequence & hltPre1Level1jet15 & hltL1s1Level1jet15 & HLTEndSequence }
@@ -10921,7 +10921,7 @@ service = UpdaterService {}
     double PixelIsolationConeSizeHB = 0.4
     double PixelIsolationConeSizeHE = 0.5
     InputTag L1GTSeedLabel = hltL1sIsolTrack
-    double MaxVtxDXYSeed = 0.04
+    double MaxVtxDXYSeed = 0.0
     double MaxVtxDXYIsol = 10.0
     InputTag VertexLabel = hltPixelVertices
   }
@@ -10929,7 +10929,7 @@ service = UpdaterService {}
     InputTag candTag = hltIsolPixelTrackProd
     double MinPtTrack = 20.0
     double MaxPtNearby = 2.0
-    double MaxEtaTrack = 2.1
+    double MaxEtaTrack = 1.9
     bool filterTrackEnergy = false
     double MinEnergyTrack = 15.0
   }
