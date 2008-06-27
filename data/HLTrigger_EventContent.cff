@@ -1,7 +1,7 @@
 //
 // EventContent for HLT related products.
 //
-// This cff file exports the following five EventContent blocks:
+// This file exports the following five EventContent blocks:
 //   HLTriggerRAW  HLTriggerRECO  HLTriggerAOD (without DEBUG products)
 //   HLTDebugRAW   HLTDebugFEVT                (with    DEBUG products)
 //
@@ -15,23 +15,19 @@ include "HLTrigger/Configuration/data/HLTDefaultOutput.cff"
 include "HLTrigger/Configuration/data/HLTDebugOutput.cff"
 include "HLTrigger/Configuration/data/HLTDebugWithAlCaOutput.cff"
 
-// temporarily
-block HLTriggerFEVT = { vstring outputCommands = { } }
-replace HLTriggerFEVT.outputCommands += block_hltDefaultOutput.outputCommands
-// temporarily
 
 block HLTriggerRAW  = { vstring outputCommands = { } }
-replace HLTriggerRAW.outputCommands += block_hltDefaultOutput.outputCommands
+replace HLTriggerRAW.outputCommands  += block_hltDefaultOutput.outputCommands
 
 block HLTriggerRECO = { vstring outputCommands = { } }
 replace HLTriggerRECO.outputCommands += block_hltDefaultOutput.outputCommands
 
 block HLTriggerAOD  = { vstring outputCommands = { } }
-replace HLTriggerAOD.outputCommands += block_hltDefaultOutput.outputCommands
+replace HLTriggerAOD.outputCommands  += block_hltDefaultOutput.outputCommands
 
 
 block HLTDebugRAW   = { vstring outputCommands = { } }
-replace HLTDebugRAW.outputCommands += block_hltDebugWithAlCaOutput.outputCommands
+replace HLTDebugRAW.outputCommands  += block_hltDebugWithAlCaOutput.outputCommands
 
 block HLTDebugFEVT  = { vstring outputCommands = { } }
 replace HLTDebugFEVT.outputCommands += block_hltDebugWithAlCaOutput.outputCommands
