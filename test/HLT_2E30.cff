@@ -3986,7 +3986,12 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   module hltMuonDTDigis = DTUnpackingModule {
     string dataType = "DDU"
     untracked bool fedbyType = false
-    untracked string fedColl = "rawDataCollector"
+
+# modified by hand
+#   untracked string fedColl = "rawDataCollector"
+    untracked InputTag inputLabel = rawDataCollector
+# modified by hand
+
     PSet readOutParameters = {
       untracked bool localDAQ = false
       untracked bool performDataIntegrityMonitor = false
