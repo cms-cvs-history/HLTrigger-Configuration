@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_0_8/HLT/V1  (CMSSW_2_0_8)
+// /dev/CMSSW_2_0_8/HLT/V2  (CMSSW_2_0_8)
 
 // Begin replace statements specific to the HLT
 include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
@@ -197,7 +197,6 @@ path HLT1Electron8_L1R_NI = { HLTSingleElectronEt8L1NonIsoHLTNonIsoSequence & HL
 path HLT2Electron5_L1R_NI = { HLTDoubleElectronEt5L1NonIsoHLTnonIsoSequence & HLTEndSequence }
 path HLT1Photon10_L1R = { HLTSinglePhotonEt10L1NonIsolatedSequence & HLTEndSequence }
 path AlCaIsoTrack = { HLTBeginSequence & HLTL1SeedFilterSequence & hltPreIsolTrackNoEcalIso & HLTL3PixelIsolFilterSequence & HLTEndSequence }
-path AlCaHcalPhiSym = { HLTBeginSequence & hltL1sHcalPhiSym & hltHcalPhiSymPresc & HLTDoLocalHcalSequence & hltAlCaHcalPhiSymStream & HLTEndSequence }
 path AlCaEcalPhiSym = { HLTBeginSequence & hltL1sEcalPhiSym & hltEcalPhiSymPresc & hltEcalDigis & hltEcalWeightUncalibRecHit & hltEcalRecHit & hltAlCaPhiSymStream & HLTEndSequence }
 path AlCaEcalPi0 = { HLTBeginSequence & hltPrePi0Ecal & hltL1sEcalPi0 & HLTDoRegionalEgammaEcalSequence & hltAlCaPi0RegRecHits & HLTEndSequence }
 path HLT1MuonLevel2 = { HLTL1muonrecoSequence & hltPrescaleSingleMuLevel2 & hltSingleMuNoIsoLevel1Seed & hltSingleMuNoIsoL1Filtered & HLTL2muonrecoSequence & hltSingleMuNoIsoL2PreFiltered & HLTEndSequence }
@@ -779,6 +778,13 @@ es_module SteppingHelixPropagatorAlong = SteppingHelixPropagatorESProducer {
   bool returnTangentPlane = true
   bool sendLogWarning = false
   bool useTuningForL2Speed = false
+
+# added by hand
+  bool useEndcapShiftsInZ = false
+  double endcapShiftInZPos = 0.0
+  double endcapShiftInZNeg = 0.0
+# added by hand
+
 }
 es_module SteppingHelixPropagatorAny = SteppingHelixPropagatorESProducer {
   string ComponentName = "SteppingHelixPropagatorAny"
@@ -796,6 +802,13 @@ es_module SteppingHelixPropagatorAny = SteppingHelixPropagatorESProducer {
   bool returnTangentPlane = true
   bool sendLogWarning = false
   bool useTuningForL2Speed = false
+
+# added by hand
+  bool useEndcapShiftsInZ = false
+  double endcapShiftInZPos = 0.0
+  double endcapShiftInZNeg = 0.0
+# added by hand
+
 }
 es_module SteppingHelixPropagatorOpposite = SteppingHelixPropagatorESProducer {
   string ComponentName = "SteppingHelixPropagatorOpposite"
@@ -813,6 +826,13 @@ es_module SteppingHelixPropagatorOpposite = SteppingHelixPropagatorESProducer {
   bool returnTangentPlane = true
   bool sendLogWarning = false
   bool useTuningForL2Speed = false
+
+# added by hand
+  bool useEndcapShiftsInZ = false
+  double endcapShiftInZPos = 0.0
+  double endcapShiftInZNeg = 0.0
+# added by hand
+
 }
 es_module StripCPEfromTrackAngleESProducer = StripCPEfromTrackAngleESProducer {
   string ComponentName = "StripCPEfromTrackAngle"
@@ -8468,31 +8488,6 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
     double MinPtTrack = 20.0
     double MaxPtNearby = 2.0
     double MaxEtaTrack = 2.1
-  }
-  module hltL1sHcalPhiSym = HLTLevel1GTSeed {
-    bool L1TechTriggerSeeding = false
-    string L1SeedsLogicalExpression = "L1_ZeroBias OR L1_SingleJetCountsHFTow OR L1_DoubleJetCountsHFTow OR L1_SingleEG2 OR L1_DoubleEG1 OR L1_SingleJetCountsHFRing0Sum3 OR L1_DoubleJetCountsHFRing0Sum3 OR L1_SingleJetCountsHFRing0Sum6 OR L1_DoubleJetCountsHFRing0Sum6"
-    InputTag L1GtReadoutRecordTag = hltGtDigis
-    InputTag L1GtObjectMapTag = hltL1GtObjectMap
-    InputTag L1CollectionsTag = hltL1extraParticles
-    InputTag L1MuonCollectionTag = hltL1extraParticles
-  }
-  module hltHcalPhiSymPresc = HLTPrescaler {
-    bool makeFilterObject = true
-    uint32 prescaleFactor = 1
-    uint32 eventOffset = 0
-  }
-  module hltAlCaHcalPhiSymStream = HLTHcalPhiSymFilter {
-    InputTag HBHEHitCollection = hltHbhereco
-    InputTag HOHitCollection = hltHoreco
-    InputTag HFHitCollection = hltHfreco
-    string phiSymHBHEHitCollection = "phiSymHcalRecHitsHBHE"
-    string phiSymHOHitCollection = "phiSymHcalRecHitsHO"
-    string phiSymHFHitCollection = "phiSymHcalRecHitsHF"
-    double eCut_HB = -10.0
-    double eCut_HE = -10.0
-    double eCut_HO = -10.0
-    double eCut_HF = -10.0
   }
   module hltL1sEcalPhiSym = HLTLevel1GTSeed {
     bool L1TechTriggerSeeding = false
