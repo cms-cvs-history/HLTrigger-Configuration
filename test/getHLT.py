@@ -7,9 +7,12 @@ import getopt
 import fileinput
 
 def usage():
-    print "Usage: ./getHLTcff.py <Version from ConfDB> <Id in file name> <use case>"
-    print "If use case \"GEN-HLT\" is specified, a stripped file is generated for the GEN-HLT workflow"
-    print "The default is to create file from the ConfDB with minimal modifications for validation"
+    print "Usage:"
+    print "  ./getHLT.py <Version from ConfDB> <Id in file name> <use case>"
+    print "If use case \"GEN-HLT\" is specified, a stripped file is generated"
+    print "  for the GEN-HLT workflow."
+    print "The default is to extract a file with minimal modifications"
+    print "  for validation."
     sys.exit(1)
 
 dbName = sys.argv[1]
@@ -17,19 +20,15 @@ dbName = sys.argv[1]
 argc = len(sys.argv)
 if argc == 3:
     useCase = "ONLINE"
-    cffName   = "OnLine_HLTFromRaw_"+sys.argv[2]+".cfg"
-    cffNamePy = "OnLine_HLTFromRaw_"+sys.argv[2]+"_cfg.py"
+    outName = "OnLine_HLTFromRaw_"+sys.argv[2]+"_cfg.py"
 elif argc == 4:
     useCase = sys.argv[3]
-    cffName   = "HLT_"+sys.argv[2]+".cff"
-    cffNamePy = "HLT_"+sys.argv[2]+"_cff.py"
+    outName = "HLT_"+sys.argv[2]+"_cff.py"
 else:
     usage()
 
-if os.path.exists(cffName):
-    print cffName, "already exists"
-elif os.path.exists(cffNamePy):
-    print cffNamePy, "already exists"
+if os.path.exists(outName):
+    print outName, "already exists - abort!"
 else:
     # Initialize everything
     essources = "  " 
@@ -108,16 +107,11 @@ else:
         psets += "-maxEvents,"
         psets += "-options,"
 
-        myGetCff = "edmConfigFromDB --cff --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + cffName
-        os.system(myGetCff)
 
-        myGetCffPy = "edmConfigFromDB --cff --format Python --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + cffNamePy
-        os.system(myGetCffPy)
+        myGet = "edmConfigFromDB --cff --format Python --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + outName
+        os.system(myGet)
 
     else:
     
-        myGetCff = "edmConfigFromDB       --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + cffName
-        os.system(myGetCff)
-
-        myGetCffPy = "edmConfigFromDB       --format Python --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + cffNamePy
-        os.system(myGetCffPy)
+        myGet = "edmConfigFromDB       --format Python --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + outName
+        os.system(myGet)
