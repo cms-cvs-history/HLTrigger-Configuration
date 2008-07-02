@@ -4,8 +4,8 @@ cmsenv
 
 rehash
 
-setenv HLTtable /dev/CMSSW_2_1_0_pre6/HLT/V11
-setenv HLTid    2E30 
+setenv HLTtable /dev/CMSSW_2_1_0_pre6/HLT/V12
+setenv HLTid    2E30
 
 if ($1 == CVS) then
 
@@ -19,6 +19,9 @@ if ($1 == CVS) then
  edmConfigFromDB --configName $HLTtable --nopaths --noes --nopsets --noservices --cff --blocks hltDebugOutput::outputCommands --format python >& HLTDebugOutput_cff.py
 
  edmConfigFromDB --configName $HLTtable --nopaths --noes --nopsets --noservices --cff --blocks hltDebugWithAlCaOutput::outputCommands --format python >& HLTDebugWithAlCaOutput_cff.py
+
+ ls -lt HLT*_cff.py
+ /bin/mv -f HLT*_cff.py ../python
 
 else
 
