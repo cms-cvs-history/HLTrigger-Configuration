@@ -14,7 +14,7 @@
 
 # configuration goes here
 PROCESS:= HLT
-CONFIG := /dev/CMSSW_2_1_0_pre6/HLT/V23
+CONFIG := /dev/CMSSW_2_1_0_pre6/HLT/V24
 SOURCE := file:$(CMSSW_BASE)/src/HLTrigger/Configuration/test/RelVal_Pure_Raw.root
 # /store/relval/2008/6/4/RelVal-RelValTTbar-1212543891-STARTUP-2nd/0000/185E7133-9C32-DD11-BC8E-001617E30CC8.root
 EVENTS := 100
