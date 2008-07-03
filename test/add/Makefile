@@ -101,7 +101,7 @@ Global_Table.log: Global_Table.py
 
 $(LIST_OF_PYS): %.py: .database .dataset
 	@echo -e " ConfDB [$(BLUE)$(CONFIG)$(NORMAL)] path $(BOLD)$*$(NORMAL)"
-	@$(GETCONFIG) --configName $(CONFIG) --input $(SOURCE) --paths $* --services -PrescaleService --format python | sed -e's/^process = cms.Process(.*)/process = cms.Process( "$(PROCESS)" )/' -e's/^process.maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( $(EVENTS) ) )/process.maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( 100 ) )/' > $@
+	@$(GETCONFIG) --configName $(CONFIG) --input $(SOURCE) --paths HLTriggerFirstPath,$*,HLTriggerFinalPath --services -PrescaleService --format python | sed -e's/^process = cms.Process(.*)/process = cms.Process( "$(PROCESS)" )/' -e's/^process.maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( $(EVENTS) ) )/process.maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( 100 ) )/' > $@
 #	@echo -e "$(COLUMN)$(GREEN)done$(NORMAL)"
 
 $(LIST_OF_LOGS): %.log: %.py
