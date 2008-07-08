@@ -82,6 +82,15 @@ process.GenSimDigiL1Raw = cms.Path(process.pgen+process.psim+process.pdigi+proce
 
 # run HLT
 process.load("HLTrigger.Configuration.HLT_2E30_cff")
+process.hltL1gtTrigReport = cms.EDAnalyzer( "L1GtTrigReport",
+    UseL1GlobalTriggerRecord = cms.bool( False ),
+    L1GtRecordInputTag = cms.InputTag( "hltGtDigis" )
+)
+process.hltTrigReport = cms.EDAnalyzer( "HLTrigReport",
+    HLTriggerResults = cms.InputTag( 'TriggerResults','','HLT' )
+)
+process.HLTAnalyzerEndpath = cms.EndPath( process.hltL1gtTrigReport + process.hltTrigReport )
+
 
 process.load("Configuration.EventContent.EventContent_cff")
 process.FEVT = cms.OutputModule("PoolOutputModule",

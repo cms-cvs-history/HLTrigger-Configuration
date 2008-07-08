@@ -34,6 +34,14 @@ process.load("Configuration.StandardSequences.L1TriggerDefaultMenu_cff")
 process.load("SimGeneral.HepPDTESSource.pythiapdt_cfi")
 process.load("HLTrigger.Configuration.HLT_2E30_cff")
 process.hltTrigReport.HLTriggerResults = 'TriggerResults::HLT2'
+process.hltL1gtTrigReport = cms.EDAnalyzer( "L1GtTrigReport",
+    UseL1GlobalTriggerRecord = cms.bool( False ),
+    L1GtRecordInputTag = cms.InputTag( "hltGtDigis" )
+)
+process.hltTrigReport = cms.EDAnalyzer( "HLTrigReport",
+    HLTriggerResults = cms.InputTag( 'TriggerResults','','HLT' )
+)
+process.HLTAnalyzerEndpath = cms.EndPath( process.hltL1gtTrigReport + process.hltTrigReport )
 
 
 process.load("Configuration.EventContent.EventContent_cff")
