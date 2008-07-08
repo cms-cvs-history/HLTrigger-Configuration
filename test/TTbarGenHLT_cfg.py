@@ -78,10 +78,13 @@ process.pBool = HLTrigger.HLTfilters.hltBool_cfi.hltBool.clone()
 process.pBool.result = False
 
 process.GenSimDigiL1Raw = cms.Path(process.pgen+process.psim+process.pdigi+process.L1Emulator+process.DigiToRaw+process.pBool)
+process.schedule = cms.Schedule(process.GenSimDigiL1Raw)
 
 
 # run HLT
 process.load("HLTrigger.Configuration.HLT_2E30_cff")
+process.schedule.extend( process.HLTSchedule )
+
 process.hltL1gtTrigReport = cms.EDAnalyzer( "L1GtTrigReport",
     UseL1GlobalTriggerRecord = cms.bool( False ),
     L1GtRecordInputTag = cms.InputTag( "hltGtDigis" )
@@ -90,7 +93,7 @@ process.hltTrigReport = cms.EDAnalyzer( "HLTrigReport",
     HLTriggerResults = cms.InputTag( 'TriggerResults','','HLT' )
 )
 process.HLTAnalyzerEndpath = cms.EndPath( process.hltL1gtTrigReport + process.hltTrigReport )
-
+process.schedule.append(process.HLTAnalyzerEndpath)
 
 process.load("Configuration.EventContent.EventContent_cff")
 process.FEVT = cms.OutputModule("PoolOutputModule",
@@ -101,5 +104,5 @@ process.FEVT = cms.OutputModule("PoolOutputModule",
     basketSize = cms.untracked.int32(4096),
     fileName = cms.untracked.string('TTbarGenHLT.root')
 )
-
 process.outpath = cms.EndPath(process.FEVT)
+process.schedule.append(process.outpath)
