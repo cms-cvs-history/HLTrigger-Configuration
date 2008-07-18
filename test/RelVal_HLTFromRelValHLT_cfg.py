@@ -17,7 +17,7 @@ process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring('/store/relval/2008/4/6/RelVal-RelValZTT-1207410101-HLT/0000/0E2C9BC7-1104-DD11-8E00-00304885AB90.root')
 )
 
-process.load("Configuration.StandardSequences.Geometry_cff")
+process.load("Configuration.StandardSequences.GeometryPilot2_cff")
 process.load("Configuration.StandardSequences.MagneticField_cff")
 
 # Conditions: fake or frontier
