@@ -1,4 +1,4 @@
-// /dev/CMSSW_2_0_11/HLT/V3  (CMSSW_2_0_11)
+// /dev/CMSSW_2_0_12/2E30/HLT/V1  (CMSSW_2_0_12)
 
 // Begin replace statements specific to the HLT
 include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
@@ -417,6 +417,7 @@ es_module MeasurementTracker = MeasurementTrackerESProducer {
   untracked bool DebugStripModuleQualityDB = false
   bool UseStripAPVFiberQualityDB = false
   untracked bool DebugStripAPVFiberQualityDB = false
+  bool MaskBadAPVFibers = false
   bool UseStripStripQualityDB = false
   untracked bool DebugStripStripQualityDB = false
   string pixelClusterProducer = "hltSiPixelClusters"
@@ -1780,15 +1781,6 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   module hltSiPixelRecHits = SiPixelRecHitConverter {
     InputTag src = hltSiPixelClusters
     string CPE = "PixelCPEGeneric"
-    double TanLorentzAnglePerTesla = 0.106
-    bool Alpha2Order = true
-    int32 speed = 0
-    untracked double eff_charge_cut_lowX = 0.0
-    untracked double eff_charge_cut_lowY = 0.0
-    untracked double eff_charge_cut_highX = 1.0
-    untracked double eff_charge_cut_highY = 1.0
-    untracked double size_cutX = 3.0
-    untracked double size_cutY = 3.0
   }
   module hltSiStripRawToClustersFacility = SiStripRawToClusters {
     untracked string ProductLabel = "rawDataCollector"
@@ -5102,7 +5094,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltPreSingleMuPrescale77 = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 400
+    uint32 prescaleFactor = 1
     uint32 eventOffset = 0
   }
   module hltSingleMuPrescale77Level1Seed = HLTLevel1GTSeed {
@@ -5148,7 +5140,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltPreSingleMuPrescale710 = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 100
+    uint32 prescaleFactor = 1
     uint32 eventOffset = 0
   }
   module hltSingleMuPrescale710Level1Seed = HLTLevel1GTSeed {
@@ -5194,7 +5186,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltPrescaleMuLevel1Path = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 1000
+    uint32 prescaleFactor = 20
     uint32 eventOffset = 0
   }
   module hltMuLevel1PathLevel1Seed = HLTLevel1GTSeed {
@@ -7644,7 +7636,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltSingleElectronEt10L1NonIsoHLTNonIsoPresc = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 3
+    uint32 prescaleFactor = 10
     uint32 eventOffset = 0
   }
   module hltL1seedRelaxedSingleEt8 = HLTLevel1GTSeed {
@@ -7957,7 +7949,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltSingleElectronEt8L1NonIsoHLTnoIsoPresc = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 1
+    uint32 prescaleFactor = 10
     uint32 eventOffset = 0
   }
   module hltL1seedRelaxedSingleEt5 = HLTLevel1GTSeed {
@@ -8024,7 +8016,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltDoubleElectronEt5L1NonIsoHLTNonIsoPresc = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 1
+    uint32 prescaleFactor = 10
     uint32 eventOffset = 0
   }
   module hltL1seedRelaxedDoubleEt5 = HLTLevel1GTSeed {
@@ -8294,7 +8286,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module PreHLT2Photon10L1RHNonIso = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 1
+    uint32 prescaleFactor = 10
     uint32 eventOffset = 0
   }
   module hltL1NonIsoHLTNonIsoDoublePhotonEt10L1MatchFilterRegional = HLTEgammaL1MatchFilterRegional {
@@ -8344,7 +8336,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module PreHLT2Photon8L1RHNonIso = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 5
+    uint32 prescaleFactor = 10
     uint32 eventOffset = 0
   }
   module hltL1NonIsoHLTNonIsoDoublePhotonEt8L1MatchFilterRegional = HLTEgammaL1MatchFilterRegional {
@@ -8394,7 +8386,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module PreHLT1ElectronLWEt12L1RHNonIso = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 1
+    uint32 prescaleFactor = 10
     uint32 eventOffset = 0
   }
   module hltL1NonIsoHLTNonIsoSingleElectronLWEt12L1MatchFilterRegional = HLTEgammaL1MatchFilterRegional {
@@ -8461,7 +8453,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module PreHLT1ElectronLWEt15L1RHNonIso = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 1
+    uint32 prescaleFactor = 10
     uint32 eventOffset = 0
   }
   module hltL1NonIsoHLTNonIsoSingleElectronLWEt15L1MatchFilterRegional = HLTEgammaL1MatchFilterRegional {
@@ -8578,7 +8570,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module PreHLT1Photon15L1RHNonIso = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 1
+    uint32 prescaleFactor = 10
     uint32 eventOffset = 0
   }
   module hltL1NonIsoHLTNonIsoSinglePhotonEt15L1MatchFilterRegional = HLTEgammaL1MatchFilterRegional {
@@ -8745,7 +8737,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module PreHLT1Electron15L1RHNonIso = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 1
+    uint32 prescaleFactor = 5
     uint32 eventOffset = 0
   }
   module hltL1NonIsoHLTNonIsoSingleElectronEt15L1MatchFilterRegional = HLTEgammaL1MatchFilterRegional {
@@ -8804,7 +8796,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module PreHLT1ElectronLW12L1IHIso = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 1
+    uint32 prescaleFactor = 5
     uint32 eventOffset = 0
   }
   module hltL1NonIsoHLTIsoSingleElectronEt12L1MatchFilterRegional = HLTEgammaL1MatchFilterRegional {
@@ -8863,7 +8855,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module PreHLT1ElectronLWEt18L1RHLooseIso = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 1
+    uint32 prescaleFactor = 5
     uint32 eventOffset = 0
   }
   module hltL1NonIsoHLTLooseIsoSingleElectronLWEt18L1MatchFilterRegional = HLTEgammaL1MatchFilterRegional {
@@ -8922,7 +8914,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module PreHLT1ElectronLWEt15L1RHLooseIso = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 1
+    uint32 prescaleFactor = 5
     uint32 eventOffset = 0
   }
   module hltL1NonIsoHLTLooseIsoSingleElectronLWEt15L1MatchFilterRegional = HLTEgammaL1MatchFilterRegional {
@@ -9281,7 +9273,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module PreHLT1Photon15L1RHIso = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 10
+    uint32 prescaleFactor = 1
     uint32 eventOffset = 0
   }
   module hltL1NonIsoHLTIsoSinglePhotonEt15L1MatchFilterRegional = HLTEgammaL1MatchFilterRegional {
@@ -9523,7 +9515,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltpreMinHcal = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 1
+    uint32 prescaleFactor = 1000
     uint32 eventOffset = 0
   }
   module hltl1sMinEcal = HLTLevel1GTSeed {
@@ -9536,7 +9528,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltpreMinEcal = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 1
+    uint32 prescaleFactor = 1000
     uint32 eventOffset = 0
   }
   module PreHLT1Electron15L1RHLooseIso = HLTPrescaler {
@@ -10256,7 +10248,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltPre1Level1jet15 = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 1000
+    uint32 prescaleFactor = 100
     uint32 eventOffset = 0
   }
   module hltL1s1Level1jet15 = HLTLevel1GTSeed {
@@ -10296,7 +10288,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltPre1jet50 = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 20
+    uint32 prescaleFactor = 10
     uint32 eventOffset = 0
   }
   module hlt1jet50 = HLT1CaloJet {
@@ -10315,7 +10307,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltPre1jet80 = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 10
+    uint32 prescaleFactor = 5
     uint32 eventOffset = 0
   }
   module hlt1jet80 = HLT1CaloJet {
@@ -10372,7 +10364,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltPre1MET1SumET = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 1
+    uint32 prescaleFactor = 500
     uint32 eventOffset = 0
   }
   module hlt1SumET120 = HLTGlobalSumMET {
@@ -10403,7 +10395,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltPreLevel1MET20 = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 100
+    uint32 prescaleFactor = 500
     uint32 eventOffset = 0
   }
   module hltL1sLevel1MET20 = HLTLevel1GTSeed {
@@ -10424,7 +10416,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltPre1MET25 = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 10
+    uint32 prescaleFactor = 50
     uint32 eventOffset = 0
   }
   module hlt1MET25 = HLT1CaloMET {
@@ -10443,7 +10435,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltPre1MET35 = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 10
+    uint32 prescaleFactor = 1
     uint32 eventOffset = 0
   }
   module hlt1MET35 = HLT1CaloMET {
@@ -10513,7 +10505,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltPredijetave15 = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 2
+    uint32 prescaleFactor = 20
     uint32 eventOffset = 0
   }
   module hltdijetave15 = HLTDiJetAveFilter {
@@ -10532,7 +10524,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltPredijetave30 = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 1
+    uint32 prescaleFactor = 10
     uint32 eventOffset = 0
   }
   module hltdijetave30 = HLTDiJetAveFilter {
@@ -10551,7 +10543,7 @@ es_module ttrhbwr = TkTransientTrackingRecHitBuilderESProducer {
   }
   module hltPredijetave50 = HLTPrescaler {
     bool makeFilterObject = true
-    uint32 prescaleFactor = 4
+    uint32 prescaleFactor = 1
     uint32 eventOffset = 0
   }
   module hltdijetave50 = HLTDiJetAveFilter {
