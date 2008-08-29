@@ -4,7 +4,7 @@ cmsenv
 
 rehash
 
-setenv HLTtable /dev/CMSSW_2_1_2/HLT/V5
+setenv HLTtable /dev/CMSSW_2_1_2/HLT/V64
 setenv HLTid    2E30
 
 if ($1 == CVS) then
@@ -15,6 +15,8 @@ if ($1 == CVS) then
  ./getHLT.py $HLTtable $HLTid GEN-HLT
 
  edmConfigFromDB --configName $HLTtable --nopaths --noes --nopsets --noservices --cff --blocks hltDefaultOutput::outputCommands --format python >& HLTDefaultOutput_cff.py
+
+ edmConfigFromDB --configName $HLTtable --nopaths --noes --nopsets --noservices --cff --blocks hltDefaultOutputWithFEDs::outputCommands --format python >& HLTDefaultOutputWithFEDs_cff.py
 
  edmConfigFromDB --configName $HLTtable --nopaths --noes --nopsets --noservices --cff --blocks hltDebugOutput::outputCommands --format python >& HLTDebugOutput_cff.py
 
