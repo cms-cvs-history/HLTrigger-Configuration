@@ -15,7 +15,7 @@ process.maxEvents = cms.untracked.PSet(
 )
 
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('file:/scratch/cms/TTbarGenSim210.root')
+    fileNames = cms.untracked.vstring('file:/scratch/cms/TTbarGenSim2110.root')
 )
 
 process.load("Configuration.StandardSequences.Geometry_cff")
@@ -25,7 +25,7 @@ process.load("Configuration.StandardSequences.MagneticField_cff")
 # process.load("Configuration.StandardSequences.FakeConditions_cff")
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
 # https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideFrontierConditions
-process.GlobalTag.globaltag = 'STARTUP_V4::All'
+process.GlobalTag.globaltag = 'STARTUP_V7::All'
 
 process.load("Configuration.StandardSequences.MixingNoPileUp_cff")
 process.load("Configuration.StandardSequences.Digi_cff")
