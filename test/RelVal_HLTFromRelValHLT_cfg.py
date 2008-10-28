@@ -28,7 +28,7 @@ process.GlobalTag.globaltag = 'STARTUP_V7::All'
 process.load("Configuration.StandardSequences.L1Emulator_cff")
 # Choose a menu/prescale/mask from one of the choices
 # in L1TriggerConfig.L1GtConfigProducers.Luminosity
-process.load("Configuration.StandardSequences.L1TriggerDefaultMenu_cff")
+process.load("L1TriggerConfig.L1GtConfigProducers.Luminosity.lumi1030.L1Menu_2008MC_2E30_Unprescaled_cff")
 
 # run HLT
 process.load("SimGeneral.HepPDTESSource.pythiapdt_cfi")
