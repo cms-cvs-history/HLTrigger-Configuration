@@ -1,10 +1,10 @@
-# /dev/CMSSW_2_2_0/pre0/HLT/V2 (CMSSW_2_2_X_2008-10-31-0000_HLT1)
+# /dev/CMSSW_2_2_0/pre0/HLT/V4 (CMSSW_2_2_X_2008-10-31-0000_HLT2)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_2_2_0/pre0/HLT/V2')
+  tableName = cms.string('/dev/CMSSW_2_2_0/pre0/HLT/V4')
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
@@ -4983,7 +4983,15 @@ hltCscSegments = cms.EDProducer( "CSCSegmentProducer",
             dYclusBoxMax = cms.untracked.double( 8.0 ),
             dXclusBoxMax = cms.untracked.double( 4.0 ),
             minHitsPerSegment = cms.untracked.int32( 3 ),
-            CSCDebug = cms.untracked.bool( False )
+            CSCDebug = cms.untracked.bool( False ),
+            useShowering = cms.untracked.bool( False ),
+            maxRatioResidualPrune = cms.double( 3.0 ),
+            dRPhiFineMax = cms.double( 8.0 ),
+            dPhiFineMax = cms.double( 0.025 ),
+            tanThetaMax = cms.double( 1.2 ),
+            tanPhiMax = cms.double( 0.5 ),
+            maxDPhi = cms.double( 999.0 ),
+            maxDTheta = cms.double( 999.0 )
           ),
           cms.PSet(  curvePenalty = cms.untracked.double( 2.0 ),
             curvePenaltyThreshold = cms.untracked.double( 0.85 ),
@@ -5000,7 +5008,15 @@ hltCscSegments = cms.EDProducer( "CSCSegmentProducer",
             dYclusBoxMax = cms.untracked.double( 8.0 ),
             dXclusBoxMax = cms.untracked.double( 4.0 ),
             minHitsPerSegment = cms.untracked.int32( 3 ),
-            CSCDebug = cms.untracked.bool( False )
+            CSCDebug = cms.untracked.bool( False ),
+            useShowering = cms.untracked.bool( False ),
+            maxRatioResidualPrune = cms.double( 3.0 ),
+            dRPhiFineMax = cms.double( 8.0 ),
+            dPhiFineMax = cms.double( 0.025 ),
+            tanThetaMax = cms.double( 1.2 ),
+            tanPhiMax = cms.double( 0.5 ),
+            maxDPhi = cms.double( 999.0 ),
+            maxDTheta = cms.double( 999.0 )
           )
         )
       )
