@@ -1,10 +1,10 @@
-# /dev/CMSSW_2_2_0/pre0/HLT/V6 (CMSSW_2_2_X_2008-10-31-0000_HLT2)
+# /dev/CMSSW_2_2_0/pre0/HLT/V7 (CMSSW_2_2_X_2008-10-31-0000_HLT2)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_2_2_0/pre0/HLT/V6')
+  tableName = cms.string('/dev/CMSSW_2_2_0/pre0/HLT/V7')
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
@@ -9204,7 +9204,7 @@ hltPixelTracksForMinBias = cms.EDProducer( "PixelTrackProducer",
     RegionFactoryPSet = cms.PSet( 
       ComponentName = cms.string( "GlobalRegionProducer" ),
       RegionPSet = cms.PSet( 
-        ptMin = cms.double( 0.9 ),
+        ptMin = cms.double( 0.2 ),
         originRadius = cms.double( 0.2 ),
         originHalfLength = cms.double( 15.9 ),
         originXPos = cms.double( 0.0 ),
