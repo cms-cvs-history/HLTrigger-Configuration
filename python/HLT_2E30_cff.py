@@ -1,10 +1,10 @@
-# /dev/CMSSW_2_2_0/pre1/HLT/V4 (CMSSW_2_2_0_pre1_HLT1)
+# /dev/CMSSW_2_2_0/pre1/HLT/V5 (CMSSW_2_2_X_2008-11-14-1200_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_2_2_0/pre1/HLT/V4')
+  tableName = cms.string('/dev/CMSSW_2_2_0/pre1/HLT/V5')
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
@@ -228,6 +228,7 @@ PixelCPEGenericESProducer = cms.ESProducer( "PixelCPEGenericESProducer",
   eff_charge_cut_highY = cms.untracked.double( 1.0 ),
   size_cutX = cms.untracked.double( 3.0 ),
   size_cutY = cms.untracked.double( 3.0 ),
+  appendToDataLabel = cms.string( "" ),
   TanLorentzAnglePerTesla = cms.double( 0.106 ),
   PixelErrorParametrization = cms.string( "NOTcmsim" ),
   Alpha2Order = cms.bool( True ),
