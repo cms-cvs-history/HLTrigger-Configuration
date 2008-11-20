@@ -14,7 +14,7 @@ process.maxEvents = cms.untracked.PSet(
 )
 
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('/store/relval/2008/4/6/RelVal-RelValZTT-1207410101-HLT/0000/0E2C9BC7-1104-DD11-8E00-00304885AB90.root')
+    fileNames = cms.untracked.vstring('/store/relval/CMSSW_2_2_0_pre1/RelValTTbar/GEN-SIM-DIGI-RAW-HLTDEBUG/IDEAL_V9_v1/0000/04682517-BFAE-DD11-B2F6-001617E30CC8.root')
 )
 
 process.load("Configuration.StandardSequences.GeometryPilot2_cff")
