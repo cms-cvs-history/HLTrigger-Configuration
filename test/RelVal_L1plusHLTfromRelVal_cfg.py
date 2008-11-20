@@ -66,5 +66,5 @@ process.HLTOutput = cms.EndPath(process.hltPoolOutput)
 process.schedule.append(process.HLTOutput)
 
 # patch the process to use 'sim*Digis' from the L1 emulator instead of 'hlt*Digis' from the RAW data
-from L1Trigger.Configuration import patchForL1Emulator
-patchForL1Emulator.switchToSimGtDigis( process )
+from L1Trigger.Configuration import patchToRerunL1Emulator
+patchToRerunL1Emulator.switchToSimGtDigis( process )
