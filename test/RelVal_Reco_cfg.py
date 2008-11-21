@@ -24,7 +24,10 @@ process.load("Configuration.StandardSequences.MagneticField_cff")
 # process.load("Configuration.StandardSequences.FakeConditions_cff")
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
 # https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideFrontierConditions
-process.GlobalTag.globaltag = 'STARTUP_V7::All'
+# process.GlobalTag.globaltag = 'STARTUP_V7::All'
+process.GlobalTag.globaltag = 'IDEAL_30X::All'
+# process.GlobalTag.connect = "sqlite_file:/afs/cern.ch/user/f/futyand/public/globaltag/IDEAL_30X.db"
+process.GlobalTag.connect = "sqlite_file:/afs/cern.ch/user/f/futyand/public/globaltag/IDEAL_30X_pixv12.db"
 
 process.load("Configuration.StandardSequences.RawToDigi_cff")
 process.load("Configuration.StandardSequences.Reconstruction_cff")
