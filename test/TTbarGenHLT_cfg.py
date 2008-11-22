@@ -62,7 +62,8 @@ process.load("Configuration.StandardSequences.VtxSmearedEarly10TeVCollision_cff"
 # process.load("Configuration.StandardSequences.FakeConditions_cff")
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
 # https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideFrontierConditions
-process.GlobalTag.globaltag = 'STARTUP_V7::All'
+process.GlobalTag.globaltag = 'STARTUP_30X::All'
+process.GlobalTag.connect = "sqlite_fip:CondCore/TagCollection/data/GlobalTag.db"
 
 process.load("Configuration.StandardSequences.Generator_cff")
 process.load("Configuration.StandardSequences.Sim_cff")
