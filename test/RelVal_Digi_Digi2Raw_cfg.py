@@ -11,7 +11,7 @@ process.options = cms.untracked.PSet(
 
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(25)
+    input = cms.untracked.int32(100)
 )
 
 process.source = cms.Source("PoolSource",
@@ -26,7 +26,6 @@ process.load("Configuration.StandardSequences.MagneticField_cff")
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
 # https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideFrontierConditions
 process.GlobalTag.globaltag = 'STARTUP_30X::All'
-process.GlobalTag.connect = "sqlite_fip:CondCore/TagCollection/data/GlobalTag.db"
 
 process.load("Configuration.StandardSequences.MixingNoPileUp_cff")
 process.load("Configuration.StandardSequences.Digi_cff")

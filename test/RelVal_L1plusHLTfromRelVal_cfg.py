@@ -25,7 +25,6 @@ process.load("Configuration.StandardSequences.MagneticField_cff")
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
 # https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideFrontierConditions
 process.GlobalTag.globaltag = 'STARTUP_30X::All'
-process.GlobalTag.connect = "sqlite_fip:CondCore/TagCollection/data/GlobalTag.db"
 
 # run trigger primitive generation on unpacked digis, then central L1
 process.load("L1Trigger.Configuration.CaloTriggerPrimitives_cff")
