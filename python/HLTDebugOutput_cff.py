@@ -1,10 +1,10 @@
-# /dev/CMSSW_2_2_0/HLT/V2 (CMSSW_2_2_0)
+# /dev/CMSSW_2_2_0/HLT/V4 (CMSSW_2_2_0)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_2_2_0/HLT/V2')
+  tableName = cms.string('/dev/CMSSW_2_2_0/HLT/V4')
 )
 
 block_hltDebugOutput = cms.PSet(
@@ -26,6 +26,7 @@ outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
   'keep *_hltL1NonIsoLargeWindowElectronPixelSeeds_*_*',
   'keep *_hltConeIsolationL25SingleTau_*_*',
   'keep *_hltL1NonIsolatedPhotonEcalIsol_*_*',
+  'keep *_hltElectronPixelMatchFilterElectronTau_*_*',
   'keep *_hltL1IsoStartUpElectronTrackIsol_*_*',
   'keep *_hltL2DoubleTauIsolationSelector_*_*',
   'keep *_hltL2SingleTauMETJets_*_*',
@@ -146,7 +147,10 @@ outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
   'keep *_hltCorrectedHybridSuperClustersL1Isolated_*_*',
   'keep *_hltBLifetimeL3TagInfosRelaxed_*_*',
   'keep *_hltGtDigis_*_*',
+  'keep *_hltEgammaEtFilterElectronTau_*_*',
+  'keep *_hltL1sElectronTau_*_*',
   'keep *_hltL1IsoElectronPixelSeeds_*_*',
+  'keep *_hltEgammaL1MatchFilterRegionalElectronTau_*_*',
   'keep *_hltL3Muons_*_*',
   'keep *_hltL1IsoEgammaRegionalPixelSeedGenerator_*_*',
   'keep *_hltL1NonIsolatedPhotonHcalIsol_*_*',
@@ -169,6 +173,7 @@ outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
   'keep *_hltL1IsoElectronTrackIsol_*_*',
   'keep *_hltL2Muons_*_*',
   'keep *_hltMCJetCorJetIcone5_*_*',
+  'keep *_hlt1METSingleTauMETRelaxed_*_*',
   'keep *_hltL2ElectronTauIsolationProducer_*_*',
   'keep *_hltBLifetimeL3BJetTags_*_*',
   'keep *_hltIcone5Tau4Regional_*_*',
@@ -176,6 +181,7 @@ outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
   'keep *_hltL2SingleTauMETIsolationSelector_*_*',
   'keep *_hltPixelTracks_*_*',
   'keep *_hltBLifetimeL25BJetTagsRelaxed_*_*',
+  'keep *_hltEgammaHcalIsolFilterElectronTau_*_*',
   'keep *_hltCtfWithMaterialTracksL3SingleTau_*_*',
   'keep *_hltL2MuonIsolations_*_*',
   'keep *_hltHcalDoubleCone_*_*',
@@ -193,7 +199,9 @@ outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
   'keep *_hltL1IsolatedPhotonHcalIsol_*_*',
   'keep *_hltL1NonIsoRecoEcalCandidate_*_*',
   'keep *_hltL2TauJetsProviderMuonTau_*_*',
+  'keep *_hlt1METSingleTauMET_*_*',
   'keep *_hltCtfWithMaterialTracksMumu_*_*',
+  'keep *_hlt1METSingleTauRelaxed_*_*',
   'keep *_hltIcone5Tau1Regional_*_*',
   'keep *_hltIsolatedL25PixelTauPtLeadTk_*_*',
   'keep recoTracks_hltCtfL1NonIsoLargeWindowWithMaterialTracks_*_*',
