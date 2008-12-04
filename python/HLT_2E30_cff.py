@@ -1,10 +1,10 @@
-# /dev/CMSSW_2_2_0/HLT/V4 (CMSSW_2_2_0)
+# /dev/CMSSW_2_2_0/HLT/V5 (CMSSW_2_2_0)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_2_2_0/HLT/V4')
+  tableName = cms.string('/dev/CMSSW_2_2_0/HLT/V5')
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
@@ -7673,6 +7673,7 @@ hltL2SingleTauIsolationSelectorRelaxed = cms.EDProducer( "L2TauIsolationSelector
 )
 hltFilterSingleTauEcalIsolationRelaxed = cms.EDFilter( "HLT1Tau",
     inputTag = cms.InputTag( 'hltL2SingleTauIsolationSelectorRelaxed','Isolated' ),
+    saveTag = cms.untracked.bool( True ),
     MinPt = cms.double( 1.0 ),
     MaxEta = cms.double( 5.0 ),
     MinN = cms.int32( 1 )
@@ -7697,6 +7698,7 @@ hltL2SingleTauMETIsolationSelectorRelaxed = cms.EDProducer( "L2TauIsolationSelec
 )
 hltFilterSingleTauMETEcalIsolationRelaxed = cms.EDFilter( "HLT1Tau",
     inputTag = cms.InputTag( 'hltL2SingleTauMETIsolationSelectorRelaxed','Isolated' ),
+    saveTag = cms.untracked.bool( True ),
     MinPt = cms.double( 1.0 ),
     MaxEta = cms.double( 5.0 ),
     MinN = cms.int32( 1 )
