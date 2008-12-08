@@ -1,10 +1,10 @@
-# /dev/CMSSW_2_2_0/HLT/V5 (CMSSW_2_2_0)
+# /dev/CMSSW_2_2_0/HLT/V7 (CMSSW_2_2_1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_2_2_0/HLT/V5')
+  tableName = cms.string('/dev/CMSSW_2_2_0/HLT/V7')
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
@@ -321,7 +321,8 @@ SteppingHelixPropagatorAlong = cms.ESProducer( "SteppingHelixPropagatorESProduce
   useTuningForL2Speed = cms.bool( False ),
   useEndcapShiftsInZ = cms.bool( False ),
   endcapShiftInZPos = cms.double( 0.0 ),
-  endcapShiftInZNeg = cms.double( 0.0 )
+  endcapShiftInZNeg = cms.double( 0.0 ),
+  appendToDataLabel = cms.string( "" )
 )
 SteppingHelixPropagatorAny = cms.ESProducer( "SteppingHelixPropagatorESProducer",
   ComponentName = cms.string( "SteppingHelixPropagatorAny" ),
@@ -341,7 +342,8 @@ SteppingHelixPropagatorAny = cms.ESProducer( "SteppingHelixPropagatorESProducer"
   useTuningForL2Speed = cms.bool( False ),
   useEndcapShiftsInZ = cms.bool( False ),
   endcapShiftInZPos = cms.double( 0.0 ),
-  endcapShiftInZNeg = cms.double( 0.0 )
+  endcapShiftInZNeg = cms.double( 0.0 ),
+  appendToDataLabel = cms.string( "" )
 )
 SteppingHelixPropagatorOpposite = cms.ESProducer( "SteppingHelixPropagatorESProducer",
   ComponentName = cms.string( "SteppingHelixPropagatorOpposite" ),
@@ -361,7 +363,8 @@ SteppingHelixPropagatorOpposite = cms.ESProducer( "SteppingHelixPropagatorESProd
   useTuningForL2Speed = cms.bool( False ),
   useEndcapShiftsInZ = cms.bool( False ),
   endcapShiftInZPos = cms.double( 0.0 ),
-  endcapShiftInZNeg = cms.double( 0.0 )
+  endcapShiftInZNeg = cms.double( 0.0 ),
+  appendToDataLabel = cms.string( "" )
 )
 TrackerRecoGeometryESProducer = cms.ESProducer( "TrackerRecoGeometryESProducer"
 )
@@ -5656,7 +5659,7 @@ hltPixelTracks = cms.EDProducer( "PixelTrackProducer",
     ),
     FilterPSet = cms.PSet( 
       ComponentName = cms.string( "PixelTrackFilterByKinematics" ),
-      ptMin = cms.double( 0.0 ),
+      ptMin = cms.double( 0.1 ),
       tipMax = cms.double( 1.0 ),
       chi2 = cms.double( 1000.0 ),
       nSigmaInvPtTolerance = cms.double( 0.0 ),
@@ -9236,7 +9239,7 @@ hltPixelTracksForMinBias = cms.EDProducer( "PixelTrackProducer",
     ),
     FilterPSet = cms.PSet( 
       ComponentName = cms.string( "PixelTrackFilterByKinematics" ),
-      ptMin = cms.double( 0.0 ),
+      ptMin = cms.double( 0.1 ),
       tipMax = cms.double( 1.0 ),
       chi2 = cms.double( 1000.0 ),
       nSigmaInvPtTolerance = cms.double( 0.0 ),
