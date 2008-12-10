@@ -103,7 +103,7 @@ else:
 
         services  += ",-MessageLogger"
 
-        paths     += ",-HLTAnalyzerEndpath"
+#       paths     += ",-HLTAnalyzerEndpath"
 
         psets = "--psets "
         psets += "-maxEvents,"
