@@ -54,7 +54,7 @@ process.source = cms.Source("PythiaSource",
 )
 
 
-process.load("Configuration.StandardSequences.GeometryIdeal_cff")
+process.load("Configuration.StandardSequences.GeometryPilot2_cff")
 process.load("Configuration.StandardSequences.MagneticField_cff")
 process.load("Configuration.StandardSequences.VtxSmearedEarly10TeVCollision_cff")
 

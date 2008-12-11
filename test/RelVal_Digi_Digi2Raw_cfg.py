@@ -18,7 +18,7 @@ process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring('file:/scratch/cms/TTbarGenSim2110.root')
 )
 
-process.load("Configuration.StandardSequences.GeometryIdeal_cff")
+process.load("Configuration.StandardSequences.GeometryPilot2_cff")
 process.load("Configuration.StandardSequences.MagneticField_cff")
 
 # Conditions: fake or frontier
