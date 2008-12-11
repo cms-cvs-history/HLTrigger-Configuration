@@ -10,6 +10,8 @@ cmsDriver.py RelVal --step=DIGI,L1,DIGI2RAW --conditions=FrontierConditions_Glob
 
 cmsDriver.py RelValFromRaw --step=HLT --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:TTbarRaw.root --fileout=TTbarHLT.root --number=100 --mc --no_exec --datatier 'RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_Options.py
 
-cmsDriver.py RelValFromHLT --step=HLT --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:TTbarRaw.root --fileout=TTbarHLT2.root --number=100 --mc --no_exec --datatier 'RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_ProcessName.py
+cmsDriver.py RelVal --step=L1,HLT --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:/scratch/cms/TTbarHLT.root --fileout=TTbarL1HLT2.root --number=100 --mc --no_exec --datatier 'RAW' --eventcontent=RAW --customise=HLTrigger/Configuration/customHLT_RerunL1HLT.py
+
+cmsDriver.py RelValFromHLT --step=HLT --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:TTbarHLT.root --fileout=TTbarHLT2.root --number=100 --mc --no_exec --datatier 'RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_ProcessName.py
 
 cmsDriver.py RelVal --step=RAW2DIGI,RECO --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:TTbarRaw.root --fileout=TTbarReco.root --number=100 --mc --no_exec --datatier 'RECO' --eventcontent=RECOSIM --customise=HLTrigger/Configuration/customHLT_Options.py

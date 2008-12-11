@@ -44,16 +44,6 @@ process.load("SimGeneral.HepPDTESSource.pythiapdt_cfi")
 process.load("HLTrigger.Configuration.HLT_2E30_cff")
 process.schedule.extend( process.HLTSchedule )
 
-process.hltL1gtTrigReport = cms.EDAnalyzer( "L1GtTrigReport",
-    UseL1GlobalTriggerRecord = cms.bool( False ),
-    L1GtRecordInputTag = cms.InputTag( "hltGtDigis" )
-)
-process.hltTrigReport = cms.EDAnalyzer( "HLTrigReport",
-    HLTriggerResults = cms.InputTag( 'TriggerResults','','HLT2' )
-)
-process.HLTAnalyzerEndpath = cms.EndPath( process.hltL1gtTrigReport + process.hltTrigReport )
-process.schedule.append(process.HLTAnalyzerEndpath)
-
 process.load("Configuration.EventContent.EventContent_cff")
 process.hltPoolOutput = cms.OutputModule("PoolOutputModule",
     process.FEVTDEBUGHLTEventContent,

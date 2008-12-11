@@ -14,7 +14,7 @@ process.maxEvents = cms.untracked.PSet(
 )
 
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('/store/relval/2008/4/6/RelVal-RelValZTT-1207410101-HLT/0000/0E2C9BC7-1104-DD11-8E00-00304885AB90.root')
+    fileNames = cms.untracked.vstring('file:HLTFromPureRaw.root')
 )
 
 process.load("Configuration.StandardSequences.GeometryIdeal_cff")
@@ -36,15 +36,7 @@ process.load("SimGeneral.HepPDTESSource.pythiapdt_cfi")
 process.load("HLTrigger.Configuration.HLT_2E30_cff")
 process.schedule = process.HLTSchedule
 
-process.hltL1gtTrigReport = cms.EDAnalyzer( "L1GtTrigReport",
-    UseL1GlobalTriggerRecord = cms.bool( False ),
-    L1GtRecordInputTag = cms.InputTag( "hltGtDigis" )
-)
-process.hltTrigReport = cms.EDAnalyzer( "HLTrigReport",
-    HLTriggerResults = cms.InputTag( 'TriggerResults','','HLT2' )
-)
-process.HLTAnalyzerEndpath = cms.EndPath( process.hltL1gtTrigReport + process.hltTrigReport )
-process.schedule.append(process.HLTAnalyzerEndpath)
+process.hltTrigReport.HLTriggerResults = cms.InputTag( 'TriggerResults','','HLT2' )
 
 process.load("Configuration.EventContent.EventContent_cff")
 process.hltPoolOutput = cms.OutputModule("PoolOutputModule",
