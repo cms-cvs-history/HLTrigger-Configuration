@@ -36,6 +36,8 @@ echo "/bin/rm RelVal_Reco.root                RelVal_Reco.log"
 echo "cmsRun RelVal_Reco_cfg.py            >& RelVal_Reco.log"
       cmsRun RelVal_Reco_cfg.py            >& RelVal_Reco.log
 
+cmsRun RelVal_HLTFromRelValHLT_cfg.py    >& RelVal_HLTFromRelValHLT.log
+cmsRun RelVal_L1plusHLTfromRelVal_cfg.py >& RelVal_L1plusHLTfromRelVal.log
 
 echo " "
 echo "Finished!"
