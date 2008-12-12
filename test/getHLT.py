@@ -20,7 +20,7 @@ dbName = sys.argv[1]
 argc = len(sys.argv)
 if argc == 3:
     useCase = "ONLINE"
-    outName = "OnLine_HLT_"+sys.argv[2]+"_cfg.py"
+    outName = "OnLine_HLT_"+sys.argv[2]+".py"
 elif argc == 4:
     useCase = sys.argv[3]
     outName = "HLT_"+sys.argv[2]+"_cff.py"
