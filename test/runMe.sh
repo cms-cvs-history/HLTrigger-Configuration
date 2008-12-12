@@ -4,40 +4,30 @@ eval `scramv1 runtime -csh`
 rehash
 
 echo " "
-echo " Production chain (three jobs: digi+L1emu+digi2raw, HLT, reco):"
+echo "Creating offline configs with cmsDriver"
+echo "./cmsDriver.sh"
+      ./cmsDriver.sh
 
 echo " "
-echo "/bin/rm OnLine_HLTFromRaw_2E30.cfg OnLine_HLTFromRaw_2E30_cfg.py"
-      /bin/rm OnLine_HLTFromRaw_2E30.cfg OnLine_HLTFromRaw_2E30_cfg.py
+echo "Creating  online configs from ConfDB"
+      /bin/rm OnLine_HLT_?E??_cfg.py
 echo "./getHLT.sh"
       ./getHLT.sh 
 
-echo " "
-echo "/bin/rm RelVal_Digi_Raw.root RelVal_Pure_Raw.root RelVal_Digi_Digi2Raw.log"
-      /bin/rm RelVal_Digi_Raw.root RelVal_Pure_Raw.root RelVal_Digi_Digi2Raw.log
-echo "cmsRun RelVal_Digi_Digi2Raw_cfg.py   >& RelVal_Digi_Digi2Raw.log"
-      cmsRun RelVal_Digi_Digi2Raw_cfg.py   >& RelVal_Digi_Digi2Raw.log
+foreach task ( DigiL1Raw DigiL1RawHLT HLT HLT2 L1HLT2 Reco )
+    echo " "
+    echo Running task $task
+    foreach ext (log root)
+	/bin/rm RelVal_$task.$ext
+    end
+    cmsRun RelVal_$task.py >& RelVal_$task.log
+end
 
-echo " "
-echo "/bin/rm HLTFromPureRaw.root             RelVal_HLTFromRaw_2E30.log"
-      /bin/rm HLTFromPureRaw.root             RelVal_HLTFromRaw_2E30.log
-echo "cmsRun RelVal_HLTFromRaw_2E30_cfg.py >& RelVal_HLTFromRaw_2E30.log"
-      cmsRun RelVal_HLTFromRaw_2E30_cfg.py >& RelVal_HLTFromRaw_2E30.log
-
-echo " "
-echo "/bin/rm HLTDe*.root                     OnLine_HLTFromRaw_2E30.log"
-      /bin/rm HLTDe*.root                     OnLine_HLTFromRaw_2E30.log
-echo "cmsRun OnLine_HLTFromRaw_2E30_cfg.py >& OnLine_HLTFromRaw_2E30.log"
-      cmsRun OnLine_HLTFromRaw_2E30_cfg.py >& OnLine_HLTFromRaw_2E30.log
-
-echo " "
-echo "/bin/rm RelVal_Reco.root                RelVal_Reco.log"
-      /bin/rm RelVal_Reco.root                RelVal_Reco.log
-echo "cmsRun RelVal_Reco_cfg.py            >& RelVal_Reco.log"
-      cmsRun RelVal_Reco_cfg.py            >& RelVal_Reco.log
-
-cmsRun RelVal_HLTFromRelValHLT_cfg.py    >& RelVal_HLTFromRelValHLT.log
-cmsRun RelVal_L1plusHLTfromRelVal_cfg.py >& RelVal_L1plusHLTfromRelVal.log
-
-echo " "
-echo "Finished!"
+foreach task ( 1E30 8E29 1E31 )
+    echo " "
+    echo Running task $task
+    foreach ext (log root)
+	/bin/rm OnLine_HLT_$task.$ext
+    end
+    cmsRun OnLine_HLT_$task.py >& OnLine_HLT_$task.log
+end

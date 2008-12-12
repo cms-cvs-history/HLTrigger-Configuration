@@ -43,6 +43,7 @@ process.load("L1TriggerConfig.L1GtConfigProducers.Luminosity.lumi1030.L1Menu_200
 process.load("SimGeneral.HepPDTESSource.pythiapdt_cfi")
 process.load("HLTrigger.Configuration.HLT_2E30_cff")
 process.schedule.extend( process.HLTSchedule )
+process.hltTrigReport.HLTriggerResults = cms.InputTag( 'TriggerResults','','HLT2' )
 
 process.load("Configuration.EventContent.EventContent_cff")
 process.hltPoolOutput = cms.OutputModule("PoolOutputModule",
