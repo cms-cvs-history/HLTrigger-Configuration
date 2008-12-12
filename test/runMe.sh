@@ -14,7 +14,7 @@ echo "Creating  online configs from ConfDB"
 echo "./getHLT.sh"
       ./getHLT.sh 
 
-foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_2E30 OnLine_8E29 OnLine_1E31 RelVal_DigiL1RawHLT RelVal_HLT2 RelVal_L1HLT2 RelVal_Reco )
+foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_HLT_2E30 OnLine_HLT_8E29 OnLine_HLT_1E31 RelVal_DigiL1RawHLT RelVal_HLT2 RelVal_L1HLT2 RelVal_Reco )
     echo " "
     foreach ext (log root)
 	/bin/rm $task.$ext
