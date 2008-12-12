@@ -14,20 +14,11 @@ echo "Creating  online configs from ConfDB"
 echo "./getHLT.sh"
       ./getHLT.sh 
 
-foreach task ( DigiL1Raw DigiL1RawHLT HLT HLT2 L1HLT2 Reco )
+foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_2E30 OnLine_8E29 OnLine_1E31 RelVal_DigiL1RawHLT RelVal_HLT2 RelVal_L1HLT2 RelVal_Reco )
     echo " "
-    echo Running task $task
     foreach ext (log root)
-	/bin/rm RelVal_$task.$ext
+	/bin/rm $task.$ext
     end
-    cmsRun RelVal_$task.py >& RelVal_$task.log
-end
-
-foreach task ( 1E30 8E29 1E31 )
-    echo " "
-    echo Running task $task
-    foreach ext (log root)
-	/bin/rm OnLine_HLT_$task.$ext
-    end
-    cmsRun OnLine_HLT_$task.py >& OnLine_HLT_$task.log
+    echo "cmsRun $task.py >& $task.log"
+          cmsRun $task.py >& $task.log
 end
