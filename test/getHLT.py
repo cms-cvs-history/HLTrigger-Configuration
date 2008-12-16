@@ -40,26 +40,12 @@ else:
 
     if useCase == "GEN-HLT":
         essources = "--essources "
+        essources += "-SiStripQualityFakeESSource,"
         essources += "-GlobalTag,"
         essources += "-HepPDTESSource,"
-        essources += "-L1GtBoardMapsRcdSource,"
-        essources += "-L1GtParametersRcdSource,"
-        essources += "-L1GtPrescaleFactorsAlgoTrigRcdSource,"
-        essources += "-L1GtPrescaleFactorsTechTrigRcdSource,"
-        essources += "-L1GtStableParametersRcdSource,"
-        essources += "-L1GtTriggerMaskAlgoTrigRcdSource,"
-        essources += "-L1GtTriggerMaskTechTrigRcdSource,"
-        essources += "-L1GtTriggerMaskVetoAlgoTrigRcdSource,"
-        essources += "-L1GtTriggerMaskVetoTechTrigRcdSource,"
-        essources += "-L1MuTriggerScalesRcdSource,"
-        essources += "-L1MuTriggerPtScaleRcdSource,"
-        essources += "-SiStripQualityFakeESSource,"
         essources += "-XMLIdealGeometryESSource,"
         essources += "-eegeom,"
-        essources += "-emrcdsrc,"
         essources += "-es_hardcode,"
-        essources += "-jetrcdsrc,"
-        essources += "-l1CaloGeomRecordSource,"
         essources += "-magfield"
 
         esmodules = "--esmodules "
@@ -74,9 +60,6 @@ else:
         esmodules += "-EcalPreshowerGeometryEP,"
         esmodules += "-HcalHardcodeGeometryEP,"
         esmodules += "-HcalTopologyIdealEP,"
-        esmodules += "-L1GctConfigProducers,"
-        esmodules += "-L1MuTriggerScales,"
-        esmodules += "-L1MuTriggerPtScale,"
         esmodules += "-MuonNumberingInitialization,"
         esmodules += "-RPCGeometryESModule,"
         esmodules += "-SiStripGainESProducer,"
@@ -87,17 +70,6 @@ else:
         esmodules += "-VolumeBasedMagneticFieldESProducer,"    
         esmodules += "-ZdcHardcodeGeometryEP,"
         esmodules += "-hcal_db_producer,"
-        esmodules += "-l1CaloGeometry,"
-        esmodules += "-l1CaloScales,"
-        esmodules += "-l1GtBoardMaps,"
-        esmodules += "-l1GtParameters,"
-        esmodules += "-l1GtPrescaleFactorsAlgoTrig,"
-        esmodules += "-l1GtPrescaleFactorsTechTrig,"
-        esmodules += "-l1GtStableParameters,"
-        esmodules += "-l1GtTriggerMaskAlgoTrig,"
-        esmodules += "-l1GtTriggerMaskTechTrig,"
-        esmodules += "-l1GtTriggerMaskVetoAlgoTrig,"
-        esmodules += "-l1GtTriggerMaskVetoTechTrig,"
         esmodules += "-l1GtTriggerMenuXml,"
         esmodules += "-sistripconn"
 
@@ -110,10 +82,10 @@ else:
         psets += "-options,"
 
 
-        myGet = "edmConfigFromDB --cff --format Python --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + outName
+        myGet = "edmConfigFromDB --cff --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + outName
         os.system(myGet)
 
     else:
     
-        myGet = "edmConfigFromDB       --format Python --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + outName
+        myGet = "edmConfigFromDB       --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + outName
         os.system(myGet)
