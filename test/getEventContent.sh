@@ -18,6 +18,6 @@ rehash
  /bin/mv -f HLTDebugOutput_cff.py ../python
 
  edmConfigFromDB --configName $HLTtable --nopaths --noes --nopsets --noservices --cff --blocks hltDebugWithAlCaOutput::outputCommands >& HLTDebugWithAlCaOutput_cff.py
- /bin/mv -f HLTDebugWithAlcaOutput_cff.py ../python
+ /bin/mv -f HLTDebugWithAlCaOutput_cff.py ../python
 
 unsetenv HLTtable
