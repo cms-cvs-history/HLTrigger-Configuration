@@ -25,7 +25,7 @@ process.load("Configuration.StandardSequences.MagneticField_cff")
 # process.load("Configuration.StandardSequences.FakeConditions_cff")
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
 # https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideFrontierConditions
-process.GlobalTag.globaltag = 'STARTUP_V7::All'
+process.GlobalTag.globaltag = 'STARTUP_V8::All'
 
 process.load("Configuration.StandardSequences.MixingNoPileUp_cff")
 process.load("Configuration.StandardSequences.Digi_cff")

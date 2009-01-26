@@ -23,7 +23,7 @@ process.load("Configuration.StandardSequences.MagneticField_cff")
 # Conditions: fake or frontier
 # process.load("Configuration.StandardSequences.FakeConditions_cff")
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
-process.GlobalTag.globaltag = 'STARTUP_V7::All'
+process.GlobalTag.globaltag = 'STARTUP_V8::All'
 
 # run trigger primitive generation on unpacked digis, then central L1
 process.load("L1Trigger.Configuration.CaloTriggerPrimitives_cff")
