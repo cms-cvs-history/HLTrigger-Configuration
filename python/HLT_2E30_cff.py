@@ -1,15 +1,16 @@
-# /dev/CMSSW_2_2_0/HLT/V10 (CMSSW_2_2_1)
+# /dev/CMSSW_2_2_4/HLT/V1 (CMSSW_2_2_X_2009-01-29-0000_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_2_2_0/HLT/V10')
+  tableName = cms.string('/dev/CMSSW_2_2_4/HLT/V1')
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
   recordName = cms.string( "JetTagComputerRecord" ),
   iovIsRunNotTime = cms.bool( True ),
+  appendToDataLabel = cms.string( "" ),
   firstValid = cms.vuint32( 1 )
 )
 MCJetCorrectorIcone5 = cms.ESSource( "MCJetCorrectionService",
@@ -94,7 +95,8 @@ CkfTrajectoryBuilder = cms.ESProducer( "CkfTrajectoryBuilderESProducer",
   maxCand = cms.int32( 5 ),
   lostHitPenalty = cms.double( 30.0 ),
   intermediateCleaning = cms.bool( True ),
-  alwaysUseInvalidHits = cms.bool( True )
+  alwaysUseInvalidHits = cms.bool( True ),
+  appendToDataLabel = cms.string( "" )
 )
 FitterRK = cms.ESProducer( "KFTrajectoryFitterESProducer",
   ComponentName = cms.string( "FitterRK" ),
@@ -131,7 +133,8 @@ GroupedCkfTrajectoryBuilder = cms.ESProducer( "GroupedCkfTrajectoryBuilderESProd
   lockHits = cms.bool( True ),
   bestHitOnly = cms.bool( True ),
   requireSeedHitsInRebuild = cms.bool( True ),
-  minNrOfHitsForRebuild = cms.int32( 5 )
+  minNrOfHitsForRebuild = cms.int32( 5 ),
+  appendToDataLabel = cms.string( "" )
 )
 KFFitterForRefitInsideOut = cms.ESProducer( "KFTrajectoryFitterESProducer",
   ComponentName = cms.string( "KFFitterForRefitInsideOut" ),
@@ -209,7 +212,9 @@ MuonCkfTrajectoryBuilder = cms.ESProducer( "MuonCkfTrajectoryBuilderESProducer",
   intermediateCleaning = cms.bool( False ),
   alwaysUseInvalidHits = cms.bool( True )
 )
-MuonDetLayerGeometryESProducer = cms.ESProducer( "MuonDetLayerGeometryESProducer" )
+MuonDetLayerGeometryESProducer = cms.ESProducer( "MuonDetLayerGeometryESProducer",
+  appendToDataLabel = cms.string( "" )
+)
 MuonTransientTrackingRecHitBuilderESProducer = cms.ESProducer( "MuonTransientTrackingRecHitBuilderESProducer",
   ComponentName = cms.string( "MuonRecHitBuilder" )
 )
@@ -383,7 +388,8 @@ bJetRegionalTrajectoryBuilder = cms.ESProducer( "CkfTrajectoryBuilderESProducer"
   maxCand = cms.int32( 1 ),
   lostHitPenalty = cms.double( 30.0 ),
   intermediateCleaning = cms.bool( True ),
-  alwaysUseInvalidHits = cms.bool( False )
+  alwaysUseInvalidHits = cms.bool( False ),
+  appendToDataLabel = cms.string( "" )
 )
 bJetRegionalTrajectoryFilter = cms.ESProducer( "TrajectoryFilterESProducer",
   ComponentName = cms.string( "bJetRegionalTrajectoryFilter" ),
@@ -425,7 +431,8 @@ hltCkfTrajectoryBuilderMumu = cms.ESProducer( "CkfTrajectoryBuilderESProducer",
   maxCand = cms.int32( 3 ),
   lostHitPenalty = cms.double( 30.0 ),
   intermediateCleaning = cms.bool( True ),
-  alwaysUseInvalidHits = cms.bool( False )
+  alwaysUseInvalidHits = cms.bool( False ),
+  appendToDataLabel = cms.string( "" )
 )
 hltCkfTrajectoryBuilderMumuk = cms.ESProducer( "CkfTrajectoryBuilderESProducer",
   ComponentName = cms.string( "hltCkfTrajectoryBuilderMumuk" ),
@@ -439,7 +446,8 @@ hltCkfTrajectoryBuilderMumuk = cms.ESProducer( "CkfTrajectoryBuilderESProducer",
   maxCand = cms.int32( 3 ),
   lostHitPenalty = cms.double( 30.0 ),
   intermediateCleaning = cms.bool( True ),
-  alwaysUseInvalidHits = cms.bool( False )
+  alwaysUseInvalidHits = cms.bool( False ),
+  appendToDataLabel = cms.string( "" )
 )
 hltCkfTrajectoryFilterMumu = cms.ESProducer( "TrajectoryFilterESProducer",
   ComponentName = cms.string( "hltCkfTrajectoryFilterMumu" ),
@@ -484,7 +492,8 @@ muonCkfTrajectoryFilter = cms.ESProducer( "TrajectoryFilterESProducer",
   )
 )
 navigationSchoolESProducer = cms.ESProducer( "NavigationSchoolESProducer",
-  ComponentName = cms.string( "SimpleNavigationSchool" )
+  ComponentName = cms.string( "SimpleNavigationSchool" ),
+  appendToDataLabel = cms.string( "" )
 )
 pixellayerpairs = cms.ESProducer( "PixelLayerPairsESProducer",
   ComponentName = cms.string( "PixelLayerPairs" ),
@@ -579,7 +588,8 @@ trajBuilderL3 = cms.ESProducer( "CkfTrajectoryBuilderESProducer",
   maxCand = cms.int32( 5 ),
   lostHitPenalty = cms.double( 30.0 ),
   intermediateCleaning = cms.bool( True ),
-  alwaysUseInvalidHits = cms.bool( False )
+  alwaysUseInvalidHits = cms.bool( False ),
+  appendToDataLabel = cms.string( "" )
 )
 trajFilterL3 = cms.ESProducer( "TrajectoryFilterESProducer",
   ComponentName = cms.string( "trajFilterL3" ),
@@ -4753,7 +4763,11 @@ hltDt4DSegments = cms.EDProducer( "DTRecSegment4DProducer",
         debug = cms.untracked.bool( False ),
         nSharedHitsMax = cms.int32( 2 ),
         nUnSharedHitsMin = cms.int32( 2 ),
-        segmCleanerMode = cms.int32( 1 )
+        segmCleanerMode = cms.int32( 1 ),
+        performT0_vdriftSegCorrection = cms.bool( False ),
+        hit_afterT0_resolution = cms.double( 0.03 ),
+        T0SegCorrectionDebug = cms.untracked.bool( False ),
+        performT0SegCorrection = cms.bool( False )
       ),
       Reco2DAlgoName = cms.string( "DTCombinatorialPatternReco" ),
       recAlgoConfig = cms.PSet( 
@@ -4778,7 +4792,11 @@ hltDt4DSegments = cms.EDProducer( "DTRecSegment4DProducer",
       debug = cms.untracked.bool( False ),
       nSharedHitsMax = cms.int32( 2 ),
       nUnSharedHitsMin = cms.int32( 2 ),
-      segmCleanerMode = cms.int32( 1 )
+      segmCleanerMode = cms.int32( 1 ),
+      performT0SegCorrection = cms.bool( False ),
+      performT0_vdriftSegCorrection = cms.bool( False ),
+      hit_afterT0_resolution = cms.double( 0.03 ),
+      T0SegCorrectionDebug = cms.untracked.bool( False )
     )
 )
 hltMuonCSCDigis = cms.EDProducer( "CSCDCCUnpacker",
