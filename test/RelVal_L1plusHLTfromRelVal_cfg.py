@@ -36,7 +36,7 @@ process.schedule = cms.Schedule( process.L1Emu )
 
 # Choose a menu/prescale/mask from one of the choices
 # in L1TriggerConfig.L1GtConfigProducers.Luminosity
-process.load("L1TriggerConfig.L1GtConfigProducers.Luminosity.lumi1030.L1Menu_2008MC_2E30_Unprescaled_cff")
+process.load("L1TriggerConfig.L1GtConfigProducers.Luminosity.startup.L1Menu_startup2_v1_Unprescaled_cff")
 
 # run HLT
 process.load("SimGeneral.HepPDTESSource.pythiapdt_cfi")
