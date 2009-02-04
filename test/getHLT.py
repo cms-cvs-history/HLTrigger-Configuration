@@ -34,7 +34,7 @@ else:
     essources = "  " 
     esmodules = "  "
     modules   = "  "
-    services  = "--services -PrescaleService"
+    services  = "  "
     paths     = "--paths -AlCaOutput"
     psets     = "  "
 
@@ -73,7 +73,7 @@ else:
         esmodules += "-l1GtTriggerMenuXml,"
         esmodules += "-sistripconn"
 
-        services  += ",-MessageLogger"
+        services  += "--services -MessageLogger"
 
 #       paths     += ",-HLTAnalyzerEndpath"
 
