@@ -35,7 +35,7 @@ else:
     esmodules = "  "
     modules   = "  "
     services  = "  "
-    paths     = "--paths -AlCaOutput"
+    paths     = "  "
     psets     = "  "
 
     if useCase == "GEN-HLT":
@@ -75,11 +75,9 @@ else:
 
         services  += "--services -MessageLogger"
 
-#       paths     += ",-HLTAnalyzerEndpath"
+        paths     += "--paths -AlCaOutput"
 
-        psets = "--psets "
-        psets += "-maxEvents,"
-        psets += "-options,"
+        psets     += "--psets -maxEvents,-options"
 
 
         myGet = "edmConfigFromDB --cff --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + outName
