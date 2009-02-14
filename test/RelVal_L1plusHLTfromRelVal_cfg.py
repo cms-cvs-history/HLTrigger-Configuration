@@ -14,7 +14,7 @@ process.maxEvents = cms.untracked.PSet(
 )
 
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('/store/relval/CMSSW_2_2_0_pre1/RelValTTbar/GEN-SIM-DIGI-RAW-HLTDEBUG/IDEAL_V9_v1/0000/04682517-BFAE-DD11-B2F6-001617E30CC8.root')
+    fileNames = cms.untracked.vstring('/store/relval/CMSSW_2_2_4/RelValTTbar/GEN-SIM-DIGI-RAW-HLTDEBUG/STARTUP_V8_v1/0000/069AA022-5BF3-DD11-9A56-001617E30D12.root')
 )
 
 process.load("Configuration.StandardSequences.GeometryPilot2_cff")
@@ -36,11 +36,11 @@ process.schedule = cms.Schedule( process.L1Emu )
 
 # Choose a menu/prescale/mask from one of the choices
 # in L1TriggerConfig.L1GtConfigProducers.Luminosity
-process.load("L1TriggerConfig.L1GtConfigProducers.Luminosity.startup.L1Menu_startup2_v1_Unprescaled_cff")
+process.load("L1TriggerConfig.L1GtConfigProducers.Luminosity.startup.L1Menu_Commissioning2009_v0_L1T_Scales_20080926_startup_Imp0_Unprescaled_cff")
 
 # run HLT
 process.load("SimGeneral.HepPDTESSource.pythiapdt_cfi")
-process.load("HLTrigger.Configuration.HLT_2E30_cff")
+process.load("HLTrigger.Configuration.HLT_8E29_cff")
 process.schedule.extend( process.HLTSchedule )
 
 process.hltL1gtTrigReport = cms.EDAnalyzer( "L1GtTrigReport",
