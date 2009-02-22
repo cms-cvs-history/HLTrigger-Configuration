@@ -1,10 +1,10 @@
-# /user/fwyzard/CMSSW_2_2_4_HLT1/8E29_new_L1/V1 (CMSSW_2_2_4_HLT1)
+# /user/fwyzard/CMSSW_2_2_4_HLT4/8E29/V3 (CMSSW_2_2_4_HLT4)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/user/fwyzard/CMSSW_2_2_4_HLT1/8E29_new_L1/V1')
+  tableName = cms.string('/user/fwyzard/CMSSW_2_2_4_HLT4/8E29/V3')
 )
 
 block_hltDebugOutput = cms.PSet(

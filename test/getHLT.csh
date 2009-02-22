@@ -4,7 +4,7 @@ cmsenv
 
 rehash
 
-setenv HLTtable /user/fwyzard/CMSSW_2_2_4_HLT1/8E29_new_L1/V1
+setenv HLTtable /user/fwyzard/CMSSW_2_2_4_HLT4/8E29/V3
 setenv HLTid    8E29
 
 if ($1 == CVS) then
