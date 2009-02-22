@@ -2,26 +2,30 @@ import FWCore.ParameterSet.Config as cms
 
 process = cms.Process("HLT2")
 
-
+# Message Logger, default settings
 process.load("FWCore.MessageService.MessageLogger_cfi")
 process.options = cms.untracked.PSet(
     wantSummary = cms.untracked.bool(True)
 )
 
+# Read some events from a RelVal
+process.source = cms.Source("PoolSource",
+    fileNames = cms.untracked.vstring(
+        '/store/relval/CMSSW_2_2_4/RelValTTbar/GEN-SIM-DIGI-RAW-HLTDEBUG/STARTUP_V8_v1/0000/069AA022-5BF3-DD11-9A56-001617E30D12.root',
+        '/store/relval/CMSSW_2_2_4/RelValTTbar/GEN-SIM-DIGI-RAW-HLTDEBUG/STARTUP_V8_v1/0000/08DA99A6-5AF3-DD11-AAC1-001D09F24493.root',
+        '/store/relval/CMSSW_2_2_4/RelValTTbar/GEN-SIM-DIGI-RAW-HLTDEBUG/STARTUP_V8_v1/0000/0A725E15-5BF3-DD11-8B4B-000423D99CEE.root'
+    )
+)
 
 process.maxEvents = cms.untracked.PSet(
     input = cms.untracked.int32(100)
 )
 
-process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('/store/relval/CMSSW_2_2_4/RelValTTbar/GEN-SIM-DIGI-RAW-HLTDEBUG/STARTUP_V8_v1/0000/069AA022-5BF3-DD11-9A56-001617E30D12.root')
-)
-
+# Geometry and Magnetic field
 process.load("Configuration.StandardSequences.GeometryPilot2_cff")
 process.load("Configuration.StandardSequences.MagneticField_cff")
 
-# Conditions: fake or frontier
-# process.load("Configuration.StandardSequences.FakeConditions_cff")
+# Frontier conditions and GlobalTag
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
 process.GlobalTag.globaltag = 'STARTUP_V8::All'
 
@@ -31,12 +35,12 @@ process.simEcalTriggerPrimitiveDigis.Label = 'ecalDigis'
 process.simHcalTriggerPrimitiveDigis.inputLabel = 'hcalDigis'
 
 process.load("Configuration.StandardSequences.L1Emulator_cff")
+
+# choose a menu/prescale/mask from one of the choices in L1TriggerConfig.L1GtConfigProducers.Luminosity
+process.load("L1TriggerConfig.L1GtConfigProducers.Luminosity.startup.L1Menu_Commissioning2009_v0_L1T_Scales_20080926_startup_Imp0_Unprescaled_cff")
 process.L1Emu = cms.Path( process.L1Emulator )
 process.schedule = cms.Schedule( process.L1Emu )
 
-# Choose a menu/prescale/mask from one of the choices
-# in L1TriggerConfig.L1GtConfigProducers.Luminosity
-process.load("L1TriggerConfig.L1GtConfigProducers.Luminosity.startup.L1Menu_Commissioning2009_v0_L1T_Scales_20080926_startup_Imp0_Unprescaled_cff")
 
 # run HLT
 process.load("SimGeneral.HepPDTESSource.pythiapdt_cfi")
