@@ -12,11 +12,11 @@ cmsDriver.py TTbar_Tauola.cfi --step=GEN:ProductionFilterSequence,SIM,DIGI,L1,DI
 
 echo " "
 echo "Creating DigiL1Raw"
-cmsDriver.py RelVal --step=DIGI,L1,DIGI2RAW     --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:/scratch/cms/TTbarGenSim2110.root --fileout=RelVal_DigiL1Raw.root    --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW'     --eventcontent=RAW          --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=RelVal_DigiL1Raw.py
+cmsDriver.py RelVal --step=DIGI,L1,DIGI2RAW     --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:/scratch/cms/TTbarGenSim31X.root  --fileout=RelVal_DigiL1Raw.root    --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW'     --eventcontent=RAW          --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=RelVal_DigiL1Raw.py
 
 echo " "
 echo "Creating DigiL1RawHLT"
-cmsDriver.py RelVal --step=DIGI,L1,DIGI2RAW,HLT --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:/scratch/cms/TTbarGenSim2110.root --fileout=RelVal_DigiL1RawHLT.root --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=RelVal_DigiL1RawHLT.py
+cmsDriver.py RelVal --step=DIGI,L1,DIGI2RAW,HLT --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:/scratch/cms/TTbarGenSim31X.root  --fileout=RelVal_DigiL1RawHLT.root --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=RelVal_DigiL1RawHLT.py
 
 echo " "
 echo "Creating HLT"
