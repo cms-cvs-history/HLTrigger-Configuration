@@ -3,11 +3,11 @@
 
 echo " "
 echo "Creating TTbarGenSim"
-cmsDriver.py TTbar.cfi --step=GEN,SIM                      --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --fileout=TTbarGenSim.root --number=100 --mc --no_exec --datatier 'GEN-SIM'              --eventcontent=FEVTSIM      --customise=HLTrigger/Configuration/customHLT_Options.py --python_filename=TTbarGenSim.py
+cmsDriver.py TTbar_Tauola.cfi --step=GEN:ProductionFilterSequence,SIM                      --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --fileout=TTbarGenSim.root --number=100 --mc --no_exec --datatier 'GEN-SIM'              --eventcontent=FEVTSIM      --customise=HLTrigger/Configuration/customHLT_Options.py --python_filename=TTbarGenSim.py
 
 echo " "
 echo "Creating TTbarGenHLT"
-cmsDriver.py TTbar.cfi --step=GEN,SIM,DIGI,L1,DIGI2RAW,HLT --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --fileout=TTbarGenHLT.root --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_Options.py --python_filename=TTbarGenHLT.py
+cmsDriver.py TTbar_Tauola.cfi --step=GEN:ProductionFilterSequence,SIM,DIGI,L1,DIGI2RAW,HLT --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --fileout=TTbarGenHLT.root --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_Options.py --python_filename=TTbarGenHLT.py
 
 
 echo " "
