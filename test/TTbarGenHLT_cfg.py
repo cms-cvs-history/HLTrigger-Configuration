@@ -62,7 +62,7 @@ process.load("Configuration.StandardSequences.VtxSmearedEarly10TeVCollision_cff"
 # process.load("Configuration.StandardSequences.FakeConditions_cff")
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
 # https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideFrontierConditions
-process.GlobalTag.globaltag = 'STARTUP_V8::All'
+process.GlobalTag.globaltag = 'STARTUP_V9::All'
 
 process.load("Configuration.StandardSequences.Generator_cff")
 process.load("Configuration.StandardSequences.Sim_cff")
