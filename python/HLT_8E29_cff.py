@@ -1,10 +1,10 @@
-# /dev/CMSSW_2_2_4_HLT4/8E29/V6 (CMSSW_2_2_4_HLT4)
+# /dev/CMSSW_2_2_4_HLT4/8E29/V8 (CMSSW_2_2_4_HLT4)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_2_2_4_HLT4/8E29/V6')
+  tableName = cms.string('/dev/CMSSW_2_2_4_HLT4/8E29/V8')
 )
 
 HLTConfigVersion = cms.untracked.PSet(  tableName = cms.string( "/user/fwyzard/CMSSW_2_2_4_HLT4/8E29/V11" ) )
@@ -3922,23 +3922,23 @@ hltPixelVertices = cms.EDProducer( "PixelVertexProducer",
     Method2 = cms.bool( True ),
     beamSpot = cms.InputTag( "hltOfflineBeamSpot" )
 )
-hltSelector4Jets = cms.EDProducer( "LargestEtCaloJetSelector",
+hltSelector4JetsU = cms.EDProducer( "LargestEtCaloJetSelector",
     src = cms.InputTag( "hltIterativeCone5CaloJets" ),
     filter = cms.bool( False ),
     maxNumber = cms.uint32( 4 )
 )
-hltBLifetimeL25JetsStartup = cms.EDProducer( "EtMinCaloJetSelector",
-    src = cms.InputTag( "hltSelector4Jets" ),
+hltBLifetimeL25JetsStartupU = cms.EDProducer( "EtMinCaloJetSelector",
+    src = cms.InputTag( "hltSelector4JetsU" ),
     filter = cms.bool( False ),
     etMin = cms.double( 15.0 )
 )
-hltBLifetimeL25AssociatorStartup = cms.EDProducer( "JetTracksAssociatorAtVertex",
-    jets = cms.InputTag( "hltBLifetimeL25JetsStartup" ),
+hltBLifetimeL25AssociatorStartupU = cms.EDProducer( "JetTracksAssociatorAtVertex",
+    jets = cms.InputTag( "hltBLifetimeL25JetsStartupU" ),
     tracks = cms.InputTag( "hltPixelTracks" ),
     coneSize = cms.double( 0.5 )
 )
-hltBLifetimeL25TagInfosStartup = cms.EDProducer( "TrackIPProducer",
-    jetTracks = cms.InputTag( "hltBLifetimeL25AssociatorStartup" ),
+hltBLifetimeL25TagInfosStartupU = cms.EDProducer( "TrackIPProducer",
+    jetTracks = cms.InputTag( "hltBLifetimeL25AssociatorStartupU" ),
     primaryVertex = cms.InputTag( "hltPixelVertices" ),
     computeProbabilities = cms.bool( False ),
     minimumNumberOfPixelHits = cms.int32( 2 ),
@@ -3950,21 +3950,21 @@ hltBLifetimeL25TagInfosStartup = cms.EDProducer( "TrackIPProducer",
     jetDirectionUsingTracks = cms.bool( False ),
     useTrackQuality = cms.bool( False )
 )
-hltBLifetimeL25BJetTagsStartup = cms.EDProducer( "JetTagProducer",
+hltBLifetimeL25BJetTagsStartupU = cms.EDProducer( "JetTagProducer",
     jetTagComputer = cms.string( "trackCounting3D2nd" ),
-    tagInfos = cms.VInputTag( 'hltBLifetimeL25TagInfosStartup' )
+    tagInfos = cms.VInputTag( 'hltBLifetimeL25TagInfosStartupU' )
 )
-hltBLifetimeL25FilterStartup = cms.EDFilter( "HLTJetTag",
-    JetTag = cms.InputTag( "hltBLifetimeL25BJetTagsStartup" ),
+hltBLifetimeL25FilterStartupU = cms.EDFilter( "HLTJetTag",
+    JetTag = cms.InputTag( "hltBLifetimeL25BJetTagsStartupU" ),
     MinTag = cms.double( 2.5 ),
     MaxTag = cms.double( 99999.0 ),
     MinJets = cms.int32( 1 ),
     SaveTag = cms.bool( False )
 )
 hltBLifetimeL3JetsStartup = cms.EDProducer( "GetJetsFromHLTobject",
-    jets = cms.InputTag( "hltBLifetimeL25FilterStartup" )
+    jets = cms.InputTag( "hltBLifetimeL25FilterStartupU" )
 )
-hltBLifetimeRegionalPixelSeedGeneratorStartup = cms.EDProducer( "SeedGeneratorFromRegionHitsEDProducer",
+hltBLifetimeRegionalPixelSeedGeneratorStartupU = cms.EDProducer( "SeedGeneratorFromRegionHitsEDProducer",
     RegionFactoryPSet = cms.PSet( 
       ComponentName = cms.string( "TauRegionalPixelSeedGenerator" ),
       RegionPSet = cms.PSet( 
@@ -3974,7 +3974,7 @@ hltBLifetimeRegionalPixelSeedGeneratorStartup = cms.EDProducer( "SeedGeneratorFr
         originRadius = cms.double( 0.2 ),
         deltaEtaRegion = cms.double( 0.5 ),
         ptMin = cms.double( 1.0 ),
-        JetSrc = cms.InputTag( "hltBLifetimeL3JetsStartup" ),
+        JetSrc = cms.InputTag( "hltBLifetimeL3JetsStartupU" ),
         originZPos = cms.double( 0.0 ),
         vertexSrc = cms.InputTag( "hltPixelVertices" )
       )
@@ -3986,8 +3986,8 @@ hltBLifetimeRegionalPixelSeedGeneratorStartup = cms.EDProducer( "SeedGeneratorFr
     SeedComparitorPSet = cms.PSet(  ComponentName = cms.string( "none" ) ),
     TTRHBuilder = cms.string( "WithTrackAngle" )
 )
-hltBLifetimeRegionalCkfTrackCandidatesStartup = cms.EDProducer( "CkfTrackCandidateMaker",
-    SeedProducer = cms.string( "hltBLifetimeRegionalPixelSeedGeneratorStartup" ),
+hltBLifetimeRegionalCkfTrackCandidatesStartupU = cms.EDProducer( "CkfTrackCandidateMaker",
+    SeedProducer = cms.string( "hltBLifetimeRegionalPixelSeedGeneratorStartupU" ),
     SeedLabel = cms.string( "" ),
     TrajectoryBuilder = cms.string( "bJetRegionalTrajectoryBuilder" ),
     TrajectoryCleaner = cms.string( "TrajectoryCleanerBySharedHits" ),
@@ -4001,25 +4001,25 @@ hltBLifetimeRegionalCkfTrackCandidatesStartup = cms.EDProducer( "CkfTrackCandida
     ),
     cleanTrajectoryAfterInOut = cms.bool( False )
 )
-hltBLifetimeRegionalCtfWithMaterialTracksStartup = cms.EDProducer( "TrackProducer",
+hltBLifetimeRegionalCtfWithMaterialTracksStartupU = cms.EDProducer( "TrackProducer",
     TrajectoryInEvent = cms.bool( True ),
     useHitsSplitting = cms.bool( False ),
     clusterRemovalInfo = cms.InputTag( "" ),
     alias = cms.untracked.string( "ctfWithMaterialTracks" ),
     Fitter = cms.string( "FittingSmootherRK" ),
     Propagator = cms.string( "RungeKuttaTrackerPropagator" ),
-    src = cms.InputTag( "hltBLifetimeRegionalCkfTrackCandidatesStartup" ),
+    src = cms.InputTag( "hltBLifetimeRegionalCkfTrackCandidatesStartupU" ),
     beamSpot = cms.InputTag( "hltOfflineBeamSpot" ),
     TTRHBuilder = cms.string( "WithTrackAngle" ),
     AlgorithmName = cms.string( "undefAlgorithm" )
 )
-hltBLifetimeL3AssociatorStartup = cms.EDProducer( "JetTracksAssociatorAtVertex",
-    jets = cms.InputTag( "hltBLifetimeL3JetsStartup" ),
-    tracks = cms.InputTag( "hltBLifetimeRegionalCtfWithMaterialTracksStartup" ),
+hltBLifetimeL3AssociatorStartupU = cms.EDProducer( "JetTracksAssociatorAtVertex",
+    jets = cms.InputTag( "hltBLifetimeL3JetsStartupU" ),
+    tracks = cms.InputTag( "hltBLifetimeRegionalCtfWithMaterialTracksStartupU" ),
     coneSize = cms.double( 0.5 )
 )
-hltBLifetimeL3TagInfosStartup = cms.EDProducer( "TrackIPProducer",
-    jetTracks = cms.InputTag( "hltBLifetimeL3AssociatorStartup" ),
+hltBLifetimeL3TagInfosStartupU = cms.EDProducer( "TrackIPProducer",
+    jetTracks = cms.InputTag( "hltBLifetimeL3AssociatorStartupU" ),
     primaryVertex = cms.InputTag( "hltPixelVertices" ),
     computeProbabilities = cms.bool( False ),
     minimumNumberOfPixelHits = cms.int32( 2 ),
@@ -4031,12 +4031,12 @@ hltBLifetimeL3TagInfosStartup = cms.EDProducer( "TrackIPProducer",
     jetDirectionUsingTracks = cms.bool( False ),
     useTrackQuality = cms.bool( False )
 )
-hltBLifetimeL3BJetTagsStartup = cms.EDProducer( "JetTagProducer",
+hltBLifetimeL3BJetTagsStartupU = cms.EDProducer( "JetTagProducer",
     jetTagComputer = cms.string( "trackCounting3D2nd" ),
-    tagInfos = cms.VInputTag( 'hltBLifetimeL3TagInfosStartup' )
+    tagInfos = cms.VInputTag( 'hltBLifetimeL3TagInfosStartupU' )
 )
-hltBLifetimeL3FilterStartup = cms.EDFilter( "HLTJetTag",
-    JetTag = cms.InputTag( "hltBLifetimeL3BJetTagsStartup" ),
+hltBLifetimeL3FilterStartupU = cms.EDFilter( "HLTJetTag",
+    JetTag = cms.InputTag( "hltBLifetimeL3BJetTagsStartupU" ),
     MinTag = cms.double( 3.5 ),
     MaxTag = cms.double( 99999.0 ),
     MinJets = cms.int32( 1 ),
@@ -4058,13 +4058,13 @@ hltBJet10U = cms.EDFilter( "HLT1CaloBJet",
     MaxEta = cms.double( 3.0 ),
     MinN = cms.int32( 1 )
 )
-hltBSoftMuonL25Jets = cms.EDProducer( "EtMinCaloJetSelector",
-    src = cms.InputTag( "hltSelector4Jets" ),
+hltBSoftMuonL25JetsU = cms.EDProducer( "EtMinCaloJetSelector",
+    src = cms.InputTag( "hltSelector4JetsU" ),
     filter = cms.bool( False ),
     etMin = cms.double( 10.0 )
 )
-hltBSoftMuonL25TagInfos = cms.EDProducer( "SoftLepton",
-    jets = cms.InputTag( "hltBSoftMuonL25Jets" ),
+hltBSoftMuonL25TagInfosU = cms.EDProducer( "SoftLepton",
+    jets = cms.InputTag( "hltBSoftMuonL25JetsU" ),
     primaryVertex = cms.InputTag( "nominal" ),
     leptons = cms.InputTag( "hltL2Muons" ),
     refineJetAxis = cms.uint32( 0 ),
@@ -4072,19 +4072,19 @@ hltBSoftMuonL25TagInfos = cms.EDProducer( "SoftLepton",
     leptonChi2Cut = cms.double( 0.0 ),
     leptonQualityCut = cms.double( 0.0 )
 )
-hltBSoftMuonL25BJetTagsByDR = cms.EDProducer( "JetTagProducer",
+hltBSoftMuonL25BJetTagsUByDR = cms.EDProducer( "JetTagProducer",
     jetTagComputer = cms.string( "softLeptonByDistance" ),
-    tagInfos = cms.VInputTag( 'hltBSoftMuonL25TagInfos' )
+    tagInfos = cms.VInputTag( 'hltBSoftMuonL25TagInfosU' )
 )
-hltBSoftMuonL25FilterByDR = cms.EDFilter( "HLTJetTag",
-    JetTag = cms.InputTag( "hltBSoftMuonL25BJetTagsByDR" ),
+hltBSoftMuonL25FilterUByDR = cms.EDFilter( "HLTJetTag",
+    JetTag = cms.InputTag( "hltBSoftMuonL25BJetTagsUByDR" ),
     MinTag = cms.double( 0.5 ),
     MaxTag = cms.double( 99999.0 ),
     MinJets = cms.int32( 1 ),
     SaveTag = cms.bool( False )
 )
-hltBSoftMuonL3TagInfos = cms.EDProducer( "SoftLepton",
-    jets = cms.InputTag( "hltBSoftMuonL25Jets" ),
+hltBSoftMuonL3TagInfosU = cms.EDProducer( "SoftLepton",
+    jets = cms.InputTag( "hltBSoftMuonL25JetsU" ),
     primaryVertex = cms.InputTag( "nominal" ),
     leptons = cms.InputTag( "hltL3Muons" ),
     refineJetAxis = cms.uint32( 0 ),
@@ -4092,16 +4092,16 @@ hltBSoftMuonL3TagInfos = cms.EDProducer( "SoftLepton",
     leptonChi2Cut = cms.double( 0.0 ),
     leptonQualityCut = cms.double( 0.0 )
 )
-hltBSoftMuonL3BJetTagsByPt = cms.EDProducer( "JetTagProducer",
+hltBSoftMuonL3BJetTagsUByPt = cms.EDProducer( "JetTagProducer",
     jetTagComputer = cms.string( "softLeptonByPt" ),
-    tagInfos = cms.VInputTag( 'hltBSoftMuonL3TagInfos' )
+    tagInfos = cms.VInputTag( 'hltBSoftMuonL3TagInfosU' )
 )
-hltBSoftMuonL3BJetTagsByDR = cms.EDProducer( "JetTagProducer",
+hltBSoftMuonL3BJetTagsUByDR = cms.EDProducer( "JetTagProducer",
     jetTagComputer = cms.string( "softLeptonByDistance" ),
-    tagInfos = cms.VInputTag( 'hltBSoftMuonL3TagInfos' )
+    tagInfos = cms.VInputTag( 'hltBSoftMuonL3TagInfosU' )
 )
-hltBSoftMuonL3FilterByDR = cms.EDFilter( "HLTJetTag",
-    JetTag = cms.InputTag( "hltBSoftMuonL3BJetTagsByDR" ),
+hltBSoftMuonL3FilterUByDR = cms.EDFilter( "HLTJetTag",
+    JetTag = cms.InputTag( "hltBSoftMuonL3BJetTagsUByDR" ),
     MinTag = cms.double( 0.5 ),
     MaxTag = cms.double( 99999.0 ),
     MinJets = cms.int32( 1 ),
@@ -4863,10 +4863,10 @@ HLTCaloTausCreatorRegionalSequence = cms.Sequence( hltEcalPreshowerDigis + hltEc
 HLTL2TauJetsSequence = cms.Sequence( HLTCaloTausCreatorRegionalSequence + hltL2TauJets )
 HLTL2TauEcalIsolationSequence = cms.Sequence( hltL2TauNarrowConeIsolationProducer + hltL2TauRelaxingIsolationSelector )
 HLTRecopixelvertexingSequence = cms.Sequence( hltPixelTracks + hltPixelVertices )
-HLTBTagIPSequenceL25Startup = cms.Sequence( HLTDoLocalPixelSequence + HLTRecopixelvertexingSequence + hltSelector4Jets + hltBLifetimeL25JetsStartup + hltBLifetimeL25AssociatorStartup + hltBLifetimeL25TagInfosStartup + hltBLifetimeL25BJetTagsStartup )
-HLTBTagIPSequenceL3Startup = cms.Sequence( HLTDoLocalPixelSequence + HLTDoLocalStripSequence + hltBLifetimeL3JetsStartup + hltBLifetimeRegionalPixelSeedGeneratorStartup + hltBLifetimeRegionalCkfTrackCandidatesStartup + hltBLifetimeRegionalCtfWithMaterialTracksStartup + hltBLifetimeL3AssociatorStartup + hltBLifetimeL3TagInfosStartup + hltBLifetimeL3BJetTagsStartup )
-HLTBTagMuSequenceL25 = cms.Sequence( HLTL2muonrecoNocandSequence + hltSelector4Jets + hltBSoftMuonL25Jets + hltBSoftMuonL25TagInfos + hltBSoftMuonL25BJetTagsByDR )
-HLTBTagMuSequenceL3 = cms.Sequence( HLTL3muonrecoNocandSequence + hltBSoftMuonL3TagInfos + hltBSoftMuonL3BJetTagsByPt + hltBSoftMuonL3BJetTagsByDR )
+HLTBTagIPSequenceL25StartupU = cms.Sequence( HLTDoLocalPixelSequence + HLTRecopixelvertexingSequence + hltSelector4JetsU + hltBLifetimeL25JetsStartupU + hltBLifetimeL25AssociatorStartupU + hltBLifetimeL25TagInfosStartupU + hltBLifetimeL25BJetTagsStartupU )
+HLTBTagIPSequenceL3StartupU = cms.Sequence( HLTDoLocalPixelSequence + HLTDoLocalStripSequence + hltBLifetimeL3JetsStartup + hltBLifetimeRegionalPixelSeedGeneratorStartupU + hltBLifetimeRegionalCkfTrackCandidatesStartupU + hltBLifetimeRegionalCtfWithMaterialTracksStartupU + hltBLifetimeL3AssociatorStartupU + hltBLifetimeL3TagInfosStartupU + hltBLifetimeL3BJetTagsStartupU )
+HLTBTagMuSequenceL25U = cms.Sequence( HLTL2muonrecoNocandSequence + hltSelector4JetsU + hltBSoftMuonL25JetsU + hltBSoftMuonL25TagInfosU + hltBSoftMuonL25BJetTagsUByDR )
+HLTBTagMuSequenceL3U = cms.Sequence( HLTL3muonrecoNocandSequence + hltBSoftMuonL3TagInfosU + hltBSoftMuonL3BJetTagsUByPt + hltBSoftMuonL3BJetTagsUByDR )
 HLTPixelTrackingForMinBiasSequence = cms.Sequence( hltPixelTracksForMinBias )
 HLTHIRecoJetRegionalSequence = cms.Sequence( hltEcalPreshowerDigis + hltEcalRegionalJetsFEDs + hltEcalRegionalJetsDigis + hltEcalRegionalJetsWeightUncalibRecHit + hltEcalRegionalJetsRecHitTmp + hltEcalRegionalJetsRecHit + hltEcalPreshowerRecHit + HLTDoLocalHcalSequence + hltTowerMakerForJets + hltIterativeConePu5CaloJets )
 HLTDoHIEcalClusSequence = cms.Sequence( hltIslandBasicClustersHI + hltIslandSuperClustersHI + hltCorrectedIslandBarrelSuperClustersHI + hltCorrectedIslandEndcapSuperClustersHI + hltRecoHIEcalCandidate )
@@ -4918,8 +4918,8 @@ HLT_Photon30_L1R = cms.Path( HLTBeginSequence + hltL1sRelaxedSingleEgammaEt10 + 
 HLT_DoublePhoton10_L1R = cms.Path( HLTBeginSequence + hltL1sRelaxedDoubleEgammaEt5 + hltPreDoublePhoton10L1R + HLTDoublePhotonEt10L1NonIsoHLTNonIsoSequence + HLTEndSequence )
 HLT_SingleLooseIsoTau20 = cms.Path( HLTBeginSequence + hltL1sSingleLooseIsoTau20 + hltPreSingleLooseIsoTau20 + HLTL2TauJetsSequence + hltFilterL2EtCutSingleLooseIsoTau20 + HLTL2TauEcalIsolationSequence + hltL1HLTSingleLooseIsoTau20JetsMatch + hltFilterL2EcalIsolationSingleLooseIsoTau20 + HLTEndSequence )
 HLT_DoubleLooseIsoTau15 = cms.Path( HLTBeginSequence + hltL1sDoubleLooseIsoTau15 + hltPreDoubleLooseIsoTau15 + HLTL2TauJetsSequence + hltFilterL2EtCutDoubleLooseIsoTau15 + HLTL2TauEcalIsolationSequence + hltL1HLTDoubleLooseIsoTau15JetsMatch + hltFilterL2EcalIsolationDoubleLooseIsoTau15 + HLTEndSequence )
-HLT_BTagIP_Jet50U_ST = cms.Path( HLTBeginSequence + hltL1sBTagIPJet50UST + hltPreBTagIPJet50UST + HLTDoCaloSequence + HLTDoJetRecoSequence + hltBJet50U + HLTBTagIPSequenceL25Startup + hltBLifetimeL25FilterStartup + HLTBTagIPSequenceL3Startup + hltBLifetimeL3FilterStartup + HLTEndSequence )
-HLT_BTagMu_Jet10U_Calib = cms.Path( HLTBeginSequence + hltL1sBTagMuJet10U + hltPreBTagMuJet10U + HLTDoCaloSequence + HLTDoJetRecoSequence + hltBJet10U + HLTBTagMuSequenceL25 + hltBSoftMuonL25FilterByDR + HLTBTagMuSequenceL3 + hltBSoftMuonL3FilterByDR + HLTEndSequence )
+HLT_BTagIP_Jet50U_ST = cms.Path( HLTBeginSequence + hltL1sBTagIPJet50UST + hltPreBTagIPJet50UST + HLTDoCaloSequence + HLTDoJetRecoSequence + hltBJet50U + HLTBTagIPSequenceL25StartupU + hltBLifetimeL25FilterStartupU + HLTBTagIPSequenceL3StartupU + hltBLifetimeL3FilterStartupU + HLTEndSequence )
+HLT_BTagMu_Jet10U_Calib = cms.Path( HLTBeginSequence + hltL1sBTagMuJet10U + hltPreBTagMuJet10U + HLTDoCaloSequence + HLTDoJetRecoSequence + hltBJet10U + HLTBTagMuSequenceL25U + hltBSoftMuonL25FilterUByDR + HLTBTagMuSequenceL3U + hltBSoftMuonL3FilterUByDR + HLTEndSequence )
 HLT_L1Mu14_L1SingleEG10 = cms.Path( HLTBeginSequence + hltL1sL1Mu14SingleEG10 + hltPreL1Mu14SingleEG10 + HLTEndSequence )
 HLT_L1Mu14_L1SingleJet6U = cms.Path( HLTBeginSequence + hltL1sL1Mu14SingleJet6U + hltPreL1Mu14SingleJet6U + HLTEndSequence )
 HLT_L1Mu14_L1ETM30 = cms.Path( HLTBeginSequence + hltL1sL1Mu14ETM30 + hltPreL1Mu14ETM30 + HLTEndSequence )
