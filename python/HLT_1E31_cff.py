@@ -1,10 +1,10 @@
-# /dev/CMSSW_2_2_4_HLT4/1E31/V3 (CMSSW_2_2_4_HLT4)
+# /dev/CMSSW_2_2_4_HLT4/1E31/V4 (CMSSW_2_2_4_HLT4)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_2_2_4_HLT4/1E31/V3')
+  tableName = cms.string('/dev/CMSSW_2_2_4_HLT4/1E31/V4')
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
@@ -1054,7 +1054,7 @@ hltRapGap20 = cms.EDFilter( "HLTRapGapFilter",
 )
 hltL1sDiJetAve15U = cms.EDFilter( "HLTLevel1GTSeed",
     L1TechTriggerSeeding = cms.bool( False ),
-    L1SeedsLogicalExpression = cms.string( "L1_SingleJet6" ),
+    L1SeedsLogicalExpression = cms.string( "L1_SingleJet15" ),
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
     L1GtObjectMapTag = cms.InputTag( "hltL1GtObjectMap" ),
     L1CollectionsTag = cms.InputTag( "hltL1extraParticles" ),
@@ -1070,7 +1070,7 @@ hltDiJetAve15U = cms.EDFilter( "HLTDiJetAveFilter",
 )
 hltL1sDiJetAve30U = cms.EDFilter( "HLTLevel1GTSeed",
     L1TechTriggerSeeding = cms.bool( False ),
-    L1SeedsLogicalExpression = cms.string( "L1_SingleJet20" ),
+    L1SeedsLogicalExpression = cms.string( "L1_SingleJet30" ),
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
     L1GtObjectMapTag = cms.InputTag( "hltL1GtObjectMap" ),
     L1CollectionsTag = cms.InputTag( "hltL1extraParticles" ),

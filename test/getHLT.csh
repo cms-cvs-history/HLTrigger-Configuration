@@ -5,17 +5,17 @@ rehash
 
 if ($1 == 1E31) then
   # get thje configuration for 1E31
-  setenv HLTtable /dev/CMSSW_2_2_4_HLT4/1E31/V3
+  setenv HLTtable /dev/CMSSW_2_2_4_HLT4/1E31/V4
   setenv HLTid    1E31
   shift
 else if ($1 == 8E29) then
   # get the configuration for 8E29
-  setenv HLTtable /dev/CMSSW_2_2_4_HLT4/8E29/V8
+  setenv HLTtable /dev/CMSSW_2_2_4_HLT4/8E29/V9
   setenv HLTid    8E29
   shift
 else
   # get the default configuration (8E29)
-  setenv HLTtable /dev/CMSSW_2_2_4_HLT4/8E29/V8
+  setenv HLTtable /dev/CMSSW_2_2_4_HLT4/8E29/V9
   setenv HLTid    8E29
 endif
 
