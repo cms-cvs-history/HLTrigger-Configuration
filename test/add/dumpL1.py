@@ -4,7 +4,14 @@ import sys
 
 import FWCore.ParameterSet.Config as cms
 from FWCore.ParameterSet.SequenceTypes import *
-from table import process
+
+import table
+
+if 'process' in dir(table):
+  process = table.process
+else:
+  process = cms.Process('HLT')
+  process.load('table')
 
 for (name,path) in process.paths.iteritems():
   modules = []
