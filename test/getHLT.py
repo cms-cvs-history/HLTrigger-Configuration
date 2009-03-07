@@ -87,3 +87,26 @@ else:
     
         myGet = "edmConfigFromDB       --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + outName
         os.system(myGet)
+
+#
+# The following is stolen from cmsDriver's ConfigBuilder.py addCustomise
+#
+
+        # let python search for that package and do syntax checking at the same time
+        packageName = 'HLTrigger/Configuration/customHLT_Options.py'.replace(".py","").replace(".","/")
+        package = __import__(packageName)
+
+        # now ask the package for its definition and pick .py instead of .pyc
+        customiseFile = package.__file__.rstrip("c")
+
+        final_snippet='\n\n# Automatic addition of the customisation function\n'
+        for line in file(customiseFile,'r'):
+            if "import FWCore.ParameterSet.Config" in line:
+                continue
+            final_snippet += line
+
+        final_snippet += '\n\n# End of customisation function definition'
+        final_snippet += "\n\nprocess = customise(process)\n"
+
+        os.system("cat >> "+outName+" <<EOI\n"+final_snippet+"EOI\n")
+            
