@@ -10,7 +10,7 @@ echo "./cmsDriver.sh"
 
 echo " "
 echo "Creating  online configs from ConfDB"
-      /bin/rm OnLine_HLT_?E??_cfg.py
+      /bin/rm OnLine_HLT_?E??.py
 echo "./getHLT.sh"
       ./getHLT.sh 
 /bin/ln -s RelVal_DigiL1Raw.root RelVal_Pure_Raw.root

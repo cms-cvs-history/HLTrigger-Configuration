@@ -33,4 +33,4 @@ cmsDriver.py RelVal --step=L1,HLT               --conditions=FrontierConditions_
 
 echo " "
 echo "Creating Reco"
-cmsDriver.py RelVal --step=RAW2DIGI,RECO,POSTRECO,ALCA:MuAlCalIsolatedMu+RpcCalHLT,VALIDATION                                  --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:RelVal_DigiL1Raw.root             --fileout=RelVal_Reco.root         --number=100 --mc --no_exec --datatier 'RECO'                 --eventcontent=RECOSIM      --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=RelVal_Reco.py
+cmsDriver.py RelVal --step=RAW2DIGI,RECO        --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:RelVal_DigiL1Raw.root             --fileout=RelVal_Reco.root         --number=100 --mc --no_exec --datatier 'RECO'                 --eventcontent=RECOSIM      --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=RelVal_Reco.py
