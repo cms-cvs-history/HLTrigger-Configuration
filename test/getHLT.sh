@@ -6,14 +6,14 @@ hash -r
 if [ "$1" == "2E30" ]; then
   # get thje configuration for 2E30
   HLTid="2E30"
-  HLTtable="/dev/CMSSW_2_2_6/HLT/V2"
-  HLTcontent="/dev/CMSSW_2_2_6/HLT/V2"
+  HLTtable="/dev/CMSSW_2_2_6/HLT/V3"
+  HLTcontent="/dev/CMSSW_2_2_6/HLT/V3"
   shift
 else
   # get the default configuration (2E30)
   HLTid="2E30"
-  HLTtable="/dev/CMSSW_2_2_6/HLT/V2"
-  HLTcontent="/dev/CMSSW_2_2_6/HLT/V2"
+  HLTtable="/dev/CMSSW_2_2_6/HLT/V3"
+  HLTcontent="/dev/CMSSW_2_2_6/HLT/V3"
 fi
 
 if [ "$1" == "CVS" ]; then

@@ -1,10 +1,10 @@
-# /dev/CMSSW_2_2_4/HLT/V5 (CMSSW_2_2_4)
+# /dev/CMSSW_2_2_6/HLT/V3 (CMSSW_2_2_6_IB1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_2_2_4/HLT/V5')
+  tableName = cms.string('/dev/CMSSW_2_2_6/HLT/V3')
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
@@ -635,12 +635,12 @@ hltL1GtObjectMap = cms.EDProducer( "L1GlobalTrigger",
     GmtInputTag = cms.InputTag( "hltGtDigis" ),
     GctInputTag = cms.InputTag( "hltGctDigis" ),
     CastorInputTag = cms.InputTag( "castorL1Digis" ),
-    TechnicalTriggersInputTag = cms.InputTag( "techTrigDigis" ),
     ProduceL1GtDaqRecord = cms.bool( False ),
     ProduceL1GtEvmRecord = cms.bool( False ),
     ProduceL1GtObjectMapRecord = cms.bool( True ),
     WritePsbL1GtDaqRecord = cms.bool( False ),
     ReadTechnicalTriggerRecords = cms.bool( True ),
+    TechnicalTriggersInputTags = cms.VInputTag( 'simBscDigis' ),
     EmulateBxInEvent = cms.int32( 1 ),
     BstLengthBytes = cms.int32( -1 )
 )
@@ -7309,11 +7309,11 @@ hlt1METSingleTau = cms.EDFilter( "HLT1CaloMET",
     MinN = cms.int32( 1 )
 )
 hltL2SingleTauJets = cms.EDProducer( "L2TauJetsProvider",
+    JetSrc = cms.VInputTag( 'hltIcone5Tau1','hltIcone5Tau2','hltIcone5Tau3','hltIcone5Tau4' ),
     L1ParticlesTau = cms.InputTag( 'hltL1extraParticles','Tau' ),
     L1ParticlesJet = cms.InputTag( 'hltL1extraParticles','Central' ),
     L1TauTrigger = cms.InputTag( "hltL1sSingleTau" ),
-    EtMin = cms.double( 15.0 ),
-    JetSrc = cms.VInputTag( 'hltIcone5Tau1','hltIcone5Tau2','hltIcone5Tau3','hltIcone5Tau4' )
+    EtMin = cms.double( 15.0 )
 )
 hltL2SingleTauIsolationProducer = cms.EDProducer( "L2TauIsolationProducer",
     L2TauJetCollection = cms.InputTag( "hltL2SingleTauJets" ),
@@ -7499,11 +7499,11 @@ hlt1METSingleTauMET = cms.EDFilter( "HLT1CaloMET",
     MinN = cms.int32( 1 )
 )
 hltL2SingleTauMETJets = cms.EDProducer( "L2TauJetsProvider",
+    JetSrc = cms.VInputTag( 'hltIcone5Tau1','hltIcone5Tau2','hltIcone5Tau3','hltIcone5Tau4' ),
     L1ParticlesTau = cms.InputTag( 'hltL1extraParticles','Tau' ),
     L1ParticlesJet = cms.InputTag( 'hltL1extraParticles','Central' ),
     L1TauTrigger = cms.InputTag( "hltL1sSingleTauMET" ),
-    EtMin = cms.double( 15.0 ),
-    JetSrc = cms.VInputTag( 'hltIcone5Tau1','hltIcone5Tau2','hltIcone5Tau3','hltIcone5Tau4' )
+    EtMin = cms.double( 15.0 )
 )
 hltL2SingleTauMETIsolationProducer = cms.EDProducer( "L2TauIsolationProducer",
     L2TauJetCollection = cms.InputTag( "hltL2SingleTauMETJets" ),
@@ -7895,11 +7895,11 @@ hltIcone5Tau4Regional = cms.EDProducer( "IterativeConeJetProducer",
     alias = cms.untracked.string( "IC5CaloJet" )
 )
 hltL2DoubleTauJets = cms.EDProducer( "L2TauJetsProvider",
+    JetSrc = cms.VInputTag( 'hltIcone5Tau1Regional','hltIcone5Tau2Regional','hltIcone5Tau3Regional','hltIcone5Tau4Regional' ),
     L1ParticlesTau = cms.InputTag( 'hltL1extraParticles','Tau' ),
     L1ParticlesJet = cms.InputTag( 'hltL1extraParticles','Central' ),
     L1TauTrigger = cms.InputTag( "hltL1sDoubleTau" ),
-    EtMin = cms.double( 15.0 ),
-    JetSrc = cms.VInputTag( 'hltIcone5Tau1Regional','hltIcone5Tau2Regional','hltIcone5Tau3Regional','hltIcone5Tau4Regional' )
+    EtMin = cms.double( 15.0 )
 )
 hltL2DoubleTauIsolationProducer = cms.EDProducer( "L2TauIsolationProducer",
     L2TauJetCollection = cms.InputTag( "hltL2DoubleTauJets" ),
@@ -8003,11 +8003,11 @@ hltL1sDoubleTauRelaxed = cms.EDFilter( "HLTLevel1GTSeed",
 )
 hltPreDoubleLooseIsoTau = cms.EDFilter( "HLTPrescaler" )
 hltL2DoubleTauJetsRelaxed = cms.EDProducer( "L2TauJetsProvider",
+    JetSrc = cms.VInputTag( 'hltIcone5Tau1Regional','hltIcone5Tau2Regional','hltIcone5Tau3Regional','hltIcone5Tau4Regional' ),
     L1ParticlesTau = cms.InputTag( 'hltL1extraParticles','Tau' ),
     L1ParticlesJet = cms.InputTag( 'hltL1extraParticles','Central' ),
     L1TauTrigger = cms.InputTag( "hltL1sDoubleTauRelaxed" ),
-    EtMin = cms.double( 15.0 ),
-    JetSrc = cms.VInputTag( 'hltIcone5Tau1Regional','hltIcone5Tau2Regional','hltIcone5Tau3Regional','hltIcone5Tau4Regional' )
+    EtMin = cms.double( 15.0 )
 )
 hltL2DoubleTauIsolationProducerRelaxed = cms.EDProducer( "L2TauIsolationProducer",
     L2TauJetCollection = cms.InputTag( "hltL2DoubleTauJetsRelaxed" ),
@@ -8345,11 +8345,11 @@ hltElectronTrackIsolFilterHOneOEMinusOneOPFilterElectronTau = cms.EDFilter( "HLT
     L1NonIsoCand = cms.InputTag( "hltPixelMatchElectronsL1NonIso" )
 )
 hltL2TauJetsProviderElectronTau = cms.EDProducer( "L2TauJetsProvider",
+    JetSrc = cms.VInputTag( 'hltIcone5Tau1Regional','hltIcone5Tau2Regional','hltIcone5Tau3Regional','hltIcone5Tau4Regional' ),
     L1ParticlesTau = cms.InputTag( 'hltL1extraParticles','Tau' ),
     L1ParticlesJet = cms.InputTag( 'hltL1extraParticles','Central' ),
     L1TauTrigger = cms.InputTag( "hltL1sElectronTau" ),
-    EtMin = cms.double( 15.0 ),
-    JetSrc = cms.VInputTag( 'hltIcone5Tau1Regional','hltIcone5Tau2Regional','hltIcone5Tau3Regional','hltIcone5Tau4Regional' )
+    EtMin = cms.double( 15.0 )
 )
 hltL2ElectronTauIsolationProducer = cms.EDProducer( "L2TauIsolationProducer",
     L2TauJetCollection = cms.InputTag( "hltL2TauJetsProviderElectronTau" ),
@@ -8754,11 +8754,11 @@ hltMuonTauIsoL3IsoFiltered = cms.EDFilter( "HLTMuonIsoFilter",
     SaveTag = cms.untracked.bool( True )
 )
 hltL2TauJetsProviderMuonTau = cms.EDProducer( "L2TauJetsProvider",
+    JetSrc = cms.VInputTag( 'hltIcone5Tau1Regional','hltIcone5Tau2Regional','hltIcone5Tau3Regional','hltIcone5Tau4Regional' ),
     L1ParticlesTau = cms.InputTag( 'hltL1extraParticles','Tau' ),
     L1ParticlesJet = cms.InputTag( 'hltL1extraParticles','Central' ),
     L1TauTrigger = cms.InputTag( "hltL1sMuonTau" ),
-    EtMin = cms.double( 15.0 ),
-    JetSrc = cms.VInputTag( 'hltIcone5Tau1Regional','hltIcone5Tau2Regional','hltIcone5Tau3Regional','hltIcone5Tau4Regional' )
+    EtMin = cms.double( 15.0 )
 )
 hltL2MuonTauIsolationProducer = cms.EDProducer( "L2TauIsolationProducer",
     L2TauJetCollection = cms.InputTag( "hltL2TauJetsProviderMuonTau" ),
