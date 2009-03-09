@@ -1,25 +1,25 @@
 #! /bin/bash
 
-cmsenv
+eval `scramv1 runtime -sh`
 hash -r
 
 if [ "$1" == "1E31" ]; then
   # get thje configuration for 1E31
   HLTid="1E31"
-  HLTtable="/dev/CMSSW_2_2_4_HLT4/1E31/V9"
-  HLTcontent="/dev/CMSSW_2_2_4_HLT4/merged/V4"
+  HLTtable="/dev/CMSSW_2_2_6_HLT/1E31/V1"
+  HLTcontent="/dev/CMSSW_2_2_6_HLT/merged/V1"
   shift
 elif [ "$1" == "8E29" ]; then
   # get the configuration for 8E29
   HLTid="8E29"
-  HLTtable="/dev/CMSSW_2_2_4_HLT4/8E29/V11"
-  HLTcontent="/dev/CMSSW_2_2_4_HLT4/merged/V4"
+  HLTtable="/dev/CMSSW_2_2_6_HLT/8E29/V1"
+  HLTcontent="/dev/CMSSW_2_2_6_HLT/merged/V1"
   shift
 else
   # get the default configuration (8E29)
   HLTid="8E29"
-  HLTtable="/dev/CMSSW_2_2_4_HLT4/8E29/V11"
-  HLTcontent="/dev/CMSSW_2_2_4_HLT4/merged/V4"
+  HLTtable="/dev/CMSSW_2_2_6_HLT/8E29/V11"
+  HLTcontent="/dev/CMSSW_2_2_6_HLT/merged/V1"
 fi
 
 if [ "$1" == "CVS" ]; then
