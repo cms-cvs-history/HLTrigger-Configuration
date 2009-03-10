@@ -27,7 +27,7 @@ process.load('Configuration.StandardSequences.MagneticField_cff')
 
 # Frontier conditions and GlobalTag
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
-process.GlobalTag.globaltag = 'STARTUP_V8::All'
+process.GlobalTag.globaltag = 'STARTUP_V9::All'
 
 # L1 emulator
 # run trigger primitives generation on unpacked digis
