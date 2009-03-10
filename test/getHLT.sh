@@ -27,9 +27,9 @@ function getConfigForOnline() {
 eval `scramv1 runtime -sh`
 hash -r
 
-HLTtable8E29="/dev/CMSSW_2_2_6_HLT/8E29/V3"
-HLTtable1E31="/dev/CMSSW_2_2_6_HLT/1E31/V3"
-HLTcontent="/dev/CMSSW_2_2_6_HLT/merged/V3"
+HLTtable8E29="/dev/CMSSW_2_2_6_HLT/8E29/V5"
+HLTtable1E31="/dev/CMSSW_2_2_6_HLT/1E31/V5"
+HLTcontent="/dev/CMSSW_2_2_6_HLT/merged/V4"
 
 if [ "$1" == "CVS" ]; then
   # for things in CMSSW CVS
