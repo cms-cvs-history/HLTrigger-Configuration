@@ -1,10 +1,10 @@
-# /dev/CMSSW_2_2_6_HLT/1E31/V1 (CMSSW_2_2_6_HLT1)
+# /dev/CMSSW_2_2_6_HLT/1E31/V3 (CMSSW_2_2_6_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_2_2_6_HLT/1E31/V1')
+  tableName = cms.string('/dev/CMSSW_2_2_6_HLT/1E31/V3')
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
