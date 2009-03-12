@@ -9,8 +9,8 @@ echo " Production chain (three jobs: digi+L1emu+digi2raw, HLT, reco):"
 echo " "
 echo "/bin/rm OnLine_HLTFromRaw_2E30.cfg OnLine_HLTFromRaw_2E30_cfg.py"
       /bin/rm OnLine_HLTFromRaw_2E30.cfg OnLine_HLTFromRaw_2E30_cfg.py
-echo "./getHLT.csh"
-      ./getHLT.csh 
+echo "./getHLT.sh"
+      ./getHLT.sh 
 
 echo " "
 echo "/bin/rm RelVal_Digi_Raw.root RelVal_Pure_Raw.root RelVal_Digi_Digi2Raw.log"
