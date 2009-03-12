@@ -20,12 +20,20 @@ echo "Creating DigiL1RawHLT"
 cmsDriver.py RelVal --step=DIGI,L1,DIGI2RAW,HLT --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:/scratch/cms/TTbarGenSim31X.root  --fileout=RelVal_DigiL1RawHLT.root --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=RelVal_DigiL1RawHLT.py
 
 echo " "
-echo "Creating HLT"
-cmsDriver.py RelVal --step=HLT                  --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:RelVal_DigiL1Raw.root             --fileout=RelVal_HLT.root          --number=100 --mc --no_exec --datatier 'RAW-HLT'              --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=RelVal_HLT.py
+echo "Creating HLT:2E30"
+cmsDriver.py RelVal --step=HLT                  --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:RelVal_DigiL1Raw.root             --fileout=RelVal_HLT_2E30.root     --number=100 --mc --no_exec --datatier 'RAW-HLT'              --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=RelVal_HLT_2E30.py
+
+echo " "
+echo "Creating HLT:8E29"
+cmsDriver.py RelVal --step=HLT                  --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:RelVal_DigiL1Raw.root             --fileout=RelVal_HLT_8E29.root     --number=100 --mc --no_exec --datatier 'RAW-HLT'              --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=RelVal_HLT_8E29.py
+
+echo " "
+echo "Creating HLT:1E31"
+cmsDriver.py RelVal --step=HLT                  --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:RelVal_DigiL1Raw.root             --fileout=RelVal_HLT_1E31.root     --number=100 --mc --no_exec --datatier 'RAW-HLT'              --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=RelVal_HLT_1E31.py
 
 echo " "
 echo "Creating HLT2"
-cmsDriver.py RelVal --step=HLT                  --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:RelVal_HLT.root                   --fileout=RelVal_HLT2.root         --number=100 --mc --no_exec --datatier 'RAW-HLT'              --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_ProcessName.py --python_filename=RelVal_HLT2.py
+cmsDriver.py RelVal --step=HLT                  --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:RelVal_HLT_2E30.root              --fileout=RelVal_HLT2.root         --number=100 --mc --no_exec --datatier 'RAW-HLT'              --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_ProcessName.py --python_filename=RelVal_HLT2.py
 
 echo " "
 echo "Creating L1HLT2"
