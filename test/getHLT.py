@@ -93,7 +93,7 @@ else:
 #
 
         # let python search for that package and do syntax checking at the same time
-        packageName = 'HLTrigger/Configuration/customHLT_Options.py'.replace(".py","").replace(".","/")
+        packageName = 'HLTrigger/Configuration/customL1THLT_Options.py'.replace(".py","").replace(".","/")
         package = __import__(packageName)
 
         # now ask the package for its definition and pick .py instead of .pyc
