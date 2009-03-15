@@ -13,14 +13,18 @@ echo "Creating  online configs from ConfDB"
       /bin/rm OnLine_HLT_?E??.py
 echo "./getHLT.sh"
       ./getHLT.sh 
-/bin/ln -s RelVal_DigiL1Raw.root RelVal_Pure_Raw.root
 
+/bin/ln -s RelVal_DigiL1Raw_2E30.root RelVal_Pure_Raw.root
 
-foreach task ( RelVal_DigiL1Raw RelVal_HLT_2E30 OnLine_HLT_2E30 RelVal_HLT_8E29 OnLine_HLT_8E29 RelVal_HLT_1E31 OnLine_HLT_1E31 RelVal_DigiL1RawHLT RelVal_HLT2 RelVal_L1HLT2 RelVal_Reco )
+foreach lumi ( 2E30 8E29 1E31 )
+# foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_HLT RelVal_DigiL1RawHLT RelVal_HLT2 RelVal_L1HLT2 RelVal_Reco )
+  foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_HLT )
     echo " "
+    set name = ${task}_${lumi}
     foreach ext (log root)
-	/bin/rm $task.$ext
+	/bin/rm $name.$ext
     end
-    echo "cmsRun $task.py >& $task.log"
-          cmsRun $task.py >& $task.log
+    echo "cmsRun $name.py >& $name.log"
+          cmsRun $name.py >& $name.log
+  end
 end

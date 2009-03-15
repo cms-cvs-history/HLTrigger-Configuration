@@ -4,42 +4,53 @@ cmsenv
 
 echo " "
 echo "Creating TTbarGenSim"
-cmsDriver.py TTbar_Tauola.cfi --step=GEN:ProductionFilterSequence,SIM                      --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --fileout=TTbarGenSim.root --number=100 --mc --no_exec --datatier 'GEN-SIM'              --eventcontent=FEVTSIM      --customise=HLTrigger/Configuration/customHLT_Options.py --python_filename=TTbarGenSim.py
+cmsDriver.py TTbar_Tauola.cfi --step=GEN,SIM                      --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --fileout=TTbarGenSim.root --number=100 --mc --no_exec --datatier 'GEN-SIM'              --eventcontent=FEVTSIM      --customise=HLTrigger/Configuration/customHLT_Options.py --python_filename=TTbarGenSim.py
 
-echo " "
-echo "Creating TTbarGenHLT"
-cmsDriver.py TTbar_Tauola.cfi --step=GEN:ProductionFilterSequence,SIM,DIGI,L1,DIGI2RAW,HLT --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --fileout=TTbarGenHLT.root --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_Options.py --python_filename=TTbarGenHLT.py
+foreach lumi (2E30 8E29 1E31) 
+  set XL1T = L1
+  set XL1M = L1MENU
+  set XHLT = HLT
+  if ( $lumi == 2E30 ) then
+    set XL1T = L1:L1Menu_2008MC_2E30:Unprescaled
+    set XL1M = L1MENU:L1Menu_2008MC_2E30:Unprescaled
+    set XHLT = HLT:$lumi
+  else if ( $lumi == 8E29 ) then
+    set XL1T = L1:L1Menu_Commissioning2009_v0:Unprescaled
+    set XL1M = L1MENU:L1Menu_Commissioning2009_v0:Unprescaled
+    set XHLT = HLT:$lumi
+  else if ( $lumi == 1E31 ) then
+    set XL1T = L1:L1Menu_MC2009_v0:Unprescaled
+    set XL1M = L1MENU:L1Menu_MC2009_v0:Unprescaled
+    set XHLT = HLT:$lumi
+  endif
 
-
-echo " "
-echo "Creating DigiL1Raw"
-cmsDriver.py RelVal --step=DIGI,L1,DIGI2RAW     --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:/scratch/cms/TTbarGenSim31X.root  --fileout=RelVal_DigiL1Raw.root    --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW'     --eventcontent=RAW          --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=RelVal_DigiL1Raw.py
-
-echo " "
-echo "Creating DigiL1RawHLT"
-cmsDriver.py RelVal --step=DIGI,L1,DIGI2RAW,HLT --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:/scratch/cms/TTbarGenSim31X.root  --fileout=RelVal_DigiL1RawHLT.root --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=RelVal_DigiL1RawHLT.py
-
-echo " "
-echo "Creating HLT:2E30"
-cmsDriver.py RelVal --step=HLT                  --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:RelVal_DigiL1Raw.root             --fileout=RelVal_HLT_2E30.root     --number=100 --mc --no_exec --datatier 'RAW-HLT'              --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=RelVal_HLT_2E30.py
-
-echo " "
-echo "Creating HLT:8E29"
-cmsDriver.py RelVal --step=HLT                  --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:RelVal_DigiL1Raw.root             --fileout=RelVal_HLT_8E29.root     --number=100 --mc --no_exec --datatier 'RAW-HLT'              --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=RelVal_HLT_8E29.py
-
-echo " "
-echo "Creating HLT:1E31"
-cmsDriver.py RelVal --step=HLT                  --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:RelVal_DigiL1Raw.root             --fileout=RelVal_HLT_1E31.root     --number=100 --mc --no_exec --datatier 'RAW-HLT'              --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=RelVal_HLT_1E31.py
-
-echo " "
-echo "Creating HLT2"
-cmsDriver.py RelVal --step=HLT                  --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:RelVal_HLT_2E30.root              --fileout=RelVal_HLT2.root         --number=100 --mc --no_exec --datatier 'RAW-HLT'              --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_ProcessName.py --python_filename=RelVal_HLT2.py
-
-echo " "
-echo "Creating L1HLT2"
-cmsDriver.py RelVal --step=L1,HLT               --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:RelVal_DigiL1RawHLT.root          --fileout=RelVal_L1HLT2.root       --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_RerunL1HLT.py  --python_filename=RelVal_L1HLT2.py
+  echo " "
+  echo "Creating TTbarGenHLT $lumi"
+cmsDriver.py TTbar_Tauola.cfi --step=GEN,SIM,DIGI,$XL1T,DIGI2RAW,$XHLT --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All                               --fileout=TTbarGenHLT_$lumi.root         --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=TTbarGenHLT_$lumi.py
 
 
-echo " "
-echo "Creating Reco"
-cmsDriver.py RelVal --step=RAW2DIGI,RECO        --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:RelVal_DigiL1Raw.root             --fileout=RelVal_Reco.root         --number=100 --mc --no_exec --datatier 'RECO'                 --eventcontent=RECOSIM      --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=RelVal_Reco.py
+  echo " "
+  echo "Creating DigiL1Raw $lumi"
+cmsDriver.py RelVal --step=DIGI,$XL1T,DIGI2RAW       --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:/scratch/cms/TTbarGenSim31X.root  --fileout=RelVal_DigiL1Raw_$lumi.root    --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW'     --eventcontent=RAW          --customise=HLTrigger/Configuration/customL1T_Options.py     --python_filename=RelVal_DigiL1Raw_$lumi.py
+
+  echo " "
+  echo "Creating DigiL1RawHLT $lumi"
+cmsDriver.py RelVal --step=DIGI,$XL1T,DIGI2RAW,$XHLT --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:/scratch/cms/TTbarGenSim31X.root  --fileout=RelVal_DigiL1RawHLT_$lumi.root --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=RelVal_DigiL1RawHLT_$lumi.py
+
+  echo " "
+  echo "Creating HLT $lumi"
+cmsDriver.py RelVal --step=$XL1M,$XHLT               --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:RelVal_DigiL1Raw_$lumi.root       --fileout=RelVal_HLT_$lumi.root          --number=100 --mc --no_exec --datatier 'RAW-HLT'              --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=RelVal_HLT_$lumi.py
+
+  echo " "
+  echo "Creating HLT2 (re-running HLT) $lumi"
+cmsDriver.py RelVal --step=$XL1M,$XHLT               --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:RelVal_HLT_$lumi.root             --fileout=RelVal_HLT2_$lumi.root         --number=100 --mc --no_exec --datatier 'RAW-HLT'              --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_ProcessName.py --python_filename=RelVal_HLT2_$lumi.py
+
+  echo " "
+  echo "Creating L1HLT2 (re-running L1 and HLT - buggy!) $lumi"
+cmsDriver.py RelVal --step=$XL1T,$XHLT               --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:RelVal_DigiL1RawHLT_$lumi.root    --fileout=RelVal_L1HLT2_$lumi.root       --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_RerunL1HLT.py  --python_filename=RelVal_L1HLT2_$lumi.py
+
+  echo " "
+  echo "Creating Reco $lumi"
+cmsDriver.py RelVal --step=RAW2DIGI,RECO             --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --filein=file:RelVal_DigiL1Raw_$lumi.root        --fileout=RelVal_Reco_$lumi.root        --number=100 --mc --no_exec --datatier 'RECO'                 --eventcontent=RECOSIM      --customise=HLTrigger/Configuration/customHLT_Options.py     --python_filename=RelVal_Reco_$lumi.py
+
+end
