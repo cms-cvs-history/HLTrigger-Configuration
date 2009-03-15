@@ -89,6 +89,23 @@ else:
         os.system(myGet)
 
 #
+# The following is stolen from cmsDriver's ConfigBuilder.py prepare_L1
+#
+        if sys.argv[2]=="2E30":
+            l1Menu = "L1Menu_2008MC_2E30:Unprescaled"
+        elif sys.argv[2]=="8E29":
+            l1Menu = "L1Menu_Commissioning2009_v0:Unprescaled"
+        elif sys.argv[2]=="1E31":
+            l1Menu = "L1Menu_MC2009_v0:Unprescaled"
+        else:
+            l1Menu = 'L1'
+
+        # let the L1 package decide for the scenarios available
+	from L1Trigger.Configuration.ConfigBuilder import getConfigsForScenario
+	listOfImports = getConfigsForScenario(l1Menu)
+	for line in listOfImports:
+            os.system("cat >> "+outName+" <<EOI\nprocess.load('"+line+"')\nEOI\n")
+#
 # The following is stolen from cmsDriver's ConfigBuilder.py addCustomise
 #
 

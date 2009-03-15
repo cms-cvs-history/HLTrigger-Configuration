@@ -6,7 +6,7 @@ rehash
 echo " "
 echo "Creating offline configs with cmsDriver"
 echo "./cmsDriver.sh"
-      ./cmsDriver.sh
+#     ./cmsDriver.sh
 
 echo " "
 echo "Creating  online configs from ConfDB"
@@ -18,7 +18,8 @@ echo "./getHLT.sh"
 
 foreach lumi ( 2E30 8E29 1E31 )
 # foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_HLT RelVal_DigiL1RawHLT RelVal_HLT2 RelVal_L1HLT2 RelVal_Reco )
-  foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_HLT )
+# foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_HLT )
+  foreach task ( OnLine_HLT )
     echo " "
     set name = ${task}_${lumi}
     foreach ext (log root)
