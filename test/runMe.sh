@@ -6,7 +6,7 @@ rehash
 echo " "
 echo "Creating offline configs with cmsDriver"
 echo "./cmsDriver.sh"
-#     ./cmsDriver.sh
+      ./cmsDriver.sh
 
 echo " "
 echo "Creating  online configs from ConfDB"
