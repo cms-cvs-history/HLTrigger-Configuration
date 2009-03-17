@@ -1,5 +1,6 @@
 #/bin/tcsh
 
+cmsenv
 
 echo " "
 echo "Creating TTbarGenSim"
