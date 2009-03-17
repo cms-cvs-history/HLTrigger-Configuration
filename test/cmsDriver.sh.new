@@ -2,6 +2,8 @@
 
 cmsenv
 
+rehash
+
 echo " "
 echo "Creating TTbarGenSim"
 cmsDriver.py TTbar_Tauola.cfi --step=GEN,SIM                      --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --fileout=TTbarGenSim.root --number=100 --mc --no_exec --datatier 'GEN-SIM'              --eventcontent=FEVTSIM      --customise=HLTrigger/Configuration/custom_Options.py --python_filename=TTbarGenSim.py
