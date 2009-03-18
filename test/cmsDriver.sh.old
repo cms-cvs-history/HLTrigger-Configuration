@@ -8,7 +8,7 @@ echo " "
 echo "Creating TTbarGenSim"
 cmsDriver.py TTbar_Tauola.cfi --step=GEN,SIM                      --conditions=FrontierConditions_GlobalTag,STARTUP_30X::All --fileout=TTbarGenSim.root --number=100 --mc --no_exec --datatier 'GEN-SIM'              --eventcontent=FEVTSIM      --customise=HLTrigger/Configuration/custom_Options.py --python_filename=TTbarGenSim.py
 
-foreach lumi (2E30 8E29 1E31) 
+foreach lumi ( 8E29 1E31 ) 
   if ( $lumi == 2E30 ) then
     set XL1T = L1:L1Menu_2008MC_2E30:Unprescaled
     set XHLT = HLT:$lumi
