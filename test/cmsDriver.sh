@@ -41,11 +41,11 @@ cmsDriver.py RelVal --step=$XL1T,$XHLT               --conditions=FrontierCondit
 
   echo " "
   echo "Creating HLT2 (re-running HLT) $lumi"
-cmsDriver.py RelVal --step=$XL1T,$XHLT               --conditions=FrontierConditions_GlobalTag,IDEAL_30X::All --filein=file:RelVal_HLT_$lumi.root             --fileout=RelVal_HLT2_$lumi.root         --number=100 --mc --no_exec --datatier 'RAW-HLT'              --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_Options.py      --python_filename=RelVal_HLT2_$lumi.py         --processName=HLT$lumi
+cmsDriver.py RelVal --step=$XL1T,$XHLT               --conditions=FrontierConditions_GlobalTag,IDEAL_30X::All --filein=file:RelVal_HLT_$lumi.root             --fileout=RelVal_HLT2_$lumi.root         --number=100 --mc --no_exec --datatier 'RAW-HLT'              --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customHLT_Options.py      --python_filename=RelVal_HLT2_$lumi.py         --processName=HLT2$lumi
 
   echo " "
   echo "Creating L1HLT2 (re-running L1 and HLT - buggy!) $lumi"
-cmsDriver.py RelVal --step=$XL1T,$XHLT               --conditions=FrontierConditions_GlobalTag,IDEAL_30X::All --filein=file:RelVal_DigiL1RawHLT_$lumi.root    --fileout=RelVal_L1HLT2_$lumi.root       --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customL1THLT2_Options.py  --python_filename=RelVal_L1HLT2_$lumi.py       --processName=HLT$lumi
+cmsDriver.py RelVal --step=$XL1T,$XHLT               --conditions=FrontierConditions_GlobalTag,IDEAL_30X::All --filein=file:RelVal_DigiL1RawHLT_$lumi.root    --fileout=RelVal_L1HLT2_$lumi.root       --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customL1THLT2_Options.py  --python_filename=RelVal_L1HLT2_$lumi.py       --processName=HLT2$lumi
 
   echo " "
   echo "Creating Reco $lumi"
