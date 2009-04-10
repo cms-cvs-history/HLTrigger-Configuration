@@ -88,8 +88,9 @@ else:
         myGet = "edmConfigFromDB       --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + outName
         os.system(myGet)
 #
-# Overwrite PoolSource
+# Overwrite ProcessName and PoolSource
 #
+        os.system("cat >> "+outName+" <<EOI\nprocess.setName_('HLT"+sys.argv[2]+"')\nEOI\n")
         os.system("cat >> "+outName+" <<EOI\nprocess.source.fileNames = cms.untracked.vstring('file:RelVal_DigiL1Raw_"+sys.argv[2]+".root')\nEOI\n")
 #
 # The following is stolen from cmsDriver's ConfigBuilder.py prepare_L1
