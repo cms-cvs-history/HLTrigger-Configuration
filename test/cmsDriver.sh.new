@@ -13,10 +13,10 @@ foreach lumi ( 8E29 1E31 )
     set XL1T = L1:L1Menu_2008MC_2E30:Unprescaled
     set XHLT = HLT:$lumi
   else if ( $lumi == 8E29 ) then
-    set XL1T = L1:L1Menu_Commissioning2009_v0:Unprescaled
+    set XL1T = L1:L1Menu_Commissioning2009_v1:Unprescaled
     set XHLT = HLT:$lumi
   else if ( $lumi == 1E31 ) then
-    set XL1T = L1:L1Menu_MC2009_v0:Unprescaled
+    set XL1T = L1:L1Menu_MC2009_v1:Unprescaled
     set XHLT = HLT:$lumi
   else
     set XL1T = L1

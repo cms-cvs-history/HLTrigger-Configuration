@@ -98,9 +98,9 @@ else:
         if sys.argv[2]=="2E30":
             l1Menu = "L1Menu_2008MC_2E30:Unprescaled"
         elif sys.argv[2]=="8E29":
-            l1Menu = "L1Menu_Commissioning2009_v0:Unprescaled"
+            l1Menu = "L1Menu_Commissioning2009_v1:Unprescaled"
         elif sys.argv[2]=="1E31":
-            l1Menu = "L1Menu_MC2009_v0:Unprescaled"
+            l1Menu = "L1Menu_MC2009_v1:Unprescaled"
         else:
             l1Menu = 'L1'
 
