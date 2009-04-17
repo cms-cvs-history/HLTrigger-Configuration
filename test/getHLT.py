@@ -87,17 +87,27 @@ else:
     
         myGet = "edmConfigFromDB       --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + outName
         os.system(myGet)
+
 #
 # Overwrite ProcessName and PoolSource
 #
         os.system("cat >> "+outName+" <<EOI\nprocess.setName_('HLT"+sys.argv[2]+"')\nEOI\n")
         os.system("cat >> "+outName+" <<EOI\nprocess.source.fileNames = cms.untracked.vstring('file:RelVal_DigiL1Raw_"+sys.argv[2]+".root')\nEOI\n")
+
+#
+# Overwrite GlobalTag
+#
+        if sys.argv[2]=="8E29":
+          os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'STARTUP_31X_A::All'\nEOI\n")
+        elif sys.argv[2]=="1E31":
+          os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'IDEAL_31X::All'\nEOI\n")
+        else:
+          os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'IDEAL_31X::All'\nEOI\n")
+
 #
 # The following is stolen from cmsDriver's ConfigBuilder.py prepare_L1
 #
-        if sys.argv[2]=="2E30":
-            l1Menu = "L1Menu_2008MC_2E30:Unprescaled"
-        elif sys.argv[2]=="8E29":
+        if sys.argv[2]=="8E29":
             l1Menu = "L1Menu_Commissioning2009_v1:Unprescaled"
         elif sys.argv[2]=="1E31":
             l1Menu = "L1Menu_MC2009_v1:Unprescaled"
@@ -109,6 +119,7 @@ else:
 	listOfImports = getConfigsForScenario(l1Menu)
 	for line in listOfImports:
             os.system("cat >> "+outName+" <<EOI\nprocess.load('"+line+"')\nEOI\n")
+
 #
 # The following is stolen from cmsDriver's ConfigBuilder.py addCustomise
 #
