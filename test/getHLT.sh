@@ -1,5 +1,11 @@
 #! /bin/bash
 
+# ConfDB configurations to use
+HLTtable8E29="/dev/CMSSW_2_2_6_HLT/8E29/V25"
+HLTtable1E31="/dev/CMSSW_2_2_6_HLT/1E31/V25"
+HLTtableFULL="/dev/CMSSW_2_2_6_HLT/merged/V25"
+
+
 function getConfigForCVS() {
   # for things in CMSSW CVS
   local HLTtable="$1"
@@ -23,19 +29,15 @@ function getConfigForOnline() {
 }
 
 
-
 eval `scramv1 runtime -sh`
 hash -r
-
-HLTtable8E29="/dev/CMSSW_2_2_6_HLT/8E29/V15"
-HLTtable1E31="/dev/CMSSW_2_2_6_HLT/1E31/V15"
-HLTcontent="/dev/CMSSW_2_2_6_HLT/merged/V15"
 
 if [ "$1" == "CVS" ]; then
   # for things in CMSSW CVS
   getConfigForCVS "${HLTtable8E29}" "8E29"
   getConfigForCVS "${HLTtable1E31}" "1E31"
-  getContentForCVS "${HLTcontent}"
+  getConfigForCVS "${HLTtableFULL}" "FULL"
+  getContentForCVS "${HLTtableFULL}"
 
   ls -lt HLT*_cff.py
   mv -f HLT*_cff.py ../python
