@@ -8,7 +8,7 @@ foreach lumi ( 8E29 1E31 )
   if ( $lumi == 8E29 ) then
     set XL1T = L1:L1Menu_Commissioning2009_v1:Unprescaled
     set XHLT = HLT:$lumi
-    set GTAG = STARTUP_31X_A
+    set GTAG = STARTUP_31X
   else if ( $lumi == 1E31 ) then
     set XL1T = L1:L1Menu_MC2009_v1:Unprescaled
     set XHLT = HLT:$lumi
