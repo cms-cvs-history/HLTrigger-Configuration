@@ -1,10 +1,10 @@
-# /dev/CMSSW_2_2_6_HLT/merged/V25 (CMSSW_2_2_6_HLT)
+# /dev/CMSSW_2_2_6_HLT/merged/V35 (CMSSW_2_2_6_HLT_HLT3)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_2_2_6_HLT/merged/V25')
+  tableName = cms.string('/dev/CMSSW_2_2_6_HLT/merged/V35')
 )
 
 block_hltDebugWithAlCaOutput = cms.PSet(
@@ -25,6 +25,7 @@ outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
   'keep *_hltPixelMatchLargeWindowElectronsL1NonIso_*_*',
   'keep *_hltL3TauCkfTrackCandidates_*_*',
   'keep *_hltL1NonIsolatedPhotonEcalIsol_*_*',
+  'keep *_hltRpcRecHits_*_*',
   'keep *_hltBJet10U_*_*',
   'keep *_hltL1HLTDoubleLooseIsoTau15JetsMatch_*_*',
   'keep *_hltBJet50U_*_*',
@@ -54,6 +55,7 @@ outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
   'keep *_hltGtDigis_*_*',
   'keep *_hltBSoftMuonL25JetsU_*_*',
   'keep *_hltL1NonIsolatedElectronHcalIsol_*_*',
+  'keep *_hltMuonDTDigis_*_*',
   'keep *_hltL1NonIsoHLTClusterShape_*_*',
   'keep *_hltBLifetimeL25JetsStartupU_*_*',
   'keep *_hltBLifetimeRegionalCtfWithMaterialTracksStartupU_*_*',
@@ -75,6 +77,7 @@ outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
   'keep *_hltL2TauRelaxingIsolationSelector_*_*',
   'keep *_hltMet_*_*',
   'keep *_hltL25TauCtfWithMaterialTracks_*_*',
+  'keep *_hltCscSegments_*_*',
   'keep *_hltAlCaPi0RegRecHits1E31_*_*',
   'keep *_hltBLifetimeL3AssociatorStartupU_*_*',
   'keep *_hltCorrectedHybridSuperClustersL1NonIsolated_*_*',
@@ -125,5 +128,6 @@ outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
   'keep *_hltBSoftMuonL3TagInfos_*_*',
   'keep *_hltBSoftMuonL3BJetTagsByPt_*_*',
   'keep *_hltCkfL1NonIsoLargeTrackCandidates_*_*',
-  'keep *_hltL3TauIsolationSelector_*_*' )
+  'keep *_hltL3TauIsolationSelector_*_*',
+  'keep *_hltDt4DSegments_*_*' )
 )
