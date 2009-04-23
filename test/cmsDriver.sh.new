@@ -17,7 +17,7 @@ foreach lumi ( 8E29 1E31 )
 
   echo
   echo "Creating TTbarGenSim $lumi"
-  cmsDriver.py TTbar_Tauola.cfi --step=GEN,SIM                            --conditions=FrontierConditions_GlobalTag,${GTAG}::All                                                --fileout=TTbarGenSim.root               --number=100 --mc --no_exec --datatier 'GEN-SIM'              --eventcontent=FEVTSIM      --customise=HLTrigger/Configuration/custom_Options.py         --python_filename=TTbarGenSim_$lumi.py
+  cmsDriver.py TTbar_Tauola.cfi --step=GEN,SIM                            --conditions=FrontierConditions_GlobalTag,${GTAG}::All                                                --fileout=TTbarGenSim_$lumi.root         --number=100 --mc --no_exec --datatier 'GEN-SIM'              --eventcontent=FEVTSIM      --customise=HLTrigger/Configuration/custom_Options.py         --python_filename=TTbarGenSim_$lumi.py
 
   echo
   echo "Creating TTbarGenHLT $lumi"
@@ -25,11 +25,11 @@ foreach lumi ( 8E29 1E31 )
 
   echo
   echo "Creating DigiL1Raw $lumi"
-  cmsDriver.py RelVal --step=DIGI,$XL1T,DIGI2RAW                          --conditions=FrontierConditions_GlobalTag,${GTAG}::All --filein=file:/scratch/cms/TTbarGenSim31X.root --fileout=RelVal_DigiL1Raw_$lumi.root    --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW'     --eventcontent=RAW          --customise=HLTrigger/Configuration/customL1T_Options.py      --python_filename=RelVal_DigiL1Raw_$lumi.py
+  cmsDriver.py RelVal --step=DIGI,$XL1T,DIGI2RAW                          --conditions=FrontierConditions_GlobalTag,${GTAG}::All --filein=file:TTbarGenSim_$lumi.root           --fileout=RelVal_DigiL1Raw_$lumi.root    --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW'     --eventcontent=RAW          --customise=HLTrigger/Configuration/customL1T_Options.py      --python_filename=RelVal_DigiL1Raw_$lumi.py
 
   echo
   echo "Creating DigiL1RawHLT $lumi"
-  cmsDriver.py RelVal --step=DIGI,$XL1T,DIGI2RAW,$XHLT                    --conditions=FrontierConditions_GlobalTag,${GTAG}::All --filein=file:/scratch/cms/TTbarGenSim31X.root --fileout=RelVal_DigiL1RawHLT_$lumi.root --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customL1THLT_Options.py   --python_filename=RelVal_DigiL1RawHLT_$lumi.py
+  cmsDriver.py RelVal --step=DIGI,$XL1T,DIGI2RAW,$XHLT                    --conditions=FrontierConditions_GlobalTag,${GTAG}::All --filein=file:TTbarGenHLT_$lumi.root           --fileout=RelVal_DigiL1RawHLT_$lumi.root --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customL1THLT_Options.py   --python_filename=RelVal_DigiL1RawHLT_$lumi.py
 
   echo
   echo "Creating HLT $lumi"
