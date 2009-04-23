@@ -29,7 +29,7 @@ foreach lumi ( 8E29 1E31 )
 
   echo
   echo "Creating DigiL1RawHLT $lumi"
-  cmsDriver.py RelVal --step=DIGI,$XL1T,DIGI2RAW,$XHLT                    --conditions=FrontierConditions_GlobalTag,${GTAG}::All --filein=file:TTbarGenHLT_$lumi.root           --fileout=RelVal_DigiL1RawHLT_$lumi.root --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customL1THLT_Options.py   --python_filename=RelVal_DigiL1RawHLT_$lumi.py
+  cmsDriver.py RelVal --step=DIGI,$XL1T,DIGI2RAW,$XHLT                    --conditions=FrontierConditions_GlobalTag,${GTAG}::All --filein=file:TTbarGenSim_$lumi.root           --fileout=RelVal_DigiL1RawHLT_$lumi.root --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customL1THLT_Options.py   --python_filename=RelVal_DigiL1RawHLT_$lumi.py
 
   echo
   echo "Creating HLT $lumi"
