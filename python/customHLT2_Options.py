@@ -1,7 +1,7 @@
 import FWCore.ParameterSet.Config as cms
 
 def customise(process):
-    process.setName('HLT2')
+    process.setName_('HLT2')
 
     process.schedule.remove(process.L1simulation_step)
 

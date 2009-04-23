@@ -3,7 +3,7 @@ import FWCore.ParameterSet.Config as cms
 from L1Trigger.Configuration import patchToRerunL1Emulator
 
 def customise(process):
-    process.setName('HLT2')
+    process.setName_('HLT2')
 
     process.hltTrigReport.HLTriggerResults = cms.InputTag( 'TriggerResults','',process.name_() )
 
