@@ -1,10 +1,10 @@
-# /dev/CMSSW_2_2_6_HLT/1E31/V35 (CMSSW_2_2_6_HLT_HLT3)
+# /dev/CMSSW_2_2_6_HLT/1E31/V37 (CMSSW_2_2_6_HLT_HLT3)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_2_2_6_HLT/1E31/V35')
+  tableName = cms.string('/dev/CMSSW_2_2_6_HLT/1E31/V37')
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
@@ -1291,7 +1291,7 @@ HLTMhtHtFilter = cms.EDFilter( "HLTMhtHtFilter",
 )
 hltL1sL1MuOpen = cms.EDFilter( "HLTLevel1GTSeed",
     L1TechTriggerSeeding = cms.bool( False ),
-    L1SeedsLogicalExpression = cms.string( "L1_SingleMuOpen or L1_SingleMu0" ),
+    L1SeedsLogicalExpression = cms.string( "L1_SingleMuOpen OR L1_SingleMu0" ),
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
     L1GtObjectMapTag = cms.InputTag( "hltL1GtObjectMap" ),
     L1CollectionsTag = cms.InputTag( "hltL1extraParticles" ),
@@ -4072,7 +4072,7 @@ hltAlCaHcalFEDSelector = cms.EDProducer( "SubdetFEDSelector",
 )
 hltL1sRPCMuon = cms.EDFilter( "HLTLevel1GTSeed",
     L1TechTriggerSeeding = cms.bool( False ),
-    L1SeedsLogicalExpression = cms.string( "L1_SingleMuOpen OR L1_SingleMu3 OR L1_SingleMu5" ),
+    L1SeedsLogicalExpression = cms.string( "L1_SingleMuOpen OR L1_SingleMu0" ),
     L1GtReadoutRecordTag = cms.InputTag( "gtDigis" ),
     L1GtObjectMapTag = cms.InputTag( "l1GtObjectMap" ),
     L1CollectionsTag = cms.InputTag( "l1extraParticles" ),
