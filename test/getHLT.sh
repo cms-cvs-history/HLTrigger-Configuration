@@ -1,9 +1,9 @@
 #! /bin/bash
 
 # ConfDB configurations to use
-HLTtable8E29="/dev/CMSSW_2_2_6_HLT/8E29/V35"
-HLTtable1E31="/dev/CMSSW_2_2_6_HLT/1E31/V35"
-HLTtableFULL="/dev/CMSSW_2_2_6_HLT/merged/V35"
+HLTtable8E29="/dev/CMSSW_2_2_6_HLT/8E29/V37"
+HLTtable1E31="/dev/CMSSW_2_2_6_HLT/1E31/V37"
+HLTtableFULL="/dev/CMSSW_2_2_6_HLT/merged/V37"
 
 
 function getConfigForCVS() {
