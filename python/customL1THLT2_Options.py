@@ -5,7 +5,17 @@ from L1Trigger.Configuration import patchToRerunL1Emulator
 def customise(process):
     process.setName_('HLT2')
 
-    process.hltTrigReport.HLTriggerResults = cms.InputTag( 'TriggerResults','',process.name_() )
+    process.hltL1GtTrigReport = cms.EDAnalyzer( "L1GtTrigReport",
+        PrintVerbosity = cms.untracked.int32(0),
+        PrintOutput = cms.untracked.int32(2),
+        UseL1GlobalTriggerRecord = cms.bool( False ),
+        L1GtRecordInputTag = cms.InputTag( "hltGtDigis" )
+    )
+    process.hltTrigReport = cms.EDAnalyzer( "HLTrigReport",
+        HLTriggerResults = cms.InputTag( 'TriggerResults','',process.name_() )
+    )
+    process.HLTAnalyzerEndpath = cms.EndPath( process.hltL1GtTrigReport + process.hltTrigReport )
+    process.schedule.append(process.HLTAnalyzerEndpath)
 
     process.options.wantSummary = cms.untracked.bool(True)
     process.MessageLogger.categories.append('TriggerSummaryProducerAOD')

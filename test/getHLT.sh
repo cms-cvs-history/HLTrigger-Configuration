@@ -1,9 +1,9 @@
 #! /bin/bash
 
 # ConfDB configurations to use
-HLTtable8E29="/dev/CMSSW_2_2_6_HLT/8E29/V37"
-HLTtable1E31="/dev/CMSSW_2_2_6_HLT/1E31/V37"
-HLTtableFULL="/dev/CMSSW_2_2_6_HLT/merged/V37"
+HLTtable8E29="/dev/CMSSW_2_2_6_HLT/8E29/V43"
+HLTtable1E31="/dev/CMSSW_2_2_6_HLT/1E31/V43"
+HLTtableFULL="/dev/CMSSW_2_2_6_HLT/merged/V39"
 
 # getHLT.py
 PACKAGE="HLTrigger/Configuration"
@@ -40,7 +40,7 @@ function getConfigForOnline() {
   $GETHLT $HLTtable $HLTid
 }
 
-# make sure we're using *these* working area
+# make sure we're using *this* working area
 eval `scramv1 runtime -sh`
 hash -r
 
