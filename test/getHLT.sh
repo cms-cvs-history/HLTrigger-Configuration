@@ -1,9 +1,9 @@
 #! /bin/bash
 
 # ConfDB configurations to use
-HLTtable8E29="/dev/CMSSW_2_2_6_HLT/8E29/V43"
-HLTtable1E31="/dev/CMSSW_2_2_6_HLT/1E31/V43"
-HLTtableFULL="/dev/CMSSW_2_2_6_HLT/merged/V39"
+HLTtable8E29="/dev/CMSSW_2_2_6_HLT/8E29/V45"
+HLTtable1E31="/dev/CMSSW_2_2_6_HLT/1E31/V45"
+HLTtableFULL="/dev/CMSSW_2_2_6_HLT/merged/V45"
 
 # getHLT.py
 PACKAGE="HLTrigger/Configuration"
