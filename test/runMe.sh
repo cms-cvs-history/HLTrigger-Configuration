@@ -1,41 +1,24 @@
 #!/bin/tcsh
 
-eval `scramv1 runtime -csh`
+cmsenv
 rehash
 
-echo " "
-echo " Production chain (three jobs: digi+L1emu+digi2raw, HLT, reco):"
+echo
+echo "Creating offline configs with cmsDriver"
+./cmsDriver.sh
 
-echo " "
-echo "/bin/rm OnLine_HLTFromRaw_2E30.cfg OnLine_HLTFromRaw_2E30_cfg.py"
-      /bin/rm OnLine_HLTFromRaw_2E30.cfg OnLine_HLTFromRaw_2E30_cfg.py
-echo "./getHLT.sh"
-      ./getHLT.sh 
+echo
+echo "Creating  online configs from ConfDB"
+rm -f OnLine_HLT_*.py
+./getHLT.sh 
 
-echo " "
-echo "/bin/rm RelVal_Digi_Raw.root RelVal_Pure_Raw.root RelVal_Digi_Digi2Raw.log"
-      /bin/rm RelVal_Digi_Raw.root RelVal_Pure_Raw.root RelVal_Digi_Digi2Raw.log
-echo "cmsRun RelVal_Digi_Digi2Raw_cfg.py   >& RelVal_Digi_Digi2Raw.log"
-      cmsRun RelVal_Digi_Digi2Raw_cfg.py   >& RelVal_Digi_Digi2Raw.log
-
-echo " "
-echo "/bin/rm HLTFromPureRaw.root             RelVal_HLTFromRaw_2E30.log"
-      /bin/rm HLTFromPureRaw.root             RelVal_HLTFromRaw_2E30.log
-echo "cmsRun RelVal_HLTFromRaw_2E30_cfg.py >& RelVal_HLTFromRaw_2E30.log"
-      cmsRun RelVal_HLTFromRaw_2E30_cfg.py >& RelVal_HLTFromRaw_2E30.log
-
-echo " "
-echo "/bin/rm HLTDe*.root                     OnLine_HLTFromRaw_2E30.log"
-      /bin/rm HLTDe*.root                     OnLine_HLTFromRaw_2E30.log
-echo "cmsRun OnLine_HLTFromRaw_2E30_cfg.py >& OnLine_HLTFromRaw_2E30.log"
-      cmsRun OnLine_HLTFromRaw_2E30_cfg.py >& OnLine_HLTFromRaw_2E30.log
-
-echo " "
-echo "/bin/rm RelVal_Reco.root                RelVal_Reco.log"
-      /bin/rm RelVal_Reco.root                RelVal_Reco.log
-echo "cmsRun RelVal_Reco_cfg.py            >& RelVal_Reco.log"
-      cmsRun RelVal_Reco_cfg.py            >& RelVal_Reco.log
-
-
-echo " "
-echo "Finished!"
+# foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_HLT RelVal_DigiL1RawHLT RelVal_HLT2 RelVal_L1HLT2 RelVal_Reco )
+foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_HLT RelVal_HLT2 )
+    echo
+    set name = ${task}_2E30
+    foreach ext (log root)
+	/bin/rm $name.$ext
+    end
+    echo "cmsRun $name.py >& $name.log"
+          cmsRun $name.py >& $name.log
+end
