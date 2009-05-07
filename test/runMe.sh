@@ -16,7 +16,7 @@ rm -f OnLine_HLT_*.py
 /bin/ln -s /scratch/cms/TTbarGenSim2110.root TTbarGenSim.root
 
 # foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_HLT RelVal_DigiL1RawHLT RelVal_HLT2 RelVal_L1HLT2 RelVal_Reco )
-foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_HLTFromRaw RelVal_HLT2 )
+foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_HLT RelVal_HLT2 )
     echo
     set name = ${task}_2E30
     foreach ext (log root)

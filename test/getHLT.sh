@@ -51,7 +51,7 @@ if [ "$1" == "CVS" ]; then
   mv -f HLT*_cff.py ../python
 else
   # for things NOT in CMSSW CVS:
-  rm -f OnLine_HLTFromRaw_*_cfg.py
+  rm -f  OnLine_HLT_*.py
   getConfigForOnline "${HLTtable2E30}" "2E30"
-  ls -lt OnLine_HLTFromRaw_*_cfg.py
+  ls -lt OnLine_HLT_*.py
 fi
