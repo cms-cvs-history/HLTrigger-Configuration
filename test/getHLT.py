@@ -105,23 +105,7 @@ else:
           os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'IDEAL_31X::All'\nEOI\n")
 
 #
-# The following is stolen from cmsDriver's ConfigBuilder.py prepare_L1
-#
-        if sys.argv[2]=="8E29":
-            l1Menu = "L1Menu_Commissioning2009_v1:Unprescaled"
-        elif sys.argv[2]=="1E31":
-            l1Menu = "L1Menu_MC2009_v1:Unprescaled"
-        else:
-            l1Menu = 'L1'
-
-        # let the L1 package decide for the scenarios available
-	from L1Trigger.Configuration.ConfigBuilder import getConfigsForScenario
-	listOfImports = getConfigsForScenario(l1Menu)
-	for line in listOfImports:
-            os.system("cat >> "+outName+" <<EOI\nprocess.load('"+line+"')\nEOI\n")
-
-#
-# The following is stolen from cmsDriver's ConfigBuilder.py addCustomise
+# The following is stolen from cmsDriver's ConfigBuilder.py - addCustomise
 #
 
         # let python search for that package and do syntax checking at the same time
