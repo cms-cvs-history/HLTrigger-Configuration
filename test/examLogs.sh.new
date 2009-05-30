@@ -1,6 +1,6 @@
 #!/bin/tcsh
 
-foreach lumi ( 8E29 1E31 )
+foreach lumi ( 8E29 1E31 HIon )
   echo " "
   echo "diff -C0 RelVal_HLT_${lumi}.log OnLine_HLT_${lumi}.log"
         diff -C0 RelVal_HLT_${lumi}.log OnLine_HLT_${lumi}.log | grep L1T
