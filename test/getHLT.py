@@ -75,7 +75,7 @@ else:
 
         services  += "--services -MessageLogger"
 
-        paths     += "--paths -AlCaOutput"
+        paths     += "--paths -HLTOutput,-AlCaOutput"
 
         psets     += "--psets -maxEvents,-options"
 

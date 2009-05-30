@@ -4,14 +4,18 @@ cmsenv
 
 rehash
 
-foreach lumi ( 8E29 1E31 ) 
+foreach lumi ( 8E29 1E31 HIon ) 
   if ( $lumi == 8E29 ) then
     set XL1T = L1
-    set XHLT = HLT:$lumi
+    set XHLT = HLT
     set GTAG = STARTUP_31X
   else if ( $lumi == 1E31 ) then
     set XL1T = L1
-    set XHLT = HLT:$lumi
+    set XHLT = HLT
+    set GTAG = IDEAL_31X
+  else if ( $lumi == HIon ) then
+    set XL1T = L1
+    set XHLT = HLT:HIon
     set GTAG = IDEAL_31X
   else
     set XL1T = L1
