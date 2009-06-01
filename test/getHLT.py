@@ -104,7 +104,7 @@ if useCase == "GEN-HLT":
 
     services  += ",-MessageLogger"
 
-    paths     += ",-HLTAnalyzerEndpath"
+    paths     += ",-HLTAnalyzerEndpath,-HLTOutput"
 
     psets = "--psets "
     psets += "-maxEvents,"
