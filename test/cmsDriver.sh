@@ -11,7 +11,7 @@ foreach prod ( RelVal MCProd )
   else if ( $prod == MCProd ) then
     set XEVT = RAWDEBUG
   else
-    set XEVY = FEVTDEBUGHLT
+    set XEVT = FEVTDEBUGHLT
   endif
 
   echo " "
