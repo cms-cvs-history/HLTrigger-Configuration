@@ -4,6 +4,26 @@ cmsenv
 
 rehash
 
+foreach prod ( RelVal MCProd )
+
+  if ( $prod == RelVal ) then
+    set XEVT = FEVTDEBUGHLT
+  else if ( $prod == MCProd ) then
+    set XEVT = RAWDEBUG
+  else
+    set XEVY = FEVTDEBUGHLT
+  endif
+
+  echo " "
+  echo "Creating ${prod}_8E29"
+cmsDriver.py $prod --step=DIGI,L1,DIGI2RAW,HLT --conditions=FrontierConditions_GlobalTag,STARTUP_31X::All --filein=file:/scratch/cms/TTbarGenSim31X.root  --fileout=RelVal_${prod}_8E29.root      --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=$XEVT --customise=HLTrigger/Configuration/customL1THLT_Options.py   --python_filename=RelVal_${prod}_8E29.py --processName=HLT8E29
+
+  echo " "
+  echo "Creating ${prod}_1E31"
+cmsDriver.py $prod --step=DIGI,L1,DIGI2RAW,HLT --conditions=FrontierConditions_GlobalTag,IDEAL_31X::All   --filein=file:RelVal_${prod}_8E29.root          --fileout=RelVal_${prod}_8E29_1E31.root --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=$XEVT --customise=HLTrigger/Configuration/customL1THLT_Options.py   --python_filename=RelVal_${prod}_1E31.py --processName=HLT
+
+end
+
 foreach lumi ( 8E29 1E31 HIon ) 
   if ( $lumi == 8E29 ) then
     set XL1T = L1
