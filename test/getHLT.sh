@@ -1,9 +1,9 @@
 #! /bin/bash
 
 # ConfDB configurations to use
-HLTtable8E29="/dev/CMSSW_2_2_6_HLT/8E29/V45"
-HLTtable1E31="/dev/CMSSW_2_2_6_HLT/1E31/V45"
-HLTtableFULL="/dev/CMSSW_2_2_6_HLT/merged/V45"
+HLTtable8E29="/dev/CMSSW_2_2_13_HLT/8E29/V8/V7"
+HLTtable1E31="/dev/CMSSW_2_2_13_HLT/1E31/V8/V5"
+HLTtableFULL="/dev/CMSSW_2_2_13_HLT/FULL/V8"
 
 # getHLT.py
 PACKAGE="HLTrigger/Configuration"
@@ -27,10 +27,11 @@ function getConfigForCVS() {
 
 function getContentForCVS() {
   local HLTcontent="$1"
-  edmConfigFromDB --configName $HLTcontent --nopaths --noes --nopsets --noservices --cff --blocks hltDefaultOutput::outputCommands         --format python > HLTDefaultOutput_cff.py
-  edmConfigFromDB --configName $HLTcontent --nopaths --noes --nopsets --noservices --cff --blocks hltDefaultOutputWithFEDs::outputCommands --format python > HLTDefaultOutputWithFEDs_cff.py
-  edmConfigFromDB --configName $HLTcontent --nopaths --noes --nopsets --noservices --cff --blocks hltDebugOutput::outputCommands           --format python > HLTDebugOutput_cff.py
-  edmConfigFromDB --configName $HLTcontent --nopaths --noes --nopsets --noservices --cff --blocks hltDebugWithAlCaOutput::outputCommands   --format python > HLTDebugWithAlCaOutput_cff.py
+  local AlCaOutput="hltOutputALCAPHISYM hltOutputALCAPHISYMHCAL hltOutputALCAP0 hltOutputRPCMON"
+  local AlCaBlocks=$(for ALCA in $AlCaOutput; do echo -n "$ALCA::outputCommands,"; done | sed -e 's/,$//')
+  edmConfigFromDB --configName $HLTcontent --nopaths --noes --nopsets --noservices --cff --blocks hltOutputA::outputCommands    --format python > hltOutputA_cff.py
+  edmConfigFromDB --configName $HLTcontent --nopaths --noes --nopsets --noservices --cff --blocks hltOutputDQM::outputCommands  --format python > hltOutputDQM_cff.py
+  edmConfigFromDB --configName $HLTcontent --nopaths --noes --nopsets --noservices --cff --blocks $AlCaBlocks                   --format python > hltOutputALCA_cff.py
 }
 
 function getConfigForOnline() {
@@ -51,8 +52,8 @@ if [ "$1" == "CVS" ]; then
   getConfigForCVS "${HLTtable1E31}" "1E31"
   getConfigForCVS "${HLTtableFULL}" "FULL"
   getContentForCVS "${HLTtableFULL}"
-  ls -lt HLT*_cff.py
-  mv -f HLT*_cff.py ../python
+  ls -lt HLT*_cff.py hltOutput*_cff.py
+  mv -f HLT*_cff.py hltOutput*_cff.py ../python
 else
   # for things NOT in CMSSW CVS:
   rm -f OnLine_HLTFromRaw_*_cfg.py

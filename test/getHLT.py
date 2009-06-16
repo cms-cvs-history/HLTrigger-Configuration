@@ -36,7 +36,7 @@ essources = "  "
 esmodules = "  "
 modules   = "  "
 services  = "--services -PrescaleService"
-paths     = "--paths -AlCaOutput"
+paths     = "  "
 psets     = "  "
 
 if useCase == "GEN-HLT":
@@ -107,6 +107,10 @@ if useCase == "GEN-HLT":
     psets = "--psets "
     psets += "-maxEvents,"
     psets += "-options,"
+
+    paths = "--paths "
+    paths += "-HLTOutput,"
+    paths += "-AlCaOutput,"
 
     myGet = "edmConfigFromDB --cff --format Python --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + outName
 
