@@ -1,16 +1,17 @@
-# /dev/CMSSW_2_2_13_HLT/FULL/V8 (CMSSW_2_2_13_HLT)
+# /dev/CMSSW_2_2_13_HLT/FULL/V10 (CMSSW_2_2_13_HLT)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_2_2_13_HLT/FULL/V8')
+  tableName = cms.string('/dev/CMSSW_2_2_13_HLT/FULL/V10')
 )
 
 block_hltOutputALCAPHISYM = cms.PSet(
 outputCommands = cms.untracked.vstring( 'drop *',
   'keep edmTriggerResults_*_*_*',
   'keep triggerTriggerEvent_*_*_*',
+  'keep *_hltGtDigis_*_*',
   'keep *_hltAlCaPhiSymStream_*_*' )
 )
 block_hltOutputALCAPHISYMHCAL = cms.PSet(

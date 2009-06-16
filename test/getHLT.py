@@ -110,7 +110,9 @@ if useCase == "GEN-HLT":
 
     paths = "--paths "
     paths += "-HLTOutput,"
+    paths += "-ESOutput,"
     paths += "-AlCaOutput,"
+    paths += "-MONOutput,"
 
     myGet = "edmConfigFromDB --cff --format Python --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + outName
 
