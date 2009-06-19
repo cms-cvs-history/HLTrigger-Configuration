@@ -24,10 +24,14 @@ cmsDriver.py $prod --step=DIGI,L1,DIGI2RAW,HLT --conditions=FrontierConditions_G
 
 end
 
-foreach lumi ( 8E29 1E31 HIon ) 
+foreach lumi ( 8E29 GRun 1E31 HIon ) 
   if ( $lumi == 8E29 ) then
     set XL1T = L1
     set XHLT = HLT
+    set GTAG = STARTUP_31X
+  else if ( $lumi == GRun ) then
+    set XL1T = L1
+    set XHLT = HLT:GRun
     set GTAG = STARTUP_31X
   else if ( $lumi == 1E31 ) then
     set XL1T = L1

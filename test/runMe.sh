@@ -15,7 +15,7 @@ echo "Creating  online configs from ConfDB"
 echo "./getHLT.sh"
       ./getHLT.sh 
 
-foreach lumi ( 8E29 1E31 HIon )
+foreach lumi ( 8E29 GRun 1E31 HIon )
 # foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_HLT RelVal_DigiL1RawHLT RelVal_HLT2 RelVal_L1HLT2 RelVal_Reco )
 foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_HLT RelVal_HLT2 )
     echo " "

@@ -99,7 +99,11 @@ else:
 #
         if sys.argv[2]=="8E29":
           os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'STARTUP_31X::All'\nEOI\n")
+        elif sys.argv[2]=="GRun":
+          os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'STARTUP_31X::All'\nEOI\n")
         elif sys.argv[2]=="1E31":
+          os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'IDEAL_31X::All'\nEOI\n")
+        elif sys.argv[2]=="HIon":
           os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'IDEAL_31X::All'\nEOI\n")
         else:
           os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'IDEAL_31X::All'\nEOI\n")
