@@ -1,10 +1,10 @@
-# /dev/CMSSW_2_2_13_HLT/FULL/V11 (CMSSW_2_2_13_HLT)
+# /dev/CMSSW_2_2_13_HLT/FULL/V34 (CMSSW_2_2_13_HLT)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_2_2_13_HLT/FULL/V11')
+  tableName = cms.string('/dev/CMSSW_2_2_13_HLT/FULL/V34')
 )
 
 block_hltOutputDQM = cms.PSet(
@@ -42,7 +42,7 @@ outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
   'keep *_hltSiPixelRecHits_*_*',
   'keep *_hltL1NonIsoEgammaRegionalCkfTrackCandidates_*_*',
   'keep *_hltBJet80_*_*',
-  'keep *_hltL1HLTSingleIsoTau20JetsMatch_*_*',
+  'keep *_hltL1HLTSingleIsoTau30JetsMatch_*_*',
   'keep *_hltBSoftMuonL25BJetTagsUByDR_*_*',
   'keep *_hltHITIPTCorrector8E29_*_*',
   'keep *_hltIterativeConePu5CaloJets_*_*',
@@ -103,7 +103,6 @@ outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
   'keep *_hltL1IsoHLTClusterShape_*_*',
   'keep *_hltBLifetimeL25JetsStartup_*_*',
   'keep *_hltL2MuonCandidatesNoVtx_*_*',
-  'keep *_hltHtMet_*_*',
   'keep *_hltBLifetimeL3TagInfosStartupU_*_*',
   'keep *_hltMCJetCorJetIcone5_*_*',
   'keep *_hltPixelTracks_*_*',
