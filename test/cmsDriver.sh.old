@@ -28,23 +28,23 @@ foreach lumi ( 8E29 GRun 1E31 HIon )
   if ( $lumi == 8E29 ) then
     set XL1T = L1
     set XHLT = HLT
-    set GTAG = STARTUP_31X
+    set GTAG = STARTUP31X_V1
   else if ( $lumi == GRun ) then
     set XL1T = L1
     set XHLT = HLT:GRun
-    set GTAG = STARTUP_31X
+    set GTAG = STARTUP31X_V1
   else if ( $lumi == 1E31 ) then
     set XL1T = L1
     set XHLT = HLT
-    set GTAG = IDEAL_31X
+    set GTAG = MC_31X_V1
   else if ( $lumi == HIon ) then
     set XL1T = L1
     set XHLT = HLT:HIon
-    set GTAG = IDEAL_31X
+    set GTAG = MC_31X_V1
   else
     set XL1T = L1
     set XHLT = HLT
-    set GTAG = IDEAL_31X
+    set GTAG = MC_31X_V1
   endif
 
   echo " "
