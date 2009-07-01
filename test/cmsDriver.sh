@@ -4,6 +4,8 @@ cmsenv
 
 rehash
 
+set InputFileGENSIM = /scratch/cms/TTbarGenSim31X.root
+
 foreach prod ( RelVal MCProd )
 
   if ( $prod == RelVal ) then
@@ -16,7 +18,7 @@ foreach prod ( RelVal MCProd )
 
   echo " "
   echo "Creating ${prod}_8E29"
-cmsDriver.py $prod --step=DIGI,L1,DIGI2RAW,HLT --conditions=FrontierConditions_GlobalTag,STARTUP_31X::All --filein=file:/scratch/cms/TTbarGenSim31X.root  --fileout=RelVal_${prod}_8E29.root      --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=$XEVT --customise=HLTrigger/Configuration/customL1THLT_Options.py   --python_filename=RelVal_${prod}_8E29.py --processName=HLT8E29
+cmsDriver.py $prod --step=DIGI,L1,DIGI2RAW,HLT --conditions=FrontierConditions_GlobalTag,STARTUP_31X::All --filein=file:$InputFileGENSIM  --fileout=RelVal_${prod}_8E29.root      --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=$XEVT --customise=HLTrigger/Configuration/customL1THLT_Options.py   --python_filename=RelVal_${prod}_8E29.py --processName=HLT8E29
 
   echo " "
   echo "Creating ${prod}_1E31"
@@ -57,11 +59,11 @@ cmsDriver.py TTbar_Tauola.cfi --step=GEN,SIM,DIGI,$XL1T,DIGI2RAW,$XHLT --conditi
 
   echo " "
   echo "Creating DigiL1Raw $lumi"
-cmsDriver.py RelVal --step=DIGI,$XL1T,DIGI2RAW       --conditions=FrontierConditions_GlobalTag,${GTAG}::All --filein=file:/scratch/cms/TTbarGenSim31X.root  --fileout=RelVal_DigiL1Raw_$lumi.root    --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW'     --eventcontent=RAW          --customise=HLTrigger/Configuration/customL1T_Options.py      --python_filename=RelVal_DigiL1Raw_$lumi.py
+cmsDriver.py RelVal --step=DIGI,$XL1T,DIGI2RAW       --conditions=FrontierConditions_GlobalTag,${GTAG}::All --filein=file:$InputFileGENSIM                  --fileout=RelVal_DigiL1Raw_$lumi.root    --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW'     --eventcontent=RAW          --customise=HLTrigger/Configuration/customL1T_Options.py      --python_filename=RelVal_DigiL1Raw_$lumi.py
 
   echo " "
   echo "Creating DigiL1RawHLT $lumi"
-cmsDriver.py RelVal --step=DIGI,$XL1T,DIGI2RAW,$XHLT --conditions=FrontierConditions_GlobalTag,${GTAG}::All --filein=file:/scratch/cms/TTbarGenSim31X.root  --fileout=RelVal_DigiL1RawHLT_$lumi.root --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customL1THLT_Options.py   --python_filename=RelVal_DigiL1RawHLT_$lumi.py --processName=HLT$lumi
+cmsDriver.py RelVal --step=DIGI,$XL1T,DIGI2RAW,$XHLT --conditions=FrontierConditions_GlobalTag,${GTAG}::All --filein=file:$InputFileGENSIM                  --fileout=RelVal_DigiL1RawHLT_$lumi.root --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customL1THLT_Options.py   --python_filename=RelVal_DigiL1RawHLT_$lumi.py --processName=HLT$lumi
 
   echo " "
   echo "Creating HLT $lumi"
