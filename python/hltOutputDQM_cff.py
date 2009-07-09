@@ -1,10 +1,10 @@
-# /dev/CMSSW_2_2_13_HLT/FULL/V37 (CMSSW_2_2_13_HLT)
+# /dev/CMSSW_2_2_13_HLT/FULL/V45 (CMSSW_2_2_13_HLT)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_2_2_13_HLT/FULL/V37')
+  tableName = cms.string('/dev/CMSSW_2_2_13_HLT/FULL/V45')
 )
 
 block_hltOutputDQM = cms.PSet(
@@ -42,11 +42,11 @@ outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
   'keep *_hltSiPixelRecHits_*_*',
   'keep *_hltL1NonIsoEgammaRegionalCkfTrackCandidates_*_*',
   'keep *_hltBJet80_*_*',
-  'keep *_hltL1HLTSingleIsoTau30JetsMatch_*_*',
   'keep *_hltBSoftMuonL25BJetTagsUByDR_*_*',
   'keep *_hltHITIPTCorrector8E29_*_*',
   'keep *_hltIterativeConePu5CaloJets_*_*',
   'keep *_hltBSoftMuonL25TagInfosU_*_*',
+  'keep *_hltL1HLTSingleIsoTau30JetsMatch_*_*',
   'keep *_hltHoreco_*_*',
   'keep *_hltL3TauConeIsolation_*_*',
   'keep *_hltCorrectedIslandEndcapSuperClustersHI_*_*',
@@ -134,5 +134,6 @@ outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
   'keep *_hltCkfL1NonIsoLargeTrackCandidates_*_*',
   'keep *_hltL3TauIsolationSelector_*_*',
   'keep *_hltL2TauJets_*_*',
-  'keep *_hltHcalDigis_*_*' )
+  'keep *_hltHcalDigis_*_*',
+  'keep *_hltDt4DSegments_*_*' )
 )
