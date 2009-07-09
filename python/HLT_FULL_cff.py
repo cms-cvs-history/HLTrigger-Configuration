@@ -1,10 +1,10 @@
-# /dev/CMSSW_2_2_13_HLT/FULL/V45 (CMSSW_2_2_13_HLT)
+# /dev/CMSSW_2_2_13_HLT/FULL/V46 (CMSSW_2_2_13_HLT)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_2_2_13_HLT/FULL/V45')
+  tableName = cms.string('/dev/CMSSW_2_2_13_HLT/FULL/V46')
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
@@ -8124,8 +8124,8 @@ HLTBTagMuSequenceL3 = cms.Sequence( HLTL3muonrecoNocandSequence + hltBSoftMuonL3
 HLTL2Mu5Photon9HLTNonIsoEGSequence = cms.Sequence( HLTDoRegionalEgammaEcalSequence + HLTL1IsolatedEcalClustersSequence + HLTL1NonIsolatedEcalClustersSequence + hltL1IsoRecoEcalCandidate + hltL1NonIsoRecoEcalCandidate + hltL2Mu5Photon9L1MatchFilterRegional + hltL2Mu5Photon9EtFilter + HLTDoLocalHcalWithoutHOSequence + hltL1IsolatedPhotonHcalIsol + hltL1NonIsolatedPhotonHcalIsol + hltL2Mu5Photon9HcalIsolFilter )
 HLTRecoJetSequence = cms.Sequence( HLTDoCaloSequence + hltIterativeCone5CaloJets + hltMCJetCorJetIcone5 )
 HLTDoJet30HTRecoSequence = cms.Sequence( hltJet30Ht )
-HLTEle10SWL1RTripleJet30EGSequence = cms.Sequence( HLTDoRegionalEgammaEcalSequence + HLTL1IsolatedEcalClustersSequence + HLTL1NonIsolatedEcalClustersSequence + hltL1IsoRecoEcalCandidate + hltL1NonIsoRecoEcalCandidate + hltEle10SWL1RTripleJet30L1MatchFilterRegional + hltEle10SWL1RTripleJet30EleEtFilter + HLTDoLocalHcalWithoutHOSequence + hltL1IsolatedElectronHcalIsol + hltL1NonIsolatedElectronHcalIsol + hltEle10SWL1RTripleJet30EleHcalIsolFilter + HLTDoLocalPixelSequence + HLTDoLocalStripSequence + hltEle10SWL1RTripleJet30ElePixelMatchFilter )
-HLTEle10LWL1RHT150EGSequence = cms.Sequence( HLTDoRegionalEgammaEcalSequence + HLTL1IsolatedEcalClustersSequence + HLTL1NonIsolatedEcalClustersSequence + hltL1IsoRecoEcalCandidate + hltL1NonIsoRecoEcalCandidate + hltEle10LWL1RHT150L1MatchFilterRegional + hltEle10LWL1RHT150EleEtFilter + HLTDoLocalHcalWithoutHOSequence + hltL1IsolatedElectronHcalIsol + hltL1NonIsolatedElectronHcalIsol + hltEle10LWL1RHT150EleHcalIsolFilter + HLTDoLocalPixelSequence + HLTDoLocalStripSequence + hltEle10LWL1RHT150ElePixelMatchFilter )
+HLTEle10SWL1RTripleJet30EGSequence = cms.Sequence( HLTDoRegionalEgammaEcalSequence + HLTL1IsolatedEcalClustersSequence + HLTL1NonIsolatedEcalClustersSequence + hltL1IsoRecoEcalCandidate + hltL1NonIsoRecoEcalCandidate + hltEle10SWL1RTripleJet30L1MatchFilterRegional + hltEle10SWL1RTripleJet30EleEtFilter + HLTDoLocalHcalWithoutHOSequence + hltL1IsolatedElectronHcalIsol + hltL1NonIsolatedElectronHcalIsol + hltEle10SWL1RTripleJet30EleHcalIsolFilter + HLTDoLocalPixelSequence + HLTDoLocalStripSequence + hltL1IsoStartUpElectronPixelSeeds + hltL1NonIsoStartUpElectronPixelSeeds + hltEle10SWL1RTripleJet30ElePixelMatchFilter )
+HLTEle10LWL1RHT150EGSequence = cms.Sequence( HLTDoRegionalEgammaEcalSequence + HLTL1IsolatedEcalClustersSequence + HLTL1NonIsolatedEcalClustersSequence + hltL1IsoRecoEcalCandidate + hltL1NonIsoRecoEcalCandidate + hltEle10LWL1RHT150L1MatchFilterRegional + hltEle10LWL1RHT150EleEtFilter + HLTDoLocalHcalWithoutHOSequence + hltL1IsolatedElectronHcalIsol + hltL1NonIsolatedElectronHcalIsol + hltEle10LWL1RHT150EleHcalIsolFilter + HLTDoLocalPixelSequence + HLTDoLocalStripSequence + hltL1IsoLargeWindowElectronPixelSeeds + hltL1NonIsoLargeWindowElectronPixelSeeds + hltEle10LWL1RHT150ElePixelMatchFilter )
 HLTPixelTrackingForMinBiasSequence = cms.Sequence( hltPixelTracksForMinBias )
 HLTL2HcalIsolTrackSequence8E29 = cms.Sequence( hltPixelTracks + hltPixelVertices + hltIsolPixelTrackProd8E29 + hltIsolPixelTrackFilterL2for8E29 )
 HLTL3HcalIsolTrackSequence8E29 = cms.Sequence( HLTDoLocalStripSequence + hltHITPixelPairSeedGenerator8E29 + hltHITPixelTripletSeedGenerator8E29 + hltHITSeedCombiner8E29 + hltHITCkfTrackCandidates8E29 + hltHITCtfWithMaterialTracks8E29 + hltHITIPTCorrector8E29 + hltIsolPixelTrackFilter8E29 )
