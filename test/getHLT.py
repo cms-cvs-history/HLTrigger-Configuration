@@ -102,11 +102,11 @@ else:
         elif sys.argv[2]=="GRun":
           os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'STARTUP31X_V1::All'\nEOI\n")
         elif sys.argv[2]=="1E31":
-          os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'MC_31X_V1::All'\nEOI\n")
+          os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'MC_31X_V2::All'\nEOI\n")
         elif sys.argv[2]=="HIon":
-          os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'MC_31X_V1::All'\nEOI\n")
+          os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'MC_31X_V2::All'\nEOI\n")
         else:
-          os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'MC_31X_V1::All'\nEOI\n")
+          os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'MC_31X_V2::All'\nEOI\n")
 
 #
 # The following is stolen from cmsDriver's ConfigBuilder.py - addCustomise
