@@ -2,7 +2,7 @@
 
 # ConfDB configurations to use
 HLTtableFULL="/dev/CMSSW_2_2_13_HLT/FULL/V46"
-HLTtable8E29="/dev/CMSSW_2_2_13_HLT/8E29/V43/V2"
+HLTtable8E29="/dev/CMSSW_2_2_13_HLT/8E29/V43/V3"
 HLTtable1E31="/dev/CMSSW_2_2_13_HLT/1E31/V43/V6"
 
 # getHLT.py
