@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_1_0/pre11/1E31_V12/V2 (CMSSW_3_1_1)
+# /dev/CMSSW_3_1_0/pre11/1E31_V13/V1 (CMSSW_3_1_1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_1_0/pre11/1E31_V12/V2')
+  tableName = cms.string('/dev/CMSSW_3_1_0/pre11/1E31_V13/V1')
 )
 
 essourceSev = cms.ESSource( "EmptyESSource",
@@ -308,12 +308,12 @@ MeasurementTracker = cms.ESProducer( "MeasurementTrackerESProducer",
   DebugPixelModuleQualityDB = cms.untracked.bool( False ),
   UsePixelROCQualityDB = cms.bool( True ),
   DebugPixelROCQualityDB = cms.untracked.bool( False ),
-  UseStripModuleQualityDB = cms.bool( False ),
+  UseStripModuleQualityDB = cms.bool( True ),
   DebugStripModuleQualityDB = cms.untracked.bool( False ),
-  UseStripAPVFiberQualityDB = cms.bool( False ),
+  UseStripAPVFiberQualityDB = cms.bool( True ),
   DebugStripAPVFiberQualityDB = cms.untracked.bool( False ),
-  MaskBadAPVFibers = cms.bool( False ),
-  UseStripStripQualityDB = cms.bool( False ),
+  MaskBadAPVFibers = cms.bool( True ),
+  UseStripStripQualityDB = cms.bool( True ),
   DebugStripStripQualityDB = cms.untracked.bool( False ),
   switchOffPixelsIfEmpty = cms.bool( True ),
   pixelClusterProducer = cms.string( "hltSiPixelClusters" ),

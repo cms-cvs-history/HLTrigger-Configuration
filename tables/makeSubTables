@@ -1,0 +1,51 @@
+#! /bin/bash
+#
+# generate HLT tables from master table in ConfDB
+#
+# usage: ./runMe.sh
+#
+
+ROOT="/dev/CMSSW_3_1_0/pre11"
+VERSION="V13"
+TABLES="1E31 8E29 GRun HIon"
+
+function makeCreateConfig() {
+  # set up JAVA 1.6.0.0 (OpenJDK)
+  #export JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64
+  #export PATH=$JAVA_HOME/bin:$PATH
+  
+  local DIR="$PWD"
+  cd "$CMSSW_BASE/src"
+  [ -d EventFilter/ConfigDB ] || cvs co EventFilter/ConfigDB
+  cd EventFilter/ConfigDB
+  [ -f classes/confdb/db/ConfDBCreateConfig.class ] || ant
+  cd "$DIR"
+}
+
+function runCreateConfig() {
+  # usage:
+  #   runCreateConfig DB PASSWORD MASTER PATHS TARGET
+  local DIR="$PWD"
+  cd "$CMSSW_BASE/src/EventFilter/ConfigDB/test"
+  ./runCreateConfig --$1 --dbpwrd $2 --master $3 --paths $DIR/$4 --name $5
+  cd "$DIR"
+}
+
+[ -n "$CMSSW_BASE" ] || cmsenv
+[ -n "$CMSSW_BASE" ] || {
+  echo "Error: cannot find CMSSW developer area"
+  exit 1
+}
+
+MASTER=$ROOT/HLT/$VERSION
+echo "ConfDB master: $MASTER"
+echo "Subtables:     $TABLES"
+read -p "Enter password for DB: " -s PASSWORD
+echo
+
+makeCreateConfig
+for TABLE in $TABLES; do
+  TARGET="${ROOT}/${TABLE}_${VERSION}"
+  runCreateConfig "hltdev" "$PASSWORD" "$MASTER" "$TABLE.txt" "$TARGET"
+done
+
