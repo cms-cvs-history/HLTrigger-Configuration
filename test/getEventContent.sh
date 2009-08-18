@@ -2,7 +2,7 @@
 
 # usage: ./getEventContent.sh
 
-setenv HLTtable /dev/CMSSW_3_2_0/pre1/HLT
+setenv HLTtable /dev/CMSSW_3_2_4/HLT
 
 cmsenv
 
