@@ -13,11 +13,11 @@
 .PHONY: all list clean summary help
 
 # configuration goes here
-PROCESS:= HLT
-CONFIG := /dev/CMSSW_3_2_0/pre1/HLT
-SOURCE := file:$(CMSSW_BASE)/src/HLTrigger/Configuration/test/RelVal_Pure_Raw.root
-# /store/relval/2008/6/4/RelVal-RelValTTbar-1212543891-STARTUP-2nd/0000/185E7133-9C32-DD11-BC8E-001617E30CC8.root
-EVENTS := 100
+PROCESS     := HLT
+CONFIG      := /dev/CMSSW_3_2_2/8E29/V1
+GLOBALTAG   := STARTUP31X_V4::All
+SOURCE      := file:/tmp/fwyzard/RelVal_DigiL1Raw_8E29.root
+EVENTS      := 100
 
 # more configuration, useful for debug the Makefile itself
 CMSRUN := cmsRun
@@ -92,6 +92,7 @@ endif
 Global_Table.py: .database .dataset
 	@echo -e " ConfDB [$(BLUE)$(CONFIG)$(NORMAL)] ---- $(BOLD)Global_Table$(NORMAL)"
 	@$(GETCONFIG) --configName $(CONFIG) --input $(SOURCE) --services -PrescaleService --format python | sed -e's/^process = cms.Process(.*)/process = cms.Process( "$(PROCESS)" )/' -e's/^process.maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( $(EVENTS) ) )/process.maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( 100 ) )/' > Global_Table.py
+	@echo -e "process.GlobalTag.globaltag = \"$(GLOBALTAG)\"" >> Global_Table.py
 #	@echo -e "$(COLUMN)$(GREEN)done$(NORMAL)"
 
 Global_Table.log: Global_Table.py
@@ -102,6 +103,7 @@ Global_Table.log: Global_Table.py
 $(LIST_OF_PYS): %.py: .database .dataset
 	@echo -e " ConfDB [$(BLUE)$(CONFIG)$(NORMAL)] path $(BOLD)$*$(NORMAL)"
 	@$(GETCONFIG) --configName $(CONFIG) --input $(SOURCE) --paths HLTriggerFirstPath,$*,HLTriggerFinalPath --services -PrescaleService --format python | sed -e's/^process = cms.Process(.*)/process = cms.Process( "$(PROCESS)" )/' -e's/^process.maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( $(EVENTS) ) )/process.maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( 100 ) )/' > $@
+	@echo -e "process.GlobalTag.globaltag = \"$(GLOBALTAG)\"" >> $@
 #	@echo -e "$(COLUMN)$(GREEN)done$(NORMAL)"
 
 $(LIST_OF_LOGS): %.log: %.py
@@ -144,7 +146,7 @@ help:
 	@echo '  TriggerName.diff    differences between TrigReport for TriggerName between global table run and stand-alone run'
 	@echo ''
 	@echo 'Supported targets:'
-	@echo '  all                 same as "cfgs logs diffs summary"'
+	@echo '  all                 same as "pys logs diffs summary"'
 	@echo '  list                list all trigger paths'
 	@echo '  pys                 extract all (python) configuration files'
 	@echo '  logs                run all configuration files'
