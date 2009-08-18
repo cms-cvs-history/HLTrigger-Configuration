@@ -6,7 +6,7 @@
 #
 
 ROOT="/dev/CMSSW_3_2_4"
-VERSION="V4"
+VERSION="V5"
 TABLES="1E31 8E29 GRun HIon"
 
 function makeCreateConfig() {
