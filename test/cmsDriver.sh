@@ -30,7 +30,7 @@ cmsDriver.py $prod --step=DIGI,L1,DIGI2RAW,HLT --conditions=FrontierConditions_G
 
   echo " "
   echo "Creating ${prod}_1E31"
-cmsDriver.py $prod --step=DIGI,L1,DIGI2RAW,HLT --conditions=FrontierConditions_GlobalTag,${GTAGMC}::All   --filein=file:RelVal_${prod}_8E29.root          --fileout=RelVal_${prod}_8E29_1E31.root --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=$XEVT --customise=HLTrigger/Configuration/customL1THLT_Options.py   --python_filename=RelVal_${prod}_1E31.py --processName=HLT
+cmsDriver.py $prod --step=DIGI,L1,DIGI2RAW,HLT --conditions=FrontierConditions_GlobalTag,${GTAGMC}::All --filein=file:RelVal_${prod}_8E29.root          --fileout=RelVal_${prod}_8E29_1E31.root --number=100 --mc --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=$XEVT --customise=HLTrigger/Configuration/customL1THLT_Options.py   --python_filename=RelVal_${prod}_1E31.py --processName=HLT
 
 end
 
