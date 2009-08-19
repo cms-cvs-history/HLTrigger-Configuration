@@ -4,9 +4,9 @@ cmsenv
 rehash
 
 setenv HLTMASTER  "/dev/CMSSW_3_2_4"
-setenv HLTVERSION "V5"
+setenv HLTVERSION "V6"
 setenv SUBTABLES  "8E29 1E31 GRun HIon"
-setenv SUBVERSION "V5"
+setenv SUBVERSION "V6"
 
 echo "ConfDB path of master: $HLTMASTER/HLT/$HLTVERSION"
 echo "Subtables:             $SUBTABLES"
