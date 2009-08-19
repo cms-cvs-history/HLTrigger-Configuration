@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_2_4/HIon/V6 (CMSSW_3_2_4)
+# /dev/CMSSW_3_2_4/HIon/V9 (CMSSW_3_2_4)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_2_4/HIon/V6')
+  tableName = cms.string('/dev/CMSSW_3_2_4/HIon/V9')
 )
 
 essourceSev = cms.ESSource( "EmptyESSource",
@@ -821,6 +821,10 @@ trajectoryCleanerBySharedHits = cms.ESProducer( "TrajectoryCleanerESProducer",
   fractionShared = cms.double( 0.5 )
 )
 
+DTDataIntegrityTask = cms.Service( "DTDataIntegrityTask",
+  getSCInfo = cms.untracked.bool( True ),
+  hltMode = cms.untracked.bool( True )
+)
 PrescaleService = cms.Service( "PrescaleService",
   lvl1DefaultLabel = cms.untracked.string( "HLT1" ),
   lvl1Labels = cms.vstring( 'HLT8E29',

@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_2_4/8E29/V6 (CMSSW_3_2_4)
+# /dev/CMSSW_3_2_4/8E29/V9 (CMSSW_3_2_4)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_2_4/8E29/V6')
+  tableName = cms.string('/dev/CMSSW_3_2_4/8E29/V9')
 )
 
 essourceSev = cms.ESSource( "EmptyESSource",
@@ -821,6 +821,10 @@ trajectoryCleanerBySharedHits = cms.ESProducer( "TrajectoryCleanerESProducer",
   fractionShared = cms.double( 0.5 )
 )
 
+DTDataIntegrityTask = cms.Service( "DTDataIntegrityTask",
+  getSCInfo = cms.untracked.bool( True ),
+  hltMode = cms.untracked.bool( True )
+)
 PrescaleService = cms.Service( "PrescaleService",
   lvl1DefaultLabel = cms.untracked.string( "HLT1" ),
   lvl1Labels = cms.vstring( 'HLT8E29',
@@ -5421,8 +5425,8 @@ hltAlCaPhiSymStream = cms.EDFilter( "HLTEcalPhiSymFilter",
     endcapHitCollection = cms.InputTag( 'hltEcalRecHitAll','EcalRecHitsEE' ),
     phiSymBarrelHitCollection = cms.string( "phiSymEcalRecHitsEB" ),
     phiSymEndcapHitCollection = cms.string( "phiSymEcalRecHitsEE" ),
-    eCut_barrel = cms.double( 0.0 ),
-    eCut_endcap = cms.double( 0.0 )
+    eCut_barrel = cms.double( 0.15 ),
+    eCut_endcap = cms.double( 0.75 )
 )
 hltL1sAlCaEcalPi0Eta8E29 = cms.EDFilter( "HLTLevel1GTSeed",
     L1TechTriggerSeeding = cms.bool( False ),
@@ -5710,7 +5714,7 @@ hltRPCMuonNormaL1Filtered0 = cms.EDFilter( "HLTMuonL1Filter",
 )
 hltPreAlCaDTErrors = cms.EDFilter( "HLTPrescaler" )
 hltDTROMonitorFilter = cms.EDFilter( "HLTDTROMonitorFilter",
-    inputLabel = cms.InputTag( "source" )
+    inputLabel = cms.InputTag( "rawDataCollector" )
 )
 hltDynAlCaDTErrors = cms.EDFilter( "HLTDynamicPrescaler" )
 hltTriggerSummaryAOD = cms.EDProducer( "TriggerSummaryProducerAOD",

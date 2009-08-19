@@ -31,12 +31,12 @@ if os.path.exists(outName):
     print outName, "already exists - abort!"
 else:
     # Initialize everything
-    essources = "  " 
-    esmodules = "  "
-    modules   = "  "
-    services  = "  "
-    paths     = "  "
-    psets     = "  "
+    essources = "" 
+    esmodules = ""
+    modules   = ""
+    services  = ""
+    paths     = ""
+    psets     = ""
 
     if useCase == "GEN-HLT":
         essources = "--essources "
@@ -73,7 +73,7 @@ else:
         esmodules += "-l1GtTriggerMenuXml,"
         esmodules += "-sistripconn"
 
-        services  += "--services -MessageLogger"
+        services  += "--services -MessageLogger,-DQM,-DQMStore,-FUShmDQMOutputService,-MicroStateService,-ModuleWebRegistry,-TimeProfilerService"
 
         paths     += "--paths -HLTOutput,-AlCaOutput"
 
