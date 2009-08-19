@@ -65,6 +65,7 @@ HLT_TrackerCosmics
 HLT_StoppedHSCP_8E29
 HLT_IsoTrack_8E29
 AlCa_HcalPhiSym
+AlCa_HcalNZS
 AlCa_EcalPhiSym
 AlCa_EcalPi0_8E29
 AlCa_EcalEta_8E29
@@ -78,6 +79,7 @@ AlCaOutput
 HLT_MinBias
 HLT_Calibration
 HLT_EcalCalibration
+HLT_HcalCalibration
 HLT_Random
 HLT_Physics
 HLT_PhysicsNoMuon
@@ -91,5 +93,8 @@ HLT_L2Mu3_NoVertex
 HLT_OIstateTkMu3
 HLT_EgammaSuperClusterOnly_L1R
 HLT_TrackPointing
+HLT_PhysicsNoMuonPrescaled
+HLT_ZeroBiasPrescaled
+HLT_L1MuOpenPrescaled
 AlCa_EcalPi0_Cosmics
 AlCa_EcalEta_Cosmics
