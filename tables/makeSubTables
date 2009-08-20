@@ -6,7 +6,7 @@
 #
 
 ROOT="/dev/CMSSW_3_2_4"
-VERSION="V12"
+VERSION="V13"
 TABLES="1E31 8E29 GRun HIon"
 
 function makeCreateConfig() {
@@ -37,6 +37,11 @@ echo "ConfDB master: $MASTER"
 echo "Subtables:     $TABLES"
 read -p "Enter password for DB: " -s PASSWORD
 echo
+
+if [ "$(echo "$PASSWORD" | md5sum | cut -c1-32)" != "7a901914acb45efc107723c6d15c1bbf" ]; then
+  echo "Incorrect password, exiting."
+  exit 1
+fi
 
 makeCreateConfig
 for TABLE in $TABLES; do
