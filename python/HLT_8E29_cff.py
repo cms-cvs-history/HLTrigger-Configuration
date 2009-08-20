@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_2_4/8E29/V12 (CMSSW_3_2_4)
+# /dev/CMSSW_3_2_4/8E29/V13 (CMSSW_3_2_4)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_2_4/8E29/V12')
+  tableName = cms.string('/dev/CMSSW_3_2_4/8E29/V13')
 )
 
 essourceSev = cms.ESSource( "EmptyESSource",
@@ -291,7 +291,6 @@ L1GtTriggerMaskAlgoTrigTrivialProducer = cms.ESProducer( "L1GtTriggerMaskAlgoTri
   appendToDataLabel = cms.string( "" ),
   TriggerMask = cms.vuint32( 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
 )
-es_prefer_L1GtTriggerMaskAlgoTrigTrivialProducer = cms.ESPrefer( "L1GtTriggerMaskAlgoTrigTrivialProducer", "L1GtTriggerMaskAlgoTrigTrivialProducer" )
 L3MuKFFitter = cms.ESProducer( "KFTrajectoryFitterESProducer",
   ComponentName = cms.string( "L3MuKFFitter" ),
   Propagator = cms.string( "SmartPropagatorAny" ),

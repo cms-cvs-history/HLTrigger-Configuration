@@ -22,13 +22,17 @@ PROCESS := HLT
 EVENTS  := 100
 
 # supported menus
-MENUS := 8E29 1E31
+MENUS := 8E29 1E31 GRun
 
-HLT_8E29_CONFIG     := /dev/CMSSW_3_2_4/8E29/V6
+HLT_GRun_CONFIG     := /dev/CMSSW_3_2_4/GRun/V12
+HLT_GRun_GLOBALTAG  := STARTUP31X_V4::All
+HLT_GRun_SOURCE     := file:RelVal_DigiL1Raw_8E29.root
+
+HLT_8E29_CONFIG     := /dev/CMSSW_3_2_4/8E29/V12
 HLT_8E29_GLOBALTAG  := STARTUP31X_V4::All
 HLT_8E29_SOURCE     := file:RelVal_DigiL1Raw_8E29.root
 
-HLT_1E31_CONFIG     := /dev/CMSSW_3_2_4/1E31/V6
+HLT_1E31_CONFIG     := /dev/CMSSW_3_2_4/1E31/V12
 HLT_1E31_GLOBALTAG  := MC_31X_V5::All
 HLT_1E31_SOURCE     := file:RelVal_DigiL1Raw_1E31.root
 
@@ -58,6 +62,11 @@ ERROR   := $(CLEAR)$(COLUMN)$(RED)error$(NORMAL)
 LUMI = $(strip $(word 1, $(subst _, , $@)) )
 NAME = $(strip $(subst $(LUMI)_, , $(word 1, $(subst ., , $@))) )
 TYPE = $(strip $(word 2, $(subst ., , $@)) )
+
+LIST_OF_GRun_PATHS := $(shell edmConfigFromDB --configName $(HLT_GRun_CONFIG) --nopsets --noedsources --noes --noservices --nooutput --nosequences --nomodules --format python | gawk '/^process\..*(AlCa|HLT)_.* = cms.Path/ { print gensub(/^process\.(.*(AlCa|HLT)_.*) = cms.Path.*/, "\\1", 1) }' | sort)
+LIST_OF_GRun_PYS   := $(patsubst %, GRun_%.py,   $(LIST_OF_GRun_PATHS))
+LIST_OF_GRun_LOGS  := $(patsubst %, GRun_%.log,  $(LIST_OF_GRun_PATHS))
+LIST_OF_GRun_DIFFS := $(patsubst %, GRun_%.diff, $(LIST_OF_GRun_PATHS))
 
 LIST_OF_8E29_PATHS := $(shell edmConfigFromDB --configName $(HLT_8E29_CONFIG) --nopsets --noedsources --noes --noservices --nooutput --nosequences --nomodules --format python | gawk '/^process\..*(AlCa|HLT)_.* = cms.Path/ { print gensub(/^process\.(.*(AlCa|HLT)_.*) = cms.Path.*/, "\\1", 1) }' | sort)
 LIST_OF_8E29_PYS   := $(patsubst %, 8E29_%.py,   $(LIST_OF_8E29_PATHS))
@@ -125,6 +134,14 @@ summary: | check
 	
 
 # these are kinda tricky: we need rules based on the file content, not on its modification date
+DB_GRun_NEW:=$(shell echo -e "CONFIG=$(HLT_GRun_CONFIG)\nSOURCE=$(HLT_GRun_SOURCE)\nGLOBALTAG=$(HLT_GRun_GLOBALTAG)" | md5sum | cut -c -32)
+DB_GRun_SUM:=$(shell [ -f .database_GRun ] && cat .database_GRun | md5sum | cut -c -32)
+
+ifneq ($(DB_GRun_NEW), $(DB_GRun_SUM))
+.database_GRun:
+	@echo -e "CONFIG=$(HLT_GRun_CONFIG)\nSOURCE=$(HLT_GRun_SOURCE)\nGLOBALTAG=$(HLT_GRun_GLOBALTAG)" > .database_GRun
+endif
+
 DB_8E29_NEW:=$(shell echo -e "CONFIG=$(HLT_8E29_CONFIG)\nSOURCE=$(HLT_8E29_SOURCE)\nGLOBALTAG=$(HLT_8E29_GLOBALTAG)" | md5sum | cut -c -32)
 DB_8E29_SUM:=$(shell [ -f .database_8E29 ] && cat .database_8E29 | md5sum | cut -c -32)
 
