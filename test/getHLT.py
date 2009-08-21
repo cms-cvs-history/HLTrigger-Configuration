@@ -13,7 +13,6 @@ def usage():
     print "  for the GEN-HLT workflow."
     print "The default is to extract a file with minimal modifications"
     print "  for validation."
-    sys.exit(1)
 
 dbName = sys.argv[1]
 
@@ -26,9 +25,11 @@ elif argc == 4:
     outName = "HLT_"+sys.argv[2]+"_cff.py"
 else:
     usage()
+    sys.exit(1)
 
 if os.path.exists(outName):
     print outName, "already exists - abort!"
+    sys.exit(1)
 else:
     # Initialize everything
     essources = "" 
@@ -74,9 +75,9 @@ else:
         esmodules += "-L1GtTriggerMaskAlgoTrigTrivialProducer,"
         esmodules += "-sistripconn"
 
-        services  += "--services -MessageLogger,-DQM,-DQMStore,-FUShmDQMOutputService,-MicroStateService,-ModuleWebRegistry,-TimeProfilerService"
+        services  += "--services -PrescaleService,-MessageLogger,-DQM,-DQMStore,-FUShmDQMOutputService,-MicroStateService,-ModuleWebRegistry,-TimeProfilerService"
 
-        paths     += "--paths -HLTOutput,-AlCaOutput"
+        paths     += "--paths -HLTOutput,-AlCaOutput,-ESOutput,-MONOutput"
 
         psets     += "--psets -maxEvents,-options"
 
@@ -95,42 +96,48 @@ else:
 #
 # Overwrite ProcessName and PoolSource
 #
-        os.system("cat >> "+outName+" <<EOI\nprocess.setName_('HLT"+sys.argv[2]+"')\nEOI\n")
-        os.system("cat >> "+outName+" <<EOI\nprocess.source.fileNames = cms.untracked.vstring('file:RelVal_DigiL1Raw_"+sys.argv[2]+".root')\nEOI\n")
+        out = open(outName, 'a')
+        out.write("process.setName_('HLT"+sys.argv[2]+"')\n")
+        out.write("process.source.fileNames = cms.untracked.vstring('file:RelVal_DigiL1Raw_"+sys.argv[2]+".root')\n")
 
 #
 # Overwrite GlobalTag
 #
         if sys.argv[2]=="8E29":
-          os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'STARTUP31X_V5::All'\nEOI\n")
+          out.write("process.GlobalTag.globaltag = 'STARTUP31X_V5::All'\n")
         elif sys.argv[2]=="GRun":
-          os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'STARTUP31X_V5::All'\nEOI\n")
+          out.write("process.GlobalTag.globaltag = 'STARTUP31X_V5::All'\n")
         elif sys.argv[2]=="1E31":
-          os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'MC_31X_V5::All'\nEOI\n")
+          out.write("process.GlobalTag.globaltag = 'MC_31X_V5::All'\n")
         elif sys.argv[2]=="HIon":
-          os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'MC_31X_V5::All'\nEOI\n")
+          out.write("process.GlobalTag.globaltag = 'MC_31X_V5::All'\n")
         else:
-          os.system("cat >> "+outName+" <<EOI\nprocess.GlobalTag.globaltag = 'MC_31X_V5::All'\nEOI\n")
+          out.write("process.GlobalTag.globaltag = 'MC_31X_V5::All'\n")
 
 #
 # The following is stolen from cmsDriver's ConfigBuilder.py - addCustomise
 #
+        final_snippet = '\n\n# Automatic addition of the customisation function\n'
 
         # let python search for that package and do syntax checking at the same time
-        packageName = 'HLTrigger/Configuration/customL1THLT_Options.py'.replace(".py","").replace(".","/")
+        packageName = 'HLTrigger.Configuration.customL1THLT_Options'
         package = __import__(packageName)
 
         # now ask the package for its definition and pick .py instead of .pyc
-        customiseFile = package.__file__.rstrip("c")
+        customiseFile = open(package.__file__.rstrip("c"), 'r')
 
-        final_snippet='\n\n# Automatic addition of the customisation function\n'
-        for line in file(customiseFile,'r'):
+        for line in customiseFile:
             if "import FWCore.ParameterSet.Config" in line:
                 continue
             final_snippet += line
 
-        final_snippet += '\n\n# End of customisation function definition'
-        final_snippet += "\n\nprocess = customise(process)\n"
+        # close the customization file
+        customiseFile.close()
 
-        os.system("cat >> "+outName+" <<EOI\n"+final_snippet+"EOI\n")
-            
+        final_snippet += '\n\n# End of customisation function definition\n'
+        final_snippet += '\nprocess = customise(process)\n'
+
+        out.write(final_snippet)
+
+        out.close()
+
