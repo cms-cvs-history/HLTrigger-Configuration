@@ -71,6 +71,7 @@ else:
         esmodules += "-ZdcHardcodeGeometryEP,"
         esmodules += "-hcal_db_producer,"
         esmodules += "-l1GtTriggerMenuXml,"
+        esmodules += "-L1GtTriggerMaskAlgoTrigTrivialProducer,"
         esmodules += "-sistripconn"
 
         services  += "--services -MessageLogger,-DQM,-DQMStore,-FUShmDQMOutputService,-MicroStateService,-ModuleWebRegistry,-TimeProfilerService"
@@ -84,7 +85,10 @@ else:
         os.system(myGet)
 
     else:
-    
+        esmodules = "--esmodules "
+        esmodules += "-l1GtTriggerMenuXml,"
+        esmodules += "-L1GtTriggerMaskAlgoTrigTrivialProducer"
+
         myGet = "edmConfigFromDB       --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + outName
         os.system(myGet)
 
