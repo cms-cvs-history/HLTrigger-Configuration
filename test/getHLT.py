@@ -90,15 +90,15 @@ else:
         esmodules += "-l1GtTriggerMenuXml,"
         esmodules += "-L1GtTriggerMaskAlgoTrigTrivialProducer"
 
-        myGet = "edmConfigFromDB       --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + outName
+        myGet = "edmConfigFromDB --input file:RelVal_DigiL1Raw_"+sys.argv[2]+".root" + " --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + outName
         os.system(myGet)
 
 #
-# Overwrite ProcessName and PoolSource
+# Overwrite ProcessName
 #
+        # open the output file for appending
         out = open(outName, 'a')
         out.write("process.setName_('HLT"+sys.argv[2]+"')\n")
-        out.write("process.source.fileNames = cms.untracked.vstring('file:RelVal_DigiL1Raw_"+sys.argv[2]+".root')\n")
 
 #
 # Overwrite GlobalTag
