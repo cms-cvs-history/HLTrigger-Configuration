@@ -71,10 +71,6 @@ AlCa_EcalEta_8E29
 AlCa_RPCMuonNoHits
 AlCa_RPCMuonNormalisation
 AlCa_DTErrors
-HLTriggerFinalPath
-HLTAnalyzerEndpath
-HLTOutput
-AlCaOutput
 HLT_MinBias
 HLT_Calibration
 HLT_EcalCalibration
@@ -98,3 +94,9 @@ HLT_L1MuOpenPrescaled
 AlCa_HcalNZS
 AlCa_EcalPi0_Cosmics
 AlCa_EcalEta_Cosmics
+HLTriggerFinalPath
+HLTAnalyzerEndpath
+HLTOutput
+AlCaOutput
+ESOutput
+MONOutput
