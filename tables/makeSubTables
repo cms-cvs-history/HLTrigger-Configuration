@@ -13,6 +13,7 @@ TABLES="1E31 8E29 GRun HIon"        # which sub-ytables to create
 DBHOST="cmsr1-v.cern.ch"
 DBNAME="cms_cond.cern.ch"
 DBUSER="cms_hltdev_writer"
+PWHASH="7a901914acb45efc107723c6d15c1bbf"
 # see $CMSSW_BASE/src/EventFilter/ConfigDB/test/runCreateConfig for other possible settings
 
 # check for the CMSSW environment
@@ -45,7 +46,7 @@ echo "Created under: $TARGET/"
 read -p "Enter password for DB: " -s PASSWORD
 echo
 
-if [ "$(echo "$PASSWORD" | md5sum | cut -c1-32)" != "7a901914acb45efc107723c6d15c1bbf" ]; then
+if [ "$(echo "$PASSWORD" | md5sum | cut -c1-32)" != "$PWHASH" ]; then
   echo "Incorrect password, exiting."
   exit 1
 fi
