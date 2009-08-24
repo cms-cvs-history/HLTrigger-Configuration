@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_2_4/HLT/V21 (CMSSW_3_2_4_HLT1)
+# /dev/CMSSW_3_2_4/HLT/V28 (CMSSW_3_2_4_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_2_4/HLT/V21')
+  tableName = cms.string('/dev/CMSSW_3_2_4/HLT/V28')
 )
 
 block_hltOutputALCAPHISYM = cms.PSet(

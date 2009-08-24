@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_2_4/online/HIon/V3 (CMSSW_3_2_4_HLT1)
+# /dev/CMSSW_3_2_4/online/HIon/V8 (CMSSW_3_2_4_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_2_4/online/HIon/V3')
+  tableName = cms.string('/dev/CMSSW_3_2_4/online/HIon/V8')
 )
 
 essourceSev = cms.ESSource( "EmptyESSource",
@@ -1505,7 +1505,8 @@ hltL2Muons = cms.EDProducer( "L2MuonProducer",
         RescaleError = cms.double( 100.0 ),
         MuonRecHitBuilder = cms.string( "MuonRecHitBuilder" ),
         Propagator = cms.string( "FastSteppingHelixPropagatorAny" ),
-        NMinRecHits = cms.uint32( 2 )
+        NMinRecHits = cms.uint32( 2 ),
+        UseSubRecHits = cms.bool( False )
       ),
       DoBackwardFilter = cms.bool( True ),
       SeedPosition = cms.string( "in" ),
