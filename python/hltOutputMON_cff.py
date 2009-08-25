@@ -1,11 +1,12 @@
-# /dev/CMSSW_3_2_4/HLT/V28 (CMSSW_3_2_4_HLT1)
+# /dev/CMSSW_3_2_4/HLT/V29 (CMSSW_3_2_4_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_2_4/HLT/V28')
+  tableName = cms.string('/dev/CMSSW_3_2_4/HLT/V29')
 )
+
 
 block_hltOutputDQM = cms.PSet(
 outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
