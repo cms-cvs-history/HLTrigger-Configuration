@@ -77,7 +77,7 @@ else:
 
         services  += "--services -PrescaleService,-MessageLogger,-DQM,-DQMStore,-FUShmDQMOutputService,-MicroStateService,-ModuleWebRegistry,-TimeProfilerService"
 
-        paths     += "--paths -HLTOutput,-AlCaOutput,-ESOutput,-MONOutput"
+        paths     += "--paths -HLTOutput,-AlCaOutput,-ESOutput,-MONOutput,-OfflineOutput"
 
         psets     += "--psets -maxEvents,-options"
 
@@ -89,6 +89,8 @@ else:
         esmodules = "--esmodules "
         esmodules += "-l1GtTriggerMenuXml,"
         esmodules += "-L1GtTriggerMaskAlgoTrigTrivialProducer"
+
+        paths     += "--paths -OfflineOutput"
 
         myGet = "edmConfigFromDB --input file:RelVal_DigiL1Raw_"+sys.argv[2]+".root" + " --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + outName
         os.system(myGet)
