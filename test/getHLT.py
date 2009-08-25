@@ -85,6 +85,15 @@ else:
         myGet = "edmConfigFromDB --cff --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + outName
         os.system(myGet)
 
+        # FIXME - this should be done by edmConfigFromDB - remove the definition of streams and primary datasets from the dump
+        os.system("sed -e'/^streams/,/^)/d' -e'/^datasets/,/^)/d' -i " + outName)
+
+        # FIXME - this should be done looking into the python objects, not working on the text representation
+        os.system("sed -e 's/cms.InputTag( \"source\" )/cms.InputTag( \"rawDataCollector\" )/' -i " + outName)
+
+        # FIXME - DTUnpackingModule should not have untracked parameters
+        os.system("sed -e'/DTUnpackingModule/a\ \ \ \ inputLabel = cms.untracked.InputTag( \"rawDataCollector\" ),' -i " + outName)
+
     else:
         esmodules = "--esmodules "
         esmodules += "-l1GtTriggerMenuXml,"
@@ -94,6 +103,15 @@ else:
 
         myGet = "edmConfigFromDB --input file:RelVal_DigiL1Raw_"+sys.argv[2]+".root" + " --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + outName
         os.system(myGet)
+
+        # FIXME - this should be done by edmConfigFromDB - remove the definition of streams and primary datasets from the dump
+        os.system("sed -e'/^process\.streams/,/^)/d' -e'/^process\.datasets/,/^)/d' -i " + outName)
+
+        # FIXME - this should be done looking into the python objects, not working on the text representation
+        os.system("sed -e 's/cms.InputTag( \"source\" )/cms.InputTag( \"rawDataCollector\" )/' -i " + outName)
+
+        # FIXME - DTUnpackingModule should not have untracked parameters
+        os.system("sed -e'/DTUnpackingModule/a\ \ \ \ inputLabel = cms.untracked.InputTag( \"rawDataCollector\" ),' -i " + outName)
 
 #
 # Overwrite ProcessName
