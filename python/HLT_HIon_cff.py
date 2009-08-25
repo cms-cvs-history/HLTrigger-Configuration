@@ -1,11 +1,12 @@
-# /dev/CMSSW_3_2_4/HIon/V14 (CMSSW_3_2_4)
+# /dev/CMSSW_3_2_4/online/HIon/V9 (CMSSW_3_2_4_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_2_4/HIon/V14')
+  tableName = cms.string('/dev/CMSSW_3_2_4/online/HIon/V9')
 )
+
 
 essourceSev = cms.ESSource( "EmptyESSource",
   recordName = cms.string( "HcalSeverityLevelComputerRcd" ),
@@ -827,36 +828,6 @@ DTDataIntegrityTask = cms.Service( "DTDataIntegrityTask",
   getSCInfo = cms.untracked.bool( True ),
   hltMode = cms.untracked.bool( True )
 )
-PrescaleService = cms.Service( "PrescaleService",
-  lvl1DefaultLabel = cms.untracked.string( "HLT1" ),
-  lvl1Labels = cms.vstring( 'HLT8E29',
-    'HLT1E31',
-    'HLT1',
-    'HLT2' ),
-  prescaleTable = cms.VPSet( 
-    cms.PSet(  pathName = cms.string( "HLT_HIJet50U" ),
-      prescales = cms.vuint32( 1, 1, 1, 2 )
-    ),
-    cms.PSet(  pathName = cms.string( "HLT_HIJet75U" ),
-      prescales = cms.vuint32( 1, 1, 1, 2 )
-    ),
-    cms.PSet(  pathName = cms.string( "HLT_HIJet90U" ),
-      prescales = cms.vuint32( 1, 1, 1, 2 )
-    ),
-    cms.PSet(  pathName = cms.string( "HLT_HIPhoton10" ),
-      prescales = cms.vuint32( 1, 1, 1, 2 )
-    ),
-    cms.PSet(  pathName = cms.string( "HLT_HIPhoton20" ),
-      prescales = cms.vuint32( 1, 1, 1, 2 )
-    ),
-    cms.PSet(  pathName = cms.string( "HLT_HIPhoton30" ),
-      prescales = cms.vuint32( 1, 1, 1, 2 )
-    ),
-    cms.PSet(  pathName = cms.string( "HLT_HIDoubleMu" ),
-      prescales = cms.vuint32( 1, 1, 1, 2 )
-    )
-  )
-)
 UpdaterService = cms.Service( "UpdaterService",
 )
 
@@ -1266,9 +1237,9 @@ hltHIMML1Seed = cms.EDFilter( "HLTLevel1GTSeed",
     L1MuonCollectionTag = cms.InputTag( "hltL1extraParticles" )
 )
 hltMuonDTDigis = cms.EDProducer( "DTUnpackingModule",
+    inputLabel = cms.untracked.InputTag( "rawDataCollector" ),
     dataType = cms.string( "DDU" ),
     fedbyType = cms.untracked.bool( False ),
-    inputLabel = cms.untracked.InputTag( "rawDataCollector" ),
     readOutParameters = cms.PSet( 
       localDAQ = cms.untracked.bool( False ),
       performDataIntegrityMonitor = cms.untracked.bool( False ),
