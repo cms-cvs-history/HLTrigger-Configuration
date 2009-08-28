@@ -90,6 +90,7 @@ else:
 
         # FIXME - this should be done looking into the python objects, not working on the text representation
         os.system("sed -e 's/cms.InputTag( \"source\" )/cms.InputTag( \"rawDataCollector\" )/' -i " + outName)
+        os.system("sed -e 's/cms.string( \"source\" )/cms.string( \"rawDataCollector\" )/' -i " + outName)
 
         # FIXME - DTUnpackingModule should not have untracked parameters
         os.system("sed -e'/DTUnpackingModule/a\ \ \ \ inputLabel = cms.untracked.InputTag( \"rawDataCollector\" ),' -i " + outName)
@@ -109,6 +110,7 @@ else:
 
         # FIXME - this should be done looking into the python objects, not working on the text representation
         os.system("sed -e 's/cms.InputTag( \"source\" )/cms.InputTag( \"rawDataCollector\" )/' -i " + outName)
+        os.system("sed -e 's/cms.string( \"source\" )/cms.string( \"rawDataCollector\" )/' -i " + outName)
 
         # FIXME - DTUnpackingModule should not have untracked parameters
         os.system("sed -e'/DTUnpackingModule/a\ \ \ \ inputLabel = cms.untracked.InputTag( \"rawDataCollector\" ),' -i " + outName)
@@ -127,6 +129,7 @@ else:
 #
 # Overwrite GlobalTag
 #
+        out.write("process.GlobalTag.connect = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'\n")
         if sys.argv[2]=="8E29":
           out.write("process.GlobalTag.globaltag = 'STARTUP31X_V5::All'\n")
         elif sys.argv[2]=="GRun":
@@ -144,7 +147,7 @@ else:
         final_snippet = '\n\n# Automatic addition of the customisation function\n'
 
         # let python search for that package and do syntax checking at the same time
-        packageName = 'HLTrigger.Configuration.customL1THLT_Options'
+        packageName = 'HLTrigger/Configuration/customL1THLT_Options'
         package = __import__(packageName)
 
         # now ask the package for its definition and pick .py instead of .pyc
