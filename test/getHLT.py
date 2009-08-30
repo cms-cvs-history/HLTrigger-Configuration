@@ -14,13 +14,6 @@ def usage():
     print 'If use case "ONLINE" is specified, generate a full configuration file with minimal modifications, for validation.'
     print 'If no use case is specified, the default is "ONLINE".'
 
-try:
-    beseDir = os.environ['CMSSW_BASE'] + "/src/EventFilter/ConfigDB"
-    edmConfigFromDB = 'java -cp ' + beseDir + '/ext/ojdbc14.jar:' + beseDir + '/lib/cmssw-evf-confdb-gui.jar confdb.converter.OfflineConverter -s \'convertme!\'"'
-except:
-    print 'Please define the CMSSW environment running the "cmsenv" command'
-    sys.exit(1)
-
 argc = len(sys.argv)
 
 try:
@@ -45,6 +38,7 @@ if os.path.exists(outName):
     sys.exit(1)
 else:
     # Initialize everything
+    edsources = ""
     essources = ""
     esmodules = ""
     modules   = ""
@@ -53,6 +47,8 @@ else:
     psets     = ""
 
     if useCase == "GEN-HLT":
+        edsources =  " --noedsources"
+
         essources =  " --essources "
         essources += "-SiStripQualityFakeESSource,"
         essources += "-GlobalTag,"
@@ -95,11 +91,8 @@ else:
         psets     =  " --psets -maxEvents,-options"
 
 
-        myGet = edmConfigFromDB + " --cff --configName " + configName + essources + esmodules + modules + services + paths + psets + " > " + outName
+        myGet = "hltConfigFromDB --cff --configName " + configName + edsources + essources + esmodules + modules + services + paths + psets + " > " + outName
         os.system(myGet)
-
-        # FIXME - this should be done by edmConfigFromDB - remove the definition of streams and primary datasets from the dump
-        os.system("sed -e'/^streams/,/^)/d' -e'/^datasets/,/^)/d' -i " + outName)
 
         # FIXME - this should be done looking into the python objects, not working on the text representation
         os.system("sed -e 's/cms.InputTag( \"source\" )/cms.InputTag( \"rawDataCollector\" )/' -i " + outName)
@@ -109,17 +102,15 @@ else:
         os.system("sed -e'/DTUnpackingModule/a\ \ \ \ inputLabel = cms.untracked.InputTag( \"rawDataCollector\" ),' -i " + outName)
 
     else:
+        edsources =  " --input file:RelVal_DigiL1Raw_"+fileId+".root"
         esmodules =  " --esmodules "
         esmodules += "-l1GtTriggerMenuXml,"
         esmodules += "-L1GtTriggerMaskAlgoTrigTrivialProducer"
 
         paths     =  " --paths -OfflineOutput"
 
-        myGet = edmConfigFromDB + " --input file:RelVal_DigiL1Raw_"+fileId+".root" + " --configName " + configName + essources + esmodules + modules + services + paths + psets + " > " + outName
+        myGet = "hltConfigFromDB --configName " + configName + edsources + essources + esmodules + modules + services + paths + psets + " > " + outName
         os.system(myGet)
-
-        # FIXME - this should be done by edmConfigFromDB - remove the definition of streams and primary datasets from the dump
-        os.system("sed -e'/^process\.streams/,/^)/d' -e'/^process\.datasets/,/^)/d' -i " + outName)
 
         # FIXME - this should be done looking into the python objects, not working on the text representation
         os.system("sed -e 's/cms.InputTag( \"source\" )/cms.InputTag( \"rawDataCollector\" )/' -i " + outName)
