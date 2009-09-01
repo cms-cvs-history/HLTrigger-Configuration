@@ -165,9 +165,10 @@ else:
 #
         out.write("process.GlobalTag.connect = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'\n")
         try:
-          out.write("process.GlobalTag.globaltag = '%s'\n" % globalTag[sys.argv[2]])
+          out.write("process.GlobalTag.globaltag = '%s'\n" % globalTag[fileId])
         except:
           out.write("process.GlobalTag.globaltag = '%s'\n" % globalTag[None])
+        out.write("\n")
 
 #
 # add the HLTAnalyzerEndpath
