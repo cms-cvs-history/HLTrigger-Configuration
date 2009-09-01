@@ -91,7 +91,7 @@ else:
         psets     =  " --psets -maxEvents,-options"
 
 
-        myGet = "hltConfigFromDB --cff --configName " + configName + edsources + essources + esmodules + modules + services + paths + psets + " > " + outName
+        myGet = "edmConfigFromDB --cff --configName " + configName + edsources + essources + esmodules + modules + services + paths + psets + " > " + outName
         os.system(myGet)
 
         # FIXME - this should be done looking into the python objects, not working on the text representation
@@ -109,7 +109,7 @@ else:
 
         paths     =  " --paths -OfflineOutput"
 
-        myGet = "hltConfigFromDB --configName " + configName + edsources + essources + esmodules + modules + services + paths + psets + " > " + outName
+        myGet = "edmConfigFromDB --configName " + configName + edsources + essources + esmodules + modules + services + paths + psets + " > " + outName
         os.system(myGet)
 
         # FIXME - this should be done looking into the python objects, not working on the text representation
