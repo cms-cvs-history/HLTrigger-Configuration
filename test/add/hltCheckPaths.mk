@@ -24,15 +24,15 @@ EVENTS  := 100
 # supported menus
 MENUS := 8E29 1E31 GRun
 
-HLT_GRun_CONFIG     := /dev/CMSSW_3_2_4/GRun/V13
+HLT_GRun_CONFIG     := /dev/CMSSW_3_2_4/GRun
 HLT_GRun_GLOBALTAG  := STARTUP31X_V4::All
 HLT_GRun_SOURCE     := file:RelVal_DigiL1Raw_8E29.root
 
-HLT_8E29_CONFIG     := /dev/CMSSW_3_2_4/8E29/V13
+HLT_8E29_CONFIG     := /dev/CMSSW_3_2_4/8E29
 HLT_8E29_GLOBALTAG  := STARTUP31X_V4::All
 HLT_8E29_SOURCE     := file:RelVal_DigiL1Raw_8E29.root
 
-HLT_1E31_CONFIG     := /dev/CMSSW_3_2_4/1E31/V13
+HLT_1E31_CONFIG     := /dev/CMSSW_3_2_4/1E31
 HLT_1E31_GLOBALTAG  := MC_31X_V5::All
 HLT_1E31_SOURCE     := file:RelVal_DigiL1Raw_1E31.root
 
@@ -163,12 +163,22 @@ endif
 $(TABLE_PYS): .database_$$(LUMI)
 	@echo -e "ConfDB [$(BLUE)$(HLT_$(LUMI)_CONFIG)$(NORMAL)] menu $(BOLD)$(LUMI)_GlobalTable$(NORMAL)$(CLEAR)"
 	@$(GETCONFIG) --configName $(HLT_$(LUMI)_CONFIG) --input $(HLT_$(LUMI)_SOURCE) --nooutput --services -PrescaleService --format python | sed -e's/^process = cms.Process(.*)/process = cms.Process( "$(PROCESS)" )/' -e's/^process.maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( $(EVENTS) ) )/process.maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( 100 ) )/' > $(LUMI)_GlobalTable.py
-	@echo -e "process.GlobalTag.globaltag = \"$(HLT_$(LUMI)_GLOBALTAG)\"" >> $(LUMI)_GlobalTable.py
+	@sed -e '/^streams/,/^)/d' -e'/^datasets/,/^)/d'                         -i $(LUMI)_GlobalTable.py
+	@sed -e 's/cms.InputTag( "source" )/cms.InputTag( "rawDataCollector" )/' -i $(LUMI)_GlobalTable.py
+	@sed -e 's/cms.string( "source" )/cms.string( "rawDataCollector" )/'     -i $(LUMI)_GlobalTable.py
+	@sed -e '/DTUnpackingModule/a\ \ \ \ inputLabel = cms.untracked.InputTag( "rawDataCollector" ),' -i $(LUMI)_GlobalTable.py
+	@echo -e "process.GlobalTag.connect   = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'" >> $(LUMI)_GlobalTable.py
+	@echo -e "process.GlobalTag.globaltag = '$(HLT_$(LUMI)_GLOBALTAG)'"                       >> $(LUMI)_GlobalTable.py
 
 $(LIST_OF_PYS): .database_$$(LUMI)
 	@echo -e "ConfDB [$(BLUE)$(HLT_$(LUMI)_CONFIG)$(NORMAL)] path $(BOLD)$(NAME)$(NORMAL)$(CLEAR)"
 	@$(GETCONFIG) --configName $(HLT_$(LUMI)_CONFIG) --input $(HLT_$(LUMI)_SOURCE) --paths HLTriggerFirstPath,$(NAME),HLTriggerFinalPath --services -PrescaleService --format python | sed -e's/^process = cms.Process(.*)/process = cms.Process( "$(PROCESS)" )/' -e's/^process.maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( $(EVENTS) ) )/process.maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( 100 ) )/' > $@
-	@echo -e "process.GlobalTag.globaltag = \"$(HLT_$(LUMI)_GLOBALTAG)\"" >> $@
+	@sed -e '/^streams/,/^)/d' -e'/^datasets/,/^)/d'                         -i $@
+	@sed -e 's/cms.InputTag( "source" )/cms.InputTag( "rawDataCollector" )/' -i $@
+	@sed -e 's/cms.string( "source" )/cms.string( "rawDataCollector" )/'     -i $@
+	@sed -e '/DTUnpackingModule/a\ \ \ \ inputLabel = cms.untracked.InputTag( "rawDataCollector" ),' -i $@
+	@echo -e "process.GlobalTag.connect   = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'" >> $@
+	@echo -e "process.GlobalTag.globaltag = '$(HLT_$(LUMI)_GLOBALTAG)'"                       >> $@
 
 # rules to run cmsRun and produce log files
 $(TABLE_LOGS): %.log: %.py
