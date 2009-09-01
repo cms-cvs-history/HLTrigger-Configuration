@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_2_4/online/8E29/V10 (CMSSW_3_2_4_HLT1)
+# /dev/CMSSW_3_2_4/8E29/V15 (CMSSW_3_2_X_2009-08-31-2100_HLT2)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_2_4/online/8E29/V10')
+  tableName = cms.string('/dev/CMSSW_3_2_4/8E29/V15')
 )
 
 
@@ -4526,6 +4526,11 @@ hltBLifetimeL3JetsStartupU = cms.EDProducer( "GetJetsFromHLTobject",
     jets = cms.InputTag( "hltBLifetimeL25FilterStartupU" )
 )
 hltBLifetimeRegionalPixelSeedGeneratorStartupU = cms.EDProducer( "SeedGeneratorFromRegionHitsEDProducer",
+    ClusterCheckPSet = cms.PSet( 
+      MaxNumberOfCosmicClusters = cms.uint32( 50000 ),
+      ClusterCollectionLabel = cms.InputTag( "siStripClusters" ),
+      doClusterCheck = cms.bool( False )
+    ),
     RegionFactoryPSet = cms.PSet( 
       ComponentName = cms.string( "TauRegionalPixelSeedGenerator" ),
       RegionPSet = cms.PSet( 
@@ -5041,28 +5046,33 @@ hltIsolPixelTrackL2Filter8E29 = cms.EDFilter( "HLTPixelIsolTrackFilter",
     MinEnergyTrack = cms.double( 15.0 )
 )
 hltHITPixelPairSeedGenerator8E29 = cms.EDProducer( "SeedGeneratorFromRegionHitsEDProducer",
+    ClusterCheckPSet = cms.PSet( 
+      MaxNumberOfCosmicClusters = cms.uint32( 50000 ),
+      ClusterCollectionLabel = cms.InputTag( "siStripClusters" ),
+      doClusterCheck = cms.bool( False )
+    ),
     RegionFactoryPSet = cms.PSet( 
       ComponentName = cms.string( "HITRegionalPixelSeedGenerator" ),
       RegionPSet = cms.PSet( 
-        useIsoTracks = cms.bool( True ),
-        trackSrc = cms.InputTag( "hltPixelTracks" ),
-        l1tjetSrc = cms.InputTag( 'hltL1extraParticles','Tau' ),
+        deltaEtaTrackRegion = cms.double( 0.05 ),
+        useL1Jets = cms.bool( False ),
+        deltaPhiTrackRegion = cms.double( 0.05 ),
         isoTrackSrc = cms.InputTag( "hltIsolPixelTrackL2Filter8E29" ),
         precise = cms.bool( True ),
-        useL1Jets = cms.bool( False ),
+        deltaEtaL1JetRegion = cms.double( 0.3 ),
         useTracks = cms.bool( False ),
         originRadius = cms.double( 0.2 ),
-        deltaEtaL1JetRegion = cms.double( 0.3 ),
-        originHalfLength = cms.double( 0.2 ),
-        deltaPhiTrackRegion = cms.double( 0.05 ),
+        trackSrc = cms.InputTag( "hltPixelTracks" ),
+        useIsoTracks = cms.bool( True ),
+        l1tjetSrc = cms.InputTag( 'hltL1extraParticles','Tau' ),
         deltaPhiL1JetRegion = cms.double( 0.3 ),
-        vertexSrc = cms.string( "hltPixelVertices" ),
+        ptMin = cms.double( 0.5 ),
         fixedReg = cms.bool( False ),
         etaCenter = cms.double( 0.0 ),
         phiCenter = cms.double( 0.0 ),
         originZPos = cms.double( 0.0 ),
-        deltaEtaTrackRegion = cms.double( 0.05 ),
-        ptMin = cms.double( 0.5 )
+        originHalfLength = cms.double( 0.2 ),
+        vertexSrc = cms.string( "hltPixelVertices" )
       )
     ),
     OrderedHitsFactoryPSet = cms.PSet( 
@@ -5077,32 +5087,38 @@ hltHITPixelPairSeedGenerator8E29 = cms.EDProducer( "SeedGeneratorFromRegionHitsE
     TTRHBuilder = cms.string( "WithTrackAngle" )
 )
 hltHITPixelTripletSeedGenerator8E29 = cms.EDProducer( "SeedGeneratorFromRegionHitsEDProducer",
+    ClusterCheckPSet = cms.PSet( 
+      MaxNumberOfCosmicClusters = cms.uint32( 50000 ),
+      ClusterCollectionLabel = cms.InputTag( "siStripClusters" ),
+      doClusterCheck = cms.bool( False )
+    ),
     RegionFactoryPSet = cms.PSet( 
       ComponentName = cms.string( "HITRegionalPixelSeedGenerator" ),
       RegionPSet = cms.PSet( 
-        useIsoTracks = cms.bool( True ),
-        trackSrc = cms.InputTag( "hltPixelTracks" ),
-        l1tjetSrc = cms.InputTag( 'hltl1extraParticles','Tau' ),
+        deltaEtaTrackRegion = cms.double( 0.05 ),
+        useL1Jets = cms.bool( False ),
+        deltaPhiTrackRegion = cms.double( 0.05 ),
         isoTrackSrc = cms.InputTag( "hltIsolPixelTrackL2Filter8E29" ),
         precise = cms.bool( True ),
-        useL1Jets = cms.bool( False ),
+        deltaEtaL1JetRegion = cms.double( 0.3 ),
         useTracks = cms.bool( False ),
         originRadius = cms.double( 0.2 ),
-        deltaEtaL1JetRegion = cms.double( 0.3 ),
-        originHalfLength = cms.double( 0.2 ),
-        deltaPhiTrackRegion = cms.double( 0.05 ),
+        trackSrc = cms.InputTag( "hltPixelTracks" ),
+        useIsoTracks = cms.bool( True ),
+        l1tjetSrc = cms.InputTag( 'hltl1extraParticles','Tau' ),
         deltaPhiL1JetRegion = cms.double( 0.3 ),
-        vertexSrc = cms.string( "hltPixelVertices" ),
+        ptMin = cms.double( 0.5 ),
         fixedReg = cms.bool( False ),
         etaCenter = cms.double( 0.0 ),
         phiCenter = cms.double( 0.0 ),
         originZPos = cms.double( 0.0 ),
-        deltaEtaTrackRegion = cms.double( 0.05 ),
-        ptMin = cms.double( 0.5 )
+        originHalfLength = cms.double( 0.2 ),
+        vertexSrc = cms.string( "hltPixelVertices" )
       )
     ),
     OrderedHitsFactoryPSet = cms.PSet( 
       ComponentName = cms.string( "StandardHitTripletGenerator" ),
+      SeedingLayers = cms.string( "PixelLayerTriplets" ),
       GeneratorPSet = cms.PSet( 
         useBending = cms.bool( True ),
         useFixedPreFiltering = cms.bool( False ),
@@ -5111,8 +5127,7 @@ hltHITPixelTripletSeedGenerator8E29 = cms.EDProducer( "SeedGeneratorFromRegionHi
         useMultScattering = cms.bool( True ),
         phiPreFiltering = cms.double( 0.3 ),
         extraHitRZtolerance = cms.double( 0.06 )
-      ),
-      SeedingLayers = cms.string( "PixelLayerTriplets" )
+      )
     ),
     SeedComparitorPSet = cms.PSet(  ComponentName = cms.string( "none" ) ),
     SeedCreatorPSet = cms.PSet( 
