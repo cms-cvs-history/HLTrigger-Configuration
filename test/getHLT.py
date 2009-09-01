@@ -6,32 +6,49 @@ import commands
 import getopt
 import fileinput
 
-def usage():
-    print "Usage:"
-    print "  ./getHLT.py <Version from ConfDB> <Id in file name> <use case>"
-    print "If use case \"GEN-HLT\" is specified, a stripped file is generated"
-    print "  for the GEN-HLT workflow."
-    print "The default is to extract a file with minimal modifications"
-    print "  for validation."
+globalTag = {
+  '8E29': 'STARTUP31X_V5::All',
+  'GRun': 'STARTUP31X_V5::All',
+  '1E31': 'MC_31X_V6::All',
+  'HIon': 'MC_31X_V6::All',
+  None:   'MC_31X_V6::All'              # use as default
+}
 
-dbName = sys.argv[1]
+def usage():
+    print 'Usage:'
+    print '  getHLT.py <Version from ConfDB> <Id in file name> [use case]'
+    print
+    print 'If use case "GEN-HLT" is specified, generate a stripped file fragment for the GEN-HLT workflow.'
+    print 'If use case "ONLINE" is specified, generate a full configuration file with minimal modifications, for validation.'
+    print 'If no use case is specified, the default is "ONLINE".'
 
 argc = len(sys.argv)
-if argc == 3:
-    useCase = "ONLINE"
-    outName = "OnLine_HLT_"+sys.argv[2]+".py"
-elif argc == 4:
-    useCase = sys.argv[3]
-    outName = "HLT_"+sys.argv[2]+"_cff.py"
-else:
+
+try:
+    configName  = sys.argv[1]
+    fileId      = sys.argv[2]
+    processName = 'HLT' + fileId
+except:
     usage()
     sys.exit(1)
+
+try:
+    useCase = sys.argv[3]
+except:
+    useCase = "ONLINE"
+
+if useCase == "ONLINE":
+    outName = "OnLine_HLT_" + fileId + ".py"
+else:
+    outName = "HLT_" + fileId + "_cff.py"
+
 
 if os.path.exists(outName):
     print outName, "already exists - abort!"
     sys.exit(1)
 else:
     # Initialize everything
+    edsources = ""
     essources = "" 
     esmodules = ""
     modules   = ""
@@ -40,7 +57,9 @@ else:
     psets     = ""
 
     if useCase == "GEN-HLT":
-        essources = "--essources "
+        edsources =  " --noedsources"
+
+        essources  = " --essources "
         essources += "-SiStripQualityFakeESSource,"
         essources += "-GlobalTag,"
         essources += "-HepPDTESSource,"
@@ -49,7 +68,7 @@ else:
         essources += "-es_hardcode,"
         essources += "-magfield"
 
-        esmodules = "--esmodules "
+        esmodules  = " --esmodules "
         esmodules += "-CSCGeometryESModule,"
         esmodules += "-CaloGeometryBuilder,"
         esmodules += "-CaloTowerHardcodeGeometryEP,"
@@ -75,14 +94,14 @@ else:
         esmodules += "-L1GtTriggerMaskAlgoTrigTrivialProducer,"
         esmodules += "-sistripconn"
 
-        services  += "--services -PrescaleService,-MessageLogger,-DQM,-DQMStore,-FUShmDQMOutputService,-MicroStateService,-ModuleWebRegistry,-TimeProfilerService"
+        services   = " --services -PrescaleService,-MessageLogger,-DQM,-DQMStore,-FUShmDQMOutputService,-MicroStateService,-ModuleWebRegistry,-TimeProfilerService"
 
-        paths     += "--paths -HLTOutput,-AlCaOutput,-ESOutput,-MONOutput,-OfflineOutput"
+        paths      = " --paths -HLTOutput,-AlCaOutput,-ESOutput,-MONOutput,-OfflineOutput"
 
-        psets     += "--psets -maxEvents,-options"
+        psets      = " --psets -maxEvents,-options"
 
 
-        myGet = "edmConfigFromDB --cff --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + outName
+        myGet = "edmConfigFromDB --cff --configName " + configName + edsources + essources + esmodules + modules + services + paths + psets + " > " + outName
         os.system(myGet)
 
         # FIXME - this should be done by edmConfigFromDB - remove the definition of streams and primary datasets from the dump
@@ -96,13 +115,15 @@ else:
         os.system("sed -e'/DTUnpackingModule/a\ \ \ \ inputLabel = cms.untracked.InputTag( \"rawDataCollector\" ),' -i " + outName)
 
     else:
-        esmodules = "--esmodules "
+        edsources =  " --input file:RelVal_DigiL1Raw_"+fileId+".root"
+
+        esmodules  = " --esmodules "
         esmodules += "-l1GtTriggerMenuXml,"
         esmodules += "-L1GtTriggerMaskAlgoTrigTrivialProducer"
 
-        paths     += "--paths -OfflineOutput"
+        paths      = " --paths -OfflineOutput"
 
-        myGet = "edmConfigFromDB --input file:RelVal_DigiL1Raw_"+sys.argv[2]+".root" + " --configName " + dbName + " " + essources + " " + esmodules + " " + modules + " " + services + " " + paths + " " + psets + " > " + outName
+        myGet = "edmConfigFromDB --configName " + configName + edsources + essources + esmodules + modules + services + paths + psets + " > " + outName
         os.system(myGet)
 
         # FIXME - this should be done by edmConfigFromDB - remove the definition of streams and primary datasets from the dump
@@ -124,22 +145,41 @@ else:
 #
         # open the output file for appending
         out = open(outName, 'a')
-        out.write("process.setName_('HLT"+sys.argv[2]+"')\n")
+        out.write("process.setName_('%s')\n" % processName)
+        out.write("process.DQMHLTScalers.triggerResults = cms.InputTag( 'TriggerResults','','%s' )\n" % processName)
+        out.write("\n")
+
+#
+# Add global options
+#
+        out.write("process.maxEvents = cms.untracked.PSet(\n")
+        out.write("    input = cms.untracked.int32( 100 )\n")
+        out.write(")\n")
+        out.write("process.options = cms.untracked.PSet(\n")
+        out.write("    wantSummary = cms.untracked.bool( True )\n")
+        out.write(")\n")
+        out.write("\n")
 
 #
 # Overwrite GlobalTag
 #
         out.write("process.GlobalTag.connect = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'\n")
-        if sys.argv[2]=="8E29":
-          out.write("process.GlobalTag.globaltag = 'STARTUP31X_V5::All'\n")
-        elif sys.argv[2]=="GRun":
-          out.write("process.GlobalTag.globaltag = 'STARTUP31X_V5::All'\n")
-        elif sys.argv[2]=="1E31":
-          out.write("process.GlobalTag.globaltag = 'MC_31X_V5::All'\n")
-        elif sys.argv[2]=="HIon":
-          out.write("process.GlobalTag.globaltag = 'MC_31X_V5::All'\n")
-        else:
-          out.write("process.GlobalTag.globaltag = 'MC_31X_V5::All'\n")
+        try:
+          out.write("process.GlobalTag.globaltag = '%s'\n" % globalTag[sys.argv[2]])
+        except:
+          out.write("process.GlobalTag.globaltag = '%s'\n" % globalTag[None])
+
+#
+# add the HLTAnalyzerEndpath
+#
+        out.write("process.hltL1gtTrigReport = cms.EDAnalyzer( 'L1GtTrigReport',\n")
+        out.write("    UseL1GlobalTriggerRecord = cms.bool( False ),\n")
+        out.write("    L1GtRecordInputTag = cms.InputTag( 'hltGtDigis','','%s' )\n" % processName)
+        out.write(")\n")
+        out.write("process.hltTrigReport = cms.EDAnalyzer( 'HLTrigReport',\n")
+        out.write("    HLTriggerResults = cms.InputTag( 'TriggerResults','','%s' )\n" % processName)
+        out.write(")\n")
+        out.write("process.HLTAnalyzerEndpath = cms.EndPath( process.hltL1gtTrigReport + process.hltTrigReport )\n")
 
 #
 # The following is stolen from cmsDriver's ConfigBuilder.py - addCustomise
