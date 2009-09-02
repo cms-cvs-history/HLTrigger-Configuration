@@ -7,11 +7,11 @@ import getopt
 import fileinput
 
 globalTag = {
-  '8E29': 'STARTUP31X_V5::All',
-  'GRun': 'STARTUP31X_V5::All',
-  '1E31': 'MC_31X_V6::All',
-  'HIon': 'MC_31X_V6::All',
-  None:   'MC_31X_V6::All'              # use as default
+  '8E29': 'STARTUP31X_V6::All',
+  'GRun': 'STARTUP31X_V6::All',
+  '1E31': 'MC_31X_V7::All',
+  'HIon': 'MC_31X_V7::All',
+  None:   'MC_31X_V7::All'              # use as default
 }
 
 def usage():
