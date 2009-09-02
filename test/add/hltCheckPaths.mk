@@ -162,23 +162,25 @@ endif
 # rules to write the python configurations
 $(TABLE_PYS): .database_$$(LUMI)
 	@echo -e "ConfDB [$(BLUE)$(HLT_$(LUMI)_CONFIG)$(NORMAL)] menu $(BOLD)$(LUMI)_GlobalTable$(NORMAL)$(CLEAR)"
-	@$(GETCONFIG) --configName $(HLT_$(LUMI)_CONFIG) --input $(HLT_$(LUMI)_SOURCE) --nooutput --esmodules -l1GtTriggerMenuXml,-L1GtTriggerMaskAlgoTrigTrivialProducer --services -PrescaleService --format python --paths -OfflineOutput | sed -e's/^process = cms.Process(.*)/process = cms.Process( "$(PROCESS)" )/' -e's/^process.maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( $(EVENTS) ) )/process.maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( 100 ) )/' > $(LUMI)_GlobalTable.py
+	@$(GETCONFIG) --configName $(HLT_$(LUMI)_CONFIG) --input $(HLT_$(LUMI)_SOURCE) --nopsets --nooutput --esmodules -l1GtTriggerMenuXml,-L1GtTriggerMaskAlgoTrigTrivialProducer --services -PrescaleService --format python --paths -OfflineOutput | sed -e's/^process = cms.Process(.*)/process = cms.Process( "$(PROCESS)" )/' -e's/^process.maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( $(EVENTS) ) )/process.maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( 100 ) )/' > $(LUMI)_GlobalTable.py
 	@sed -e '/^streams/,/^)/d' -e'/^datasets/,/^)/d'                         -i $(LUMI)_GlobalTable.py
 	@sed -e 's/cms.InputTag( "source" )/cms.InputTag( "rawDataCollector" )/' -i $(LUMI)_GlobalTable.py
 	@sed -e 's/cms.string( "source" )/cms.string( "rawDataCollector" )/'     -i $(LUMI)_GlobalTable.py
 	@sed -e '/DTUnpackingModule/a\ \ \ \ inputLabel = cms.untracked.InputTag( "rawDataCollector" ),' -i $(LUMI)_GlobalTable.py
-	@echo -e "process.GlobalTag.connect   = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'" >> $(LUMI)_GlobalTable.py
-	@echo -e "process.GlobalTag.globaltag = '$(HLT_$(LUMI)_GLOBALTAG)'"                       >> $(LUMI)_GlobalTable.py
+	@echo -e "process.GlobalTag.connect   = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'"           >> $(LUMI)_GlobalTable.py
+	@echo -e "process.GlobalTag.globaltag = '$(HLT_$(LUMI)_GLOBALTAG)'"                                 >> $(LUMI)_GlobalTable.py
+	@echo -e "process.options = cms.untracked.PSet(\n    wantSummary = cms.untracked.bool( True )\n)\n" >> $(LUMI)_GlobalTable.py
 
 $(LIST_OF_PYS): .database_$$(LUMI)
 	@echo -e "ConfDB [$(BLUE)$(HLT_$(LUMI)_CONFIG)$(NORMAL)] path $(BOLD)$(NAME)$(NORMAL)$(CLEAR)"
-	@$(GETCONFIG) --configName $(HLT_$(LUMI)_CONFIG) --input $(HLT_$(LUMI)_SOURCE) --nooutput --esmodules -l1GtTriggerMenuXml,-L1GtTriggerMaskAlgoTrigTrivialProducer --services -PrescaleService --format python --paths HLTriggerFirstPath,$(NAME),HLTriggerFinalPath | sed -e's/^process = cms.Process(.*)/process = cms.Process( "$(PROCESS)" )/' -e's/^process.maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( $(EVENTS) ) )/process.maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( 100 ) )/' > $@
+	@$(GETCONFIG) --configName $(HLT_$(LUMI)_CONFIG) --input $(HLT_$(LUMI)_SOURCE) --nopsets --nooutput --esmodules -l1GtTriggerMenuXml,-L1GtTriggerMaskAlgoTrigTrivialProducer --services -PrescaleService --format python --paths HLTriggerFirstPath,$(NAME),HLTriggerFinalPath | sed -e's/^process = cms.Process(.*)/process = cms.Process( "$(PROCESS)" )/' -e's/^process.maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( $(EVENTS) ) )/process.maxEvents = cms.untracked.PSet(  input = cms.untracked.int32( 100 ) )/' > $@
 	@sed -e '/^streams/,/^)/d' -e'/^datasets/,/^)/d'                         -i $@
 	@sed -e 's/cms.InputTag( "source" )/cms.InputTag( "rawDataCollector" )/' -i $@
 	@sed -e 's/cms.string( "source" )/cms.string( "rawDataCollector" )/'     -i $@
 	@sed -e '/DTUnpackingModule/a\ \ \ \ inputLabel = cms.untracked.InputTag( "rawDataCollector" ),' -i $@
-	@echo -e "process.GlobalTag.connect   = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'" >> $@
-	@echo -e "process.GlobalTag.globaltag = '$(HLT_$(LUMI)_GLOBALTAG)'"                       >> $@
+	@echo -e "process.GlobalTag.connect   = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'"           >> $@
+	@echo -e "process.GlobalTag.globaltag = '$(HLT_$(LUMI)_GLOBALTAG)'"                                 >> $@
+	@echo -e "process.options = cms.untracked.PSet(\n    wantSummary = cms.untracked.bool( True )\n)\n" >> $@
 
 # rules to run cmsRun and produce log files
 $(TABLE_LOGS): %.log: %.py
