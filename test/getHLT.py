@@ -171,18 +171,6 @@ else:
         out.write("\n")
 
 #
-# add the HLTAnalyzerEndpath
-#
-        out.write("process.hltL1gtTrigReport = cms.EDAnalyzer( 'L1GtTrigReport',\n")
-        out.write("    UseL1GlobalTriggerRecord = cms.bool( False ),\n")
-        out.write("    L1GtRecordInputTag = cms.InputTag( 'hltGtDigis','','%s' )\n" % processName)
-        out.write(")\n")
-        out.write("process.hltTrigReport = cms.EDAnalyzer( 'HLTrigReport',\n")
-        out.write("    HLTriggerResults = cms.InputTag( 'TriggerResults','','%s' )\n" % processName)
-        out.write(")\n")
-        out.write("process.HLTAnalyzerEndpath = cms.EndPath( process.hltL1gtTrigReport + process.hltTrigReport )\n")
-
-#
 # The following is stolen from cmsDriver's ConfigBuilder.py - addCustomise
 #
         final_snippet = '\n\n# Automatic addition of the customisation function\n'
