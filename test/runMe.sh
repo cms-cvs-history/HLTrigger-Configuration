@@ -16,7 +16,7 @@ echo "./getHLT.sh"
       ./getHLT.sh 
 
 cat NewL1_8E29.py >> OnLine_HLT_8E29.py
-cat NewL1_8E29.py >> OnLine_HLT_Grun.py
+cat NewL1_8E29.py >> OnLine_HLT_GRun.py
 cat NewL1_1E31.py >> OnLine_HLT_1E31.py
 cat NewL1_1E31.py >> OnLine_HLT_HIon.py
 
