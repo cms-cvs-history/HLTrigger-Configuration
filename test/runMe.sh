@@ -15,11 +15,6 @@ echo "Creating  online configs from ConfDB"
 echo "./getHLT.sh"
       ./getHLT.sh 
 
-cat NewL1_8E29.py >> OnLine_HLT_8E29.py
-cat NewL1_8E29.py >> OnLine_HLT_GRun.py
-cat NewL1_1E31.py >> OnLine_HLT_1E31.py
-cat NewL1_1E31.py >> OnLine_HLT_HIon.py
-
 # GRun = 8E29+MWGR
 foreach lumi ( 8E29 GRun 1E31 HIon )
 # foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_HLT RelVal_DigiL1RawHLT RelVal_HLT2 RelVal_L1HLT2 RelVal_Reco )
