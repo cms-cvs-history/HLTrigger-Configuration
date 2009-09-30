@@ -6,7 +6,7 @@ import commands
 import getopt
 import fileinput
 
-doL1Override = True
+doL1Override = False
 
 l1Override = {
   '8E29': 'L1TriggerConfig.L1GtConfigProducers.Luminosity.startup.L1Menu_Commissioning2009_v5_L1T_Scales_20080926_startup_Imp0_Unprescaled_cff',
