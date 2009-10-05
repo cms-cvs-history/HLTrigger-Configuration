@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_2_4/HIon/V15 (CMSSW_3_2_X_2009-08-31-2100_HLT2)
+# /dev/CMSSW_3_2_7/HIon/V1 (CMSSW_3_2_7)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_2_4/HIon/V15')
+  tableName = cms.string('/dev/CMSSW_3_2_7/HIon/V1')
 )
 
 
@@ -366,12 +366,6 @@ OppositeMaterialPropagator = cms.ESProducer( "PropagatorWithMaterialESProducer",
   useRungeKutta = cms.bool( False ),
   ptMin = cms.double( -1.0 ),
   appendToDataLabel = cms.string( "" )
-)
-ParametrizedMagneticFieldProducer = cms.ESProducer( "ParametrizedMagneticFieldProducer",
-  label = cms.untracked.string( "parametrizedField" ),
-  version = cms.string( "OAE_1103l_071212" ),
-  appendToDataLabel = cms.string( "" ),
-  parameters = cms.PSet(  BValue = cms.string( "3_8T" ) )
 )
 PixelCPEGenericESProducer = cms.ESProducer( "PixelCPEGenericESProducer",
   ComponentName = cms.string( "PixelCPEGeneric" ),

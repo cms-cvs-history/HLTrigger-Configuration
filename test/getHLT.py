@@ -7,11 +7,11 @@ import getopt
 import fileinput
 
 globalTag = {
-  '8E29': 'STARTUP31X_V6::All',
-  'GRun': 'STARTUP31X_V6::All',
-  '1E31': 'MC_31X_V7::All',
-  'HIon': 'MC_31X_V7::All',
-  None:   'MC_31X_V7::All'              # use as default
+  '8E29': 'STARTUP31X_V7::All',
+  'GRun': 'STARTUP31X_V7::All',
+  '1E31': 'MC_31X_V8::All',
+  'HIon': 'MC_31X_V8::All',
+  None:   'MC_31X_V8::All'              # use as default
 }
 
 def usage():
@@ -69,6 +69,19 @@ else:
         essources += "-magfield"
 
         esmodules  = " --esmodules "
+        esmodules += "-AutoMagneticFieldESProducer,"
+        esmodules += "-SlaveField0,"
+        esmodules += "-SlaveField20,"
+        esmodules += "-SlaveField30,"
+        esmodules += "-SlaveField35,"
+        esmodules += "-SlaveField38,"
+        esmodules += "-SlaveField40,"
+        esmodules += "-VBF0,"
+        esmodules += "-VBF20,"
+        esmodules += "-VBF30,"
+        esmodules += "-VBF35,"
+        esmodules += "-VBF38,"
+        esmodules += "-VBF40,"
         esmodules += "-CSCGeometryESModule,"
         esmodules += "-CaloGeometryBuilder,"
         esmodules += "-CaloTowerHardcodeGeometryEP,"
@@ -88,6 +101,7 @@ else:
         esmodules += "-TrackerDigiGeometryESModule,"
         esmodules += "-TrackerGeometricDetESModule,"
         esmodules += "-VolumeBasedMagneticFieldESProducer,"    
+        esmodules += "-ParametrizedMagneticFieldProducer,"
         esmodules += "-ZdcHardcodeGeometryEP,"
         esmodules += "-hcal_db_producer,"
         esmodules += "-l1GtTriggerMenuXml,"
