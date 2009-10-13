@@ -15,11 +15,11 @@ l1Override = {
 }
 
 globalTag = {
-  '8E29': 'STARTUP31X_V8::All',
-  'GRun': 'STARTUP31X_V8::All',
-  '1E31': 'MC_31X_V9::All',
-  'HIon': 'MC_31X_V9::All',
-  None:   'MC_31X_V9::All'              # use as default
+  '8E29': 'STARTUP3XY_V9::All',
+  'GRun': 'STARTUP3XY_V9::All',
+  '1E31': 'MC_3XY_V10::All',
+  'HIon': 'MC_3XY_V10::All',
+  None:   'MC_3XY_V10::All'              # use as default
 }
 
 def usage():
