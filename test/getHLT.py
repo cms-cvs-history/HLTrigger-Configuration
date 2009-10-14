@@ -147,7 +147,6 @@ else:
         edsources =  " --noedsources"
 
         essources  = " --essources "
-        essources += "-SiStripQualityFakeESSource,"
         essources += "-GlobalTag,"
         essources += "-HepPDTESSource,"
         essources += "-XMLIdealGeometryESSource,"
@@ -184,6 +183,7 @@ else:
         esmodules += "-RPCGeometryESModule,"
         esmodules += "-SiStripGainESProducer,"
         esmodules += "-SiStripRecHitMatcherESProducer,"
+        esmodules += "-SiStripQualityESProducer,"
         esmodules += "-StripCPEfromTrackAngleESProducer,"
         esmodules += "-TrackerDigiGeometryESModule,"
         esmodules += "-TrackerGeometricDetESModule,"
@@ -258,7 +258,7 @@ else:
 
         # Overwrite ProcessName
         out.write("process.setName_('%s')\n" % processName)
-        out.write("process.DQMHLTScalers.triggerResults = cms.InputTag( 'TriggerResults','','%s' )\n" % processName)
+        out.write("process.hltDQMHLTScalers.triggerResults = cms.InputTag( 'TriggerResults','','%s' )\n" % processName)
         out.write("\n")
 
         # Add global options
