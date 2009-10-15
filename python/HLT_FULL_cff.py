@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_3_0/HLT/V4 (CMSSW_3_3_X_2009-09-17-0100_HLT3)
+# /dev/CMSSW_3_3_0/HLT/V7 (CMSSW_3_3_0)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_0/HLT/V4')
+  tableName = cms.string('/dev/CMSSW_3_3_0/HLT/V7')
 )
 
 
@@ -11000,7 +11000,7 @@ hltPreGlobalRunHPDNoise = cms.EDFilter( "HLTPrescaler" )
 hltL1sTechTrigHCALNoise = cms.EDFilter( "HLTLevel1GTSeed",
     L1TechTriggerSeeding = cms.bool( True ),
     L1UseAliasesForSeeding = cms.bool( True ),
-    L1SeedsLogicalExpression = cms.string( "(11 OR 12 OR 13) AND (NOT 0) AND (NOT 1) AND (NOT 2)" ),
+    L1SeedsLogicalExpression = cms.string( "(11 OR 12) AND (NOT 0) AND (NOT 1) AND (NOT 2)" ),
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
     L1GtObjectMapTag = cms.InputTag( "hltL1GtObjectMap" ),
     L1CollectionsTag = cms.InputTag( "hltL1extraParticles" ),

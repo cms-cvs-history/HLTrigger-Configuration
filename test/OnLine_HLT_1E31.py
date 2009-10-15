@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_3_0/1E31/V5 (CMSSW_3_3_X_2009-09-17-0100_HLT3)
+# /dev/CMSSW_3_3_0/1E31/V6 (CMSSW_3_3_0)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_0/1E31/V5')
+  tableName = cms.string('/dev/CMSSW_3_3_0/1E31/V6')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -7883,33 +7883,34 @@ process.hltOutputHLTDQM = cms.OutputModule( "PoolOutputModule",
       'keep triggerTriggerEvent_*_*_*',
       'keep triggerTriggerEventWithRefs_*_*_*',
       'keep *_hltL1NonIsoLargeWindowElectronPixelSeeds_*_*',
-      'keep *_hltL2TauRelaxingIsolationSelector_*_*',
-      'keep *_hltL2TauJets_*_*',
-      'keep *_hltL2MuonCandidates_*_*',
-      'keep *_hltL1extraParticles_*_*',
-      'keep *_hltTowerMakerForMuons_*_*',
-      'keep *_hltL2TauNarrowConeIsolationProducer_*_*',
-      'keep *_hltL2MuonSeeds_*_*',
-      'keep *_hltL1NonIsoRecoEcalCandidate_*_*',
-      'keep *_hltL3Muons_*_*',
-      'keep *_hltL1IsoLargeWindowElectronPixelSeeds_*_*',
-      'keep *_hltL1IsoSiStripElectronPixelSeeds_*_*',
-      'keep *_hltPixelMatchLargeWindowElectronsL1Iso_*_*',
-      'keep *_hltL1IsoStartUpElectronPixelSeeds_*_*',
-      'keep *_hltIterativeCone5CaloJets_*_*',
-      'keep *_hltL2Muons_*_*',
-      'keep *_hltL1IsoRecoEcalCandidate_*_*',
-      'keep *_hltL1IsolatedElectronHcalIsol_*_*',
-      'keep *_hltL3TrajectorySeed_*_*',
-      'keep *_hltOfflineBeamSpot_*_*',
-      'keep *_hltMet_*_*',
-      'keep *_hltL1NonIsolatedElectronHcalIsol_*_*',
-      'keep *_hltL1NonIsoStartUpElectronPixelSeeds_*_*',
-      'keep *_hltL2MuonIsolations_*_*',
       'keep *_hltPixelMatchLargeWindowElectronsL1NonIso_*_*',
+      'keep *_hltIterativeCone5CaloJets_*_*',
+      'keep *_hltL3MuonCandidates_*_*',
+      'keep *_hltTowerMakerForMuons_*_*',
+      'keep *_hltL1NonIsolatedElectronHcalIsol_*_*',
       'keep *_hltL1NonIsoSiStripElectronPixelSeeds_*_*',
+      'keep *_hltSiStripRawToClustersFacility_*_*',
+      'keep *_hltL3Muons_*_*',
+      'keep *_hltL1IsoRecoEcalCandidate_*_*',
+      'keep *_hltL1extraParticles_*_*',
+      'keep *_hltL3TrajectorySeed_*_*',
+      'keep *_hltL1IsoLargeWindowElectronPixelSeeds_*_*',
+      'keep *_hltPixelMatchLargeWindowElectronsL1Iso_*_*',
+      'keep *_hltL2TauRelaxingIsolationSelector_*_*',
+      'keep *_hltMet_*_*',
+      'keep *_hltL2MuonSeeds_*_*',
+      'keep *_hltL2Muons_*_*',
+      'keep *_hltL2TauNarrowConeIsolationProducer_*_*',
       'keep *_hltL3MuonIsolations_*_*',
-      'keep *_hltL3MuonCandidates_*_*' ),
+      'keep *_hltL2MuonIsolations_*_*',
+      'keep *_hltL1IsolatedElectronHcalIsol_*_*',
+      'keep *_hltL1IsoSiStripElectronPixelSeeds_*_*',
+      'keep *_hltL2MuonCandidates_*_*',
+      'keep *_hltOfflineBeamSpot_*_*',
+      'keep *_hltL1NonIsoStartUpElectronPixelSeeds_*_*',
+      'keep *_hltL1NonIsoRecoEcalCandidate_*_*',
+      'keep *_hltL1IsoStartUpElectronPixelSeeds_*_*',
+      'keep *_hltL2TauJets_*_*' ),
     use_compression = cms.untracked.bool( True ),
     compression_level = cms.untracked.int32( 1 ),
     max_event_size = cms.untracked.int32( 7000000 )
