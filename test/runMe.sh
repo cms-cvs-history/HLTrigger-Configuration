@@ -9,11 +9,11 @@ echo "Creating offline configs with cmsDriver"
 echo "./cmsDriver.sh"
       ./cmsDriver.sh
 
-echo " "
-echo "Creating  online configs from ConfDB"
-      /bin/rm OnLine_HLT_????.py
-echo "./getHLT.sh"
-      ./getHLT.sh 
+#echo " "
+#echo "Creating  online configs from ConfDB"
+#      /bin/rm OnLine_HLT_????.py
+#echo "./getHLT.sh"
+#      ./getHLT.sh 
 
 # GRun = 8E29+MWGR
 foreach lumi ( 8E29 GRun 1E31 HIon )
