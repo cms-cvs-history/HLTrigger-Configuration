@@ -17,9 +17,9 @@ l1Override = {
 globalTag = {
   '8E29': 'STARTUP3XY_V9::All',
   'GRun': 'STARTUP3XY_V9::All',
-  '1E31': 'MC_3XY_V10::All',
-  'HIon': 'MC_3XY_V10::All',
-  None:   'MC_3XY_V10::All'              # use as default
+  '1E31': 'MC_3XY_V11::All',
+  'HIon': 'MC_3XY_V11::All',
+  None:   'MC_3XY_V11::All'              # use as default
 }
 
 def usage():
@@ -271,7 +271,7 @@ else:
         out.write("\n")
 
         # Overwrite GlobalTag
-        out.write("process.GlobalTag.connect = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'\n")
+        out.write("process.GlobalTag.connect = 'sqlite_file:/afs/cern.ch/user/f/futyand/public/globaltag/MC_3XY_V11.db'\n")
         if not menuGlobalTag:
           if fileId in globalTag:
             menuGlobalTag = globalTag[fileId]

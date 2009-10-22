@@ -10,7 +10,7 @@ set InputFileGENSIM = rfio:/castor/cern.ch/user/g/gruen/cms/TTbarGenSim31X.root
 
 # global tags to be used
 set GTAGUP = STARTUP3XY_V9
-set GTAGMC = MC_3XY_V10
+set GTAGMC = MC_3XY_V11
 
 
 # two-table workflows
