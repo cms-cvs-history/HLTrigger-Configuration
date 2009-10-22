@@ -5,6 +5,7 @@ from L1Trigger.Configuration import patchToRerunL1Emulator
 def customise(process):
 
     process.hltTrigReport.HLTriggerResults = cms.InputTag( 'TriggerResults','',process.name_() )
+    process.hltPreHLTMONSmart.TriggerResultsTag = cms.InputTag( 'TriggerResults','',process.name_() )
 
     process.options.wantSummary = cms.untracked.bool(True)
     process.MessageLogger.categories.append('TriggerSummaryProducerAOD')

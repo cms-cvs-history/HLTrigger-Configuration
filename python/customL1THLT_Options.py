@@ -2,6 +2,7 @@ import FWCore.ParameterSet.Config as cms
 def customise(process):
 
     process.hltTrigReport.HLTriggerResults = cms.InputTag( 'TriggerResults','',process.name_() )
+    process.hltPreHLTMONSmart.TriggerResultsTag = cms.InputTag( 'TriggerResults','',process.name_() )
 
     process.options.wantSummary = cms.untracked.bool(True)
     process.MessageLogger.categories.append('TriggerSummaryProducerAOD')
