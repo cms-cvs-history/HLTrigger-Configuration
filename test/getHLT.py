@@ -16,7 +16,7 @@ l1Override = {
 
 globalTag = {
   '8E29': 'STARTUP31X_V8::All',
-  'GRun': 'STARTUP31X_V8::All',
+  'GRun': 'GR09_E_V4::All',             # for data Express reprocessing
   '1E31': 'MC_31X_V9::All',
   'HIon': 'MC_31X_V9::All',
   None:   'MC_31X_V9::All'              # use as default
@@ -228,7 +228,10 @@ else:
           out.close()
 
     else:
-        edsources =  " --input file:RelVal_DigiL1Raw_"+fileId+".root"
+        if runOnData:
+          edsources =  " --input file:/tmp/InputCollection.root"
+        else:
+          edsources =  " --input file:RelVal_DigiL1Raw_"+fileId+".root"
 
         esmodules  = " --esmodules "
         esmodules += "-l1GtTriggerMenuXml,"
