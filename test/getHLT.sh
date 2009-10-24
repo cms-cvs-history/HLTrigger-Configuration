@@ -47,7 +47,7 @@ function getConfigForOnline() {
   # for things NOT in CMSSW CVS:
   local CONFIG="$1"
   local NAME="$2"
-  echo $GETHLT $CONFIG $NAME
+  $GETHLT $CONFIG $NAME
 }
 
 # make sure we're using *this* working area
