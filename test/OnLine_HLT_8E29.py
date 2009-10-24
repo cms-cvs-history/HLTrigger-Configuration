@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_3_0/backport/8E29/V2 (CMSSW_3_3_0_HLT1)
+# /dev/CMSSW_3_3_0/backport/8E29/V3 (CMSSW_3_3_0_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_0/backport/8E29/V2')
+  tableName = cms.string('/dev/CMSSW_3_3_0/backport/8E29/V3')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -25,7 +25,8 @@ process.BTagRecord = cms.ESSource( "EmptyESSource",
 process.GlobalTag = cms.ESSource( "PoolDBESSource",
     BlobStreamerName = cms.untracked.string( "TBufferBlobStreamingService" ),
     connect = cms.string( "frontier://(proxyurl=http://localhost:3128)(serverurl=http://localhost:8000/FrontierOnProd)(serverurl=http://localhost:8000/FrontierOnProd)(retrieve-ziplevel=0)/CMS_COND_31X_GLOBALTAG" ),
-    globaltag = cms.string( "GR09_H_V3::All" ),
+    globaltag = cms.string( "GR09_H_V4::All" ),
+    RefreshEachRun = cms.untracked.bool( True ),
     appendToDataLabel = cms.string( "" ),
     DBParameters = cms.PSet( 
       authenticationPath = cms.untracked.string( "." ),
