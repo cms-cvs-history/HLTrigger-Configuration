@@ -3,7 +3,7 @@
 # ConfDB configurations to use
 MASTER="/dev/CMSSW_3_3_0/backport/HLT"          # no explicit version, take te most recent 
 TARGET="/dev/CMSSW_3_3_0/backport/\$TABLE"      # no explicit version, take te most recent 
-TABLES="8E29 1E31 GRun HIon"           # $TABLE in the above variable will be expanded to these TABLES
+TABLES="8E29 1E31 GRun HIon"                    # $TABLE in the above variable will be expanded to these TABLES
 
 # getHLT.py
 PACKAGE="HLTrigger/Configuration"
