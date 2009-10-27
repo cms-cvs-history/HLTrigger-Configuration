@@ -66,10 +66,11 @@ ls -l HLT_*_cff.py hltOutput*_cff.py HLTrigger_EventContent_cff.py
 mv -f HLT_*_cff.py hltOutput*_cff.py HLTrigger_EventContent_cff.py ../python
 echo
 
-# for things NOT in CMSSW CVS:
+# for things now also in CMSSW CVS:
 echo "Extracting full configurations"
 rm -f OnLine_HLT_*.py
 for TABLE in $TABLES; do
   getConfigForOnline $(eval echo $TARGET) $TABLE
 done
 ls -l OnLine_HLT_*.py
+echo
