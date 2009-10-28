@@ -84,6 +84,6 @@ cmsDriver.py RelVal --step=L1,$XHLT               --conditions=FrontierCondition
 
   echo " "
   echo "Creating Reco $lumi"
-cmsDriver.py RelVal --step=RAW2DIGI,RECO             --conditions=FrontierConditions_GlobalTag,${GTAG}::All --filein=file:RelVal_DigiL1Raw_$lumi.root        --fileout=RelVal_Reco_$lumi.root        --number=100 --mc --no_exec --datatier 'RECO'                 --eventcontent=RECOSIM      --customise=HLTrigger/Configuration/custom_Options.py         --python_filename=RelVal_Reco_$lumi.py
+cmsDriver.py RelVal --step=RAW2DIGI,L1Reco,RECO   --conditions=FrontierConditions_GlobalTag,${GTAG}::All --filein=file:RelVal_DigiL1Raw_$lumi.root        --fileout=RelVal_Reco_$lumi.root        --number=100 --mc --no_exec --datatier 'RECO'                 --eventcontent=RECOSIM      --customise=HLTrigger/Configuration/custom_Options.py         --python_filename=RelVal_Reco_$lumi.py
 
 end
