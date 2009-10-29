@@ -5,8 +5,8 @@
 # usage: ./runMe.sh
 #
 
-MASTER="/dev/CMSSW_3_3_0/backport/HLT"      # no version, take the latest one
-TARGET="/online/cosmic/MWGR44/HLT"          # where to store the online-compliant menu
+MASTER="/dev/CMSSW_3_3_0/backport/HLT"              # no version, take the latest one
+TARGET="/online/cosmic/week44/CMSSW_3_3_0/HLT"      # where to store the online-compliant menu
 
 # hltdev
 DBHOST="cmsr1-v.cern.ch"

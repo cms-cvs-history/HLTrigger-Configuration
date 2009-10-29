@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_3_0/backport/1E31/V4 (CMSSW_3_3_0_HLT1)
+# /dev/CMSSW_3_3_0/backport/1E31/V6 (CMSSW_3_3_0_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_0/backport/1E31/V4')
+  tableName = cms.string('/dev/CMSSW_3_3_0/backport/1E31/V6')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -7032,7 +7032,7 @@ process.hltPreZeroBias = cms.EDFilter( "HLTPrescaler" )
 process.hltL1sMinBiasHcal = cms.EDFilter( "HLTLevel1GTSeed",
     L1TechTriggerSeeding = cms.bool( False ),
     L1UseAliasesForSeeding = cms.bool( True ),
-    L1SeedsLogicalExpression = cms.string( "L1_SingleHfBitCountsRing1_1 OR L1_DoubleHfBitCountsRing1_P1N1 OR L1_SingleHfRingEtSumsRing1_4 OR L1_DoubleHfRingEtSumsRing1_P4N4 OR L1_SingleHfRingEtSumsRing2_4 OR L1_DoubleHfRingEtSumsRing2_P4N4" ),
+    L1SeedsLogicalExpression = cms.string( "L1_SingleHfBitCountsRing1_1 OR L1_SingleHfBitCountsRing2_1 OR L1_DoubleHfBitCountsRing1_P1N1 OR L1_DoubleHfBitCountsRing2_P1N1 OR L1_SingleHfRingEtSumsRing1_4 OR L1_DoubleHfRingEtSumsRing1_P4N4 OR L1_SingleHfRingEtSumsRing2_4 OR L1_DoubleHfRingEtSumsRing2_P4N4" ),
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
     L1GtObjectMapTag = cms.InputTag( "hltL1GtObjectMap" ),
     L1CollectionsTag = cms.InputTag( "hltL1extraParticles" ),
@@ -7909,18 +7909,25 @@ process.hltOutputHLTDQM = cms.OutputModule( "PoolOutputModule",
       'keep edmTriggerResults_*_*_*',
       'keep triggerTriggerEvent_*_*_*',
       'keep triggerTriggerEventWithRefs_*_*_*',
+      'keep *_hltFilterL2EcalIsolationDoubleLooseIsoTau15_*_*',
+      'keep *_hltL1sSingleLooseIsoTau20_*_*',
+      'keep *_hltFilterL2EcalIsolationSingleLooseIsoTau20_*_*',
       'keep *_hltIconeTau4Regional_*_*',
       'keep *_hltL1NonIsoLargeWindowElectronPixelSeeds_*_*',
       'keep *_hltPixelMatchLargeWindowElectronsL1NonIso_*_*',
+      'keep *_hltRpcRecHits_*_*',
       'keep *_hltIconeCentral1Regional_*_*',
+      'keep *_hltMuonRPCDigis_*_*',
       'keep *_hltIterativeCone5CaloJets_*_*',
       'keep *_hltBSoftMuonL25BJetTagsUByDR_*_*',
       'keep *_hltBSoftMuonL25TagInfosU_*_*',
+      'keep *_hltFilterL2EtCutDoubleLooseIsoTau15_*_*',
       'keep *_hltMCJetCorJetIcone5HF07_*_*',
       'keep *_hltL3MuonCandidates_*_*',
       'keep *_hltTowerMakerForMuons_*_*',
       'keep *_hltBSoftMuonL25JetsU_*_*',
       'keep *_hltL1NonIsolatedElectronHcalIsol_*_*',
+      'keep *_hltL1sDoubleLooseIsoTau15_*_*',
       'keep *_hltL1NonIsoSiStripElectronPixelSeeds_*_*',
       'keep *_hltBLifetimeL25JetsStartupU_*_*',
       'keep *_hltSiStripRawToClustersFacility_*_*',
@@ -7931,19 +7938,23 @@ process.hltOutputHLTDQM = cms.OutputModule( "PoolOutputModule",
       'keep *_hltIconeCentral3Regional_*_*',
       'keep *_hltL1IsoRecoEcalCandidate_*_*',
       'keep *_hltL1extraParticles_*_*',
+      'keep *_hltMuonCSCDigis_*_*',
       'keep *_hltL3TrajectorySeed_*_*',
       'keep *_hltL1IsoLargeWindowElectronPixelSeeds_*_*',
       'keep *_hltPixelMatchLargeWindowElectronsL1Iso_*_*',
       'keep *_hltL2TauRelaxingIsolationSelector_*_*',
       'keep *_hltMet_*_*',
+      'keep *_hltCscSegments_*_*',
       'keep *_hltBLifetimeL3AssociatorStartupU_*_*',
       'keep *_hltBLifetimeL25TagInfosStartupU_*_*',
+      'keep *_hltCsc2DRecHits_*_*',
       'keep *_hltBSoftMuonL3BJetTagsUByDR_*_*',
       'keep *_hltIconeCentral4Regional_*_*',
       'keep *_hltL2MuonSeeds_*_*',
       'keep *_hltL2Muons_*_*',
       'keep *_hltBLifetimeL3BJetTagsStartupU_*_*',
       'keep *_hltBLifetimeL3TagInfosStartupU_*_*',
+      'keep *_hltFilterL2EtCutSingleLooseIsoTau20_*_*',
       'keep *_hltPixelTracks_*_*',
       'keep *_hltL2TauNarrowConeIsolationProducer_*_*',
       'keep *_hltL3MuonIsolations_*_*',
