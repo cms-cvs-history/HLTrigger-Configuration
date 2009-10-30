@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_3_0/backport/GRun/V6 (CMSSW_3_3_0_HLT1)
+# /dev/CMSSW_3_3_0/backport/GRun/V7 (CMSSW_3_3_0_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_0/backport/GRun/V6')
+  tableName = cms.string('/dev/CMSSW_3_3_0/backport/GRun/V7')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -6047,14 +6047,16 @@ process.hltL1sHcalPhiSym = cms.EDFilter( "HLTLevel1GTSeed",
     L1MuonCollectionTag = cms.InputTag( "hltL1extraParticles" )
 )
 process.hltPreHcalPhiSym = cms.EDFilter( "HLTPrescaler" )
-process.hltPreHcalNZS = cms.EDFilter( "HLTPrescaler" )
-process.hltHcalNoPedestals = cms.EDFilter( "HLTHcalCalibTypeFilter",
-    InputTag = cms.InputTag( "rawDataCollector" ),
-    CalibTypes = cms.vint32( 0, 2, 3, 4, 5, 6 )
+process.hltL1sHcalNZS8E29 = cms.EDFilter( "HLTLevel1GTSeed",
+    L1TechTriggerSeeding = cms.bool( False ),
+    L1UseAliasesForSeeding = cms.bool( True ),
+    L1SeedsLogicalExpression = cms.string( "L1_SingleEG1  OR L1_SingleEG2  OR L1_SingleEG5  OR L1_SingleEG8  OR L1_SingleEG10 OR L1_SingleEG12 OR L1_SingleEG15 OR L1_SingleEG20  OR L1_SingleIsoEG5 OR L1_SingleIsoEG8 OR L1_SingleIsoEG10  OR L1_SingleIsoEG12 OR L1_SingleIsoEG15 OR L1_SingleJet6U OR  L1_SingleJet10U  OR L1_SingleJet20U OR L1_SingleJet30U OR L1_SingleJet40U OR L1_SingleJet50U OR L1_SingleJet60U  OR L1_SingleTauJet10U OR L1_SingleTauJet20U OR L1_SingleTauJet30U OR L1_SingleTauJet50U  OR L1_SingleMuOpen  OR L1_SingleMu0   OR L1_SingleMu3 OR L1_SingleMu5 OR L1_SingleMu7 OR L1_SingleMu10 OR L1_SingleMu14 OR L1_SingleMu20 OR L1_MinBias_HTT10 OR L1_ZeroBias" ),
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
+    L1GtObjectMapTag = cms.InputTag( "hltL1GtObjectMap" ),
+    L1CollectionsTag = cms.InputTag( "hltL1extraParticles" ),
+    L1MuonCollectionTag = cms.InputTag( "hltL1extraParticles" )
 )
-process.hltHcalNZSFilter = cms.EDFilter( "HLTHcalNZSFilter",
-    InputTag = cms.InputTag( "rawDataCollector" )
-)
+process.hltPreHcalNZS8E29 = cms.EDFilter( "HLTPrescaler" )
 process.hltL1sAlCaEcalPhiSym = cms.EDFilter( "HLTLevel1GTSeed",
     L1TechTriggerSeeding = cms.bool( False ),
     L1UseAliasesForSeeding = cms.bool( True ),
@@ -7021,9 +7023,7 @@ process.hltDQMHLTScalers = cms.EDAnalyzer( "HLTScalers",
 )
 process.hltOutputA = cms.OutputModule( "PoolOutputModule",
     fileName = cms.untracked.string( "outputA.root" ),
-    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring( 'HLT_HcalNZS',
-  'HLT_HcalPhiSym',
-  'HLT_BTagIP_Jet50U',
+    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring( 'HLT_BTagIP_Jet50U',
   'HLT_BTagMu_Jet10U',
   'HLT_BackwardBSC',
   'HLT_CSCBeamHalo',
@@ -7055,6 +7055,8 @@ process.hltOutputA = cms.OutputModule( "PoolOutputModule",
   'HLT_HFThreshold',
   'HLT_HT100U',
   'HLT_HcalCalibration',
+  'HLT_HcalNZS_8E29',
+  'HLT_HcalPhiSym',
   'HLT_IsoMu3',
   'HLT_IsoTrack_8E29',
   'HLT_Jet15U',
@@ -7694,7 +7696,7 @@ process.HLT_ForwardBSC = cms.Path( process.HLTBeginSequence + process.hltL1sForw
 process.HLT_TrackerCosmics = cms.Path( process.HLTBeginSequence + process.hltL1sTrackerCosmics + process.hltPreTrackerCosmics + process.HLTEndSequence )
 process.HLT_IsoTrack_8E29 = cms.Path( process.HLTBeginSequence + process.hltL1sIsoTrack8E29 + process.hltPreIsoTrack8E29 + process.HLTL2HcalIsolTrackSequence + process.hltIsolPixelTrackProd8E29 + process.hltIsolPixelTrackL2Filter8E29 + process.HLTDoLocalStripSequence + process.hltHITPixelPairSeedGenerator8E29 + process.hltHITPixelTripletSeedGenerator8E29 + process.hltHITSeedCombiner8E29 + process.hltHITCkfTrackCandidates8E29 + process.hltHITCtfWithMaterialTracks8E29 + process.hltHITIPTCorrector8E29 + process.hltIsolPixelTrackL3Filter8E29 + process.HLTEndSequence )
 process.HLT_HcalPhiSym = cms.Path( process.HLTBeginSequenceNZS + process.hltL1sHcalPhiSym + process.hltPreHcalPhiSym + process.HLTEndSequence )
-process.HLT_HcalNZS = cms.Path( process.hltPreHcalNZS + process.hltHcalNoPedestals + process.hltHcalNZSFilter + process.HLTEndSequence )
+process.HLT_HcalNZS_8E29 = cms.Path( process.HLTBeginSequenceNZS + process.hltL1sHcalNZS8E29 + process.hltPreHcalNZS8E29 + process.HLTEndSequence )
 process.AlCa_EcalPhiSym = cms.Path( process.HLTBeginSequence + process.hltL1sAlCaEcalPhiSym + process.hltPreAlCaEcalPhiSym + process.hltEcalRawToRecHitFacility + process.hltESRawToRecHitFacility + process.hltEcalRegionalRestFEDs + process.hltEcalRecHitAll + process.hltAlCaPhiSymStream + process.HLTEndSequence )
 process.AlCa_EcalPi0_8E29 = cms.Path( process.HLTBeginSequence + process.hltL1sAlCaEcalPi0Eta8E29 + process.hltPreAlCaEcalPi08E29 + process.HLTDoRegionalPi0EtaSequence + process.hltAlCaPi0RegRecHits + process.HLTEndSequence )
 process.AlCa_EcalEta_8E29 = cms.Path( process.HLTBeginSequence + process.hltL1sAlCaEcalPi0Eta8E29 + process.hltPreAlCaEcalEta8E29 + process.HLTDoRegionalPi0EtaSequence + process.hltAlCaEtaRegRecHits + process.HLTEndSequence )

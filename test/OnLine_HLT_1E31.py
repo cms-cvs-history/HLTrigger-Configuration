@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_3_0/backport/1E31/V6 (CMSSW_3_3_0_HLT1)
+# /dev/CMSSW_3_3_0/backport/1E31/V7 (CMSSW_3_3_0_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_0/backport/1E31/V6')
+  tableName = cms.string('/dev/CMSSW_3_3_0/backport/1E31/V7')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -7730,8 +7730,7 @@ process.hltDQMHLTScalers = cms.EDAnalyzer( "HLTScalers",
 )
 process.hltOutputA = cms.OutputModule( "PoolOutputModule",
     fileName = cms.untracked.string( "outputA.root" ),
-    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring( 'HLT_HcalPhiSym',
-  'HLT_BTagIP_Jet120',
+    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring( 'HLT_BTagIP_Jet120',
   'HLT_BTagIP_Jet80',
   'HLT_BTagMu_Jet20',
   'HLT_BackwardBSC',
@@ -7773,6 +7772,7 @@ process.hltOutputA = cms.OutputModule( "PoolOutputModule",
   'HLT_HT200',
   'HLT_HT240',
   'HLT_HT300_MHT100',
+  'HLT_HcalPhiSym',
   'HLT_IsoMu9',
   'HLT_IsoTrack_1E31',
   'HLT_Jet110',
