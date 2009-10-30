@@ -65,6 +65,7 @@ HLT_TrackerCosmics
 HLT_StoppedHSCP_8E29
 HLT_IsoTrack_8E29
 HLT_HcalPhiSym
+HLT_HcalNZS_8E29
 AlCa_EcalPhiSym
 AlCa_EcalPi0_8E29
 AlCa_EcalEta_8E29
@@ -92,7 +93,6 @@ HLT_TrackPointing
 HLT_PhysicsNoMuonPrescaled
 HLT_ZeroBiasPrescaled
 HLT_L1MuOpenPrescaled
-HLT_HcalNZS
 AlCa_EcalPi0_Cosmics
 AlCa_EcalEta_Cosmics
 HLTriggerFinalPath
