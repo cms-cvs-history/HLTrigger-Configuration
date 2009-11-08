@@ -40,7 +40,7 @@ function getContentForCVS() {
   local CONFIG="$1"
 
   $GETCONTENT $CONFIG
-  rm -f hltOutputA_cff.pyc hltOutputMON_cff.pyc hltOutputALCA_cff.pyc
+  rm -f hltOutputA_cff.py* hltOutputMON_cff.py* hltOutputALCA_cff.py*
 }
 
 function getConfigForOnline() {
@@ -62,8 +62,8 @@ getContentForCVS $MASTER
 for TABLE in $TABLES; do
   getConfigForCVS $(eval echo $TARGET) $TABLE
 done
-ls -l HLT_*_cff.py hltOutput*_cff.py HLTrigger_EventContent_cff.py
-mv -f HLT_*_cff.py hltOutput*_cff.py HLTrigger_EventContent_cff.py ../python
+ls -l HLT_*_cff.py HLTrigger_EventContent_cff.py
+mv -f HLT_*_cff.py HLTrigger_EventContent_cff.py ../python
 echo
 
 # for things now also in CMSSW CVS:
