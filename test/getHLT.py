@@ -17,6 +17,7 @@ l1Override = {
 globalTag = {
   '8E29': 'STARTUP31X_V8::All',
   'GRun': 'STARTUP31X_V8::All',
+  'data': 'GR09_E_V4::All',             # for data Express reprocessing
   '1E31': 'MC_31X_V9::All',
   'HIon': 'MC_31X_V9::All',
   None:   'MC_31X_V9::All'              # use as default
@@ -233,9 +234,9 @@ else:
         else:
           edsources =  " --input file:RelVal_DigiL1Raw_"+fileId+".root"
 
-        esmodules  = " --esmodules "
-        esmodules += "-l1GtTriggerMenuXml,"
-        esmodules += "-L1GtTriggerMaskAlgoTrigTrivialProducer"
+       #esmodules  = " --esmodules "
+       #esmodules += "-l1GtTriggerMenuXml,"
+       #esmodules += "-L1GtTriggerMaskAlgoTrigTrivialProducer"
 
         paths      = " --paths -OfflineOutput"
 
@@ -276,7 +277,9 @@ else:
         # Overwrite GlobalTag
         out.write("process.GlobalTag.connect = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'\n")
         if not menuGlobalTag:
-          if fileId in globalTag:
+          if runOnData:
+            menuGlobalTag = globalTag['data']
+          elif fileId in globalTag:
             menuGlobalTag = globalTag[fileId]
           else:
             menuGlobalTag = globalTag[None]
