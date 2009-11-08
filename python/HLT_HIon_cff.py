@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_3_1/HIon/V1 (CMSSW_3_3_2_HLT1)
+# /dev/CMSSW_3_3_1/HIon/V2 (CMSSW_3_3_2_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_1/HIon/V1')
+  tableName = cms.string('/dev/CMSSW_3_3_1/HIon/V2')
 )
 
 
@@ -16,12 +16,12 @@ BTagRecord = cms.ESSource( "EmptyESSource",
 )
 L2RelativeCorrectionService = cms.ESSource( "L2RelativeCorrectionService",
   appendToDataLabel = cms.string( "" ),
-  tagName = cms.string( "Summer08_L2Relative_IC5Calo" ),
+  tagName = cms.string( "Summer09_7TeV_L2Relative_IC5Calo" ),
   label = cms.string( "L2RelativeJetCorrector" )
 )
 L3AbsoluteCorrectionService = cms.ESSource( "L3AbsoluteCorrectionService",
   appendToDataLabel = cms.string( "" ),
-  tagName = cms.string( "Summer08_L3Absolute_IC5Calo" ),
+  tagName = cms.string( "Summer09_7TeV_L3Absolute_IC5Calo" ),
   label = cms.string( "L3AbsoluteJetCorrector" )
 )
 MCJetCorrectorIcone5 = cms.ESSource( "JetCorrectionServiceChain",

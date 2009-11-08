@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_3_1/GRun/V1 (CMSSW_3_3_2_HLT1)
+# /dev/CMSSW_3_3_1/GRun/V2 (CMSSW_3_3_2_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_1/GRun/V1')
+  tableName = cms.string('/dev/CMSSW_3_3_1/GRun/V2')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -49,12 +49,12 @@ process.HepPDTESSource = cms.ESSource( "HepPDTESSource",
 )
 process.L2RelativeCorrectionService = cms.ESSource( "L2RelativeCorrectionService",
     appendToDataLabel = cms.string( "" ),
-    tagName = cms.string( "Summer08_L2Relative_IC5Calo" ),
+    tagName = cms.string( "Summer09_7TeV_L2Relative_IC5Calo" ),
     label = cms.string( "L2RelativeJetCorrector" )
 )
 process.L3AbsoluteCorrectionService = cms.ESSource( "L3AbsoluteCorrectionService",
     appendToDataLabel = cms.string( "" ),
-    tagName = cms.string( "Summer08_L3Absolute_IC5Calo" ),
+    tagName = cms.string( "Summer09_7TeV_L3Absolute_IC5Calo" ),
     label = cms.string( "L3AbsoluteJetCorrector" )
 )
 process.MCJetCorrectorIcone5 = cms.ESSource( "JetCorrectionServiceChain",
@@ -5621,8 +5621,8 @@ process.hltStoppedHSCPTowerMakerForAll = cms.EDProducer( "CaloTowersCreator",
     MomEBDepth = cms.double( 0.3 ),
     MomEEDepth = cms.double( 0.0 ),
     hbheInput = cms.InputTag( "hltHbhereco" ),
-    hoInput = cms.InputTag( "hltHoreco" ),
-    hfInput = cms.InputTag( "hltHfreco" ),
+    hoInput = cms.InputTag( "" ),
+    hfInput = cms.InputTag( "" ),
     AllowMissingInputs = cms.bool( True ),
     HcalAcceptSeverityLevel = cms.uint32( 999 ),
     EcalAcceptSeverityLevel = cms.uint32( 1 ),
@@ -5644,7 +5644,7 @@ process.hltStoppedHSCPTowerMakerForAll = cms.EDProducer( "CaloTowersCreator",
     HF1Weights = cms.vdouble(  ),
     HF2Grid = cms.vdouble(  ),
     HF2Weights = cms.vdouble(  ),
-    ecalInputs = cms.VInputTag( 'hltEcalRecHitAll:EcalRecHitsEB','hltEcalRecHitAll:EcalRecHitsEE' )
+    ecalInputs = cms.VInputTag(  )
 )
 process.hltStoppedHSCPIterativeCone5CaloJets = cms.EDProducer( "FastjetJetProducer",
     jetAlgorithm = cms.string( "IterativeCone" ),
