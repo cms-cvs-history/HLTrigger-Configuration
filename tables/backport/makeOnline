@@ -40,7 +40,7 @@ function runCreateConfig() {
 }
 
 echo "ConfDB master: $MASTER"
-echo "Online menu:   $TARGET/"
+echo "Online menu:   $TARGET"
 read -p "Enter password for DB: " -s PASSWORD
 echo
 
