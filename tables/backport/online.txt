@@ -92,8 +92,6 @@ HLT_TrackPointing
 HLT_PhysicsNoMuonPrescaled
 HLT_ZeroBiasPrescaled
 HLT_L1MuOpenPrescaled
-AlCa_EcalPi0_Cosmics
-AlCa_EcalEta_Cosmics
 HLTriggerFinalPath
 HLTOutput
 AlCaOutput
