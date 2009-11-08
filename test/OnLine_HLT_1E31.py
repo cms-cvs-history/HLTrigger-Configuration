@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_3_1/1E31/V2 (CMSSW_3_3_2_HLT1)
+# /dev/CMSSW_3_3_1/1E31/V5 (CMSSW_3_3_2_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_1/1E31/V2')
+  tableName = cms.string('/dev/CMSSW_3_3_1/1E31/V5')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -8077,9 +8077,7 @@ process.hltOutputA = cms.OutputModule( "PoolOutputModule",
   'HLT_StoppedHSCP_1E31',
   'HLT_SumET120',
   'HLT_TrackerCosmics',
-  'HLT_ZeroBias',
-  'HLTriggerFinalPath',
-  'HLTriggerFirstPath' ) ),
+  'HLT_ZeroBias' ) ),
     outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
       'keep FEDRawDataCollection_source_*_*',
       'keep FEDRawDataCollection_rawDataCollector_*_*',
