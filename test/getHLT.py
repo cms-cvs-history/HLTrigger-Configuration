@@ -262,7 +262,6 @@ else:
 
         # Overwrite ProcessName
         out.write("process.setName_('%s')\n" % processName)
-        out.write("process.hltDQMHLTScalers.triggerResults = cms.InputTag( 'TriggerResults','','%s' )\n" % processName)
         out.write("\n")
 
         # Add global options
