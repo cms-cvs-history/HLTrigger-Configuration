@@ -9,6 +9,7 @@ import fileinput
 l1Override = {
   '8E29': 'L1TriggerConfig.L1GtConfigProducers.Luminosity.startup.L1Menu_Commissioning2009_v5_L1T_Scales_20080926_startup_Imp0_Unprescaled_cff',
   'GRun': 'L1TriggerConfig.L1GtConfigProducers.Luminosity.startup.L1Menu_Commissioning2009_v5_L1T_Scales_20080926_startup_Imp0_Unprescaled_cff',
+  'data': 'L1TriggerConfig.L1GtConfigProducers.Luminosity.startup.L1Menu_Commissioning2009_v5_L1T_Scales_20080926_startup_Imp0_Unprescaled_cff',
   '1E31': 'L1TriggerConfig.L1GtConfigProducers.Luminosity.lumi1031.L1Menu_MC2009_v4_L1T_Scales_20090624_Imp0_Unprescaled_cff',
   'HIon': 'L1TriggerConfig.L1GtConfigProducers.Luminosity.lumi1031.L1Menu_MC2009_v4_L1T_Scales_20090624_Imp0_Unprescaled_cff',
   None:   'L1TriggerConfig.L1GtConfigProducers.Luminosity.lumi1031.L1Menu_MC2009_v4_L1T_Scales_20090624_Imp0_Unprescaled_cff'              # use as default
@@ -39,7 +40,7 @@ def usage():
     print '  --force                Overwrite the destination file instead of aborting if it already exists'
 
 
-doL1Override    = True
+doL1Override    = False
 processName     = ''
 fileId          = ''
 useCase         = ''
@@ -234,9 +235,11 @@ else:
         else:
           edsources =  " --input file:RelVal_DigiL1Raw_"+fileId+".root"
 
-       #esmodules  = " --esmodules "
-       #esmodules += "-l1GtTriggerMenuXml,"
-       #esmodules += "-L1GtTriggerMaskAlgoTrigTrivialProducer"
+        if not runOnData or doL1Override:
+          # remove any eventual L1 override from the table
+          esmodules  = " --esmodules "
+          esmodules += "-l1GtTriggerMenuXml,"
+          esmodules += "-L1GtTriggerMaskAlgoTrigTrivialProducer"
 
         paths      = " --paths -OfflineOutput"
 
@@ -290,7 +293,9 @@ else:
           out.write("process.load('L1TriggerConfig.L1GtConfigProducers.L1GtTriggerMenuConfig_cff')\n")
           out.write("process.es_prefer_l1GtParameters = cms.ESPrefer('L1GtTriggerMenuXmlProducer','l1GtTriggerMenuXml')\n")
           if not menuL1Override:
-            if fileId in l1Override:
+            if runOnData:
+              menuL1Override = l1Override['data']
+            elif fileId in l1Override:
               menuL1Override = l1Override[fileId]
             else:
               menuL1Override = l1Override[None]
