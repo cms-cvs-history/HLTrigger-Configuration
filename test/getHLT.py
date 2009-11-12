@@ -295,19 +295,19 @@ else:
         final_snippet = '\n# Automatic addition of the customisation function\n'
 
         # let python search for that package and do syntax checking at the same time
-        packageName = 'HLTrigger/Configuration/customL1THLT_Options'
-        package = __import__(packageName)
+        packageName = 'HLTrigger.Configuration.customL1THLT_Options'
+        __import__(packageName)
+        package = sys.modules[packageName]
 
         # now ask the package for its definition and pick .py instead of .pyc
-        customiseFile = open(package.__file__.rstrip("c"), 'r')
+        customiseFile = package.__file__.rstrip("c")
 
-        for line in customiseFile:
+        for line in file(customiseFile,'r'):
             if "import FWCore.ParameterSet.Config" in line:
                 continue
             final_snippet += line
 
         # close the customization file
-        customiseFile.close()
 
         final_snippet += '\n\n# End of customisation function definition\n'
         final_snippet += '\nprocess = customise(process)\n'
