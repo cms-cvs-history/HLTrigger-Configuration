@@ -79,7 +79,6 @@ HLT_HcalCalibration
 HLT_Random
 HLT_Physics
 HLT_PhysicsNoMuon
-HLT_PixelFEDSize
 HLT_HFThreshold
 HLT_GlobalRunHPDNoise
 HLT_TechTrigHCALNoise
@@ -93,6 +92,7 @@ HLT_TrackPointing
 HLT_PhysicsNoMuonPrescaled
 HLT_ZeroBiasPrescaled
 HLT_L1MuOpenPrescaled
+HLT_LogMonitor
 HLTriggerFinalPath
 HLTOutput
 AlCaOutput
