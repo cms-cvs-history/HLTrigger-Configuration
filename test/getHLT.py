@@ -9,6 +9,7 @@ import fileinput
 l1Override = {
   '8E29': 'L1TriggerConfig.L1GtConfigProducers.Luminosity.startup.L1Menu_Commissioning2009_v5_L1T_Scales_20080926_startup_Imp0_Unprescaled_cff',
   'GRun': 'L1TriggerConfig.L1GtConfigProducers.Luminosity.startup.L1Menu_Commissioning2009_v5_L1T_Scales_20080926_startup_Imp0_Unprescaled_cff',
+  'data': 'L1TriggerConfig.L1GtConfigProducers.Luminosity.startup.L1Menu_Commissioning2009_v5_L1T_Scales_20080926_startup_Imp0_Unprescaled_cff',
   '1E31': 'L1TriggerConfig.L1GtConfigProducers.Luminosity.lumi1031.L1Menu_MC2009_v4_L1T_Scales_20090624_Imp0_Unprescaled_cff',
   'HIon': 'L1TriggerConfig.L1GtConfigProducers.Luminosity.lumi1031.L1Menu_MC2009_v4_L1T_Scales_20090624_Imp0_Unprescaled_cff',
   None:   'L1TriggerConfig.L1GtConfigProducers.Luminosity.lumi1031.L1Menu_MC2009_v4_L1T_Scales_20090624_Imp0_Unprescaled_cff'              # use as default
@@ -17,9 +18,10 @@ l1Override = {
 globalTag = {
   '8E29': 'STARTUP3X_V13::All',
   'GRun': 'STARTUP3X_V13::All',
+  'data': 'GR09_H_V6OFF::All',          # same as 'GR09_H_V6::All' for offline
   '1E31': 'MC_3XY_V13::All',
   'HIon': 'MC_3XY_V13::All',
-  None:   'MC_3XY_V13::All'              # use as default
+  None:   'MC_3XY_V13::All'             # use as default
 }
 
 def usage():
@@ -228,11 +230,16 @@ else:
           out.close()
 
     else:
-        edsources =  " --input file:RelVal_DigiL1Raw_"+fileId+".root"
+        if runOnData:
+          edsources =  " --input file:/tmp/InputCollection.root"
+        else:
+          edsources =  " --input file:RelVal_DigiL1Raw_"+fileId+".root"
 
-        esmodules  = " --esmodules "
-        esmodules += "-l1GtTriggerMenuXml,"
-        esmodules += "-L1GtTriggerMaskAlgoTrigTrivialProducer"
+        if not runOnData or doL1Override:
+          # remove any eventual L1 override from the table
+          esmodules  = " --esmodules "
+          esmodules += "-l1GtTriggerMenuXml,"
+          esmodules += "-L1GtTriggerMaskAlgoTrigTrivialProducer"
 
         paths      = " --paths -OfflineOutput"
 
@@ -272,7 +279,9 @@ else:
         # Overwrite GlobalTag
         out.write("process.GlobalTag.connect = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'\n")
         if not menuGlobalTag:
-          if fileId in globalTag:
+          if runOnData:
+            menuGlobalTag = globalTag['data']
+          elif fileId in globalTag:
             menuGlobalTag = globalTag[fileId]
           else:
             menuGlobalTag = globalTag[None]
@@ -284,7 +293,9 @@ else:
           out.write("process.load('L1TriggerConfig.L1GtConfigProducers.L1GtTriggerMenuConfig_cff')\n")
           out.write("process.es_prefer_l1GtParameters = cms.ESPrefer('L1GtTriggerMenuXmlProducer','l1GtTriggerMenuXml')\n")
           if not menuL1Override:
-            if fileId in l1Override:
+            if runOnData:
+              menuL1Override = l1Override['data']
+            elif fileId in l1Override:
               menuL1Override = l1Override[fileId]
             else:
               menuL1Override = l1Override[None]
@@ -300,14 +311,15 @@ else:
         package = sys.modules[packageName]
 
         # now ask the package for its definition and pick .py instead of .pyc
-        customiseFile = package.__file__.rstrip("c")
+        customiseFile = open(package.__file__.rstrip("c"), 'r')
 
-        for line in file(customiseFile,'r'):
+        for line in customiseFile:
             if "import FWCore.ParameterSet.Config" in line:
                 continue
             final_snippet += line
 
         # close the customization file
+        customiseFile.close()
 
         final_snippet += '\n\n# End of customisation function definition\n'
         final_snippet += '\nprocess = customise(process)\n'
