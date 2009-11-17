@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_3_1/8E29/V17 (CMSSW_3_3_3)
+# /dev/CMSSW_3_3_1/8E29/V19 (CMSSW_3_3_3_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_1/8E29/V17')
+  tableName = cms.string('/dev/CMSSW_3_3_1/8E29/V19')
 )
 
 
@@ -135,7 +135,7 @@ EcalUnpackerWorkerESProducer = cms.ESProducer( "EcalUnpackerWorkerESProducer",
   UncalibRHAlgo = cms.PSet(  Type = cms.string( "EcalUncalibRecHitWorkerWeights" ) ),
   CalibRHAlgo = cms.PSet( 
     Type = cms.string( "EcalRecHitWorkerSimple" ),
-    ChannelStatusToBeExcluded = cms.vint32(  ),
+    ChannelStatusToBeExcluded = cms.vint32( 10, 11, 12, 13, 14, 78, 142 ),
     flagsMapDBReco = cms.vint32( 0, 0, 0, 0, 4, -1, -1, -1, 4, 4, 6, 6, 6, 7, 8 ),
     killDeadChannels = cms.bool( True ),
     laserCorrection = cms.bool( False )

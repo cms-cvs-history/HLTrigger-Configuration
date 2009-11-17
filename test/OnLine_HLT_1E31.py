@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_3_1/1E31/V17 (CMSSW_3_3_3)
+# /dev/CMSSW_3_3_1/1E31/V19 (CMSSW_3_3_3_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_1/1E31/V17')
+  tableName = cms.string('/dev/CMSSW_3_3_1/1E31/V19')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -514,7 +514,7 @@ process.EcalUnpackerWorkerESProducer = cms.ESProducer( "EcalUnpackerWorkerESProd
   UncalibRHAlgo = cms.PSet(  Type = cms.string( "EcalUncalibRecHitWorkerWeights" ) ),
   CalibRHAlgo = cms.PSet( 
     Type = cms.string( "EcalRecHitWorkerSimple" ),
-    ChannelStatusToBeExcluded = cms.vint32(  ),
+    ChannelStatusToBeExcluded = cms.vint32( 10, 11, 12, 13, 14, 78, 142 ),
     flagsMapDBReco = cms.vint32( 0, 0, 0, 0, 4, -1, -1, -1, 4, 4, 6, 6, 6, 7, 8 ),
     killDeadChannels = cms.bool( True ),
     laserCorrection = cms.bool( False )
@@ -8359,7 +8359,8 @@ process.hltOutputDQM = cms.OutputModule( "PoolOutputModule",
 )
 process.hltOutputHLTDQM = cms.OutputModule( "PoolOutputModule",
     fileName = cms.untracked.string( "outputHLTDQM.root" ),
-    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring( 'HLT_BackwardBSC',
+    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring( 'AlCa_EcalPhiSym',
+  'HLT_BackwardBSC',
   'HLT_CSCBeamHalo',
   'HLT_CSCBeamHaloOverlapRing1',
   'HLT_CSCBeamHaloOverlapRing2',
@@ -8403,6 +8404,7 @@ process.hltOutputHLTDQM = cms.OutputModule( "PoolOutputModule",
       'keep *_hltRpcRecHits_*_*',
       'keep *_hltIconeCentral1Regional_*_*',
       'keep *_hltLogMonitorFilter_*_*',
+      'keep *_hltAlCaEtaRegRecHits_*_*',
       'keep *_hltMuonRPCDigis_*_*',
       'keep *_hltIterativeCone5CaloJets_*_*',
       'keep *_hltBSoftMuonL25BJetTagsUByDR_*_*',
@@ -8411,6 +8413,7 @@ process.hltOutputHLTDQM = cms.OutputModule( "PoolOutputModule",
       'keep *_hltMCJetCorJetIcone5HF07_*_*',
       'keep *_hltL3MuonCandidates_*_*',
       'keep *_hltTowerMakerForMuons_*_*',
+      'keep *_hltGtDigis_*_*',
       'keep *_hltBSoftMuonL25JetsU_*_*',
       'keep *_hltL1NonIsolatedElectronHcalIsol_*_*',
       'keep *_hltL1sDoubleLooseIsoTau15_*_*',
@@ -8426,10 +8429,12 @@ process.hltOutputHLTDQM = cms.OutputModule( "PoolOutputModule",
       'keep *_hltL1extraParticles_*_*',
       'keep *_hltMuonCSCDigis_*_*',
       'keep *_hltL3TrajectorySeed_*_*',
+      'keep *_hltAlCaPhiSymStream_*_*',
       'keep *_hltL1IsoLargeWindowElectronPixelSeeds_*_*',
       'keep *_hltPixelMatchLargeWindowElectronsL1Iso_*_*',
       'keep *_hltL2TauRelaxingIsolationSelector_*_*',
       'keep *_hltMet_*_*',
+      'keep *_hltAlCaPi0RegRecHits_*_*',
       'keep *_hltCscSegments_*_*',
       'keep *_hltBLifetimeL3AssociatorStartupU_*_*',
       'keep *_hltBLifetimeL25TagInfosStartupU_*_*',
