@@ -13,6 +13,7 @@ exec config in globals(), hlt.__dict__
 config.close()
 process = hlt.process
 
+# get streams, and drop _T0 suffix
 streams = process.streams._Parameterizable__parameterNames
 streams.sort()
 
@@ -21,6 +22,15 @@ paths_in_stream = dict()
 for stream in streams:
   paths_in_stream[stream] = [ path for pd in process.streams.__dict__[stream] for path in process.datasets.__dict__[pd] ]
   paths_in_stream[stream].sort()
+
+# drop the _T0 stuff from stream names
+for stream in streams:
+  friendlyName = stream.split('_', 1)[0]
+  if (friendlyName != stream):
+    paths_in_stream[friendlyName] = paths_in_stream[stream]
+    del paths_in_stream[stream]
+
+streams = [ stream.split('_', 1)[0] for stream in streams ]
 
 #print 'Parsing Output Modules...'
 paths_in_output = dict()

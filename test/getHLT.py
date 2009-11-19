@@ -150,6 +150,7 @@ else:
 
         essources  = " --essources "
         essources += "-GlobalTag,"
+        essources += "-Level1MenuOverride,"
         essources += "-HepPDTESSource,"
         essources += "-XMLIdealGeometryESSource,"
         essources += "-eegeom,"
@@ -237,6 +238,9 @@ else:
 
         if not runOnData or doL1Override:
           # remove any eventual L1 override from the table
+          essources  = " --essources "
+          essources += "-Level1MenuOverride,"
+
           esmodules  = " --esmodules "
           esmodules += "-l1GtTriggerMenuXml,"
           esmodules += "-L1GtTriggerMaskAlgoTrigTrivialProducer"
