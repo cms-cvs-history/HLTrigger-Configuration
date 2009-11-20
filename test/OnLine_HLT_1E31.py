@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_3_3/1E31/V10 (CMSSW_3_3_3_HLT4)
+# /dev/CMSSW_3_3_3/1E31/V11 (CMSSW_3_3_3_HLT4)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_3/1E31/V10')
+  tableName = cms.string('/dev/CMSSW_3_3_3/1E31/V11')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -8327,6 +8327,7 @@ process.hltOutputA = cms.OutputModule( "PoolOutputModule",
   'HLT_L1Mu14_L1SingleJet20',
   'HLT_L1Mu20HQ',
   'HLT_L1Mu30',
+  'HLT_L1MuOpen',
   'HLT_L1SingleEG5',
   'HLT_L2Mu11',
   'HLT_L2Mu7_Photon9_L1R',
