@@ -245,16 +245,20 @@ else:
           # FIXME - DTUnpackingModule should not have untracked parameters
           os.system("sed -e'/DTUnpackingModule/a\ \ \ \ inputLabel = cms.untracked.InputTag( \"rawDataCollector\" ),' -i " + menuOutName)
 
+        # open the output file for further tuning
+        out = open(menuOutName, 'a')
+
         # if requested, override the L1 menu from the GlobalTag
         if doL1Override:
-          out = open(menuOutName, 'a')
           out.write("\n")
           try:
             out.write("from %s import *\n" % l1Override[fileId])
           except:
             out.write("from %s import *\n" % l1Override[None])
           out.write("es_prefer_l1GtParameters = cms.ESPrefer('L1GtTriggerMenuXmlProducer','l1GtTriggerMenuXml')\n")
-          out.close()
+
+        # close the output file
+        out.close()
 
     else:
         if runOnData:
@@ -290,7 +294,7 @@ else:
         # FIXME - find a better way to override the output modules
         os.system("sed -e's/process\.hltOutput\(\w\+\) *= *cms\.OutputModule( *\"ShmStreamConsumer\" *,/process.hltOutput\\1 = cms.OutputModule( \"PoolOutputModule\",\\n    fileName = cms.untracked.string( \"output\\1.root\" ),/'  -i " + menuOutName)
 
-        # open the output file for appending
+        # open the output file for further tuning
         out = open(menuOutName, 'a')
 
         # overwrite ProcessName
@@ -318,6 +322,7 @@ else:
           out.write("if 'GlobalTag' in process.__dict__:\n")
           out.write("    process.GlobalTag.globaltag         = '%s'\n" % menuGlobalTag)
           out.write("    process.GlobalTag.connect           = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'\n")
+          out.write("\n")
           out.write("if 'Level1MenuOverride' in process.__dict__:\n")
           out.write("    process.Level1MenuOverride.connect  = 'frontier://FrontierProd/CMS_COND_31X_L1T'\n")
           out.write("\n")
@@ -336,29 +341,23 @@ else:
           out.write("process.load('%s')\n" % menuL1Override)
           out.write("\n")
 
-        # the following is stolen from cmsDriver's ConfigBuilder.py - addCustomise
-        final_snippet = '\n# Automatic addition of the customisation function\n'
-
-        # let python search for that package and do syntax checking at the same time
-        packageName = 'HLTrigger.Configuration.customL1THLT_Options'
-        __import__(packageName)
-        package = sys.modules[packageName]
-
-        # now ask the package for its definition and pick .py instead of .pyc
-        customiseFile = open(package.__file__.rstrip("c"), 'r')
-
-        for line in customiseFile:
-            if "import FWCore.ParameterSet.Config" in line:
-                continue
-            final_snippet += line
-
-        # close the customization file
-        customiseFile.close()
-
-        final_snippet += '\n\n# End of customisation function definition\n'
-        final_snippet += '\nprocess = customise(process)\n'
-
-        out.write(final_snippet)
+        # the following is stolen from HLTrigger.Configuration.customL1THLT_Options
+        out.write("if 'hltTrigReport' in process.__dict__:\n")
+        out.write("    process.hltTrigReport.HLTriggerResults       = cms.InputTag( 'TriggerResults','',process.name_() )\n")
+        out.write("\n")
+        out.write("if 'hltDQMHLTScalers' in process.__dict__:\n")
+        out.write("    process.hltDQMHLTScalers.triggerResults      = cms.InputTag( 'TriggerResults','',process.name_() )\n")
+        out.write("\n")
+        out.write("if 'hltPreExpressSmart' in process.__dict__:\n")
+        out.write("    process.hltPreExpressSmart.TriggerResultsTag = cms.InputTag( 'TriggerResults','',process.name_() )\n")
+        out.write("\n")
+        out.write("if 'hltPreHLTMONSmart' in process.__dict__:\n")
+        out.write("    process.hltPreHLTMONSmart.TriggerResultsTag  = cms.InputTag( 'TriggerResults','',process.name_() )\n")
+        out.write("\n")
+        out.write("process.options.wantSummary = cms.untracked.bool(True)\n")
+        out.write("process.MessageLogger.categories.append('TriggerSummaryProducerAOD')\n")
+        out.write("process.MessageLogger.categories.append('L1GtTrigReport')\n")
+        out.write("process.MessageLogger.categories.append('HLTrigReport')\n")
 
         # close the output file
         out.close()
