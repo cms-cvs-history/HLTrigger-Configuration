@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_3_3/GRun/V13 (CMSSW_3_3_3_HLT4)
+# /dev/CMSSW_3_3_3/GRun/V14 (CMSSW_3_3_3_HLT4)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_3/GRun/V13')
+  tableName = cms.string('/dev/CMSSW_3_3_3/GRun/V14')
 )
 
 
@@ -6363,7 +6363,7 @@ hltPreHFThreshold = cms.EDFilter( "HLTPrescaler" )
 hltHcalSimpleRecHitFilter = cms.EDFilter( "HLTHcalSimpleRecHitFilter",
     threshold = cms.double( 3.0 ),
     HFRecHitCollection = cms.InputTag( "hltHfreco" ),
-    maskedChannels = cms.vint32( 8137, 8141, 8147, 8149, 8500 )
+    maskedChannels = cms.vint32( 8137, 8141, 8146, 8149, 8150, 8153 )
 )
 hltL1sGlobalRunHPDNoise = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),
