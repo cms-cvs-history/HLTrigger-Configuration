@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_3_3/GRun/V4 (CMSSW_3_3_3_HLT4)
+# /dev/CMSSW_3_3_3/GRun/V7 (CMSSW_3_3_3_HLT4)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_3/GRun/V4')
+  tableName = cms.string('/dev/CMSSW_3_3_3/GRun/V7')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -1564,6 +1564,9 @@ process.PrescaleService = cms.Service( "PrescaleService",
       cms.PSet(  pathName = cms.string( "HLT_ZeroBias" ),
         prescales = cms.vuint32( 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100 )
       ),
+      cms.PSet(  pathName = cms.string( "HLT_ZeroBias1kHz" ),
+        prescales = cms.vuint32( 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 )
+      ),
       cms.PSet(  pathName = cms.string( "HLT_IsoTrackHE_8E29" ),
         prescales = cms.vuint32( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
       ),
@@ -1579,6 +1582,9 @@ process.PrescaleService = cms.Service( "PrescaleService",
       cms.PSet(  pathName = cms.string( "HLT_Physics" ),
         prescales = cms.vuint32( 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100 )
       ),
+      cms.PSet(  pathName = cms.string( "HLT_Physics1kHz" ),
+        prescales = cms.vuint32( 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 )
+      ),
       cms.PSet(  pathName = cms.string( "HLT_GlobalRunHPDNoise" ),
         prescales = cms.vuint32( 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80 )
       ),
@@ -1590,6 +1596,15 @@ process.PrescaleService = cms.Service( "PrescaleService",
       ),
       cms.PSet(  pathName = cms.string( "HLT_L1_BPTX_PlusOnly" ),
         prescales = cms.vuint32( 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_L1_BPTX1kHz" ),
+        prescales = cms.vuint32( 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_L1_BPTX_MinusOnly1kHz" ),
+        prescales = cms.vuint32( 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_L1_BPTX_PlusOnly1kHz" ),
+        prescales = cms.vuint32( 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_L2Mu0_NoVertex" ),
         prescales = cms.vuint32( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
@@ -6110,6 +6125,7 @@ process.hltL1sZeroBias = cms.EDFilter( "HLTLevel1GTSeed",
     L1MuonCollectionTag = cms.InputTag( "hltL1extraParticles" )
 )
 process.hltPreZeroBias = cms.EDFilter( "HLTPrescaler" )
+process.hltPreZeroBias1kHz = cms.EDFilter( "HLTPrescaler" )
 process.hltL1sMinBias = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),
     L1NrBxInEvent = cms.int32( 3 ),
@@ -7091,6 +7107,7 @@ process.hltRandomEventsFilter = cms.EDFilter( "HLTTriggerTypeFilter",
 process.hltPreRandom = cms.EDFilter( "HLTPrescaler" )
 process.hltPreRandom5Hz = cms.EDFilter( "HLTPrescaler" )
 process.hltPrePhysics = cms.EDFilter( "HLTPrescaler" )
+process.hltPrePhysics1kHz = cms.EDFilter( "HLTPrescaler" )
 process.hltPreHFThreshold = cms.EDFilter( "HLTPrescaler" )
 process.hltHcalSimpleRecHitFilter = cms.EDFilter( "HLTHcalSimpleRecHitFilter",
     threshold = cms.double( 3.0 ),
@@ -7146,6 +7163,9 @@ process.hltL1sL1BPTXPlusOnly = cms.EDFilter( "HLTLevel1GTSeed",
     L1MuonCollectionTag = cms.InputTag( "hltL1extraParticles" )
 )
 process.hltPreL1BPTXPlusOnly = cms.EDFilter( "HLTPrescaler" )
+process.hltPreL1BPTX1kHz = cms.EDFilter( "HLTPrescaler" )
+process.hltPreL1BPTXMinusOnly1kHz = cms.EDFilter( "HLTPrescaler" )
+process.hltPreL1BPTXPlusOnly1kHz = cms.EDFilter( "HLTPrescaler" )
 process.hltL1sL1BSC = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),
     L1NrBxInEvent = cms.int32( 3 ),
@@ -7806,11 +7826,11 @@ process.hltOutputA = cms.OutputModule( "PoolOutputModule",
 )
 process.hltOutputB = cms.OutputModule( "PoolOutputModule",
     fileName = cms.untracked.string( "outputB.root" ),
-    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring( 'HLT_L1_BPTX',
-  'HLT_L1_BPTX_MinusOnly',
-  'HLT_L1_BPTX_PlusOnly',
-  'HLT_Physics',
-  'HLT_ZeroBias' ) ),
+    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring( 'HLT_L1_BPTX1kHz',
+  'HLT_L1_BPTX_MinusOnly1kHz',
+  'HLT_L1_BPTX_PlusOnly1kHz',
+  'HLT_Physics1kHz',
+  'HLT_ZeroBias1kHz' ) ),
     outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
       'keep FEDRawDataCollection_source_*_*',
       'keep FEDRawDataCollection_rawDataCollector_*_*',
@@ -8511,6 +8531,7 @@ process.HLT_L1Mu14_L1SingleEG10 = cms.Path( process.HLTBeginSequenceBPTX + proce
 process.HLT_L1Mu14_L1SingleJet6U = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1Mu14L1SingleJet6U + process.hltPreL1Mu14L1SingleJet6U + process.HLTEndSequence )
 process.HLT_L1Mu14_L1ETM30 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1Mu14L1ETM30 + process.hltPreL1Mu14L1ETM30 + process.HLTEndSequence )
 process.HLT_ZeroBias = cms.Path( process.HLTBeginSequence + process.hltL1sZeroBias + process.hltPreZeroBias + process.HLTEndSequence )
+process.HLT_ZeroBias1kHz = cms.Path( process.HLTBeginSequence + process.hltL1sZeroBias + process.hltPreZeroBias1kHz + process.HLTEndSequence )
 process.HLT_MinBias = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sMinBias + process.hltPreMinBias + process.HLTEndSequence )
 process.HLT_MinBiasBSC = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sMinBiasBSC + process.hltPreMinBiasBSC + process.HLTEndSequence )
 process.HLT_MinBiasBSC_OR = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sMinBiasBSCOR + process.hltPreMinBiasBSCOR + process.HLTEndSequence )
@@ -8544,12 +8565,16 @@ process.HLT_HcalCalibration = cms.Path( process.hltCalibrationEventsFilter + pro
 process.HLT_Random = cms.Path( process.hltRandomEventsFilter + process.hltL1EventNumber + process.hltPreRandom + process.HLTEndSequence )
 process.HLT_Random5Hz = cms.Path( process.hltRandomEventsFilter + process.hltL1EventNumber + process.hltPreRandom5Hz + process.HLTEndSequence )
 process.HLT_Physics = cms.Path( process.HLTBeginSequence + process.hltPrePhysics + process.HLTEndSequence )
+process.HLT_Physics1kHz = cms.Path( process.HLTBeginSequence + process.hltPrePhysics1kHz + process.HLTEndSequence )
 process.HLT_HFThreshold = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1BPTX + process.hltPreHFThreshold + process.hltHcalDigis + process.hltHfreco + process.hltHcalSimpleRecHitFilter + process.HLTEndSequence )
 process.HLT_GlobalRunHPDNoise = cms.Path( process.HLTBeginSequence + process.hltL1sGlobalRunHPDNoise + process.hltPreGlobalRunHPDNoise + process.HLTEndSequence )
 process.HLT_TechTrigHCALNoise = cms.Path( process.HLTBeginSequence + process.hltL1sTechTrigHCALNoise + process.hltPreTechTrigHCALNoise + process.HLTEndSequence )
 process.HLT_L1_BPTX = cms.Path( process.HLTBeginSequence + process.hltL1sL1BPTX + process.hltPreL1BPTX + process.HLTEndSequence )
 process.HLT_L1_BPTX_MinusOnly = cms.Path( process.HLTBeginSequence + process.hltL1sL1BPTXMinusOnly + process.hltPreL1BPTXMinusOnly + process.HLTEndSequence )
 process.HLT_L1_BPTX_PlusOnly = cms.Path( process.HLTBeginSequence + process.hltL1sL1BPTXPlusOnly + process.hltPreL1BPTXPlusOnly + process.HLTEndSequence )
+process.HLT_L1_BPTX1kHz = cms.Path( process.HLTBeginSequence + process.hltL1sL1BPTX + process.hltPreL1BPTX1kHz + process.HLTEndSequence )
+process.HLT_L1_BPTX_MinusOnly1kHz = cms.Path( process.HLTBeginSequence + process.hltL1sL1BPTXMinusOnly + process.hltPreL1BPTXMinusOnly1kHz + process.HLTEndSequence )
+process.HLT_L1_BPTX_PlusOnly1kHz = cms.Path( process.HLTBeginSequence + process.hltL1sL1BPTXPlusOnly + process.hltPreL1BPTXPlusOnly1kHz + process.HLTEndSequence )
 process.HLT_L1_BSC = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1BSC + process.hltPreL1BSC + process.HLTEndSequence )
 process.HLT_L1_HFtech = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1HFtech + process.hltPreL1HFTech + process.HLTEndSequence )
 process.HLT_L2Mu0_NoVertex = cms.Path( process.HLTBeginSequence + process.hltL1sL1SingleMu0 + process.hltPreL2Mu0NoVertex + process.hltSingleMu0L1Filtered + process.HLTL2muonrecoSequenceNoVtx + process.hltSingleL2Mu0L2PreFilteredNoVtx + process.HLTEndSequence )
