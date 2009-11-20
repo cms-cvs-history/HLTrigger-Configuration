@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_3_3/GRun/V12 (CMSSW_3_3_3_HLT4)
+# /dev/CMSSW_3_3_3/GRun/V13 (CMSSW_3_3_3_HLT4)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_3/GRun/V12')
+  tableName = cms.string('/dev/CMSSW_3_3_3/GRun/V13')
 )
 
 
@@ -1316,7 +1316,7 @@ hltTowerMakerForEcalABFit = cms.EDProducer( "CaloTowersCreator",
 )
 hltEcalTowerFilter = cms.EDFilter( "HLTEcalTowerFilter",
     inputTag = cms.InputTag( "hltTowerMakerForEcalABFit" ),
-    MinE = cms.double( 10.0 ),
+    MinE = cms.double( 2.0 ),
     MaxEta = cms.double( 3.0 ),
     MinN = cms.int32( 1 )
 )
