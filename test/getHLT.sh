@@ -33,7 +33,7 @@ function getConfigForCVS() {
   # for things in CMSSW CVS
   local CONFIG="$1"
   local NAME="$2"
-  $GETHLT $CONFIG $NAME GEN-HLT
+  $GETHLT --cff --mc $CONFIG $NAME
 }
 
 function getContentForCVS() {
@@ -47,7 +47,7 @@ function getConfigForOnline() {
   # for things NOT in CMSSW CVS:
   local CONFIG="$1"
   local NAME="$2"
-  $GETHLT $CONFIG $NAME
+  $GETHLT --full --offline --mc $CONFIG $NAME
 }
 
 # make sure we're using *this* working area

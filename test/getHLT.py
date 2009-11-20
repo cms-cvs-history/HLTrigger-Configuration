@@ -26,25 +26,37 @@ globalTag = {
 
 def usage():
     print 'Usage:'
-    print '  getHLT.py [--l1override] [--l1 <L1.menu_cff>] [--globaltag <GlobalTag::All>] [--data] [--force] <Version from ConfDB> <ID> [use case]'
-    print
-    print 'If use case "GEN-HLT" is specified, generate a stripped file fragment for the GEN-HLT workflow.'
-    print 'If use case "ONLINE" is specified, generate a full configuration file with minimal modifications, for validation.'
-    print 'If no use case is specified, the default is "ONLINE".'
+    print '  getHLT.py [--process <Name>] [--globaltag <GlobalTag::All>] [--l1override] [--l1 <L1.menu_cff>]'
+    print '            [--full|--cff] [--data|--mc] [--online|--offline]'
+    print '            [-f|--force]'
+    print '            <Version from ConfDB> <ID>'
     print
     print 'Options:'
-    print '  --l1override           Enable L1 menu override, identified from the ID'
-    print '  --l1                   Enable L1 menu override, using the given menu_cff (which must be a valid python import argument)'
-    print '  --globaltag            Use a specific GlobalTag (the default comes from the ID'
-    print '  --data                 Prepare a menu for running on data (RAW in "source") instead of MC (RAW in "rawDataCollector")'
-    print '  --force                Overwrite the destination file instead of aborting if it already exists'
+    print '  --process          Override the process name [default is "HLT" followed by the "ID"'
+    print '  --globaltag        Use a specific GlobalTag (the default comes from the ID'
+    print '  --l1override       Enable L1 menu override, identified from the ID'
+    print '  --l1               Enable L1 menu override, using the given menu_cff (which must be a valid python import argument)'
+    print
+    print '  --full             Generate a full configuration file, with minimal modifications [this is the default]'
+    print '  --cff              Generate a stripped down configuration file fragment, for inclusion by e.g. cmsDriver.py'
+    print '  --data             Prepare a menu for running on data (RAW in "source") [this is the default]'
+    print '  --mc               Prepare a menu for running on MC (RAW in "rawDataCollector")'
+    print '  --online           Take the online compliant connection string and GlobalTag from the menu'
+    print '  --offline          Override with the connection string and GlobalTag with te offline values [this is the default]'
+    print
+    print '  --force            Overwrite the destination file instead of aborting if it already exists'
+    print
+    print 'Notes:'
+    print '     using "--online" and "--mc" together is not supported (there is no online compliant GlobalTag for MC)'
+    print '     using "--online/--offline" has no effect if "--cff" is used'
 
 
 doL1Override    = False
 processName     = ''
 fileId          = ''
-useCase         = ''
-runOnData       = False
+doCff           = False
+runOnData       = True
+runOnline       = False
 menuOutName     = ''
 menuL1Override  = ''
 menuGlobalTag   = ''
@@ -57,8 +69,9 @@ def parse_options(args):
   global doL1Override
   global processName
   global fileId
-  global useCase
+  global doCff
   global runOnData
+  global runOnline
   global menuOutName
   global menuL1Override
   global menuGlobalTag
@@ -67,7 +80,7 @@ def parse_options(args):
   global doOverwrite
 
   # valid options 
-  options = ( 'l1override', 'l1=', 'globaltag=', 'data', 'force' )
+  options = ( 'process=', 'l1override', 'l1=', 'globaltag=', 'data', 'mc', 'force', 'online', 'offline', 'full', 'cff' )
   
   try:
     (opts, args) = getopt.gnu_getopt(args, 'f', options)
@@ -78,8 +91,17 @@ def parse_options(args):
     sys.exit(1)
 
   for (opt, value) in opts:
+    # set the process name
+    if opt == '--process':
+      processName = value
+    # generate a cff fragment
+    elif opt == '--cff':
+      doCff = True
+    # generate a full configuration file
+    elif opt == '--full':
+      doCff = False
     # force L1 override
-    if opt == '--l1override':
+    elif opt == '--l1override':
       doL1Override = True
     # specify L1 menu and force L1 override
     elif opt == '--l1':
@@ -88,9 +110,18 @@ def parse_options(args):
     # specify GlobalTag 
     elif opt == '--globaltag':
       menuGlobalTag = value
-    # run on data (RAW in 'source') instead of MC (RAW in 'rawDataCollector')
+    # run on data (RAW in 'source')
     elif opt == '--data':
       runOnData = True
+    # run on MC (RAW in 'rawDataCollector')
+    elif opt == '--mc':
+      runOnData = False
+    # run online (keep online compliant GlobalTag from the menu)
+    elif opt == '--online':
+      runOnline = True
+    # run offline(overrithe the GlobalTag from the menu with an offline one)
+    elif opt == '--offline':
+      runOnline = False
     # overwrite the destination file
     elif opt in ('-f', '--force'):
       doOverwrite = True
@@ -103,21 +134,16 @@ def parse_options(args):
   try:
       configName  = args[0]
       fileId      = args[1]
-      processName = 'HLT' + fileId
+      if not processName:
+        processName = 'HLT' + fileId
   except:
       usage()
       sys.exit(1)
 
-  # look for the optional "use case" argument
-  try:
-      useCase = args[2]
-  except:
-      useCase = "ONLINE"
-
-  if useCase == "ONLINE":
-      menuOutName = "OnLine_HLT_" + fileId + ".py"
-  else:
+  if doCff:
       menuOutName = "HLT_" + fileId + "_cff.py"
+  else:
+      menuOutName = "OnLine_HLT_" + fileId + ".py"
 
   # extract the database and configuration name
   if ':' in configName:
@@ -145,7 +171,7 @@ else:
     paths     = ""
     psets     = ""
 
-    if useCase == "GEN-HLT":
+    if doCff:
         edsources =  " --noedsources"
 
         essources  = " --essources "
@@ -267,11 +293,11 @@ else:
         # open the output file for appending
         out = open(menuOutName, 'a')
 
-        # Overwrite ProcessName
+        # overwrite ProcessName
         out.write("process.setName_('%s')\n" % processName)
         out.write("\n")
 
-        # Add global options
+        # add global options
         out.write("process.maxEvents = cms.untracked.PSet(\n")
         out.write("    input = cms.untracked.int32( 100 )\n")
         out.write(")\n")
@@ -281,16 +307,20 @@ else:
         out.write("\n")
 
         # Overwrite GlobalTag
-        out.write("process.GlobalTag.connect = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'\n")
-        if not menuGlobalTag:
-          if runOnData:
-            menuGlobalTag = globalTag['data']
-          elif fileId in globalTag:
-            menuGlobalTag = globalTag[fileId]
-          else:
-            menuGlobalTag = globalTag[None]
-        out.write("process.GlobalTag.globaltag = '%s'\n" % menuGlobalTag)
-        out.write("\n")
+        if not runOnline:
+          if not menuGlobalTag:
+            if runOnData:
+              menuGlobalTag = globalTag['data']
+            elif fileId in globalTag:
+              menuGlobalTag = globalTag[fileId]
+            else:
+              menuGlobalTag = globalTag[None]
+          out.write("if 'GlobalTag' in process.__dict__:\n")
+          out.write("    process.GlobalTag.globaltag         = '%s'\n" % menuGlobalTag)
+          out.write("    process.GlobalTag.connect           = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'\n")
+          out.write("if 'Level1MenuOverride' in process.__dict__:\n")
+          out.write("    process.Level1MenuOverride.connect  = 'frontier://FrontierProd/CMS_COND_31X_L1T'\n")
+          out.write("\n")
 
         # if requested, override the L1 menu from the GlobalTag
         if doL1Override:
