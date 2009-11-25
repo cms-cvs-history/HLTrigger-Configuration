@@ -1,6 +1,6 @@
 #! /bin/bash
 
-HLT='/online/beamhalo/week47/HLT'
+HLT='orcoff:/cdaq/special/CirculatingBeam09/v3.0/HLT/V1'
 
 rm -f OnLine_HLT_TEST.py
 
