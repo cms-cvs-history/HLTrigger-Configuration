@@ -222,6 +222,7 @@ else:
         esmodules += "-hcal_db_producer,"
         esmodules += "-l1GtTriggerMenuXml,"
         esmodules += "-L1GtTriggerMaskAlgoTrigTrivialProducer,"
+        esmodules += "-L1GtTriggerMaskTechTrigTrivialProducer,"
         esmodules += "-sistripconn"
 
         services   = " --services -PrescaleService,-MessageLogger,-DQM,-DQMStore,-FUShmDQMOutputService,-MicroStateService,-ModuleWebRegistry,-TimeProfilerService"
@@ -273,7 +274,8 @@ else:
 
           esmodules  = " --esmodules "
           esmodules += "-l1GtTriggerMenuXml,"
-          esmodules += "-L1GtTriggerMaskAlgoTrigTrivialProducer"
+          esmodules += "-L1GtTriggerMaskAlgoTrigTrivialProducer,"
+          esmodules += "-L1GtTriggerMaskTechTrigTrivialProducer"
 
         paths      = " --paths -OfflineOutput"
 
