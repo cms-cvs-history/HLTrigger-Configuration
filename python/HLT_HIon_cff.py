@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_3_3/HIon/V14 (CMSSW_3_3_3_HLT4)
+# /dev/CMSSW_3_3_3/HIon/V16 (CMSSW_3_3_3_HLT4)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_3/HIon/V14')
+  tableName = cms.string('/dev/CMSSW_3_3_3/HIon/V16')
 )
 
 
@@ -944,7 +944,7 @@ hltBoolFirstPath = cms.EDFilter( "HLTBool",
 )
 hltL1sHIMinBiasCalo = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),
-    L1NrBxInEvent = cms.int32( 3 ),
+    L1NrBxInEvent = cms.int32( 5 ),
     L1TechTriggerSeeding = cms.bool( False ),
     L1UseAliasesForSeeding = cms.bool( True ),
     L1SeedsLogicalExpression = cms.string( "L1_SingleHfBitCountsRing1_1 OR L1_SingleHfBitCountsRing2_1 OR L1_DoubleHfBitCountsRing1_P1N1 OR L1_DoubleHfBitCountsRing2_P1N1 OR L1_SingleHfRingEtSumsRing1_4 OR L1_DoubleHfRingEtSumsRing1_P4N4 OR L1_SingleHfRingEtSumsRing2_4 OR L1_DoubleHfRingEtSumsRing2_P4N4 OR L1_SingleEG1" ),
@@ -959,7 +959,7 @@ hltBoolEnd = cms.EDFilter( "HLTBool",
 )
 hltHIL1sJet35U = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),
-    L1NrBxInEvent = cms.int32( 3 ),
+    L1NrBxInEvent = cms.int32( 5 ),
     L1TechTriggerSeeding = cms.bool( False ),
     L1UseAliasesForSeeding = cms.bool( True ),
     L1SeedsLogicalExpression = cms.string( "L1_SingleJet30" ),
@@ -1126,7 +1126,7 @@ hltHI1jet35U = cms.EDFilter( "HLT1CaloJet",
 )
 hltHIL1sPhoton15 = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),
-    L1NrBxInEvent = cms.int32( 3 ),
+    L1NrBxInEvent = cms.int32( 5 ),
     L1TechTriggerSeeding = cms.bool( False ),
     L1UseAliasesForSeeding = cms.bool( True ),
     L1SeedsLogicalExpression = cms.string( "L1_SingleEG5" ),
@@ -1225,7 +1225,7 @@ hltHIPhoton15 = cms.EDFilter( "HLT1Photon",
 hltHIPreMML1 = cms.EDFilter( "HLTPrescaler" )
 hltHIMML1Seed = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),
-    L1NrBxInEvent = cms.int32( 3 ),
+    L1NrBxInEvent = cms.int32( 5 ),
     L1TechTriggerSeeding = cms.bool( False ),
     L1UseAliasesForSeeding = cms.bool( True ),
     L1SeedsLogicalExpression = cms.string( "L1_DoubleMuOpen" ),
@@ -1682,7 +1682,7 @@ hltTrigReport = cms.EDAnalyzer( "HLTrigReport",
     HLTriggerResults = cms.InputTag( 'TriggerResults','','HLT' )
 )
 
-HLTBeginSequence = cms.Sequence( hltTriggerType + hltL1EventNumber + hltGtDigis + hltGctDigis + hltL1GtObjectMap + hltL1extraParticles + hltOfflineBeamSpot )
+HLTBeginSequenceBPTX = cms.Sequence( hltTriggerType + hltL1EventNumber + hltGtDigis + hltGctDigis + hltL1GtObjectMap + hltL1extraParticles + hltBPTXCoincidence + hltOfflineBeamSpot )
 HLTEndSequence = cms.Sequence( hltBoolEnd )
 HLTDoLocalHcalSequence = cms.Sequence( hltHcalDigis + hltHbhereco + hltHfreco + hltHoreco )
 HLTDoCaloSequence = cms.Sequence( hltEcalRawToRecHitFacility + hltEcalRegionalRestFEDs + hltEcalRecHitAll + HLTDoLocalHcalSequence + hltTowerMakerForAll )
@@ -1695,11 +1695,11 @@ HLTDoLocalPixelSequence = cms.Sequence( hltSiPixelDigis + hltSiPixelClusters + h
 HLTHIRecopixelvertexingSequence = cms.Sequence( hltHIPixelTracks + hltHIPixelVertices )
 HLTDoLocalStripSequence = cms.Sequence( hltSiStripRawToClustersFacility + hltSiStripClusters )
 
-HLTriggerFirstPath = cms.Path( hltGetRaw + HLTBeginSequence + hltPreFirstPath + hltBoolFirstPath )
-HLT_HIMinBiasCalo = cms.Path( HLTBeginSequence + hltL1sHIMinBiasCalo + hltPreHIMinBiasCalo + HLTEndSequence )
-HLT_HIJet35U = cms.Path( HLTBeginSequence + hltHIL1sJet35U + hltHIPreJet35U + HLTDoHIJetRecoSequence + hltHI1jet35U + HLTEndSequence )
-HLT_HIPhoton15 = cms.Path( HLTBeginSequence + hltHIL1sPhoton15 + hltHIPrePhoton15 + HLTDoCaloSequence + HLTDoHIEcalClusSequence + hltHIPhoton15 + HLTEndSequence )
-HLT_HIDoubleMu = cms.Path( HLTBeginSequence + hltHIPreMML1 + hltHIMML1Seed + HLTL2muonrecoSequence + HLTDoLocalPixelSequence + HLTHIRecopixelvertexingSequence + HLTDoLocalStripSequence + hltHIMML3Filter + HLTEndSequence )
+HLTriggerFirstPath = cms.Path( hltGetRaw + HLTBeginSequenceBPTX + hltPreFirstPath + hltBoolFirstPath )
+HLT_HIMinBiasCalo = cms.Path( HLTBeginSequenceBPTX + hltL1sHIMinBiasCalo + hltPreHIMinBiasCalo + HLTEndSequence )
+HLT_HIJet35U = cms.Path( HLTBeginSequenceBPTX + hltHIL1sJet35U + hltHIPreJet35U + HLTDoHIJetRecoSequence + hltHI1jet35U + HLTEndSequence )
+HLT_HIPhoton15 = cms.Path( HLTBeginSequenceBPTX + hltHIL1sPhoton15 + hltHIPrePhoton15 + HLTDoCaloSequence + HLTDoHIEcalClusSequence + hltHIPhoton15 + HLTEndSequence )
+HLT_HIDoubleMu = cms.Path( HLTBeginSequenceBPTX + hltHIPreMML1 + hltHIMML1Seed + HLTL2muonrecoSequence + HLTDoLocalPixelSequence + HLTHIRecopixelvertexingSequence + HLTDoLocalStripSequence + hltHIMML3Filter + HLTEndSequence )
 HLTriggerFinalPath = cms.Path( hltTriggerSummaryAOD + hltPreTriggerSummaryRAW + hltTriggerSummaryRAW + hltBoolFinalPath )
 HLTAnalyzerEndpath = cms.EndPath( hltL1GtTrigReport + hltTrigReport )
 

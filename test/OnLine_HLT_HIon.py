@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_3_3/HIon/V14 (CMSSW_3_3_3_HLT4)
+# /dev/CMSSW_3_3_3/HIon/V16 (CMSSW_3_3_3_HLT4)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_3/HIon/V14')
+  tableName = cms.string('/dev/CMSSW_3_3_3/HIon/V16')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -1499,15 +1499,7 @@ process.PrescaleService = cms.Service( "PrescaleService",
       '4',
       '5',
       '6',
-      '7',
-      '8',
-      '9',
-      '10',
-      '11',
-      '12',
-      '13',
-      '14',
-      '15' ),
+      '7' ),
     prescaleTable = cms.VPSet( 
     )
 )
@@ -1590,7 +1582,7 @@ process.hltBoolFirstPath = cms.EDFilter( "HLTBool",
 )
 process.hltL1sHIMinBiasCalo = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),
-    L1NrBxInEvent = cms.int32( 3 ),
+    L1NrBxInEvent = cms.int32( 5 ),
     L1TechTriggerSeeding = cms.bool( False ),
     L1UseAliasesForSeeding = cms.bool( True ),
     L1SeedsLogicalExpression = cms.string( "L1_SingleHfBitCountsRing1_1 OR L1_SingleHfBitCountsRing2_1 OR L1_DoubleHfBitCountsRing1_P1N1 OR L1_DoubleHfBitCountsRing2_P1N1 OR L1_SingleHfRingEtSumsRing1_4 OR L1_DoubleHfRingEtSumsRing1_P4N4 OR L1_SingleHfRingEtSumsRing2_4 OR L1_DoubleHfRingEtSumsRing2_P4N4 OR L1_SingleEG1" ),
@@ -1605,7 +1597,7 @@ process.hltBoolEnd = cms.EDFilter( "HLTBool",
 )
 process.hltHIL1sJet35U = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),
-    L1NrBxInEvent = cms.int32( 3 ),
+    L1NrBxInEvent = cms.int32( 5 ),
     L1TechTriggerSeeding = cms.bool( False ),
     L1UseAliasesForSeeding = cms.bool( True ),
     L1SeedsLogicalExpression = cms.string( "L1_SingleJet30" ),
@@ -1772,7 +1764,7 @@ process.hltHI1jet35U = cms.EDFilter( "HLT1CaloJet",
 )
 process.hltHIL1sPhoton15 = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),
-    L1NrBxInEvent = cms.int32( 3 ),
+    L1NrBxInEvent = cms.int32( 5 ),
     L1TechTriggerSeeding = cms.bool( False ),
     L1UseAliasesForSeeding = cms.bool( True ),
     L1SeedsLogicalExpression = cms.string( "L1_SingleEG5" ),
@@ -1871,7 +1863,7 @@ process.hltHIPhoton15 = cms.EDFilter( "HLT1Photon",
 process.hltHIPreMML1 = cms.EDFilter( "HLTPrescaler" )
 process.hltHIMML1Seed = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),
-    L1NrBxInEvent = cms.int32( 3 ),
+    L1NrBxInEvent = cms.int32( 5 ),
     L1TechTriggerSeeding = cms.bool( False ),
     L1UseAliasesForSeeding = cms.bool( True ),
     L1SeedsLogicalExpression = cms.string( "L1_DoubleMuOpen" ),
