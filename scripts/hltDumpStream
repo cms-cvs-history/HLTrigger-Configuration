@@ -1,4 +1,6 @@
 #! /usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import sys, imp
 import operator
 import FWCore.ParameterSet.Config as cms
@@ -70,7 +72,6 @@ class SearchSmartPrescale(SearchModuleByType):
 # format the information about a path associated to a specific endpath
 def dumpPath(name, end):
   path = process.paths[name]
-  endp = process.endpaths[end]
   
   # look for a gobal prescale for the given path
   if name in prescale:
@@ -78,29 +79,43 @@ def dumpPath(name, end):
   else:
     pre = [1] * columns
 
-  # look for a local dumb prescaler in the output path
-  dumb = SearchDumbPrescale()
-  endp.visit(dumb)
-  if dumb.found and end in prescale:
-    pre = map(operator.mul, pre, prescale[end])
+  # check for a valid EndPath
+  if end:
+    endp = process.endpaths[end]
 
-  # look for a local smart prescaler in the output path
-  smart = SearchSmartPrescale()
-  endp.visit(smart)
-  # FIXME wildcards are not supported yet
-  if smart.found:
-    if name in smart.found.HLTPaths.value():
-      index = smart.found.HLTPaths.value().index(name)
-      scale = smart.found.HLTPathsPrescales.value()[index] * smart.found.HLTOverallPrescale.value()
-      pre = [ scale * p for p in pre ]
-    else:
-      pre = [ 0 ] * columns
+    # look for a local dumb prescaler in the output path
+    dumb = SearchDumbPrescale()
+    endp.visit(dumb)
+    if dumb.found and end in prescale:
+      pre = map(operator.mul, pre, prescale[end])
+
+    # look for a local smart prescaler in the output path
+    smart = SearchSmartPrescale()
+    endp.visit(smart)
+    # FIXME wildcards are not supported yet
+    if smart.found:
+      if name in smart.found.HLTPaths.value():
+        index = smart.found.HLTPaths.value().index(name)
+        scale = smart.found.HLTPathsPrescales.value()[index] * smart.found.HLTOverallPrescale.value()
+        pre = [ scale * p for p in pre ]
+      else:
+        pre = [ 0 ] * columns
 
   # look for BPTX coincidence in the given path
-  searchBPTX = SearchModuleByName('hltBPTXCoincidence')
+  searchSeed  = SearchModuleByName('hltL1sL1BPTX')
+  searchPlus  = SearchModuleByName('hltL1sL1BPTXPlusOnly')
+  searchMinus = SearchModuleByName('hltL1sL1BPTXMinusOnly')
+  searchZero  = SearchModuleByName('hltL1sZeroBias')
+  searchBPTX  = SearchModuleByName('hltBPTXCoincidence')
+  path.visit(searchSeed)
+  path.visit(searchPlus)
+  path.visit(searchMinus)
+  path.visit(searchZero)
   path.visit(searchBPTX)
-  if searchBPTX.found:
-    bptx = '*'
+  if searchSeed.found or searchPlus.found or searchMinus.found or searchZero.found:
+    bptx = '='
+  elif searchBPTX.found:
+    bptx = '±'
   else:
     bptx = ' '
 
