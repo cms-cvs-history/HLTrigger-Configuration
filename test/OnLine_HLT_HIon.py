@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_3_3/HIon/V16 (CMSSW_3_3_3_HLT4)
+# /dev/CMSSW_3_3_3/HIon/V19 (CMSSW_3_3_3_HLT6)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_3/HIon/V16')
+  tableName = cms.string('/dev/CMSSW_3_3_3/HIon/V19')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -815,7 +815,14 @@ process.SiStripQualityESProducer = cms.ESProducer( "SiStripQualityESProducer",
     cms.PSet(  record = cms.string( "SiStripBadModuleRcd" ),
       tag = cms.string( "" )
     )
-  )
+  ),
+  betaEB = cms.double( 1.7 ),
+  betaEE = cms.double( 1.37 ),
+  MinAmplEndcap = cms.double( 14.0 ),
+  MinAmplBarrel = cms.double( 8.0 ),
+  UseDynamicPedestal = cms.bool( True ),
+  alphaEB = cms.double( 1.2 ),
+  alphaEE = cms.double( 1.63 )
 )
 process.SiStripRecHitMatcherESProducer = cms.ESProducer( "SiStripRecHitMatcherESProducer",
   ComponentName = cms.string( "StandardMatcher" ),
@@ -1496,10 +1503,7 @@ process.PrescaleService = cms.Service( "PrescaleService",
       '1',
       '2',
       '3',
-      '4',
-      '5',
-      '6',
-      '7' ),
+      '4' ),
     prescaleTable = cms.VPSet( 
     )
 )
@@ -2335,19 +2339,6 @@ process.hltOutputA = cms.OutputModule( "PoolOutputModule",
     compression_level = cms.untracked.int32( 1 ),
     max_event_size = cms.untracked.int32( 7000000 )
 )
-process.hltOutputB = cms.OutputModule( "PoolOutputModule",
-    fileName = cms.untracked.string( "outputB.root" ),
-    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring(  ) ),
-    outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
-      'keep FEDRawDataCollection_source_*_*',
-      'keep FEDRawDataCollection_rawDataCollector_*_*',
-      'keep edmTriggerResults_*_*_*',
-      'keep triggerTriggerEvent_*_*_*',
-      'keep *_hltL1GtObjectMap_*_*' ),
-    use_compression = cms.untracked.bool( True ),
-    compression_level = cms.untracked.int32( 1 ),
-    max_event_size = cms.untracked.int32( 7000000 )
-)
 process.hltOutputCalibration = cms.OutputModule( "PoolOutputModule",
     fileName = cms.untracked.string( "outputCalibration.root" ),
     SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring(  ) ),
@@ -2441,7 +2432,7 @@ process.HLT_HIPhoton15 = cms.Path( process.HLTBeginSequenceBPTX + process.hltHIL
 process.HLT_HIDoubleMu = cms.Path( process.HLTBeginSequenceBPTX + process.hltHIPreMML1 + process.hltHIMML1Seed + process.HLTL2muonrecoSequence + process.HLTDoLocalPixelSequence + process.HLTHIRecopixelvertexingSequence + process.HLTDoLocalStripSequence + process.hltHIMML3Filter + process.HLTEndSequence )
 process.HLTriggerFinalPath = cms.Path( process.hltTriggerSummaryAOD + process.hltPreTriggerSummaryRAW + process.hltTriggerSummaryRAW + process.hltBoolFinalPath )
 process.HLTAnalyzerEndpath = cms.EndPath( process.hltL1GtTrigReport + process.hltTrigReport )
-process.HLTOutput = cms.EndPath( process.hltOutputA + process.hltOutputB )
+process.HLTOutput = cms.EndPath( process.hltOutputA )
 process.AlCaOutput = cms.EndPath( process.hltOutputCalibration + process.hltOutputEcalCalibration + process.hltOutputALCAPHISYM + process.hltOutputALCAP0 + process.hltOutputRPCMON + process.hltOutputOnlineErrors )
 
 process.setName_('HLTHIon')
