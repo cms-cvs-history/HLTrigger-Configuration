@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_3_3/HIon/V19 (CMSSW_3_3_3_HLT6)
+# /dev/CMSSW_3_3_3/HIon/V20 (CMSSW_3_3_3_HLT7)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_3/HIon/V19')
+  tableName = cms.string('/dev/CMSSW_3_3_3/HIon/V20')
 )
 
 
@@ -1017,7 +1017,7 @@ hltHfreco = cms.EDProducer( "HcalSimpleReconstructor",
     dropZSmarkedPassed = cms.bool( True ),
     Subdetector = cms.string( "HF" ),
     firstSample = cms.int32( 3 ),
-    samplesToAdd = cms.int32( 1 ),
+    samplesToAdd = cms.int32( 4 ),
     correctForTimeslew = cms.bool( False ),
     correctForPhaseContainment = cms.bool( False ),
     correctionPhaseNS = cms.double( 0.0 )
