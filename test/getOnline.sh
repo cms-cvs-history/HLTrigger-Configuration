@@ -1,6 +1,6 @@
 #! /bin/bash
 
-HLT='/online/beamhalo/week47/HLT'
+HLT='/online/collisions/week49/HLT'
 
 rm -f OnLine_HLT_TEST.py
 
