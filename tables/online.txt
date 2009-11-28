@@ -98,7 +98,6 @@ HLT_HcalCalibration
 HLT_Random
 HLT_Random5Hz
 HLT_Physics
-HLT_PhysicsES
 HLT_HFThreshold3
 HLT_HFThreshold10
 HLT_GlobalRunHPDNoise
@@ -115,7 +114,7 @@ HLT_L2Mu0_NoVertex
 HLT_TkMu3_NoVertex
 HLT_EgammaSuperClusterOnly_L1R
 HLT_LogMonitor
-HLT_PhysicsEnabled
+HLT_PhysicsDeclared
 XXX_DontNotifyT0
 HLTriggerFinalPath
 DQMOutput
