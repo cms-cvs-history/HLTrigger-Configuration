@@ -21,7 +21,7 @@ globalTag = {
   'data': 'GR09_H_V6OFF::All',          # same as 'GR09_H_V6::All' for offline
   '1E31': 'MC_31X_V9::All',
   'HIon': 'MC_31X_V9::All',
-  None:   'MC_31X_V9::All'              # use as default
+  None:   'STARTUP3X_V8D::All',         # use as default
 }
 
 def usage():
@@ -355,6 +355,9 @@ else:
         out.write("\n")
         out.write("if 'hltPreHLTMONSmart' in process.__dict__:\n")
         out.write("    process.hltPreHLTMONSmart.TriggerResultsTag  = cms.InputTag( 'TriggerResults','',process.name_() )\n")
+        out.write("\n")
+        out.write("if 'hltPreDQMSmart' in process.__dict__:\n")
+        out.write("    process.hltPreDQMSmart.TriggerResultsTag     = cms.InputTag( 'TriggerResults','',process.name_() )\n")
         out.write("\n")
         out.write("process.options.wantSummary = cms.untracked.bool(True)\n")
         out.write("process.MessageLogger.categories.append('TriggerSummaryProducerAOD')\n")
