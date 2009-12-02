@@ -5,12 +5,12 @@ cmsenv
 rehash
 
 
-#set InputFileGENSIM = file:/scratch/cms/TTbarGenSim31X.root
-set InputFileGENSIM = rfio:/castor/cern.ch/user/g/gruen/cms/TTbarGenSim31X.root
+set InputFileGENSIM = file:/scratch/cms/TTbarGenSim31X.root
+#set InputFileGENSIM = rfio:/castor/cern.ch/user/g/gruen/cms/TTbarGenSim31X.root
 
 # global tags to be used
-set GTAGUP = STARTUP3X_V8D
-set GTAGMC = MC_31X_V9
+set GTAGUP = STARTUP3X_V8F
+set GTAGMC = MC_3XY_V9A
 
 
 # two-table workflows
