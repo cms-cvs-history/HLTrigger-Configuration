@@ -31,7 +31,7 @@ class SearchModuleByName(object):
   def __init__(self, target, barrier = None):
     self.target  = target
     self.barrier = barrier
-    self.found   = None
+    self.found   = [ ]
     self.stop    = False
 
   def enter(self, node):
@@ -43,7 +43,7 @@ class SearchModuleByName(object):
         self.stop = True
         return
       if node.label_() == self.target:
-        self.found = node
+        self.found.append(node)
     
   def leave(self, node):
     pass
@@ -54,7 +54,7 @@ class SearchModuleByType(object):
   def __init__(self, target, barrier = None):
     self.target  = target
     self.barrier = barrier
-    self.found   = None
+    self.found   = [ ]
     self.stop    = False
 
   def enter(self, node):
@@ -66,7 +66,7 @@ class SearchModuleByType(object):
         self.stop = True
         return
       if node.type_() == self.target:
-        self.found = node
+        self.found.append(node)
     
   def leave(self, node):
     pass
@@ -89,22 +89,32 @@ def getL1Seed(path):
   searchSeed = SearchModuleByType('HLTLevel1GTSeed')
   path.visit(searchSeed)
   if searchSeed.found:
-    seed = searchSeed.found.L1SeedsLogicalExpression.value()
-    tech = searchSeed.found.L1TechTriggerSeeding.value()
-    return (seed, tech)
+    return [ (seed.L1SeedsLogicalExpression.value(), seed.L1TechTriggerSeeding.value()) for seed in searchSeed.found ]
   else:
-    return (None, False)
+    return [ ]
 
 
 # prepare a description of the L1 seed for a given path
 def getL1SeedDescription(path):
-  seedDesc = '(none)'
-  seed, tech = getL1Seed(path)
-  if (seed):
-    if (tech):
-      seedDEsc = 'technical bits: ' + seed
+  seeds = getL1Seed(path)
+  if len(seeds) == 0:
+    seedDesc = '(none)'
+  elif len(seeds) == 1:
+    if seeds[0][1]:
+      desc = 'technical bits: ' + seeds[0][0]
     else:
-      seedDesc = seed
+      desc = seeds[0][0]
+    seedDesc = desc
+  else:
+    entries = []
+    for seed in seeds:
+      if seed[1]:
+        desc = 'technical bits: ' + seed[0]
+      else:
+        desc = seed[0]
+      entries.append(desc)
+    seedDesc = '(' + ') AND ('.join(entries) + ')'
+
   return seedDesc
 
 # get the BPTX coincidenxe information for the given path
@@ -156,10 +166,10 @@ def getPrescales(name, out, end):
     smart = SearchSmartPrescale(out)
     endp.visit(smart)
     # FIXME wildcards are not supported yet
-    if smart.found:
-      if name in smart.found.HLTPaths.value():
-        index = smart.found.HLTPaths.value().index(name)
-        scale = smart.found.HLTPathsPrescales.value()[index] * smart.found.HLTOverallPrescale.value()
+    for found in smart.found:
+      if name in found.HLTPaths.value():
+        index = found.HLTPaths.value().index(name)
+        scale = found.HLTPathsPrescales.value()[index] * found.HLTOverallPrescale.value()
         pre = [ scale * p for p in pre ]
       else:
         pre = [ 0 ] * columns
