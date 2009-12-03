@@ -120,7 +120,6 @@ HLTAnalyzerEndpath
 DQMOutput
 HLTOutput
 HLTOutputB
-HLTOutputBnotT0
 ESOutput
 AlCaOutput
 MONOutput
