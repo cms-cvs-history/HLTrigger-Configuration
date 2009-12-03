@@ -81,6 +81,7 @@ HLT_HighMultiplicityBSC
 HLT_SplashBSC
 HLT_RPCBarrelCosmics
 HLT_TrackerCosmics
+HLT_L1Tech_RPC_TTU_RBst1_collisions
 HLT_StoppedHSCP_8E29
 HLT_IsoTrackHB_8E29
 HLT_IsoTrackHE_8E29
