@@ -82,60 +82,12 @@ class SearchDumbPrescale(SearchModuleByType):
 class SearchSmartPrescale(SearchModuleByType):
   def __init__(self, barrier = None):
     super(SearchSmartPrescale, self).__init__('HLTHighLevelDev', barrier)
+    
 
-
-# extract the L1 seed for a given path
-def getL1Seed(path):
-  searchSeed = SearchModuleByType('HLTLevel1GTSeed')
-  path.visit(searchSeed)
-  if searchSeed.found:
-    seed = searchSeed.found.L1SeedsLogicalExpression.value()
-    tech = searchSeed.found.L1TechTriggerSeeding.value()
-    return (seed, tech)
-  else:
-    return (None, False)
-
-
-# prepare a description of the L1 seed for a given path
-def getL1SeedDescription(path):
-  seedDesc = '(none)'
-  seed, tech = getL1Seed(path)
-  if (seed):
-    if (tech):
-      seedDEsc = 'technical bits: ' + seed
-    else:
-      seedDesc = seed
-  return seedDesc
-
-# get the BPTX coincidenxe information for the given path
-def getBPTXMatching(path):
-  searchSeed  = SearchModuleByName('hltL1sL1BPTX')
-  searchPlus  = SearchModuleByName('hltL1sL1BPTXPlusOnly')
-  searchMinus = SearchModuleByName('hltL1sL1BPTXMinusOnly')
-  searchZero  = SearchModuleByName('hltL1sZeroBias')
-  searchBPTX  = SearchModuleByName('hltBPTXCoincidence')
-  path.visit(searchSeed)
-  path.visit(searchPlus)
-  path.visit(searchMinus)
-  path.visit(searchZero)
-  path.visit(searchBPTX)
-  if searchSeed.found or searchPlus.found or searchMinus.found or searchZero.found:
-    bptx = 2
-  elif searchBPTX.found:
-    bptx = 1
-  else:
-    bptx = 0
-  return bptx
-
-# get the BPTX coincidenxe information for the given path, formatted as a charachter
-def getBPTXMatchingDescription(path):
-  code = r' ~='
-  bptx = getBPTXMatching(path)
-  return code[bptx]
-
-
-# get a tuple with the prescale factors for a path in a given endpath
-def getPrescales(name, out, end):
+# format the information about a path associated to a specific endpath
+def dumpPath(name, out, end):
+  path = process.paths[name]
+  
   # look for a gobal prescale for the given path
   if name in prescale:
     pre = prescale[name]
@@ -164,29 +116,26 @@ def getPrescales(name, out, end):
       else:
         pre = [ 0 ] * columns
 
-  return pre
-
-
-# get the prescale factors for a path in a given endpath
-def getPrescalesDescription(name, out, end):
-  pre = getPrescales(name, out, end)
-  return ''.join(['  %6d' % p for p in pre])
-
-
-# format the information about a path associated to a specific endpath
-def dumpPath(name, out, end):
-  path = process.paths[name]
-  
-  # look for prescales
-  preDesc = getPrescalesDescription(name, out, end)
-
   # look for BPTX coincidence in the given path
-  bptxDesc = getBPTXMatchingDescription(path)
+  searchSeed  = SearchModuleByName('hltL1sL1BPTX')
+  searchPlus  = SearchModuleByName('hltL1sL1BPTXPlusOnly')
+  searchMinus = SearchModuleByName('hltL1sL1BPTXMinusOnly')
+  searchZero  = SearchModuleByName('hltL1sZeroBias')
+  searchBPTX  = SearchModuleByName('hltBPTXCoincidence')
+  path.visit(searchSeed)
+  path.visit(searchPlus)
+  path.visit(searchMinus)
+  path.visit(searchZero)
+  path.visit(searchBPTX)
+  if searchSeed.found or searchPlus.found or searchMinus.found or searchZero.found:
+    bptx = '='
+  elif searchBPTX.found:
+    bptx = '~'
+  else:
+    bptx = ' '
 
-  # look for L1 seed
-  seedDesc = getL1SeedDescription(path)
 
-  return '      %s %-48s%s    %s' % (bptxDesc, name, preDesc, seedDesc)
+  return '      %s %-48s%s' % (bptx, name, ''.join(['  %6d' % p for p in pre]))
 
 
 def getEndPath(output):
