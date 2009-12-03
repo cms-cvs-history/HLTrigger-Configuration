@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_3_3/HIon/V23 (CMSSW_3_3_3_HLT7)
+# /dev/CMSSW_3_3_3/HIon/V24 (CMSSW_3_3_3_HLT8)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_3/HIon/V23')
+  tableName = cms.string('/dev/CMSSW_3_3_3/HIon/V24')
 )
 
 
@@ -933,8 +933,8 @@ hltBPTXCoincidence = cms.EDFilter( "HLTLevel1Activity",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
     ignoreL1Mask = cms.bool( False ),
     physicsLoBits = cms.uint64( 0x1 ),
-    physicsHiBits = cms.uint64( 0x0 ),
-    technicalBits = cms.uint64( 0x7f ),
+    physicsHiBits = cms.uint64( 0x40000 ),
+    technicalBits = cms.uint64( 0x0 ),
     bunchCrossings = cms.vint32( 0, 1, -1, 2, -2 )
 )
 hltOfflineBeamSpot = cms.EDProducer( "BeamSpotProducer" )
@@ -1575,7 +1575,7 @@ hltSiPixelClusters = cms.EDProducer( "SiPixelClusterProducer",
     payloadType = cms.string( "HLT" ),
     ChannelThreshold = cms.int32( 1000 ),
     SeedThreshold = cms.int32( 1000 ),
-    ClusterThreshold = cms.double( 3000.0 ),
+    ClusterThreshold = cms.double( 4000.0 ),
     VCaltoElectronGain = cms.int32( 65 ),
     VCaltoElectronOffset = cms.int32( -414 ),
     MissCalibrate = cms.untracked.bool( True ),

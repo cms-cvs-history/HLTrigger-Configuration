@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_3_3/HIon/V23 (CMSSW_3_3_3_HLT7)
+# /dev/CMSSW_3_3_3/HIon/V24 (CMSSW_3_3_3_HLT8)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_3/HIon/V23')
+  tableName = cms.string('/dev/CMSSW_3_3_3/HIon/V24')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -25,7 +25,7 @@ process.BTagRecord = cms.ESSource( "EmptyESSource",
 process.GlobalTag = cms.ESSource( "PoolDBESSource",
     BlobStreamerName = cms.untracked.string( "TBufferBlobStreamingService" ),
     connect = cms.string( "frontier://(proxyurl=http://localhost:3128)(serverurl=http://localhost:8000/FrontierOnProd)(serverurl=http://localhost:8000/FrontierOnProd)(retrieve-ziplevel=0)/CMS_COND_31X_GLOBALTAG" ),
-    globaltag = cms.string( "GR09_H_V6::All" ),
+    globaltag = cms.string( "GR09_H_V7::All" ),
     RefreshEachRun = cms.untracked.bool( True ),
     appendToDataLabel = cms.string( "" ),
     DBParameters = cms.PSet( 
@@ -803,9 +803,6 @@ process.SiStripQualityESProducer = cms.ESProducer( "SiStripQualityESProducer",
     cms.PSet(  record = cms.string( "SiStripDetCablingRcd" ),
       tag = cms.string( "" )
     ),
-    cms.PSet(  record = cms.string( "RunInfoRcd" ),
-      tag = cms.string( "" )
-    ),
     cms.PSet(  record = cms.string( "SiStripBadChannelRcd" ),
       tag = cms.string( "" )
     ),
@@ -1575,8 +1572,8 @@ process.hltBPTXCoincidence = cms.EDFilter( "HLTLevel1Activity",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
     ignoreL1Mask = cms.bool( False ),
     physicsLoBits = cms.uint64( 0x1 ),
-    physicsHiBits = cms.uint64( 0x0 ),
-    technicalBits = cms.uint64( 0x7f ),
+    physicsHiBits = cms.uint64( 0x40000 ),
+    technicalBits = cms.uint64( 0x0 ),
     bunchCrossings = cms.vint32( 0, 1, -1, 2, -2 )
 )
 process.hltOfflineBeamSpot = cms.EDProducer( "BeamSpotProducer" )
@@ -2217,7 +2214,7 @@ process.hltSiPixelClusters = cms.EDProducer( "SiPixelClusterProducer",
     payloadType = cms.string( "HLT" ),
     ChannelThreshold = cms.int32( 1000 ),
     SeedThreshold = cms.int32( 1000 ),
-    ClusterThreshold = cms.double( 3000.0 ),
+    ClusterThreshold = cms.double( 4000.0 ),
     VCaltoElectronGain = cms.int32( 65 ),
     VCaltoElectronOffset = cms.int32( -414 ),
     MissCalibrate = cms.untracked.bool( True ),
