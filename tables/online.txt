@@ -108,6 +108,7 @@ HLT_L1_BPTX_PlusOnly
 HLT_L1_BPTX1kHz
 HLT_L1_BPTX_MinusOnly1kHz
 HLT_L1_BPTX_PlusOnly1kHz
+HLT_L1_BscMinBiasOR_BptxPlusORMinus
 HLT_L1_BSC
 HLT_L1_HFtech
 HLT_L1Tech_HCAL_HF_coincidence_PM
