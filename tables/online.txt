@@ -97,7 +97,6 @@ HLT_Calibration
 HLT_EcalCalibration
 HLT_HcalCalibration
 HLT_Random
-HLT_Random5Hz
 HLT_HFThreshold3
 HLT_HFThreshold10
 HLT_GlobalRunHPDNoise

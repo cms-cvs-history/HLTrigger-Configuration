@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_3_3/8E29/V26 (CMSSW_3_3_3_HLT8)
+# /dev/CMSSW_3_3_3/8E29/V28 (CMSSW_3_3_3_HLT8)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_3/8E29/V26')
+  tableName = cms.string('/dev/CMSSW_3_3_3/8E29/V28')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -1496,77 +1496,73 @@ process.ModuleWebRegistry = cms.Service( "ModuleWebRegistry",
 )
 process.PrescaleService = cms.Service( "PrescaleService",
     lvl1DefaultLabel = cms.untracked.string( "0" ),
-    lvl1Labels = cms.vstring( '0',
-      '1',
-      '2',
-      '3',
-      '4' ),
+    lvl1Labels = cms.vstring( '0' ),
     prescaleTable = cms.VPSet( 
       cms.PSet(  pathName = cms.string( "HLT_L2Mu9" ),
-        prescales = cms.vuint32( 0, 0, 0, 0, 0 )
+        prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_L2Mu11" ),
-        prescales = cms.vuint32( 0, 0, 0, 0, 0 )
+        prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_IsoMu3" ),
-        prescales = cms.vuint32( 0, 0, 0, 0, 0 )
+        prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_Mu3" ),
-        prescales = cms.vuint32( 0, 0, 0, 0, 0 )
+        prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_Mu5" ),
-        prescales = cms.vuint32( 0, 0, 0, 0, 0 )
+        prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_Mu9" ),
-        prescales = cms.vuint32( 0, 0, 0, 0, 0 )
+        prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_DoubleMu0" ),
-        prescales = cms.vuint32( 0, 0, 0, 0, 0 )
+        prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_DoubleMu3" ),
-        prescales = cms.vuint32( 0, 0, 0, 0, 0 )
+        prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_Ele10_LW_L1R" ),
-        prescales = cms.vuint32( 0, 0, 0, 0, 0 )
+        prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_Ele10_LW_EleId_L1R" ),
-        prescales = cms.vuint32( 0, 0, 0, 0, 0 )
+        prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_Ele15_LW_L1R" ),
-        prescales = cms.vuint32( 0, 0, 0, 0, 0 )
+        prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_Ele15_SC10_LW_L1R" ),
-        prescales = cms.vuint32( 0, 0, 0, 0, 0 )
+        prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_Ele15_SiStrip_L1R" ),
-        prescales = cms.vuint32( 0, 0, 0, 0, 0 )
+        prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_Ele20_LW_L1R" ),
-        prescales = cms.vuint32( 0, 0, 0, 0, 0 )
+        prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_DoubleEle5_SW_L1R" ),
-        prescales = cms.vuint32( 0, 0, 0, 0, 0 )
+        prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_Photon15_TrackIso_L1R" ),
-        prescales = cms.vuint32( 0, 0, 0, 0, 0 )
+        prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_BTagIP_Jet50U" ),
-        prescales = cms.vuint32( 0, 0, 0, 0, 0 )
+        prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_BTagMu_Jet10U" ),
-        prescales = cms.vuint32( 0, 0, 0, 0, 0 )
+        prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_ZeroBias" ),
-        prescales = cms.vuint32( 100, 10, 100, 10, 1 )
+        prescales = cms.vuint32( 10 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_IsoTrackHE_8E29" ),
-        prescales = cms.vuint32( 0, 0, 0, 0, 0 )
+        prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_IsoTrackHB_8E29" ),
-        prescales = cms.vuint32( 0, 0, 0, 0, 0 )
+        prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "AlCa_RPCMuonNormalisation" ),
-        prescales = cms.vuint32( 10, 10, 10, 10, 10 )
+        prescales = cms.vuint32( 10 )
       )
     )
 )
