@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_3_3/GRun/V29 (CMSSW_3_3_3_HLT8)
+# /dev/CMSSW_3_3_3/GRun/V30 (CMSSW_3_3_3_HLT8)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_3/GRun/V29')
+  tableName = cms.string('/dev/CMSSW_3_3_3/GRun/V30')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -8425,7 +8425,6 @@ process.hltPreHLTMONSmart = cms.EDFilter( "HLTHighLevelDev",
       'HLT_Photon15_TrackIso_L1R',
       'HLT_Photon20_L1R',
       'HLT_Photon30_L1R_8E29',
-      'HLT_Physics',
       'HLT_QuadJet15U',
       'HLT_RPCBarrelCosmics',
       'HLT_Random',
@@ -8455,7 +8454,7 @@ process.hltPreHLTMONSmart = cms.EDFilter( "HLTHighLevelDev",
       'HLT_L1_BPTX',
       'HLT_L1_BPTX_MinusOnly',
       'HLT_L1_BPTX_PlusOnly' ),
-    HLTPathsPrescales = cms.vuint32( 10000, 10000, 10000, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1000, 1000, 1000, 1000 )
+    HLTPathsPrescales = cms.vuint32( 10000, 10000, 10000, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1000, 1000, 1000, 1000 )
 )
 process.hltOutputHLTMON = cms.OutputModule( "PoolOutputModule",
     fileName = cms.untracked.string( "outputHLTMON.root" ),
