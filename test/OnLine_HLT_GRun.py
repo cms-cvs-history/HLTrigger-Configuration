@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_3_3/GRun/V30 (CMSSW_3_3_3_HLT8)
+# /dev/CMSSW_3_3_3/GRun/V31 (CMSSW_3_3_3_HLT8)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_3/GRun/V30')
+  tableName = cms.string('/dev/CMSSW_3_3_3/GRun/V31')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -1661,9 +1661,9 @@ process.hltBoolFirstPath = cms.EDFilter( "HLTBool",
 process.hltLevel1Activity = cms.EDFilter( "HLTLevel1Activity",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
     ignoreL1Mask = cms.bool( False ),
-    physicsLoBits = cms.uint64( 0x7fdfff03c01fbff0 ),
-    physicsHiBits = cms.uint64( 0x3f183dbb01800beb ),
-    technicalBits = cms.uint64( 0x700007ffff001f00 ),
+    physicsLoBits = cms.uint64( 0x7fdfff03c03fbff0 ),
+    physicsHiBits = cms.uint64( 0x3f183dbb01870bf6 ),
+    technicalBits = cms.uint64( 0x70000fffff001f00 ),
     bunchCrossings = cms.vint32( 0, 1, -1, 2, -2 )
 )
 process.hltPreActivityL1A = cms.EDFilter( "HLTPrescaler" )
@@ -8875,7 +8875,7 @@ process.options = cms.untracked.PSet(
 )
 
 if 'GlobalTag' in process.__dict__:
-    process.GlobalTag.globaltag         = 'STARTUP3X_V8F::All'
+    process.GlobalTag.globaltag         = 'STARTUP3X_V8H::All'
     process.GlobalTag.connect           = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'
 
 if 'Level1MenuOverride' in process.__dict__:
