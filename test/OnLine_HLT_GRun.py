@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_3_3/GRun/V31 (CMSSW_3_3_3_HLT8)
+# /dev/CMSSW_3_3_3/GRun/V32 (CMSSW_3_3_3_HLT8)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_3_3/GRun/V31')
+  tableName = cms.string('/dev/CMSSW_3_3_3/GRun/V32')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -1574,9 +1574,6 @@ process.PrescaleService = cms.Service( "PrescaleService",
         prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_TkMu3_NoVertex" ),
-        prescales = cms.vuint32( 0 )
-      ),
-      cms.PSet(  pathName = cms.string( "XXX_DontNotifyT0" ),
         prescales = cms.vuint32( 0 )
       )
     )
@@ -7500,16 +7497,15 @@ process.hltLogMonitorFilter = cms.EDFilter( "HLTLogMonitorFilter",
     categories = cms.VPSet( 
     )
 )
-process.hltPreDontNotifyT0 = cms.EDFilter( "HLTPrescaler" )
-process.hltBoolFinalPath = cms.EDFilter( "HLTBool",
-    result = cms.bool( False )
-)
 process.hltTriggerSummaryAOD = cms.EDProducer( "TriggerSummaryProducerAOD",
     processName = cms.string( "@" )
 )
 process.hltPreTriggerSummaryRAW = cms.EDFilter( "HLTPrescaler" )
 process.hltTriggerSummaryRAW = cms.EDProducer( "TriggerSummaryProducerRAW",
     processName = cms.string( "@" )
+)
+process.hltBoolFinalPath = cms.EDFilter( "HLTBool",
+    result = cms.bool( False )
 )
 process.hltL1GtTrigReport = cms.EDAnalyzer( "L1GtTrigReport",
     UseL1GlobalTriggerRecord = cms.bool( False ),
@@ -7663,10 +7659,6 @@ process.hltPreExpressSmart = cms.EDFilter( "HLTHighLevelDev",
       'HLT_Activity_PixelClusters',
       'HLT_BTagIP_Jet50U',
       'HLT_BTagMu_Jet10U',
-      'HLT_CSCBeamHalo',
-      'HLT_CSCBeamHaloOverlapRing1',
-      'HLT_CSCBeamHaloOverlapRing2',
-      'HLT_CSCBeamHaloRing2or3',
       'HLT_DiJetAve15U_8E29',
       'HLT_DiJetAve30U_8E29',
       'HLT_DoubleEle5_SW_L1R',
@@ -7740,7 +7732,7 @@ process.hltPreExpressSmart = cms.EDFilter( "HLTHighLevelDev",
       'HLT_SplashEcalSumET',
       'HLT_ZeroBias',
       'HLT_ZeroBiasPixel_SingleTrack' ),
-    HLTPathsPrescales = cms.vuint32( 1, 10, 10, 10, 10, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 10, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 10, 1, 1, 10, 1, 10, 10, 10, 1, 1, 1, 1, 1, 1, 10, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 20, 1 )
+    HLTPathsPrescales = cms.vuint32( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 10, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 10, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 1 )
 )
 process.hltOutputExpress = cms.OutputModule( "PoolOutputModule",
     fileName = cms.untracked.string( "outputExpress.root" ),
@@ -7751,10 +7743,6 @@ process.hltOutputExpress = cms.OutputModule( "PoolOutputModule",
   'HLT_Activity_PixelClusters',
   'HLT_BTagIP_Jet50U',
   'HLT_BTagMu_Jet10U',
-  'HLT_CSCBeamHalo',
-  'HLT_CSCBeamHaloOverlapRing1',
-  'HLT_CSCBeamHaloOverlapRing2',
-  'HLT_CSCBeamHaloRing2or3',
   'HLT_DiJetAve15U_8E29',
   'HLT_DiJetAve30U_8E29',
   'HLT_DoubleEle5_SW_L1R',
@@ -8221,7 +8209,7 @@ process.hltPreDQMSmart = cms.EDFilter( "HLTHighLevelDev",
       'HLT_TrackerCosmics',
       'HLT_ZeroBias',
       'HLT_ZeroBiasPixel_SingleTrack' ),
-    HLTPathsPrescales = cms.vuint32( 10, 10, 10, 1, 1, 1, 1, 1, 1, 1, 1, 1, 10, 10, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 100, 1, 10, 1, 1, 1, 1, 1, 1, 1, 1, 10, 1, 1, 1, 1, 10, 1, 1, 1, 1, 1, 1, 1, 1, 10, 1, 10, 1, 1, 1, 1, 1, 10, 10, 10, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 10, 100, 100, 100, 1, 1, 10, 10 )
+    HLTPathsPrescales = cms.vuint32( 1, 10, 10, 0, 1, 1, 1, 1, 1, 1, 1, 1, 10, 10, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 100, 1, 10, 1, 1, 1, 1, 1, 1, 1, 1, 10, 1, 1, 1, 1, 10, 1, 1, 1, 1, 1, 1, 1, 1, 10, 0, 10, 0, 1, 1, 1, 0, 10, 10, 10, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 10, 100, 100, 100, 1, 1, 0, 1 )
 )
 process.hltOutputDQM = cms.OutputModule( "PoolOutputModule",
     fileName = cms.untracked.string( "outputDQM.root" ),
@@ -8855,7 +8843,6 @@ process.HLT_TkMu3_NoVertex = cms.Path( process.HLTBeginSequence + process.hltL1s
 process.HLT_EgammaSuperClusterOnly_L1R = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sEgammaOnlySC + process.hltPreEgammaOnlySC + process.HLTDoRegionalEgammaEcalSequence + process.HLTL1IsolatedEcalClustersSequence + process.HLTL1NonIsolatedEcalClustersSequence + process.hltL1IsoRecoEcalCandidate + process.hltL1NonIsoRecoEcalCandidate + process.hltEgammaSCOnlyL1MatchFilterRegional + process.hltEgammaSCOnlyEtFilter + process.HLTEndSequence )
 process.HLT_PhysicsDeclared = cms.Path( process.HLTBeginSequence + process.hltPhysicsDeclared + process.HLTEndSequence )
 process.HLT_LogMonitor = cms.Path( process.hltPreLogMonitor + process.hltLogMonitorFilter + process.HLTEndSequence )
-process.XXX_DontNotifyT0 = cms.Path( process.hltPreDontNotifyT0 + process.hltBoolFinalPath )
 process.HLTriggerFinalPath = cms.Path( process.hltTriggerSummaryAOD + process.hltPreTriggerSummaryRAW + process.hltTriggerSummaryRAW + process.hltBoolFinalPath )
 process.HLTAnalyzerEndpath = cms.EndPath( process.hltL1GtTrigReport + process.hltTrigReport )
 process.HLTOutput = cms.EndPath( process.hltOutputA )
