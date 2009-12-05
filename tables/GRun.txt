@@ -114,7 +114,6 @@ HLT_TkMu3_NoVertex
 HLT_EgammaSuperClusterOnly_L1R
 HLT_LogMonitor
 HLT_PhysicsDeclared
-XXX_DontNotifyT0
 HLTriggerFinalPath
 HLTAnalyzerEndpath
 DQMOutput
