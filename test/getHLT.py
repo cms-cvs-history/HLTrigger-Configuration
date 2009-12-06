@@ -18,24 +18,23 @@ l1Override = {
 globalTag = {
   '8E29': 'STARTUP3X_V14::All',
   'GRun': 'STARTUP3X_V14::All',
-  'data': 'GR09_H_V6OFF::All',          # same as 'GR09_H_V6::All' for offline
+  'data': 'GR09_H_V7OFF::All',          # same as 'GR09_H_V7::All' for offline
   '1E31': 'MC_3XY_V14::All',
   'HIon': 'MC_3XY_V14::All',
-  None:   'MC_3XY_V14::All'             # use as default
+  None:   'STARTUP3X_V14::All',         # use as default
 }
 
 def usage():
     print 'Usage:'
-    print '  getHLT.py [--process <Name>] [--globaltag <GlobalTag::All>] [--l1override] [--l1 <L1.menu_cff>]'
+    print '  getHLT.py [--process <Name>] [--globaltag <GlobalTag::All>] [--l1 <L1_MENU_vX>]'
     print '            [--full|--cff] [--data|--mc] [--online|--offline]'
     print '            [-f|--force]'
     print '            <Version from ConfDB> <ID>'
     print
     print 'Options:'
     print '  --process          Override the process name [default is "HLT" followed by the "ID"'
-    print '  --globaltag        Use a specific GlobalTag (the default comes from the ID'
-    print '  --l1override       Enable L1 menu override, identified from the ID'
-    print '  --l1               Enable L1 menu override, using the given menu_cff (which must be a valid python import argument)'
+    print '  --globaltag        Use a specific GlobalTag (the default comes from the ID)'
+    print '  --l1               Enable L1 menu override, using the given payload from the database'
     print
     print '  --full             Generate a full configuration file, with minimal modifications [this is the default]'
     print '  --cff              Generate a stripped down configuration file fragment, for inclusion by e.g. cmsDriver.py'
@@ -51,7 +50,6 @@ def usage():
     print '     using "--online/--offline" has no effect if "--cff" is used'
 
 
-doL1Override    = False
 processName     = ''
 fileId          = ''
 doCff           = False
@@ -66,7 +64,6 @@ doOverwrite     = False
 
 def parse_options(args):
   # global variables
-  global doL1Override
   global processName
   global fileId
   global doCff
@@ -80,7 +77,7 @@ def parse_options(args):
   global doOverwrite
 
   # valid options 
-  options = ( 'process=', 'l1override', 'l1=', 'globaltag=', 'data', 'mc', 'force', 'online', 'offline', 'full', 'cff' )
+  options = ( 'process=', 'l1=', 'globaltag=', 'data', 'mc', 'force', 'online', 'offline', 'full', 'cff' )
   
   try:
     (opts, args) = getopt.gnu_getopt(args, 'f', options)
@@ -100,12 +97,8 @@ def parse_options(args):
     # generate a full configuration file
     elif opt == '--full':
       doCff = False
-    # force L1 override
-    elif opt == '--l1override':
-      doL1Override = True
     # specify L1 menu and force L1 override
     elif opt == '--l1':
-      doL1Override = True
       menuL1Override = value
     # specify GlobalTag 
     elif opt == '--globaltag':
@@ -250,13 +243,37 @@ else:
         out = open(menuOutName, 'a')
 
         # if requested, override the L1 menu from the GlobalTag
-        if doL1Override:
-          out.write("\n")
-          try:
-            out.write("from %s import *\n" % l1Override[fileId])
-          except:
-            out.write("from %s import *\n" % l1Override[None])
-          out.write("es_prefer_l1GtParameters = cms.ESPrefer('L1GtTriggerMenuXmlProducer','l1GtTriggerMenuXml')\n")
+        if menuL1Override:
+          out.write("""
+Level1MenuOverride = cms.ESSource( "PoolDBESSource",
+    BlobStreamerName = cms.untracked.string( "TBufferBlobStreamingService" ),
+    connect = cms.string( "frontier://(proxyurl=http://localhost:3128)(serverurl=http://localhost:8000/FrontierOnProd)(serverurl=http://localhost:8000/FrontierOnProd)(retrieve-ziplevel=0)(failovertoserver=no)/CMS_COND_31X_L1T" ),
+    label = cms.untracked.string( "" ),
+    globaltag = cms.string( "" ),
+    tag = cms.untracked.string( "" ),
+    RefreshEachRun = cms.untracked.bool( True ),
+    appendToDataLabel = cms.string( "" ),
+    DBParameters = cms.PSet(
+      authenticationPath = cms.untracked.string( "." ),
+      connectionRetrialPeriod = cms.untracked.int32( 10 ),
+      idleConnectionCleanupPeriod = cms.untracked.int32( 10 ),
+      messageLevel = cms.untracked.int32( 0 ),
+      enablePoolAutomaticCleanUp = cms.untracked.bool( False ),
+      enableConnectionSharing = cms.untracked.bool( True ),
+      enableReadOnlySessionOnUpdateConnection = cms.untracked.bool( False ),
+      connectionTimeOut = cms.untracked.int32( 0 ),
+      connectionRetrialTimeOut = cms.untracked.int32( 60 )
+    ),
+    toGet = cms.VPSet(
+      cms.PSet(  record = cms.string( "L1GtTriggerMenuRcd" ),
+        tag = cms.string( "%s" )
+      )
+    ),
+    timetype = cms.string( "runnumber" ),
+    siteLocalConfig = cms.untracked.bool( False ),
+    messagelevel = cms.untracked.uint32( 0 )
+)
+es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverride" )\n""" % menuL1Override)
 
         # close the output file
         out.close()
@@ -267,7 +284,7 @@ else:
         else:
           edsources =  " --input file:RelVal_DigiL1Raw_"+fileId+".root"
 
-        if not runOnData or doL1Override:
+        if not runOnData or menuL1Override:
           # remove any eventual L1 override from the table
           essources  = " --essources "
           essources += "-Level1MenuOverride,"
@@ -312,7 +329,40 @@ else:
         out.write(")\n")
         out.write("\n")
 
-        # Overwrite GlobalTag
+        # override the L1 menu
+        if menuL1Override:
+          out.write("""process.Level1MenuOverride = cms.ESSource( "PoolDBESSource",
+    BlobStreamerName = cms.untracked.string( "TBufferBlobStreamingService" ),
+    connect = cms.string( "frontier://(proxyurl=http://localhost:3128)(serverurl=http://localhost:8000/FrontierOnProd)(serverurl=http://localhost:8000/FrontierOnProd)(retrieve-ziplevel=0)(failovertoserver=no)/CMS_COND_31X_L1T" ),
+    label = cms.untracked.string( "" ),
+    globaltag = cms.string( "" ),
+    tag = cms.untracked.string( "" ),
+    RefreshEachRun = cms.untracked.bool( True ),
+    appendToDataLabel = cms.string( "" ),
+    DBParameters = cms.PSet(
+      authenticationPath = cms.untracked.string( "." ),
+      connectionRetrialPeriod = cms.untracked.int32( 10 ),
+      idleConnectionCleanupPeriod = cms.untracked.int32( 10 ),
+      messageLevel = cms.untracked.int32( 0 ),
+      enablePoolAutomaticCleanUp = cms.untracked.bool( False ),
+      enableConnectionSharing = cms.untracked.bool( True ),
+      enableReadOnlySessionOnUpdateConnection = cms.untracked.bool( False ),
+      connectionTimeOut = cms.untracked.int32( 0 ),
+      connectionRetrialTimeOut = cms.untracked.int32( 60 )
+    ),
+    toGet = cms.VPSet(
+      cms.PSet(  record = cms.string( "L1GtTriggerMenuRcd" ),
+        tag = cms.string( "%s" )
+      )
+    ),
+    timetype = cms.string( "runnumber" ),
+    siteLocalConfig = cms.untracked.bool( False ),
+    messagelevel = cms.untracked.uint32( 0 )
+)
+process.es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverride" )
+\n""" % menuL1Override)
+
+        # overwrite GlobalTag
         if not runOnline:
           if not menuGlobalTag:
             if runOnData:
@@ -329,20 +379,6 @@ else:
           out.write("    process.Level1MenuOverride.connect  = 'frontier://FrontierProd/CMS_COND_31X_L1T'\n")
           out.write("\n")
 
-        # if requested, override the L1 menu from the GlobalTag
-        if doL1Override:
-          out.write("process.load('L1TriggerConfig.L1GtConfigProducers.L1GtTriggerMenuConfig_cff')\n")
-          out.write("process.es_prefer_l1GtParameters = cms.ESPrefer('L1GtTriggerMenuXmlProducer','l1GtTriggerMenuXml')\n")
-          if not menuL1Override:
-            if runOnData:
-              menuL1Override = l1Override['data']
-            elif fileId in l1Override:
-              menuL1Override = l1Override[fileId]
-            else:
-              menuL1Override = l1Override[None]
-          out.write("process.load('%s')\n" % menuL1Override)
-          out.write("\n")
-
         # the following is stolen from HLTrigger.Configuration.customL1THLT_Options
         out.write("if 'hltTrigReport' in process.__dict__:\n")
         out.write("    process.hltTrigReport.HLTriggerResults       = cms.InputTag( 'TriggerResults','',process.name_() )\n")
@@ -355,6 +391,9 @@ else:
         out.write("\n")
         out.write("if 'hltPreHLTMONSmart' in process.__dict__:\n")
         out.write("    process.hltPreHLTMONSmart.TriggerResultsTag  = cms.InputTag( 'TriggerResults','',process.name_() )\n")
+        out.write("\n")
+        out.write("if 'hltPreDQMSmart' in process.__dict__:\n")
+        out.write("    process.hltPreDQMSmart.TriggerResultsTag     = cms.InputTag( 'TriggerResults','',process.name_() )\n")
         out.write("\n")
         out.write("process.options.wantSummary = cms.untracked.bool(True)\n")
         out.write("process.MessageLogger.categories.append('TriggerSummaryProducerAOD')\n")
