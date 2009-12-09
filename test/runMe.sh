@@ -5,15 +5,42 @@ cmsenv
 rehash
 
 echo " "
-echo "Removing PrescaleService from online configs"
+echo "Removing prescales from online configs"
 foreach lumi ( 8E29 GRun 1E31 HIon )
-    echo "del process.PrescaleService" >> OnLine_HLT_${lumi}.py
+cat >> OnLine_HLT_${lumi}.py <<EOF
+#
+# Removing prescales
+if 'PrescaleService' in process.__dict__:
+    process.PrescaleService.prescaleTable = cms.VPSet( )
+# 
+EOF
 end
 
 echo " "
 echo "Creating offline configs with cmsDriver"
 echo "./cmsDriver.sh"
       ./cmsDriver.sh
+
+foreach lumi ( GRun )
+foreach task ( OnLine_HLT RelVal_HLT RelVal_HLT2 ) 
+cat >> ${task}_${lumi}.py <<EOF
+#
+# L1 not yet in GlobalTag - add by hand!
+from CondCore.DBCommon.CondDBSetup_cfi import *
+process.newL1menu = cms.ESSource(
+   "PoolDBESSource",CondDBSetup,
+   connect = cms.string("frontier://FrontierProd/CMS_COND_31X_L1T"),
+   toGet = cms.VPSet(cms.PSet(record = cms.string("L1GtTriggerMenuRcd"),
+                              tag = cms.string("L1GtTriggerMenu_STARTUP_v6"))
+                     )
+   )
+process.es_prefer_newL1menu = cms.ESPrefer("PoolDBESSource","newL1menu")
+#
+EOF
+end
+end
+
+exit
 
 # GRun = 8E29+MWGR
 foreach lumi ( 8E29 GRun 1E31 HIon )
@@ -40,3 +67,4 @@ foreach lumi ( 8E29 1E31 )
           cmsRun $name.py >& $name.log
   end
 end
+
