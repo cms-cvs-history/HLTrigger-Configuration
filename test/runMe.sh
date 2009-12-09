@@ -5,9 +5,9 @@ cmsenv
 rehash
 
 echo " "
-echo "Removing PrescaleService from online configs"
+echo "Removing prescales from online configs"
 foreach lumi ( 8E29 GRun 1E31 HIon )
-    echo "del process.PrescaleService" >> OnLine_HLT_${lumi}.py
+    echo "if 'PrescaleService' in process.__dict__:\n    process.PrescaleService.prescaleTable = cms.VPSet( )" >> OnLine_HLT_${lumi}.py
 end
 
 echo " "
