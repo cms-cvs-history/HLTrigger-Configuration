@@ -40,8 +40,6 @@ EOF
 end
 end
 
-exit
-
 # GRun = 8E29+MWGR
 foreach lumi ( 8E29 GRun 1E31 HIon )
 # foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_HLT RelVal_DigiL1RawHLT RelVal_HLT2 RelVal_L1HLT2 RelVal_Reco )
@@ -67,4 +65,3 @@ foreach lumi ( 8E29 1E31 )
           cmsRun $name.py >& $name.log
   end
 end
-
