@@ -8887,5 +8887,3 @@ process.options.wantSummary = cms.untracked.bool(True)
 process.MessageLogger.categories.append('TriggerSummaryProducerAOD')
 process.MessageLogger.categories.append('L1GtTrigReport')
 process.MessageLogger.categories.append('HLTrigReport')
-if 'PrescaleService' in process.__dict__:
-    process.PrescaleService.prescaleTable = cms.VPSet( )
