@@ -21,24 +21,24 @@ echo "Creating offline configs with cmsDriver"
 echo "./cmsDriver.sh"
       ./cmsDriver.sh
 
-foreach lumi ( GRun )
-foreach task ( OnLine_HLT RelVal_HLT RelVal_HLT2 ) 
-cat >> ${task}_${lumi}.py <<EOF
-#
-# L1 not yet in GlobalTag - add by hand!
-from CondCore.DBCommon.CondDBSetup_cfi import *
-process.newL1menu = cms.ESSource(
-   "PoolDBESSource",CondDBSetup,
-   connect = cms.string("frontier://FrontierProd/CMS_COND_31X_L1T"),
-   toGet = cms.VPSet(cms.PSet(record = cms.string("L1GtTriggerMenuRcd"),
-                              tag = cms.string("L1GtTriggerMenu_STARTUP_v6"))
-                     )
-   )
-process.es_prefer_newL1menu = cms.ESPrefer("PoolDBESSource","newL1menu")
-#
-EOF
-end
-end
+#foreach lumi ( GRun )
+#foreach task ( OnLine_HLT RelVal_HLT RelVal_HLT2 ) 
+#cat >> ${task}_${lumi}.py <<EOF
+##
+## L1 not yet in GlobalTag - add by hand!
+#from CondCore.DBCommon.CondDBSetup_cfi import *
+#process.newL1menu = cms.ESSource(
+#   "PoolDBESSource",CondDBSetup,
+#   connect = cms.string("frontier://FrontierProd/CMS_COND_31X_L1T"),
+#   toGet = cms.VPSet(cms.PSet(record = cms.string("L1GtTriggerMenuRcd"),
+#                              tag = cms.string("L1GtTriggerMenu_STARTUP_v6"))
+#                     )
+#   )
+#process.es_prefer_newL1menu = cms.ESPrefer("PoolDBESSource","newL1menu")
+##
+#EOF
+#end
+#end
 
 # GRun = 8E29+MWGR
 foreach lumi ( 8E29 GRun 1E31 HIon )
