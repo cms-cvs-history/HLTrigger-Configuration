@@ -128,7 +128,7 @@ def parse_options(args):
       configName  = args[0]
       fileId      = args[1]
       if not processName:
-        processName = 'HLT' + fileId
+        processName = 'HLT' # + fileId
   except:
       usage()
       sys.exit(1)
