@@ -5,8 +5,8 @@ cmsenv
 rehash
 
 
-#set InputFileGENSIM = file:/build/gruen/TTbarGenSim34X.root
-set InputFileGENSIM = rfio:/castor/cern.ch/user/g/gruen/cms/TTbarGenSim31X.root
+set InputFileGENSIM = file:/scratch/cms/TTbarGenSim31X.root
+#set InputFileGENSIM = rfio:/castor/cern.ch/user/g/gruen/cms/TTbarGenSim31X.root
 
 # global tags to be used
 set GTAGUP = STARTUP3X_V15
