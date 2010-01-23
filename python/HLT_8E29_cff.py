@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_4_0/8E29/V1 (CMSSW_3_4_1)
+# /dev/CMSSW_3_4_0/8E29/V3 (CMSSW_3_4_1_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_4_0/8E29/V1')
+  tableName = cms.string('/dev/CMSSW_3_4_0/8E29/V3')
 )
 
 
