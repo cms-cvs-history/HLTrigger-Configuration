@@ -1,18 +1,18 @@
-# /dev/CMSSW_3_5_0/8E29/V3 (CMSSW_3_5_0_pre3_HLT1)
+# /dev/CMSSW_3_5_0/8E29/V6 (CMSSW_3_5_0_pre3_HLT2)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_0/8E29/V3')
+  tableName = cms.string('/dev/CMSSW_3_5_0/8E29/V6')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
   'TooManyProducts',
   'TooFewProducts' ) )
 
-process.source = cms.Source( "PoolSource",
+process.source = cms.Source( "PoolSource"
     fileNames = cms.untracked.vstring( 'file:RelVal_DigiL1Raw_8E29.root' )
 )
 
@@ -6948,7 +6948,16 @@ process.hltOutputA = cms.OutputModule( "PoolOutputModule",
   'HLT_L1Jet6U',
   'HLT_ZeroBias',
   'HLT_HcalNZS_8E29',
-  'HLT_HcalPhiSym' ) ),
+  'HLT_HcalPhiSym',
+  'HLT_BTagMu_Jet10U',
+  'HLT_DoubleMu0',
+  'HLT_DoubleMu3',
+  'HLT_Mu3',
+  'HLT_Mu5',
+  'HLT_Mu9',
+  'HLT_IsoMu3',
+  'HLT_L2Mu9',
+  'HLT_L2Mu11' ) ),
     outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
       'keep FEDRawDataCollection_source_*_*',
       'keep FEDRawDataCollection_rawDataCollector_*_*',
@@ -7005,7 +7014,8 @@ process.hltOutputALCAP0 = cms.OutputModule( "PoolOutputModule",
 )
 process.hltOutputRPCMON = cms.OutputModule( "PoolOutputModule",
     fileName = cms.untracked.string( "outputRPCMON.root" ),
-    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring(  ) ),
+    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring( 'AlCa_RPCMuonNoHits',
+  'AlCa_RPCMuonNormalisation' ) ),
     outputCommands = cms.untracked.vstring( 'drop *',
       'keep edmTriggerResults_*_*_*',
       'keep *_hltRpcRecHits_*_*',
