@@ -6,14 +6,16 @@ rehash
 
 echo " "
 echo "Removing prescales from online configs"
+foreach task ( OnData OnLine)
 foreach lumi ( 8E29 GRun 1E31 HIon )
-cat >> OnLine_HLT_${lumi}.py <<EOF
+cat >> ${task}_HLT_${lumi}.py <<EOF
 #
 # Removing prescales
 if 'PrescaleService' in process.__dict__:
     process.PrescaleService.prescaleTable = cms.VPSet( )
 # 
 EOF
+end
 end
 
 echo " "
@@ -43,7 +45,7 @@ echo "./cmsDriver.sh"
 # GRun = 8E29+MWGR
 foreach lumi ( 8E29 GRun 1E31 HIon )
 # foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_HLT RelVal_DigiL1RawHLT RelVal_HLT2 RelVal_L1HLT2 RelVal_Reco )
-  foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_HLT RelVal_HLT2 )
+  foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_HLT RelVal_HLT2 OnData_HLT )
     echo " "
     set name = ${task}_${lumi}
     foreach ext (log root)
