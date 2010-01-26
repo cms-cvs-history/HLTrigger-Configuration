@@ -128,14 +128,20 @@ def parse_options(args):
       configName  = args[0]
       fileId      = args[1]
       if not processName:
-        processName = 'HLT' # + fileId
+        if runOnData:
+          processName = 'HLT' + fileId
+        else:
+          processName = 'HLT' # fileId
   except:
       usage()
       sys.exit(1)
 
   if doCff:
-      menuOutName = "HLT_" + fileId + "_cff.py"
+    menuOutName = "HLT_" + fileId + "_cff.py"
   else:
+    if runOnData:
+      menuOutName = "OnData_HLT_" + fileId + ".py"
+    else:
       menuOutName = "OnLine_HLT_" + fileId + ".py"
 
   # extract the database and configuration name
