@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_0/1E31/V6 (CMSSW_3_5_0_pre3_HLT2)
+# /dev/CMSSW_3_5_0/1E31/V7 (CMSSW_3_5_0_pre3_HLT2)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_0/1E31/V6')
+  tableName = cms.string('/dev/CMSSW_3_5_0/1E31/V7')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -847,6 +847,9 @@ process.SiStripQualityESProducer = cms.ESProducer( "SiStripQualityESProducer",
       tag = cms.string( "" )
     ),
     cms.PSet(  record = cms.string( "SiStripBadModuleRcd" ),
+      tag = cms.string( "" )
+    ),
+    cms.PSet(  record = cms.string( "RunInfoRcd" ),
       tag = cms.string( "" )
     )
   )
