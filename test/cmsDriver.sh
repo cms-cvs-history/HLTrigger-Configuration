@@ -9,8 +9,8 @@ rehash
 set InputFileGENSIM = rfio:/castor/cern.ch/user/g/gruen/cms/TTbarGenSim31X.root
 
 # global tags to be used
-set GTAGUP = STARTUP3X_V15
-set GTAGMC = MC_3XY_V15
+set GTAGUP = START3X_V18
+set GTAGMC = MC_3XY_V18
 
 
 # two-table workflows
