@@ -12,8 +12,7 @@ process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'Product
   'TooManyProducts',
   'TooFewProducts' ) )
 
-process.source = cms.Source( "PoolSource",
-    fileNames = cms.untracked.vstring( 'file:RelVal_DigiL1Raw_8E29.root' )
+process.source = cms.Source( "PoolSource"
 )
 
 process.BTagRecord = cms.ESSource( "EmptyESSource",
@@ -7183,6 +7182,8 @@ process.HLTAnalyzerEndpath = cms.EndPath( process.hltL1GtTrigReport + process.hl
 process.HLTOutput = cms.EndPath( process.hltOutputA )
 process.AlCaOutput = cms.EndPath( process.hltOutputCalibration + process.hltOutputEcalCalibration + process.hltOutputALCAPHISYM + process.hltOutputALCAP0 + process.hltOutputRPCMON + process.hltOutputOnlineErrors )
 
+process.source.fileNames = cms.untracked.vstring('file:RelVal_DigiL1Raw_8E29.root')
+
 process.setName_('HLT')
 
 process.maxEvents = cms.untracked.PSet(
@@ -7193,7 +7194,7 @@ process.options = cms.untracked.PSet(
 )
 
 if 'GlobalTag' in process.__dict__:
-    process.GlobalTag.globaltag         = 'START3X_V18::All'
+    process.GlobalTag.globaltag         = 'START3X_V20::All'
     process.GlobalTag.connect           = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'
 
 if 'Level1MenuOverride' in process.__dict__:
