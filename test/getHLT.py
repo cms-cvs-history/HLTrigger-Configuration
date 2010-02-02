@@ -235,7 +235,7 @@ else:
         os.system(myGet)
 
         # FIXME - this should be done by edmConfigFromDB - remove the definition of streams and primary datasets from the dump
-        os.system("sed -e'/^streams/,/^)/d' -e'/^datasets/,/^)/d' -i " + menuOutName)
+        # os.system("sed -e'/^streams/,/^)/d' -e'/^datasets/,/^)/d' -i " + menuOutName)
 
         if not runOnData:
           # FIXME - this should be done looking into the python objects, not working on the text representation
@@ -308,7 +308,7 @@ es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverri
         os.system(myGet)
 
         # FIXME - this should be done by edmConfigFromDB - remove the definition of streams and primary datasets from the dump
-        os.system("sed -e'/^process\.streams/,/^)/d' -e'/^process\.datasets/,/^)/d' -i " + menuOutName)
+        # os.system("sed -e'/^process\.streams/,/^)/d' -e'/^process\.datasets/,/^)/d' -i " + menuOutName)
 
         if not runOnData:
           # FIXME - this should be done looking into the python objects, not working on the text representation
