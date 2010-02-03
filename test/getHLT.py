@@ -286,10 +286,8 @@ es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverri
 
     else:
         if runOnData:
-          fileNamesCmd = "process.source.fileNames = cms.untracked.vstring('rfio:/castor/cern.ch/cms/store/data/BeamCommissioning09/ZeroBias/RAW/v1/000/123/734/D28203D4-AFE3-DE11-ADEE-001D09F2527B.root')\n"
           edsources =  " --input rfio:/castor/cern.ch/cms/store/data/BeamCommissioning09/ZeroBias/RAW/v1/000/123/734/D28203D4-AFE3-DE11-ADEE-001D09F2527B.root"
         else:
-          fileNamesCmd = "process.source.fileNames = cms.untracked.vstring('file:RelVal_DigiL1Raw_"+fileId+".root')\n"
           edsources =  " --input file:RelVal_DigiL1Raw_"+fileId+".root"
 
         if not runOnData or menuL1Override:
@@ -323,10 +321,6 @@ es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverri
 
         # open the output file for further tuning
         out = open(menuOutName, 'a')
-
-        # overwite input file until "edmConfigFromDB --input " is FIXED
-        out.write(fileNamesCmd)
-        out.write("\n")
 
         # overwrite ProcessName
         out.write("process.setName_('%s')\n" % processName)
