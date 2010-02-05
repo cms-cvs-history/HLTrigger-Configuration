@@ -286,7 +286,10 @@ es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverri
 
     else:
         if runOnData:
-          edsources =  " --input rfio:/castor/cern.ch/cms/store/data/BeamCommissioning09/ZeroBias/RAW/v1/000/123/734/D28203D4-AFE3-DE11-ADEE-001D09F2527B.root"
+          if runOnline:
+            edsources =  " --input file:/tmp/InputCollection.root"
+          else:
+            edsources =  " --input rfio:/castor/cern.ch/cms/store/data/BeamCommissioning09/ZeroBias/RAW/v1/000/123/734/D28203D4-AFE3-DE11-ADEE-001D09F2527B.root"
         else:
           edsources =  " --input file:RelVal_DigiL1Raw_"+fileId+".root"
 
