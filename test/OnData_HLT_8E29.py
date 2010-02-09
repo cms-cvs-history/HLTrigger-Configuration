@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_0/8E29/V17 (CMSSW_3_5_0)
+# /dev/CMSSW_3_5_0/8E29/V18 (CMSSW_3_5_0)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_0/8E29/V17')
+  tableName = cms.string('/dev/CMSSW_3_5_0/8E29/V18')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -1550,12 +1550,6 @@ process.PrescaleService = cms.Service( "PrescaleService",
     lvl1DefaultLabel = cms.untracked.string( "0" ),
     lvl1Labels = cms.vstring( '0' ),
     prescaleTable = cms.VPSet( 
-      cms.PSet(  pathName = cms.string( "HLT_L2Mu9" ),
-        prescales = cms.vuint32( 0 )
-      ),
-      cms.PSet(  pathName = cms.string( "HLT_L2Mu11" ),
-        prescales = cms.vuint32( 0 )
-      ),
       cms.PSet(  pathName = cms.string( "HLT_IsoMu3" ),
         prescales = cms.vuint32( 0 )
       ),
@@ -1605,7 +1599,7 @@ process.PrescaleService = cms.Service( "PrescaleService",
         prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_ZeroBias" ),
-        prescales = cms.vuint32( 10 )
+        prescales = cms.vuint32( 10000 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_IsoTrackHE_8E29" ),
         prescales = cms.vuint32( 0 )
@@ -7271,6 +7265,7 @@ process.options = cms.untracked.PSet(
 if 'GlobalTag' in process.__dict__:
     process.GlobalTag.globaltag         = 'GR10_H_V2::All'
     process.GlobalTag.connect           = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'
+    process.GlobalTag.pfnPrefix         = cms.untracked.string('frontier://FrontierProd/')
 
 process.GlobalTag.pfnPrefix=cms.untracked.string('frontier://FrontierProd/')
 if 'Level1MenuOverride' in process.__dict__:
