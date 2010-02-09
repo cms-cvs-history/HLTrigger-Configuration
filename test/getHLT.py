@@ -384,6 +384,8 @@ process.es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1Me
           out.write("    process.GlobalTag.globaltag         = '%s'\n" % menuGlobalTag)
           out.write("    process.GlobalTag.connect           = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'\n")
           out.write("\n")
+          if runOnData:
+              out.write("process.GlobalTag.pfnPrefix=cms.untracked.string('frontier://FrontierProd/')\n")
           out.write("if 'Level1MenuOverride' in process.__dict__:\n")
           out.write("    process.Level1MenuOverride.connect  = 'frontier://FrontierProd/CMS_COND_31X_L1T'\n")
           out.write("\n")
