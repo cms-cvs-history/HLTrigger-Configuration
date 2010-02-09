@@ -18,7 +18,7 @@ l1Override = {
 globalTag = {
   '8E29': 'START3X_V21::All',
   'GRun': 'START3X_V21::All',
-  'data': 'GR10_H_V1OFF::All',     # GR09_H_V7OFF == GR09_H_V7 for offline
+  'data': 'GR10_H_V2::All',
   '1E31': 'MC_3XY_V21::All',
   'HIon': 'MC_3XY_V21::All',
   None:   'START3X_V21::All',      # use as default
