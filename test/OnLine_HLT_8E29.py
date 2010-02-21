@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_0/8E29/V23 (CMSSW_3_5_2_HLT2)
+# /dev/CMSSW_3_5_0/8E29/V25 (CMSSW_3_5_2_HLT2)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_0/8E29/V23')
+  tableName = cms.string('/dev/CMSSW_3_5_0/8E29/V25')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -41,7 +41,9 @@ process.datasets = cms.PSet(
   RandomTriggers = cms.vstring(  ),
   HcalNZS = cms.vstring( 'HLT_HcalNZS_8E29',
     'HLT_HcalPhiSym' ),
-  MinimumBias = cms.vstring( 'HLT_DoublePhoton10_L1R',
+  MinimumBias = cms.vstring( 'HLT_DoubleLooseIsoTau15',
+    'HLT_SingleLooseIsoTau20',
+    'HLT_DoublePhoton10_L1R',
     'HLT_Photon30_L1R_8E29',
     'HLT_Photon20_L1R',
     'HLT_Photon15_LooseEcalIso_L1R',
@@ -91,9 +93,7 @@ process.datasets = cms.PSet(
     'HLT_L1Mu14_L1SingleJet6U',
     'HLT_L1Mu14_L1SingleEG10',
     'HLT_StoppedHSCP_8E29',
-    'HLT_BTagIP_Jet50U',
-    'HLT_DoubleLooseIsoTau15',
-    'HLT_SingleLooseIsoTau20' ),
+    'HLT_BTagIP_Jet50U' ),
   Cosmics = cms.vstring( 'HLT_L1DoubleMuOpen',
     'HLT_L1Mu20',
     'HLT_L1Mu',
@@ -1674,8 +1674,7 @@ process.MessageLogger = cms.Service( "MessageLogger",
       'infos',
       'debugs',
       'cout',
-      'cerr',
-      'log4cplus' ),
+      'cerr' ),
     categories = cms.untracked.vstring( 'FwkJob',
       'FwkReport',
       'FwkSummary',
@@ -7169,7 +7168,9 @@ process.hltTrigReport = cms.EDAnalyzer( "HLTrigReport",
 
 process.hltOutputA = cms.OutputModule( "PoolOutputModule",
     fileName = cms.untracked.string( "outputA.root" ),
-    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring( 'HLT_DoublePhoton10_L1R',
+    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring( 'HLT_DoubleLooseIsoTau15',
+  'HLT_SingleLooseIsoTau20',
+  'HLT_DoublePhoton10_L1R',
   'HLT_Photon30_L1R_8E29',
   'HLT_Photon20_L1R',
   'HLT_Photon15_LooseEcalIso_L1R',
@@ -7240,9 +7241,7 @@ process.hltOutputA = cms.OutputModule( "PoolOutputModule",
   'HLT_L1Mu14_L1SingleJet6U',
   'HLT_L1Mu14_L1SingleEG10',
   'HLT_StoppedHSCP_8E29',
-  'HLT_BTagIP_Jet50U',
-  'HLT_DoubleLooseIsoTau15',
-  'HLT_SingleLooseIsoTau20' ) ),
+  'HLT_BTagIP_Jet50U' ) ),
     outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
       'keep FEDRawDataCollection_source_*_*',
       'keep FEDRawDataCollection_rawDataCollector_*_*',
