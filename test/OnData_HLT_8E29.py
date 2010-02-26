@@ -1,37 +1,47 @@
-# /dev/CMSSW_3_5_0/8E29/V27 (CMSSW_3_5_2_HLT2)
+# /dev/CMSSW_3_5_0/8E29/V31 (CMSSW_3_5_2_HLT2)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_0/8E29/V27')
+  tableName = cms.string('/dev/CMSSW_3_5_0/8E29/V31')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
   'TooManyProducts',
   'TooFewProducts' ) )
 process.streams = cms.PSet( 
-  HLTMON = cms.vstring( 'OfflineMonitor' ),
-  EcalCalibration = cms.vstring( 'EcalLaser' ),
-  Calibration = cms.vstring( 'TestEnables' ),
-  OnlineErrors = cms.vstring( 'LogMonitor',
-    'FEDMonitor' ),
-  A = cms.vstring( 'ZeroBias',
-    'HcalHPDNoise',
-    'RandomTriggers',
-    'HcalNZS',
-    'MinimumBias',
-    'Cosmics' ),
-  DQM = cms.vstring(  ),
-  HLTDQM = cms.vstring(  ),
   Express = cms.vstring( 'ExpressMuon' ),
   ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
   ALCAP0 = cms.vstring( 'AlCaP0' ),
+  RPCMON = cms.vstring( 'RPCMonitor' ),
   Offline = cms.vstring(  ),
-  RPCMON = cms.vstring( 'RPCMonitor' )
+  HLTMON = cms.vstring( 'OfflineMonitor' ),
+  A = cms.vstring( 'HcalNZS',
+    'MinimumBias',
+    'Cosmics',
+    'ZeroBias',
+    'HcalHPDNoise',
+    'RandomTriggers' ),
+  EventDisplay = cms.vstring(  ),
+  DQM = cms.vstring(  ),
+  HLTDQM = cms.vstring(  ),
+  EcalCalibration = cms.vstring( 'EcalLaser' ),
+  Calibration = cms.vstring( 'TestEnables' ),
+  OnlineErrors = cms.vstring( 'LogMonitor',
+    'FEDMonitor' )
 )
 process.datasets = cms.PSet( 
+  ExpressMuon = cms.vstring( 'HLT_MET100',
+    'HLT_L1MuOpen',
+    'HLT_L1Mu',
+    'HLT_ZeroBias' ),
+  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
+  AlCaP0 = cms.vstring( 'AlCa_EcalEta_8E29',
+    'AlCa_EcalPi0_8E29' ),
+  RPCMonitor = cms.vstring( 'AlCa_RPCMuonNoHits',
+    'AlCa_RPCMuonNormalisation' ),
   OfflineMonitor = cms.vstring( 'HLT_DoubleMu0',
     'HLT_Mu9',
     'HLT_Mu5',
@@ -108,13 +118,6 @@ process.datasets = cms.PSet(
     'HLT_DoubleMu3',
     'HLT_DoubleJet15U_ForwardBackward',
     'HLT_HighMult40' ),
-  EcalLaser = cms.vstring(  ),
-  TestEnables = cms.vstring(  ),
-  LogMonitor = cms.vstring(  ),
-  FEDMonitor = cms.vstring(  ),
-  ZeroBias = cms.vstring( 'HLT_ZeroBias' ),
-  HcalHPDNoise = cms.vstring(  ),
-  RandomTriggers = cms.vstring(  ),
   HcalNZS = cms.vstring( 'HLT_HcalNZS_8E29',
     'HLT_HcalPhiSym' ),
   MinimumBias = cms.vstring( 'HLT_DoubleLooseIsoTau15',
@@ -188,15 +191,13 @@ process.datasets = cms.PSet(
     'HLT_CSCBeamHaloOverlapRing2',
     'HLT_CSCBeamHaloOverlapRing1',
     'HLT_CSCBeamHalo' ),
-  ExpressMuon = cms.vstring( 'HLT_MET100',
-    'HLT_L1MuOpen',
-    'HLT_L1Mu',
-    'HLT_ZeroBias' ),
-  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
-  AlCaP0 = cms.vstring( 'AlCa_EcalEta_8E29',
-    'AlCa_EcalPi0_8E29' ),
-  RPCMonitor = cms.vstring( 'AlCa_RPCMuonNoHits',
-    'AlCa_RPCMuonNormalisation' )
+  ZeroBias = cms.vstring( 'HLT_ZeroBias' ),
+  HcalHPDNoise = cms.vstring(  ),
+  RandomTriggers = cms.vstring(  ),
+  EcalLaser = cms.vstring(  ),
+  TestEnables = cms.vstring(  ),
+  LogMonitor = cms.vstring(  ),
+  FEDMonitor = cms.vstring(  )
 )
 
 process.source = cms.Source( "PoolSource",
@@ -1866,6 +1867,14 @@ process.hltL1extraParticles = cms.EDProducer( "L1ExtraParticlesProd",
     hfRingBitCountsSource = cms.InputTag( "hltGctDigis" ),
     centralBxOnly = cms.bool( True ),
     ignoreHtMiss = cms.bool( False )
+)
+process.hltBPTXCoincidence = cms.EDFilter( "HLTLevel1Activity",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
+    ignoreL1Mask = cms.bool( True ),
+    bunchCrossings = cms.vint32( 0 ),
+    physicsLoBits = cms.uint64( 0x1 ),
+    physicsHiBits = cms.uint64( 0x70000 ),
+    technicalBits = cms.uint64( 0x7f )
 )
 process.hltOfflineBeamSpot = cms.EDProducer( "BeamSpotProducer" )
 process.hltPreFirstPath = cms.EDFilter( "HLTPrescaler" )
@@ -6305,8 +6314,8 @@ process.hltPreCSCBeamHaloOverlapRing1 = cms.EDFilter( "HLTPrescaler" )
 process.hltOverlapsHLTCSCBeamHaloOverlapRing1 = cms.EDFilter( "HLTCSCOverlapFilter",
     input = cms.InputTag( "hltCsc2DRecHits" ),
     minHits = cms.uint32( 4 ),
-    xWindow = cms.double( 2.0 ),
-    yWindow = cms.double( 2.0 ),
+    xWindow = cms.double( 1000.0 ),
+    yWindow = cms.double( 1000.0 ),
     ring1 = cms.bool( True ),
     ring2 = cms.bool( False ),
     fillHists = cms.bool( False )
@@ -6326,8 +6335,8 @@ process.hltPreCSCBeamHaloOverlapRing2 = cms.EDFilter( "HLTPrescaler" )
 process.hltOverlapsHLTCSCBeamHaloOverlapRing2 = cms.EDFilter( "HLTCSCOverlapFilter",
     input = cms.InputTag( "hltCsc2DRecHits" ),
     minHits = cms.uint32( 4 ),
-    xWindow = cms.double( 2.0 ),
-    yWindow = cms.double( 2.0 ),
+    xWindow = cms.double( 1000.0 ),
+    yWindow = cms.double( 1000.0 ),
     ring1 = cms.bool( False ),
     ring2 = cms.bool( True ),
     fillHists = cms.bool( False )
@@ -6785,14 +6794,6 @@ process.hltL1EventNumberNZS = cms.EDFilter( "HLTL1NumberFilter",
     rawInput = cms.InputTag( "source" ),
     period = cms.uint32( 4096 ),
     invert = cms.bool( False )
-)
-process.hltBPTXCoincidence = cms.EDFilter( "HLTLevel1Activity",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
-    ignoreL1Mask = cms.bool( True ),
-    bunchCrossings = cms.vint32( 0 ),
-    physicsLoBits = cms.uint64( 0x7fffffffffffffff ),
-    physicsHiBits = cms.uint64( 0x7fffffffffffffff ),
-    technicalBits = cms.uint64( 0x7fffffffffffffff )
 )
 process.hltLevel1Activity = cms.EDFilter( "HLTLevel1Activity",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
@@ -7335,7 +7336,7 @@ process.hltOutputOnlineErrors = cms.OutputModule( "PoolOutputModule",
       'keep edmTriggerResults_*_*_*' )
 )
 
-process.HLTBeginSequenceBPTX = cms.Sequence( process.hltTriggerType + process.hltL1EventNumber + process.hltGtDigis + process.hltGctDigis + process.hltL1GtObjectMap + process.hltL1extraParticles + process.hltOfflineBeamSpot )
+process.HLTBeginSequenceBPTX = cms.Sequence( process.hltTriggerType + process.hltL1EventNumber + process.hltGtDigis + process.hltGctDigis + process.hltL1GtObjectMap + process.hltL1extraParticles + process.hltBPTXCoincidence + process.hltOfflineBeamSpot )
 process.HLTEndSequence = cms.Sequence( process.hltBoolEnd )
 process.HLTDoLocalHcalSequence = cms.Sequence( process.hltHcalDigis + process.hltHbhereco + process.hltHfreco + process.hltHoreco )
 process.HLTDoCaloSequence = cms.Sequence( process.hltEcalRawToRecHitFacility + process.hltEcalRegionalRestFEDs + process.hltEcalRecHitAll + process.HLTDoLocalHcalSequence + process.hltTowerMakerForAll )
