@@ -226,7 +226,7 @@ else:
 
         services   = " --services -PrescaleService,-MessageLogger,-DQM,-DQMStore,-FUShmDQMOutputService,-MicroStateService,-ModuleWebRegistry,-TimeProfilerService"
 
-        paths      = " --paths -HLTOutput,-HLTOutputB,-HLTOutputBnotT0,-AlCaOutput,-ExpressOutput,-HLTDQMOutput,-HLTMONOutput,-OfflineOutput,-DQMOutput"
+        paths      = " --paths -HLTOutput,-ExpressOutput,-EventDisplayOutput,-AlCaOutput,-DQMOutput,-HLTDQMOutput,-HLTMONOutput,-OfflineOutput"
 
         psets      = " --psets -maxEvents,-options"
 
