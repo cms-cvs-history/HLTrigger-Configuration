@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_0/1E31/V37 (CMSSW_3_5_2_HLT3)
+# /dev/CMSSW_3_5_0/1E31/V38 (CMSSW_3_5_3)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_0/1E31/V37')
+  tableName = cms.string('/dev/CMSSW_3_5_0/1E31/V38')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -15,6 +15,7 @@ process.streams = cms.PSet(
   RPCMON = cms.vstring( 'RPCMonitor' ),
   Offline = cms.vstring(  ),
   Express = cms.vstring( 'ExpressPhysics' ),
+  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
   HLTMON = cms.vstring( 'OfflineMonitor' ),
   A = cms.vstring( 'Cosmics',
     'MinimumBias',
@@ -29,8 +30,7 @@ process.streams = cms.PSet(
   Calibration = cms.vstring( 'TestEnables' ),
   OnlineErrors = cms.vstring( 'LogMonitor',
     'FEDMonitor' ),
-  ALCAP0 = cms.vstring( 'AlCaP0' ),
-  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' )
+  ALCAP0 = cms.vstring( 'AlCaP0' )
 )
 process.datasets = cms.PSet( 
   RPCMonitor = cms.vstring( 'AlCa_RPCMuonNoHits',
@@ -39,6 +39,7 @@ process.datasets = cms.PSet(
     'HLT_L1MuOpen',
     'HLT_L1Mu',
     'HLT_ZeroBias' ),
+  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
   OfflineMonitor = cms.vstring( 'HLT_DoubleMu0',
     'HLT_Mu9',
     'HLT_Mu5',
@@ -113,8 +114,7 @@ process.datasets = cms.PSet(
   TestEnables = cms.vstring(  ),
   LogMonitor = cms.vstring(  ),
   FEDMonitor = cms.vstring(  ),
-  AlCaP0 = cms.vstring(  ),
-  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' )
+  AlCaP0 = cms.vstring(  )
 )
 
 process.source = cms.Source( "PoolSource",
@@ -6758,12 +6758,12 @@ process.hltBJet80 = cms.EDFilter( "HLT1CaloBJet",
     MaxEta = cms.double( 3.0 ),
     MinN = cms.int32( 1 )
 )
-process.hltSelector4JetsRegional = cms.EDFilter( "LargestEtCaloJetSelector",
+process.hltSelector4JetsRegional = cms.EDProducer( "LargestEtCaloJetSelector",
     src = cms.InputTag( "hltMCJetCorJetIcone5Regional" ),
     filter = cms.bool( False ),
     maxNumber = cms.uint32( 4 )
 )
-process.hltBLifetimeL25JetsStartup = cms.EDFilter( "EtMinCaloJetSelector",
+process.hltBLifetimeL25JetsStartup = cms.EDProducer( "EtMinCaloJetSelector",
     src = cms.InputTag( "hltSelector4JetsRegional" ),
     filter = cms.bool( False ),
     etMin = cms.double( 30.0 )
@@ -6935,12 +6935,12 @@ process.hltBJet20 = cms.EDFilter( "HLT1CaloBJet",
     MaxEta = cms.double( 3.0 ),
     MinN = cms.int32( 1 )
 )
-process.hltSelector4Jets = cms.EDFilter( "LargestEtCaloJetSelector",
+process.hltSelector4Jets = cms.EDProducer( "LargestEtCaloJetSelector",
     src = cms.InputTag( "hltMCJetCorJetIcone5" ),
     filter = cms.bool( False ),
     maxNumber = cms.uint32( 4 )
 )
-process.hltBSoftMuonL25Jets = cms.EDFilter( "EtMinCaloJetSelector",
+process.hltBSoftMuonL25Jets = cms.EDProducer( "EtMinCaloJetSelector",
     src = cms.InputTag( "hltSelector4Jets" ),
     filter = cms.bool( False ),
     etMin = cms.double( 20.0 )
