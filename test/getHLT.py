@@ -380,10 +380,10 @@ process.es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1Me
               menuGlobalTag = globalTag[fileId]
             else:
               menuGlobalTag = globalTag[None]
-            if 'auto:' in menuGlobalTag:
-              from Configuration.PyReleaseValidation.autoCond import autoCond
-              for ac,cond in autoCond.items():
-                menuGlobalTag = menuGlobalTag.replace('auto:'+ac,cond)
+          if 'auto:' in menuGlobalTag:
+            from Configuration.PyReleaseValidation.autoCond import autoCond
+            for ac,cond in autoCond.items():
+              menuGlobalTag = menuGlobalTag.replace('auto:'+ac,cond)
           out.write("if 'GlobalTag' in process.__dict__:\n")
           out.write("    process.GlobalTag.globaltag         = '%s'\n" % menuGlobalTag)
           out.write("    process.GlobalTag.connect           = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'\n")
