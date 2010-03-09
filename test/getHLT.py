@@ -16,12 +16,12 @@ l1Override = {
 }
 
 globalTag = {
-  '8E29': 'START3X_V25::All',
-  'GRun': 'START3X_V25::All',
+  '8E29': 'auto:startup',
+  'GRun': 'auto:startup',
   'data': 'GR10_H_V3C::All',
-  '1E31': 'MC_3XY_V25::All',
-  'HIon': 'MC_3XY_V25::All',
-  None:   'START3X_V25::All',      # use as default
+  '1E31': 'auto:mc',
+  'HIon': 'auto:mc',
+  None:   'auto:startup',      # use as default
 }
 
 def usage():
@@ -380,6 +380,10 @@ process.es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1Me
               menuGlobalTag = globalTag[fileId]
             else:
               menuGlobalTag = globalTag[None]
+            if 'auto:' in menuGlobalTag:
+              from Configuration.PyReleaseValidation.autoCond import autoCond
+              for ac,cond in autoCond.items():
+                menuGlobalTag = menuGlobalTag.replace('auto:'+ac,cond)
           out.write("if 'GlobalTag' in process.__dict__:\n")
           out.write("    process.GlobalTag.globaltag         = '%s'\n" % menuGlobalTag)
           out.write("    process.GlobalTag.connect           = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'\n")
