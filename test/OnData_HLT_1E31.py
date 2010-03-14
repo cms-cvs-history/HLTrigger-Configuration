@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_0/1E31/V46 (CMSSW_3_5_3_HLT1)
+# /dev/CMSSW_3_5_0/1E31/V47 (CMSSW_3_5_3_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_0/1E31/V46')
+  tableName = cms.string('/dev/CMSSW_3_5_0/1E31/V47')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -15,27 +15,37 @@ process.streams = cms.PSet(
   RPCMON = cms.vstring( 'RPCMonitor' ),
   Offline = cms.vstring(  ),
   ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
+  EcalCalibration = cms.vstring( 'EcalLaser' ),
+  Calibration = cms.vstring( 'TestEnables' ),
+  OnlineErrors = cms.vstring( 'LogMonitor',
+    'FEDMonitor' ),
+  ALCAP0 = cms.vstring( 'AlCaP0' ),
+  Express = cms.vstring( 'ExpressPhysics' ),
   HLTMON = cms.vstring( 'OfflineMonitor' ),
   DQM = cms.vstring(  ),
   HLTDQM = cms.vstring(  ),
+  EventDisplay = cms.vstring(  ),
   A = cms.vstring( 'MinimumBias',
     'Cosmics',
     'HcalHPDNoise',
     'RandomTriggers',
     'HcalNZS',
-    'ZeroBias' ),
-  EventDisplay = cms.vstring(  ),
-  Express = cms.vstring( 'ExpressPhysics' ),
-  EcalCalibration = cms.vstring( 'EcalLaser' ),
-  Calibration = cms.vstring( 'TestEnables' ),
-  OnlineErrors = cms.vstring( 'LogMonitor',
-    'FEDMonitor' ),
-  ALCAP0 = cms.vstring( 'AlCaP0' )
+    'ZeroBias' )
 )
 process.datasets = cms.PSet( 
   RPCMonitor = cms.vstring( 'AlCa_RPCMuonNoHits',
     'AlCa_RPCMuonNormalisation' ),
   AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
+  EcalLaser = cms.vstring(  ),
+  TestEnables = cms.vstring(  ),
+  LogMonitor = cms.vstring(  ),
+  FEDMonitor = cms.vstring(  ),
+  AlCaP0 = cms.vstring(  ),
+  ExpressPhysics = cms.vstring( 'HLT_MET100',
+    'HLT_L1MuOpen',
+    'HLT_L1Mu',
+    'HLT_ZeroBias',
+    'HLT_L1SingleEG5' ),
   OfflineMonitor = cms.vstring( 'HLT_DoubleMu0',
     'HLT_Mu9',
     'HLT_Mu5',
@@ -105,17 +115,7 @@ process.datasets = cms.PSet(
   HcalHPDNoise = cms.vstring(  ),
   RandomTriggers = cms.vstring(  ),
   HcalNZS = cms.vstring( 'HLT_HcalPhiSym' ),
-  ZeroBias = cms.vstring( 'HLT_ZeroBias' ),
-  ExpressPhysics = cms.vstring( 'HLT_MET100',
-    'HLT_L1MuOpen',
-    'HLT_L1Mu',
-    'HLT_ZeroBias',
-    'HLT_L1SingleEG5' ),
-  EcalLaser = cms.vstring(  ),
-  TestEnables = cms.vstring(  ),
-  LogMonitor = cms.vstring(  ),
-  FEDMonitor = cms.vstring(  ),
-  AlCaP0 = cms.vstring(  )
+  ZeroBias = cms.vstring( 'HLT_ZeroBias' )
 )
 
 process.source = cms.Source( "PoolSource",
