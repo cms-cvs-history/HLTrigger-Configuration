@@ -237,6 +237,9 @@ else:
         # FIXME - this should be done by edmConfigFromDB - remove the definition of streams and primary datasets from the dump
         # os.system("sed -e'/^streams/,/^)/d' -e'/^datasets/,/^)/d' -i " + menuOutName)
 
+        # FIXME - work around the python limitation of 255 arguments per function call
+        os.system("sed -e 's/cms.Schedule *( *\(\<.*\>\) *)/cms.Schedule( *(\\1) )/' -i " + menuOutName)
+
         if not runOnData:
           # FIXME - this should be done looking into the python objects, not working on the text representation
           os.system("sed -e 's/cms.InputTag( \"source\" )/cms.InputTag( \"rawDataCollector\" )/' -i " + menuOutName)
@@ -311,6 +314,9 @@ es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverri
 
         # FIXME - this should be done by edmConfigFromDB - remove the definition of streams and primary datasets from the dump
         # os.system("sed -e'/^process\.streams/,/^)/d' -e'/^process\.datasets/,/^)/d' -i " + menuOutName)
+
+        # FIXME - work around the python limitation of 255 arguments per function call
+        os.system("sed -e 's/cms.Schedule *( *\(\<.*\>\) *)/cms.Schedule( *(\\1) )/' -i " + menuOutName)
 
         if not runOnData:
           # FIXME - this should be done looking into the python objects, not working on the text representation
