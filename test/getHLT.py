@@ -234,19 +234,12 @@ else:
         myGet = "edmConfigFromDB --cff --" + menuConfigDB + " --configName " + menuConfigName + edsources + essources + esmodules + modules + services + paths + psets + " > " + menuOutName
         os.system(myGet)
 
-        # FIXME - this should be done by edmConfigFromDB - remove the definition of streams and primary datasets from the dump
-        # os.system("sed -e'/^streams/,/^)/d' -e'/^datasets/,/^)/d' -i " + menuOutName)
-
-        # FIXME - work around the python limitation of 255 arguments per function call
         os.system("sed -e 's/cms.Schedule *( *\(\<.*\>\) *)/cms.Schedule( *(\\1) )/' -i " + menuOutName)
 
         if not runOnData:
           # FIXME - this should be done looking into the python objects, not working on the text representation
           os.system("sed -e 's/cms.InputTag( \"source\" )/cms.InputTag( \"rawDataCollector\" )/' -i " + menuOutName)
           os.system("sed -e 's/cms.string( \"source\" )/cms.string( \"rawDataCollector\" )/' -i " + menuOutName)
-
-          # FIXME - DTUnpackingModule should not have untracked parameters
-          # os.system("sed -e'/DTUnpackingModule/a\ \ \ \ inputLabel = cms.untracked.InputTag( \"rawDataCollector\" ),' -i " + menuOutName)
 
         # open the output file for further tuning
         out = open(menuOutName, 'a')
@@ -312,19 +305,10 @@ es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverri
         myGet = "edmConfigFromDB --" + menuConfigDB + " --configName " + menuConfigName + edsources + essources + esmodules + modules + services + paths + psets + " > " + menuOutName
         os.system(myGet)
 
-        # FIXME - this should be done by edmConfigFromDB - remove the definition of streams and primary datasets from the dump
-        # os.system("sed -e'/^process\.streams/,/^)/d' -e'/^process\.datasets/,/^)/d' -i " + menuOutName)
-
-        # FIXME - work around the python limitation of 255 arguments per function call
-        os.system("sed -e 's/cms.Schedule *( *\(\<.*\>\) *)/cms.Schedule( *(\\1) )/' -i " + menuOutName)
-
         if not runOnData:
           # FIXME - this should be done looking into the python objects, not working on the text representation
           os.system("sed -e 's/cms.InputTag( \"source\" )/cms.InputTag( \"rawDataCollector\" )/' -i " + menuOutName)
           os.system("sed -e 's/cms.string( \"source\" )/cms.string( \"rawDataCollector\" )/' -i " + menuOutName)
-
-          # FIXME - DTUnpackingModule should not have untracked parameters
-          # os.system("sed -e'/DTUnpackingModule/a\ \ \ \ inputLabel = cms.untracked.InputTag( \"rawDataCollector\" ),' -i " + menuOutName)
 
         # FIXME - find a better way to override the output modules
         os.system("sed -e's/process\.hltOutput\(\w\+\) *= *cms\.OutputModule( *\"ShmStreamConsumer\" *,/process.hltOutput\\1 = cms.OutputModule( \"PoolOutputModule\",\\n    fileName = cms.untracked.string( \"output\\1.root\" ),/'  -i " + menuOutName)
