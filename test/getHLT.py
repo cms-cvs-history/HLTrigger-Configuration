@@ -234,8 +234,6 @@ else:
         myGet = "edmConfigFromDB --cff --" + menuConfigDB + " --configName " + menuConfigName + edsources + essources + esmodules + modules + services + paths + psets + " > " + menuOutName
         os.system(myGet)
 
-        os.system("sed -e 's/cms.Schedule *( *\(\<.*\>\) *)/cms.Schedule( *(\\1) )/' -i " + menuOutName)
-
         if not runOnData:
           # FIXME - this should be done looking into the python objects, not working on the text representation
           os.system("sed -e 's/cms.InputTag( \"source\" )/cms.InputTag( \"rawDataCollector\" )/' -i " + menuOutName)
