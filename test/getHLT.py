@@ -18,7 +18,7 @@ l1Override = {
 globalTag = {
   '8E29': 'auto:startup',
   'GRun': 'auto:startup',
-  'data': 'GR10_H_V3C::All',
+  'data': 'GR10_H_V4::All',
   '1E31': 'auto:mc',
   'HIon': 'auto:mc',
   None:   'auto:startup',      # use as default
@@ -379,27 +379,38 @@ process.es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1Me
 \n""" % menuL1Override)
 
         # overwrite GlobalTag
+        # the logic is:
+        #   - for running online, do nothing
+        #   - for running offline on data, only add the pfnPrefix
+        #   - for running offline on mc, take the GT from the command line of the fileId
+        #      - if the GT is "auto:...", insert the code to read it from Configuration.PyReleaseValidation.autoCond
+
         if not runOnline:
-          if not menuGlobalTag:
-            if runOnData:
-              menuGlobalTag = globalTag['data']
-            elif fileId in globalTag:
-              menuGlobalTag = globalTag[fileId]
-            else:
-              menuGlobalTag = globalTag[None]
           out.write("if 'GlobalTag' in process.__dict__:\n")
-          out.write("    process.GlobalTag.connect           = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'\n")
-          out.write("    globalTag         = '%s'\n" % menuGlobalTag)
-          out.write("    if globalTag.find('auto:')>=0:\n")
-          out.write("        from Configuration.PyReleaseValidation.autoCond import autoCond\n")
-          out.write("        for ac,cond in autoCond.items():\n")
-          out.write("            globalTag=globalTag.replace('auto:'+ac,cond)\n")
-          out.write("    process.GlobalTag.globaltag         = globalTag\n")
           if runOnData:
-            out.write("    process.GlobalTag.pfnPrefix         = cms.untracked.string('frontier://FrontierProd/')\n")
+            # don't override the GlobalTag, add only the pfnPrefix
+            out.write("    process.GlobalTag.connect   = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'\n")
+            out.write("    process.GlobalTag.pfnPrefix = cms.untracked.string('frontier://FrontierProd/')\n")
+          else:
+            # check if a specific GlobalTag was specified on the command line, or choose one form the fileId
+            if not menuGlobalTag:
+              if fileId in globalTag:
+                menuGlobalTag = globalTag[fileId]
+              else:
+                menuGlobalTag = globalTag[None]
+            # check if the GlobalTag is an autoCond or explicit
+            if menuGlobalTag[0:5] == 'auto:':
+              out.write("    from Configuration.PyReleaseValidation.autoCond import autoCond\n")
+              out.write("    process.GlobalTag.globaltag = autoCond['%s']\n" % menuGlobalTag[5:])
+            else:
+              out.write("    process.GlobalTag.globaltag = %s\n" % menuGlobalTag)
+            out.write("    process.GlobalTag.connect   = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'\n")
+          
           out.write("\n")
           out.write("if 'Level1MenuOverride' in process.__dict__:\n")
-          out.write("    process.Level1MenuOverride.connect  = 'frontier://FrontierProd/CMS_COND_31X_L1T'\n")
+          out.write("    process.Level1MenuOverride.connect   = 'frontier://FrontierProd/CMS_COND_31X_L1T'\n")
+          if runOnData:
+            out.write("    process.Level1MenuOverride.pfnPrefix = cms.untracked.string('frontier://FrontierProd/')\n")
           out.write("\n")
 
         # the following is stolen from HLTrigger.Configuration.customL1THLT_Options
