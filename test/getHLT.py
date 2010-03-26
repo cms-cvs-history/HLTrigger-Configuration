@@ -263,6 +263,9 @@ Level1MenuOverride = cms.ESSource( "PoolDBESSource",
     )
 )
 es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverride" )\n""" % menuL1Override)
+          out.write("Level1MenuOverride.connect   = 'frontier://FrontierProd/CMS_COND_31X_L1T'\n")
+          out.write("Level1MenuOverride.pfnPrefix = cms.untracked.string('frontier://FrontierProd/')\n")
+          out.write("\n")
 
         # close the output file
         out.close()
