@@ -237,14 +237,14 @@ else:
         if menuL1Override:
           out.write("""
 Level1MenuOverride = cms.ESSource( "PoolDBESSource",
-    BlobStreamerName = cms.untracked.string( "TBufferBlobStreamingService" ),
-    connect = cms.string( "frontier://(proxyurl=http://localhost:3128)(serverurl=http://localhost:8000/FrontierOnProd)(serverurl=http://localhost:8000/FrontierOnProd)(retrieve-ziplevel=0)(failovertoserver=no)/CMS_COND_31X_L1T" ),
-    label = cms.untracked.string( "" ),
-    globaltag = cms.string( "" ),
-    tag = cms.untracked.string( "" ),
-    RefreshEachRun = cms.untracked.bool( True ),
     appendToDataLabel = cms.string( "" ),
-    DBParameters = cms.PSet(
+    timetype = cms.string( "runnumber" ),
+    connect = cms.string( "frontier://(proxyurl=http://localhost:3128)(serverurl=http://localhost:8000/FrontierOnProd)(serverurl=http://localhost:8000/FrontierOnProd)(retrieve-ziplevel=0)/CMS_COND_31X_GLOBALTAG" ),
+    DumpStat = cms.untracked.bool( False ),
+    BlobStreamerName = cms.untracked.string( "TBufferBlobStreamingService" ),
+    globaltag = cms.string( "" ),
+    RefreshEachRun = cms.untracked.bool( True ),
+    DBParameters = cms.PSet( 
       authenticationPath = cms.untracked.string( "." ),
       connectionRetrialPeriod = cms.untracked.int32( 10 ),
       idleConnectionCleanupPeriod = cms.untracked.int32( 10 ),
@@ -255,14 +255,11 @@ Level1MenuOverride = cms.ESSource( "PoolDBESSource",
       connectionTimeOut = cms.untracked.int32( 0 ),
       connectionRetrialTimeOut = cms.untracked.int32( 60 )
     ),
-    toGet = cms.VPSet(
-      cms.PSet(  record = cms.string( "L1GtTriggerMenuRcd" ),
+    toGet = cms.VPSet( 
+      cms.PSet(  
+        record = cms.string( "L1GtTriggerMenuRcd" ),
         tag = cms.string( "%s" )
-      )
-    ),
-    timetype = cms.string( "runnumber" ),
-    siteLocalConfig = cms.untracked.bool( False ),
-    messagelevel = cms.untracked.uint32( 0 )
+    )
 )
 es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverride" )\n""" % menuL1Override)
 
@@ -286,8 +283,6 @@ es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverri
 
           esmodules  = " --esmodules "
           esmodules += "-l1GtTriggerMenuXml,"
-          esmodules += "-L1GtTriggerMaskAlgoTrigTrivialProducer,"
-          esmodules += "-L1GtTriggerMaskTechTrigTrivialProducer"
 
         paths      = " --paths -OfflineOutput"
 
