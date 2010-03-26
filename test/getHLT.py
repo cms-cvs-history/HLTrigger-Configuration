@@ -259,6 +259,7 @@ Level1MenuOverride = cms.ESSource( "PoolDBESSource",
       cms.PSet(  
         record = cms.string( "L1GtTriggerMenuRcd" ),
         tag = cms.string( "%s" )
+      )
     )
 )
 es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverride" )\n""" % menuL1Override)
