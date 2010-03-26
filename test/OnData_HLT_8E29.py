@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_5/8E29/V20 (CMSSW_3_5_5)
+# /dev/CMSSW_3_6_0/pre4/8E29/V3 (CMSSW_3_6_X_2010-03-20-0900_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/8E29/V20')
+  tableName = cms.string('/dev/CMSSW_3_6_0/pre4/8E29/V3')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -13,8 +13,8 @@ process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'Product
   'TooFewProducts' ) )
 process.streams = cms.PSet( 
   Offline = cms.vstring(  ),
-  RPCMON = cms.vstring( 'RPCMonitor' ),
   ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
+  RPCMON = cms.vstring( 'RPCMonitor' ),
   Calibration = cms.vstring( 'TestEnables' ),
   EcalCalibration = cms.vstring( 'EcalLaser' ),
   OnlineErrors = cms.vstring( 'LogMonitor',
@@ -33,10 +33,10 @@ process.streams = cms.PSet(
   HLTMON = cms.vstring( 'OfflineMonitor' )
 )
 process.datasets = cms.PSet( 
+  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
   RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
     'AlCa_RPCMuonNoHits',
     'AlCa_RPCMuonNoTriggers' ),
-  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
   TestEnables = cms.vstring(  ),
   EcalLaser = cms.vstring(  ),
   LogMonitor = cms.vstring(  ),
@@ -226,6 +226,34 @@ process.source = cms.Source( "PoolSource",
     fileNames = cms.untracked.vstring( '/store/data/BeamCommissioning09/MinimumBias/RAW/v1/000/124/120/F6ADE109-6BE8-DE11-9680-000423D991D4.root' )
 )
 
+process.MCJetCorrectorIcone5Unit = cms.ESSource( "LXXXCorrectionService",
+    appendToDataLabel = cms.string( "" ),
+    level = cms.string( "L2RelativeFlat" ),
+    algorithm = cms.string( "" ),
+    section = cms.string( "" ),
+    era = cms.string( "HLT" )
+)
+process.MCJetCorrectorIcone5HF07 = cms.ESSource( "LXXXCorrectionService",
+    appendToDataLabel = cms.string( "" ),
+    level = cms.string( "L2Relative" ),
+    algorithm = cms.string( "" ),
+    section = cms.string( "" ),
+    era = cms.string( "HLT" )
+)
+process.L3AbsoluteCorrectionService = cms.ESSource( "LXXXCorrectionService",
+    appendToDataLabel = cms.string( "" ),
+    level = cms.string( "L3Absolute" ),
+    algorithm = cms.string( "IC5Calo" ),
+    section = cms.string( "" ),
+    era = cms.string( "Summer09_7TeV_ReReco332" )
+)
+process.L2RelativeCorrectionService = cms.ESSource( "LXXXCorrectionService",
+    appendToDataLabel = cms.string( "" ),
+    level = cms.string( "L2Relative" ),
+    algorithm = cms.string( "IC5Calo" ),
+    section = cms.string( "" ),
+    era = cms.string( "Summer09_7TeV_ReReco332" )
+)
 process.BTagRecord = cms.ESSource( "EmptyESSource",
     recordName = cms.string( "JetTagComputerRecord" ),
     iovIsRunNotTime = cms.bool( True ),
@@ -258,31 +286,11 @@ process.HepPDTESSource = cms.ESSource( "HepPDTESSource",
     pdtFileName = cms.FileInPath( "SimGeneral/HepPDTESSource/data/pythiaparticle.tbl" ),
     appendToDataLabel = cms.string( "" )
 )
-process.L2RelativeCorrectionService = cms.ESSource( "L2RelativeCorrectionService",
-    appendToDataLabel = cms.string( "" ),
-    tagName = cms.string( "Summer09_7TeV_L2Relative_IC5Calo" ),
-    label = cms.string( "L2RelativeJetCorrector" )
-)
-process.L3AbsoluteCorrectionService = cms.ESSource( "L3AbsoluteCorrectionService",
-    appendToDataLabel = cms.string( "" ),
-    tagName = cms.string( "Summer09_7TeV_L3Absolute_IC5Calo" ),
-    label = cms.string( "L3AbsoluteJetCorrector" )
-)
 process.MCJetCorrectorIcone5 = cms.ESSource( "JetCorrectionServiceChain",
-    label = cms.string( "MCJetCorrectorIcone5" ),
     appendToDataLabel = cms.string( "" ),
-    correctors = cms.vstring( 'L2RelativeJetCorrector',
-      'L3AbsoluteJetCorrector' )
-)
-process.MCJetCorrectorIcone5HF07 = cms.ESSource( "L2RelativeCorrectionService",
-    appendToDataLabel = cms.string( "" ),
-    tagName = cms.string( "HLT_L2Relative" ),
-    label = cms.string( "MCJetCorrectorIcone5HF07" )
-)
-process.MCJetCorrectorIcone5Unit = cms.ESSource( "L2RelativeCorrectionService",
-    appendToDataLabel = cms.string( "" ),
-    tagName = cms.string( "HLT_L2RelativeFlat" ),
-    label = cms.string( "MCJetCorrectorIcone5Unit" )
+    correctors = cms.vstring( 'L2RelativeCorrectionService',
+      'L3AbsoluteCorrectionService' ),
+    label = cms.string( "MCJetCorrectorIcone5" )
 )
 process.XMLIdealGeometryESSource = cms.ESSource( "XMLIdealGeometryESSource",
     rootNodeName = cms.string( "cms:OCMS" ),
@@ -2132,6 +2140,7 @@ process.hltIterativeCone5CaloJets = cms.EDProducer( "FastjetJetProducer",
 )
 process.hltMCJetCorJetIcone5HF07 = cms.EDProducer( "CaloJetCorrectionProducer",
     src = cms.InputTag( "hltIterativeCone5CaloJets" ),
+    verbose = cms.untracked.bool( False ),
     alias = cms.untracked.string( "MCJetCorJetIcone5" ),
     correctors = cms.vstring( 'MCJetCorrectorIcone5HF07' )
 )
@@ -2377,6 +2386,7 @@ process.hltIterativeCone5CaloJetsRegional = cms.EDProducer( "FastjetJetProducer"
 )
 process.hltMCJetCorJetIcone5Regional = cms.EDProducer( "CaloJetCorrectionProducer",
     src = cms.InputTag( "hltIterativeCone5CaloJetsRegional" ),
+    verbose = cms.untracked.bool( False ),
     alias = cms.untracked.string( "corJetIcone5" ),
     correctors = cms.vstring( 'MCJetCorrectorIcone5' )
 )
@@ -2440,6 +2450,7 @@ process.hltMet = cms.EDProducer( "METProducer",
     calculateSignificance = cms.bool( False ),
     onlyFiducialParticles = cms.bool( False ),
     rf_type = cms.int32( 0 ),
+    correctShowerTracks = cms.bool( False ),
     HO_EtResPar = cms.vdouble( 0.0, 1.3, 0.0050 ),
     HF_EtResPar = cms.vdouble( 0.0, 1.82, 0.09 ),
     HB_PhiResPar = cms.vdouble( 0.02511 ),
@@ -2501,6 +2512,7 @@ process.hltJet15UHt = cms.EDProducer( "METProducer",
     calculateSignificance = cms.bool( False ),
     onlyFiducialParticles = cms.bool( False ),
     rf_type = cms.int32( 0 ),
+    correctShowerTracks = cms.bool( False ),
     HO_EtResPar = cms.vdouble( 0.0, 1.3, 0.0050 ),
     HF_EtResPar = cms.vdouble( 0.0, 1.82, 0.09 ),
     HB_PhiResPar = cms.vdouble( 0.02511 ),
@@ -2723,10 +2735,10 @@ process.hltMuonCSCDigis = cms.EDProducer( "CSCDCCUnpacker",
 )
 process.hltCsc2DRecHits = cms.EDProducer( "CSCRecHitDProducer",
     CSCUseCalibrations = cms.bool( True ),
+    CSCUseStaticPedestals = cms.bool( False ),
     stripDigiTag = cms.InputTag( 'hltMuonCSCDigis','MuonCSCStripDigi' ),
     wireDigiTag = cms.InputTag( 'hltMuonCSCDigis','MuonCSCWireDigi' ),
     CSCstripWireDeltaTime = cms.int32( 8 ),
-    CSCUseStaticPedestals = cms.bool( False ),
     CSCNoOfTimeBinsForDynamicPedestal = cms.int32( 2 ),
     CSCStripPeakThreshold = cms.double( 10.0 ),
     CSCStripClusterChargeCut = cms.double( 25.0 ),
@@ -4240,7 +4252,7 @@ process.hltCorrectedHybridSuperClustersL1Isolated = cms.EDProducer( "EgammaSCCor
     rawSuperClusterProducer = cms.InputTag( "hltHybridSuperClustersL1Isolated" ),
     superClusterAlgo = cms.string( "Hybrid" ),
     applyEnergyCorrection = cms.bool( True ),
-    sigmaElectronicNoise = cms.double( 0.03 ),
+    sigmaElectronicNoise = cms.double( 0.15 ),
     etThresh = cms.double( 1.0 ),
     corectedSuperClusterCollection = cms.string( "" ),
     hyb_fCorrPset = cms.PSet( 
@@ -4375,7 +4387,7 @@ process.hltCorrectedHybridSuperClustersL1NonIsolatedTemp = cms.EDProducer( "Egam
     rawSuperClusterProducer = cms.InputTag( "hltHybridSuperClustersL1NonIsolated" ),
     superClusterAlgo = cms.string( "Hybrid" ),
     applyEnergyCorrection = cms.bool( True ),
-    sigmaElectronicNoise = cms.double( 0.03 ),
+    sigmaElectronicNoise = cms.double( 0.15 ),
     etThresh = cms.double( 1.0 ),
     corectedSuperClusterCollection = cms.string( "" ),
     hyb_fCorrPset = cms.PSet( 
@@ -5846,7 +5858,7 @@ process.hltCorrectedHybridSuperClustersL1IsolatedLowPt = cms.EDProducer( "Egamma
     rawSuperClusterProducer = cms.InputTag( "hltHybridSuperClustersL1IsolatedLowPt" ),
     superClusterAlgo = cms.string( "Hybrid" ),
     applyEnergyCorrection = cms.bool( True ),
-    sigmaElectronicNoise = cms.double( 0.03 ),
+    sigmaElectronicNoise = cms.double( 0.15 ),
     etThresh = cms.double( 1.0 ),
     corectedSuperClusterCollection = cms.string( "" ),
     hyb_fCorrPset = cms.PSet( 
@@ -5981,7 +5993,7 @@ process.hltCorrectedHybridSuperClustersL1NonIsolatedTempLowPt = cms.EDProducer( 
     rawSuperClusterProducer = cms.InputTag( "hltHybridSuperClustersL1NonIsolatedLowPt" ),
     superClusterAlgo = cms.string( "Hybrid" ),
     applyEnergyCorrection = cms.bool( True ),
-    sigmaElectronicNoise = cms.double( 0.03 ),
+    sigmaElectronicNoise = cms.double( 0.15 ),
     etThresh = cms.double( 1.0 ),
     corectedSuperClusterCollection = cms.string( "" ),
     hyb_fCorrPset = cms.PSet( 
@@ -7412,10 +7424,11 @@ process.hltBSoftMuonL25TagInfosU = cms.EDProducer( "SoftLepton",
     jets = cms.InputTag( "hltBSoftMuonL25JetsU" ),
     primaryVertex = cms.InputTag( "nominal" ),
     leptons = cms.InputTag( "hltL2Muons" ),
+    leptonCands = cms.InputTag( "" ),
+    leptonId = cms.InputTag( "" ),
     refineJetAxis = cms.uint32( 0 ),
     leptonDeltaRCut = cms.double( 0.4 ),
     leptonChi2Cut = cms.double( 0.0 ),
-    leptonQualityCut = cms.double( 0.0 ),
     muonSelection = cms.uint32( 0 )
 )
 process.hltBSoftMuonL25BJetTagsUByDR = cms.EDProducer( "JetTagProducer",
@@ -7433,10 +7446,11 @@ process.hltBSoftMuonL3TagInfosU = cms.EDProducer( "SoftLepton",
     jets = cms.InputTag( "hltBSoftMuonL25JetsU" ),
     primaryVertex = cms.InputTag( "nominal" ),
     leptons = cms.InputTag( "hltL3Muons" ),
+    leptonCands = cms.InputTag( "" ),
+    leptonId = cms.InputTag( "" ),
     refineJetAxis = cms.uint32( 0 ),
     leptonDeltaRCut = cms.double( 0.4 ),
     leptonChi2Cut = cms.double( 0.0 ),
-    leptonQualityCut = cms.double( 0.0 ),
     muonSelection = cms.uint32( 0 )
 )
 process.hltBSoftMuonL3BJetTagsUByPt = cms.EDProducer( "JetTagProducer",
@@ -8457,14 +8471,14 @@ process.hltAlCaEtaRecHitsFilter = cms.EDFilter( "HLTEcalResonanceFilter",
     )
 )
 process.hltPreRPCMuonNoHits = cms.EDFilter( "HLTPrescaler" )
-process.rpcPointProducer = cms.EDProducer( "RPCPointProducer",
+process.hltRPCPointProducer = cms.EDProducer( "RPCPointProducer",
     cscSegments = cms.InputTag( "hltCscSegments" ),
     dt4DSegments = cms.InputTag( "hltDt4DSegments" )
 )
 process.hltRPCFilter = cms.EDFilter( "HLTRPCFilter",
     rpcRecHits = cms.InputTag( "hltRpcRecHits" ),
-    rpcDTPoints = cms.InputTag( 'rpcPointProducer','RPCDTExtrapolatedPoints' ),
-    rpcCSCPoints = cms.InputTag( 'rpcPointProducer','RPCCSCExtrapolatedPoints' )
+    rpcDTPoints = cms.InputTag( 'hltRPCPointProducer','RPCDTExtrapolatedPoints' ),
+    rpcCSCPoints = cms.InputTag( 'hltRPCPointProducer','RPCCSCExtrapolatedPoints' )
 )
 process.hltPreRPCMuonNoTriggers = cms.EDFilter( "HLTPrescaler" )
 process.hltRPCMuonNoTriggersL1Filtered0 = cms.EDFilter( "HLTMuonL1Filter",
@@ -8850,7 +8864,7 @@ process.HLT_HcalNZS_8E29 = cms.Path( process.HLTBeginSequenceNZS + process.hltL1
 process.AlCa_EcalPhiSym = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sAlCaEcalPhiSym + process.hltPreAlCaEcalPhiSym + process.hltEcalRawToRecHitFacility + process.hltESRawToRecHitFacility + process.hltEcalRegionalRestFEDs + process.hltEcalRecHitAll + process.hltAlCaPhiSymStream + process.HLTEndSequence )
 process.AlCa_EcalPi0_8E29 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sAlCaEcalPi0Eta8E29 + process.hltPreAlCaEcalPi08E29 + process.HLTDoRegionalPi0EtaSequence + process.hltSimple3x3Clusters + process.hltAlCaPi0RecHitsFilter + process.HLTEndSequence )
 process.AlCa_EcalEta_8E29 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sAlCaEcalPi0Eta8E29 + process.hltPreAlCaEcalEta8E29 + process.HLTDoRegionalPi0EtaSequence + process.hltSimple3x3Clusters + process.hltAlCaEtaRecHitsFilter + process.HLTEndSequence )
-process.AlCa_RPCMuonNoHits = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1SingleMuOpenL1SingleMu0 + process.hltPreRPCMuonNoHits + process.HLTmuonlocalrecoSequence + process.rpcPointProducer + process.hltRPCFilter + process.HLTEndSequence )
+process.AlCa_RPCMuonNoHits = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1SingleMuOpenL1SingleMu0 + process.hltPreRPCMuonNoHits + process.HLTmuonlocalrecoSequence + process.hltRPCPointProducer + process.hltRPCFilter + process.HLTEndSequence )
 process.AlCa_RPCMuonNoTriggers = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1SingleMuOpenL1SingleMu0 + process.hltPreRPCMuonNoTriggers + process.hltRPCMuonNoTriggersL1Filtered0 + process.HLTmuonlocalrecoSequence + process.HLTEndSequence )
 process.AlCa_RPCMuonNormalisation = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1SingleMuOpenL1SingleMu0 + process.hltPreRPCMuonNorma + process.hltRPCMuonNormaL1Filtered0 + process.HLTmuonlocalrecoSequence + process.HLTEndSequence )
 process.HLT_HighMult40 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sHighMult40 + process.hltPreHighMult40 + process.HLTDoLocalPixelSequence + process.HLTRecopixelvertexingForMinBiasSequence + process.hltPixelCands + process.hlt1HighMult40 + process.HLTEndSequence )
