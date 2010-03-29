@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_5/HIon/V21 (CMSSW_3_5_5)
+# /dev/CMSSW_3_5_5/HIon/V23 (CMSSW_3_5_5)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V21')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V23')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -19,18 +19,18 @@ process.streams = cms.PSet(
     'FEDMonitor' ),
   ALCAP0 = cms.vstring( 'AlCaP0' ),
   ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
-  EventDisplay = cms.vstring(  ),
-  A = cms.vstring( 'MinimumBias',
-    'RandomTriggers',
-    'HcalHPDNoise',
-    'ZeroBias',
-    'Cosmics',
-    'HcalNZS' ),
+  RPCMON = cms.vstring( 'RPCMonitor' ),
+  Express = cms.vstring( 'ExpressPhysics' ),
   DQM = cms.vstring(  ),
   HLTDQM = cms.vstring(  ),
   HLTMON = cms.vstring( 'OfflineMonitor' ),
-  Express = cms.vstring( 'ExpressPhysics' ),
-  RPCMON = cms.vstring( 'RPCMonitor' )
+  EventDisplay = cms.vstring(  ),
+  A = cms.vstring( 'ZeroBias',
+    'MinimumBias',
+    'RandomTriggers',
+    'HcalHPDNoise',
+    'Cosmics',
+    'HcalNZS' )
 )
 process.datasets = cms.PSet( 
   TestEnables = cms.vstring(  ),
@@ -39,15 +39,15 @@ process.datasets = cms.PSet(
   FEDMonitor = cms.vstring(  ),
   AlCaP0 = cms.vstring(  ),
   AlCaPhiSymEcal = cms.vstring(  ),
+  RPCMonitor = cms.vstring(  ),
+  ExpressPhysics = cms.vstring(  ),
+  OfflineMonitor = cms.vstring(  ),
+  ZeroBias = cms.vstring(  ),
   MinimumBias = cms.vstring(  ),
   RandomTriggers = cms.vstring(  ),
   HcalHPDNoise = cms.vstring(  ),
-  ZeroBias = cms.vstring(  ),
   Cosmics = cms.vstring(  ),
-  HcalNZS = cms.vstring(  ),
-  OfflineMonitor = cms.vstring(  ),
-  ExpressPhysics = cms.vstring(  ),
-  RPCMonitor = cms.vstring(  )
+  HcalNZS = cms.vstring(  )
 )
 
 process.source = cms.Source( "PoolSource",
