@@ -1,14 +1,13 @@
-# /dev/CMSSW_3_5_5/HIon/V27 (CMSSW_3_5_5_HLT1)
+# /dev/CMSSW_3_5_5/HIon/V28 (CMSSW_3_5_5_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V27')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V28')
 )
 
 streams = cms.PSet( 
-  Offline = cms.vstring(  ),
   Calibration = cms.vstring( 'TestEnables' ),
   EcalCalibration = cms.vstring( 'EcalLaser' ),
   OnlineErrors = cms.vstring( 'LogMonitor',
@@ -26,7 +25,8 @@ streams = cms.PSet(
     'RandomTriggers',
     'Cosmics',
     'HcalNZS',
-    'HcalHPDNoise' )
+    'HcalHPDNoise' ),
+  Offline = cms.vstring(  )
 )
 datasets = cms.PSet( 
   TestEnables = cms.vstring(  ),

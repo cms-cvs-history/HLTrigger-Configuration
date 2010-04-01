@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_5/1E31/V27 (CMSSW_3_5_5_HLT1)
+# /dev/CMSSW_3_5_5/1E31/V28 (CMSSW_3_5_5_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V27')
+  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V28')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -45,7 +45,17 @@ process.datasets = cms.PSet(
     'HLT_ZeroBias',
     'HLT_L1SingleEG5',
     'HLT_L1DoubleMuOpen' ),
-  OfflineMonitor = cms.vstring( 'HLT_DoubleMu0',
+  OfflineMonitor = cms.vstring( 'HLT_HighMult40',
+    'HLT_Mu0_L1MuOpen',
+    'HLT_Mu0_Track0_Jpsi',
+    'HLT_Mu3_L1MuOpen',
+    'HLT_Mu3_Track0_Jpsi',
+    'HLT_Mu5_L1MuOpen',
+    'HLT_Mu5_Track0_Jpsi',
+    'HLT_Mu0_L2Mu0',
+    'HLT_Mu3_L2Mu0',
+    'HLT_Mu5_L2Mu0',
+    'HLT_DoubleMu0',
     'HLT_Mu9',
     'HLT_Mu5',
     'HLT_L2Mu11',
@@ -74,17 +84,7 @@ process.datasets = cms.PSet(
     'HLT_L1MuOpen',
     'HLT_MET100',
     'HLT_L1MET20',
-    'HLT_DoubleMu3',
-    'HLT_HighMult40',
-    'HLT_Mu0_L1MuOpen',
-    'HLT_Mu0_Track0_Jpsi',
-    'HLT_Mu3_L1MuOpen',
-    'HLT_Mu3_Track0_Jpsi',
-    'HLT_Mu5_L1MuOpen',
-    'HLT_Mu5_Track0_Jpsi',
-    'HLT_Mu0_L2Mu0',
-    'HLT_Mu3_L2Mu0',
-    'HLT_Mu5_L2Mu0' ),
+    'HLT_DoubleMu3' ),
   ZeroBias = cms.vstring( 'HLT_ZeroBias' ),
   MinimumBias = cms.vstring( 'HLT_DoubleMu0',
     'HLT_DoubleMu3',
