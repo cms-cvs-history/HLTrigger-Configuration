@@ -1,17 +1,27 @@
-# /dev/CMSSW_3_5_5/HIon/V28 (CMSSW_3_5_5_HLT1)
+# /dev/CMSSW_3_5_5/HIon/V31 (CMSSW_3_5_5_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V28')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V31')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
   'TooManyProducts',
   'TooFewProducts' ) )
 process.streams = cms.PSet( 
+  A = cms.vstring( 'ZeroBias',
+    'RandomTriggers',
+    'HcalNZS',
+    'HcalHPDNoise',
+    'MinimumBias',
+    'Cosmics' ),
+  EventDisplay = cms.vstring(  ),
+  DQM = cms.vstring(  ),
+  HLTDQM = cms.vstring(  ),
+  HLTMON = cms.vstring( 'OfflineMonitor' ),
   Calibration = cms.vstring( 'TestEnables' ),
   EcalCalibration = cms.vstring( 'EcalLaser' ),
   OnlineErrors = cms.vstring( 'LogMonitor',
@@ -20,19 +30,16 @@ process.streams = cms.PSet(
   RPCMON = cms.vstring( 'RPCMonitor' ),
   Express = cms.vstring( 'ExpressPhysics' ),
   ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
-  DQM = cms.vstring(  ),
-  HLTDQM = cms.vstring(  ),
-  HLTMON = cms.vstring( 'OfflineMonitor' ),
-  EventDisplay = cms.vstring(  ),
-  A = cms.vstring( 'ZeroBias',
-    'MinimumBias',
-    'RandomTriggers',
-    'Cosmics',
-    'HcalNZS',
-    'HcalHPDNoise' ),
   Offline = cms.vstring(  )
 )
 process.datasets = cms.PSet( 
+  ZeroBias = cms.vstring(  ),
+  RandomTriggers = cms.vstring(  ),
+  HcalNZS = cms.vstring(  ),
+  HcalHPDNoise = cms.vstring(  ),
+  MinimumBias = cms.vstring(  ),
+  Cosmics = cms.vstring(  ),
+  OfflineMonitor = cms.vstring(  ),
   TestEnables = cms.vstring(  ),
   EcalLaser = cms.vstring(  ),
   LogMonitor = cms.vstring(  ),
@@ -40,14 +47,7 @@ process.datasets = cms.PSet(
   AlCaP0 = cms.vstring(  ),
   RPCMonitor = cms.vstring(  ),
   ExpressPhysics = cms.vstring(  ),
-  AlCaPhiSymEcal = cms.vstring(  ),
-  OfflineMonitor = cms.vstring(  ),
-  ZeroBias = cms.vstring(  ),
-  MinimumBias = cms.vstring(  ),
-  RandomTriggers = cms.vstring(  ),
-  Cosmics = cms.vstring(  ),
-  HcalNZS = cms.vstring(  ),
-  HcalHPDNoise = cms.vstring(  )
+  AlCaPhiSymEcal = cms.vstring(  )
 )
 
 process.source = cms.Source( "PoolSource",
