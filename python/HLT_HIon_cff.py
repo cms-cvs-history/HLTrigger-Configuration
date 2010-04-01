@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_5_5/HIon/V26 (CMSSW_3_5_5)
+# /dev/CMSSW_3_5_5/HIon/V27 (CMSSW_3_5_5_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V26')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V27')
 )
 
 streams = cms.PSet( 
@@ -14,19 +14,19 @@ streams = cms.PSet(
   OnlineErrors = cms.vstring( 'LogMonitor',
     'FEDMonitor' ),
   ALCAP0 = cms.vstring( 'AlCaP0' ),
-  Express = cms.vstring( 'ExpressPhysics' ),
   RPCMON = cms.vstring( 'RPCMonitor' ),
+  Express = cms.vstring( 'ExpressPhysics' ),
   ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
   DQM = cms.vstring(  ),
   HLTDQM = cms.vstring(  ),
   HLTMON = cms.vstring( 'OfflineMonitor' ),
   EventDisplay = cms.vstring(  ),
   A = cms.vstring( 'ZeroBias',
+    'MinimumBias',
     'RandomTriggers',
     'Cosmics',
-    'HcalHPDNoise',
-    'MinimumBias',
-    'HcalNZS' )
+    'HcalNZS',
+    'HcalHPDNoise' )
 )
 datasets = cms.PSet( 
   TestEnables = cms.vstring(  ),
@@ -34,16 +34,16 @@ datasets = cms.PSet(
   LogMonitor = cms.vstring(  ),
   FEDMonitor = cms.vstring(  ),
   AlCaP0 = cms.vstring(  ),
-  ExpressPhysics = cms.vstring(  ),
   RPCMonitor = cms.vstring(  ),
+  ExpressPhysics = cms.vstring(  ),
   AlCaPhiSymEcal = cms.vstring(  ),
   OfflineMonitor = cms.vstring(  ),
   ZeroBias = cms.vstring(  ),
+  MinimumBias = cms.vstring(  ),
   RandomTriggers = cms.vstring(  ),
   Cosmics = cms.vstring(  ),
-  HcalHPDNoise = cms.vstring(  ),
-  MinimumBias = cms.vstring(  ),
-  HcalNZS = cms.vstring(  )
+  HcalNZS = cms.vstring(  ),
+  HcalHPDNoise = cms.vstring(  )
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
