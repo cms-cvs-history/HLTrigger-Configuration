@@ -1,16 +1,16 @@
-# /dev/CMSSW_3_5_5/HIon/V37 (CMSSW_3_5_5_HLT1)
+# /dev/CMSSW_3_5_5/HIon/V38 (CMSSW_3_5_5_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V37')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V38')
 )
 
 streams = cms.PSet( 
   A = cms.vstring( 'EGMonitor',
-    'MinimumBias',
     'EG',
+    'MinimumBias',
     'ZeroBias',
     'RandomTriggers',
     'HcalNZS',
@@ -36,8 +36,8 @@ streams = cms.PSet(
 )
 datasets = cms.PSet( 
   EGMonitor = cms.vstring(  ),
-  MinimumBias = cms.vstring(  ),
   EG = cms.vstring(  ),
+  MinimumBias = cms.vstring(  ),
   ZeroBias = cms.vstring(  ),
   RandomTriggers = cms.vstring(  ),
   HcalNZS = cms.vstring(  ),
