@@ -1,17 +1,18 @@
-# /dev/CMSSW_3_5_5/HIon/V40 (CMSSW_3_5_5_HLT1)
+# /dev/CMSSW_3_5_5/HIon/V41 (CMSSW_3_5_5_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V40')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V41')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
   'TooManyProducts',
   'TooFewProducts' ) )
 process.streams = cms.PSet( 
+  Offline = cms.vstring(  ),
   Calibration = cms.vstring( 'TestEnables' ),
   EcalCalibration = cms.vstring( 'EcalLaser' ),
   ALCAP0 = cms.vstring( 'AlCaP0' ),
@@ -35,8 +36,7 @@ process.streams = cms.PSet(
   HLTMON = cms.vstring( 'OfflineMonitor' ),
   Express = cms.vstring( 'ExpressPhysics' ),
   OnlineErrors = cms.vstring( 'LogMonitor',
-    'FEDMonitor' ),
-  Offline = cms.vstring(  )
+    'FEDMonitor' )
 )
 process.datasets = cms.PSet( 
   TestEnables = cms.vstring(  ),
@@ -78,7 +78,7 @@ process.GlobalTag = cms.ESSource( "PoolDBESSource",
     connect = cms.string( "frontier://(proxyurl=http://localhost:3128)(serverurl=http://localhost:8000/FrontierOnProd)(serverurl=http://localhost:8000/FrontierOnProd)(retrieve-ziplevel=0)/CMS_COND_31X_GLOBALTAG" ),
     DumpStat = cms.untracked.bool( False ),
     BlobStreamerName = cms.untracked.string( "TBufferBlobStreamingService" ),
-    globaltag = cms.string( "GR10_H_V4::All" ),
+    globaltag = cms.string( "GR10_H_V5::All" ),
     DBParameters = cms.PSet( 
       authenticationPath = cms.untracked.string( "." ),
       connectionRetrialPeriod = cms.untracked.int32( 10 ),
