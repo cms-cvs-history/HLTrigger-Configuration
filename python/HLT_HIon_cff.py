@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_5_5/HIon/V42 (CMSSW_3_5_7)
+# /dev/CMSSW_3_5_5/HIon/V43 (CMSSW_3_5_7_HLT2)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V42')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V43')
 )
 
 streams = cms.PSet( 
@@ -17,6 +17,9 @@ streams = cms.PSet(
   Express = cms.vstring( 'ExpressPhysics' ),
   OnlineErrors = cms.vstring( 'LogMonitor',
     'FEDMonitor' ),
+  DQM = cms.vstring(  ),
+  HLTDQM = cms.vstring(  ),
+  HLTMON = cms.vstring( 'OfflineMonitor' ),
   A = cms.vstring( 'Cosmics',
     'EGMonitor',
     'EG',
@@ -29,10 +32,7 @@ streams = cms.PSet(
     'HcalNZS',
     'MinimumBias',
     'JetMETTau' ),
-  EventDisplay = cms.vstring(  ),
-  DQM = cms.vstring(  ),
-  HLTDQM = cms.vstring(  ),
-  HLTMON = cms.vstring( 'OfflineMonitor' )
+  EventDisplay = cms.vstring(  )
 )
 datasets = cms.PSet( 
   TestEnables = cms.vstring(  ),
@@ -43,6 +43,7 @@ datasets = cms.PSet(
   ExpressPhysics = cms.vstring(  ),
   LogMonitor = cms.vstring(  ),
   FEDMonitor = cms.vstring(  ),
+  OfflineMonitor = cms.vstring(  ),
   Cosmics = cms.vstring(  ),
   EGMonitor = cms.vstring(  ),
   EG = cms.vstring(  ),
@@ -54,8 +55,7 @@ datasets = cms.PSet(
   Mu = cms.vstring(  ),
   HcalNZS = cms.vstring(  ),
   MinimumBias = cms.vstring(  ),
-  JetMETTau = cms.vstring(  ),
-  OfflineMonitor = cms.vstring(  )
+  JetMETTau = cms.vstring(  )
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
@@ -1034,12 +1034,13 @@ hltL1extraParticles = cms.EDProducer( "L1ExtraParticlesProd",
 )
 hltBPTXCoincidence = cms.EDFilter( "HLTLevel1Activity",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
+    daqPartitions = cms.uint32( 1 ),
     ignoreL1Mask = cms.bool( True ),
     invert = cms.bool( False ),
+    bunchCrossings = cms.vint32( 0, -1, 1, -2, 2 ),
     physicsLoBits = cms.uint64( 0x1 ),
     physicsHiBits = cms.uint64( 0x40000 ),
-    technicalBits = cms.uint64( 0x0 ),
-    bunchCrossings = cms.vint32( 0, -1, 1, -2, 2 )
+    technicalBits = cms.uint64( 0x0 )
 )
 hltOfflineBeamSpot = cms.EDProducer( "BeamSpotProducer" )
 hltPreFirstPath = cms.EDFilter( "HLTPrescaler" )
