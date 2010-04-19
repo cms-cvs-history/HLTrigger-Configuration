@@ -1,8 +1,24 @@
-# /dev/CMSSW_3_5_5/GRun/V41
+# /dev/CMSSW_3_5_5/GRun/V42
 
 import FWCore.ParameterSet.Config as cms
 
 # dump of the Stream A Datasets defined in the HLT table
+
+from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter as streamA_datasetCosmics_selector
+streamA_datasetCosmics_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')
+streamA_datasetCosmics_selector.l1tResults = cms.InputTag('')
+streamA_datasetCosmics_selector.throw      = cms.bool(False)
+streamA_datasetCosmics_selector.triggerConditions = cms.vstring('HLT_TkMu3_NoVertex', 
+    'HLT_L2Mu0_NoVertex', 
+    'HLT_TrackerCosmics', 
+    'HLT_RPCBarrelCosmics', 
+    'HLT_CSCBeamHaloRing2or3', 
+    'HLT_CSCBeamHaloOverlapRing2', 
+    'HLT_CSCBeamHaloOverlapRing1', 
+    'HLT_CSCBeamHalo', 
+    'HLT_L1MuOpen_NoBPTX', 
+    'HLT_L1MuOpen_AntiBPTX', 
+    'HLT_L1Tech_BSC_halo')
 
 from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter as streamA_datasetEGMonitor_selector
 streamA_datasetEGMonitor_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')
@@ -79,22 +95,6 @@ streamA_datasetJetMETTauMonitor_selector.triggerConditions = cms.vstring('HLT_L1
     'HLT_L1SingleForJet', 
     'HLT_L1SingleTauJet', 
     'HLT_L1MET20')
-
-from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter as streamA_datasetCosmics_selector
-streamA_datasetCosmics_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')
-streamA_datasetCosmics_selector.l1tResults = cms.InputTag('')
-streamA_datasetCosmics_selector.throw      = cms.bool(False)
-streamA_datasetCosmics_selector.triggerConditions = cms.vstring('HLT_TkMu3_NoVertex', 
-    'HLT_L2Mu0_NoVertex', 
-    'HLT_TrackerCosmics', 
-    'HLT_RPCBarrelCosmics', 
-    'HLT_CSCBeamHaloRing2or3', 
-    'HLT_CSCBeamHaloOverlapRing2', 
-    'HLT_CSCBeamHaloOverlapRing1', 
-    'HLT_CSCBeamHalo', 
-    'HLT_L1MuOpen_NoBPTX', 
-    'HLT_L1MuOpen_AntiBPTX', 
-    'HLT_L1Tech_BSC_halo')
 
 from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter as streamA_datasetMuMonitor_selector
 streamA_datasetMuMonitor_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')

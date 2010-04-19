@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_5_5/HIon/V41 (CMSSW_3_5_5_HLT1)
+# /dev/CMSSW_3_5_5/HIon/V42 (CMSSW_3_5_7)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V41')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V42')
 )
 
 streams = cms.PSet( 
@@ -14,25 +14,25 @@ streams = cms.PSet(
   ALCAP0 = cms.vstring( 'AlCaP0' ),
   ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
   RPCMON = cms.vstring( 'RPCMonitor' ),
-  EventDisplay = cms.vstring(  ),
-  A = cms.vstring( 'EGMonitor',
+  Express = cms.vstring( 'ExpressPhysics' ),
+  OnlineErrors = cms.vstring( 'LogMonitor',
+    'FEDMonitor' ),
+  A = cms.vstring( 'Cosmics',
+    'EGMonitor',
     'EG',
     'ZeroBias',
     'RandomTriggers',
     'HcalHPDNoise',
     'JetMETTauMonitor',
-    'Cosmics',
     'MuMonitor',
     'Mu',
     'HcalNZS',
     'MinimumBias',
     'JetMETTau' ),
+  EventDisplay = cms.vstring(  ),
   DQM = cms.vstring(  ),
   HLTDQM = cms.vstring(  ),
-  HLTMON = cms.vstring( 'OfflineMonitor' ),
-  Express = cms.vstring( 'ExpressPhysics' ),
-  OnlineErrors = cms.vstring( 'LogMonitor',
-    'FEDMonitor' )
+  HLTMON = cms.vstring( 'OfflineMonitor' )
 )
 datasets = cms.PSet( 
   TestEnables = cms.vstring(  ),
@@ -40,22 +40,22 @@ datasets = cms.PSet(
   AlCaP0 = cms.vstring(  ),
   AlCaPhiSymEcal = cms.vstring(  ),
   RPCMonitor = cms.vstring(  ),
+  ExpressPhysics = cms.vstring(  ),
+  LogMonitor = cms.vstring(  ),
+  FEDMonitor = cms.vstring(  ),
+  Cosmics = cms.vstring(  ),
   EGMonitor = cms.vstring(  ),
   EG = cms.vstring(  ),
   ZeroBias = cms.vstring(  ),
   RandomTriggers = cms.vstring(  ),
   HcalHPDNoise = cms.vstring(  ),
   JetMETTauMonitor = cms.vstring(  ),
-  Cosmics = cms.vstring(  ),
   MuMonitor = cms.vstring(  ),
   Mu = cms.vstring(  ),
   HcalNZS = cms.vstring(  ),
   MinimumBias = cms.vstring(  ),
   JetMETTau = cms.vstring(  ),
-  OfflineMonitor = cms.vstring(  ),
-  ExpressPhysics = cms.vstring(  ),
-  LogMonitor = cms.vstring(  ),
-  FEDMonitor = cms.vstring(  )
+  OfflineMonitor = cms.vstring(  )
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
@@ -1036,10 +1036,10 @@ hltBPTXCoincidence = cms.EDFilter( "HLTLevel1Activity",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
     ignoreL1Mask = cms.bool( True ),
     invert = cms.bool( False ),
-    bunchCrossings = cms.vint32( 0, -1, 1, -2, 2 ),
     physicsLoBits = cms.uint64( 0x1 ),
     physicsHiBits = cms.uint64( 0x40000 ),
-    technicalBits = cms.uint64( 0x0 )
+    technicalBits = cms.uint64( 0x0 ),
+    bunchCrossings = cms.vint32( 0, -1, 1, -2, 2 )
 )
 hltOfflineBeamSpot = cms.EDProducer( "BeamSpotProducer" )
 hltPreFirstPath = cms.EDFilter( "HLTPrescaler" )

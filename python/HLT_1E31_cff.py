@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_5_5/1E31/V41 (CMSSW_3_5_5_HLT1)
+# /dev/CMSSW_3_5_5/1E31/V42 (CMSSW_3_5_7)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V41')
+  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V42')
 )
 
 streams = cms.PSet( 
@@ -14,25 +14,25 @@ streams = cms.PSet(
   Calibration = cms.vstring( 'TestEnables' ),
   EcalCalibration = cms.vstring( 'EcalLaser' ),
   ALCAP0 = cms.vstring( 'AlCaP0' ),
-  EventDisplay = cms.vstring(  ),
-  A = cms.vstring( 'EGMonitor',
+  Express = cms.vstring( 'ExpressPhysics' ),
+  OnlineErrors = cms.vstring( 'LogMonitor',
+    'FEDMonitor' ),
+  A = cms.vstring( 'Cosmics',
+    'EGMonitor',
     'EG',
     'ZeroBias',
     'RandomTriggers',
     'HcalHPDNoise',
     'JetMETTauMonitor',
-    'Cosmics',
     'MuMonitor',
     'Mu',
     'HcalNZS',
     'MinimumBias',
     'JetMETTau' ),
+  EventDisplay = cms.vstring(  ),
   DQM = cms.vstring(  ),
   HLTDQM = cms.vstring(  ),
-  HLTMON = cms.vstring( 'OfflineMonitor' ),
-  Express = cms.vstring( 'ExpressPhysics' ),
-  OnlineErrors = cms.vstring( 'LogMonitor',
-    'FEDMonitor' )
+  HLTMON = cms.vstring( 'OfflineMonitor' )
 )
 datasets = cms.PSet( 
   AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
@@ -43,6 +43,20 @@ datasets = cms.PSet(
   EcalLaser = cms.vstring(  ),
   AlCaP0 = cms.vstring( 'AlCa_EcalPi0_1E31',
     'AlCa_EcalEta_1E31' ),
+  ExpressPhysics = cms.vstring( 'HLT_MET100',
+    'HLT_L1MuOpen',
+    'HLT_L1Mu',
+    'HLT_ZeroBias',
+    'HLT_L1SingleEG5',
+    'HLT_L1DoubleMuOpen' ),
+  LogMonitor = cms.vstring(  ),
+  FEDMonitor = cms.vstring(  ),
+  Cosmics = cms.vstring( 'HLT_TrackerCosmics',
+    'HLT_RPCBarrelCosmics',
+    'HLT_CSCBeamHaloRing2or3',
+    'HLT_CSCBeamHaloOverlapRing2',
+    'HLT_CSCBeamHaloOverlapRing1',
+    'HLT_CSCBeamHalo' ),
   EGMonitor = cms.vstring( 'HLT_L1SingleEG5' ),
   EG = cms.vstring( 'HLT_DoublePhoton10_L1R',
     'HLT_Photon15_L1R',
@@ -52,12 +66,6 @@ datasets = cms.PSet(
   RandomTriggers = cms.vstring(  ),
   HcalHPDNoise = cms.vstring(  ),
   JetMETTauMonitor = cms.vstring( 'HLT_L1MET20' ),
-  Cosmics = cms.vstring( 'HLT_TrackerCosmics',
-    'HLT_RPCBarrelCosmics',
-    'HLT_CSCBeamHaloRing2or3',
-    'HLT_CSCBeamHaloOverlapRing2',
-    'HLT_CSCBeamHaloOverlapRing1',
-    'HLT_CSCBeamHalo' ),
   MuMonitor = cms.vstring( 'HLT_L1Mu',
     'HLT_L1MuOpen' ),
   Mu = cms.vstring( 'HLT_DoubleMu0',
@@ -126,15 +134,7 @@ datasets = cms.PSet(
     'HLT_MET100',
     'HLT_L1MET20',
     'HLT_DoubleMu3',
-    'HLT_HighMult40' ),
-  ExpressPhysics = cms.vstring( 'HLT_MET100',
-    'HLT_L1MuOpen',
-    'HLT_L1Mu',
-    'HLT_ZeroBias',
-    'HLT_L1SingleEG5',
-    'HLT_L1DoubleMuOpen' ),
-  LogMonitor = cms.vstring(  ),
-  FEDMonitor = cms.vstring(  )
+    'HLT_HighMult40' )
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
@@ -1115,10 +1115,10 @@ hltBPTXCoincidence = cms.EDFilter( "HLTLevel1Activity",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
     ignoreL1Mask = cms.bool( True ),
     invert = cms.bool( False ),
-    bunchCrossings = cms.vint32( 0, -1, 1, -2, 2 ),
     physicsLoBits = cms.uint64( 0x1 ),
     physicsHiBits = cms.uint64( 0x40000 ),
-    technicalBits = cms.uint64( 0x0 )
+    technicalBits = cms.uint64( 0x0 ),
+    bunchCrossings = cms.vint32( 0, -1, 1, -2, 2 )
 )
 hltOfflineBeamSpot = cms.EDProducer( "BeamSpotProducer" )
 hltPreFirstPath = cms.EDFilter( "HLTPrescaler" )
@@ -7681,6 +7681,14 @@ hltL1sTrackerCosmics = cms.EDFilter( "HLTLevel1GTSeed",
     L1CollectionsTag = cms.InputTag( "hltL1extraParticles" ),
     L1MuonCollectionTag = cms.InputTag( "hltL1extraParticles" )
 )
+hltTrackerCosmicsPattern = cms.EDFilter( "HLTLevel1Pattern",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
+    triggerBit = cms.string( "L1Tech_RPC_TTU_pointing_Cosmics.v0" ),
+    ignoreL1Mask = cms.bool( False ),
+    invert = cms.bool( False ),
+    bunchCrossings = cms.vint32( -2, -1, 0, 1, 2 ),
+    triggerPattern = cms.vint32( 1, 1, 1, 0, 0 )
+)
 hltPreTrackerCosmics = cms.EDFilter( "HLTPrescaler" )
 hltL1sRPCBarrelCosmics = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),
@@ -8074,10 +8082,10 @@ hltLevel1Activity = cms.EDFilter( "HLTLevel1Activity",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
     ignoreL1Mask = cms.bool( False ),
     invert = cms.bool( False ),
-    bunchCrossings = cms.vint32( 0, 1, -1, 2, -2 ),
     physicsLoBits = cms.uint64( 0x7fdfdf03c03fbffc ),
     physicsHiBits = cms.uint64( 0x3f1bfddb01800bf6 ),
-    technicalBits = cms.uint64( 0x70000fffff001f00 )
+    technicalBits = cms.uint64( 0x70000fffff001f00 ),
+    bunchCrossings = cms.vint32( 0, 1, -1, 2, -2 )
 )
 hltPreHcalPhiSym = cms.EDFilter( "HLTPrescaler" )
 hltL1sHcalNZS1E31 = cms.EDFilter( "HLTLevel1GTSeed",
@@ -8594,7 +8602,7 @@ HLT_CSCBeamHaloRing2or3 = cms.Path( HLTBeginSequenceBPTX + hltL1sCSCBeamHaloRing
 HLT_BackwardBSC = cms.Path( HLTBeginSequenceBPTX + hltL1sBackwardBSC + hltPreBackwardBSC + HLTEndSequence )
 HLT_ForwardBSC = cms.Path( HLTBeginSequenceBPTX + hltL1sForwardBSC + hltPreForwardBSC + HLTEndSequence )
 HLT_HighMultiplicityBSC = cms.Path( HLTBeginSequenceBPTX + hltL1sHighMultiplicityBSC + hltPreHighMultiplicityBSC + HLTEndSequence )
-HLT_TrackerCosmics = cms.Path( HLTBeginSequence + hltL1sTrackerCosmics + hltPreTrackerCosmics + HLTEndSequence )
+HLT_TrackerCosmics = cms.Path( HLTBeginSequence + hltL1sTrackerCosmics + hltTrackerCosmicsPattern + hltPreTrackerCosmics + HLTEndSequence )
 HLT_RPCBarrelCosmics = cms.Path( HLTBeginSequence + hltL1sRPCBarrelCosmics + hltPreRPCBarrelCosmics + HLTEndSequence )
 HLT_IsoTrackHE_1E31 = cms.Path( HLTBeginSequenceBPTX + hltL1sIsoTrack1E31 + hltPreIsoTrackHE1E31 + HLTL2HcalIsolTrackSequenceHE + hltIsolPixelTrackProdHE1E31 + hltIsolPixelTrackL2FilterHE1E31 + HLTDoLocalStripSequence + hltHITPixelTripletSeedGeneratorHE1E31 + hltHITCkfTrackCandidatesHE1E31 + hltHITCtfWithMaterialTracksHE1E31 + hltHITIPTCorrectorHE1E31 + hltIsolPixelTrackL3FilterHE1E31 + HLTEndSequence )
 HLT_IsoTrackHB_1E31 = cms.Path( HLTBeginSequenceBPTX + hltL1sIsoTrack1E31 + hltPreIsoTrackHB1E31 + HLTL2HcalIsolTrackSequenceHB + hltIsolPixelTrackProdHB1E31 + hltIsolPixelTrackL2FilterHB1E31 + HLTDoLocalStripSequence + hltHITPixelTripletSeedGeneratorHB1E31 + hltHITCkfTrackCandidatesHB1E31 + hltHITCtfWithMaterialTracksHB1E31 + hltHITIPTCorrectorHB1E31 + hltIsolPixelTrackL3FilterHB1E31 + HLTEndSequence )
