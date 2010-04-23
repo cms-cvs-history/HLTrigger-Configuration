@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_5/GRun/V44 (CMSSW_3_5_7_HLT3)
+# /dev/CMSSW_3_5_5/GRun/V46 (CMSSW_3_5_7_HLT3)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/GRun/V44')
+  tableName = cms.string('/dev/CMSSW_3_5_5/GRun/V46')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -1897,25 +1897,25 @@ process.PrescaleService = cms.Service( "PrescaleService",
     lvl1Labels = cms.vstring( '0' ),
     prescaleTable = cms.VPSet( 
       cms.PSet(  pathName = cms.string( "HLT_Activity_L1A" ),
-        prescales = cms.vuint32( 1000 )
+        prescales = cms.vuint32( 5000 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_Activity_PixelClusters" ),
-        prescales = cms.vuint32( 100 )
-      ),
-      cms.PSet(  pathName = cms.string( "HLT_Activity_DT" ),
-        prescales = cms.vuint32( 100 )
-      ),
-      cms.PSet(  pathName = cms.string( "HLT_Activity_DT_Tuned" ),
-        prescales = cms.vuint32( 10 )
+        prescales = cms.vuint32( 5000 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_Activity_Ecal" ),
         prescales = cms.vuint32( 100 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_Activity_EcalREM" ),
-        prescales = cms.vuint32( 1000 )
+        prescales = cms.vuint32( 3000 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_SelectEcalSpikes_L1R" ),
+        prescales = cms.vuint32( 20 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_SelectEcalSpikesHighEt_L1R" ),
+        prescales = cms.vuint32( 10 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_L1Jet6U" ),
-        prescales = cms.vuint32( 25 )
+        prescales = cms.vuint32( 50 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_L1Jet6U_NoBPTX" ),
         prescales = cms.vuint32( 1000 )
@@ -1924,7 +1924,16 @@ process.PrescaleService = cms.Service( "PrescaleService",
         prescales = cms.vuint32( 10 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_L1Jet10U_NoBPTX" ),
+        prescales = cms.vuint32( 1000 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_L1SingleForJet_NoBPTX" ),
+        prescales = cms.vuint32( 10 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_L1SingleCenJet_NoBPTX" ),
         prescales = cms.vuint32( 100 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_L1SingleTauJet_NoBPTX" ),
+        prescales = cms.vuint32( 10 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_L1MuOpen" ),
         prescales = cms.vuint32( 10 )
@@ -1933,7 +1942,7 @@ process.PrescaleService = cms.Service( "PrescaleService",
         prescales = cms.vuint32( 100 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_L1MuOpen_AntiBPTX" ),
-        prescales = cms.vuint32( 100 )
+        prescales = cms.vuint32( 10 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_L1SingleEG2" ),
         prescales = cms.vuint32( 50 )
@@ -1941,8 +1950,8 @@ process.PrescaleService = cms.Service( "PrescaleService",
       cms.PSet(  pathName = cms.string( "HLT_L1SingleEG2_NoBPTX" ),
         prescales = cms.vuint32( 500 )
       ),
-      cms.PSet(  pathName = cms.string( "HLT_Ele15_SiStrip_L1R" ),
-        prescales = cms.vuint32( 0 )
+      cms.PSet(  pathName = cms.string( "HLT_L1SingleEG5_NoBPTX" ),
+        prescales = cms.vuint32( 100 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_BTagIP_Jet50U" ),
         prescales = cms.vuint32( 0 )
@@ -1951,12 +1960,39 @@ process.PrescaleService = cms.Service( "PrescaleService",
         prescales = cms.vuint32( 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_MinBiasBSC" ),
-        prescales = cms.vuint32( 100 )
+        prescales = cms.vuint32( 2000 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_MinBiasBSC_NoBPTX" ),
+        prescales = cms.vuint32( 5000 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_MinBiasHcal" ),
+        prescales = cms.vuint32( 1000 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_MinBiasEcal" ),
+        prescales = cms.vuint32( 200 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_ZeroBiasPixel_SingleTrack" ),
         prescales = cms.vuint32( 100 )
       ),
-      cms.PSet(  pathName = cms.string( "HLT_MinBiasBSC_OR" ),
+      cms.PSet(  pathName = cms.string( "HLT_MinBiasPixel_SingleTrack" ),
+        prescales = cms.vuint32( 5000 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_MinBiasPixel_DoubleTrack" ),
+        prescales = cms.vuint32( 5000 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_MinBiasPixel_DoubleIsoTrack5" ),
+        prescales = cms.vuint32( 200 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_SplashBSC" ),
+        prescales = cms.vuint32( 10 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_L1_BscMinBiasOR_BptxPlusORMinus" ),
+        prescales = cms.vuint32( 5000 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_L1_BscMinBiasOR_BptxPlusORMinus_NoBPTX" ),
+        prescales = cms.vuint32( 10000 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_L1_BscMinBiasOR_BeamGas" ),
         prescales = cms.vuint32( 100 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_IsoTrackHE_8E29" ),
@@ -1970,6 +2006,12 @@ process.PrescaleService = cms.Service( "PrescaleService",
       ),
       cms.PSet(  pathName = cms.string( "HLT_Random" ),
         prescales = cms.vuint32( 1000 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_L1_HFtech" ),
+        prescales = cms.vuint32( 5000 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_L1Tech_HCAL_HF_coincidence_PM" ),
+        prescales = cms.vuint32( 5000 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_GlobalRunHPDNoise" ),
         prescales = cms.vuint32( 80 )
@@ -9679,10 +9721,10 @@ process.hltTrigReport = cms.EDAnalyzer( "HLTrigReport",
 process.hltPreEventDisplay = cms.EDFilter( "HLTPrescaler" )
 process.hltPreEventDisplaySmart = cms.EDFilter( "TriggerResultsFilter",
     triggerConditions = cms.vstring( 'HLT_L1Mu',
-      'HLT_L1MuOpen',
+      'HLT_L1MuOpen / 2',
       'HLT_L1DoubleMuOpen',
-      'HLT_L1SingleEG2',
-      'HLT_L1SingleEG5',
+      'HLT_L1SingleEG2 / 2',
+      'HLT_L1SingleEG5 / 10',
       'HLT_MinBiasBSC',
       'HLT_L1Tech_HCAL_HF_coincidence_PM',
       'HLT_Jet50U',
@@ -9697,10 +9739,10 @@ process.hltPreEventDisplaySmart = cms.EDFilter( "TriggerResultsFilter",
 process.hltPreExpress = cms.EDFilter( "HLTPrescaler" )
 process.hltPreExpressSmart = cms.EDFilter( "TriggerResultsFilter",
     triggerConditions = cms.vstring( 'HLT_L1Mu',
-      'HLT_L1MuOpen',
+      'HLT_L1MuOpen / 2',
       'HLT_L1DoubleMuOpen',
-      'HLT_L1SingleEG2',
-      'HLT_L1SingleEG5',
+      'HLT_L1SingleEG2 / 2',
+      'HLT_L1SingleEG5 / 10',
       'HLT_MinBiasBSC',
       'HLT_L1Tech_HCAL_HF_coincidence_PM',
       'HLT_Jet50U',

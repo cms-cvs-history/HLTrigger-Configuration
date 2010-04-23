@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_5/1E31/V44 (CMSSW_3_5_7_HLT3)
+# /dev/CMSSW_3_5_5/1E31/V46 (CMSSW_3_5_7_HLT3)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V44')
+  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V46')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -1716,12 +1716,6 @@ process.PrescaleService = cms.Service( "PrescaleService",
       cms.PSet(  pathName = cms.string( "HLT_L1MuOpen" ),
         prescales = cms.vuint32( 10 )
       ),
-      cms.PSet(  pathName = cms.string( "HLT_Ele15_SiStrip_L1R" ),
-        prescales = cms.vuint32( 0 )
-      ),
-      cms.PSet(  pathName = cms.string( "HLT_Ele20_SiStrip_L1R" ),
-        prescales = cms.vuint32( 0 )
-      ),
       cms.PSet(  pathName = cms.string( "HLT_BTagIP_Jet80" ),
         prescales = cms.vuint32( 0 )
       ),
@@ -1730,6 +1724,15 @@ process.PrescaleService = cms.Service( "PrescaleService",
       ),
       cms.PSet(  pathName = cms.string( "HLT_BTagMu_Jet20" ),
         prescales = cms.vuint32( 0 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_MinBiasHcal" ),
+        prescales = cms.vuint32( 1000 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_MinBiasEcal" ),
+        prescales = cms.vuint32( 200 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_ZeroBiasPixel_SingleTrack" ),
+        prescales = cms.vuint32( 100 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_IsoTrackHE_1E31" ),
         prescales = cms.vuint32( 0 )
