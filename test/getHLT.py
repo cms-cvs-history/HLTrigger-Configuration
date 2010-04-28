@@ -9,7 +9,7 @@ import fileinput
 globalTag = {
   '8E29': 'auto:startup',
   'GRun': 'auto:startup',
-  'data': 'GR10_H_V5::All',
+  'data': 'auto:com10',
   '1E31': 'auto:mc',
   'HIon': 'auto:mc',
   None:   'auto:startup',      # use as default
@@ -189,16 +189,24 @@ else:
         esmodules += "-VBF40,"
         esmodules += "-CSCGeometryESModule,"
         esmodules += "-CaloGeometryBuilder,"
+        esmodules += "-CaloTowerGeometryFromDBEP,"
         esmodules += "-CaloTowerHardcodeGeometryEP,"
+        esmodules += "-CastorGeometryFromDBEP,"
+        esmodules += "-CastorHardcodeGeometryEP,"
         esmodules += "-DTGeometryESModule,"
         esmodules += "-EcalBarrelGeometryEP,"
+        esmodules += "-EcalBarrelGeometryFromDBEP,"
         esmodules += "-EcalElectronicsMappingBuilder,"
         esmodules += "-EcalEndcapGeometryEP,"
+        esmodules += "-EcalEndcapGeometryFromDBEP,"
         esmodules += "-EcalLaserCorrectionService,"    
         esmodules += "-EcalPreshowerGeometryEP,"
+        esmodules += "-EcalPreshowerGeometryFromDBEP,"
+        esmodules += "-HcalGeometryFromDBEP,"
         esmodules += "-HcalHardcodeGeometryEP,"
         esmodules += "-HcalTopologyIdealEP,"
         esmodules += "-MuonNumberingInitialization,"
+        esmodules += "-ParametrizedMagneticFieldProducer,"
         esmodules += "-RPCGeometryESModule,"
         esmodules += "-SiStripGainESProducer,"
         esmodules += "-SiStripRecHitMatcherESProducer,"
@@ -207,7 +215,8 @@ else:
         esmodules += "-TrackerDigiGeometryESModule,"
         esmodules += "-TrackerGeometricDetESModule,"
         esmodules += "-VolumeBasedMagneticFieldESProducer,"
-        esmodules += "-ParametrizedMagneticFieldProducer,"
+        esmodules += "-XMLFromDBSource,"
+        esmodules += "-ZdcGeometryFromDBEP,"
         esmodules += "-ZdcHardcodeGeometryEP,"
         esmodules += "-hcal_db_producer,"
         esmodules += "-l1GtTriggerMenuXml,"
@@ -367,24 +376,28 @@ process.es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1Me
 
         if not runOnline:
           out.write("if 'GlobalTag' in process.__dict__:\n")
+          out.write("    process.GlobalTag.connect   = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'\n")
+
           if runOnData:
             # don't override the GlobalTag, add only the pfnPrefix
-            out.write("    process.GlobalTag.connect   = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'\n")
             out.write("    process.GlobalTag.pfnPrefix = cms.untracked.string('frontier://FrontierProd/')\n")
+            # check if a specific GlobalTag was specified on the command line, or choose one for 'data'
+            if not menuGlobalTag:
+              menuGlobalTag = globalTag['data']
           else:
-            # check if a specific GlobalTag was specified on the command line, or choose one form the fileId
+            # check if a specific GlobalTag was specified on the command line, or choose one from the fileId
             if not menuGlobalTag:
               if fileId in globalTag:
                 menuGlobalTag = globalTag[fileId]
               else:
                 menuGlobalTag = globalTag[None]
-            # check if the GlobalTag is an autoCond or explicit
-            if menuGlobalTag[0:5] == 'auto:':
-              out.write("    from Configuration.PyReleaseValidation.autoCond import autoCond\n")
-              out.write("    process.GlobalTag.globaltag = autoCond['%s']\n" % menuGlobalTag[5:])
-            else:
-              out.write("    process.GlobalTag.globaltag = %s\n" % menuGlobalTag)
-            out.write("    process.GlobalTag.connect   = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'\n")
+
+          # check if the GlobalTag is an autoCond or explicit (now also for real data)
+          if menuGlobalTag[0:5] == 'auto:':
+            out.write("    from Configuration.PyReleaseValidation.autoCond import autoCond\n")
+            out.write("    process.GlobalTag.globaltag = autoCond['%s']\n" % menuGlobalTag[5:])
+          else:
+            out.write("    process.GlobalTag.globaltag = %s\n" % menuGlobalTag)
           
           out.write("\n")
           out.write("if 'Level1MenuOverride' in process.__dict__:\n")
