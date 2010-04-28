@@ -1,18 +1,18 @@
-# /dev/CMSSW_3_5_5/1E31/V46 (CMSSW_3_5_7_HLT3)
+# /dev/CMSSW_3_5_5/1E31/V48 (CMSSW_3_5_7_HLT4)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V46')
+  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V48')
 )
 
 streams = cms.PSet( 
   ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
   RPCMON = cms.vstring( 'RPCMonitor' ),
   Offline = cms.vstring(  ),
-  HLTDQM = cms.vstring(  ),
   HLTMON = cms.vstring( 'OfflineMonitor' ),
+  HLTDQM = cms.vstring(  ),
   Calibration = cms.vstring( 'TestEnables' ),
   EcalCalibration = cms.vstring( 'EcalLaser' ),
   ALCAP0 = cms.vstring( 'AlCaP0' ),

@@ -1,16 +1,16 @@
-# /dev/CMSSW_3_5_5/HLT/V138 (CMSSW_3_5_7_HLT3)
+# /dev/CMSSW_3_5_5/HLT/V147 (CMSSW_3_5_7_HLT4)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HLT/V138')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HLT/V147')
 )
 
 streams = cms.PSet( 
+  HLTMON = cms.vstring( 'OfflineMonitor' ),
   ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
   HLTDQM = cms.vstring(  ),
-  HLTMON = cms.vstring( 'OfflineMonitor' ),
   Calibration = cms.vstring( 'TestEnables' ),
   EcalCalibration = cms.vstring( 'EcalLaser' ),
   ALCAP0 = cms.vstring( 'AlCaP0' ),
@@ -35,7 +35,6 @@ streams = cms.PSet(
   EventDisplay = cms.vstring(  )
 )
 datasets = cms.PSet( 
-  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
   OfflineMonitor = cms.vstring( 'HLT_L1Jet10U_NoBPTX',
     'HLT_L1SingleCenJet_NoBPTX',
     'HLT_L1SingleEG2_NoBPTX',
@@ -167,6 +166,7 @@ datasets = cms.PSet(
     'HLT_HighMult40',
     'HLT_L1_BscMinBiasOR_BptxPlusORMinus_NoBPTX',
     'HLT_L1_BscMinBiasOR_BeamGas' ),
+  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
   TestEnables = cms.vstring( 'HLT_Calibration' ),
   EcalLaser = cms.vstring( 'HLT_EcalCalibration' ),
   AlCaP0 = cms.vstring( 'AlCa_EcalEta_8E29',

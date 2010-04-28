@@ -1,17 +1,17 @@
-# /dev/CMSSW_3_5_5/HIon/V46 (CMSSW_3_5_7_HLT3)
+# /dev/CMSSW_3_5_5/HIon/V48 (CMSSW_3_5_7_HLT4)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V46')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V48')
 )
 
 streams = cms.PSet( 
   Offline = cms.vstring(  ),
+  HLTMON = cms.vstring( 'OfflineMonitor' ),
   ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
   HLTDQM = cms.vstring(  ),
-  HLTMON = cms.vstring( 'OfflineMonitor' ),
   Calibration = cms.vstring( 'TestEnables' ),
   EcalCalibration = cms.vstring( 'EcalLaser' ),
   ALCAP0 = cms.vstring( 'AlCaP0' ),
@@ -35,8 +35,8 @@ streams = cms.PSet(
   EventDisplay = cms.vstring(  )
 )
 datasets = cms.PSet( 
-  AlCaPhiSymEcal = cms.vstring(  ),
   OfflineMonitor = cms.vstring(  ),
+  AlCaPhiSymEcal = cms.vstring(  ),
   TestEnables = cms.vstring(  ),
   EcalLaser = cms.vstring(  ),
   AlCaP0 = cms.vstring(  ),

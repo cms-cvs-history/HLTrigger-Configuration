@@ -1,18 +1,18 @@
-# /dev/CMSSW_3_5_5/8E29/V46 (CMSSW_3_5_7_HLT3)
+# /dev/CMSSW_3_5_5/8E29/V48 (CMSSW_3_5_7_HLT4)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/8E29/V46')
+  tableName = cms.string('/dev/CMSSW_3_5_5/8E29/V48')
 )
 
 streams = cms.PSet( 
   ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
   RPCMON = cms.vstring( 'RPCMonitor' ),
   Offline = cms.vstring(  ),
-  HLTDQM = cms.vstring(  ),
   HLTMON = cms.vstring( 'OfflineMonitor' ),
+  HLTDQM = cms.vstring(  ),
   Calibration = cms.vstring( 'TestEnables' ),
   EcalCalibration = cms.vstring( 'EcalLaser' ),
   ALCAP0 = cms.vstring( 'AlCaP0' ),
@@ -170,11 +170,20 @@ datasets = cms.PSet(
   ZeroBias = cms.vstring( 'HLT_ZeroBias' ),
   RandomTriggers = cms.vstring(  ),
   HcalHPDNoise = cms.vstring(  ),
-  JetMETTauMonitor = cms.vstring( 'HLT_L1Jet6U',
-    'HLT_L1MET20' ),
+  JetMETTauMonitor = cms.vstring( 'HLT_L1MET20',
+    'HLT_L1Jet6U' ),
   MuMonitor = cms.vstring( 'HLT_L1Mu',
     'HLT_L1MuOpen' ),
-  Mu = cms.vstring( 'HLT_DoubleMu0',
+  Mu = cms.vstring( 'HLT_Mu5_L2Mu0',
+    'HLT_L2DoubleMu0',
+    'HLT_Mu3_Track0_Jpsi',
+    'HLT_Mu5_L1MuOpen',
+    'HLT_Mu5_Track0_Jpsi',
+    'HLT_L1DoubleMuOpen',
+    'HLT_L1Mu20',
+    'HLT_Mu0_L2Mu0',
+    'HLT_Mu3_L2Mu0',
+    'HLT_DoubleMu0',
     'HLT_DoubleMu3',
     'HLT_Mu3',
     'HLT_Mu5',
@@ -187,16 +196,7 @@ datasets = cms.PSet(
     'HLT_L1Mu14_L1SingleEG10',
     'HLT_Mu0_L1MuOpen',
     'HLT_Mu0_Track0_Jpsi',
-    'HLT_Mu3_L1MuOpen',
-    'HLT_Mu3_Track0_Jpsi',
-    'HLT_Mu5_L1MuOpen',
-    'HLT_Mu5_Track0_Jpsi',
-    'HLT_L1DoubleMuOpen',
-    'HLT_L1Mu20',
-    'HLT_Mu0_L2Mu0',
-    'HLT_Mu3_L2Mu0',
-    'HLT_Mu5_L2Mu0',
-    'HLT_L2DoubleMu0' ),
+    'HLT_Mu3_L1MuOpen' ),
   HcalNZS = cms.vstring( 'HLT_HcalNZS_8E29',
     'HLT_HcalPhiSym' ),
   MinimumBias = cms.vstring( 'HLT_HighMult40',
@@ -209,7 +209,12 @@ datasets = cms.PSet(
     'HLT_MinBiasEcal',
     'HLT_MinBiasHcal',
     'HLT_StoppedHSCP_8E29' ),
-  JetMETTau = cms.vstring( 'HLT_QuadJet15U',
+  JetMETTau = cms.vstring( 'HLT_DoubleLooseIsoTau15',
+    'HLT_SingleLooseIsoTau20',
+    'HLT_HT100U',
+    'HLT_MET100',
+    'HLT_MET45',
+    'HLT_QuadJet15U',
     'HLT_DiJetAve30U_8E29',
     'HLT_DiJetAve15U_8E29',
     'HLT_FwdJet20U',
@@ -218,12 +223,7 @@ datasets = cms.PSet(
     'HLT_Jet15U',
     'HLT_BTagMu_Jet10U',
     'HLT_DoubleJet15U_ForwardBackward',
-    'HLT_BTagIP_Jet50U',
-    'HLT_DoubleLooseIsoTau15',
-    'HLT_SingleLooseIsoTau20',
-    'HLT_HT100U',
-    'HLT_MET100',
-    'HLT_MET45' )
+    'HLT_BTagIP_Jet50U' )
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
