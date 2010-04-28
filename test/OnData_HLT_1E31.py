@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_6_0/1E31/V5 (CMSSW_3_6_0_HLT2)
+# /dev/CMSSW_3_6_0/1E31/V6 (CMSSW_3_6_0_HLT2)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_6_0/1E31/V5')
+  tableName = cms.string('/dev/CMSSW_3_6_0/1E31/V6')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -21,6 +21,7 @@ process.streams = cms.PSet(
   EcalCalibration = cms.vstring( 'EcalLaser' ),
   ALCAP0 = cms.vstring( 'AlCaP0' ),
   Express = cms.vstring( 'ExpressPhysics' ),
+  HLTMON = cms.vstring( 'OfflineMonitor' ),
   EventDisplay = cms.vstring(  ),
   A = cms.vstring( 'JetMETTauMonitor',
     'RandomTriggers',
@@ -35,8 +36,7 @@ process.streams = cms.PSet(
     'EG',
     'MinimumBias' ),
   DQM = cms.vstring(  ),
-  HLTDQM = cms.vstring(  ),
-  HLTMON = cms.vstring( 'OfflineMonitor' )
+  HLTDQM = cms.vstring(  )
 )
 process.datasets = cms.PSet( 
   AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
@@ -55,6 +55,47 @@ process.datasets = cms.PSet(
     'HLT_ZeroBias',
     'HLT_L1SingleEG5',
     'HLT_L1DoubleMuOpen' ),
+  OfflineMonitor = cms.vstring( 'HLT_L1MET20',
+    'HLT_DoubleMu3',
+    'HLT_HighMult40',
+    'HLT_Mu0_L1MuOpen',
+    'HLT_Mu0_Track0_Jpsi',
+    'HLT_Mu3_L1MuOpen',
+    'HLT_Mu3_Track0_Jpsi',
+    'HLT_Mu5_L1MuOpen',
+    'HLT_Mu5_Track0_Jpsi',
+    'HLT_L2DoubleMu0',
+    'HLT_Mu0_L2Mu0',
+    'HLT_Mu3_L2Mu0',
+    'HLT_Mu5_L2Mu0',
+    'HLT_DoubleMu0',
+    'HLT_Mu9',
+    'HLT_Mu5',
+    'HLT_L2Mu11',
+    'AlCa_EcalPhiSym',
+    'HLT_HcalPhiSym',
+    'HLT_TrackerCosmics',
+    'HLT_RPCBarrelCosmics',
+    'HLT_HighMultiplicityBSC',
+    'HLT_ForwardBSC',
+    'HLT_BackwardBSC',
+    'HLT_CSCBeamHaloRing2or3',
+    'HLT_CSCBeamHaloOverlapRing2',
+    'HLT_CSCBeamHaloOverlapRing1',
+    'HLT_CSCBeamHalo',
+    'HLT_ZeroBiasPixel_SingleTrack',
+    'HLT_MinBiasEcal',
+    'HLT_MinBiasHcal',
+    'HLT_L1Mu14_L1SingleEG10',
+    'HLT_DoublePhoton10_L1R',
+    'HLT_Photon15_L1R',
+    'HLT_Photon10_L1R',
+    'HLT_Ele15_SiStrip_L1R',
+    'HLT_L1SingleEG5',
+    'HLT_L1DoubleMuOpen',
+    'HLT_L1Mu',
+    'HLT_L1MuOpen',
+    'HLT_MET100' ),
   JetMETTauMonitor = cms.vstring( 'HLT_L1MET20' ),
   RandomTriggers = cms.vstring(  ),
   HcalHPDNoise = cms.vstring(  ),
@@ -97,48 +138,7 @@ process.datasets = cms.PSet(
     'HLT_ZeroBiasPixel_SingleTrack',
     'HLT_MinBiasEcal',
     'HLT_MinBiasHcal',
-    'HLT_HighMult40' ),
-  OfflineMonitor = cms.vstring( 'HLT_L1MET20',
-    'HLT_DoubleMu3',
-    'HLT_HighMult40',
-    'HLT_Mu0_L1MuOpen',
-    'HLT_Mu0_Track0_Jpsi',
-    'HLT_Mu3_L1MuOpen',
-    'HLT_Mu3_Track0_Jpsi',
-    'HLT_Mu5_L1MuOpen',
-    'HLT_Mu5_Track0_Jpsi',
-    'HLT_L2DoubleMu0',
-    'HLT_Mu0_L2Mu0',
-    'HLT_Mu3_L2Mu0',
-    'HLT_Mu5_L2Mu0',
-    'HLT_DoubleMu0',
-    'HLT_Mu9',
-    'HLT_Mu5',
-    'HLT_L2Mu11',
-    'AlCa_EcalPhiSym',
-    'HLT_HcalPhiSym',
-    'HLT_TrackerCosmics',
-    'HLT_RPCBarrelCosmics',
-    'HLT_HighMultiplicityBSC',
-    'HLT_ForwardBSC',
-    'HLT_BackwardBSC',
-    'HLT_CSCBeamHaloRing2or3',
-    'HLT_CSCBeamHaloOverlapRing2',
-    'HLT_CSCBeamHaloOverlapRing1',
-    'HLT_CSCBeamHalo',
-    'HLT_ZeroBiasPixel_SingleTrack',
-    'HLT_MinBiasEcal',
-    'HLT_MinBiasHcal',
-    'HLT_L1Mu14_L1SingleEG10',
-    'HLT_DoublePhoton10_L1R',
-    'HLT_Photon15_L1R',
-    'HLT_Photon10_L1R',
-    'HLT_Ele15_SiStrip_L1R',
-    'HLT_L1SingleEG5',
-    'HLT_L1DoubleMuOpen',
-    'HLT_L1Mu',
-    'HLT_L1MuOpen',
-    'HLT_MET100' )
+    'HLT_HighMult40' )
 )
 
 process.source = cms.Source( "PoolSource",
@@ -1465,15 +1465,6 @@ process.PrescaleService = cms.Service( "PrescaleService",
       cms.PSet(  pathName = cms.string( "HLT_L1MuOpen" ),
         prescales = cms.vuint32( 10 )
       ),
-      cms.PSet(  pathName = cms.string( "HLT_BTagIP_Jet80" ),
-        prescales = cms.vuint32( 0 )
-      ),
-      cms.PSet(  pathName = cms.string( "HLT_BTagIP_Jet120" ),
-        prescales = cms.vuint32( 0 )
-      ),
-      cms.PSet(  pathName = cms.string( "HLT_BTagMu_Jet20" ),
-        prescales = cms.vuint32( 0 )
-      ),
       cms.PSet(  pathName = cms.string( "HLT_MinBiasHcal" ),
         prescales = cms.vuint32( 1000 )
       ),
@@ -1483,13 +1474,22 @@ process.PrescaleService = cms.Service( "PrescaleService",
       cms.PSet(  pathName = cms.string( "HLT_ZeroBiasPixel_SingleTrack" ),
         prescales = cms.vuint32( 100 )
       ),
-      cms.PSet(  pathName = cms.string( "HLT_IsoTrackHE_1E31" ),
-        prescales = cms.vuint32( 0 )
+      cms.PSet(  pathName = cms.string( "HLT_BackwardBSC" ),
+        prescales = cms.vuint32( 20 )
       ),
-      cms.PSet(  pathName = cms.string( "HLT_IsoTrackHB_1E31" ),
-        prescales = cms.vuint32( 0 )
+      cms.PSet(  pathName = cms.string( "HLT_ForwardBSC" ),
+        prescales = cms.vuint32( 20 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_HighMultiplicityBSC" ),
+        prescales = cms.vuint32( 700 )
+      ),
+      cms.PSet(  pathName = cms.string( "AlCa_EcalPhiSym" ),
+        prescales = cms.vuint32( 10 )
       ),
       cms.PSet(  pathName = cms.string( "AlCa_RPCMuonNormalisation" ),
+        prescales = cms.vuint32( 10 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_HighMult40" ),
         prescales = cms.vuint32( 10 )
       )
     )
@@ -9260,6 +9260,8 @@ process.options = cms.untracked.PSet(
 if 'GlobalTag' in process.__dict__:
     process.GlobalTag.connect   = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'
     process.GlobalTag.pfnPrefix = cms.untracked.string('frontier://FrontierProd/')
+    from Configuration.PyReleaseValidation.autoCond import autoCond
+    process.GlobalTag.globaltag = autoCond['com10']
 
 if 'Level1MenuOverride' in process.__dict__:
     process.Level1MenuOverride.connect   = 'frontier://FrontierProd/CMS_COND_31X_L1T'
