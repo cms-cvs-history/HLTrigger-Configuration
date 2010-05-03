@@ -1,16 +1,13 @@
-# /dev/CMSSW_3_6_0/pre4/1E31/V20 (CMSSW_3_6_X_2010-04-01-0100_HLT1)
+# /dev/CMSSW_3_6_0/patch1/1E31/V1 (CMSSW_3_6_0_patch1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_6_0/pre4/1E31/V20')
+  tableName = cms.string('/dev/CMSSW_3_6_0/patch1/1E31/V1')
 )
 
 streams = cms.PSet( 
-  Offline = cms.vstring(  ),
-  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
-  RPCMON = cms.vstring( 'RPCMonitor' ),
   OnlineErrors = cms.vstring( 'LogMonitor',
     'FEDMonitor' ),
   Calibration = cms.vstring( 'TestEnables' ),
@@ -32,13 +29,12 @@ streams = cms.PSet(
   DQM = cms.vstring(  ),
   HLTDQM = cms.vstring(  ),
   HLTMON = cms.vstring( 'OfflineMonitor' ),
-  Express = cms.vstring( 'ExpressPhysics' )
+  Express = cms.vstring( 'ExpressPhysics' ),
+  Offline = cms.vstring(  ),
+  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
+  RPCMON = cms.vstring( 'RPCMonitor' )
 )
 datasets = cms.PSet( 
-  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
-  RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
-    'AlCa_RPCMuonNoHits',
-    'AlCa_RPCMuonNoTriggers' ),
   LogMonitor = cms.vstring(  ),
   FEDMonitor = cms.vstring(  ),
   TestEnables = cms.vstring(  ),
@@ -134,7 +130,11 @@ datasets = cms.PSet(
     'HLT_L1Mu',
     'HLT_ZeroBias',
     'HLT_L1SingleEG5',
-    'HLT_L1DoubleMuOpen' )
+    'HLT_L1DoubleMuOpen' ),
+  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
+  RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
+    'AlCa_RPCMuonNoHits',
+    'AlCa_RPCMuonNoTriggers' )
 )
 
 MCJetCorrectorIcone5Unit = cms.ESSource( "LXXXCorrectionService",
@@ -775,9 +775,9 @@ hcalRecAlgos = cms.ESProducer( "HcalRecAlgoESProducer",
       Level = cms.int32( 0 )
     )
   ),
-  RecoveredRecHitBits = cms.vstring(  ),
+  DropChannelStatusBits = cms.vstring(  ),
   appendToDataLabel = cms.string( "" ),
-  DropChannelStatusBits = cms.vstring(  )
+  RecoveredRecHitBits = cms.vstring(  )
 )
 hltCkfTrajectoryBuilderMumu = cms.ESProducer( "CkfTrajectoryBuilderESProducer",
   ComponentName = cms.string( "hltCkfTrajectoryBuilderMumu" ),
@@ -2856,7 +2856,7 @@ hltPixelTracks = cms.EDProducer( "PixelTrackProducer",
         useMultScattering = cms.bool( True ),
         ComponentName = cms.string( "PixelTripletHLTGenerator" ),
         extraHitRZtolerance = cms.double( 0.06 ),
-        maxTriplets = cms.uint32( 10000 )
+        maxElement = cms.uint32( 10000 )
       ),
       SeedingLayers = cms.string( "PixelLayerTriplets" )
     ),
@@ -3966,7 +3966,8 @@ hltL1IsoStartUpElectronPixelSeeds = cms.EDProducer( "ElectronSeedProducer",
       OrderedHitsFactoryPSet = cms.PSet( 
         ComponentName = cms.string( "StandardHitPairGenerator" ),
         SeedingLayers = cms.string( "MixedLayerPairs" ),
-        useOnDemandTracker = cms.untracked.int32( 0 )
+        useOnDemandTracker = cms.untracked.int32( 0 ),
+        maxElement = cms.uint32( 0 )
       ),
       DeltaPhi1Low = cms.double( 0.23 ),
       DeltaPhi1High = cms.double( 0.08 ),
@@ -4019,7 +4020,8 @@ hltL1NonIsoStartUpElectronPixelSeeds = cms.EDProducer( "ElectronSeedProducer",
       OrderedHitsFactoryPSet = cms.PSet( 
         ComponentName = cms.string( "StandardHitPairGenerator" ),
         SeedingLayers = cms.string( "MixedLayerPairs" ),
-        useOnDemandTracker = cms.untracked.int32( 0 )
+        useOnDemandTracker = cms.untracked.int32( 0 ),
+        maxElement = cms.uint32( 0 )
       ),
       DeltaPhi1Low = cms.double( 0.23 ),
       DeltaPhi1High = cms.double( 0.08 ),
@@ -4455,7 +4457,8 @@ hltL1IsoElectronsRegionalPixelSeedGenerator = cms.EDProducer( "EgammaHLTRegional
     BSProducer = cms.InputTag( "hltOfflineBeamSpot" ),
     OrderedHitsFactoryPSet = cms.PSet( 
       ComponentName = cms.string( "StandardHitPairGenerator" ),
-      SeedingLayers = cms.string( "MixedLayerPairs" )
+      SeedingLayers = cms.string( "MixedLayerPairs" ),
+      maxElement = cms.uint32( 0 )
     )
 )
 hltL1IsoElectronsRegionalCkfTrackCandidates = cms.EDProducer( "CkfTrackCandidateMaker",
@@ -4500,7 +4503,8 @@ hltL1NonIsoElectronsRegionalPixelSeedGenerator = cms.EDProducer( "EgammaHLTRegio
     BSProducer = cms.InputTag( "hltOfflineBeamSpot" ),
     OrderedHitsFactoryPSet = cms.PSet( 
       ComponentName = cms.string( "StandardHitPairGenerator" ),
-      SeedingLayers = cms.string( "MixedLayerPairs" )
+      SeedingLayers = cms.string( "MixedLayerPairs" ),
+      maxElement = cms.uint32( 0 )
     )
 )
 hltL1NonIsoElectronsRegionalCkfTrackCandidates = cms.EDProducer( "CkfTrackCandidateMaker",
@@ -5363,7 +5367,8 @@ hltL1IsoEgammaRegionalPixelSeedGenerator = cms.EDProducer( "EgammaHLTRegionalPix
     BSProducer = cms.InputTag( "hltOfflineBeamSpot" ),
     OrderedHitsFactoryPSet = cms.PSet( 
       ComponentName = cms.string( "StandardHitPairGenerator" ),
-      SeedingLayers = cms.string( "PixelLayerPairs" )
+      SeedingLayers = cms.string( "PixelLayerPairs" ),
+      maxElement = cms.uint32( 0 )
     )
 )
 hltL1IsoEgammaRegionalCkfTrackCandidates = cms.EDProducer( "CkfTrackCandidateMaker",
@@ -5408,7 +5413,8 @@ hltL1NonIsoEgammaRegionalPixelSeedGenerator = cms.EDProducer( "EgammaHLTRegional
     BSProducer = cms.InputTag( "hltOfflineBeamSpot" ),
     OrderedHitsFactoryPSet = cms.PSet( 
       ComponentName = cms.string( "StandardHitPairGenerator" ),
-      SeedingLayers = cms.string( "PixelLayerPairs" )
+      SeedingLayers = cms.string( "PixelLayerPairs" ),
+      maxElement = cms.uint32( 0 )
     )
 )
 hltL1NonIsoEgammaRegionalCkfTrackCandidates = cms.EDProducer( "CkfTrackCandidateMaker",
@@ -6454,7 +6460,8 @@ hltL25TauPixelSeeds = cms.EDProducer( "SeedGeneratorFromRegionHitsEDProducer",
     ),
     OrderedHitsFactoryPSet = cms.PSet( 
       ComponentName = cms.string( "StandardHitPairGenerator" ),
-      SeedingLayers = cms.string( "PixelLayerPairs" )
+      SeedingLayers = cms.string( "PixelLayerPairs" ),
+      maxElement = cms.uint32( 0 )
     ),
     SeedComparitorPSet = cms.PSet(  ComponentName = cms.string( "none" ) ),
     SeedCreatorPSet = cms.PSet( 
@@ -6556,7 +6563,8 @@ hltL3TauPixelSeeds = cms.EDProducer( "SeedGeneratorFromRegionHitsEDProducer",
     ),
     OrderedHitsFactoryPSet = cms.PSet( 
       ComponentName = cms.string( "StandardHitPairGenerator" ),
-      SeedingLayers = cms.string( "PixelLayerPairs" )
+      SeedingLayers = cms.string( "PixelLayerPairs" ),
+      maxElement = cms.uint32( 0 )
     ),
     SeedComparitorPSet = cms.PSet(  ComponentName = cms.string( "none" ) ),
     SeedCreatorPSet = cms.PSet( 
@@ -6775,7 +6783,8 @@ hltBLifetimeRegionalPixelSeedGeneratorStartup = cms.EDProducer( "SeedGeneratorFr
     ),
     OrderedHitsFactoryPSet = cms.PSet( 
       ComponentName = cms.string( "StandardHitPairGenerator" ),
-      SeedingLayers = cms.string( "PixelLayerPairs" )
+      SeedingLayers = cms.string( "PixelLayerPairs" ),
+      maxElement = cms.uint32( 0 )
     ),
     SeedComparitorPSet = cms.PSet(  ComponentName = cms.string( "none" ) ),
     SeedCreatorPSet = cms.PSet( 
@@ -7371,7 +7380,8 @@ hltL1IsoLargeWindowElectronPixelSeeds = cms.EDProducer( "ElectronSeedProducer",
       OrderedHitsFactoryPSet = cms.PSet( 
         ComponentName = cms.string( "StandardHitPairGenerator" ),
         SeedingLayers = cms.string( "PixelLayerPairs" ),
-        useOnDemandTracker = cms.untracked.int32( 0 )
+        useOnDemandTracker = cms.untracked.int32( 0 ),
+        maxElement = cms.uint32( 0 )
       ),
       DeltaPhi1Low = cms.double( 0.23 ),
       DeltaPhi1High = cms.double( 0.08 ),
@@ -7424,7 +7434,8 @@ hltL1NonIsoLargeWindowElectronPixelSeeds = cms.EDProducer( "ElectronSeedProducer
       OrderedHitsFactoryPSet = cms.PSet( 
         ComponentName = cms.string( "StandardHitPairGenerator" ),
         SeedingLayers = cms.string( "PixelLayerPairs" ),
-        useOnDemandTracker = cms.untracked.int32( 0 )
+        useOnDemandTracker = cms.untracked.int32( 0 ),
+        maxElement = cms.uint32( 0 )
       ),
       DeltaPhi1Low = cms.double( 0.23 ),
       DeltaPhi1High = cms.double( 0.08 ),
@@ -7548,7 +7559,7 @@ hltPixelTracksForMinBias = cms.EDProducer( "PixelTrackProducer",
         useMultScattering = cms.bool( True ),
         ComponentName = cms.string( "PixelTripletHLTGenerator" ),
         extraHitRZtolerance = cms.double( 0.06 ),
-        maxTriplets = cms.uint32( 10000 )
+        maxElement = cms.uint32( 10000 )
       )
     ),
     FitterPSet = cms.PSet( 
@@ -7741,7 +7752,7 @@ hltHITPixelTracksHB = cms.EDProducer( "PixelTrackProducer",
         useMultScattering = cms.bool( True ),
         ComponentName = cms.string( "PixelTripletHLTGenerator" ),
         extraHitRZtolerance = cms.double( 0.06 ),
-        maxTriplets = cms.uint32( 10000 )
+        maxElement = cms.uint32( 10000 )
       ),
       SeedingLayers = cms.string( "PixelLayerTripletsHITHB" )
     ),
@@ -7782,7 +7793,7 @@ hltHITPixelTracksHE = cms.EDProducer( "PixelTrackProducer",
         useMultScattering = cms.bool( True ),
         ComponentName = cms.string( "PixelTripletHLTGenerator" ),
         extraHitRZtolerance = cms.double( 0.06 ),
-        maxTriplets = cms.uint32( 10000 )
+        maxElement = cms.uint32( 10000 )
       ),
       SeedingLayers = cms.string( "PixelLayerTripletsHITHE" )
     ),
@@ -7883,7 +7894,7 @@ hltHITPixelTripletSeedGeneratorHE1E31 = cms.EDProducer( "SeedGeneratorFromRegion
         useMultScattering = cms.bool( True ),
         phiPreFiltering = cms.double( 0.3 ),
         extraHitRZtolerance = cms.double( 0.06 ),
-        maxTriplets = cms.uint32( 10000 )
+        maxElement = cms.uint32( 10000 )
       ),
       SeedingLayers = cms.string( "PixelLayerTriplets" )
     ),
@@ -8022,7 +8033,7 @@ hltHITPixelTripletSeedGeneratorHB1E31 = cms.EDProducer( "SeedGeneratorFromRegion
         useMultScattering = cms.bool( True ),
         phiPreFiltering = cms.double( 0.3 ),
         extraHitRZtolerance = cms.double( 0.06 ),
-        maxTriplets = cms.uint32( 10000 )
+        maxElement = cms.uint32( 10000 )
       ),
       SeedingLayers = cms.string( "PixelLayerTriplets" )
     ),

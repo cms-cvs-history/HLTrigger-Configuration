@@ -1,18 +1,17 @@
-# /dev/CMSSW_3_6_0/pre4/HIon/V20 (CMSSW_3_6_X_2010-04-01-0100_HLT1)
+# /dev/CMSSW_3_6_0/patch1/HIon/V1 (CMSSW_3_6_0_patch1)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_6_0/pre4/HIon/V20')
+  tableName = cms.string('/dev/CMSSW_3_6_0/patch1/HIon/V1')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
   'TooManyProducts',
   'TooFewProducts' ) )
 process.streams = cms.PSet( 
-  Offline = cms.vstring(  ),
   OnlineErrors = cms.vstring( 'LogMonitor',
     'FEDMonitor' ),
   Calibration = cms.vstring( 'TestEnables' ),
@@ -36,7 +35,8 @@ process.streams = cms.PSet(
   DQM = cms.vstring(  ),
   HLTDQM = cms.vstring(  ),
   HLTMON = cms.vstring( 'OfflineMonitor' ),
-  Express = cms.vstring( 'ExpressPhysics' )
+  Express = cms.vstring( 'ExpressPhysics' ),
+  Offline = cms.vstring(  )
 )
 process.datasets = cms.PSet( 
   LogMonitor = cms.vstring(  ),
@@ -1280,9 +1280,9 @@ process.hcalRecAlgos = cms.ESProducer( "HcalRecAlgoESProducer",
       Level = cms.int32( 0 )
     )
   ),
-  RecoveredRecHitBits = cms.vstring(  ),
+  DropChannelStatusBits = cms.vstring(  ),
   appendToDataLabel = cms.string( "" ),
-  DropChannelStatusBits = cms.vstring(  )
+  RecoveredRecHitBits = cms.vstring(  )
 )
 process.hcal_db_producer = cms.ESProducer( "HcalDbProducer",
   appendToDataLabel = cms.string( "" )
@@ -2423,7 +2423,7 @@ process.hltHIPixelTracks = cms.EDProducer( "PixelTrackProducer",
         useMultScattering = cms.bool( True ),
         ComponentName = cms.string( "PixelTripletHLTGenerator" ),
         extraHitRZtolerance = cms.double( 0.06 ),
-        maxTriplets = cms.uint32( 10000 )
+        maxElement = cms.uint32( 10000 )
       )
     ),
     FitterPSet = cms.PSet( 
@@ -2595,9 +2595,9 @@ process.options = cms.untracked.PSet(
 )
 
 if 'GlobalTag' in process.__dict__:
+    process.GlobalTag.connect   = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'
     from Configuration.PyReleaseValidation.autoCond import autoCond
     process.GlobalTag.globaltag = autoCond['mc']
-    process.GlobalTag.connect   = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'
 
 if 'Level1MenuOverride' in process.__dict__:
     process.Level1MenuOverride.connect   = 'frontier://FrontierProd/CMS_COND_31X_L1T'
