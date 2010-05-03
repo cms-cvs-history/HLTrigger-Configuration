@@ -89,6 +89,7 @@ AlCa_RPCMuonNoHits
 AlCa_RPCMuonNoTriggers
 AlCa_RPCMuonNormalisation
 HLT_PixelTracks_Multiplicity40
+HLT_PixelTracks_Multiplicity70
 HLTriggerFinalPath
 HLTAnalyzerEndpath
 HLTOutput

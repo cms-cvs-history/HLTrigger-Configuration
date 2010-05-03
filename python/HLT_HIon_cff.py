@@ -1,18 +1,14 @@
-# /dev/CMSSW_3_5_5/HIon/V51 (CMSSW_3_5_8_HLT1)
+# /dev/CMSSW_3_5_5/HIon/V52 (CMSSW_3_5_8_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V51')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V52')
 )
 
 streams = cms.PSet( 
   Offline = cms.vstring(  ),
-  Calibration = cms.vstring( 'TestEnables' ),
-  EcalCalibration = cms.vstring( 'EcalLaser' ),
-  OnlineErrors = cms.vstring( 'LogMonitor',
-    'FEDMonitor' ),
   ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
   ALCAP0 = cms.vstring( 'AlCaP0' ),
   RPCMON = cms.vstring( 'RPCMonitor' ),
@@ -26,19 +22,19 @@ streams = cms.PSet(
     'HcalNZS',
     'JetMETTauMonitor',
     'MuMonitor',
-    'RandomTriggers',
     'Mu',
     'JetMETTau',
     'Cosmics',
     'EGMonitor',
     'EG',
-    'MinimumBias' )
+    'MinimumBias',
+    'RandomTriggers' ),
+  Calibration = cms.vstring( 'TestEnables' ),
+  EcalCalibration = cms.vstring( 'EcalLaser' ),
+  OnlineErrors = cms.vstring( 'LogMonitor',
+    'FEDMonitor' )
 )
 datasets = cms.PSet( 
-  TestEnables = cms.vstring(  ),
-  EcalLaser = cms.vstring(  ),
-  LogMonitor = cms.vstring(  ),
-  FEDMonitor = cms.vstring(  ),
   AlCaPhiSymEcal = cms.vstring(  ),
   AlCaP0 = cms.vstring(  ),
   RPCMonitor = cms.vstring(  ),
@@ -49,13 +45,17 @@ datasets = cms.PSet(
   HcalNZS = cms.vstring(  ),
   JetMETTauMonitor = cms.vstring(  ),
   MuMonitor = cms.vstring(  ),
-  RandomTriggers = cms.vstring(  ),
   Mu = cms.vstring(  ),
   JetMETTau = cms.vstring(  ),
   Cosmics = cms.vstring(  ),
   EGMonitor = cms.vstring(  ),
   EG = cms.vstring(  ),
-  MinimumBias = cms.vstring(  )
+  MinimumBias = cms.vstring(  ),
+  RandomTriggers = cms.vstring(  ),
+  TestEnables = cms.vstring(  ),
+  EcalLaser = cms.vstring(  ),
+  LogMonitor = cms.vstring(  ),
+  FEDMonitor = cms.vstring(  )
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
@@ -1045,10 +1045,6 @@ hltBPTXCoincidence = cms.EDFilter( "HLTLevel1Activity",
 hltScalersRawToDigi = cms.EDProducer( "ScalersRawToDigi",
     scalersInputTag = cms.InputTag( "rawDataCollector" )
 )
-hltOnlineBeamSpot = cms.EDProducer( "BeamSpotOnlineProducer",
-    label = cms.InputTag( "hltScalersRawToDigi" ),
-    changeToCMSCoordinates = cms.bool( True )
-)
 hltOfflineBeamSpot = cms.EDProducer( "BeamSpotProducer" )
 hltPreFirstPath = cms.EDFilter( "HLTPrescaler" )
 hltBoolFirstPath = cms.EDFilter( "HLTBool",
@@ -1829,7 +1825,7 @@ hltTrigReport = cms.EDAnalyzer( "HLTrigReport",
 )
 
 HLTL1UnpackerSequence = cms.Sequence( hltGtDigis + hltGctDigis + hltL1GtObjectMap + hltL1extraParticles )
-HLTBeamSpot = cms.Sequence( hltScalersRawToDigi + hltOnlineBeamSpot + hltOfflineBeamSpot )
+HLTBeamSpot = cms.Sequence( hltScalersRawToDigi + hltOfflineBeamSpot )
 HLTBeginSequenceBPTX = cms.Sequence( hltTriggerType + HLTL1UnpackerSequence + hltBPTXCoincidence + HLTBeamSpot )
 HLTBeginSequence = cms.Sequence( hltTriggerType + HLTL1UnpackerSequence + HLTBeamSpot )
 HLTEndSequence = cms.Sequence( hltBoolEnd )

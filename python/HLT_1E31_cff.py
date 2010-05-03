@@ -1,17 +1,16 @@
-# /dev/CMSSW_3_5_5/1E31/V51 (CMSSW_3_5_8_HLT1)
+# /dev/CMSSW_3_5_5/1E31/V52 (CMSSW_3_5_8_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V51')
+  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V52')
 )
 
 streams = cms.PSet( 
-  Calibration = cms.vstring( 'TestEnables' ),
-  EcalCalibration = cms.vstring( 'EcalLaser' ),
-  OnlineErrors = cms.vstring( 'LogMonitor',
-    'FEDMonitor' ),
+  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
+  RPCMON = cms.vstring( 'RPCMonitor' ),
+  Offline = cms.vstring(  ),
   ALCAP0 = cms.vstring( 'AlCaP0' ),
   HLTMON = cms.vstring( 'OfflineMonitor' ),
   HLTDQM = cms.vstring(  ),
@@ -23,22 +22,23 @@ streams = cms.PSet(
     'HcalNZS',
     'JetMETTauMonitor',
     'MuMonitor',
-    'RandomTriggers',
     'Mu',
     'JetMETTau',
     'Cosmics',
     'EGMonitor',
     'EG',
-    'MinimumBias' ),
-  Offline = cms.vstring(  ),
-  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
-  RPCMON = cms.vstring( 'RPCMonitor' )
+    'MinimumBias',
+    'RandomTriggers' ),
+  Calibration = cms.vstring( 'TestEnables' ),
+  EcalCalibration = cms.vstring( 'EcalLaser' ),
+  OnlineErrors = cms.vstring( 'LogMonitor',
+    'FEDMonitor' )
 )
 datasets = cms.PSet( 
-  TestEnables = cms.vstring(  ),
-  EcalLaser = cms.vstring(  ),
-  LogMonitor = cms.vstring(  ),
-  FEDMonitor = cms.vstring(  ),
+  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
+  RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
+    'AlCa_RPCMuonNoHits',
+    'AlCa_RPCMuonNoTriggers' ),
   AlCaP0 = cms.vstring( 'AlCa_EcalPi0_1E31',
     'AlCa_EcalEta_1E31' ),
   OfflineMonitor = cms.vstring( 'HLT_Mu0_L1MuOpen',
@@ -91,8 +91,12 @@ datasets = cms.PSet(
   HcalNZS = cms.vstring( 'HLT_HcalPhiSym' ),
   JetMETTauMonitor = cms.vstring( 'HLT_L1MET20' ),
   MuMonitor = cms.vstring( 'HLT_L1Mu' ),
-  RandomTriggers = cms.vstring(  ),
-  Mu = cms.vstring( 'HLT_L1Mu14_L1SingleEG10',
+  Mu = cms.vstring( 'HLT_DoubleMu0',
+    'HLT_DoubleMu3',
+    'HLT_Mu5',
+    'HLT_Mu9',
+    'HLT_L2Mu11',
+    'HLT_L1Mu14_L1SingleEG10',
     'HLT_Mu0_L1MuOpen',
     'HLT_Mu0_Track0_Jpsi',
     'HLT_Mu3_L1MuOpen',
@@ -103,12 +107,7 @@ datasets = cms.PSet(
     'HLT_Mu0_L2Mu0',
     'HLT_Mu3_L2Mu0',
     'HLT_Mu5_L2Mu0',
-    'HLT_L2DoubleMu0',
-    'HLT_DoubleMu0',
-    'HLT_DoubleMu3',
-    'HLT_Mu5',
-    'HLT_Mu9',
-    'HLT_L2Mu11' ),
+    'HLT_L2DoubleMu0' ),
   JetMETTau = cms.vstring( 'HLT_MET100' ),
   Cosmics = cms.vstring( 'HLT_TrackerCosmics',
     'HLT_RPCBarrelCosmics',
@@ -129,10 +128,11 @@ datasets = cms.PSet(
     'HLT_MinBiasEcal',
     'HLT_MinBiasHcal',
     'HLT_PixelTracks_Multiplicity70' ),
-  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
-  RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
-    'AlCa_RPCMuonNoHits',
-    'AlCa_RPCMuonNoTriggers' )
+  RandomTriggers = cms.vstring(  ),
+  TestEnables = cms.vstring(  ),
+  EcalLaser = cms.vstring(  ),
+  LogMonitor = cms.vstring(  ),
+  FEDMonitor = cms.vstring(  )
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
@@ -1121,10 +1121,6 @@ hltBPTXCoincidence = cms.EDFilter( "HLTLevel1Activity",
 )
 hltScalersRawToDigi = cms.EDProducer( "ScalersRawToDigi",
     scalersInputTag = cms.InputTag( "rawDataCollector" )
-)
-hltOnlineBeamSpot = cms.EDProducer( "BeamSpotOnlineProducer",
-    label = cms.InputTag( "hltScalersRawToDigi" ),
-    changeToCMSCoordinates = cms.bool( True )
 )
 hltOfflineBeamSpot = cms.EDProducer( "BeamSpotProducer" )
 hltPreFirstPath = cms.EDFilter( "HLTPrescaler" )
@@ -8479,7 +8475,7 @@ hltTrigReport = cms.EDAnalyzer( "HLTrigReport",
 )
 
 HLTL1UnpackerSequence = cms.Sequence( hltGtDigis + hltGctDigis + hltL1GtObjectMap + hltL1extraParticles )
-HLTBeamSpot = cms.Sequence( hltScalersRawToDigi + hltOnlineBeamSpot + hltOfflineBeamSpot )
+HLTBeamSpot = cms.Sequence( hltScalersRawToDigi + hltOfflineBeamSpot )
 HLTBeginSequenceBPTX = cms.Sequence( hltTriggerType + HLTL1UnpackerSequence + hltBPTXCoincidence + HLTBeamSpot )
 HLTEndSequence = cms.Sequence( hltBoolEnd )
 HLTDoLocalHcalSequence = cms.Sequence( hltHcalDigis + hltHbhereco + hltHfreco + hltHoreco )

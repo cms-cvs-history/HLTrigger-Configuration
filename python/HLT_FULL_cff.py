@@ -1,18 +1,13 @@
-# /dev/CMSSW_3_5_5/HLT/V181 (CMSSW_3_5_8_HLT1)
+# /dev/CMSSW_3_5_5/HLT/V182 (CMSSW_3_5_8_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HLT/V181')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HLT/V182')
 )
 
 streams = cms.PSet( 
-  Calibration = cms.vstring( 'TestEnables' ),
-  EcalCalibration = cms.vstring( 'EcalLaser' ),
-  OnlineErrors = cms.vstring( 'LogMonitor',
-    'FEDMonitor' ),
-  Offline = cms.vstring(  ),
   ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
   ALCAP0 = cms.vstring( 'AlCaP0' ),
   RPCMON = cms.vstring( 'RPCMonitor' ),
@@ -26,19 +21,20 @@ streams = cms.PSet(
     'HcalNZS',
     'JetMETTauMonitor',
     'MuMonitor',
-    'RandomTriggers',
     'Mu',
     'JetMETTau',
     'Cosmics',
     'EGMonitor',
     'EG',
-    'MinimumBias' )
+    'MinimumBias',
+    'RandomTriggers' ),
+  Calibration = cms.vstring( 'TestEnables' ),
+  EcalCalibration = cms.vstring( 'EcalLaser' ),
+  OnlineErrors = cms.vstring( 'LogMonitor',
+    'FEDMonitor' ),
+  Offline = cms.vstring(  )
 )
 datasets = cms.PSet( 
-  TestEnables = cms.vstring( 'HLT_Calibration' ),
-  EcalLaser = cms.vstring( 'HLT_EcalCalibration' ),
-  LogMonitor = cms.vstring( 'HLT_LogMonitor' ),
-  FEDMonitor = cms.vstring( 'HLT_DTErrors' ),
   AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
   AlCaP0 = cms.vstring( 'AlCa_EcalEta_8E29',
     'AlCa_EcalPi0_8E29',
@@ -207,7 +203,6 @@ datasets = cms.PSet(
     'HLT_L1MET20' ),
   MuMonitor = cms.vstring( 'HLT_L1Mu',
     'HLT_L1MuOpen_BPTX' ),
-  RandomTriggers = cms.vstring( 'HLT_Random' ),
   Mu = cms.vstring( 'HLT_DoubleMu0',
     'HLT_DoubleMu3',
     'HLT_Mu3',
@@ -317,7 +312,12 @@ datasets = cms.PSet(
     'HLT_SelectEcalSpikesHighEt_L1R',
     'HLT_L1_BscMinBiasOR_BeamGas',
     'HLT_L1_BptxXOR_BscMinBiasOR',
-    'HLT_PixelTracks_Multiplicity70' )
+    'HLT_PixelTracks_Multiplicity70' ),
+  RandomTriggers = cms.vstring( 'HLT_Random' ),
+  TestEnables = cms.vstring( 'HLT_Calibration' ),
+  EcalLaser = cms.vstring( 'HLT_EcalCalibration' ),
+  LogMonitor = cms.vstring( 'HLT_LogMonitor' ),
+  FEDMonitor = cms.vstring( 'HLT_DTErrors' )
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
@@ -1306,10 +1306,6 @@ hltBPTXCoincidence = cms.EDFilter( "HLTLevel1Activity",
 )
 hltScalersRawToDigi = cms.EDProducer( "ScalersRawToDigi",
     scalersInputTag = cms.InputTag( "rawDataCollector" )
-)
-hltOnlineBeamSpot = cms.EDProducer( "BeamSpotOnlineProducer",
-    label = cms.InputTag( "hltScalersRawToDigi" ),
-    changeToCMSCoordinates = cms.bool( True )
 )
 hltOfflineBeamSpot = cms.EDProducer( "BeamSpotProducer" )
 hltPreFirstPath = cms.EDFilter( "HLTPrescaler" )
@@ -15013,7 +15009,7 @@ hltTrigReport = cms.EDAnalyzer( "HLTrigReport",
 )
 
 HLTL1UnpackerSequence = cms.Sequence( hltGtDigis + hltGctDigis + hltL1GtObjectMap + hltL1extraParticles )
-HLTBeamSpot = cms.Sequence( hltScalersRawToDigi + hltOnlineBeamSpot + hltOfflineBeamSpot )
+HLTBeamSpot = cms.Sequence( hltScalersRawToDigi + hltOfflineBeamSpot )
 HLTBeginSequenceBPTX = cms.Sequence( hltTriggerType + HLTL1UnpackerSequence + hltBPTXCoincidence + HLTBeamSpot )
 HLTEndSequence = cms.Sequence( hltBoolEnd )
 HLTDoLocalPixelSequence = cms.Sequence( hltSiPixelDigis + hltSiPixelClusters + hltSiPixelRecHits )

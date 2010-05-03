@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_5/HIon/V51 (CMSSW_3_5_8_HLT1)
+# /dev/CMSSW_3_5_5/HIon/V52 (CMSSW_3_5_8_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V51')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V52')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -13,10 +13,6 @@ process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'Product
   'TooFewProducts' ) )
 process.streams = cms.PSet( 
   Offline = cms.vstring(  ),
-  Calibration = cms.vstring( 'TestEnables' ),
-  EcalCalibration = cms.vstring( 'EcalLaser' ),
-  OnlineErrors = cms.vstring( 'LogMonitor',
-    'FEDMonitor' ),
   ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
   ALCAP0 = cms.vstring( 'AlCaP0' ),
   RPCMON = cms.vstring( 'RPCMonitor' ),
@@ -30,19 +26,19 @@ process.streams = cms.PSet(
     'HcalNZS',
     'JetMETTauMonitor',
     'MuMonitor',
-    'RandomTriggers',
     'Mu',
     'JetMETTau',
     'Cosmics',
     'EGMonitor',
     'EG',
-    'MinimumBias' )
+    'MinimumBias',
+    'RandomTriggers' ),
+  Calibration = cms.vstring( 'TestEnables' ),
+  EcalCalibration = cms.vstring( 'EcalLaser' ),
+  OnlineErrors = cms.vstring( 'LogMonitor',
+    'FEDMonitor' )
 )
 process.datasets = cms.PSet( 
-  TestEnables = cms.vstring(  ),
-  EcalLaser = cms.vstring(  ),
-  LogMonitor = cms.vstring(  ),
-  FEDMonitor = cms.vstring(  ),
   AlCaPhiSymEcal = cms.vstring(  ),
   AlCaP0 = cms.vstring(  ),
   RPCMonitor = cms.vstring(  ),
@@ -53,13 +49,17 @@ process.datasets = cms.PSet(
   HcalNZS = cms.vstring(  ),
   JetMETTauMonitor = cms.vstring(  ),
   MuMonitor = cms.vstring(  ),
-  RandomTriggers = cms.vstring(  ),
   Mu = cms.vstring(  ),
   JetMETTau = cms.vstring(  ),
   Cosmics = cms.vstring(  ),
   EGMonitor = cms.vstring(  ),
   EG = cms.vstring(  ),
-  MinimumBias = cms.vstring(  )
+  MinimumBias = cms.vstring(  ),
+  RandomTriggers = cms.vstring(  ),
+  TestEnables = cms.vstring(  ),
+  EcalLaser = cms.vstring(  ),
+  LogMonitor = cms.vstring(  ),
+  FEDMonitor = cms.vstring(  )
 )
 
 process.source = cms.Source( "PoolSource",
@@ -1710,10 +1710,6 @@ process.hltBPTXCoincidence = cms.EDFilter( "HLTLevel1Activity",
 process.hltScalersRawToDigi = cms.EDProducer( "ScalersRawToDigi",
     scalersInputTag = cms.InputTag( "source" )
 )
-process.hltOnlineBeamSpot = cms.EDProducer( "BeamSpotOnlineProducer",
-    label = cms.InputTag( "hltScalersRawToDigi" ),
-    changeToCMSCoordinates = cms.bool( True )
-)
 process.hltOfflineBeamSpot = cms.EDProducer( "BeamSpotProducer" )
 process.hltPreFirstPath = cms.EDFilter( "HLTPrescaler" )
 process.hltBoolFirstPath = cms.EDFilter( "HLTBool",
@@ -2565,7 +2561,7 @@ process.hltOutputOnlineErrors = cms.OutputModule( "PoolOutputModule",
 )
 
 process.HLTL1UnpackerSequence = cms.Sequence( process.hltGtDigis + process.hltGctDigis + process.hltL1GtObjectMap + process.hltL1extraParticles )
-process.HLTBeamSpot = cms.Sequence( process.hltScalersRawToDigi + process.hltOnlineBeamSpot + process.hltOfflineBeamSpot )
+process.HLTBeamSpot = cms.Sequence( process.hltScalersRawToDigi + process.hltOfflineBeamSpot )
 process.HLTBeginSequenceBPTX = cms.Sequence( process.hltTriggerType + process.HLTL1UnpackerSequence + process.hltBPTXCoincidence + process.HLTBeamSpot )
 process.HLTBeginSequence = cms.Sequence( process.hltTriggerType + process.HLTL1UnpackerSequence + process.HLTBeamSpot )
 process.HLTEndSequence = cms.Sequence( process.hltBoolEnd )

@@ -1,4 +1,4 @@
-# /dev/CMSSW_3_5_5/GRun/V51
+# /dev/CMSSW_3_5_5/GRun/V52
 
 import FWCore.ParameterSet.Config as cms
 
@@ -49,12 +49,6 @@ streamA_datasetMuMonitor_selector.l1tResults = cms.InputTag('')
 streamA_datasetMuMonitor_selector.throw      = cms.bool(False)
 streamA_datasetMuMonitor_selector.triggerConditions = cms.vstring('HLT_L1Mu', 
     'HLT_L1MuOpen_BPTX')
-
-from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter as streamA_datasetRandomTriggers_selector
-streamA_datasetRandomTriggers_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')
-streamA_datasetRandomTriggers_selector.l1tResults = cms.InputTag('')
-streamA_datasetRandomTriggers_selector.throw      = cms.bool(False)
-streamA_datasetRandomTriggers_selector.triggerConditions = cms.vstring('HLT_Random')
 
 from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter as streamA_datasetMu_selector
 streamA_datasetMu_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')
@@ -192,5 +186,12 @@ streamA_datasetMinimumBias_selector.triggerConditions = cms.vstring('HLT_Activit
     'HLT_Activity_DT_Tuned', 
     'HLT_SelectEcalSpikes_L1R', 
     'HLT_SelectEcalSpikesHighEt_L1R', 
-    'HLT_L1_BscMinBiasOR_BeamGas')
+    'HLT_L1_BscMinBiasOR_BeamGas', 
+    'HLT_PixelTracks_Multiplicity70')
+
+from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter as streamA_datasetRandomTriggers_selector
+streamA_datasetRandomTriggers_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')
+streamA_datasetRandomTriggers_selector.l1tResults = cms.InputTag('')
+streamA_datasetRandomTriggers_selector.throw      = cms.bool(False)
+streamA_datasetRandomTriggers_selector.triggerConditions = cms.vstring('HLT_Random')
 

@@ -140,6 +140,7 @@ HLT_TkMu3_NoVertex
 HLT_EgammaSuperClusterOnly_L1R
 HLT_LogMonitor
 HLT_PixelTracks_Multiplicity40
+HLT_PixelTracks_Multiplicity70
 DQM_FEDIntegrity
 HLTriggerFinalPath
 HLTAnalyzerEndpath
