@@ -1,20 +1,13 @@
-# /dev/CMSSW_3_5_5/GRun/V53 (CMSSW_3_5_8_HLT1)
+# /dev/CMSSW_3_5_5/GRun/V54 (CMSSW_3_5_8_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/GRun/V53')
+  tableName = cms.string('/dev/CMSSW_3_5_5/GRun/V54')
 )
 
 streams = cms.PSet( 
-  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
-  RPCMON = cms.vstring( 'RPCMonitor' ),
-  Calibration = cms.vstring( 'TestEnables' ),
-  EcalCalibration = cms.vstring( 'EcalLaser' ),
-  OnlineErrors = cms.vstring( 'LogMonitor',
-    'FEDMonitor' ),
-  Offline = cms.vstring(  ),
   ALCAP0 = cms.vstring( 'AlCaP0' ),
   HLTMON = cms.vstring( 'OfflineMonitor' ),
   HLTDQM = cms.vstring(  ),
@@ -32,17 +25,16 @@ streams = cms.PSet(
     'EGMonitor',
     'EG',
     'MinimumBias',
-    'RandomTriggers' )
+    'RandomTriggers' ),
+  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
+  RPCMON = cms.vstring( 'RPCMonitor' ),
+  Calibration = cms.vstring( 'TestEnables' ),
+  EcalCalibration = cms.vstring( 'EcalLaser' ),
+  OnlineErrors = cms.vstring( 'LogMonitor',
+    'FEDMonitor' ),
+  Offline = cms.vstring(  )
 )
 datasets = cms.PSet( 
-  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
-  RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
-    'AlCa_RPCMuonNoHits',
-    'AlCa_RPCMuonNoTriggers' ),
-  TestEnables = cms.vstring( 'HLT_Calibration' ),
-  EcalLaser = cms.vstring( 'HLT_EcalCalibration' ),
-  LogMonitor = cms.vstring( 'HLT_LogMonitor' ),
-  FEDMonitor = cms.vstring( 'HLT_DTErrors' ),
   AlCaP0 = cms.vstring( 'AlCa_EcalEta_8E29',
     'AlCa_EcalPi0_8E29' ),
   OfflineMonitor = cms.vstring( 'HLT_L1Jet10U',
@@ -190,7 +182,8 @@ datasets = cms.PSet(
     'HLT_GlobalRunHPDNoise' ),
   HcalNZS = cms.vstring( 'HLT_HcalNZS_8E29',
     'HLT_HcalPhiSym' ),
-  JetMETTauMonitor = cms.vstring( 'HLT_L1Jet10U_BPTX',
+  JetMETTauMonitor = cms.vstring( 'HLT_L1SingleForJet',
+    'HLT_L1Jet10U_BPTX',
     'HLT_L1Jet10U',
     'HLT_L1SingleCenJet',
     'HLT_L1SingleTauJet',
@@ -199,8 +192,7 @@ datasets = cms.PSet(
     'HLT_L1SingleCenJet_BPTX',
     'HLT_L1SingleForJet_BPTX',
     'HLT_L1SingleTauJet_BPTX',
-    'HLT_L1MET20',
-    'HLT_L1SingleForJet' ),
+    'HLT_L1MET20' ),
   MuMonitor = cms.vstring( 'HLT_L1Mu',
     'HLT_L1MuOpen_BPTX' ),
   Mu = cms.vstring( 'HLT_DoubleMu0',
@@ -229,21 +221,21 @@ datasets = cms.PSet(
     'HLT_L2Mu0',
     'HLT_L2Mu3',
     'HLT_L2Mu5' ),
-  JetMETTau = cms.vstring( 'HLT_BTagMu_Jet10U',
+  JetMETTau = cms.vstring( 'HLT_QuadJet15U',
+    'HLT_DiJetAve30U_8E29',
+    'HLT_DiJetAve15U_8E29',
+    'HLT_FwdJet20U',
+    'HLT_Jet50U',
+    'HLT_Jet30U',
+    'HLT_Jet15U',
+    'HLT_BTagMu_Jet10U',
     'HLT_DoubleJet15U_ForwardBackward',
     'HLT_BTagIP_Jet50U',
     'HLT_DoubleLooseIsoTau15',
     'HLT_SingleLooseIsoTau20',
     'HLT_HT100U',
     'HLT_MET100',
-    'HLT_MET45',
-    'HLT_QuadJet15U',
-    'HLT_DiJetAve30U_8E29',
-    'HLT_DiJetAve15U_8E29',
-    'HLT_FwdJet20U',
-    'HLT_Jet50U',
-    'HLT_Jet30U',
-    'HLT_Jet15U' ),
+    'HLT_MET45' ),
   Cosmics = cms.vstring( 'HLT_TkMu3_NoVertex',
     'HLT_L2Mu0_NoVertex',
     'HLT_TrackerCosmics',
@@ -313,7 +305,15 @@ datasets = cms.PSet(
     'HLT_L1_BscMinBiasOR_BeamGas',
     'HLT_L1_BptxXOR_BscMinBiasOR',
     'HLT_PixelTracks_Multiplicity70' ),
-  RandomTriggers = cms.vstring( 'HLT_Random' )
+  RandomTriggers = cms.vstring( 'HLT_Random' ),
+  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
+  RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
+    'AlCa_RPCMuonNoHits',
+    'AlCa_RPCMuonNoTriggers' ),
+  TestEnables = cms.vstring( 'HLT_Calibration' ),
+  EcalLaser = cms.vstring( 'HLT_EcalCalibration' ),
+  LogMonitor = cms.vstring( 'HLT_LogMonitor' ),
+  FEDMonitor = cms.vstring( 'HLT_DTErrors' )
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
@@ -7726,7 +7726,7 @@ hltL1sL1BptxXORBscMinBiasOR = cms.EDFilter( "HLTLevel1GTSeed",
     L1NrBxInEvent = cms.int32( 5 ),
     L1TechTriggerSeeding = cms.bool( False ),
     L1UseAliasesForSeeding = cms.bool( True ),
-    L1SeedsLogicalExpression = cms.string( "L1_BptxXOR_BscMinBiasOR" ),
+    L1SeedsLogicalExpression = cms.string( "L1_BscMinBiasOR" ),
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
     L1GtObjectMapTag = cms.InputTag( "hltL1GtObjectMap" ),
     L1CollectionsTag = cms.InputTag( "hltL1extraParticles" ),

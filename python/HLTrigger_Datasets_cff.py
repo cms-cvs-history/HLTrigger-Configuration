@@ -1,4 +1,4 @@
-# /dev/CMSSW_3_5_5/GRun/V53
+# /dev/CMSSW_3_5_5/GRun/V54
 
 import FWCore.ParameterSet.Config as cms
 
@@ -31,7 +31,8 @@ from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter a
 streamA_datasetJetMETTauMonitor_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')
 streamA_datasetJetMETTauMonitor_selector.l1tResults = cms.InputTag('')
 streamA_datasetJetMETTauMonitor_selector.throw      = cms.bool(False)
-streamA_datasetJetMETTauMonitor_selector.triggerConditions = cms.vstring('HLT_L1Jet10U_BPTX', 
+streamA_datasetJetMETTauMonitor_selector.triggerConditions = cms.vstring('HLT_L1SingleForJet', 
+    'HLT_L1Jet10U_BPTX', 
     'HLT_L1Jet10U', 
     'HLT_L1SingleCenJet', 
     'HLT_L1SingleTauJet', 
@@ -40,8 +41,7 @@ streamA_datasetJetMETTauMonitor_selector.triggerConditions = cms.vstring('HLT_L1
     'HLT_L1SingleCenJet_BPTX', 
     'HLT_L1SingleForJet_BPTX', 
     'HLT_L1SingleTauJet_BPTX', 
-    'HLT_L1MET20', 
-    'HLT_L1SingleForJet')
+    'HLT_L1MET20')
 
 from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter as streamA_datasetMuMonitor_selector
 streamA_datasetMuMonitor_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')
@@ -85,21 +85,21 @@ from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter a
 streamA_datasetJetMETTau_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')
 streamA_datasetJetMETTau_selector.l1tResults = cms.InputTag('')
 streamA_datasetJetMETTau_selector.throw      = cms.bool(False)
-streamA_datasetJetMETTau_selector.triggerConditions = cms.vstring('HLT_BTagMu_Jet10U', 
+streamA_datasetJetMETTau_selector.triggerConditions = cms.vstring('HLT_QuadJet15U', 
+    'HLT_DiJetAve30U_8E29', 
+    'HLT_DiJetAve15U_8E29', 
+    'HLT_FwdJet20U', 
+    'HLT_Jet50U', 
+    'HLT_Jet30U', 
+    'HLT_Jet15U', 
+    'HLT_BTagMu_Jet10U', 
     'HLT_DoubleJet15U_ForwardBackward', 
     'HLT_BTagIP_Jet50U', 
     'HLT_DoubleLooseIsoTau15', 
     'HLT_SingleLooseIsoTau20', 
     'HLT_HT100U', 
     'HLT_MET100', 
-    'HLT_MET45', 
-    'HLT_QuadJet15U', 
-    'HLT_DiJetAve30U_8E29', 
-    'HLT_DiJetAve15U_8E29', 
-    'HLT_FwdJet20U', 
-    'HLT_Jet50U', 
-    'HLT_Jet30U', 
-    'HLT_Jet15U')
+    'HLT_MET45')
 
 from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter as streamA_datasetCosmics_selector
 streamA_datasetCosmics_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')

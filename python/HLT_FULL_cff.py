@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_5_5/HLT/V182 (CMSSW_3_5_8_HLT1)
+# /dev/CMSSW_3_5_5/HLT/V183 (CMSSW_3_5_8_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HLT/V182')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HLT/V183')
 )
 
 streams = cms.PSet( 
@@ -13027,7 +13027,7 @@ hltL1sL1BptxXORBscMinBiasOR = cms.EDFilter( "HLTLevel1GTSeed",
     L1NrBxInEvent = cms.int32( 5 ),
     L1TechTriggerSeeding = cms.bool( False ),
     L1UseAliasesForSeeding = cms.bool( True ),
-    L1SeedsLogicalExpression = cms.string( "L1_BptxXOR_BscMinBiasOR" ),
+    L1SeedsLogicalExpression = cms.string( "L1_BscMinBiasOR" ),
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
     L1GtObjectMapTag = cms.InputTag( "hltL1GtObjectMap" ),
     L1CollectionsTag = cms.InputTag( "hltL1extraParticles" ),
