@@ -1,18 +1,17 @@
-# /dev/CMSSW_3_5_5/HIon/V52 (CMSSW_3_5_8_HLT1)
+# /dev/CMSSW_3_5_5/HIon/V53 (CMSSW_3_5_8_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V52')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V53')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
   'TooManyProducts',
   'TooFewProducts' ) )
 process.streams = cms.PSet( 
-  Offline = cms.vstring(  ),
   ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
   ALCAP0 = cms.vstring( 'AlCaP0' ),
   RPCMON = cms.vstring( 'RPCMonitor' ),
@@ -36,7 +35,8 @@ process.streams = cms.PSet(
   Calibration = cms.vstring( 'TestEnables' ),
   EcalCalibration = cms.vstring( 'EcalLaser' ),
   OnlineErrors = cms.vstring( 'LogMonitor',
-    'FEDMonitor' )
+    'FEDMonitor' ),
+  Offline = cms.vstring(  )
 )
 process.datasets = cms.PSet( 
   AlCaPhiSymEcal = cms.vstring(  ),
