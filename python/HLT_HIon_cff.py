@@ -1,61 +1,61 @@
-# /dev/CMSSW_3_5_5/HIon/V48 (CMSSW_3_5_7_HLT4)
+# /dev/CMSSW_3_5_5/HIon/V51 (CMSSW_3_5_8_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V48')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V51')
 )
 
 streams = cms.PSet( 
   Offline = cms.vstring(  ),
-  HLTMON = cms.vstring( 'OfflineMonitor' ),
-  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
-  HLTDQM = cms.vstring(  ),
   Calibration = cms.vstring( 'TestEnables' ),
   EcalCalibration = cms.vstring( 'EcalLaser' ),
-  ALCAP0 = cms.vstring( 'AlCaP0' ),
-  RPCMON = cms.vstring( 'RPCMonitor' ),
-  Express = cms.vstring( 'ExpressPhysics' ),
   OnlineErrors = cms.vstring( 'LogMonitor',
     'FEDMonitor' ),
+  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
+  ALCAP0 = cms.vstring( 'AlCaP0' ),
+  RPCMON = cms.vstring( 'RPCMonitor' ),
+  HLTMON = cms.vstring( 'OfflineMonitor' ),
+  HLTDQM = cms.vstring(  ),
   DQM = cms.vstring(  ),
-  A = cms.vstring( 'Cosmics',
-    'EGMonitor',
-    'EG',
-    'ZeroBias',
-    'RandomTriggers',
+  EventDisplay = cms.vstring(  ),
+  Express = cms.vstring( 'ExpressPhysics' ),
+  A = cms.vstring( 'ZeroBias',
     'HcalHPDNoise',
+    'HcalNZS',
     'JetMETTauMonitor',
     'MuMonitor',
+    'RandomTriggers',
     'Mu',
-    'HcalNZS',
-    'MinimumBias',
-    'JetMETTau' ),
-  EventDisplay = cms.vstring(  )
+    'JetMETTau',
+    'Cosmics',
+    'EGMonitor',
+    'EG',
+    'MinimumBias' )
 )
 datasets = cms.PSet( 
-  OfflineMonitor = cms.vstring(  ),
-  AlCaPhiSymEcal = cms.vstring(  ),
   TestEnables = cms.vstring(  ),
   EcalLaser = cms.vstring(  ),
-  AlCaP0 = cms.vstring(  ),
-  RPCMonitor = cms.vstring(  ),
-  ExpressPhysics = cms.vstring(  ),
   LogMonitor = cms.vstring(  ),
   FEDMonitor = cms.vstring(  ),
+  AlCaPhiSymEcal = cms.vstring(  ),
+  AlCaP0 = cms.vstring(  ),
+  RPCMonitor = cms.vstring(  ),
+  OfflineMonitor = cms.vstring(  ),
+  ExpressPhysics = cms.vstring(  ),
+  ZeroBias = cms.vstring(  ),
+  HcalHPDNoise = cms.vstring(  ),
+  HcalNZS = cms.vstring(  ),
+  JetMETTauMonitor = cms.vstring(  ),
+  MuMonitor = cms.vstring(  ),
+  RandomTriggers = cms.vstring(  ),
+  Mu = cms.vstring(  ),
+  JetMETTau = cms.vstring(  ),
   Cosmics = cms.vstring(  ),
   EGMonitor = cms.vstring(  ),
   EG = cms.vstring(  ),
-  ZeroBias = cms.vstring(  ),
-  RandomTriggers = cms.vstring(  ),
-  HcalHPDNoise = cms.vstring(  ),
-  JetMETTauMonitor = cms.vstring(  ),
-  MuMonitor = cms.vstring(  ),
-  Mu = cms.vstring(  ),
-  HcalNZS = cms.vstring(  ),
-  MinimumBias = cms.vstring(  ),
-  JetMETTau = cms.vstring(  )
+  MinimumBias = cms.vstring(  )
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
@@ -187,7 +187,7 @@ ESUnpackerWorkerESProducer = cms.ESProducer( "ESUnpackerWorkerESProducer",
     ESMIPkeV = cms.double( 81.08 ),
     ESMIPADC = cms.double( 55.0 ),
     ESBaseline = cms.int32( 0 ),
-    ESRecoAlgo = cms.untracked.int32( 1 )
+    ESRecoAlgo = cms.untracked.int32( 0 )
   )
 )
 EcalRegionCablingESProducer = cms.ESProducer( "EcalRegionCablingESProducer",
@@ -1042,6 +1042,13 @@ hltBPTXCoincidence = cms.EDFilter( "HLTLevel1Activity",
     physicsHiBits = cms.uint64( 0x40000 ),
     technicalBits = cms.uint64( 0x0 )
 )
+hltScalersRawToDigi = cms.EDProducer( "ScalersRawToDigi",
+    scalersInputTag = cms.InputTag( "rawDataCollector" )
+)
+hltOnlineBeamSpot = cms.EDProducer( "BeamSpotOnlineProducer",
+    label = cms.InputTag( "hltScalersRawToDigi" ),
+    changeToCMSCoordinates = cms.bool( True )
+)
 hltOfflineBeamSpot = cms.EDProducer( "BeamSpotProducer" )
 hltPreFirstPath = cms.EDFilter( "HLTPrescaler" )
 hltBoolFirstPath = cms.EDFilter( "HLTBool",
@@ -1822,7 +1829,9 @@ hltTrigReport = cms.EDAnalyzer( "HLTrigReport",
 )
 
 HLTL1UnpackerSequence = cms.Sequence( hltGtDigis + hltGctDigis + hltL1GtObjectMap + hltL1extraParticles )
-HLTBeginSequenceBPTX = cms.Sequence( hltTriggerType + HLTL1UnpackerSequence + hltBPTXCoincidence + hltOfflineBeamSpot )
+HLTBeamSpot = cms.Sequence( hltScalersRawToDigi + hltOnlineBeamSpot + hltOfflineBeamSpot )
+HLTBeginSequenceBPTX = cms.Sequence( hltTriggerType + HLTL1UnpackerSequence + hltBPTXCoincidence + HLTBeamSpot )
+HLTBeginSequence = cms.Sequence( hltTriggerType + HLTL1UnpackerSequence + HLTBeamSpot )
 HLTEndSequence = cms.Sequence( hltBoolEnd )
 HLTDoLocalHcalSequence = cms.Sequence( hltHcalDigis + hltHbhereco + hltHfreco + hltHoreco )
 HLTDoCaloSequence = cms.Sequence( hltEcalRawToRecHitFacility + hltEcalRegionalRestFEDs + hltEcalRecHitAll + HLTDoLocalHcalSequence + hltTowerMakerForAll )
@@ -1836,10 +1845,10 @@ HLTHIRecopixelvertexingSequence = cms.Sequence( hltHIPixelTracks + hltHIPixelVer
 HLTDoLocalStripSequence = cms.Sequence( hltSiStripRawToClustersFacility + hltSiStripClusters )
 
 HLTriggerFirstPath = cms.Path( hltGetRaw + HLTBeginSequenceBPTX + hltPreFirstPath + hltBoolFirstPath )
-HLT_HIMinBiasCalo = cms.Path( HLTBeginSequenceBPTX + hltL1sHIMinBiasCalo + hltPreHIMinBiasCalo + HLTEndSequence )
-HLT_HIJet35U = cms.Path( HLTBeginSequenceBPTX + hltHIL1sJet35U + hltHIPreJet35U + HLTDoHIJetRecoSequence + hltHI1jet35U + HLTEndSequence )
-HLT_HIPhoton15 = cms.Path( HLTBeginSequenceBPTX + hltHIL1sPhoton15 + hltHIPrePhoton15 + HLTDoCaloSequence + HLTDoHIEcalClusSequence + hltHIPhoton15 + HLTEndSequence )
-HLT_HIDoubleMu = cms.Path( HLTBeginSequenceBPTX + hltHIPreMML1 + hltHIMML1Seed + HLTL2muonrecoSequence + HLTDoLocalPixelSequence + HLTHIRecopixelvertexingSequence + HLTDoLocalStripSequence + hltHIMML3Filter + HLTEndSequence )
+HLT_HIMinBiasCalo = cms.Path( HLTBeginSequence + hltL1sHIMinBiasCalo + hltPreHIMinBiasCalo + HLTEndSequence )
+HLT_HIJet35U = cms.Path( HLTBeginSequence + hltHIL1sJet35U + hltHIPreJet35U + HLTDoHIJetRecoSequence + hltHI1jet35U + HLTEndSequence )
+HLT_HIPhoton15 = cms.Path( HLTBeginSequence + hltHIL1sPhoton15 + hltHIPrePhoton15 + HLTDoCaloSequence + HLTDoHIEcalClusSequence + hltHIPhoton15 + HLTEndSequence )
+HLT_HIDoubleMu = cms.Path( HLTBeginSequence + hltHIPreMML1 + hltHIMML1Seed + HLTL2muonrecoSequence + HLTDoLocalPixelSequence + HLTHIRecopixelvertexingSequence + HLTDoLocalStripSequence + hltHIMML3Filter + HLTEndSequence )
 HLTriggerFinalPath = cms.Path( hltTriggerSummaryAOD + hltPreTriggerSummaryRAW + hltTriggerSummaryRAW + hltBoolFinalPath )
 HLTAnalyzerEndpath = cms.EndPath( hltL1GtTrigReport + hltTrigReport )
 
