@@ -25,7 +25,7 @@ def usage():
     print 'Options:'
     print '  --process          Override the process name [default is "HLT" followed by the "ID"'
     print '  --globaltag        Use a specific GlobalTag (the default comes from the ID)'
-    print '  --l1               Enable L1 menu override, using the given payload from the database'
+    print '  --l1               Enable L1 menu override, using the payload "L1GtTriggerMenu_<L1_MENU_vX>_mc" from the database'
     print
     print '  --full             Generate a full configuration file, with minimal modifications [this is the default]'
     print '  --cff              Generate a stripped down configuration file fragment, for inclusion by e.g. cmsDriver.py'
@@ -90,7 +90,7 @@ def parse_options(args):
       doCff = False
     # specify L1 menu and force L1 override
     elif opt == '--l1':
-      menuL1Override = value
+      menuL1Override = "L1GtTriggerMenu_%s_mc" % value
     # specify GlobalTag 
     elif opt == '--globaltag':
       menuGlobalTag = value
