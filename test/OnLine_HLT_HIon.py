@@ -1,65 +1,65 @@
-# /dev/CMSSW_3_5_5/HIon/V54 (CMSSW_3_5_8_HLT1)
+# /dev/CMSSW_3_5_5/HIon/V56 (CMSSW_3_5_8_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V54')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V56')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
   'TooManyProducts',
   'TooFewProducts' ) )
 process.streams = cms.PSet( 
-  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
-  ALCAP0 = cms.vstring( 'AlCaP0' ),
-  RPCMON = cms.vstring( 'RPCMonitor' ),
-  HLTMON = cms.vstring( 'OfflineMonitor' ),
-  HLTDQM = cms.vstring(  ),
-  DQM = cms.vstring(  ),
-  EventDisplay = cms.vstring(  ),
-  Express = cms.vstring( 'ExpressPhysics' ),
-  A = cms.vstring( 'ZeroBias',
-    'HcalHPDNoise',
-    'HcalNZS',
-    'JetMETTauMonitor',
-    'MuMonitor',
-    'Mu',
-    'JetMETTau',
-    'Cosmics',
-    'EGMonitor',
-    'EG',
-    'MinimumBias',
-    'RandomTriggers' ),
+  Offline = cms.vstring(  ),
   Calibration = cms.vstring( 'TestEnables' ),
   EcalCalibration = cms.vstring( 'EcalLaser' ),
   OnlineErrors = cms.vstring( 'LogMonitor',
     'FEDMonitor' ),
-  Offline = cms.vstring(  )
+  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
+  HLTMON = cms.vstring( 'OfflineMonitor' ),
+  HLTDQM = cms.vstring(  ),
+  DQM = cms.vstring(  ),
+  A = cms.vstring( 'HcalNZS',
+    'JetMETTauMonitor',
+    'MuMonitor',
+    'Mu',
+    'JetMETTau',
+    'ZeroBias',
+    'HcalHPDNoise',
+    'EGMonitor',
+    'EG',
+    'RandomTriggers',
+    'Cosmics',
+    'MinimumBias' ),
+  EventDisplay = cms.vstring(  ),
+  Express = cms.vstring( 'ExpressPhysics' ),
+  ALCAP0 = cms.vstring( 'AlCaP0' ),
+  RPCMON = cms.vstring( 'RPCMonitor' )
 )
 process.datasets = cms.PSet( 
+  TestEnables = cms.vstring(  ),
+  EcalLaser = cms.vstring(  ),
+  LogMonitor = cms.vstring(  ),
+  FEDMonitor = cms.vstring(  ),
   AlCaPhiSymEcal = cms.vstring(  ),
-  AlCaP0 = cms.vstring(  ),
-  RPCMonitor = cms.vstring(  ),
   OfflineMonitor = cms.vstring(  ),
-  ExpressPhysics = cms.vstring(  ),
-  ZeroBias = cms.vstring(  ),
-  HcalHPDNoise = cms.vstring(  ),
   HcalNZS = cms.vstring(  ),
   JetMETTauMonitor = cms.vstring(  ),
   MuMonitor = cms.vstring(  ),
   Mu = cms.vstring(  ),
   JetMETTau = cms.vstring(  ),
-  Cosmics = cms.vstring(  ),
+  ZeroBias = cms.vstring(  ),
+  HcalHPDNoise = cms.vstring(  ),
   EGMonitor = cms.vstring(  ),
   EG = cms.vstring(  ),
-  MinimumBias = cms.vstring(  ),
   RandomTriggers = cms.vstring(  ),
-  TestEnables = cms.vstring(  ),
-  EcalLaser = cms.vstring(  ),
-  LogMonitor = cms.vstring(  ),
-  FEDMonitor = cms.vstring(  )
+  Cosmics = cms.vstring(  ),
+  MinimumBias = cms.vstring(  ),
+  ExpressPhysics = cms.vstring(  ),
+  AlCaP0 = cms.vstring(  ),
+  RPCMonitor = cms.vstring(  )
 )
 
 process.source = cms.Source( "PoolSource",
@@ -1702,7 +1702,7 @@ process.hltBPTXCoincidence = cms.EDFilter( "HLTLevel1Activity",
     daqPartitions = cms.uint32( 1 ),
     ignoreL1Mask = cms.bool( True ),
     invert = cms.bool( False ),
-    bunchCrossings = cms.vint32( 0, -1, 1, -2, 2 ),
+    bunchCrossings = cms.vint32( 0, -1, 1 ),
     physicsLoBits = cms.uint64( 0x1 ),
     physicsHiBits = cms.uint64( 0x40000 ),
     technicalBits = cms.uint64( 0x0 )
@@ -1717,10 +1717,10 @@ process.hltBoolFirstPath = cms.EDFilter( "HLTBool",
 )
 process.hltL1sHIMinBiasCalo = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),
-    L1NrBxInEvent = cms.int32( 5 ),
+    L1NrBxInEvent = cms.int32( 3 ),
     L1TechTriggerSeeding = cms.bool( False ),
     L1UseAliasesForSeeding = cms.bool( True ),
-    L1SeedsLogicalExpression = cms.string( "L1_SingleHfBitCountsRing1_1 OR L1_SingleHfBitCountsRing2_1 OR L1_DoubleHfBitCountsRing1_P1N1 OR L1_DoubleHfBitCountsRing2_P1N1 OR L1_SingleHfRingEtSumsRing1_4 OR L1_DoubleHfRingEtSumsRing1_P4N4 OR L1_SingleHfRingEtSumsRing2_4 OR L1_DoubleHfRingEtSumsRing2_P4N4 OR L1_SingleEG2" ),
+    L1SeedsLogicalExpression = cms.string( "L1_DoubleHfBitCountsRing1_P1N1 OR L1_DoubleHfBitCountsRing2_P1N1 OR L1_SingleHfRingEtSumsRing1_4 OR L1_DoubleHfRingEtSumsRing1_P4N4 OR L1_SingleHfRingEtSumsRing2_4 OR L1_DoubleHfRingEtSumsRing2_P4N4 OR L1_SingleEG2" ),
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
     L1GtObjectMapTag = cms.InputTag( "hltL1GtObjectMap" ),
     L1CollectionsTag = cms.InputTag( "hltL1extraParticles" ),
@@ -1732,7 +1732,7 @@ process.hltBoolEnd = cms.EDFilter( "HLTBool",
 )
 process.hltHIL1sJet35U = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),
-    L1NrBxInEvent = cms.int32( 5 ),
+    L1NrBxInEvent = cms.int32( 3 ),
     L1TechTriggerSeeding = cms.bool( False ),
     L1UseAliasesForSeeding = cms.bool( True ),
     L1SeedsLogicalExpression = cms.string( "L1_SingleJet30" ),
@@ -1904,7 +1904,7 @@ process.hltHI1jet35U = cms.EDFilter( "HLT1CaloJet",
 )
 process.hltHIL1sPhoton15 = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),
-    L1NrBxInEvent = cms.int32( 5 ),
+    L1NrBxInEvent = cms.int32( 3 ),
     L1TechTriggerSeeding = cms.bool( False ),
     L1UseAliasesForSeeding = cms.bool( True ),
     L1SeedsLogicalExpression = cms.string( "L1_SingleEG5" ),
@@ -2003,7 +2003,7 @@ process.hltHIPhoton15 = cms.EDFilter( "HLT1Photon",
 process.hltHIPreMML1 = cms.EDFilter( "HLTPrescaler" )
 process.hltHIMML1Seed = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),
-    L1NrBxInEvent = cms.int32( 5 ),
+    L1NrBxInEvent = cms.int32( 3 ),
     L1TechTriggerSeeding = cms.bool( False ),
     L1UseAliasesForSeeding = cms.bool( True ),
     L1SeedsLogicalExpression = cms.string( "L1_DoubleMuOpen" ),
@@ -2594,6 +2594,36 @@ process.maxEvents = cms.untracked.PSet(
 process.options = cms.untracked.PSet(
     wantSummary = cms.untracked.bool( True )
 )
+
+process.Level1MenuOverride = cms.ESSource( "PoolDBESSource",
+    BlobStreamerName = cms.untracked.string( "TBufferBlobStreamingService" ),
+    connect = cms.string( "frontier://(proxyurl=http://localhost:3128)(serverurl=http://localhost:8000/FrontierOnProd)(serverurl=http://localhost:8000/FrontierOnProd)(retrieve-ziplevel=0)(failovertoserver=no)/CMS_COND_31X_L1T" ),
+    label = cms.untracked.string( "" ),
+    globaltag = cms.string( "" ),
+    tag = cms.untracked.string( "" ),
+    RefreshEachRun = cms.untracked.bool( True ),
+    appendToDataLabel = cms.string( "" ),
+    DBParameters = cms.PSet(
+      authenticationPath = cms.untracked.string( "." ),
+      connectionRetrialPeriod = cms.untracked.int32( 10 ),
+      idleConnectionCleanupPeriod = cms.untracked.int32( 10 ),
+      messageLevel = cms.untracked.int32( 0 ),
+      enablePoolAutomaticCleanUp = cms.untracked.bool( False ),
+      enableConnectionSharing = cms.untracked.bool( True ),
+      enableReadOnlySessionOnUpdateConnection = cms.untracked.bool( False ),
+      connectionTimeOut = cms.untracked.int32( 0 ),
+      connectionRetrialTimeOut = cms.untracked.int32( 60 )
+    ),
+    toGet = cms.VPSet(
+      cms.PSet(  record = cms.string( "L1GtTriggerMenuRcd" ),
+        tag = cms.string( "L1GtTriggerMenu_L1Menu_MC2010_v0_mc" )
+      )
+    ),
+    timetype = cms.string( "runnumber" ),
+    siteLocalConfig = cms.untracked.bool( False ),
+    messagelevel = cms.untracked.uint32( 0 )
+)
+process.es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverride" )
 
 if 'GlobalTag' in process.__dict__:
     from Configuration.PyReleaseValidation.autoCond import autoCond
