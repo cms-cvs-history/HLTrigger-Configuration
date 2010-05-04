@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_6_0/8E29/V10 (CMSSW_3_6_0_HLT4)
+# /dev/CMSSW_3_6_0/8E29/V11 (CMSSW_3_6_0_HLT4)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_6_0/8E29/V10')
+  tableName = cms.string('/dev/CMSSW_3_6_0/8E29/V11')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -22,7 +22,8 @@ process.streams = cms.PSet(
   HLTDQM = cms.vstring(  ),
   EventDisplay = cms.vstring(  ),
   Express = cms.vstring( 'ExpressPhysics' ),
-  A = cms.vstring( 'Cosmics',
+  A = cms.vstring( 'MinimumBias',
+    'Cosmics',
     'EGMonitor',
     'HcalHPDNoise',
     'ZeroBias',
@@ -32,8 +33,7 @@ process.streams = cms.PSet(
     'RandomTriggers',
     'Mu',
     'JetMETTau',
-    'EG',
-    'MinimumBias' ),
+    'EG' ),
   Offline = cms.vstring(  ),
   ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
   RPCMON = cms.vstring( 'RPCMonitor' )
@@ -137,6 +137,17 @@ process.datasets = cms.PSet(
     'HLT_L1Mu',
     'HLT_MET100',
     'HLT_ZeroBias' ),
+  MinimumBias = cms.vstring( 'HLT_IsoTrackHB_8E29',
+    'HLT_IsoTrackHE_8E29',
+    'HLT_HighMultiplicityBSC',
+    'HLT_ForwardBSC',
+    'HLT_BackwardBSC',
+    'HLT_ZeroBiasPixel_SingleTrack',
+    'HLT_MinBiasEcal',
+    'HLT_MinBiasHcal',
+    'HLT_StoppedHSCP_8E29',
+    'HLT_PixelTracks_Multiplicity40',
+    'HLT_PixelTracks_Multiplicity70' ),
   Cosmics = cms.vstring( 'HLT_TrackerCosmics',
     'HLT_RPCBarrelCosmics',
     'HLT_CSCBeamHaloRing2or3',
@@ -213,17 +224,6 @@ process.datasets = cms.PSet(
     'HLT_DoublePhoton4_Upsilon_L1R',
     'HLT_DoublePhoton4_eeRes_L1R',
     'HLT_DoublePhoton5_L1R' ),
-  MinimumBias = cms.vstring( 'HLT_IsoTrackHB_8E29',
-    'HLT_IsoTrackHE_8E29',
-    'HLT_HighMultiplicityBSC',
-    'HLT_ForwardBSC',
-    'HLT_BackwardBSC',
-    'HLT_ZeroBiasPixel_SingleTrack',
-    'HLT_MinBiasEcal',
-    'HLT_MinBiasHcal',
-    'HLT_StoppedHSCP_8E29',
-    'HLT_PixelTracks_Multiplicity40',
-    'HLT_PixelTracks_Multiplicity70' ),
   AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
   RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
     'AlCa_RPCMuonNoHits',
@@ -8315,7 +8315,7 @@ process.hltPixelTracksForHighMult = cms.EDProducer( "PixelTrackProducer",
         useMultScattering = cms.bool( True ),
         ComponentName = cms.string( "PixelTripletHLTGenerator" ),
         extraHitRZtolerance = cms.double( 0.06 ),
-        maxTriplets = cms.uint32( 10000 )
+        maxElement = cms.uint32( 10000 )
       )
     ),
     FitterPSet = cms.PSet( 
@@ -8774,3 +8774,8 @@ process.options.wantSummary = cms.untracked.bool(True)
 process.MessageLogger.categories.append('TriggerSummaryProducerAOD')
 process.MessageLogger.categories.append('L1GtTrigReport')
 process.MessageLogger.categories.append('HLTrigReport')
+
+# Removing prescales
+if 'PrescaleService' in process.__dict__:
+    process.PrescaleService.prescaleTable = cms.VPSet( )
+
