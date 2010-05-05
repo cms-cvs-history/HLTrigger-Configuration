@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_5/HIon/V57 (CMSSW_3_5_8_HLT1)
+# /dev/CMSSW_3_5_5/HIon/V58 (CMSSW_3_5_8_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V57')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V58')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -17,24 +17,24 @@ process.streams = cms.PSet(
   EcalCalibration = cms.vstring( 'EcalLaser' ),
   OnlineErrors = cms.vstring( 'LogMonitor',
     'FEDMonitor' ),
-  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
-  HLTMON = cms.vstring( 'OfflineMonitor' ),
-  HLTDQM = cms.vstring(  ),
-  DQM = cms.vstring(  ),
+  EventDisplay = cms.vstring(  ),
+  Express = cms.vstring( 'ExpressPhysics' ),
   A = cms.vstring( 'HcalNZS',
     'JetMETTauMonitor',
     'MuMonitor',
-    'Mu',
-    'JetMETTau',
     'ZeroBias',
     'HcalHPDNoise',
     'EGMonitor',
     'EG',
     'RandomTriggers',
     'Cosmics',
-    'MinimumBias' ),
-  EventDisplay = cms.vstring(  ),
-  Express = cms.vstring( 'ExpressPhysics' ),
+    'MinimumBias',
+    'JetMETTau',
+    'Mu' ),
+  HLTMON = cms.vstring( 'OfflineMonitor' ),
+  HLTDQM = cms.vstring(  ),
+  DQM = cms.vstring(  ),
+  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
   ALCAP0 = cms.vstring( 'AlCaP0' ),
   RPCMON = cms.vstring( 'RPCMonitor' )
 )
@@ -43,13 +43,10 @@ process.datasets = cms.PSet(
   EcalLaser = cms.vstring(  ),
   LogMonitor = cms.vstring(  ),
   FEDMonitor = cms.vstring(  ),
-  AlCaPhiSymEcal = cms.vstring(  ),
-  OfflineMonitor = cms.vstring(  ),
+  ExpressPhysics = cms.vstring(  ),
   HcalNZS = cms.vstring(  ),
   JetMETTauMonitor = cms.vstring(  ),
   MuMonitor = cms.vstring(  ),
-  Mu = cms.vstring(  ),
-  JetMETTau = cms.vstring(  ),
   ZeroBias = cms.vstring(  ),
   HcalHPDNoise = cms.vstring(  ),
   EGMonitor = cms.vstring(  ),
@@ -57,7 +54,10 @@ process.datasets = cms.PSet(
   RandomTriggers = cms.vstring(  ),
   Cosmics = cms.vstring(  ),
   MinimumBias = cms.vstring(  ),
-  ExpressPhysics = cms.vstring(  ),
+  JetMETTau = cms.vstring(  ),
+  Mu = cms.vstring(  ),
+  OfflineMonitor = cms.vstring(  ),
+  AlCaPhiSymEcal = cms.vstring(  ),
   AlCaP0 = cms.vstring(  ),
   RPCMonitor = cms.vstring(  )
 )
@@ -2594,6 +2594,36 @@ process.maxEvents = cms.untracked.PSet(
 process.options = cms.untracked.PSet(
     wantSummary = cms.untracked.bool( True )
 )
+
+process.Level1MenuOverride = cms.ESSource( "PoolDBESSource",
+    BlobStreamerName = cms.untracked.string( "TBufferBlobStreamingService" ),
+    connect = cms.string( "frontier://(proxyurl=http://localhost:3128)(serverurl=http://localhost:8000/FrontierOnProd)(serverurl=http://localhost:8000/FrontierOnProd)(retrieve-ziplevel=0)(failovertoserver=no)/CMS_COND_31X_L1T" ),
+    label = cms.untracked.string( "" ),
+    globaltag = cms.string( "" ),
+    tag = cms.untracked.string( "" ),
+    RefreshEachRun = cms.untracked.bool( True ),
+    appendToDataLabel = cms.string( "" ),
+    DBParameters = cms.PSet(
+      authenticationPath = cms.untracked.string( "." ),
+      connectionRetrialPeriod = cms.untracked.int32( 10 ),
+      idleConnectionCleanupPeriod = cms.untracked.int32( 10 ),
+      messageLevel = cms.untracked.int32( 0 ),
+      enablePoolAutomaticCleanUp = cms.untracked.bool( False ),
+      enableConnectionSharing = cms.untracked.bool( True ),
+      enableReadOnlySessionOnUpdateConnection = cms.untracked.bool( False ),
+      connectionTimeOut = cms.untracked.int32( 0 ),
+      connectionRetrialTimeOut = cms.untracked.int32( 60 )
+    ),
+    toGet = cms.VPSet(
+      cms.PSet(  record = cms.string( "L1GtTriggerMenuRcd" ),
+        tag = cms.string( "L1GtTriggerMenu_L1Menu_Commissioning2010_v2_mc" )
+      )
+    ),
+    timetype = cms.string( "runnumber" ),
+    siteLocalConfig = cms.untracked.bool( False ),
+    messagelevel = cms.untracked.uint32( 0 )
+)
+process.es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverride" )
 
 if 'GlobalTag' in process.__dict__:
     process.GlobalTag.connect   = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'
