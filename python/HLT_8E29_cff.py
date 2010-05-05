@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_5_5/8E29/V59 (CMSSW_3_5_8_HLT1)
+# /dev/CMSSW_3_5_5/8E29/V60 (CMSSW_3_5_8_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/8E29/V59')
+  tableName = cms.string('/dev/CMSSW_3_5_5/8E29/V60')
 )
 
 streams = cms.PSet( 
@@ -21,14 +21,14 @@ streams = cms.PSet(
   ALCAP0 = cms.vstring( 'AlCaP0' ),
   EventDisplay = cms.vstring(  ),
   Express = cms.vstring( 'ExpressPhysics' ),
-  A = cms.vstring( 'HcalNZS',
+  A = cms.vstring( 'JetMETTau',
+    'HcalNZS',
     'JetMETTauMonitor',
     'MuMonitor',
     'ZeroBias',
     'HcalHPDNoise',
     'EGMonitor',
     'EG',
-    'JetMETTau',
     'RandomTriggers',
     'Cosmics',
     'MinimumBias',
@@ -134,6 +134,21 @@ datasets = cms.PSet(
     'HLT_MET100',
     'HLT_ZeroBias',
     'HLT_L1SingleEG5' ),
+  JetMETTau = cms.vstring( 'HLT_QuadJet15U',
+    'HLT_DiJetAve30U_8E29',
+    'HLT_DiJetAve15U_8E29',
+    'HLT_FwdJet20U',
+    'HLT_Jet50U',
+    'HLT_Jet30U',
+    'HLT_Jet15U',
+    'HLT_BTagMu_Jet10U',
+    'HLT_DoubleJet15U_ForwardBackward',
+    'HLT_BTagIP_Jet50U',
+    'HLT_DoubleLooseIsoTau15',
+    'HLT_SingleLooseIsoTau20',
+    'HLT_HT100U',
+    'HLT_MET100',
+    'HLT_MET45' ),
   HcalNZS = cms.vstring( 'HLT_HcalNZS_8E29',
     'HLT_HcalPhiSym' ),
   JetMETTauMonitor = cms.vstring( 'HLT_L1Jet6U',
@@ -164,21 +179,6 @@ datasets = cms.PSet(
     'HLT_DoublePhoton4_Upsilon_L1R',
     'HLT_DoublePhoton4_eeRes_L1R',
     'HLT_DoublePhoton5_L1R' ),
-  JetMETTau = cms.vstring( 'HLT_QuadJet15U',
-    'HLT_DiJetAve30U_8E29',
-    'HLT_DiJetAve15U_8E29',
-    'HLT_FwdJet20U',
-    'HLT_Jet50U',
-    'HLT_Jet30U',
-    'HLT_Jet15U',
-    'HLT_BTagMu_Jet10U',
-    'HLT_DoubleJet15U_ForwardBackward',
-    'HLT_BTagIP_Jet50U',
-    'HLT_DoubleLooseIsoTau15',
-    'HLT_SingleLooseIsoTau20',
-    'HLT_HT100U',
-    'HLT_MET100',
-    'HLT_MET45' ),
   RandomTriggers = cms.vstring(  ),
   Cosmics = cms.vstring( 'HLT_TrackerCosmics',
     'HLT_RPCBarrelCosmics',

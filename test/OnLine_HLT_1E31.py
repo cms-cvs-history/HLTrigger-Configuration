@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_5/1E31/V59 (CMSSW_3_5_8_HLT1)
+# /dev/CMSSW_3_5_5/1E31/V60 (CMSSW_3_5_8_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V59')
+  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V60')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -25,14 +25,14 @@ process.streams = cms.PSet(
   ALCAP0 = cms.vstring( 'AlCaP0' ),
   EventDisplay = cms.vstring(  ),
   Express = cms.vstring( 'ExpressPhysics' ),
-  A = cms.vstring( 'HcalNZS',
+  A = cms.vstring( 'JetMETTau',
+    'HcalNZS',
     'JetMETTauMonitor',
     'MuMonitor',
     'ZeroBias',
     'HcalHPDNoise',
     'EGMonitor',
     'EG',
-    'JetMETTau',
     'RandomTriggers',
     'Cosmics',
     'MinimumBias',
@@ -91,6 +91,7 @@ process.datasets = cms.PSet(
     'HLT_MET100',
     'HLT_ZeroBias',
     'HLT_L1SingleEG5' ),
+  JetMETTau = cms.vstring( 'HLT_MET100' ),
   HcalNZS = cms.vstring( 'HLT_HcalPhiSym' ),
   JetMETTauMonitor = cms.vstring( 'HLT_L1MET20' ),
   MuMonitor = cms.vstring( 'HLT_L1Mu' ),
@@ -101,7 +102,6 @@ process.datasets = cms.PSet(
     'HLT_Photon15_L1R',
     'HLT_Photon10_L1R',
     'HLT_Ele15_SiStrip_L1R' ),
-  JetMETTau = cms.vstring( 'HLT_MET100' ),
   RandomTriggers = cms.vstring(  ),
   Cosmics = cms.vstring( 'HLT_TrackerCosmics',
     'HLT_RPCBarrelCosmics',
