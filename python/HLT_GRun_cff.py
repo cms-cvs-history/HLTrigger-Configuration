@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_5_5/GRun/V56 (CMSSW_3_5_8_HLT1)
+# /dev/CMSSW_3_5_5/GRun/V57 (CMSSW_3_5_8_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/GRun/V56')
+  tableName = cms.string('/dev/CMSSW_3_5_5/GRun/V57')
 )
 
 streams = cms.PSet( 
@@ -13,9 +13,13 @@ streams = cms.PSet(
   OnlineErrors = cms.vstring( 'LogMonitor',
     'FEDMonitor' ),
   Offline = cms.vstring(  ),
+  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
+  RPCMON = cms.vstring( 'RPCMonitor' ),
   HLTMON = cms.vstring( 'OfflineMonitor' ),
   HLTDQM = cms.vstring(  ),
   DQM = cms.vstring(  ),
+  EventDisplay = cms.vstring(  ),
+  Express = cms.vstring( 'ExpressPhysics' ),
   A = cms.vstring( 'HcalNZS',
     'JetMETTauMonitor',
     'MuMonitor',
@@ -28,17 +32,17 @@ streams = cms.PSet(
     'RandomTriggers',
     'Cosmics',
     'MinimumBias' ),
-  EventDisplay = cms.vstring(  ),
-  Express = cms.vstring( 'ExpressPhysics' ),
-  ALCAP0 = cms.vstring( 'AlCaP0' ),
-  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
-  RPCMON = cms.vstring( 'RPCMonitor' )
+  ALCAP0 = cms.vstring( 'AlCaP0' )
 )
 datasets = cms.PSet( 
   TestEnables = cms.vstring( 'HLT_Calibration' ),
   EcalLaser = cms.vstring( 'HLT_EcalCalibration' ),
   LogMonitor = cms.vstring( 'HLT_LogMonitor' ),
   FEDMonitor = cms.vstring( 'HLT_DTErrors' ),
+  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
+  RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
+    'AlCa_RPCMuonNoHits',
+    'AlCa_RPCMuonNoTriggers' ),
   OfflineMonitor = cms.vstring( 'HLT_L1Jet10U',
     'HLT_L1SingleCenJet',
     'HLT_L1SingleEG2',
@@ -160,6 +164,13 @@ datasets = cms.PSet(
     'HLT_PixelTracks_Multiplicity40',
     'HLT_L1_BptxXOR_BscMinBiasOR',
     'HLT_PixelTracks_Multiplicity70' ),
+  ExpressPhysics = cms.vstring( 'HLT_Jet50U',
+    'HLT_L1DoubleMuOpen',
+    'HLT_L1Mu',
+    'HLT_L1MuOpen_BPTX',
+    'HLT_MET100',
+    'HLT_MinBiasBSC_BPTX',
+    'HLT_ZeroBias' ),
   HcalNZS = cms.vstring( 'HLT_HcalNZS_8E29',
     'HLT_HcalPhiSym' ),
   JetMETTauMonitor = cms.vstring( 'HLT_L1SingleForJet',
@@ -284,19 +295,8 @@ datasets = cms.PSet(
     'HLT_SelectEcalSpikesHighEt_L1R',
     'HLT_L1_BptxXOR_BscMinBiasOR',
     'HLT_PixelTracks_Multiplicity70' ),
-  ExpressPhysics = cms.vstring( 'HLT_Jet50U',
-    'HLT_L1DoubleMuOpen',
-    'HLT_L1Mu',
-    'HLT_L1MuOpen_BPTX',
-    'HLT_MET100',
-    'HLT_MinBiasBSC_BPTX',
-    'HLT_ZeroBias' ),
   AlCaP0 = cms.vstring( 'AlCa_EcalEta_8E29',
-    'AlCa_EcalPi0_8E29' ),
-  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
-  RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
-    'AlCa_RPCMuonNoHits',
-    'AlCa_RPCMuonNoTriggers' )
+    'AlCa_EcalPi0_8E29' )
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",

@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_5/8E29/V56 (CMSSW_3_5_8_HLT1)
+# /dev/CMSSW_3_5_5/8E29/V57 (CMSSW_3_5_8_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/8E29/V56')
+  tableName = cms.string('/dev/CMSSW_3_5_5/8E29/V57')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -13,6 +13,8 @@ process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'Product
   'TooFewProducts' ) )
 process.streams = cms.PSet( 
   Offline = cms.vstring(  ),
+  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
+  RPCMON = cms.vstring( 'RPCMonitor' ),
   Calibration = cms.vstring( 'TestEnables' ),
   EcalCalibration = cms.vstring( 'EcalLaser' ),
   OnlineErrors = cms.vstring( 'LogMonitor',
@@ -34,11 +36,13 @@ process.streams = cms.PSet(
     'MinimumBias' ),
   EventDisplay = cms.vstring(  ),
   Express = cms.vstring( 'ExpressPhysics' ),
-  ALCAP0 = cms.vstring( 'AlCaP0' ),
-  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
-  RPCMON = cms.vstring( 'RPCMonitor' )
+  ALCAP0 = cms.vstring( 'AlCaP0' )
 )
 process.datasets = cms.PSet( 
+  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
+  RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
+    'AlCa_RPCMuonNoHits',
+    'AlCa_RPCMuonNoTriggers' ),
   TestEnables = cms.vstring(  ),
   EcalLaser = cms.vstring(  ),
   LogMonitor = cms.vstring(  ),
@@ -215,11 +219,7 @@ process.datasets = cms.PSet(
     'HLT_MET100',
     'HLT_ZeroBias' ),
   AlCaP0 = cms.vstring( 'AlCa_EcalEta_8E29',
-    'AlCa_EcalPi0_8E29' ),
-  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
-  RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
-    'AlCa_RPCMuonNoHits',
-    'AlCa_RPCMuonNoTriggers' )
+    'AlCa_EcalPi0_8E29' )
 )
 
 process.source = cms.Source( "PoolSource",
@@ -1809,10 +1809,10 @@ process.PrescaleService = cms.Service( "PrescaleService",
         prescales = cms.vuint32( 10, 10, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_ZeroBiasPixel_SingleTrack" ),
-        prescales = cms.vuint32( 100, 1, 1 )
+        prescales = cms.vuint32( 50, 5, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_L1Tech_BSC_HighMultiplicity" ),
-        prescales = cms.vuint32( 20, 2, 1 )
+        prescales = cms.vuint32( 300, 30, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_RPCBarrelCosmics" ),
         prescales = cms.vuint32( 10, 1, 1 )
@@ -1824,7 +1824,7 @@ process.PrescaleService = cms.Service( "PrescaleService",
         prescales = cms.vuint32( 10, 10, 10 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_PixelTracks_Multiplicity40" ),
-        prescales = cms.vuint32( 100, 1, 1 )
+        prescales = cms.vuint32( 0, 1, 1 )
       )
     )
 )
