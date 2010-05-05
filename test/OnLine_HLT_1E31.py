@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_6_0/1E31/V12 (CMSSW_3_6_0_HLT4)
+# /dev/CMSSW_3_6_0/1E31/V13 (CMSSW_3_6_0_HLT4)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_6_0/1E31/V12')
+  tableName = cms.string('/dev/CMSSW_3_6_0/1E31/V13')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -13,8 +13,6 @@ process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'Product
   'TooFewProducts' ) )
 process.streams = cms.PSet( 
   Offline = cms.vstring(  ),
-  RPCMON = cms.vstring( 'RPCMonitor' ),
-  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
   OnlineErrors = cms.vstring( 'LogMonitor',
     'FEDMonitor' ),
   Calibration = cms.vstring( 'TestEnables' ),
@@ -36,13 +34,11 @@ process.streams = cms.PSet(
     'JetMETTau',
     'Cosmics',
     'MinimumBias',
-    'RandomTriggers' )
+    'RandomTriggers' ),
+  RPCMON = cms.vstring( 'RPCMonitor' ),
+  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' )
 )
 process.datasets = cms.PSet( 
-  RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
-    'AlCa_RPCMuonNoHits',
-    'AlCa_RPCMuonNoTriggers' ),
-  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
   LogMonitor = cms.vstring(  ),
   FEDMonitor = cms.vstring(  ),
   TestEnables = cms.vstring(  ),
@@ -128,7 +124,11 @@ process.datasets = cms.PSet(
   MinimumBias = cms.vstring( 'HLT_L1Tech_BSC_HighMultiplicity',
     'HLT_ZeroBiasPixel_SingleTrack',
     'HLT_PixelTracks_Multiplicity70' ),
-  RandomTriggers = cms.vstring(  )
+  RandomTriggers = cms.vstring(  ),
+  RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
+    'AlCa_RPCMuonNoHits',
+    'AlCa_RPCMuonNoTriggers' ),
+  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' )
 )
 
 process.source = cms.Source( "PoolSource",
@@ -1449,20 +1449,34 @@ process.MicroStateService = cms.Service( "MicroStateService",
 process.ModuleWebRegistry = cms.Service( "ModuleWebRegistry",
 )
 process.PrescaleService = cms.Service( "PrescaleService",
-    lvl1DefaultLabel = cms.untracked.string( "0" ),
-    lvl1Labels = cms.vstring( '0' ),
+    lvl1DefaultLabel = cms.untracked.string( "1E29" ),
+    lvl1Labels = cms.vstring( '1E29',
+      '1E28',
+      'Cosmics' ),
     prescaleTable = cms.VPSet( 
       cms.PSet(  pathName = cms.string( "HLT_L1MuOpen" ),
-        prescales = cms.vuint32( 10 )
+        prescales = cms.vuint32( 50, 50, 1 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_L1SingleEG5" ),
+        prescales = cms.vuint32( 5, 1, 1 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_ZeroBias" ),
+        prescales = cms.vuint32( 10, 10, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_ZeroBiasPixel_SingleTrack" ),
-        prescales = cms.vuint32( 100 )
+        prescales = cms.vuint32( 50, 5, 1 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_L1Tech_BSC_HighMultiplicity" ),
+        prescales = cms.vuint32( 300, 30, 1 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_RPCBarrelCosmics" ),
+        prescales = cms.vuint32( 10, 1, 1 )
       ),
       cms.PSet(  pathName = cms.string( "AlCa_EcalPhiSym" ),
-        prescales = cms.vuint32( 10 )
+        prescales = cms.vuint32( 10, 1, 1 )
       ),
       cms.PSet(  pathName = cms.string( "AlCa_RPCMuonNormalisation" ),
-        prescales = cms.vuint32( 10 )
+        prescales = cms.vuint32( 10, 10, 10 )
       )
     )
 )
