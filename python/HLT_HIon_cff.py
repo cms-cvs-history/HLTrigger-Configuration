@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_5_5/HIon/V58 (CMSSW_3_5_8_HLT1)
+# /dev/CMSSW_3_5_5/HIon/V59 (CMSSW_3_5_8_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V58')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V59')
 )
 
 streams = cms.PSet( 
@@ -13,6 +13,12 @@ streams = cms.PSet(
   EcalCalibration = cms.vstring( 'EcalLaser' ),
   OnlineErrors = cms.vstring( 'LogMonitor',
     'FEDMonitor' ),
+  HLTMON = cms.vstring( 'OfflineMonitor' ),
+  HLTDQM = cms.vstring(  ),
+  DQM = cms.vstring(  ),
+  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
+  ALCAP0 = cms.vstring( 'AlCaP0' ),
+  RPCMON = cms.vstring( 'RPCMonitor' ),
   EventDisplay = cms.vstring(  ),
   Express = cms.vstring( 'ExpressPhysics' ),
   A = cms.vstring( 'HcalNZS',
@@ -22,23 +28,21 @@ streams = cms.PSet(
     'HcalHPDNoise',
     'EGMonitor',
     'EG',
+    'JetMETTau',
     'RandomTriggers',
     'Cosmics',
     'MinimumBias',
-    'JetMETTau',
-    'Mu' ),
-  HLTMON = cms.vstring( 'OfflineMonitor' ),
-  HLTDQM = cms.vstring(  ),
-  DQM = cms.vstring(  ),
-  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
-  ALCAP0 = cms.vstring( 'AlCaP0' ),
-  RPCMON = cms.vstring( 'RPCMonitor' )
+    'Mu' )
 )
 datasets = cms.PSet( 
   TestEnables = cms.vstring(  ),
   EcalLaser = cms.vstring(  ),
   LogMonitor = cms.vstring(  ),
   FEDMonitor = cms.vstring(  ),
+  OfflineMonitor = cms.vstring(  ),
+  AlCaPhiSymEcal = cms.vstring(  ),
+  AlCaP0 = cms.vstring(  ),
+  RPCMonitor = cms.vstring(  ),
   ExpressPhysics = cms.vstring(  ),
   HcalNZS = cms.vstring(  ),
   JetMETTauMonitor = cms.vstring(  ),
@@ -47,15 +51,11 @@ datasets = cms.PSet(
   HcalHPDNoise = cms.vstring(  ),
   EGMonitor = cms.vstring(  ),
   EG = cms.vstring(  ),
+  JetMETTau = cms.vstring(  ),
   RandomTriggers = cms.vstring(  ),
   Cosmics = cms.vstring(  ),
   MinimumBias = cms.vstring(  ),
-  JetMETTau = cms.vstring(  ),
-  Mu = cms.vstring(  ),
-  OfflineMonitor = cms.vstring(  ),
-  AlCaPhiSymEcal = cms.vstring(  ),
-  AlCaP0 = cms.vstring(  ),
-  RPCMonitor = cms.vstring(  )
+  Mu = cms.vstring(  )
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
