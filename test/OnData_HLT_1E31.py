@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_6_0/1E31/V13 (CMSSW_3_6_0_HLT4)
+# /dev/CMSSW_3_6_0/1E31/V14 (CMSSW_3_6_0_HLT6)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_6_0/1E31/V13')
+  tableName = cms.string('/dev/CMSSW_3_6_0/1E31/V14')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -13,38 +13,80 @@ process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'Product
   'TooFewProducts' ) )
 process.streams = cms.PSet( 
   Offline = cms.vstring(  ),
+  RPCMON = cms.vstring( 'RPCMonitor' ),
+  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
+  A = cms.vstring( 'HcalHPDNoise',
+    'ZeroBias',
+    'HcalNZS',
+    'JetMETTauMonitor',
+    'MuMonitor',
+    'Cosmics',
+    'RandomTriggers',
+    'EGMonitor',
+    'EG',
+    'MinimumBias',
+    'Mu',
+    'JetMETTau' ),
+  EventDisplay = cms.vstring(  ),
+  Express = cms.vstring( 'ExpressPhysics' ),
+  HLTMON = cms.vstring( 'OfflineMonitor' ),
+  DQM = cms.vstring(  ),
+  HLTDQM = cms.vstring(  ),
   OnlineErrors = cms.vstring( 'LogMonitor',
     'FEDMonitor' ),
   Calibration = cms.vstring( 'TestEnables' ),
   EcalCalibration = cms.vstring( 'EcalLaser' ),
-  ALCAP0 = cms.vstring( 'AlCaP0' ),
-  HLTMON = cms.vstring( 'OfflineMonitor' ),
-  DQM = cms.vstring(  ),
-  HLTDQM = cms.vstring(  ),
-  EventDisplay = cms.vstring(  ),
-  Express = cms.vstring( 'ExpressPhysics' ),
-  A = cms.vstring( 'EGMonitor',
-    'HcalHPDNoise',
-    'ZeroBias',
-    'EG',
-    'HcalNZS',
-    'JetMETTauMonitor',
-    'MuMonitor',
-    'Mu',
-    'JetMETTau',
-    'Cosmics',
-    'MinimumBias',
-    'RandomTriggers' ),
-  RPCMON = cms.vstring( 'RPCMonitor' ),
-  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' )
+  ALCAP0 = cms.vstring( 'AlCaP0' )
 )
 process.datasets = cms.PSet( 
-  LogMonitor = cms.vstring(  ),
-  FEDMonitor = cms.vstring(  ),
-  TestEnables = cms.vstring(  ),
-  EcalLaser = cms.vstring(  ),
-  AlCaP0 = cms.vstring( 'AlCa_EcalPi0_1E31',
-    'AlCa_EcalEta_1E31' ),
+  RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
+    'AlCa_RPCMuonNoHits',
+    'AlCa_RPCMuonNoTriggers' ),
+  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
+  HcalHPDNoise = cms.vstring(  ),
+  ZeroBias = cms.vstring( 'HLT_ZeroBias' ),
+  HcalNZS = cms.vstring( 'HLT_HcalPhiSym' ),
+  JetMETTauMonitor = cms.vstring( 'HLT_L1MET20' ),
+  MuMonitor = cms.vstring( 'HLT_L1Mu' ),
+  Cosmics = cms.vstring( 'HLT_TrackerCosmics',
+    'HLT_RPCBarrelCosmics',
+    'HLT_CSCBeamHaloRing2or3',
+    'HLT_CSCBeamHaloOverlapRing2',
+    'HLT_CSCBeamHaloOverlapRing1',
+    'HLT_CSCBeamHalo',
+    'HLT_L1MuOpen' ),
+  RandomTriggers = cms.vstring(  ),
+  EGMonitor = cms.vstring( 'HLT_L1SingleEG5' ),
+  EG = cms.vstring( 'HLT_DoublePhoton10_L1R',
+    'HLT_Photon15_L1R',
+    'HLT_Photon10_L1R',
+    'HLT_Ele15_SiStrip_L1R' ),
+  MinimumBias = cms.vstring( 'HLT_L1Tech_BSC_HighMultiplicity',
+    'HLT_ZeroBiasPixel_SingleTrack',
+    'HLT_PixelTracks_Multiplicity70' ),
+  Mu = cms.vstring( 'HLT_L1Mu14_L1SingleEG10',
+    'HLT_Mu0_L1MuOpen',
+    'HLT_Mu0_Track0_Jpsi',
+    'HLT_Mu3_L1MuOpen',
+    'HLT_Mu3_Track0_Jpsi',
+    'HLT_Mu5_L1MuOpen',
+    'HLT_Mu5_Track0_Jpsi',
+    'HLT_L1DoubleMuOpen',
+    'HLT_Mu0_L2Mu0',
+    'HLT_Mu3_L2Mu0',
+    'HLT_Mu5_L2Mu0',
+    'HLT_L2DoubleMu0',
+    'HLT_DoubleMu0',
+    'HLT_DoubleMu3',
+    'HLT_Mu5',
+    'HLT_Mu9',
+    'HLT_L2Mu11' ),
+  JetMETTau = cms.vstring( 'HLT_MET100' ),
+  ExpressPhysics = cms.vstring( 'HLT_L1DoubleMuOpen',
+    'HLT_L1Mu',
+    'HLT_MET100',
+    'HLT_ZeroBias',
+    'HLT_L1SingleEG5' ),
   OfflineMonitor = cms.vstring( 'HLT_L1MET20',
     'HLT_DoubleMu3',
     'HLT_Mu0_L1MuOpen',
@@ -82,53 +124,12 @@ process.datasets = cms.PSet(
     'HLT_L1MuOpen',
     'HLT_MET100',
     'HLT_PixelTracks_Multiplicity70' ),
-  ExpressPhysics = cms.vstring( 'HLT_L1DoubleMuOpen',
-    'HLT_L1Mu',
-    'HLT_MET100',
-    'HLT_ZeroBias' ),
-  EGMonitor = cms.vstring( 'HLT_L1SingleEG5' ),
-  HcalHPDNoise = cms.vstring(  ),
-  ZeroBias = cms.vstring( 'HLT_ZeroBias' ),
-  EG = cms.vstring( 'HLT_DoublePhoton10_L1R',
-    'HLT_Photon15_L1R',
-    'HLT_Photon10_L1R',
-    'HLT_Ele15_SiStrip_L1R' ),
-  HcalNZS = cms.vstring( 'HLT_HcalPhiSym' ),
-  JetMETTauMonitor = cms.vstring( 'HLT_L1MET20' ),
-  MuMonitor = cms.vstring( 'HLT_L1Mu' ),
-  Mu = cms.vstring( 'HLT_L1Mu14_L1SingleEG10',
-    'HLT_Mu0_L1MuOpen',
-    'HLT_Mu0_Track0_Jpsi',
-    'HLT_Mu3_L1MuOpen',
-    'HLT_Mu3_Track0_Jpsi',
-    'HLT_Mu5_L1MuOpen',
-    'HLT_Mu5_Track0_Jpsi',
-    'HLT_L1DoubleMuOpen',
-    'HLT_Mu0_L2Mu0',
-    'HLT_Mu3_L2Mu0',
-    'HLT_Mu5_L2Mu0',
-    'HLT_L2DoubleMu0',
-    'HLT_DoubleMu0',
-    'HLT_DoubleMu3',
-    'HLT_Mu5',
-    'HLT_Mu9',
-    'HLT_L2Mu11' ),
-  JetMETTau = cms.vstring( 'HLT_MET100' ),
-  Cosmics = cms.vstring( 'HLT_TrackerCosmics',
-    'HLT_RPCBarrelCosmics',
-    'HLT_CSCBeamHaloRing2or3',
-    'HLT_CSCBeamHaloOverlapRing2',
-    'HLT_CSCBeamHaloOverlapRing1',
-    'HLT_CSCBeamHalo',
-    'HLT_L1MuOpen' ),
-  MinimumBias = cms.vstring( 'HLT_L1Tech_BSC_HighMultiplicity',
-    'HLT_ZeroBiasPixel_SingleTrack',
-    'HLT_PixelTracks_Multiplicity70' ),
-  RandomTriggers = cms.vstring(  ),
-  RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
-    'AlCa_RPCMuonNoHits',
-    'AlCa_RPCMuonNoTriggers' ),
-  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' )
+  LogMonitor = cms.vstring(  ),
+  FEDMonitor = cms.vstring(  ),
+  TestEnables = cms.vstring(  ),
+  EcalLaser = cms.vstring(  ),
+  AlCaP0 = cms.vstring( 'AlCa_EcalPi0_1E31',
+    'AlCa_EcalEta_1E31' )
 )
 
 process.source = cms.Source( "PoolSource",
@@ -4060,7 +4061,17 @@ process.hltHybridSuperClustersL1Isolated = cms.EDProducer( "EgammaHLTHybridClust
     ethresh = cms.double( 0.1 ),
     eseed = cms.double( 0.35 ),
     ewing = cms.double( 0.0 ),
-    RecHitFlagToBeExcluded = cms.vint32(  )
+    dynamicEThresh = cms.bool( False ),
+    eThreshA = cms.double( 0.0030 ),
+    eThreshB = cms.double( 0.1 ),
+    severityRecHitThreshold = cms.double( 4.0 ),
+    severitySpikeId = cms.int32( 2 ),
+    severitySpikeThreshold = cms.double( 0.95 ),
+    excludeFlagged = cms.bool( False ),
+    dynamicPhiRoad = cms.bool( False ),
+    RecHitFlagToBeExcluded = cms.vint32(  ),
+    RecHitSeverityToBeExcluded = cms.vint32( 999 ),
+    bremRecoveryPset = cms.PSet(  )
 )
 process.hltCorrectedHybridSuperClustersL1Isolated = cms.EDProducer( "EgammaSCCorrectionMaker",
     VerbosityLevel = cms.string( "ERROR" ),
@@ -4195,7 +4206,17 @@ process.hltHybridSuperClustersL1NonIsolated = cms.EDProducer( "EgammaHLTHybridCl
     ethresh = cms.double( 0.1 ),
     eseed = cms.double( 0.35 ),
     ewing = cms.double( 0.0 ),
-    RecHitFlagToBeExcluded = cms.vint32(  )
+    dynamicEThresh = cms.bool( False ),
+    eThreshA = cms.double( 0.0030 ),
+    eThreshB = cms.double( 0.1 ),
+    severityRecHitThreshold = cms.double( 4.0 ),
+    severitySpikeId = cms.int32( 2 ),
+    severitySpikeThreshold = cms.double( 0.95 ),
+    excludeFlagged = cms.bool( False ),
+    dynamicPhiRoad = cms.bool( False ),
+    RecHitFlagToBeExcluded = cms.vint32(  ),
+    RecHitSeverityToBeExcluded = cms.vint32( 999 ),
+    bremRecoveryPset = cms.PSet(  )
 )
 process.hltCorrectedHybridSuperClustersL1NonIsolatedTemp = cms.EDProducer( "EgammaSCCorrectionMaker",
     VerbosityLevel = cms.string( "ERROR" ),
@@ -9204,9 +9225,9 @@ process.HLT_BTagIP_Jet80 = cms.Path( process.HLTBeginSequence + process.hltL1sBT
 process.HLT_BTagIP_Jet120 = cms.Path( process.HLTBeginSequence + process.hltL1sBTagIPJet120 + process.hltPreBTagIPJet120 + process.HLTRecoJetRegionalSequence + process.hltBJet120 + process.HLTBTagIPSequenceL25Startup + process.hltBLifetimeL25FilterStartup + process.HLTBTagIPSequenceL3Startup + process.hltBLifetimeL3FilterStartup + process.HLTEndSequence )
 process.HLT_BTagMu_Jet20 = cms.Path( process.HLTBeginSequence + process.hltL1sBTagMuJet20 + process.hltPreBTagMuJet20 + process.HLTRecoJetSequence + process.hltBJet20 + process.HLTBTagMuSequenceL25 + process.hltBSoftMuonL25FilterByDR + process.HLTBTagMuSequenceL3 + process.hltBSoftMuonL3FilterByDR + process.HLTEndSequence )
 process.HLT_StoppedHSCP_1E31 = cms.Path( process.HLTBeginSequence + process.hltL1sStoppedHSCP1E31 + process.hltPreStoppedHSCP1E31 + process.hltHcalDigis + process.hltHbhereco + process.hltStoppedHSCPHpdFilter + process.hltStoppedHSCPTowerMakerForAll + process.hltStoppedHSCPIterativeCone5CaloJets + process.hltStoppedHSCP1CaloJetEnergy + process.HLTEndSequence )
-process.HLT_L1Mu14_L1SingleEG10 = cms.Path( process.HLTBeginSequence + process.hltL1sL1Mu14L1SingleEG10 + process.hltPreL1Mu14L1SingleEG10 + process.HLTEndSequence )
-process.HLT_L1Mu14_L1SingleJet20 = cms.Path( process.HLTBeginSequence + process.hltL1sL1Mu14L1Mu5Jet20 + process.hltPreL1Mu14L1SingleJet15 + process.HLTEndSequence )
-process.HLT_L1Mu14_L1ETM40 = cms.Path( process.HLTBeginSequence + process.hltL1sL1Mu14L1ETM40 + process.hltPreL1Mu14L1ETM40 + process.HLTEndSequence )
+process.HLT_L1Mu14_L1SingleEG10 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1Mu14L1SingleEG10 + process.hltPreL1Mu14L1SingleEG10 + process.HLTEndSequence )
+process.HLT_L1Mu14_L1SingleJet20 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1Mu14L1Mu5Jet20 + process.hltPreL1Mu14L1SingleJet15 + process.HLTEndSequence )
+process.HLT_L1Mu14_L1ETM40 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1Mu14L1ETM40 + process.hltPreL1Mu14L1ETM40 + process.HLTEndSequence )
 process.HLT_L2Mu7_Photon9_L1R = cms.Path( process.HLTBeginSequence + process.hltL1sL1Mu3EG5 + process.hltPreL2Mu7Photon9L1R + process.hltL1Mu3EG5L1Filtered0 + process.HLTL2muonrecoSequence + process.hltL2Filtered7L2Mu7Photon9L1R + process.HLTL2Mu7Photon9HLTNonIsoEGSequence + process.HLTEndSequence )
 process.HLT_L2Mu8_HT50 = cms.Path( process.HLTBeginSequence + process.hltL1sL1Mu5Jet20 + process.hltPreL2Mu5HT50 + process.hltL1Mu3Jet15L1Filtered0 + process.HLTL2muonrecoSequence + process.hltL2Filtered3Mu8HT50 + process.HLTRecoJetSequence + process.HLTDoJet30HTRecoSequence + process.hltHT50Mu5HT50 + process.HLTEndSequence )
 process.HLT_L2Mu9_DiJet30 = cms.Path( process.HLTBeginSequence + process.hltL1sL1Mu5Jet20 + process.hltPreL2Mu9DoubleJet30 + process.hltL1Mu5Jet15L1Filtered0 + process.HLTL2muonrecoSequence + process.hltL2Filtered9L2Mu9DoubleJet30 + process.HLTRecoJetSequence + process.hlt2jet30L2Mu9DoubleJet30 + process.HLTEndSequence )
@@ -9245,6 +9266,36 @@ process.maxEvents = cms.untracked.PSet(
 process.options = cms.untracked.PSet(
     wantSummary = cms.untracked.bool( True )
 )
+
+process.Level1MenuOverride = cms.ESSource( "PoolDBESSource",
+    BlobStreamerName = cms.untracked.string( "TBufferBlobStreamingService" ),
+    connect = cms.string( "frontier://(proxyurl=http://localhost:3128)(serverurl=http://localhost:8000/FrontierOnProd)(serverurl=http://localhost:8000/FrontierOnProd)(retrieve-ziplevel=0)(failovertoserver=no)/CMS_COND_31X_L1T" ),
+    label = cms.untracked.string( "" ),
+    globaltag = cms.string( "" ),
+    tag = cms.untracked.string( "" ),
+    RefreshEachRun = cms.untracked.bool( True ),
+    appendToDataLabel = cms.string( "" ),
+    DBParameters = cms.PSet(
+      authenticationPath = cms.untracked.string( "." ),
+      connectionRetrialPeriod = cms.untracked.int32( 10 ),
+      idleConnectionCleanupPeriod = cms.untracked.int32( 10 ),
+      messageLevel = cms.untracked.int32( 0 ),
+      enablePoolAutomaticCleanUp = cms.untracked.bool( False ),
+      enableConnectionSharing = cms.untracked.bool( True ),
+      enableReadOnlySessionOnUpdateConnection = cms.untracked.bool( False ),
+      connectionTimeOut = cms.untracked.int32( 0 ),
+      connectionRetrialTimeOut = cms.untracked.int32( 60 )
+    ),
+    toGet = cms.VPSet(
+      cms.PSet(  record = cms.string( "L1GtTriggerMenuRcd" ),
+        tag = cms.string( "L1GtTriggerMenu_L1Menu_Commissioning2010_v2_mc" )
+      )
+    ),
+    timetype = cms.string( "runnumber" ),
+    siteLocalConfig = cms.untracked.bool( False ),
+    messagelevel = cms.untracked.uint32( 0 )
+)
+process.es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverride" )
 
 if 'GlobalTag' in process.__dict__:
     process.GlobalTag.connect   = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'
