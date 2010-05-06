@@ -1,20 +1,17 @@
-# /dev/CMSSW_3_6_0/1E31/V15 (CMSSW_3_6_0_HLT6)
+# /dev/CMSSW_3_6_0/1E31/V16 (CMSSW_3_6_0_HLT6)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_6_0/1E31/V15')
+  tableName = cms.string('/dev/CMSSW_3_6_0/1E31/V16')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
   'TooManyProducts',
   'TooFewProducts' ) )
 process.streams = cms.PSet( 
-  Offline = cms.vstring(  ),
-  RPCMON = cms.vstring( 'RPCMonitor' ),
-  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
   A = cms.vstring( 'HcalHPDNoise',
     'ZeroBias',
     'HcalNZS',
@@ -36,13 +33,12 @@ process.streams = cms.PSet(
     'FEDMonitor' ),
   Calibration = cms.vstring( 'TestEnables' ),
   EcalCalibration = cms.vstring( 'EcalLaser' ),
-  ALCAP0 = cms.vstring( 'AlCaP0' )
+  ALCAP0 = cms.vstring( 'AlCaP0' ),
+  Offline = cms.vstring(  ),
+  RPCMON = cms.vstring( 'RPCMonitor' ),
+  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' )
 )
 process.datasets = cms.PSet( 
-  RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
-    'AlCa_RPCMuonNoHits',
-    'AlCa_RPCMuonNoTriggers' ),
-  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
   HcalHPDNoise = cms.vstring(  ),
   ZeroBias = cms.vstring( 'HLT_ZeroBias' ),
   HcalNZS = cms.vstring( 'HLT_HcalPhiSym' ),
@@ -61,9 +57,9 @@ process.datasets = cms.PSet(
     'HLT_Photon15_L1R',
     'HLT_Photon10_L1R',
     'HLT_Ele15_SiStrip_L1R' ),
-  MinimumBias = cms.vstring( 'HLT_PixelTracks_Multiplicity70',
-    'HLT_L1Tech_BSC_HighMultiplicity',
-    'HLT_ZeroBiasPixel_SingleTrack' ),
+  MinimumBias = cms.vstring( 'HLT_L1Tech_BSC_HighMultiplicity',
+    'HLT_ZeroBiasPixel_SingleTrack',
+    'HLT_PixelTracks_Multiplicity70' ),
   Mu = cms.vstring( 'HLT_L1Mu14_L1SingleEG10',
     'HLT_Mu0_L1MuOpen',
     'HLT_Mu0_Track0_Jpsi',
@@ -129,7 +125,11 @@ process.datasets = cms.PSet(
   TestEnables = cms.vstring(  ),
   EcalLaser = cms.vstring(  ),
   AlCaP0 = cms.vstring( 'AlCa_EcalPi0_1E31',
-    'AlCa_EcalEta_1E31' )
+    'AlCa_EcalEta_1E31' ),
+  RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
+    'AlCa_RPCMuonNoHits',
+    'AlCa_RPCMuonNoTriggers' ),
+  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' )
 )
 
 process.source = cms.Source( "PoolSource",
@@ -330,7 +330,8 @@ process.ESUnpackerWorkerESProducer = cms.ESProducer( "ESUnpackerWorkerESProducer
     ESMIPkeV = cms.double( 81.08 ),
     ESMIPADC = cms.double( 55.0 ),
     ESBaseline = cms.int32( 0 ),
-    ESRecoAlgo = cms.untracked.int32( 0 )
+    ESRecoAlgo = cms.untracked.int32( 0 ),
+    ESWeights = cms.untracked.vdouble( 0.0, 0.725, 0.4525 )
   )
 )
 process.EcalBarrelGeometryFromDBEP = cms.ESProducer( "EcalBarrelGeometryFromDBEP",
@@ -8895,33 +8896,7 @@ process.hltTrigReport = cms.EDAnalyzer( "HLTrigReport",
 
 process.hltOutputA = cms.OutputModule( "PoolOutputModule",
     fileName = cms.untracked.string( "outputA.root" ),
-    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring( 'HLT_Ele15_SW_EleId_L1R',
-  'HLT_Ele15_SW_L1R',
-  'HLT_Ele15_SW_LooseTrackIso_L1R',
-  'HLT_Ele20_SC15_SW_L1R',
-  'HLT_Ele20_SW_EleId_LooseTrackIso_L1R',
-  'HLT_Ele20_SW_L1R',
-  'HLT_Ele20_SiStrip_L1R',
-  'HLT_Ele25_SW_EleId_LooseTrackIso_L1R',
-  'HLT_Ele25_SW_L1R',
-  'HLT_FwdJet40',
-  'HLT_HT200',
-  'HLT_HT240',
-  'HLT_HT300_MHT100',
-  'HLT_HcalNZS_1E31',
-  'HLT_IsoMu9',
-  'HLT_IsoTrackHB_1E31',
-  'HLT_IsoTrackHE_1E31',
-  'HLT_Jet110',
-  'HLT_Jet140',
-  'HLT_Jet180',
-  'HLT_Jet30',
-  'HLT_Jet50',
-  'HLT_Jet80',
-  'HLT_L1Jet15',
-  'HLT_L1Mu14_L1ETM40',
-  'HLT_PixelTracks_Multiplicity70',
-  'HLT_L1Mu14_L1SingleJet20',
+    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring( 'HLT_L1Mu14_L1SingleJet20',
   'HLT_L1Mu20HQ',
   'HLT_L1Mu30',
   'HLT_L2Mu7_Photon9_L1R',
@@ -8995,7 +8970,33 @@ process.hltOutputA = cms.OutputModule( "PoolOutputModule",
   'HLT_Ele10_SW_L1R',
   'HLT_Ele10_SW_L1R_TripleJet30',
   'HLT_Ele15_SC15_SW_EleId_L1R',
-  'HLT_Ele15_SC15_SW_LooseTrackIso_L1R' ) ),
+  'HLT_Ele15_SC15_SW_LooseTrackIso_L1R',
+  'HLT_Ele15_SW_EleId_L1R',
+  'HLT_Ele15_SW_L1R',
+  'HLT_Ele15_SW_LooseTrackIso_L1R',
+  'HLT_Ele20_SC15_SW_L1R',
+  'HLT_Ele20_SW_EleId_LooseTrackIso_L1R',
+  'HLT_Ele20_SW_L1R',
+  'HLT_Ele20_SiStrip_L1R',
+  'HLT_Ele25_SW_EleId_LooseTrackIso_L1R',
+  'HLT_Ele25_SW_L1R',
+  'HLT_FwdJet40',
+  'HLT_HT200',
+  'HLT_HT240',
+  'HLT_HT300_MHT100',
+  'HLT_HcalNZS_1E31',
+  'HLT_IsoMu9',
+  'HLT_IsoTrackHB_1E31',
+  'HLT_IsoTrackHE_1E31',
+  'HLT_Jet110',
+  'HLT_Jet140',
+  'HLT_Jet180',
+  'HLT_Jet30',
+  'HLT_Jet50',
+  'HLT_Jet80',
+  'HLT_L1Jet15',
+  'HLT_L1Mu14_L1ETM40',
+  'HLT_PixelTracks_Multiplicity70' ) ),
     outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
       'keep FEDRawDataCollection_source_*_*',
       'keep FEDRawDataCollection_rawDataCollector_*_*',
