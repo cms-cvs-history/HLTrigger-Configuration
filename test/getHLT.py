@@ -292,6 +292,8 @@ es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverri
           esmodules  = " --esmodules "
           esmodules += "-l1GtTriggerMenuXml,"
 
+        services   = " --services -FUShmDQMOutputService"
+
         paths      = " --paths -OfflineOutput"
 
         myGet = "edmConfigFromDB --" + menuConfigDB + " --configName " + menuConfigName + edsources + essources + esmodules + modules + services + paths + psets + " > " + menuOutName
