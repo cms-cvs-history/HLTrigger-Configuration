@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_5/HIon/V62 (CMSSW_3_5_8_HLT2)
+# /dev/CMSSW_3_5_5/HIon/V64 (CMSSW_3_5_8_HLT2)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V62')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V64')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -23,8 +23,6 @@ process.streams = cms.PSet(
   HLTMON = cms.vstring( 'OfflineMonitor' ),
   HLTDQM = cms.vstring(  ),
   DQM = cms.vstring(  ),
-  EventDisplay = cms.vstring(  ),
-  Express = cms.vstring( 'ExpressPhysics' ),
   A = cms.vstring( 'JetMETTauMonitor',
     'MuMonitor',
     'Cosmics',
@@ -36,7 +34,9 @@ process.streams = cms.PSet(
     'EG',
     'RandomTriggers',
     'JetMETTau',
-    'Mu' )
+    'Mu' ),
+  EventDisplay = cms.vstring(  ),
+  Express = cms.vstring( 'ExpressPhysics' )
 )
 process.datasets = cms.PSet( 
   TestEnables = cms.vstring(  ),
@@ -47,7 +47,6 @@ process.datasets = cms.PSet(
   AlCaP0 = cms.vstring(  ),
   RPCMonitor = cms.vstring(  ),
   OfflineMonitor = cms.vstring(  ),
-  ExpressPhysics = cms.vstring(  ),
   JetMETTauMonitor = cms.vstring(  ),
   MuMonitor = cms.vstring(  ),
   Cosmics = cms.vstring(  ),
@@ -59,7 +58,8 @@ process.datasets = cms.PSet(
   EG = cms.vstring(  ),
   RandomTriggers = cms.vstring(  ),
   JetMETTau = cms.vstring(  ),
-  Mu = cms.vstring(  )
+  Mu = cms.vstring(  ),
+  ExpressPhysics = cms.vstring(  )
 )
 
 process.source = cms.Source( "PoolSource",
@@ -1565,11 +1565,6 @@ process.DTDataIntegrityTask = cms.Service( "DTDataIntegrityTask",
     getSCInfo = cms.untracked.bool( True ),
     hltMode = cms.untracked.bool( True ),
 )
-process.FUShmDQMOutputService = cms.Service( "FUShmDQMOutputService",
-    lumiSectionsPerUpdate = cms.double( 1.0 ),
-    useCompression = cms.bool( True ),
-    compressionLevel = cms.int32( 1 ),
-)
 process.MessageLogger = cms.Service( "MessageLogger",
     destinations = cms.untracked.vstring( 'warnings',
       'errors',
@@ -1623,7 +1618,12 @@ process.MessageLogger = cms.Service( "MessageLogger",
       default = cms.untracked.PSet(  limit = cms.untracked.int32( 0 ) ),
       FwkJob = cms.untracked.PSet(  limit = cms.untracked.int32( 10000000 ) )
     ),
-    suppressWarning = cms.untracked.vstring( 'hltPixelTracksForMinBias' ),
+    suppressWarning = cms.untracked.vstring( 'hltPixelTracksForMinBias',
+      'hltPixelTracksForHighMult',
+      'hltHITPixelTracksHE',
+      'hltHITPixelTracksHB',
+      'hltSiPixelClusters',
+      'hltPixelTracks' ),
     threshold = cms.untracked.string( "INFO" ),
 )
 process.MicroStateService = cms.Service( "MicroStateService",

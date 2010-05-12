@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_5_5/HLT/V208 (CMSSW_3_5_8_HLT2)
+# /dev/CMSSW_3_5_5/HLT/V215 (CMSSW_3_5_8_HLT2)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HLT/V208')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HLT/V215')
 )
 
 streams = cms.PSet( 
@@ -19,8 +19,6 @@ streams = cms.PSet(
   HLTMON = cms.vstring( 'OfflineMonitor' ),
   HLTDQM = cms.vstring(  ),
   DQM = cms.vstring(  ),
-  EventDisplay = cms.vstring(  ),
-  Express = cms.vstring( 'ExpressPhysics' ),
   A = cms.vstring( 'JetMETTauMonitor',
     'MuMonitor',
     'Cosmics',
@@ -32,7 +30,9 @@ streams = cms.PSet(
     'EG',
     'RandomTriggers',
     'JetMETTau',
-    'Mu' )
+    'Mu' ),
+  EventDisplay = cms.vstring(  ),
+  Express = cms.vstring( 'ExpressPhysics' )
 )
 datasets = cms.PSet( 
   TestEnables = cms.vstring( 'HLT_Calibration' ),
@@ -169,15 +169,6 @@ datasets = cms.PSet(
     'HLT_PixelTracks_Multiplicity40',
     'HLT_L1_BptxXOR_BscMinBiasOR',
     'HLT_PixelTracks_Multiplicity70' ),
-  ExpressPhysics = cms.vstring( 'HLT_Jet50U',
-    'HLT_L1DoubleMuOpen',
-    'HLT_L1Mu',
-    'HLT_L1MuOpen',
-    'HLT_MET100',
-    'HLT_ZeroBias',
-    'HLT_L1SingleEG2',
-    'HLT_L1SingleEG5',
-    'HLT_L1_BscMinBiasOR_BptxPlusORMinus' ),
   JetMETTauMonitor = cms.vstring( 'HLT_L1SingleForJet_NoBPTX',
     'HLT_L1Jet10U',
     'HLT_L1Jet10U_NoBPTX',
@@ -303,7 +294,25 @@ datasets = cms.PSet(
     'HLT_Mu0_L2Mu0',
     'HLT_Mu3_L2Mu0',
     'HLT_Mu5_L2Mu0',
-    'HLT_L2DoubleMu0' )
+    'HLT_L2DoubleMu0' ),
+  ExpressPhysics = cms.vstring( 'HLT_Jet50U',
+    'HLT_L1MuOpen',
+    'HLT_MET100',
+    'HLT_ZeroBias',
+    'HLT_L1SingleEG2',
+    'HLT_L1SingleEG5',
+    'HLT_L1_BscMinBiasOR_BptxPlusORMinus',
+    'HLT_DoublePhoton5_L1R',
+    'HLT_Ele10_LW_L1R',
+    'HLT_Jet30U',
+    'HLT_L1Jet10U',
+    'HLT_L2DoubleMu0',
+    'HLT_L2Mu3',
+    'HLT_L2Mu5',
+    'HLT_Mu3',
+    'HLT_Photon10_L1R',
+    'HLT_Photon15_L1R',
+    'HLT_TrackerCosmics' )
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",

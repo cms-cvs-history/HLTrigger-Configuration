@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_5_5/8E29/V62 (CMSSW_3_5_8_HLT2)
+# /dev/CMSSW_3_5_5/8E29/V64 (CMSSW_3_5_8_HLT2)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/8E29/V62')
+  tableName = cms.string('/dev/CMSSW_3_5_5/8E29/V64')
 )
 
 streams = cms.PSet( 
@@ -19,8 +19,6 @@ streams = cms.PSet(
   HLTMON = cms.vstring( 'OfflineMonitor' ),
   HLTDQM = cms.vstring(  ),
   DQM = cms.vstring(  ),
-  EventDisplay = cms.vstring(  ),
-  Express = cms.vstring( 'ExpressPhysics' ),
   A = cms.vstring( 'JetMETTauMonitor',
     'MuMonitor',
     'Cosmics',
@@ -32,7 +30,9 @@ streams = cms.PSet(
     'EG',
     'RandomTriggers',
     'JetMETTau',
-    'Mu' )
+    'Mu' ),
+  EventDisplay = cms.vstring(  ),
+  Express = cms.vstring( 'ExpressPhysics' )
 )
 datasets = cms.PSet( 
   AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
@@ -128,13 +128,6 @@ datasets = cms.PSet(
     'HLT_DoubleJet15U_ForwardBackward',
     'HLT_PixelTracks_Multiplicity40',
     'HLT_PixelTracks_Multiplicity70' ),
-  ExpressPhysics = cms.vstring( 'HLT_Jet50U',
-    'HLT_L1DoubleMuOpen',
-    'HLT_L1Mu',
-    'HLT_L1MuOpen',
-    'HLT_MET100',
-    'HLT_ZeroBias',
-    'HLT_L1SingleEG5' ),
   JetMETTauMonitor = cms.vstring( 'HLT_L1Jet6U',
     'HLT_L1MET20' ),
   MuMonitor = cms.vstring( 'HLT_L1Mu',
@@ -217,7 +210,20 @@ datasets = cms.PSet(
     'HLT_Mu0_L2Mu0',
     'HLT_Mu3_L2Mu0',
     'HLT_Mu5_L2Mu0',
-    'HLT_L2DoubleMu0' )
+    'HLT_L2DoubleMu0' ),
+  ExpressPhysics = cms.vstring( 'HLT_Jet50U',
+    'HLT_L1MuOpen',
+    'HLT_MET100',
+    'HLT_ZeroBias',
+    'HLT_L1SingleEG5',
+    'HLT_DoublePhoton5_L1R',
+    'HLT_Ele10_LW_L1R',
+    'HLT_Jet30U',
+    'HLT_L2DoubleMu0',
+    'HLT_Mu3',
+    'HLT_Photon10_L1R',
+    'HLT_Photon15_L1R',
+    'HLT_TrackerCosmics' )
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
