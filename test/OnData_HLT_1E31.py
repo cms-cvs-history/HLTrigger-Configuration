@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_5/1E31/V64 (CMSSW_3_5_8_HLT2)
+# /dev/CMSSW_3_5_5/1E31/V65 (CMSSW_3_5_8_HLT2)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V64')
+  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V65')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -27,11 +27,11 @@ process.streams = cms.PSet(
     'MuMonitor',
     'Cosmics',
     'MinimumBias',
+    'EG',
     'HcalNZS',
     'ZeroBias',
     'HcalHPDNoise',
     'EGMonitor',
-    'EG',
     'RandomTriggers',
     'JetMETTau',
     'Mu' ),
@@ -98,14 +98,14 @@ process.datasets = cms.PSet(
   MinimumBias = cms.vstring( 'HLT_PixelTracks_Multiplicity70',
     'HLT_L1Tech_BSC_HighMultiplicity',
     'HLT_ZeroBiasPixel_SingleTrack' ),
-  HcalNZS = cms.vstring( 'HLT_HcalPhiSym' ),
-  ZeroBias = cms.vstring( 'HLT_ZeroBias' ),
-  HcalHPDNoise = cms.vstring(  ),
-  EGMonitor = cms.vstring( 'HLT_L1SingleEG5' ),
   EG = cms.vstring( 'HLT_DoublePhoton10_L1R',
     'HLT_Photon15_L1R',
     'HLT_Photon10_L1R',
     'HLT_Ele15_SiStrip_L1R' ),
+  HcalNZS = cms.vstring( 'HLT_HcalPhiSym' ),
+  ZeroBias = cms.vstring( 'HLT_ZeroBias' ),
+  HcalHPDNoise = cms.vstring(  ),
+  EGMonitor = cms.vstring( 'HLT_L1SingleEG5' ),
   RandomTriggers = cms.vstring(  ),
   JetMETTau = cms.vstring( 'HLT_MET100' ),
   Mu = cms.vstring( 'HLT_DoubleMu0',
@@ -1713,7 +1713,7 @@ process.PrescaleService = cms.Service( "PrescaleService",
         prescales = cms.vuint32( 5, 1, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_ZeroBias" ),
-        prescales = cms.vuint32( 10, 10, 1 )
+        prescales = cms.vuint32( 7, 7, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_ZeroBiasPixel_SingleTrack" ),
         prescales = cms.vuint32( 50, 5, 1 )
@@ -4681,7 +4681,8 @@ process.hltL1IsoStartUpElectronPixelSeeds = cms.EDProducer( "ElectronSeedProduce
       hOverEConeSize = cms.double( 0.0 ),
       hOverEHBMinE = cms.double( 999999.0 ),
       applyHOverECut = cms.bool( False ),
-      hOverEHFMinE = cms.double( 999999.0 )
+      hOverEHFMinE = cms.double( 999999.0 ),
+      beamSpot = cms.InputTag( "hltOfflineBeamSpot" )
     )
 )
 process.hltL1NonIsoStartUpElectronPixelSeeds = cms.EDProducer( "ElectronSeedProducer",
@@ -4734,7 +4735,8 @@ process.hltL1NonIsoStartUpElectronPixelSeeds = cms.EDProducer( "ElectronSeedProd
       hOverEConeSize = cms.double( 0.0 ),
       hOverEHBMinE = cms.double( 999999.0 ),
       applyHOverECut = cms.bool( False ),
-      hOverEHFMinE = cms.double( 999999.0 )
+      hOverEHFMinE = cms.double( 999999.0 ),
+      beamSpot = cms.InputTag( "hltOfflineBeamSpot" )
     )
 )
 process.hltL1NonIsoHLTNonIsoSingleElectronEt10PixelMatchFilter = cms.EDFilter( "HLTElectronPixelMatchFilter",
@@ -8084,7 +8086,8 @@ process.hltL1IsoLargeWindowElectronPixelSeeds = cms.EDProducer( "ElectronSeedPro
       hOverEConeSize = cms.double( 0.0 ),
       hOverEHBMinE = cms.double( 999999.0 ),
       applyHOverECut = cms.bool( False ),
-      hOverEHFMinE = cms.double( 999999.0 )
+      hOverEHFMinE = cms.double( 999999.0 ),
+      beamSpot = cms.InputTag( "hltOfflineBeamSpot" )
     )
 )
 process.hltL1NonIsoLargeWindowElectronPixelSeeds = cms.EDProducer( "ElectronSeedProducer",
@@ -8137,7 +8140,8 @@ process.hltL1NonIsoLargeWindowElectronPixelSeeds = cms.EDProducer( "ElectronSeed
       hOverEConeSize = cms.double( 0.0 ),
       hOverEHBMinE = cms.double( 999999.0 ),
       applyHOverECut = cms.bool( False ),
-      hOverEHFMinE = cms.double( 999999.0 )
+      hOverEHFMinE = cms.double( 999999.0 ),
+      beamSpot = cms.InputTag( "hltOfflineBeamSpot" )
     )
 )
 process.hltEle10LWL1RHT200ElePixelMatchFilter = cms.EDFilter( "HLTElectronPixelMatchFilter",
