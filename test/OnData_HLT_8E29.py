@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_6_0/8E29/V29 (CMSSW_3_6_0_HLT9)
+# /dev/CMSSW_3_6_0/8E29/V30 (CMSSW_3_6_0_HLT9)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_6_0/8E29/V29')
+  tableName = cms.string('/dev/CMSSW_3_6_0/8E29/V30')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -23,21 +23,21 @@ process.streams = cms.PSet(
   HLTMON = cms.vstring( 'OfflineMonitor' ),
   DQM = cms.vstring(  ),
   HLTDQM = cms.vstring(  ),
-  EventDisplay = cms.vstring(  ),
-  Express = cms.vstring( 'ExpressPhysics' ),
   A = cms.vstring( 'JetMETTauMonitor',
     'MuMonitor',
     'Cosmics',
     'MinimumBias',
     'Commissioning',
-    'EG',
     'HcalHPDNoise',
     'ZeroBias',
     'HcalNZS',
     'RandomTriggers',
     'EGMonitor',
     'Mu',
-    'JetMETTau' )
+    'JetMETTau',
+    'EG' ),
+  EventDisplay = cms.vstring(  ),
+  Express = cms.vstring( 'ExpressPhysics' )
 )
 process.datasets = cms.PSet( 
   RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
@@ -133,13 +133,6 @@ process.datasets = cms.PSet(
     'HLT_MET100',
     'HLT_MET45',
     'HLT_PixelTracks_Multiplicity70' ),
-  ExpressPhysics = cms.vstring( 'HLT_Jet50U',
-    'HLT_L1DoubleMuOpen',
-    'HLT_L1Mu',
-    'HLT_L1MuOpen',
-    'HLT_MET100',
-    'HLT_ZeroBias',
-    'HLT_L1SingleEG5' ),
   JetMETTauMonitor = cms.vstring( 'HLT_L1Jet6U',
     'HLT_L1MET20' ),
   MuMonitor = cms.vstring( 'HLT_L1Mu',
@@ -158,26 +151,6 @@ process.datasets = cms.PSet(
     'HLT_PixelTracks_Multiplicity40',
     'HLT_PixelTracks_Multiplicity70' ),
   Commissioning = cms.vstring(  ),
-  EG = cms.vstring( 'HLT_DoublePhoton10_L1R',
-    'HLT_Photon30_L1R_8E29',
-    'HLT_Photon20_L1R',
-    'HLT_Photon15_LooseEcalIso_L1R',
-    'HLT_Photon15_TrackIso_L1R',
-    'HLT_Photon15_L1R',
-    'HLT_Photon10_L1R',
-    'HLT_DoublePhoton5_Upsilon_L1R',
-    'HLT_DoublePhoton5_Jpsi_L1R',
-    'HLT_DoubleEle5_SW_L1R',
-    'HLT_Ele20_LW_L1R',
-    'HLT_Ele15_SiStrip_L1R',
-    'HLT_Ele15_SC10_LW_L1R',
-    'HLT_Ele15_LW_L1R',
-    'HLT_Ele10_LW_EleId_L1R',
-    'HLT_Ele10_LW_L1R',
-    'HLT_DoublePhoton4_Jpsi_L1R',
-    'HLT_DoublePhoton4_Upsilon_L1R',
-    'HLT_DoublePhoton4_eeRes_L1R',
-    'HLT_DoublePhoton5_L1R' ),
   HcalHPDNoise = cms.vstring(  ),
   ZeroBias = cms.vstring( 'HLT_ZeroBias' ),
   HcalNZS = cms.vstring( 'HLT_HcalNZS_8E29',
@@ -223,7 +196,34 @@ process.datasets = cms.PSet(
     'HLT_Jet30U',
     'HLT_Jet15U',
     'HLT_BTagMu_Jet10U',
-    'HLT_DoubleJet15U_ForwardBackward' )
+    'HLT_DoubleJet15U_ForwardBackward' ),
+  EG = cms.vstring( 'HLT_DoublePhoton10_L1R',
+    'HLT_Photon30_L1R_8E29',
+    'HLT_Photon20_L1R',
+    'HLT_Photon15_LooseEcalIso_L1R',
+    'HLT_Photon15_TrackIso_L1R',
+    'HLT_Photon15_L1R',
+    'HLT_Photon10_L1R',
+    'HLT_DoublePhoton5_Upsilon_L1R',
+    'HLT_DoublePhoton5_Jpsi_L1R',
+    'HLT_DoubleEle5_SW_L1R',
+    'HLT_Ele20_LW_L1R',
+    'HLT_Ele15_SiStrip_L1R',
+    'HLT_Ele15_SC10_LW_L1R',
+    'HLT_Ele15_LW_L1R',
+    'HLT_Ele10_LW_EleId_L1R',
+    'HLT_Ele10_LW_L1R',
+    'HLT_DoublePhoton4_Jpsi_L1R',
+    'HLT_DoublePhoton4_Upsilon_L1R',
+    'HLT_DoublePhoton4_eeRes_L1R',
+    'HLT_DoublePhoton5_L1R' ),
+  ExpressPhysics = cms.vstring( 'HLT_Jet50U',
+    'HLT_L1DoubleMuOpen',
+    'HLT_L1Mu',
+    'HLT_L1MuOpen',
+    'HLT_MET100',
+    'HLT_ZeroBias',
+    'HLT_L1SingleEG5' )
 )
 
 process.source = cms.Source( "PoolSource",
@@ -4879,7 +4879,7 @@ process.hltL1NonIsoSiStripElectronPixelSeeds = cms.EDProducer( "SiStripElectronS
       tidEtaUsage = cms.double( 1.2 ),
       tidMaxHits = cms.int32( 4 ),
       tecMaxHits = cms.int32( 2 ),
-      monoMaxHits = cms.int64( 4 ),
+      monoMaxHits = cms.int32( 4 ),
       maxSeeds = cms.int32( 5 )
     )
 )
