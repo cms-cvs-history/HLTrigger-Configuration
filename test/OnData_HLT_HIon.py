@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_5/HIon/V67 (CMSSW_3_5_8_HLT3)
+# /dev/CMSSW_3_5_5/HIon/V68 (CMSSW_3_5_8_HLT3)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V67')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V68')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -25,7 +25,8 @@ process.streams = cms.PSet(
   DQM = cms.vstring(  ),
   EventDisplay = cms.vstring(  ),
   Express = cms.vstring( 'ExpressPhysics' ),
-  A = cms.vstring( 'EG',
+  A = cms.vstring( 'RandomTriggers',
+    'EG',
     'JetMETTauMonitor',
     'MuMonitor',
     'Cosmics',
@@ -35,7 +36,6 @@ process.streams = cms.PSet(
     'ZeroBias',
     'HcalHPDNoise',
     'EGMonitor',
-    'RandomTriggers',
     'JetMETTau',
     'Mu' )
 )
@@ -49,6 +49,7 @@ process.datasets = cms.PSet(
   RPCMonitor = cms.vstring(  ),
   OfflineMonitor = cms.vstring(  ),
   ExpressPhysics = cms.vstring(  ),
+  RandomTriggers = cms.vstring(  ),
   EG = cms.vstring(  ),
   JetMETTauMonitor = cms.vstring(  ),
   MuMonitor = cms.vstring(  ),
@@ -59,7 +60,6 @@ process.datasets = cms.PSet(
   ZeroBias = cms.vstring(  ),
   HcalHPDNoise = cms.vstring(  ),
   EGMonitor = cms.vstring(  ),
-  RandomTriggers = cms.vstring(  ),
   JetMETTau = cms.vstring(  ),
   Mu = cms.vstring(  )
 )
@@ -1713,6 +1713,13 @@ process.hltBPTXCoincidence = cms.EDFilter( "HLTLevel1Activity",
 process.hltScalersRawToDigi = cms.EDProducer( "ScalersRawToDigi",
     scalersInputTag = cms.InputTag( "source" )
 )
+process.hltOnlineBeamSpot = cms.EDProducer( "BeamSpotOnlineProducer",
+    label = cms.InputTag( "hltScalersRawToDigi" ),
+    changeToCMSCoordinates = cms.bool( False ),
+    maxZ = cms.double( 40.0 ),
+    maxRadius = cms.double( 2.0 ),
+    setSigmaZ = cms.double( 10.0 )
+)
 process.hltOfflineBeamSpot = cms.EDProducer( "BeamSpotProducer" )
 process.hltPreFirstPath = cms.EDFilter( "HLTPrescaler" )
 process.hltBoolFirstPath = cms.EDFilter( "HLTBool",
@@ -2565,7 +2572,7 @@ process.hltOutputOnlineErrors = cms.OutputModule( "PoolOutputModule",
 )
 
 process.HLTL1UnpackerSequence = cms.Sequence( process.hltGtDigis + process.hltGctDigis + process.hltL1GtObjectMap + process.hltL1extraParticles )
-process.HLTBeamSpot = cms.Sequence( process.hltScalersRawToDigi + process.hltOfflineBeamSpot )
+process.HLTBeamSpot = cms.Sequence( process.hltScalersRawToDigi + process.hltOnlineBeamSpot + process.hltOfflineBeamSpot )
 process.HLTBeginSequenceBPTX = cms.Sequence( process.hltTriggerType + process.HLTL1UnpackerSequence + process.hltBPTXCoincidence + process.HLTBeamSpot )
 process.HLTBeginSequence = cms.Sequence( process.hltTriggerType + process.HLTL1UnpackerSequence + process.HLTBeamSpot )
 process.HLTEndSequence = cms.Sequence( process.hltBoolEnd )

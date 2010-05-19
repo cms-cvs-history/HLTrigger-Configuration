@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_5_5/1E31/V67 (CMSSW_3_5_8_HLT3)
+# /dev/CMSSW_3_5_5/1E31/V68 (CMSSW_3_5_8_HLT3)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V67')
+  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V68')
 )
 
 streams = cms.PSet( 
@@ -21,7 +21,8 @@ streams = cms.PSet(
   DQM = cms.vstring(  ),
   EventDisplay = cms.vstring(  ),
   Express = cms.vstring( 'ExpressPhysics' ),
-  A = cms.vstring( 'EG',
+  A = cms.vstring( 'RandomTriggers',
+    'EG',
     'JetMETTauMonitor',
     'MuMonitor',
     'Cosmics',
@@ -31,7 +32,6 @@ streams = cms.PSet(
     'ZeroBias',
     'HcalHPDNoise',
     'EGMonitor',
-    'RandomTriggers',
     'JetMETTau',
     'Mu' )
 )
@@ -44,8 +44,8 @@ datasets = cms.PSet(
   EcalLaser = cms.vstring(  ),
   LogMonitor = cms.vstring(  ),
   FEDMonitor = cms.vstring(  ),
-  AlCaP0 = cms.vstring( 'AlCa_EcalEta_1E31',
-    'AlCa_EcalPi0_1E31' ),
+  AlCaP0 = cms.vstring( 'AlCa_EcalPi0_1E31',
+    'AlCa_EcalEta_1E31' ),
   OfflineMonitor = cms.vstring( 'HLT_PixelTracks_Multiplicity70',
     'HLT_Mu0_L1MuOpen',
     'HLT_Mu0_Track0_Jpsi',
@@ -91,6 +91,7 @@ datasets = cms.PSet(
     'HLT_Photon10_L1R',
     'HLT_Photon15_L1R',
     'HLT_TrackerCosmics' ),
+  RandomTriggers = cms.vstring(  ),
   EG = cms.vstring( 'HLT_DoublePhoton10_L1R',
     'HLT_Photon15_L1R',
     'HLT_Photon10_L1R',
@@ -104,17 +105,21 @@ datasets = cms.PSet(
     'HLT_CSCBeamHaloOverlapRing2',
     'HLT_CSCBeamHaloOverlapRing1',
     'HLT_CSCBeamHalo' ),
-  MinimumBias = cms.vstring( 'HLT_L1Tech_BSC_HighMultiplicity',
-    'HLT_ZeroBiasPixel_SingleTrack',
-    'HLT_PixelTracks_Multiplicity70' ),
+  MinimumBias = cms.vstring( 'HLT_PixelTracks_Multiplicity70',
+    'HLT_L1Tech_BSC_HighMultiplicity',
+    'HLT_ZeroBiasPixel_SingleTrack' ),
   Commissioning = cms.vstring(  ),
   HcalNZS = cms.vstring( 'HLT_HcalPhiSym' ),
   ZeroBias = cms.vstring( 'HLT_ZeroBias' ),
   HcalHPDNoise = cms.vstring(  ),
   EGMonitor = cms.vstring( 'HLT_L1SingleEG5' ),
-  RandomTriggers = cms.vstring(  ),
   JetMETTau = cms.vstring( 'HLT_MET100' ),
-  Mu = cms.vstring( 'HLT_L1Mu14_L1SingleEG10',
+  Mu = cms.vstring( 'HLT_DoubleMu0',
+    'HLT_DoubleMu3',
+    'HLT_Mu5',
+    'HLT_Mu9',
+    'HLT_L2Mu11',
+    'HLT_L1Mu14_L1SingleEG10',
     'HLT_Mu0_L1MuOpen',
     'HLT_Mu0_Track0_Jpsi',
     'HLT_Mu3_L1MuOpen',
@@ -125,12 +130,7 @@ datasets = cms.PSet(
     'HLT_Mu0_L2Mu0',
     'HLT_Mu3_L2Mu0',
     'HLT_Mu5_L2Mu0',
-    'HLT_L2DoubleMu0',
-    'HLT_DoubleMu0',
-    'HLT_DoubleMu3',
-    'HLT_Mu5',
-    'HLT_Mu9',
-    'HLT_L2Mu11' )
+    'HLT_L2DoubleMu0' )
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",
@@ -1119,6 +1119,13 @@ hltBPTXCoincidence = cms.EDFilter( "HLTLevel1Activity",
 )
 hltScalersRawToDigi = cms.EDProducer( "ScalersRawToDigi",
     scalersInputTag = cms.InputTag( "rawDataCollector" )
+)
+hltOnlineBeamSpot = cms.EDProducer( "BeamSpotOnlineProducer",
+    label = cms.InputTag( "hltScalersRawToDigi" ),
+    changeToCMSCoordinates = cms.bool( False ),
+    maxZ = cms.double( 40.0 ),
+    maxRadius = cms.double( 2.0 ),
+    setSigmaZ = cms.double( 10.0 )
 )
 hltOfflineBeamSpot = cms.EDProducer( "BeamSpotProducer" )
 hltPreFirstPath = cms.EDFilter( "HLTPrescaler" )
@@ -8479,7 +8486,7 @@ hltTrigReport = cms.EDAnalyzer( "HLTrigReport",
 )
 
 HLTL1UnpackerSequence = cms.Sequence( hltGtDigis + hltGctDigis + hltL1GtObjectMap + hltL1extraParticles )
-HLTBeamSpot = cms.Sequence( hltScalersRawToDigi + hltOfflineBeamSpot )
+HLTBeamSpot = cms.Sequence( hltScalersRawToDigi + hltOnlineBeamSpot + hltOfflineBeamSpot )
 HLTBeginSequenceBPTX = cms.Sequence( hltTriggerType + HLTL1UnpackerSequence + hltBPTXCoincidence + HLTBeamSpot )
 HLTEndSequence = cms.Sequence( hltBoolEnd )
 HLTDoLocalHcalSequence = cms.Sequence( hltHcalDigis + hltHbhereco + hltHfreco + hltHoreco )

@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_5_5/GRun/V67 (CMSSW_3_5_8_HLT3)
+# /dev/CMSSW_3_5_5/GRun/V68 (CMSSW_3_5_8_HLT3)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/GRun/V67')
+  tableName = cms.string('/dev/CMSSW_3_5_5/GRun/V68')
 )
 
 streams = cms.PSet( 
@@ -21,7 +21,8 @@ streams = cms.PSet(
   DQM = cms.vstring(  ),
   EventDisplay = cms.vstring(  ),
   Express = cms.vstring( 'ExpressPhysics' ),
-  A = cms.vstring( 'EG',
+  A = cms.vstring( 'RandomTriggers',
+    'EG',
     'JetMETTauMonitor',
     'MuMonitor',
     'Cosmics',
@@ -31,7 +32,6 @@ streams = cms.PSet(
     'ZeroBias',
     'HcalHPDNoise',
     'EGMonitor',
-    'RandomTriggers',
     'JetMETTau',
     'Mu' )
 )
@@ -184,6 +184,7 @@ datasets = cms.PSet(
     'HLT_Photon10_L1R',
     'HLT_Photon15_L1R',
     'HLT_TrackerCosmics' ),
+  RandomTriggers = cms.vstring( 'HLT_Random' ),
   EG = cms.vstring( 'HLT_DoublePhoton10_L1R',
     'HLT_Photon30_L1R_8E29',
     'HLT_Photon20_L1R',
@@ -265,7 +266,6 @@ datasets = cms.PSet(
     'HLT_L1DoubleEG5',
     'HLT_L1SingleEG8',
     'HLT_L1SingleEG5' ),
-  RandomTriggers = cms.vstring( 'HLT_Random' ),
   JetMETTau = cms.vstring( 'HLT_Jet15U_HcalNoiseFiltered',
     'HLT_QuadJet15U',
     'HLT_DiJetAve30U_8E29',
@@ -1296,6 +1296,13 @@ hltBPTXCoincidence = cms.EDFilter( "HLTLevel1Activity",
 )
 hltScalersRawToDigi = cms.EDProducer( "ScalersRawToDigi",
     scalersInputTag = cms.InputTag( "rawDataCollector" )
+)
+hltOnlineBeamSpot = cms.EDProducer( "BeamSpotOnlineProducer",
+    label = cms.InputTag( "hltScalersRawToDigi" ),
+    changeToCMSCoordinates = cms.bool( False ),
+    maxZ = cms.double( 40.0 ),
+    maxRadius = cms.double( 2.0 ),
+    setSigmaZ = cms.double( 10.0 )
 )
 hltOfflineBeamSpot = cms.EDProducer( "BeamSpotProducer" )
 hltPreFirstPath = cms.EDFilter( "HLTPrescaler" )
@@ -9007,7 +9014,7 @@ hltTrigReport = cms.EDAnalyzer( "HLTrigReport",
 )
 
 HLTL1UnpackerSequence = cms.Sequence( hltGtDigis + hltGctDigis + hltL1GtObjectMap + hltL1extraParticles )
-HLTBeamSpot = cms.Sequence( hltScalersRawToDigi + hltOfflineBeamSpot )
+HLTBeamSpot = cms.Sequence( hltScalersRawToDigi + hltOnlineBeamSpot + hltOfflineBeamSpot )
 HLTBeginSequenceBPTX = cms.Sequence( hltTriggerType + HLTL1UnpackerSequence + hltBPTXCoincidence + HLTBeamSpot )
 HLTEndSequence = cms.Sequence( hltBoolEnd )
 HLTDoLocalPixelSequence = cms.Sequence( hltSiPixelDigis + hltSiPixelClusters + hltSiPixelRecHits )
