@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_6_0/8E29/V32 (CMSSW_3_6_0_HLT10)
+# /dev/CMSSW_3_6_0/8E29/V33 (CMSSW_3_6_0_HLT10)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_6_0/8E29/V32')
+  tableName = cms.string('/dev/CMSSW_3_6_0/8E29/V33')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -781,7 +781,12 @@ process.SiStripGainESProducer = cms.ESProducer( "SiStripGainESProducer",
   printDebug = cms.untracked.bool( False ),
   APVGain = cms.VPSet( 
     cms.PSet(  Record = cms.string( "SiStripApvGainRcd" ),
-      Label = cms.untracked.string( "" )
+      Label = cms.untracked.string( "" ),
+      NormalizationFactor = cms.untracked.double( 1.0 )
+    ),
+    cms.PSet(  Record = cms.string( "SiStripApvGain2Rcd" ),
+      Label = cms.untracked.string( "" ),
+      NormalizationFactor = cms.untracked.double( 1.0 )
     )
   )
 )
