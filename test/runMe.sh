@@ -21,7 +21,7 @@ end
 echo " "
 echo "Creating offline configs with cmsDriver"
 echo "./cmsDriver.sh"
-      ./cmsDriver.sh
+time  ./cmsDriver.sh
 
 #foreach lumi ( GRun )
 #foreach task ( OnLine_HLT RelVal_HLT RelVal_HLT2 ) 
@@ -52,7 +52,7 @@ foreach lumi ( 8E29 GRun 1E31 HIon )
 	/bin/rm $name.$ext
     end
     echo "cmsRun $name.py >& $name.log"
-          cmsRun $name.py >& $name.log
+    time  cmsRun $name.py >& $name.log
   end
 end
 
@@ -64,6 +64,6 @@ foreach lumi ( 8E29 1E31 )
 	/bin/rm $name.$ext
     end
     echo "cmsRun $name.py >& $name.log"
-          cmsRun $name.py >& $name.log
+    time  cmsRun $name.py >& $name.log
   end
 end
