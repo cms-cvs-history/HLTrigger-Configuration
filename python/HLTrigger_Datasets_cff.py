@@ -1,8 +1,29 @@
-# /dev/CMSSW_3_5_5/GRun/V69
+# /dev/CMSSW_3_5_5/GRun/V70
 
 import FWCore.ParameterSet.Config as cms
 
 # dump of the Stream A Datasets defined in the HLT table
+
+from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter as streamA_datasetJetMETTau_selector
+streamA_datasetJetMETTau_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')
+streamA_datasetJetMETTau_selector.l1tResults = cms.InputTag('')
+streamA_datasetJetMETTau_selector.throw      = cms.bool(False)
+streamA_datasetJetMETTau_selector.triggerConditions = cms.vstring('HLT_Jet15U_HcalNoiseFiltered', 
+    'HLT_QuadJet15U', 
+    'HLT_DiJetAve30U_8E29', 
+    'HLT_DiJetAve15U_8E29', 
+    'HLT_FwdJet20U', 
+    'HLT_Jet50U', 
+    'HLT_Jet30U', 
+    'HLT_Jet15U', 
+    'HLT_BTagMu_Jet10U', 
+    'HLT_DoubleJet15U_ForwardBackward', 
+    'HLT_BTagIP_Jet50U', 
+    'HLT_DoubleLooseIsoTau15', 
+    'HLT_SingleLooseIsoTau20', 
+    'HLT_HT100U', 
+    'HLT_MET100', 
+    'HLT_MET45')
 
 from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter as streamA_datasetEG_selector
 streamA_datasetEG_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')
@@ -171,25 +192,4 @@ streamA_datasetCommissioning_selector.triggerConditions = cms.vstring('HLT_L1_Bp
     'HLT_Activity_DT_Tuned', 
     'HLT_SelectEcalSpikes_L1R', 
     'HLT_SelectEcalSpikesHighEt_L1R')
-
-from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter as streamA_datasetJetMETTau_selector
-streamA_datasetJetMETTau_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')
-streamA_datasetJetMETTau_selector.l1tResults = cms.InputTag('')
-streamA_datasetJetMETTau_selector.throw      = cms.bool(False)
-streamA_datasetJetMETTau_selector.triggerConditions = cms.vstring('HLT_Jet15U_HcalNoiseFiltered', 
-    'HLT_QuadJet15U', 
-    'HLT_DiJetAve30U_8E29', 
-    'HLT_DiJetAve15U_8E29', 
-    'HLT_FwdJet20U', 
-    'HLT_Jet50U', 
-    'HLT_Jet30U', 
-    'HLT_Jet15U', 
-    'HLT_BTagMu_Jet10U', 
-    'HLT_DoubleJet15U_ForwardBackward', 
-    'HLT_BTagIP_Jet50U', 
-    'HLT_DoubleLooseIsoTau15', 
-    'HLT_SingleLooseIsoTau20', 
-    'HLT_HT100U', 
-    'HLT_MET100', 
-    'HLT_MET45')
 
