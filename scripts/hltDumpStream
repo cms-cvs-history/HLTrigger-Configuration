@@ -130,14 +130,16 @@ def getBPTXMatching(path):
   searchMinus = SearchModuleByName('hltL1sL1BPTXMinusOnly')
   searchZero  = SearchModuleByName('hltL1sZeroBias')
   searchBPTX  = SearchModuleByName('hltBPTXCoincidence')
+  searchMinB  = SearchModuleByName('hltL1sL1BscMinBiasORBptxPlusORMinus')
   path.visit(searchSeed)
   path.visit(searchPlus)
   path.visit(searchMinus)
   path.visit(searchZero)
   path.visit(searchBPTX)
+  path.visit(searchMinB)
   if searchSeed.found or searchPlus.found or searchMinus.found or searchZero.found:
     bptx = 2
-  elif searchBPTX.found:
+  elif searchBPTX.found or searchMinB.found:
     bptx = 1
   else:
     bptx = 0
