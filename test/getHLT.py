@@ -288,8 +288,7 @@ es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverri
           if runOnline:
             edsources =  " --input file:/tmp/InputCollection.root"
           else:
-            edsources =  " --input /store/data/BeamCommissioning09/MinimumBias/RAW/v1/000/124/120/F6ADE109-6BE8-DE11-9680-000423D991D4.root"
-
+            edsources =  " --input /store/data/Run2010A/MinimumBias/RAW/v1/000/136/440/58C33706-A16A-DF11-B5E2-000423D94AA8.root"
         else:
           edsources =  " --input file:RelVal_DigiL1Raw_"+fileId+".root"
 
