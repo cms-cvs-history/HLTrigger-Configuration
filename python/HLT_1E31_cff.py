@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_5_5/1E31/V71 (CMSSW_3_5_8_HLT3)
+# /dev/CMSSW_3_5_5/1E31/V72 (CMSSW_3_5_8_HLT3)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V71')
+  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V72')
 )
 
 streams = cms.PSet( 
@@ -19,12 +19,9 @@ streams = cms.PSet(
   HLTMON = cms.vstring( 'OfflineMonitor' ),
   HLTDQM = cms.vstring(  ),
   DQM = cms.vstring(  ),
-  EventDisplay = cms.vstring(  ),
-  Express = cms.vstring( 'ExpressPhysics' ),
   A = cms.vstring( 'JetMETTau',
     'EG',
     'JetMETTauMonitor',
-    'MuMonitor',
     'Cosmics',
     'MinimumBias',
     'HcalNZS',
@@ -33,7 +30,10 @@ streams = cms.PSet(
     'EGMonitor',
     'Mu',
     'RandomTriggers',
-    'Commissioning' )
+    'Commissioning',
+    'MuMonitor' ),
+  EventDisplay = cms.vstring(  ),
+  Express = cms.vstring( 'ExpressPhysics' )
 )
 datasets = cms.PSet( 
   AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
@@ -83,20 +83,12 @@ datasets = cms.PSet(
     'HLT_MET100',
     'HLT_L1MET20',
     'HLT_DoubleMu3' ),
-  ExpressPhysics = cms.vstring( 'HLT_L1MuOpen',
-    'HLT_MET100',
-    'HLT_ZeroBias',
-    'HLT_L1SingleEG5',
-    'HLT_L2DoubleMu0',
-    'HLT_TrackerCosmics' ),
   JetMETTau = cms.vstring( 'HLT_MET100' ),
   EG = cms.vstring( 'HLT_DoublePhoton10_L1R',
     'HLT_Photon15_L1R',
     'HLT_Photon10_L1R',
     'HLT_Ele15_SiStrip_L1R' ),
   JetMETTauMonitor = cms.vstring( 'HLT_L1MET20' ),
-  MuMonitor = cms.vstring( 'HLT_L1Mu',
-    'HLT_L1MuOpen' ),
   Cosmics = cms.vstring( 'HLT_TrackerCosmics',
     'HLT_RPCBarrelCosmics',
     'HLT_CSCBeamHaloRing2or3',
@@ -128,7 +120,15 @@ datasets = cms.PSet(
     'HLT_Mu5_L2Mu0',
     'HLT_L2DoubleMu0' ),
   RandomTriggers = cms.vstring(  ),
-  Commissioning = cms.vstring(  )
+  Commissioning = cms.vstring(  ),
+  MuMonitor = cms.vstring( 'HLT_L1Mu',
+    'HLT_L1MuOpen' ),
+  ExpressPhysics = cms.vstring( 'HLT_L1MuOpen',
+    'HLT_MET100',
+    'HLT_ZeroBias',
+    'HLT_L1SingleEG5',
+    'HLT_L2DoubleMu0',
+    'HLT_TrackerCosmics' )
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",

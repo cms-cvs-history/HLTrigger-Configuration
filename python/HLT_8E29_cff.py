@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_5_5/8E29/V71 (CMSSW_3_5_8_HLT3)
+# /dev/CMSSW_3_5_5/8E29/V72 (CMSSW_3_5_8_HLT3)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/8E29/V71')
+  tableName = cms.string('/dev/CMSSW_3_5_5/8E29/V72')
 )
 
 streams = cms.PSet( 
@@ -19,12 +19,9 @@ streams = cms.PSet(
   HLTMON = cms.vstring( 'OfflineMonitor' ),
   HLTDQM = cms.vstring(  ),
   DQM = cms.vstring(  ),
-  EventDisplay = cms.vstring(  ),
-  Express = cms.vstring( 'ExpressPhysics' ),
   A = cms.vstring( 'JetMETTau',
     'EG',
     'JetMETTauMonitor',
-    'MuMonitor',
     'Cosmics',
     'MinimumBias',
     'HcalNZS',
@@ -33,7 +30,10 @@ streams = cms.PSet(
     'EGMonitor',
     'Mu',
     'RandomTriggers',
-    'Commissioning' )
+    'Commissioning',
+    'MuMonitor' ),
+  EventDisplay = cms.vstring(  ),
+  Express = cms.vstring( 'ExpressPhysics' )
 )
 datasets = cms.PSet( 
   AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
@@ -129,16 +129,6 @@ datasets = cms.PSet(
     'HLT_Jet15U',
     'HLT_BTagMu_Jet10U',
     'HLT_DoubleMu3' ),
-  ExpressPhysics = cms.vstring( 'HLT_L1MuOpen',
-    'HLT_MET100',
-    'HLT_ZeroBias',
-    'HLT_L1SingleEG5',
-    'HLT_DoublePhoton5_L1R',
-    'HLT_Ele10_LW_L1R',
-    'HLT_Jet30U',
-    'HLT_L2DoubleMu0',
-    'HLT_Mu3',
-    'HLT_TrackerCosmics' ),
   JetMETTau = cms.vstring( 'HLT_QuadJet15U',
     'HLT_DiJetAve30U_8E29',
     'HLT_DiJetAve15U_8E29',
@@ -176,8 +166,6 @@ datasets = cms.PSet(
     'HLT_DoublePhoton5_L1R' ),
   JetMETTauMonitor = cms.vstring( 'HLT_L1Jet6U',
     'HLT_L1MET20' ),
-  MuMonitor = cms.vstring( 'HLT_L1Mu',
-    'HLT_L1MuOpen' ),
   Cosmics = cms.vstring( 'HLT_TrackerCosmics',
     'HLT_RPCBarrelCosmics',
     'HLT_CSCBeamHaloRing2or3',
@@ -222,7 +210,19 @@ datasets = cms.PSet(
     'HLT_Mu5_L2Mu0',
     'HLT_L2DoubleMu0' ),
   RandomTriggers = cms.vstring(  ),
-  Commissioning = cms.vstring(  )
+  Commissioning = cms.vstring(  ),
+  MuMonitor = cms.vstring( 'HLT_L1Mu',
+    'HLT_L1MuOpen' ),
+  ExpressPhysics = cms.vstring( 'HLT_L1MuOpen',
+    'HLT_MET100',
+    'HLT_ZeroBias',
+    'HLT_L1SingleEG5',
+    'HLT_DoublePhoton5_L1R',
+    'HLT_Ele10_LW_L1R',
+    'HLT_Jet30U',
+    'HLT_L2DoubleMu0',
+    'HLT_Mu3',
+    'HLT_TrackerCosmics' )
 )
 
 BTagRecord = cms.ESSource( "EmptyESSource",

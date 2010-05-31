@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_5/1E31/V71 (CMSSW_3_5_8_HLT3)
+# /dev/CMSSW_3_5_5/1E31/V72 (CMSSW_3_5_8_HLT3)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V71')
+  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V72')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -23,12 +23,9 @@ process.streams = cms.PSet(
   HLTMON = cms.vstring( 'OfflineMonitor' ),
   HLTDQM = cms.vstring(  ),
   DQM = cms.vstring(  ),
-  EventDisplay = cms.vstring(  ),
-  Express = cms.vstring( 'ExpressPhysics' ),
   A = cms.vstring( 'JetMETTau',
     'EG',
     'JetMETTauMonitor',
-    'MuMonitor',
     'Cosmics',
     'MinimumBias',
     'HcalNZS',
@@ -37,7 +34,10 @@ process.streams = cms.PSet(
     'EGMonitor',
     'Mu',
     'RandomTriggers',
-    'Commissioning' )
+    'Commissioning',
+    'MuMonitor' ),
+  EventDisplay = cms.vstring(  ),
+  Express = cms.vstring( 'ExpressPhysics' )
 )
 process.datasets = cms.PSet( 
   AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
@@ -87,20 +87,12 @@ process.datasets = cms.PSet(
     'HLT_MET100',
     'HLT_L1MET20',
     'HLT_DoubleMu3' ),
-  ExpressPhysics = cms.vstring( 'HLT_L1MuOpen',
-    'HLT_MET100',
-    'HLT_ZeroBias',
-    'HLT_L1SingleEG5',
-    'HLT_L2DoubleMu0',
-    'HLT_TrackerCosmics' ),
   JetMETTau = cms.vstring( 'HLT_MET100' ),
   EG = cms.vstring( 'HLT_DoublePhoton10_L1R',
     'HLT_Photon15_L1R',
     'HLT_Photon10_L1R',
     'HLT_Ele15_SiStrip_L1R' ),
   JetMETTauMonitor = cms.vstring( 'HLT_L1MET20' ),
-  MuMonitor = cms.vstring( 'HLT_L1Mu',
-    'HLT_L1MuOpen' ),
   Cosmics = cms.vstring( 'HLT_TrackerCosmics',
     'HLT_RPCBarrelCosmics',
     'HLT_CSCBeamHaloRing2or3',
@@ -132,7 +124,15 @@ process.datasets = cms.PSet(
     'HLT_Mu5_L2Mu0',
     'HLT_L2DoubleMu0' ),
   RandomTriggers = cms.vstring(  ),
-  Commissioning = cms.vstring(  )
+  Commissioning = cms.vstring(  ),
+  MuMonitor = cms.vstring( 'HLT_L1Mu',
+    'HLT_L1MuOpen' ),
+  ExpressPhysics = cms.vstring( 'HLT_L1MuOpen',
+    'HLT_MET100',
+    'HLT_ZeroBias',
+    'HLT_L1SingleEG5',
+    'HLT_L2DoubleMu0',
+    'HLT_TrackerCosmics' )
 )
 
 process.source = cms.Source( "PoolSource",
@@ -1705,34 +1705,35 @@ process.ModuleWebRegistry = cms.Service( "ModuleWebRegistry",
 )
 process.PrescaleService = cms.Service( "PrescaleService",
     lvl1DefaultLabel = cms.untracked.string( "2E29" ),
-    lvl1Labels = cms.vstring( '2E29',
+    lvl1Labels = cms.vstring( '2E29_preL1',
+      '2E29',
       '1E29',
       '1E28',
       'Cosmics' ),
     prescaleTable = cms.VPSet( 
       cms.PSet(  pathName = cms.string( "HLT_L1MuOpen" ),
-        prescales = cms.vuint32( 20, 5, 1, 1 )
+        prescales = cms.vuint32( 20, 20, 5, 1, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_L1SingleEG5" ),
-        prescales = cms.vuint32( 20, 1, 1, 1 )
+        prescales = cms.vuint32( 20, 20, 1, 1, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_ZeroBias" ),
-        prescales = cms.vuint32( 10, 10, 10, 1 )
+        prescales = cms.vuint32( 10, 10, 10, 10, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_ZeroBiasPixel_SingleTrack" ),
-        prescales = cms.vuint32( 50, 50, 5, 1 )
+        prescales = cms.vuint32( 50, 50, 50, 5, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_L1Tech_BSC_HighMultiplicity" ),
-        prescales = cms.vuint32( 1000, 300, 30, 1 )
+        prescales = cms.vuint32( 1000, 1000, 300, 30, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_RPCBarrelCosmics" ),
-        prescales = cms.vuint32( 20, 10, 1, 1 )
+        prescales = cms.vuint32( 20, 20, 10, 1, 1 )
       ),
       cms.PSet(  pathName = cms.string( "AlCa_EcalPhiSym" ),
-        prescales = cms.vuint32( 20, 10, 1, 1 )
+        prescales = cms.vuint32( 20, 20, 10, 1, 1 )
       ),
       cms.PSet(  pathName = cms.string( "AlCa_RPCMuonNormalisation" ),
-        prescales = cms.vuint32( 10, 10, 10, 10 )
+        prescales = cms.vuint32( 10, 10, 10, 10, 10 )
       )
     )
 )

@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_5_5/GRun/V71 (CMSSW_3_5_8_HLT3)
+# /dev/CMSSW_3_5_5/GRun/V72 (CMSSW_3_5_8_HLT3)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/GRun/V71')
+  tableName = cms.string('/dev/CMSSW_3_5_5/GRun/V72')
 )
 
 streams = cms.PSet( 
@@ -22,7 +22,6 @@ streams = cms.PSet(
   A = cms.vstring( 'JetMETTau',
     'EG',
     'JetMETTauMonitor',
-    'MuMonitor',
     'Cosmics',
     'MinimumBias',
     'HcalNZS',
@@ -31,7 +30,8 @@ streams = cms.PSet(
     'EGMonitor',
     'Mu',
     'RandomTriggers',
-    'Commissioning' ),
+    'Commissioning',
+    'MuMonitor' ),
   EventDisplay = cms.vstring(  ),
   Express = cms.vstring( 'ExpressPhysics' )
 )
@@ -213,8 +213,6 @@ datasets = cms.PSet(
     'HLT_L1SingleForJet',
     'HLT_L1SingleTauJet',
     'HLT_L1MET20' ),
-  MuMonitor = cms.vstring( 'HLT_L1Mu',
-    'HLT_L1MuOpen' ),
   Cosmics = cms.vstring( 'HLT_L1MuOpen_AntiBPTX',
     'HLT_L1Tech_BSC_halo',
     'HLT_TkMu3_NoVertex',
@@ -290,6 +288,8 @@ datasets = cms.PSet(
     'HLT_Activity_DT_Tuned',
     'HLT_SelectEcalSpikes_L1R',
     'HLT_SelectEcalSpikesHighEt_L1R' ),
+  MuMonitor = cms.vstring( 'HLT_L1Mu',
+    'HLT_L1MuOpen' ),
   ExpressPhysics = cms.vstring( 'HLT_L1MuOpen',
     'HLT_MET100',
     'HLT_ZeroBias',

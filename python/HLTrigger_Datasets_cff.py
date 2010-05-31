@@ -1,4 +1,4 @@
-# /dev/CMSSW_3_5_5/GRun/V71
+# /dev/CMSSW_3_5_5/GRun/V72
 
 import FWCore.ParameterSet.Config as cms
 
@@ -65,13 +65,6 @@ streamA_datasetJetMETTauMonitor_selector.triggerConditions = cms.vstring('HLT_L1
     'HLT_L1SingleForJet', 
     'HLT_L1SingleTauJet', 
     'HLT_L1MET20')
-
-from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter as streamA_datasetMuMonitor_selector
-streamA_datasetMuMonitor_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')
-streamA_datasetMuMonitor_selector.l1tResults = cms.InputTag('')
-streamA_datasetMuMonitor_selector.throw      = cms.bool(False)
-streamA_datasetMuMonitor_selector.triggerConditions = cms.vstring('HLT_L1Mu', 
-    'HLT_L1MuOpen')
 
 from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter as streamA_datasetCosmics_selector
 streamA_datasetCosmics_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')
@@ -192,4 +185,11 @@ streamA_datasetCommissioning_selector.triggerConditions = cms.vstring('HLT_L1_Bp
     'HLT_Activity_DT_Tuned', 
     'HLT_SelectEcalSpikes_L1R', 
     'HLT_SelectEcalSpikesHighEt_L1R')
+
+from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter as streamA_datasetMuMonitor_selector
+streamA_datasetMuMonitor_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')
+streamA_datasetMuMonitor_selector.l1tResults = cms.InputTag('')
+streamA_datasetMuMonitor_selector.throw      = cms.bool(False)
+streamA_datasetMuMonitor_selector.triggerConditions = cms.vstring('HLT_L1Mu', 
+    'HLT_L1MuOpen')
 
