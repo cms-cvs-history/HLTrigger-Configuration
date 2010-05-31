@@ -1,4 +1,4 @@
-# /dev/CMSSW_3_5_5/GRun/V72
+# /dev/CMSSW_3_5_5/GRun/V73
 
 import FWCore.ParameterSet.Config as cms
 
@@ -191,5 +191,6 @@ streamA_datasetMuMonitor_selector.hltResults = cms.InputTag('TriggerResults', ''
 streamA_datasetMuMonitor_selector.l1tResults = cms.InputTag('')
 streamA_datasetMuMonitor_selector.throw      = cms.bool(False)
 streamA_datasetMuMonitor_selector.triggerConditions = cms.vstring('HLT_L1Mu', 
-    'HLT_L1MuOpen')
+    'HLT_L1MuOpen', 
+    'HLT_L1MuOpen_DT')
 
