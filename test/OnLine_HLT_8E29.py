@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_6_0/8E29/V36 (CMSSW_3_6_0_HLT10)
+# /dev/CMSSW_3_6_0/8E29/V37 (CMSSW_3_6_0_HLT10)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_6_0/8E29/V36')
+  tableName = cms.string('/dev/CMSSW_3_6_0/8E29/V37')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -23,11 +23,8 @@ process.streams = cms.PSet(
   HLTMON = cms.vstring( 'OfflineMonitor' ),
   DQM = cms.vstring(  ),
   HLTDQM = cms.vstring(  ),
-  EventDisplay = cms.vstring(  ),
-  Express = cms.vstring( 'ExpressPhysics' ),
   A = cms.vstring( 'RandomTriggers',
     'JetMETTauMonitor',
-    'MuMonitor',
     'Cosmics',
     'MinimumBias',
     'HcalHPDNoise',
@@ -37,7 +34,10 @@ process.streams = cms.PSet(
     'Mu',
     'EG',
     'JetMETTau',
-    'Commissioning' )
+    'Commissioning',
+    'MuMonitor' ),
+  EventDisplay = cms.vstring(  ),
+  Express = cms.vstring( 'ExpressPhysics' )
 )
 process.datasets = cms.PSet( 
   RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
@@ -133,34 +133,22 @@ process.datasets = cms.PSet(
     'HLT_MET100',
     'HLT_MET45',
     'HLT_PixelTracks_Multiplicity70' ),
-  ExpressPhysics = cms.vstring( 'HLT_L1MuOpen',
-    'HLT_MET100',
-    'HLT_ZeroBias',
-    'HLT_L1SingleEG5',
-    'HLT_DoublePhoton5_L1R',
-    'HLT_Ele10_LW_L1R',
-    'HLT_Jet30U',
-    'HLT_L2DoubleMu0',
-    'HLT_Mu3',
-    'HLT_TrackerCosmics' ),
   RandomTriggers = cms.vstring(  ),
   JetMETTauMonitor = cms.vstring( 'HLT_L1Jet6U',
     'HLT_L1MET20' ),
-  MuMonitor = cms.vstring( 'HLT_L1Mu',
-    'HLT_L1MuOpen' ),
   Cosmics = cms.vstring( 'HLT_TrackerCosmics',
     'HLT_RPCBarrelCosmics',
     'HLT_CSCBeamHaloRing2or3',
     'HLT_CSCBeamHaloOverlapRing2',
     'HLT_CSCBeamHaloOverlapRing1',
     'HLT_CSCBeamHalo' ),
-  MinimumBias = cms.vstring( 'HLT_IsoTrackHB_8E29',
+  MinimumBias = cms.vstring( 'HLT_PixelTracks_Multiplicity40',
+    'HLT_PixelTracks_Multiplicity70',
+    'HLT_IsoTrackHB_8E29',
     'HLT_IsoTrackHE_8E29',
     'HLT_L1Tech_BSC_HighMultiplicity',
     'HLT_ZeroBiasPixel_SingleTrack',
-    'HLT_StoppedHSCP_8E29',
-    'HLT_PixelTracks_Multiplicity40',
-    'HLT_PixelTracks_Multiplicity70' ),
+    'HLT_StoppedHSCP_8E29' ),
   HcalHPDNoise = cms.vstring(  ),
   ZeroBias = cms.vstring( 'HLT_ZeroBias' ),
   HcalNZS = cms.vstring( 'HLT_HcalNZS_8E29',
@@ -211,7 +199,8 @@ process.datasets = cms.PSet(
     'HLT_DoublePhoton4_Upsilon_L1R',
     'HLT_DoublePhoton4_eeRes_L1R',
     'HLT_DoublePhoton5_L1R' ),
-  JetMETTau = cms.vstring( 'HLT_BTagIP_Jet50U',
+  JetMETTau = cms.vstring( 'HLT_DoubleJet15U_ForwardBackward',
+    'HLT_BTagIP_Jet50U',
     'HLT_DoubleLooseIsoTau15',
     'HLT_SingleLooseIsoTau20',
     'HLT_HT100U',
@@ -224,9 +213,20 @@ process.datasets = cms.PSet(
     'HLT_Jet50U',
     'HLT_Jet30U',
     'HLT_Jet15U',
-    'HLT_BTagMu_Jet10U',
-    'HLT_DoubleJet15U_ForwardBackward' ),
-  Commissioning = cms.vstring(  )
+    'HLT_BTagMu_Jet10U' ),
+  Commissioning = cms.vstring(  ),
+  MuMonitor = cms.vstring( 'HLT_L1Mu',
+    'HLT_L1MuOpen' ),
+  ExpressPhysics = cms.vstring( 'HLT_L1MuOpen',
+    'HLT_MET100',
+    'HLT_ZeroBias',
+    'HLT_L1SingleEG5',
+    'HLT_DoublePhoton5_L1R',
+    'HLT_Ele10_LW_L1R',
+    'HLT_Jet30U',
+    'HLT_L2DoubleMu0',
+    'HLT_Mu3',
+    'HLT_TrackerCosmics' )
 )
 
 process.source = cms.Source( "PoolSource",
@@ -1554,43 +1554,44 @@ process.ModuleWebRegistry = cms.Service( "ModuleWebRegistry",
 )
 process.PrescaleService = cms.Service( "PrescaleService",
     lvl1DefaultLabel = cms.untracked.string( "2E29" ),
-    lvl1Labels = cms.vstring( '2E29',
+    lvl1Labels = cms.vstring( '2E29_preL1',
+      '2E29',
       '1E29',
       '1E28',
       'Cosmics' ),
     prescaleTable = cms.VPSet( 
       cms.PSet(  pathName = cms.string( "HLT_L1Jet6U" ),
-        prescales = cms.vuint32( 100, 50, 1, 100 )
+        prescales = cms.vuint32( 100, 100, 50, 1, 100 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_L1MuOpen" ),
-        prescales = cms.vuint32( 20, 5, 1, 1 )
+        prescales = cms.vuint32( 20, 20, 5, 1, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_L1SingleEG5" ),
-        prescales = cms.vuint32( 20, 1, 1, 1 )
+        prescales = cms.vuint32( 20, 20, 1, 1, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_L1SingleEG8" ),
-        prescales = cms.vuint32( 5, 1, 1, 1 )
+        prescales = cms.vuint32( 5, 5, 1, 1, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_ZeroBias" ),
-        prescales = cms.vuint32( 10, 10, 10, 1 )
+        prescales = cms.vuint32( 10, 10, 10, 10, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_ZeroBiasPixel_SingleTrack" ),
-        prescales = cms.vuint32( 50, 50, 5, 1 )
+        prescales = cms.vuint32( 50, 50, 50, 5, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_L1Tech_BSC_HighMultiplicity" ),
-        prescales = cms.vuint32( 1000, 300, 30, 1 )
+        prescales = cms.vuint32( 1000, 1000, 300, 30, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_RPCBarrelCosmics" ),
-        prescales = cms.vuint32( 20, 10, 1, 1 )
+        prescales = cms.vuint32( 20, 20, 10, 1, 1 )
       ),
       cms.PSet(  pathName = cms.string( "AlCa_EcalPhiSym" ),
-        prescales = cms.vuint32( 20, 10, 1, 1 )
+        prescales = cms.vuint32( 20, 20, 10, 1, 1 )
       ),
       cms.PSet(  pathName = cms.string( "AlCa_RPCMuonNormalisation" ),
-        prescales = cms.vuint32( 10, 10, 10, 10 )
+        prescales = cms.vuint32( 10, 10, 10, 10, 10 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_PixelTracks_Multiplicity40" ),
-        prescales = cms.vuint32( 0, 0, 1, 1 )
+        prescales = cms.vuint32( 0, 0, 0, 1, 1 )
       )
     )
 )
@@ -8444,7 +8445,10 @@ process.hltTrigReport = cms.EDAnalyzer( "HLTrigReport",
 
 process.hltOutputA = cms.OutputModule( "PoolOutputModule",
     fileName = cms.untracked.string( "outputA.root" ),
-    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring( 'HLT_TrackerCosmics',
+    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring( 'HLT_DoubleJet15U_ForwardBackward',
+  'HLT_PixelTracks_Multiplicity40',
+  'HLT_PixelTracks_Multiplicity70',
+  'HLT_TrackerCosmics',
   'HLT_RPCBarrelCosmics',
   'HLT_CSCBeamHaloRing2or3',
   'HLT_CSCBeamHaloOverlapRing2',
@@ -8521,10 +8525,7 @@ process.hltOutputA = cms.OutputModule( "PoolOutputModule",
   'HLT_Mu9',
   'HLT_IsoMu3',
   'HLT_L2Mu9',
-  'HLT_L2Mu11',
-  'HLT_DoubleJet15U_ForwardBackward',
-  'HLT_PixelTracks_Multiplicity40',
-  'HLT_PixelTracks_Multiplicity70' ) ),
+  'HLT_L2Mu11' ) ),
     outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
       'keep FEDRawDataCollection_source_*_*',
       'keep FEDRawDataCollection_rawDataCollector_*_*',
