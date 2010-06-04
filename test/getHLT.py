@@ -246,6 +246,14 @@ else:
         # open the output file for further tuning
         out = open(menuOutName, 'a')
 
+        # override the preshower baseline setting for MC - needed for 3.5.x (x >= 7) and 3.6.x
+        if not runOnData:
+          out.write("""
+# override the preshower baseline setting for MC
+if 'ESUnpackerWorkerESProducer' in locals():
+    ESUnpackerWorkerESProducer.RHAlgo.ESBaseline = 1000
+""")
+
         # if requested, override the L1 menu from the GlobalTag
         if menuL1Override:
           out.write("""
@@ -321,6 +329,14 @@ es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverri
 
         # open the output file for further tuning
         out = open(menuOutName, 'a')
+
+        # override the preshower baseline setting for MC - needed for 3.5.x (x >= 7) and 3.6.x
+        if not runOnData:
+          out.write("""
+# override the preshower baseline setting for MC
+if 'ESUnpackerWorkerESProducer' in process.__dict__:
+    process.ESUnpackerWorkerESProducer.RHAlgo.ESBaseline = 1000
+""")
 
         # overwrite ProcessName
         out.write("process.setName_('%s')\n" % processName)
