@@ -18,7 +18,7 @@ globalTag = {
 def usage():
     print 'Usage:'
     print '  getHLT.py [--process <Name>] [--globaltag <GlobalTag::All>] [--l1 <L1_MENU_vX>]'
-    print '            [--full|--cff] [--data|--mc] [--online|--offline]'
+    print '            [--full|--cff] [--data|--mc] [--online|--offline] [--unprescale]'
     print '            [-f|--force]'
     print '            <Version from ConfDB> <ID>'
     print
@@ -33,6 +33,7 @@ def usage():
     print '  --mc               Prepare a menu for running on MC (RAW in "rawDataCollector")'
     print '  --online           Take the online compliant connection string and GlobalTag from the menu'
     print '  --offline          Override with the connection string and GlobalTag with te offline values [this is the default]'
+    print '  --unprescale       Remove any HLT prescales'
     print
     print '  --force            Overwrite the destination file instead of aborting if it already exists'
     print
@@ -51,6 +52,7 @@ menuL1Override  = ''
 menuGlobalTag   = ''
 menuConfigDB    = ''
 menuConfigName  = ''
+menuUnprescale  = False
 doOverwrite     = False
 
 def parse_options(args):
@@ -65,11 +67,12 @@ def parse_options(args):
   global menuGlobalTag
   global menuConfigDB
   global menuConfigName
+  global menuUnprescale
   global doOverwrite
 
-  # valid options 
-  options = ( 'process=', 'l1=', 'globaltag=', 'data', 'mc', 'force', 'online', 'offline', 'full', 'cff' )
-  
+  # valid options
+  options = ( 'process=', 'l1=', 'globaltag=', 'data', 'mc', 'force', 'online', 'offline', 'full', 'cff', 'unprescale' )
+
   try:
     (opts, args) = getopt.gnu_getopt(args, 'f', options)
   except getopt.error, error:
@@ -91,7 +94,7 @@ def parse_options(args):
     # specify L1 menu and force L1 override
     elif opt == '--l1':
       menuL1Override = "L1GtTriggerMenu_%s_mc" % value
-    # specify GlobalTag 
+    # specify GlobalTag
     elif opt == '--globaltag':
       menuGlobalTag = value
     # run on data (RAW in 'source')
@@ -106,6 +109,8 @@ def parse_options(args):
     # run offline(overrithe the GlobalTag from the menu with an offline one)
     elif opt == '--offline':
       runOnline = False
+    elif opt == '--unprescale':
+      menuUnprescale = True
     # overwrite the destination file
     elif opt in ('-f', '--force'):
       doOverwrite = True
@@ -113,8 +118,8 @@ def parse_options(args):
       print 'Invalid option: %s', opt
       usage()
       sys.exit(1)
- 
-  # look for the required arguments 
+
+  # look for the required arguments
   try:
       configName  = args[0]
       fileId      = args[1]
@@ -154,7 +159,7 @@ if os.path.exists(menuOutName) and not doOverwrite:
 else:
     # Initialize everything
     edsources = ""
-    essources = "" 
+    essources = ""
     esmodules = ""
     modules   = ""
     services  = ""
@@ -199,7 +204,7 @@ else:
         esmodules += "-EcalElectronicsMappingBuilder,"
         esmodules += "-EcalEndcapGeometryEP,"
         esmodules += "-EcalEndcapGeometryFromDBEP,"
-        esmodules += "-EcalLaserCorrectionService,"    
+        esmodules += "-EcalLaserCorrectionService,"
         esmodules += "-EcalPreshowerGeometryEP,"
         esmodules += "-EcalPreshowerGeometryFromDBEP,"
         esmodules += "-HcalGeometryFromDBEP,"
@@ -248,15 +253,23 @@ else:
 
         # override the preshower baseline setting for MC - needed for 3.5.x (x >= 7) and 3.6.x
         if not runOnData:
-          out.write("""
-# override the preshower baseline setting for MC
+          out.write("""# override the preshower baseline setting for MC
 if 'ESUnpackerWorkerESProducer' in locals():
     ESUnpackerWorkerESProducer.RHAlgo.ESBaseline = 1000
+
+""")
+
+        # if required, remove the HLT prescales
+        if menuUnprescale:
+          out.write("""# remove the HLT prescales
+if 'PrescaleService' in locals():
+    PrescaleService.prescaleTable = cms.VPSet( )
+
 """)
 
         # if requested, override the L1 menu from the GlobalTag
         if menuL1Override:
-          out.write("""
+          out.write("""# override L1 menu
 Level1MenuOverride = cms.ESSource( "PoolDBESSource",
     appendToDataLabel = cms.string( "" ),
     timetype = cms.string( "runnumber" ),
@@ -265,7 +278,7 @@ Level1MenuOverride = cms.ESSource( "PoolDBESSource",
     BlobStreamerName = cms.untracked.string( "TBufferBlobStreamingService" ),
     globaltag = cms.string( "" ),
     RefreshEachRun = cms.untracked.bool( True ),
-    DBParameters = cms.PSet( 
+    DBParameters = cms.PSet(
       authenticationPath = cms.untracked.string( "." ),
       connectionRetrialPeriod = cms.untracked.int32( 10 ),
       idleConnectionCleanupPeriod = cms.untracked.int32( 10 ),
@@ -276,8 +289,8 @@ Level1MenuOverride = cms.ESSource( "PoolDBESSource",
       connectionTimeOut = cms.untracked.int32( 0 ),
       connectionRetrialTimeOut = cms.untracked.int32( 60 )
     ),
-    toGet = cms.VPSet( 
-      cms.PSet(  
+    toGet = cms.VPSet(
+      cms.PSet(
         record = cms.string( "L1GtTriggerMenuRcd" ),
         tag = cms.string( "%s" )
       )
@@ -332,10 +345,18 @@ es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverri
 
         # override the preshower baseline setting for MC - needed for 3.5.x (x >= 7) and 3.6.x
         if not runOnData:
-          out.write("""
-# override the preshower baseline setting for MC
+          out.write("""# override the preshower baseline setting for MC
 if 'ESUnpackerWorkerESProducer' in process.__dict__:
     process.ESUnpackerWorkerESProducer.RHAlgo.ESBaseline = 1000
+
+""")
+
+        # if required, remove the HLT prescales
+        if menuUnprescale:
+          out.write("""# remove HLT prescales
+if 'PrescaleService' in process.__dict__:
+    process.PrescaleService.prescaleTable = cms.VPSet( )
+
 """)
 
         # overwrite ProcessName
@@ -353,7 +374,8 @@ if 'ESUnpackerWorkerESProducer' in process.__dict__:
 
         # override the L1 menu
         if menuL1Override:
-          out.write("""process.Level1MenuOverride = cms.ESSource( "PoolDBESSource",
+          out.write("""# override L1 menu
+process.Level1MenuOverride = cms.ESSource( "PoolDBESSource",
     BlobStreamerName = cms.untracked.string( "TBufferBlobStreamingService" ),
     connect = cms.string( "frontier://(proxyurl=http://localhost:3128)(serverurl=http://localhost:8000/FrontierOnProd)(serverurl=http://localhost:8000/FrontierOnProd)(retrieve-ziplevel=0)(failovertoserver=no)/CMS_COND_31X_L1T" ),
     label = cms.untracked.string( "" ),
@@ -415,7 +437,7 @@ process.es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1Me
             out.write("    process.GlobalTag.globaltag = autoCond['%s']\n" % menuGlobalTag[5:])
           else:
             out.write("    process.GlobalTag.globaltag = %s\n" % menuGlobalTag)
-          
+
           out.write("\n")
           out.write("if 'Level1MenuOverride' in process.__dict__:\n")
           out.write("    process.Level1MenuOverride.connect   = 'frontier://FrontierProd/CMS_COND_31X_L1T'\n")
