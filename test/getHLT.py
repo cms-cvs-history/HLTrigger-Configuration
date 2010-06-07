@@ -9,7 +9,7 @@ import fileinput
 globalTag = {
   '8E29': 'auto:startup',
   'GRun': 'auto:startup',
-  'data': 'auto:com10',
+  'data': 'auto:hltonline',
   '1E31': 'auto:mc',
   'HIon': 'auto:mc',
   None:   'auto:startup',      # use as default
