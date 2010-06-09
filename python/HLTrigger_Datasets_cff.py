@@ -1,4 +1,4 @@
-# /dev/CMSSW_3_5_5/GRun/V73
+# /dev/CMSSW_3_5_5/GRun/V74
 
 import FWCore.ParameterSet.Config as cms
 
@@ -88,7 +88,6 @@ streamA_datasetMinimumBias_selector.l1tResults = cms.InputTag('')
 streamA_datasetMinimumBias_selector.throw      = cms.bool(False)
 streamA_datasetMinimumBias_selector.triggerConditions = cms.vstring('HLT_PixelTracks_Multiplicity70', 
     'HLT_MinBiasBSC_NoBPTX', 
-    'HLT_PixelTracks_Multiplicity40', 
     'HLT_L1Tech_HCAL_HF', 
     'HLT_IsoTrackHB_8E29', 
     'HLT_IsoTrackHE_8E29', 

@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_5/HIon/V73 (CMSSW_3_5_8_HLT3)
+# /dev/CMSSW_3_5_5/HIon/V74 (CMSSW_3_5_8_HLT3)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V73')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V74')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -20,7 +20,6 @@ process.streams = cms.PSet(
   ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
   ALCAP0 = cms.vstring( 'AlCaP0' ),
   RPCMON = cms.vstring( 'RPCMonitor' ),
-  HLTMON = cms.vstring( 'OfflineMonitor' ),
   HLTDQM = cms.vstring(  ),
   DQM = cms.vstring(  ),
   A = cms.vstring( 'JetMETTau',
@@ -37,7 +36,8 @@ process.streams = cms.PSet(
     'Commissioning',
     'MuMonitor' ),
   EventDisplay = cms.vstring(  ),
-  Express = cms.vstring( 'ExpressPhysics' )
+  Express = cms.vstring( 'ExpressPhysics' ),
+  HLTMON = cms.vstring( 'OfflineMonitor' )
 )
 process.datasets = cms.PSet( 
   TestEnables = cms.vstring(  ),
@@ -47,7 +47,6 @@ process.datasets = cms.PSet(
   AlCaPhiSymEcal = cms.vstring(  ),
   AlCaP0 = cms.vstring(  ),
   RPCMonitor = cms.vstring(  ),
-  OfflineMonitor = cms.vstring(  ),
   JetMETTau = cms.vstring(  ),
   EG = cms.vstring(  ),
   JetMETTauMonitor = cms.vstring(  ),
@@ -61,7 +60,8 @@ process.datasets = cms.PSet(
   RandomTriggers = cms.vstring(  ),
   Commissioning = cms.vstring(  ),
   MuMonitor = cms.vstring(  ),
-  ExpressPhysics = cms.vstring(  )
+  ExpressPhysics = cms.vstring(  ),
+  OfflineMonitor = cms.vstring(  )
 )
 
 process.source = cms.Source( "PoolSource",
@@ -1620,7 +1620,8 @@ process.MessageLogger = cms.Service( "MessageLogger",
       default = cms.untracked.PSet(  limit = cms.untracked.int32( 0 ) ),
       FwkJob = cms.untracked.PSet(  limit = cms.untracked.int32( 10000000 ) )
     ),
-    suppressWarning = cms.untracked.vstring( 'hltPixelTracksForMinBias',
+    suppressWarning = cms.untracked.vstring( 'hltOnlineBeamSpot',
+      'hltPixelTracksForMinBias',
       'hltPixelTracksForHighMult',
       'hltHITPixelTracksHE',
       'hltHITPixelTracksHB',
@@ -1635,9 +1636,9 @@ process.ModuleWebRegistry = cms.Service( "ModuleWebRegistry",
 process.PrescaleService = cms.Service( "PrescaleService",
     lvl1DefaultLabel = cms.untracked.string( "2E29" ),
     lvl1Labels = cms.vstring( '2E29_preL1',
+      '4E29',
       '2E29',
       '1E29',
-      '1E28',
       'Cosmics' ),
     prescaleTable = cms.VPSet( 
     )
