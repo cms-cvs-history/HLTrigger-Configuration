@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_6_0/1E31/V38 (CMSSW_3_6_0_HLT10)
+# /dev/CMSSW_3_6_2/1E31/V3 (CMSSW_3_6_2_HLT1)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_6_0/1E31/V38')
+  tableName = cms.string('/dev/CMSSW_3_6_2/1E31/V3')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -1391,7 +1391,7 @@ process.DQMStore = cms.Service( "DQMStore",
 )
 process.DTDataIntegrityTask = cms.Service( "DTDataIntegrityTask",
     getSCInfo = cms.untracked.bool( True ),
-    hltMode = cms.untracked.bool( True ),
+    processingMode = cms.untracked.string( "HLT" )
 )
 process.MessageLogger = cms.Service( "MessageLogger",
     destinations = cms.untracked.vstring( 'warnings',
@@ -1446,7 +1446,8 @@ process.MessageLogger = cms.Service( "MessageLogger",
       default = cms.untracked.PSet(  limit = cms.untracked.int32( 0 ) ),
       FwkJob = cms.untracked.PSet(  limit = cms.untracked.int32( 10000000 ) )
     ),
-    suppressWarning = cms.untracked.vstring( 'hltPixelTracksForMinBias',
+    suppressWarning = cms.untracked.vstring( 'hltOnlineBeamSpot',
+      'hltPixelTracksForMinBias',
       'hltPixelTracksForHighMult',
       'hltHITPixelTracksHE',
       'hltHITPixelTracksHB',
@@ -1461,31 +1462,43 @@ process.ModuleWebRegistry = cms.Service( "ModuleWebRegistry",
 process.PrescaleService = cms.Service( "PrescaleService",
     lvl1DefaultLabel = cms.untracked.string( "2E29" ),
     lvl1Labels = cms.vstring( '2E29_preL1',
+      '4E29',
       '2E29',
       '1E29',
-      '1E28',
       'Cosmics' ),
     prescaleTable = cms.VPSet( 
+      cms.PSet(  pathName = cms.string( "HLT_L1Jet15" ),
+        prescales = cms.vuint32( 100, 200, 100, 50, 100 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_Jet30" ),
+        prescales = cms.vuint32( 1, 10, 1, 1, 1 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_DiJetAve15U_1E31" ),
+        prescales = cms.vuint32( 1, 5, 1, 1, 1 )
+      ),
       cms.PSet(  pathName = cms.string( "HLT_L1MuOpen" ),
-        prescales = cms.vuint32( 20, 20, 5, 1, 1 )
+        prescales = cms.vuint32( 20, 40, 20, 5, 1 )
+      ),
+      cms.PSet(  pathName = cms.string( "HLT_L1Mu" ),
+        prescales = cms.vuint32( 1, 5, 1, 1, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_L1SingleEG5" ),
-        prescales = cms.vuint32( 20, 20, 1, 1, 1 )
+        prescales = cms.vuint32( 20, 60, 20, 1, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_ZeroBias" ),
         prescales = cms.vuint32( 10, 10, 10, 10, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_ZeroBiasPixel_SingleTrack" ),
-        prescales = cms.vuint32( 50, 50, 50, 5, 1 )
+        prescales = cms.vuint32( 50, 50, 50, 50, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_L1Tech_BSC_HighMultiplicity" ),
-        prescales = cms.vuint32( 1000, 1000, 300, 30, 1 )
+        prescales = cms.vuint32( 1000, 3000, 1000, 300, 1 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_RPCBarrelCosmics" ),
-        prescales = cms.vuint32( 20, 20, 10, 1, 1 )
+        prescales = cms.vuint32( 10, 10, 10, 10, 1 )
       ),
       cms.PSet(  pathName = cms.string( "AlCa_EcalPhiSym" ),
-        prescales = cms.vuint32( 20, 20, 10, 1, 1 )
+        prescales = cms.vuint32( 20, 20, 20, 10, 1 )
       ),
       cms.PSet(  pathName = cms.string( "AlCa_RPCMuonNormalisation" ),
         prescales = cms.vuint32( 10, 10, 10, 10, 10 )
@@ -1556,10 +1569,10 @@ process.hltBPTXCoincidence = cms.EDFilter( "HLTLevel1Activity",
     daqPartitions = cms.uint32( 1 ),
     ignoreL1Mask = cms.bool( True ),
     invert = cms.bool( False ),
-    bunchCrossings = cms.vint32( 0, -1, 1 ),
     physicsLoBits = cms.uint64( 0x1 ),
     physicsHiBits = cms.uint64( 0x40000 ),
-    technicalBits = cms.uint64( 0x0 )
+    technicalBits = cms.uint64( 0x0 ),
+    bunchCrossings = cms.vint32( 0, -1, 1 )
 )
 process.hltScalersRawToDigi = cms.EDProducer( "ScalersRawToDigi",
     scalersInputTag = cms.InputTag( "rawDataCollector" )
@@ -8579,10 +8592,10 @@ process.hltLevel1Activity = cms.EDFilter( "HLTLevel1Activity",
     daqPartitions = cms.uint32( 1 ),
     ignoreL1Mask = cms.bool( False ),
     invert = cms.bool( False ),
-    bunchCrossings = cms.vint32( 0, 1, -1 ),
     physicsLoBits = cms.uint64( 0x7fdfdf03c03fbffc ),
     physicsHiBits = cms.uint64( 0x3f1bfddb01800bf6 ),
-    technicalBits = cms.uint64( 0x70000fffff001f00 )
+    technicalBits = cms.uint64( 0x70000fffff001f00 ),
+    bunchCrossings = cms.vint32( 0, 1, -1 )
 )
 process.hltPreHcalPhiSym = cms.EDFilter( "HLTPrescaler" )
 process.hltL1sHcalNZS1E31 = cms.EDFilter( "HLTLevel1GTSeed",
@@ -9331,10 +9344,10 @@ process.HLTAnalyzerEndpath = cms.EndPath( process.hltL1GtTrigReport + process.hl
 process.HLTOutput = cms.EndPath( process.hltOutputA )
 process.AlCaOutput = cms.EndPath( process.hltOutputCalibration + process.hltOutputEcalCalibration + process.hltOutputALCAP0 + process.hltOutputALCAPHISYM + process.hltOutputRPCMON + process.hltOutputOnlineErrors )
 
-
 # override the preshower baseline setting for MC
 if 'ESUnpackerWorkerESProducer' in process.__dict__:
     process.ESUnpackerWorkerESProducer.RHAlgo.ESBaseline = 1000
+
 process.setName_('HLT')
 
 process.maxEvents = cms.untracked.PSet(
