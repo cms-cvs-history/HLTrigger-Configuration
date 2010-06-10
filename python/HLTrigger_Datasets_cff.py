@@ -1,4 +1,4 @@
-# /dev/CMSSW_3_5_5/GRun/V74
+# /dev/CMSSW_3_5_5/GRun/V75
 
 import FWCore.ParameterSet.Config as cms
 
@@ -24,6 +24,17 @@ streamA_datasetJetMETTau_selector.triggerConditions = cms.vstring('HLT_Jet15U_Hc
     'HLT_HT100U', 
     'HLT_MET100', 
     'HLT_MET45')
+
+from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter as streamA_datasetEGMonitor_selector
+streamA_datasetEGMonitor_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')
+streamA_datasetEGMonitor_selector.l1tResults = cms.InputTag('')
+streamA_datasetEGMonitor_selector.throw      = cms.bool(False)
+streamA_datasetEGMonitor_selector.triggerConditions = cms.vstring('HLT_L1SingleEG2', 
+    'HLT_L1DoubleEG5', 
+    'HLT_L1SingleEG8', 
+    'HLT_L1SingleEG5', 
+    'HLT_Activity_Ecal_SC7', 
+    'HLT_Activity_Ecal_SC15')
 
 from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter as streamA_datasetEG_selector
 streamA_datasetEG_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')
@@ -124,15 +135,6 @@ streamA_datasetHcalHPDNoise_selector.l1tResults = cms.InputTag('')
 streamA_datasetHcalHPDNoise_selector.throw      = cms.bool(False)
 streamA_datasetHcalHPDNoise_selector.triggerConditions = cms.vstring('HLT_TechTrigHCALNoise', 
     'HLT_GlobalRunHPDNoise')
-
-from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter as streamA_datasetEGMonitor_selector
-streamA_datasetEGMonitor_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')
-streamA_datasetEGMonitor_selector.l1tResults = cms.InputTag('')
-streamA_datasetEGMonitor_selector.throw      = cms.bool(False)
-streamA_datasetEGMonitor_selector.triggerConditions = cms.vstring('HLT_L1SingleEG2', 
-    'HLT_L1DoubleEG5', 
-    'HLT_L1SingleEG8', 
-    'HLT_L1SingleEG5')
 
 from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter as streamA_datasetMu_selector
 streamA_datasetMu_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')

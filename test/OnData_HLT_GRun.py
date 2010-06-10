@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_5/GRun/V74 (CMSSW_3_5_8_HLT3)
+# /dev/CMSSW_3_5_5/GRun/V75 (CMSSW_3_5_8_HLT3)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/GRun/V74')
+  tableName = cms.string('/dev/CMSSW_3_5_5/GRun/V75')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -23,6 +23,7 @@ process.streams = cms.PSet(
   HLTDQM = cms.vstring(  ),
   DQM = cms.vstring(  ),
   A = cms.vstring( 'JetMETTau',
+    'EGMonitor',
     'EG',
     'JetMETTauMonitor',
     'Cosmics',
@@ -30,7 +31,6 @@ process.streams = cms.PSet(
     'HcalNZS',
     'ZeroBias',
     'HcalHPDNoise',
-    'EGMonitor',
     'Mu',
     'RandomTriggers',
     'Commissioning',
@@ -66,6 +66,12 @@ process.datasets = cms.PSet(
     'HLT_HT100U',
     'HLT_MET100',
     'HLT_MET45' ),
+  EGMonitor = cms.vstring( 'HLT_L1SingleEG2',
+    'HLT_L1DoubleEG5',
+    'HLT_L1SingleEG8',
+    'HLT_L1SingleEG5',
+    'HLT_Activity_Ecal_SC7',
+    'HLT_Activity_Ecal_SC15' ),
   EG = cms.vstring( 'HLT_DoublePhoton10_L1R',
     'HLT_Photon30_L1R_8E29',
     'HLT_Photon20_L1R',
@@ -131,10 +137,6 @@ process.datasets = cms.PSet(
     'HLT_ZeroBias' ),
   HcalHPDNoise = cms.vstring( 'HLT_TechTrigHCALNoise',
     'HLT_GlobalRunHPDNoise' ),
-  EGMonitor = cms.vstring( 'HLT_L1SingleEG2',
-    'HLT_L1DoubleEG5',
-    'HLT_L1SingleEG8',
-    'HLT_L1SingleEG5' ),
   Mu = cms.vstring( 'HLT_L2Mu0',
     'HLT_L2Mu3',
     'HLT_L2Mu5',
@@ -2578,6 +2580,191 @@ process.hltEcalTowerFilter = cms.EDFilter( "HLTEcalTowerFilter",
     MaxEta = cms.double( 2.75 ),
     MinN = cms.int32( 1 )
 )
+process.hltPreActivityEcalSC7 = cms.EDFilter( "HLTPrescaler" )
+process.hltESRawToRecHitFacility = cms.EDProducer( "EcalRawToRecHitFacility",
+    sourceTag = cms.InputTag( "source" ),
+    workerName = cms.string( "esRawToRecHit" )
+)
+process.hltEcalRegionalESRestFEDs = cms.EDProducer( "EcalRawToRecHitRoI",
+    sourceTag = cms.InputTag( "hltEcalRawToRecHitFacility" ),
+    type = cms.string( "all" ),
+    doES = cms.bool( True ),
+    sourceTag_es = cms.InputTag( "hltESRawToRecHitFacility" ),
+    MuJobPSet = cms.PSet(  ),
+    JetJobPSet = cms.VPSet( 
+    ),
+    EmJobPSet = cms.VPSet( 
+    ),
+    CandJobPSet = cms.VPSet( 
+    )
+)
+process.hltESRecHitAll = cms.EDProducer( "EcalRawToRecHitProducer",
+    lazyGetterTag = cms.InputTag( "hltESRawToRecHitFacility" ),
+    sourceTag = cms.InputTag( 'hltEcalRegionalESRestFEDs','es' ),
+    splitOutput = cms.bool( False ),
+    EBrechitCollection = cms.string( "" ),
+    EErechitCollection = cms.string( "" ),
+    rechitCollection = cms.string( "EcalRecHitsES" )
+)
+process.hltHybridSuperClustersActivity = cms.EDProducer( "HybridClusterProducer",
+    debugLevel = cms.string( "ERROR" ),
+    basicclusterCollection = cms.string( "hybridBarrelBasicClusters" ),
+    superclusterCollection = cms.string( "" ),
+    ecalhitproducer = cms.string( "hltEcalRecHitAll" ),
+    ecalhitcollection = cms.string( "EcalRecHitsEB" ),
+    posCalc_logweight = cms.bool( True ),
+    posCalc_t0 = cms.double( 7.4 ),
+    posCalc_w0 = cms.double( 4.2 ),
+    posCalc_x0 = cms.double( 0.89 ),
+    HybridBarrelSeedThr = cms.double( 1.0 ),
+    step = cms.int32( 17 ),
+    ethresh = cms.double( 0.1 ),
+    eseed = cms.double( 0.35 ),
+    ewing = cms.double( 0.0 ),
+    dynamicEThresh = cms.bool( False ),
+    eThreshA = cms.double( 0.0030 ),
+    eThreshB = cms.double( 0.1 ),
+    dynamicPhiRoad = cms.bool( False ),
+    clustershapecollection = cms.string( "" ),
+    shapeAssociation = cms.string( "hybridShapeAssoc" ),
+    RecHitFlagToBeExcluded = cms.vint32(  ),
+    bremRecoveryPset = cms.PSet(  )
+)
+process.hltCorrectedHybridSuperClustersActivity = cms.EDProducer( "EgammaSCCorrectionMaker",
+    VerbosityLevel = cms.string( "ERROR" ),
+    recHitProducer = cms.InputTag( 'hltEcalRecHitAll','EcalRecHitsEB' ),
+    rawSuperClusterProducer = cms.InputTag( "hltHybridSuperClustersActivity" ),
+    superClusterAlgo = cms.string( "Hybrid" ),
+    applyEnergyCorrection = cms.bool( True ),
+    sigmaElectronicNoise = cms.double( 0.03 ),
+    etThresh = cms.double( 0.0 ),
+    corectedSuperClusterCollection = cms.string( "" ),
+    hyb_fCorrPset = cms.PSet( 
+      brLinearLowThr = cms.double( 1.1 ),
+      fBremVec = cms.vdouble( -0.04382, 0.1169, 0.9267, -9.413E-4, 1.419 ),
+      brLinearHighThr = cms.double( 8.0 ),
+      fEtEtaVec = cms.vdouble( 0.0, 1.00121, -0.63672, 0.0, 0.0, 0.0, 0.5655, 6.457, 0.5081, 8.0, 1.023, -0.00181 )
+    ),
+    isl_fCorrPset = cms.PSet(  ),
+    dyn_fCorrPset = cms.PSet(  ),
+    fix_fCorrPset = cms.PSet(  )
+)
+process.hltMulti5x5BasicClustersActivity = cms.EDProducer( "Multi5x5ClusterProducer",
+    VerbosityLevel = cms.string( "ERROR" ),
+    barrelHitProducer = cms.string( "hltEcalRecHitAll" ),
+    endcapHitProducer = cms.string( "hltEcalRecHitAll" ),
+    barrelHitCollection = cms.string( "EcalRecHitsEB" ),
+    endcapHitCollection = cms.string( "EcalRecHitsEE" ),
+    doEndcap = cms.bool( True ),
+    doBarrel = cms.bool( False ),
+    barrelClusterCollection = cms.string( "multi5x5BarrelBasicClusters" ),
+    endcapClusterCollection = cms.string( "multi5x5EndcapBasicClusters" ),
+    IslandBarrelSeedThr = cms.double( 0.5 ),
+    IslandEndcapSeedThr = cms.double( 0.18 ),
+    posCalc_logweight = cms.bool( True ),
+    posCalc_t0_barl = cms.double( 7.4 ),
+    posCalc_t0_endc = cms.double( 3.1 ),
+    posCalc_t0_endcPresh = cms.double( 1.2 ),
+    posCalc_w0 = cms.double( 4.2 ),
+    posCalc_x0 = cms.double( 0.89 ),
+    clustershapecollectionEB = cms.string( "multi5x5BarrelShape" ),
+    clustershapecollectionEE = cms.string( "multi5x5EndcapShape" ),
+    barrelShapeAssociation = cms.string( "multi5x5BarrelShapeAssoc" ),
+    endcapShapeAssociation = cms.string( "multi5x5EndcapShapeAssoc" ),
+    RecHitFlagToBeExcluded = cms.vint32(  )
+)
+process.hltMulti5x5SuperClustersActivity = cms.EDProducer( "Multi5x5SuperClusterProducer",
+    VerbosityLevel = cms.string( "ERROR" ),
+    endcapClusterProducer = cms.string( "hltMulti5x5BasicClustersActivity" ),
+    barrelClusterProducer = cms.string( "hltMulti5x5BasicClustersActivity" ),
+    endcapClusterCollection = cms.string( "multi5x5EndcapBasicClusters" ),
+    barrelClusterCollection = cms.string( "multi5x5BarrelBasicClusters" ),
+    endcapSuperclusterCollection = cms.string( "multi5x5EndcapSuperClusters" ),
+    barrelSuperclusterCollection = cms.string( "multi5x5BarrelSuperClusters" ),
+    doBarrel = cms.bool( False ),
+    doEndcaps = cms.bool( True ),
+    barrelEtaSearchRoad = cms.double( 0.06 ),
+    barrelPhiSearchRoad = cms.double( 0.8 ),
+    endcapEtaSearchRoad = cms.double( 0.14 ),
+    endcapPhiSearchRoad = cms.double( 0.6 ),
+    seedTransverseEnergyThreshold = cms.double( 1.0 ),
+    dynamicPhiRoad = cms.bool( False ),
+    bremRecoveryPset = cms.PSet( 
+      barrel = cms.PSet( 
+        cryVec = cms.vint32( 16, 13, 11, 10, 9, 8, 7, 6, 5, 4, 3 ),
+        cryMin = cms.int32( 2 ),
+        etVec = cms.vdouble( 5.0, 10.0, 15.0, 20.0, 30.0, 40.0, 45.0, 55.0, 135.0, 195.0, 225.0 )
+      ),
+      endcap = cms.PSet( 
+        a = cms.double( 47.85 ),
+        c = cms.double( 0.1201 ),
+        b = cms.double( 108.8 )
+      )
+    )
+)
+process.hltMulti5x5SuperClustersWithPreshowerActivity = cms.EDProducer( "PreshowerClusterProducer",
+    preshRecHitProducer = cms.InputTag( 'hltESRecHitAll','EcalRecHitsES' ),
+    endcapSClusterProducer = cms.InputTag( 'hltMulti5x5SuperClustersActivity','multi5x5EndcapSuperClusters' ),
+    preshClusterCollectionX = cms.string( "preshowerXClusters" ),
+    preshClusterCollectionY = cms.string( "preshowerYClusters" ),
+    preshNclust = cms.int32( 4 ),
+    etThresh = cms.double( 0.0 ),
+    preshCalibPlaneX = cms.double( 1.0 ),
+    preshCalibPlaneY = cms.double( 0.7 ),
+    preshCalibGamma = cms.double( 0.024 ),
+    preshCalibMIP = cms.double( 8.11E-5 ),
+    assocSClusterCollection = cms.string( "" ),
+    preshStripEnergyCut = cms.double( 0.0 ),
+    preshSeededNstrip = cms.int32( 15 ),
+    preshClusterEnergyCut = cms.double( 0.0 ),
+    debugLevel = cms.string( "ERROR" )
+)
+process.hltCorrectedMulti5x5SuperClustersWithPreshowerActivity = cms.EDProducer( "EgammaSCCorrectionMaker",
+    VerbosityLevel = cms.string( "ERROR" ),
+    recHitProducer = cms.InputTag( 'hltEcalRecHitAll','EcalRecHitsEE' ),
+    rawSuperClusterProducer = cms.InputTag( "hltMulti5x5SuperClustersWithPreshowerActivity" ),
+    superClusterAlgo = cms.string( "Multi5x5" ),
+    applyEnergyCorrection = cms.bool( True ),
+    sigmaElectronicNoise = cms.double( 0.15 ),
+    etThresh = cms.double( 0.0 ),
+    corectedSuperClusterCollection = cms.string( "" ),
+    hyb_fCorrPset = cms.PSet(  ),
+    isl_fCorrPset = cms.PSet(  ),
+    dyn_fCorrPset = cms.PSet(  ),
+    fix_fCorrPset = cms.PSet( 
+      brLinearLowThr = cms.double( 0.9 ),
+      fBremVec = cms.vdouble( -0.05228, 0.08738, 0.9508, 0.002677, 1.221 ),
+      brLinearHighThr = cms.double( 6.0 ),
+      fEtEtaVec = cms.vdouble( 1.0, -0.4386, -32.38, 0.6372, 15.67, -0.0928, -2.462, 1.138, 20.93 )
+    )
+)
+process.hltRecoEcalSuperClusterActivityCandidate = cms.EDProducer( "EgammaHLTRecoEcalCandidateProducers",
+    scHybridBarrelProducer = cms.InputTag( "hltCorrectedHybridSuperClustersActivity" ),
+    scIslandEndcapProducer = cms.InputTag( "hltCorrectedMulti5x5SuperClustersWithPreshowerActivity" ),
+    recoEcalCandidateCollection = cms.string( "" )
+)
+process.hltEcalActivitySuperClusterWrapper = cms.EDFilter( "HLTEgammaTriggerFilterObjectWrapper",
+    candIsolatedTag = cms.InputTag( "hltRecoEcalSuperClusterActivityCandidate" ),
+    candNonIsolatedTag = cms.InputTag( "none" ),
+    doIsolated = cms.bool( True )
+)
+process.hltEgammaSelectEcalSuperClustersActivityFilterSC7 = cms.EDFilter( "HLTEgammaEtFilter",
+    inputTag = cms.InputTag( "hltEcalActivitySuperClusterWrapper" ),
+    etcutEB = cms.double( 7.0 ),
+    etcutEE = cms.double( 7.0 ),
+    ncandcut = cms.int32( 1 ),
+    L1IsoCand = cms.InputTag( "none" ),
+    L1NonIsoCand = cms.InputTag( "none" )
+)
+process.hltPreActivityEcalSC15 = cms.EDFilter( "HLTPrescaler" )
+process.hltEgammaSelectEcalSuperClustersActivityFilterSC15 = cms.EDFilter( "HLTEgammaEtFilter",
+    inputTag = cms.InputTag( "hltEcalActivitySuperClusterWrapper" ),
+    etcutEB = cms.double( 15.0 ),
+    etcutEE = cms.double( 15.0 ),
+    ncandcut = cms.int32( 1 ),
+    L1IsoCand = cms.InputTag( "none" ),
+    L1NonIsoCand = cms.InputTag( "none" )
+)
 process.hltL1sL1SingleEG2 = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),
     L1NrBxInEvent = cms.int32( 3 ),
@@ -2590,10 +2777,6 @@ process.hltL1sL1SingleEG2 = cms.EDFilter( "HLTLevel1GTSeed",
     L1MuonCollectionTag = cms.InputTag( "hltL1extraParticles" )
 )
 process.hltPreSelectEcalSpikesL1R = cms.EDFilter( "HLTPrescaler" )
-process.hltESRawToRecHitFacility = cms.EDProducer( "EcalRawToRecHitFacility",
-    sourceTag = cms.InputTag( "source" ),
-    workerName = cms.string( "esRawToRecHit" )
-)
 process.hltEcalRegionalEgammaFEDsLowPt = cms.EDProducer( "EcalRawToRecHitRoI",
     sourceTag = cms.InputTag( "hltEcalRawToRecHitFacility" ),
     type = cms.string( "egamma" ),
@@ -9897,6 +10080,8 @@ process.hltPreDQMSmart = cms.EDFilter( "TriggerResultsFilter",
       'HLT_Activity_DT_Tuned',
       'HLT_Activity_Ecal / 10',
       'HLT_Activity_EcalREM / 10',
+      'HLT_Activity_Ecal_SC7 / 10',
+      'HLT_Activity_Ecal_SC15 / 10',
       'HLT_Activity_L1A / 10',
       'HLT_Activity_PixelClusters',
       'HLT_BTagIP_Jet50U',
@@ -10033,6 +10218,8 @@ process.hltPreHLTDQMSmart = cms.EDFilter( "TriggerResultsFilter",
       'HLT_Activity_DT_Tuned',
       'HLT_Activity_Ecal / 10',
       'HLT_Activity_EcalREM / 10',
+      'HLT_Activity_Ecal_SC7/10',
+      'HLT_Activity_Ecal_SC15/10',
       'HLT_Activity_L1A / 10',
       'HLT_Activity_PixelClusters',
       'HLT_BTagIP_Jet50U',
@@ -10168,6 +10355,8 @@ process.hltPreHLTMONSmart = cms.EDFilter( "TriggerResultsFilter",
       'HLT_Activity_DT_Tuned',
       'HLT_Activity_Ecal',
       'HLT_Activity_EcalREM',
+      'HLT_Activity_Ecal_SC7',
+      'HLT_Activity_Ecal_SC15',
       'HLT_Activity_L1A',
       'HLT_Activity_PixelClusters',
       'HLT_BTagIP_Jet50U',
@@ -10414,7 +10603,9 @@ process.hltOutputA = cms.OutputModule( "PoolOutputModule",
   'HLT_Mu3_L2Mu0',
   'HLT_Mu5_L2Mu0',
   'HLT_L2DoubleMu0',
-  'HLT_L1MuOpen_DT' ) ),
+  'HLT_L1MuOpen_DT',
+  'HLT_Activity_Ecal_SC7',
+  'HLT_Activity_Ecal_SC15' ) ),
     outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
       'keep FEDRawDataCollection_source_*_*',
       'keep FEDRawDataCollection_rawDataCollector_*_*',
@@ -10529,7 +10720,19 @@ process.hltOutputOnlineErrors = cms.OutputModule( "PoolOutputModule",
 )
 process.hltOutputDQM = cms.OutputModule( "PoolOutputModule",
     fileName = cms.untracked.string( "outputDQM.root" ),
-    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring( 'HLT_Activity_Ecal',
+    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring( 'HLT_StoppedHSCP_8E29',
+  'HLT_TechTrigHCALNoise',
+  'HLT_TkMu3_NoVertex',
+  'HLT_TrackerCosmics',
+  'HLT_ZeroBias',
+  'HLT_ZeroBiasPixel_SingleTrack',
+  'HLT_Activity_DT',
+  'HLT_L1_BptxXOR_BscMinBiasOR',
+  'HLT_PixelTracks_Multiplicity70',
+  'HLT_L1MuOpen_DT',
+  'HLT_Activity_Ecal_SC7',
+  'HLT_Activity_Ecal_SC15',
+  'HLT_Activity_Ecal',
   'HLT_Activity_EcalREM',
   'HLT_Activity_L1A',
   'HLT_Activity_PixelClusters',
@@ -10642,17 +10845,7 @@ process.hltOutputDQM = cms.OutputModule( "PoolOutputModule",
   'HLT_QuadJet15U',
   'HLT_RPCBarrelCosmics',
   'HLT_Random',
-  'HLT_SingleLooseIsoTau20',
-  'HLT_StoppedHSCP_8E29',
-  'HLT_TechTrigHCALNoise',
-  'HLT_TkMu3_NoVertex',
-  'HLT_TrackerCosmics',
-  'HLT_ZeroBias',
-  'HLT_ZeroBiasPixel_SingleTrack',
-  'HLT_Activity_DT',
-  'HLT_L1_BptxXOR_BscMinBiasOR',
-  'HLT_PixelTracks_Multiplicity70',
-  'HLT_L1MuOpen_DT' ) ),
+  'HLT_SingleLooseIsoTau20' ) ),
     outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
       'keep FEDRawDataCollection_source_*_*',
       'keep FEDRawDataCollection_rawDataCollector_*_*',
@@ -10789,7 +10982,9 @@ process.hltOutputHLTDQM = cms.OutputModule( "PoolOutputModule",
   'HLT_SelectEcalSpikesHighEt_L1R',
   'HLT_DoublePhoton5_L1R',
   'HLT_DoublePhoton4_eeRes_L1R',
-  'HLT_L1MuOpen_DT' ) ),
+  'HLT_L1MuOpen_DT',
+  'HLT_Activity_Ecal_SC7',
+  'HLT_Activity_Ecal_SC15' ) ),
     outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
       'keep edmTriggerResults_*_*_*',
       'keep triggerTriggerEvent_*_*_*',
@@ -10996,7 +11191,9 @@ process.hltOutputHLTMON = cms.OutputModule( "PoolOutputModule",
   'HLT_BTagMu_Jet10U',
   'HLT_DoubleMu3',
   'HLT_L1MuOpen_DT',
-  'HLT_Jet15U_HcalNoiseFiltered' ) ),
+  'HLT_Jet15U_HcalNoiseFiltered',
+  'HLT_Activity_Ecal_SC7',
+  'HLT_Activity_Ecal_SC15' ) ),
     outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
       'keep FEDRawDataCollection_source_*_*',
       'keep FEDRawDataCollection_rawDataCollector_*_*',
@@ -11114,6 +11311,7 @@ process.HLTDoLocalPixelSequence = cms.Sequence( process.hltSiPixelDigis + proces
 process.HLTBeginSequence = cms.Sequence( process.hltTriggerType + process.HLTL1UnpackerSequence + process.HLTBeamSpot )
 process.HLTDoLocalHcalSequence = cms.Sequence( process.hltHcalDigis + process.hltHbhereco + process.hltHfreco + process.hltHoreco )
 process.HLTDoCaloSequence = cms.Sequence( process.hltEcalRawToRecHitFacility + process.hltEcalRegionalRestFEDs + process.hltEcalRecHitAll + process.HLTDoLocalHcalSequence + process.hltTowerMakerForAll )
+process.HLTEcalActivitySequence = cms.Sequence( process.hltEcalRawToRecHitFacility + process.hltESRawToRecHitFacility + process.hltEcalRegionalRestFEDs + process.hltEcalRegionalESRestFEDs + process.hltEcalRecHitAll + process.hltESRecHitAll + process.hltHybridSuperClustersActivity + process.hltCorrectedHybridSuperClustersActivity + process.hltMulti5x5BasicClustersActivity + process.hltMulti5x5SuperClustersActivity + process.hltMulti5x5SuperClustersWithPreshowerActivity + process.hltCorrectedMulti5x5SuperClustersWithPreshowerActivity + process.hltRecoEcalSuperClusterActivityCandidate + process.hltEcalActivitySuperClusterWrapper )
 process.HLTDoRegionalEgammaEcalSequenceLowPt = cms.Sequence( process.hltESRawToRecHitFacility + process.hltEcalRawToRecHitFacility + process.hltEcalRegionalEgammaFEDsLowPt + process.hltEcalRegionalEgammaRecHitLowPt + process.hltESRegionalEgammaRecHitLowPt )
 process.HLTMulti5x5SuperClusterL1IsolatedLowPt = cms.Sequence( process.hltMulti5x5BasicClustersL1IsolatedLowPt + process.hltMulti5x5SuperClustersL1IsolatedLowPt + process.hltMulti5x5EndcapSuperClustersWithPreshowerL1IsolatedLowPt + process.hltCorrectedMulti5x5EndcapSuperClustersWithPreshowerL1IsolatedLowPt )
 process.HLTL1IsolatedEcalClustersSequenceLowPt = cms.Sequence( process.hltHybridSuperClustersL1IsolatedLowPt + process.hltCorrectedHybridSuperClustersL1IsolatedLowPt + process.HLTMulti5x5SuperClusterL1IsolatedLowPt )
@@ -11194,6 +11392,8 @@ process.HLT_Activity_DT = cms.Path( process.HLTBeginSequence + process.hltL1sL1B
 process.HLT_Activity_DT_Tuned = cms.Path( process.HLTBeginSequence + process.hltL1sL1BscMinBiasORBptxPlusORMinus + process.hltPreActivityDTTuned + process.hltMuonDTDigis + process.hltDTTFUnpacker + process.hltDTActivityFilterTuned + process.HLTEndSequence )
 process.HLT_Activity_Ecal = cms.Path( process.HLTBeginSequence + process.hltL1sVetoL1SingleEG2 + process.hltPreActivityCaloTower + process.HLTDoCaloSequence + process.hltTowerMakerForEcal + process.hltCaloTowerFilter + process.HLTEndSequence )
 process.HLT_Activity_EcalREM = cms.Path( process.HLTBeginSequence + process.hltL1sVetoL1SingleEG2 + process.hltPreActivityEcal + process.hltEcalDigis + process.hltEcalFixedAlphaBetaFitUncalibRecHit + process.hltEcalRecHitAB + process.hltTowerMakerForEcalABFit + process.hltEcalTowerFilter + process.HLTEndSequence )
+process.HLT_Activity_Ecal_SC7 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1BscMinBiasORBptxPlusORMinus + process.hltPreActivityEcalSC7 + process.HLTEcalActivitySequence + process.hltEgammaSelectEcalSuperClustersActivityFilterSC7 + process.HLTEndSequence )
+process.HLT_Activity_Ecal_SC15 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1BscMinBiasORBptxPlusORMinus + process.hltPreActivityEcalSC15 + process.HLTEcalActivitySequence + process.hltEgammaSelectEcalSuperClustersActivityFilterSC15 + process.HLTEndSequence )
 process.HLT_SelectEcalSpikes_L1R = cms.Path( process.HLTBeginSequence + process.hltL1sL1SingleEG2 + process.hltPreSelectEcalSpikesL1R + process.HLTEgammaSelectEcalSpikesSequence + process.HLTEndSequence )
 process.HLT_SelectEcalSpikesHighEt_L1R = cms.Path( process.HLTBeginSequence + process.hltL1sL1SingleEG5 + process.hltPreSelectEcalSpikesHighEtL1R + process.HLTEgammaSelectEcalSpikesHighEtSequence + process.HLTEndSequence )
 process.HLT_L1Jet6U = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1Jet6U + process.hltPreL1Jet6U_BPTX + process.HLTEndSequence )

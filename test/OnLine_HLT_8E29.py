@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_5_5/8E29/V74 (CMSSW_3_5_8_HLT3)
+# /dev/CMSSW_3_5_5/8E29/V75 (CMSSW_3_5_8_HLT3)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/8E29/V74')
+  tableName = cms.string('/dev/CMSSW_3_5_5/8E29/V75')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -23,6 +23,7 @@ process.streams = cms.PSet(
   HLTDQM = cms.vstring(  ),
   DQM = cms.vstring(  ),
   A = cms.vstring( 'JetMETTau',
+    'EGMonitor',
     'EG',
     'JetMETTauMonitor',
     'Cosmics',
@@ -30,7 +31,6 @@ process.streams = cms.PSet(
     'HcalNZS',
     'ZeroBias',
     'HcalHPDNoise',
-    'EGMonitor',
     'Mu',
     'RandomTriggers',
     'Commissioning',
@@ -65,6 +65,9 @@ process.datasets = cms.PSet(
     'HLT_HT100U',
     'HLT_MET100',
     'HLT_MET45' ),
+  EGMonitor = cms.vstring( 'HLT_L1DoubleEG5',
+    'HLT_L1SingleEG8',
+    'HLT_L1SingleEG5' ),
   EG = cms.vstring( 'HLT_DoublePhoton10_L1R',
     'HLT_Photon30_L1R_8E29',
     'HLT_Photon20_L1R',
@@ -103,9 +106,6 @@ process.datasets = cms.PSet(
     'HLT_HcalPhiSym' ),
   ZeroBias = cms.vstring( 'HLT_ZeroBias' ),
   HcalHPDNoise = cms.vstring(  ),
-  EGMonitor = cms.vstring( 'HLT_L1DoubleEG5',
-    'HLT_L1SingleEG8',
-    'HLT_L1SingleEG5' ),
   Mu = cms.vstring( 'HLT_DoubleMu0',
     'HLT_DoubleMu3',
     'HLT_Mu3',

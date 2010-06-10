@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_5_5/1E31/V74 (CMSSW_3_5_8_HLT3)
+# /dev/CMSSW_3_5_5/1E31/V75 (CMSSW_3_5_8_HLT3)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V74')
+  tableName = cms.string('/dev/CMSSW_3_5_5/1E31/V75')
 )
 
 streams = cms.PSet( 
@@ -19,6 +19,7 @@ streams = cms.PSet(
   HLTDQM = cms.vstring(  ),
   DQM = cms.vstring(  ),
   A = cms.vstring( 'JetMETTau',
+    'EGMonitor',
     'EG',
     'JetMETTauMonitor',
     'Cosmics',
@@ -26,7 +27,6 @@ streams = cms.PSet(
     'HcalNZS',
     'ZeroBias',
     'HcalHPDNoise',
-    'EGMonitor',
     'Mu',
     'RandomTriggers',
     'Commissioning',
@@ -47,6 +47,7 @@ datasets = cms.PSet(
   AlCaP0 = cms.vstring( 'AlCa_EcalPi0_1E31',
     'AlCa_EcalEta_1E31' ),
   JetMETTau = cms.vstring( 'HLT_MET100' ),
+  EGMonitor = cms.vstring( 'HLT_L1SingleEG5' ),
   EG = cms.vstring( 'HLT_DoublePhoton10_L1R',
     'HLT_Photon15_L1R',
     'HLT_Photon10_L1R',
@@ -64,7 +65,6 @@ datasets = cms.PSet(
   HcalNZS = cms.vstring( 'HLT_HcalPhiSym' ),
   ZeroBias = cms.vstring( 'HLT_ZeroBias' ),
   HcalHPDNoise = cms.vstring(  ),
-  EGMonitor = cms.vstring( 'HLT_L1SingleEG5' ),
   Mu = cms.vstring( 'HLT_DoubleMu0',
     'HLT_DoubleMu3',
     'HLT_Mu5',
