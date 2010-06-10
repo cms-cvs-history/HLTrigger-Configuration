@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_6_2/1E31/V4 (CMSSW_3_6_2_HLT1)
+# /dev/CMSSW_3_6_2/1E31/V5 (CMSSW_3_6_2_HLT3)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_6_2/1E31/V4')
+  tableName = cms.string('/dev/CMSSW_3_6_2/1E31/V5')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -14,6 +14,7 @@ process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'Product
 process.streams = cms.PSet( 
   Offline = cms.vstring(  ),
   RPCMON = cms.vstring( 'RPCMonitor' ),
+  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
   OnlineErrors = cms.vstring( 'LogMonitor',
     'FEDMonitor' ),
   Calibration = cms.vstring( 'TestEnables' ),
@@ -29,20 +30,20 @@ process.streams = cms.PSet(
     'ZeroBias',
     'HcalNZS',
     'Mu',
-    'EG',
     'JetMETTau',
-    'Commissioning',
-    'MuMonitor' ),
+    'MuMonitor',
+    'EG',
+    'Commissioning' ),
   EventDisplay = cms.vstring(  ),
   Express = cms.vstring( 'ExpressPhysics' ),
   HLTMON = cms.vstring( 'OfflineMonitor' ),
-  HLTDQM = cms.vstring(  ),
-  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' )
+  HLTDQM = cms.vstring(  )
 )
 process.datasets = cms.PSet( 
   RPCMonitor = cms.vstring( 'AlCa_RPCMuonNormalisation',
     'AlCa_RPCMuonNoHits',
     'AlCa_RPCMuonNoTriggers' ),
+  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' ),
   LogMonitor = cms.vstring(  ),
   FEDMonitor = cms.vstring(  ),
   TestEnables = cms.vstring(  ),
@@ -81,14 +82,14 @@ process.datasets = cms.PSet(
     'HLT_Mu5',
     'HLT_Mu9',
     'HLT_L2Mu11' ),
+  JetMETTau = cms.vstring( 'HLT_MET100' ),
+  MuMonitor = cms.vstring( 'HLT_L1Mu',
+    'HLT_L1MuOpen' ),
   EG = cms.vstring( 'HLT_DoublePhoton10_L1R',
     'HLT_Photon15_L1R',
     'HLT_Photon10_L1R',
     'HLT_Ele15_SiStrip_L1R' ),
-  JetMETTau = cms.vstring( 'HLT_MET100' ),
   Commissioning = cms.vstring(  ),
-  MuMonitor = cms.vstring( 'HLT_L1Mu',
-    'HLT_L1MuOpen' ),
   ExpressPhysics = cms.vstring( 'HLT_L1MuOpen',
     'HLT_MET100',
     'HLT_ZeroBias',
@@ -131,8 +132,7 @@ process.datasets = cms.PSet(
     'HLT_L1Mu',
     'HLT_L1MuOpen',
     'HLT_MET100',
-    'HLT_PixelTracks_Multiplicity70' ),
-  AlCaPhiSymEcal = cms.vstring( 'AlCa_EcalPhiSym' )
+    'HLT_PixelTracks_Multiplicity70' )
 )
 
 process.source = cms.Source( "PoolSource",
@@ -8615,7 +8615,7 @@ process.hltL1sAlCaEcalPhiSym = cms.EDFilter( "HLTLevel1GTSeed",
     L1NrBxInEvent = cms.int32( 3 ),
     L1TechTriggerSeeding = cms.bool( False ),
     L1UseAliasesForSeeding = cms.bool( True ),
-    L1SeedsLogicalExpression = cms.string( "L1_BscMinBiasOR_BptxPlusORMinus OR L1_DoubleHfBitCountsRing1_P1N1 OR L1_DoubleHfBitCountsRing2_P1N1" ),
+    L1SeedsLogicalExpression = cms.string( "L1_ZeroBias OR L1_DoubleHfBitCountsRing1_P1N1 OR L1_SingleHfRingEtSumsRing1_4 OR L1_DoubleHfRingEtSumsRing1_P4N4 OR L1_SingleHfRingEtSumsRing2_4 OR L1_DoubleHfRingEtSumsRing2_P4N4" ),
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" ),
     L1GtObjectMapTag = cms.InputTag( "hltL1GtObjectMap" ),
     L1CollectionsTag = cms.InputTag( "hltL1extraParticles" ),
