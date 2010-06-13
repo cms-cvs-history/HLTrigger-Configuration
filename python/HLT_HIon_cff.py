@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_5_5/HIon/V75 (CMSSW_3_5_8_HLT3)
+# /dev/CMSSW_3_5_5/HIon/V76 (CMSSW_3_5_8_HLT3)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V75')
+  tableName = cms.string('/dev/CMSSW_3_5_5/HIon/V76')
 )
 
 streams = cms.PSet( 
@@ -13,10 +13,8 @@ streams = cms.PSet(
   EcalCalibration = cms.vstring( 'EcalLaser' ),
   OnlineErrors = cms.vstring( 'LogMonitor',
     'FEDMonitor' ),
-  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
   ALCAP0 = cms.vstring( 'AlCaP0' ),
   RPCMON = cms.vstring( 'RPCMonitor' ),
-  HLTDQM = cms.vstring(  ),
   DQM = cms.vstring(  ),
   A = cms.vstring( 'JetMETTau',
     'EGMonitor',
@@ -33,6 +31,8 @@ streams = cms.PSet(
     'MuMonitor' ),
   EventDisplay = cms.vstring(  ),
   Express = cms.vstring( 'ExpressPhysics' ),
+  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
+  HLTDQM = cms.vstring(  ),
   HLTMON = cms.vstring( 'OfflineMonitor' )
 )
 datasets = cms.PSet( 
@@ -40,7 +40,6 @@ datasets = cms.PSet(
   EcalLaser = cms.vstring(  ),
   LogMonitor = cms.vstring(  ),
   FEDMonitor = cms.vstring(  ),
-  AlCaPhiSymEcal = cms.vstring(  ),
   AlCaP0 = cms.vstring(  ),
   RPCMonitor = cms.vstring(  ),
   JetMETTau = cms.vstring(  ),
@@ -57,6 +56,7 @@ datasets = cms.PSet(
   Commissioning = cms.vstring(  ),
   MuMonitor = cms.vstring(  ),
   ExpressPhysics = cms.vstring(  ),
+  AlCaPhiSymEcal = cms.vstring(  ),
   OfflineMonitor = cms.vstring(  )
 )
 
@@ -1860,3 +1860,7 @@ HLTAnalyzerEndpath = cms.EndPath( hltL1GtTrigReport + hltTrigReport )
 
 
 HLTSchedule = cms.Schedule( *(HLTriggerFirstPath, HLT_HIMinBiasCalo, HLT_HIJet35U, HLT_HIPhoton15, HLT_HIDoubleMu, HLTriggerFinalPath, HLTAnalyzerEndpath ))
+# override the preshower baseline setting for MC
+if 'ESUnpackerWorkerESProducer' in locals():
+    ESUnpackerWorkerESProducer.RHAlgo.ESBaseline = 1000
+

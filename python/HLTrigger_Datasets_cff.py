@@ -1,4 +1,4 @@
-# /dev/CMSSW_3_5_5/GRun/V75
+# /dev/CMSSW_3_5_5/GRun/V76
 
 import FWCore.ParameterSet.Config as cms
 
@@ -178,8 +178,6 @@ streamA_datasetCommissioning_selector.hltResults = cms.InputTag('TriggerResults'
 streamA_datasetCommissioning_selector.l1tResults = cms.InputTag('')
 streamA_datasetCommissioning_selector.throw      = cms.bool(False)
 streamA_datasetCommissioning_selector.triggerConditions = cms.vstring('HLT_L1_BptxXOR_BscMinBiasOR', 
-    'HLT_Activity_EcalREM', 
-    'HLT_Activity_Ecal', 
     'HLT_Activity_PixelClusters', 
     'HLT_Activity_L1A', 
     'HLT_Activity_DT', 
