@@ -266,6 +266,8 @@ if 'ESUnpackerWorkerESProducer' in locals():
         if menuUnprescale:
           out.write("""# remove the HLT prescales
 if 'PrescaleService' in locals():
+    PrescaleService.lvl1DefaultLabel = cms.untracked.string( '0' )
+    PrescaleService.lvl1Labels = cms.vstring( '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' )
     PrescaleService.prescaleTable = cms.VPSet( )
 
 """)
@@ -361,6 +363,8 @@ if 'ESUnpackerWorkerESProducer' in process.__dict__:
         if menuUnprescale:
           out.write("""# remove HLT prescales
 if 'PrescaleService' in process.__dict__:
+    process.PrescaleService.lvl1DefaultLabel = cms.untracked.string( '0' )
+    process.PrescaleService.lvl1Labels = cms.vstring( '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' )
     process.PrescaleService.prescaleTable = cms.VPSet( )
 
 """)
