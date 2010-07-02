@@ -245,7 +245,7 @@ else:
           os.system("sed -e 's/cms.string( \"source\" )/cms.string( \"rawDataCollector\" )/' -i " + menuOutName)
 
           # FIXME - this should be changed to a "tracked" parameter ASAP
-          os.system("sed -e 's/cms.EDProducer( \"CSCTFUnpacker\",\\s*/&\\n    source = cms.untracked.InputTag( \"rawDataCollector\" ),/' -i " + menuOutName)
+          os.system("sed -e 's/cms.EDProducer( \"CSCTFUnpacker\",\\s*/&\\n    producer = cms.untracked.InputTag( \"rawDataCollector\" ),/' -i " + menuOutName)
 
         if ((fileId=="1E31") or (fileId=="HIon")):
           # FIXME - should have a proper L1 MC/DESIGN/1E31 menue
@@ -337,7 +337,7 @@ es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverri
           os.system("sed -e 's/cms.string( \"source\" )/cms.string( \"rawDataCollector\" )/' -i " + menuOutName)
 
           # FIXME - this should be changed to a "tracked" parameter ASAP
-          os.system("sed -e 's/cms.EDProducer( \"CSCTFUnpacker\",\\s*/&\\n    source = cms.untracked.InputTag( \"rawDataCollector\" ),/' -i " + menuOutName)
+          os.system("sed -e 's/cms.EDProducer( \"CSCTFUnpacker\",\\s*/&\\n    producer = cms.untracked.InputTag( \"rawDataCollector\" ),/' -i " + menuOutName)
 
         if ((fileId=="1E31") or (fileId=="HIon")):
           # FIXME - should have a proper L1 MC/DESIGN/1E31 menue
