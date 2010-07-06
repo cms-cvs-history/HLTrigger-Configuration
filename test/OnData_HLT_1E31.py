@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_6_2/1E31/V21 (CMSSW_3_6_2_HLT8)
+# /dev/CMSSW_3_6_2/1E31/V22 (CMSSW_3_6_2_HLT8)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_6_2/1E31/V21')
+  tableName = cms.string('/dev/CMSSW_3_6_2/1E31/V22')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -24,17 +24,17 @@ process.streams = cms.PSet(
   A = cms.vstring( 'MuMonitor',
     'Cosmics',
     'JetMETTau',
-    'EG',
     'Mu',
-    'EGMonitor',
-    'MuOnia',
     'RandomTriggers',
     'ZeroBias',
     'Commissioning',
     'JetMETTauMonitor',
     'HcalHPDNoise',
     'HcalNZS',
-    'MinimumBias' ),
+    'MinimumBias',
+    'EG',
+    'MuOnia',
+    'EGMonitor' ),
   EventDisplay = cms.vstring(  ),
   Express = cms.vstring( 'ExpressPhysics' ),
   HLTDQM = cms.vstring(  ),
@@ -60,19 +60,28 @@ process.datasets = cms.PSet(
     'HLT_RPCBarrelCosmics',
     'HLT_CSCBeamHaloRing2or3' ),
   JetMETTau = cms.vstring( 'HLT_MET100' ),
+  Mu = cms.vstring( 'HLT_L1Mu14_L1SingleEG10',
+    'HLT_DoubleMu3',
+    'HLT_Mu5',
+    'HLT_Mu9',
+    'HLT_L2Mu11' ),
+  RandomTriggers = cms.vstring(  ),
+  ZeroBias = cms.vstring( 'HLT_ZeroBias' ),
+  Commissioning = cms.vstring(  ),
+  JetMETTauMonitor = cms.vstring( 'HLT_L1MET20' ),
+  HcalHPDNoise = cms.vstring(  ),
+  HcalNZS = cms.vstring( 'HLT_HcalPhiSym' ),
+  MinimumBias = cms.vstring( 'HLT_L1Tech_BSC_HighMultiplicity',
+    'HLT_ZeroBiasPixel_SingleTrack',
+    'HLT_PixelTracks_Multiplicity70' ),
   EG = cms.vstring( 'HLT_DoublePhoton10_L1R',
     'HLT_Photon10_Cleaned_L1R',
     'HLT_Ele15_SiStrip_L1R',
     'HLT_Photon15_Cleaned_L1R',
     'HLT_Ele10_SW_L1R',
     'HLT_Ele15_SW_L1R',
-    'HLT_Ele20_SW_L1R' ),
-  Mu = cms.vstring( 'HLT_L1Mu14_L1SingleEG10',
-    'HLT_DoubleMu3',
-    'HLT_Mu5',
-    'HLT_Mu9',
-    'HLT_L2Mu11' ),
-  EGMonitor = cms.vstring( 'HLT_L1SingleEG5' ),
+    'HLT_Ele20_SW_L1R',
+    'HLT_DoublePhoton5_CEP_L1R' ),
   MuOnia = cms.vstring( 'HLT_Mu0_L1MuOpen',
     'HLT_Mu0_Track0_Jpsi',
     'HLT_Mu3_L1MuOpen',
@@ -85,15 +94,7 @@ process.datasets = cms.PSet(
     'HLT_Mu5_L2Mu0',
     'HLT_L2DoubleMu0',
     'HLT_DoubleMu0' ),
-  RandomTriggers = cms.vstring(  ),
-  ZeroBias = cms.vstring( 'HLT_ZeroBias' ),
-  Commissioning = cms.vstring(  ),
-  JetMETTauMonitor = cms.vstring( 'HLT_L1MET20' ),
-  HcalHPDNoise = cms.vstring(  ),
-  HcalNZS = cms.vstring( 'HLT_HcalPhiSym' ),
-  MinimumBias = cms.vstring( 'HLT_L1Tech_BSC_HighMultiplicity',
-    'HLT_ZeroBiasPixel_SingleTrack',
-    'HLT_PixelTracks_Multiplicity70' ),
+  EGMonitor = cms.vstring( 'HLT_L1SingleEG5' ),
   ExpressPhysics = cms.vstring( 'HLT_MET100',
     'HLT_ZeroBias',
     'HLT_L1SingleEG5',
@@ -139,7 +140,8 @@ process.datasets = cms.PSet(
     'HLT_CSCBeamHaloOverlapRing1',
     'HLT_CSCBeamHalo',
     'HLT_ZeroBiasPixel_SingleTrack',
-    'HLT_PixelTracks_Multiplicity70' )
+    'HLT_PixelTracks_Multiplicity70',
+    'HLT_DoublePhoton5_CEP_L1R' )
 )
 
 process.source = cms.Source( "PoolSource",
@@ -238,6 +240,54 @@ process.magfield = cms.ESSource( "XMLIdealGeometryESSource",
       'MagneticField/GeomBuilder/data/MagneticFieldParameters_07_2pi.xml' )
 )
 
+process.preshowerDetIdAssociator = cms.ESProducer( "DetIdAssociatorESProducer",
+  ComponentName = cms.string( "PreshowerDetIdAssociator" ),
+  appendToDataLabel = cms.string( "" ),
+  etaBinSize = cms.double( 0.1 ),
+  nEta = cms.int32( 60 ),
+  nPhi = cms.int32( 30 ),
+  includeBadChambers = cms.bool( False )
+)
+process.muonDetIdAssociator = cms.ESProducer( "DetIdAssociatorESProducer",
+  ComponentName = cms.string( "MuonDetIdAssociator" ),
+  appendToDataLabel = cms.string( "" ),
+  etaBinSize = cms.double( 0.125 ),
+  nEta = cms.int32( 48 ),
+  nPhi = cms.int32( 48 ),
+  includeBadChambers = cms.bool( False )
+)
+process.caloDetIdAssociator = cms.ESProducer( "DetIdAssociatorESProducer",
+  ComponentName = cms.string( "CaloDetIdAssociator" ),
+  appendToDataLabel = cms.string( "" ),
+  etaBinSize = cms.double( 0.087 ),
+  nEta = cms.int32( 70 ),
+  nPhi = cms.int32( 72 ),
+  includeBadChambers = cms.bool( False )
+)
+process.hoDetIdAssociator = cms.ESProducer( "DetIdAssociatorESProducer",
+  ComponentName = cms.string( "HODetIdAssociator" ),
+  appendToDataLabel = cms.string( "" ),
+  etaBinSize = cms.double( 0.087 ),
+  nEta = cms.int32( 30 ),
+  nPhi = cms.int32( 72 ),
+  includeBadChambers = cms.bool( False )
+)
+process.hcalDetIdAssociator = cms.ESProducer( "DetIdAssociatorESProducer",
+  ComponentName = cms.string( "HcalDetIdAssociator" ),
+  appendToDataLabel = cms.string( "" ),
+  etaBinSize = cms.double( 0.087 ),
+  nEta = cms.int32( 70 ),
+  nPhi = cms.int32( 72 ),
+  includeBadChambers = cms.bool( False )
+)
+process.ecalDetIdAssociator = cms.ESProducer( "DetIdAssociatorESProducer",
+  ComponentName = cms.string( "EcalDetIdAssociator" ),
+  appendToDataLabel = cms.string( "" ),
+  etaBinSize = cms.double( 0.02 ),
+  nEta = cms.int32( 300 ),
+  nPhi = cms.int32( 360 ),
+  includeBadChambers = cms.bool( False )
+)
 process.AnalyticalPropagator = cms.ESProducer( "AnalyticalPropagatorESProducer",
   ComponentName = cms.string( "AnalyticalPropagator" ),
   PropagationDirection = cms.string( "alongMomentum" ),
@@ -4160,9 +4210,9 @@ process.hltMuTrackJpsiPixelTrackSelector = cms.EDProducer( "QuarkoniaTrackSelect
     tracks = cms.InputTag( "hltPixelTracks" ),
     checkCharge = cms.bool( False ),
     MinTrackPt = cms.double( 0.0 ),
-    MinTrackP = cms.double( 3.0 ),
+    MinTrackP = cms.double( 2.5 ),
     MaxTrackEta = cms.double( 999.0 ),
-    MinMasses = cms.vdouble( 1.6 ),
+    MinMasses = cms.vdouble( 2.0 ),
     MaxMasses = cms.vdouble( 4.6 )
 )
 process.hltMuTrackJpsiPixelTrackCands = cms.EDProducer( "ConcreteChargedCandidateProducer",
@@ -4177,14 +4227,14 @@ process.hltMu0TrackJpsiPixelMassFiltered = cms.EDFilter( "HLTMuonTrackMassFilter
     SaveTag = cms.untracked.bool( True ),
     checkCharge = cms.bool( False ),
     MinTrackPt = cms.double( 0.0 ),
-    MinTrackP = cms.double( 3.0 ),
+    MinTrackP = cms.double( 2.5 ),
     MaxTrackEta = cms.double( 999.0 ),
     MaxTrackDxy = cms.double( 999.0 ),
     MaxTrackDz = cms.double( 999.0 ),
     MinTrackHits = cms.int32( 3 ),
     MaxTrackNormChi2 = cms.double( 1.0E10 ),
     MaxDzMuonTrack = cms.double( 999.0 ),
-    MinMasses = cms.vdouble( 1.6 ),
+    MinMasses = cms.vdouble( 2.0 ),
     MaxMasses = cms.vdouble( 4.6 )
 )
 process.hltMuTrackJpsiTrackSeeds = cms.EDProducer( "SeedGeneratorFromProtoTracksEDProducer",
@@ -4233,15 +4283,15 @@ process.hltMu0TrackJpsiTrackMassFiltered = cms.EDFilter( "HLTMuonTrackMassFilter
     SaveTag = cms.untracked.bool( True ),
     checkCharge = cms.bool( True ),
     MinTrackPt = cms.double( 0.0 ),
-    MinTrackP = cms.double( 3.0 ),
+    MinTrackP = cms.double( 2.7 ),
     MaxTrackEta = cms.double( 999.0 ),
     MaxTrackDxy = cms.double( 999.0 ),
     MaxTrackDz = cms.double( 999.0 ),
     MinTrackHits = cms.int32( 5 ),
     MaxTrackNormChi2 = cms.double( 1.0E10 ),
     MaxDzMuonTrack = cms.double( 0.5 ),
-    MinMasses = cms.vdouble( 2.7 ),
-    MaxMasses = cms.vdouble( 3.5 )
+    MinMasses = cms.vdouble( 2.5 ),
+    MaxMasses = cms.vdouble( 3.6 )
 )
 process.hltPreMu3Track0Jpsi = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" )
@@ -4290,14 +4340,14 @@ process.hltMu3TrackJpsiPixelMassFiltered = cms.EDFilter( "HLTMuonTrackMassFilter
     SaveTag = cms.untracked.bool( True ),
     checkCharge = cms.bool( False ),
     MinTrackPt = cms.double( 0.0 ),
-    MinTrackP = cms.double( 3.0 ),
+    MinTrackP = cms.double( 2.5 ),
     MaxTrackEta = cms.double( 999.0 ),
     MaxTrackDxy = cms.double( 999.0 ),
     MaxTrackDz = cms.double( 999.0 ),
     MinTrackHits = cms.int32( 3 ),
     MaxTrackNormChi2 = cms.double( 1.0E10 ),
     MaxDzMuonTrack = cms.double( 999.0 ),
-    MinMasses = cms.vdouble( 1.6 ),
+    MinMasses = cms.vdouble( 2.0 ),
     MaxMasses = cms.vdouble( 4.6 )
 )
 process.hltMu3TrackJpsiTrackMassFiltered = cms.EDFilter( "HLTMuonTrackMassFilter",
@@ -4308,15 +4358,15 @@ process.hltMu3TrackJpsiTrackMassFiltered = cms.EDFilter( "HLTMuonTrackMassFilter
     SaveTag = cms.untracked.bool( True ),
     checkCharge = cms.bool( True ),
     MinTrackPt = cms.double( 0.0 ),
-    MinTrackP = cms.double( 3.0 ),
+    MinTrackP = cms.double( 2.7 ),
     MaxTrackEta = cms.double( 999.0 ),
     MaxTrackDxy = cms.double( 999.0 ),
     MaxTrackDz = cms.double( 999.0 ),
     MinTrackHits = cms.int32( 5 ),
     MaxTrackNormChi2 = cms.double( 1.0E10 ),
     MaxDzMuonTrack = cms.double( 0.5 ),
-    MinMasses = cms.vdouble( 2.7 ),
-    MaxMasses = cms.vdouble( 3.5 )
+    MinMasses = cms.vdouble( 2.5 ),
+    MaxMasses = cms.vdouble( 3.6 )
 )
 process.hltPreMu5Track0Jpsi = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" )
@@ -4365,14 +4415,14 @@ process.hltMu5TrackJpsiPixelMassFiltered = cms.EDFilter( "HLTMuonTrackMassFilter
     SaveTag = cms.untracked.bool( True ),
     checkCharge = cms.bool( False ),
     MinTrackPt = cms.double( 0.0 ),
-    MinTrackP = cms.double( 3.0 ),
+    MinTrackP = cms.double( 2.5 ),
     MaxTrackEta = cms.double( 999.0 ),
     MaxTrackDxy = cms.double( 999.0 ),
     MaxTrackDz = cms.double( 999.0 ),
     MinTrackHits = cms.int32( 3 ),
     MaxTrackNormChi2 = cms.double( 1.0E10 ),
     MaxDzMuonTrack = cms.double( 999.0 ),
-    MinMasses = cms.vdouble( 1.6 ),
+    MinMasses = cms.vdouble( 2.0 ),
     MaxMasses = cms.vdouble( 4.6 )
 )
 process.hltMu5TrackJpsiTrackMassFiltered = cms.EDFilter( "HLTMuonTrackMassFilter",
@@ -4383,15 +4433,15 @@ process.hltMu5TrackJpsiTrackMassFiltered = cms.EDFilter( "HLTMuonTrackMassFilter
     SaveTag = cms.untracked.bool( True ),
     checkCharge = cms.bool( True ),
     MinTrackPt = cms.double( 0.0 ),
-    MinTrackP = cms.double( 3.0 ),
+    MinTrackP = cms.double( 2.7 ),
     MaxTrackEta = cms.double( 999.0 ),
     MaxTrackDxy = cms.double( 999.0 ),
     MaxTrackDz = cms.double( 999.0 ),
     MinTrackHits = cms.int32( 5 ),
     MaxTrackNormChi2 = cms.double( 1.0E10 ),
     MaxDzMuonTrack = cms.double( 0.5 ),
-    MinMasses = cms.vdouble( 2.7 ),
-    MaxMasses = cms.vdouble( 3.5 )
+    MinMasses = cms.vdouble( 2.5 ),
+    MaxMasses = cms.vdouble( 3.6 )
 )
 process.hltL1sL1SingleEG5 = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),
@@ -9606,7 +9656,8 @@ process.hltOutputA = cms.OutputModule( "PoolOutputModule",
   'HLT_TrackerCosmics',
   'HLT_RPCBarrelCosmics',
   'HLT_CSCBeamHaloRing2or3',
-  'HLT_PixelTracks_Multiplicity70' ) ),
+  'HLT_PixelTracks_Multiplicity70',
+  'HLT_DoublePhoton5_CEP_L1R' ) ),
     outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
       'keep FEDRawDataCollection_source_*_*',
       'keep FEDRawDataCollection_rawDataCollector_*_*',
