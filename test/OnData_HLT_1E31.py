@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_6_2/1E31/V22 (CMSSW_3_6_2_HLT8)
+# /dev/CMSSW_3_6_2/1E31/V24 (CMSSW_3_6_2_HLT8)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_6_2/1E31/V22')
+  tableName = cms.string('/dev/CMSSW_3_6_2/1E31/V24')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -32,9 +32,9 @@ process.streams = cms.PSet(
     'HcalHPDNoise',
     'HcalNZS',
     'MinimumBias',
-    'EG',
     'MuOnia',
-    'EGMonitor' ),
+    'EGMonitor',
+    'EG' ),
   EventDisplay = cms.vstring(  ),
   Express = cms.vstring( 'ExpressPhysics' ),
   HLTDQM = cms.vstring(  ),
@@ -74,14 +74,6 @@ process.datasets = cms.PSet(
   MinimumBias = cms.vstring( 'HLT_L1Tech_BSC_HighMultiplicity',
     'HLT_ZeroBiasPixel_SingleTrack',
     'HLT_PixelTracks_Multiplicity70' ),
-  EG = cms.vstring( 'HLT_DoublePhoton10_L1R',
-    'HLT_Photon10_Cleaned_L1R',
-    'HLT_Ele15_SiStrip_L1R',
-    'HLT_Photon15_Cleaned_L1R',
-    'HLT_Ele10_SW_L1R',
-    'HLT_Ele15_SW_L1R',
-    'HLT_Ele20_SW_L1R',
-    'HLT_DoublePhoton5_CEP_L1R' ),
   MuOnia = cms.vstring( 'HLT_Mu0_L1MuOpen',
     'HLT_Mu0_Track0_Jpsi',
     'HLT_Mu3_L1MuOpen',
@@ -95,6 +87,15 @@ process.datasets = cms.PSet(
     'HLT_L2DoubleMu0',
     'HLT_DoubleMu0' ),
   EGMonitor = cms.vstring( 'HLT_L1SingleEG5' ),
+  EG = cms.vstring( 'HLT_DoublePhoton10_L1R',
+    'HLT_Photon10_Cleaned_L1R',
+    'HLT_Ele15_SiStrip_L1R',
+    'HLT_Photon15_Cleaned_L1R',
+    'HLT_Ele10_SW_L1R',
+    'HLT_Ele15_SW_L1R',
+    'HLT_Ele20_SW_L1R',
+    'HLT_Photon30_L1R',
+    'HLT_DoublePhoton5_CEP_L1R' ),
   ExpressPhysics = cms.vstring( 'HLT_MET100',
     'HLT_ZeroBias',
     'HLT_L1SingleEG5',
@@ -117,6 +118,7 @@ process.datasets = cms.PSet(
     'HLT_DoubleMu3',
     'HLT_Ele10_SW_L1R',
     'HLT_Ele15_SW_L1R',
+    'HLT_Photon30_L1R',
     'HLT_Mu0_L1MuOpen',
     'HLT_Mu0_Track0_Jpsi',
     'HLT_Mu3_L1MuOpen',
@@ -1716,7 +1718,7 @@ process.PrescaleService = cms.Service( "PrescaleService",
       cms.PSet(  pathName = cms.string( "HLT_Photon25_LooseEcalIso_TrackIso_L1R" ),
         prescales = cms.vuint32( 1, 1, 1, 1, 0 )
       ),
-      cms.PSet(  pathName = cms.string( "HLT_Photon30_L1R_1E31" ),
+      cms.PSet(  pathName = cms.string( "HLT_Photon30_L1R" ),
         prescales = cms.vuint32( 1, 1, 1, 1, 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_Photon70_L1R" ),
@@ -9647,7 +9649,7 @@ process.hltOutputA = cms.OutputModule( "PoolOutputModule",
   'HLT_Photon20_LooseEcalIso_TrackIso_L1R',
   'HLT_Photon25_L1R',
   'HLT_Photon25_LooseEcalIso_TrackIso_L1R',
-  'HLT_Photon30_L1R_1E31',
+  'HLT_Photon30_L1R',
   'HLT_Photon70_L1R',
   'HLT_QuadJet30',
   'HLT_SingleIsoTau30_Trk5',
@@ -9875,7 +9877,7 @@ process.HLT_Photon15_Cleaned_L1R = cms.Path( process.HLTBeginSequence + process.
 process.HLT_Photon20_LooseEcalIso_TrackIso_L1R = cms.Path( process.HLTBeginSequence + process.hltL1sL1SingleEG8 + process.hltPrePhoton20HLTLEITIL1R + process.HLTSinglePhoton20L1NonIsolatedHLTLEITISequence + process.HLTEndSequence )
 process.HLT_Photon25_L1R = cms.Path( process.HLTBeginSequence + process.hltL1sL1SingleEG8 + process.hltPrePhoton25L1R + process.HLTSinglePhoton25L1NonIsolatedHLTNonIsoSequence + process.HLTEndSequence )
 process.HLT_Photon25_LooseEcalIso_TrackIso_L1R = cms.Path( process.HLTBeginSequence + process.hltL1sL1SingleEG8 + process.hltPrePhoton25HLTLEITIL1R + process.HLTSinglePhoton25L1NonIsolatedHLTLEITISequence + process.HLTEndSequence )
-process.HLT_Photon30_L1R_1E31 = cms.Path( process.HLTBeginSequence + process.hltL1sL1SingleEG8 + process.hltPrePhoton30L1R1E31 + process.HLTSinglePhoton30L1NonIsolatedHLTNonIsoSequence + process.HLTEndSequence )
+process.HLT_Photon30_L1R = cms.Path( process.HLTBeginSequence + process.hltL1sL1SingleEG8 + process.hltPrePhoton30L1R1E31 + process.HLTSinglePhoton30L1NonIsolatedHLTNonIsoSequence + process.HLTEndSequence )
 process.HLT_Photon70_L1R = cms.Path( process.HLTBeginSequence + process.hltL1sL1SingleEG8 + process.hltPrePhoton70L1R + process.HLTSinglePhoton30L1NonIsolatedHLTNonIsoSequence + process.hltL1NonIsoHLTNonIsoSinglePhotonEt30EtFilterESet70 + process.HLTEndSequence )
 process.HLT_DoublePhoton5_CEP_L1R = cms.Path( process.HLTBeginSequence + process.hltL1sL1DoubleEG5 + process.hltPreDoublePhoton5CEPL1R + process.HLTDoublePhotonEt5Sequence + process.hltTowerMakerForHcal + process.hltHcalTowerFilter + process.HLTEndSequence )
 process.HLT_DoublePhoton10_L1R = cms.Path( process.HLTBeginSequence + process.hltL1sL1DoubleEG5 + process.hltPreDoublePhoton10L1R + process.HLTDoublePhotonEt10L1NonIsoHLTNonIsoSequence + process.HLTEndSequence )
