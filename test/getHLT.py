@@ -149,7 +149,6 @@ def parse_options(args):
   else:
     (menuConfigDB, menuConfigName) = ('hltdev', configName)
 
-
 # parse command line arguments and options
 parse_options(sys.argv[1:])
 
@@ -234,7 +233,6 @@ else:
         paths      = " --paths -HLTOutput,-ExpressOutput,-EventDisplayOutput,-AlCaOutput,-DQMOutput,-HLTDQMOutput,-HLTMONOutput,-OfflineOutput"
 
         psets      = " --psets -maxEvents,-options"
-
 
         myGet = "edmConfigFromDB --cff --" + menuConfigDB + " --configName " + menuConfigName + edsources + essources + esmodules + modules + services + paths + psets + " > " + menuOutName
         os.system(myGet)
