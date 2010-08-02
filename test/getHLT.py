@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+print '\nWarning: getHLT.py has been deprecated. Please use hltGetConfiguration\n'
+
 import sys
 import os
 import commands
