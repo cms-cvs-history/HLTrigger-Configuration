@@ -5,6 +5,7 @@ import os
 import commands
 import getopt
 import fileinput
+import shlex, subprocess
 
 globalTag = {
   '8E29': 'auto:startup',
@@ -19,7 +20,7 @@ def usage():
     print 'Usage:'
     print '  getHLT.py [--process <Name>] [--globaltag <GlobalTag::All>] [--l1 <L1_MENU_vX>]'
     print '            [--full|--cff] [--data|--mc] [--online|--offline] [--unprescale]'
-    print '            [-f|--force]'
+    print '            [--dataset DATASET] [-f|--force]'
     print '            <Version from ConfDB> <ID>'
     print
     print 'Options:'
@@ -33,6 +34,7 @@ def usage():
     print '  --mc               Prepare a menu for running on MC (RAW in "rawDataCollector")'
     print '  --online           Take the online compliant connection string and GlobalTag from the menu'
     print '  --offline          Override with the connection string and GlobalTag with te offline values [this is the default]'
+    print '  --dataset          Set the Source to read the files in the specified DATASET (only valid "offline")'
     print '  --unprescale       Remove any HLT prescales'
     print
     print '  --force            Overwrite the destination file instead of aborting if it already exists'
@@ -52,8 +54,18 @@ menuL1Override  = ''
 menuGlobalTag   = ''
 menuConfigDB    = ''
 menuConfigName  = ''
+menuDataset     = ''
 menuUnprescale  = False
 doOverwrite     = False
+
+def pipe(cmdline, input = None):
+  args = shlex.split(cmdline)
+  if input is not None:
+    command = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=None)
+  else:
+    command = subprocess.Popen(args, stdin=None, stdout=subprocess.PIPE, stderr=None)
+  (out, err) = command.communicate(input)
+  return out
 
 def parse_options(args):
   # global variables
@@ -67,11 +79,12 @@ def parse_options(args):
   global menuGlobalTag
   global menuConfigDB
   global menuConfigName
+  global menuDataset
   global menuUnprescale
   global doOverwrite
 
   # valid options
-  options = ( 'process=', 'l1=', 'globaltag=', 'data', 'mc', 'force', 'online', 'offline', 'full', 'cff', 'unprescale' )
+  options = ( 'process=', 'l1=', 'globaltag=', 'data', 'mc', 'force', 'online', 'offline', 'full', 'cff', 'dataset=', 'unprescale' )
 
   try:
     (opts, args) = getopt.gnu_getopt(args, 'f', options)
@@ -109,6 +122,8 @@ def parse_options(args):
     # run offline(overrithe the GlobalTag from the menu with an offline one)
     elif opt == '--offline':
       runOnline = False
+    elif opt == '--dataset':
+      menuDataset = value
     elif opt == '--unprescale':
       menuUnprescale = True
     # overwrite the destination file
@@ -244,7 +259,7 @@ else:
 
         if ((fileId=="1E31") or (fileId=="HIon")):
           # FIXME - should have a proper L1 MC/DESIGN/1E31 menue
-          os.system("sed -e 's/L1_DoubleEG2/L1_DoubleEG1/' -i " + menuOutName)
+          os.system("sed -e 's/\<L1_DoubleEG2\>/L1_DoubleEG1/' -i " + menuOutName)
 
         # open the output file for further tuning
         out = open(menuOutName, 'a')
@@ -305,21 +320,28 @@ es_prefer_Level1MenuOverride = cms.ESPrefer( "PoolDBESSource", "Level1MenuOverri
         out.close()
 
     else:
-        if runOnData:
-          if runOnline:
-            edsources =  " --input file:/tmp/InputCollection.root"
-          else:
-            edsources =  " --input /store/data/Run2010A/MinimumBias/RAW/v1/000/140/381/08F3BCC8-6092-DF11-AE9B-001D09F2525D.root"
+        if runOnline:
+          # online we always run on data
+          edsources = " --input file:/tmp/InputCollection.root"
         else:
-          edsources =  " --input file:RelVal_DigiL1Raw_"+fileId+".root"
+          # offline we can run on data, on mc, or on a user-specified dataset
+          if runOnData:
+            edsources = " --input /store/data/Run2010A/MinimumBias/RAW/v1/000/140/381/08F3BCC8-6092-DF11-AE9B-001D09F2525D.root"
+          elif menuDataset:
+            # query DBS and extract the files for the specified dataset
+            files = pipe("dbsql 'find file where dataset like %s'" % menuDataset)
+            files = [ f for f in files.split('\n') if 'store' in f ]
+            edsources = " --input %s" % ','.join(files)
+          else:
+            edsources = " --input file:RelVal_DigiL1Raw_"+fileId+".root"
 
         if not runOnData or menuL1Override:
           # remove any eventual L1 override from the table
           essources  = " --essources "
-          essources += "-Level1MenuOverride,"
+          essources += "-Level1MenuOverride"
 
           esmodules  = " --esmodules "
-          esmodules += "-l1GtTriggerMenuXml,"
+          esmodules += "-l1GtTriggerMenuXml"
 
         services   = " --services -FUShmDQMOutputService"
 
