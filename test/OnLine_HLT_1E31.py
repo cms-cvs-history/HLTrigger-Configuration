@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_6_2/1E31/V39 (CMSSW_3_6_2_HLT11)
+# /dev/CMSSW_3_6_2/1E31/V40 (CMSSW_3_6_2_HLT11)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_6_2/1E31/V39')
+  tableName = cms.string('/dev/CMSSW_3_6_2/1E31/V40')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -161,7 +161,22 @@ process.datasets = cms.PSet(
     'HLT_L1MuOpen',
     'HLT_Mu0_L2Mu0' ),
   Commissioning = cms.vstring(  ),
-  OfflineMonitor = cms.vstring( 'HLT_Mu0_L1MuOpen',
+  OfflineMonitor = cms.vstring( 'HLT_Ele15_SiStrip_L1R',
+    'HLT_L1SingleEG5',
+    'HLT_L1DoubleMuOpen',
+    'HLT_L1Mu',
+    'HLT_L1MuOpen',
+    'HLT_MET100',
+    'HLT_Photon15_Cleaned_L1R',
+    'HLT_L1MET20',
+    'HLT_DoubleMu3',
+    'HLT_DoubleEle10_SW_L1R',
+    'HLT_DoublePhoton15_L1R',
+    'HLT_Ele15_SW_EleId_L1R',
+    'HLT_Ele15_SW_L1R',
+    'HLT_L1Mu30',
+    'HLT_Ele25_SW_L1R',
+    'HLT_Mu0_L1MuOpen',
     'HLT_Mu0_Track0_Jpsi',
     'HLT_Mu3_L1MuOpen',
     'HLT_Mu3_Track0_Jpsi',
@@ -190,22 +205,7 @@ process.datasets = cms.PSet(
     'HLT_Ele20_SiStrip_L1R',
     'HLT_L1Mu14_L1SingleEG10',
     'HLT_DoublePhoton10_L1R',
-    'HLT_Photon10_Cleaned_L1R',
-    'HLT_Ele15_SiStrip_L1R',
-    'HLT_L1SingleEG5',
-    'HLT_L1DoubleMuOpen',
-    'HLT_L1Mu',
-    'HLT_L1MuOpen',
-    'HLT_MET100',
-    'HLT_Photon15_Cleaned_L1R',
-    'HLT_L1MET20',
-    'HLT_DoubleMu3',
-    'HLT_DoubleEle10_SW_L1R',
-    'HLT_DoublePhoton15_L1R',
-    'HLT_Ele15_SW_EleId_L1R',
-    'HLT_Ele15_SW_L1R',
-    'HLT_L1Mu30',
-    'HLT_Ele25_SW_L1R' ),
+    'HLT_Photon10_Cleaned_L1R' ),
   OnlineHltMonitor = cms.vstring( 'HLT_Mu9',
     'HLT_Photon10_Cleaned_L1R',
     'HLT_RPCBarrelCosmics',
