@@ -6,8 +6,10 @@ for task in OnData OnLine; do
   for lumi in 8E29 GRun 1E31 HIon; do
     cat >> ${task}_HLT_${lumi}.py <<EOF
 
-# Removing prescales
+# remove HLT prescales
 if 'PrescaleService' in process.__dict__:
+    process.PrescaleService.lvl1DefaultLabel = cms.untracked.string( '0' )
+    process.PrescaleService.lvl1Labels = cms.vstring( '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' )
     process.PrescaleService.prescaleTable = cms.VPSet( )
 
 EOF
