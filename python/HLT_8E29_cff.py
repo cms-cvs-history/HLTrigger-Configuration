@@ -8025,3 +8025,11 @@ HLTSchedule = cms.Schedule( *(HLTriggerFirstPath, HLT_L1Jet6U, HLT_Jet15U, HLT_J
 if 'ESUnpackerWorkerESProducer' in locals():
     ESUnpackerWorkerESProducer.RHAlgo.ESBaseline = 1000
 
+# hand-made corrections to test new CSC and DT conditions
+hltCsc2DRecHits.CSCUseTimingCorrections = True
+hltDt1DRecHits.recAlgoConfig.tTrigModeConfig.wirePropCorrType = 0
+hltDt1DRecHits.recAlgoConfig.tTrigModeConfig.tofCorrType = 0
+hltDt4DSegments.Reco4DAlgoConfig.Reco2DAlgoConfig.recAlgoConfig.tTrigModeConfig.wirePropCorrType = 0
+hltDt4DSegments.Reco4DAlgoConfig.Reco2DAlgoConfig.recAlgoConfig.tTrigModeConfig.tofCorrType = 0
+hltDt4DSegments.Reco4DAlgoConfig.recAlgoConfig.tTrigModeConfig.wirePropCorrType = 0
+hltDt4DSegments.Reco4DAlgoConfig.recAlgoConfig.tTrigModeConfig.tofCorrType = 0

@@ -10110,3 +10110,11 @@ process.MessageLogger.categories.append('TriggerSummaryProducerAOD')
 process.MessageLogger.categories.append('L1GtTrigReport')
 process.MessageLogger.categories.append('HLTrigReport')
 
+# hand-made corrections to test new CSC and DT conditions
+process.hltCsc2DRecHits.CSCUseTimingCorrections = True
+process.hltDt1DRecHits.recAlgoConfig.tTrigModeConfig.wirePropCorrType = 0
+process.hltDt1DRecHits.recAlgoConfig.tTrigModeConfig.tofCorrType = 0
+process.hltDt4DSegments.Reco4DAlgoConfig.Reco2DAlgoConfig.recAlgoConfig.tTrigModeConfig.wirePropCorrType = 0
+process.hltDt4DSegments.Reco4DAlgoConfig.Reco2DAlgoConfig.recAlgoConfig.tTrigModeConfig.tofCorrType = 0
+process.hltDt4DSegments.Reco4DAlgoConfig.recAlgoConfig.tTrigModeConfig.wirePropCorrType = 0
+process.hltDt4DSegments.Reco4DAlgoConfig.recAlgoConfig.tTrigModeConfig.tofCorrType = 0
