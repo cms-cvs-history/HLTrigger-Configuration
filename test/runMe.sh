@@ -4,27 +4,25 @@ cmsenv
 
 rehash
 
-echo " "
+echo
 echo "Existing cfg files:"
 ls -l OnData*.py
 ls -l OnLine*.py
 
-echo " "
+echo
 echo "Creating offline configs with cmsDriver"
 echo "./cmsDriver.sh"
 time  ./cmsDriver.sh
 
-echo " "
+echo
 echo "Running selected configs"
 
 foreach gtag ( STARTUP MC )
 
   foreach task ( RelVal_DigiL1Raw )
-    echo " "
+    echo
     set name = ${task}_${gtag}
-    foreach ext (log root)
-      /bin/rm $name.$ext
-    end
+    rm -f $name.{log,root}
 cat >> $name.py <<EOF
 # override the L1 menu
 if 'GlobalTag' in process.__dict__:
@@ -50,11 +48,9 @@ EOF
   foreach table ( GRun HIon )
     if ( $gtag == STARTUP ) then
       foreach task ( OnData_HLT OnLine_HLT )
-        echo " "
+        echo
         set name = ${task}_${table}
-        foreach ext (log root)
-          /bin/rm $name.$ext
-        end
+        rm -f $name.{log,root}
 cat >> $name.py <<EOF
 # override the L1 menu
 if 'GlobalTag' in process.__dict__:
@@ -73,11 +69,9 @@ EOF
     endif
 
     foreach task ( RelVal_HLT RelVal_HLT2 )
-      echo " "
+      echo
       set name = ${task}_${table}_${gtag}
-      foreach ext (log root)
-        /bin/rm $name.$ext
-      end
+      rm -f $name.{log,root}
 cat >> $name.py <<EOF
 # override the L1 menu
 if 'GlobalTag' in process.__dict__:
@@ -100,11 +94,9 @@ end
 
 foreach gtag ( STARTUP MC )
   foreach task ( RelVal_Reco )
-    echo " "
+    echo
     set name = ${task}_${gtag}
-    foreach ext (log root)
-      /bin/rm $name.$ext
-    end
+    rm -f $name.{log,root}
 cat >> $name.py <<EOF
 # override the L1 menu
 if 'GlobalTag' in process.__dict__:
