@@ -5,64 +5,118 @@ cmsenv
 rehash
 
 echo " "
-echo "Removing prescales from online configs"
-foreach task ( OnData OnLine)
-foreach lumi ( 8E29 GRun 1E31 HIon )
-cat >> ${task}_HLT_${lumi}.py <<EOF
-#
-# Removing prescales
-if 'PrescaleService' in process.__dict__:
-    process.PrescaleService.prescaleTable = cms.VPSet( )
-# 
-EOF
-end
-end
+echo "Existing cfg files:"
+ls -l OnData*.py
+ls -l OnLine*.py
 
 echo " "
 echo "Creating offline configs with cmsDriver"
 echo "./cmsDriver.sh"
 time  ./cmsDriver.sh
 
-#foreach lumi ( GRun )
-#foreach task ( OnLine_HLT RelVal_HLT RelVal_HLT2 ) 
-#cat >> ${task}_${lumi}.py <<EOF
-##
-## L1 not yet in GlobalTag - add by hand!
-#from CondCore.DBCommon.CondDBSetup_cfi import *
-#process.newL1menu = cms.ESSource(
-#   "PoolDBESSource",CondDBSetup,
-#   connect = cms.string("frontier://FrontierProd/CMS_COND_31X_L1T"),
-#   toGet = cms.VPSet(cms.PSet(record = cms.string("L1GtTriggerMenuRcd"),
-#                              tag = cms.string("L1GtTriggerMenu_STARTUP_v6"))
-#                     )
-#   )
-#process.es_prefer_newL1menu = cms.ESPrefer("PoolDBESSource","newL1menu")
-##
-#EOF
-#end
-#end
+echo " "
+echo "Running selected configs"
 
-# GRun = 8E29+MWGR
-foreach lumi ( 8E29 GRun 1E31 HIon )
-# foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_HLT RelVal_DigiL1RawHLT RelVal_HLT2 RelVal_L1HLT2 RelVal_Reco )
-  foreach task ( RelVal_DigiL1Raw RelVal_HLT OnLine_HLT RelVal_HLT2 OnData_HLT )
+foreach gtag ( STARTUP MC )
+
+  foreach task ( RelVal_DigiL1Raw )
     echo " "
-    set name = ${task}_${lumi}
+    set name = ${task}_${gtag}
     foreach ext (log root)
-	/bin/rm $name.$ext
+      /bin/rm $name.$ext
     end
+cat >> $name.py <<EOF
+# override the L1 menu
+if 'GlobalTag' in process.__dict__:
+    process.GlobalTag.toGet = cms.VPSet( )
+    process.GlobalTag.toGet.append(
+        cms.PSet(  
+            record  = cms.string( "L1GtTriggerMenuRcd" ),
+            tag     = cms.string( "L1GtTriggerMenu_L1Menu_Commissioning2010_v4_mc" ),
+            connect = cms.untracked.string( "sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_Commissioning2010_v4_mc.db" )
+        )
+    )
+EOF
     echo "cmsRun $name.py >& $name.log"
     time  cmsRun $name.py >& $name.log
+#   link to input file for subsequent OnLine* step
+    if ( $gtag == STARTUP ) then
+      foreach table ( GRun HIon )
+        ln -s RelVal_DigiL1Raw_${gtag}.root RelVal_DigiL1Raw_${table}.root
+      end
+    endif
   end
+
+  foreach table ( GRun HIon )
+    if ( $gtag == STARTUP ) then
+      foreach task ( OnData_HLT OnLine_HLT )
+        echo " "
+        set name = ${task}_${table}
+        foreach ext (log root)
+          /bin/rm $name.$ext
+        end
+cat >> $name.py <<EOF
+# override the L1 menu
+if 'GlobalTag' in process.__dict__:
+    process.GlobalTag.toGet = cms.VPSet( )
+    process.GlobalTag.toGet.append(
+        cms.PSet(  
+            record  = cms.string( "L1GtTriggerMenuRcd" ),
+            tag     = cms.string( "L1GtTriggerMenu_L1Menu_Commissioning2010_v4_mc" ),
+            connect = cms.untracked.string( "sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_Commissioning2010_v4_mc.db" )
+        )
+    )
+EOF
+        echo "cmsRun $name.py >& $name.log"
+        time  cmsRun $name.py >& $name.log
+      end
+    endif
+
+    foreach task ( RelVal_HLT RelVal_HLT2 )
+      echo " "
+      set name = ${task}_${table}_${gtag}
+      foreach ext (log root)
+        /bin/rm $name.$ext
+      end
+cat >> $name.py <<EOF
+# override the L1 menu
+if 'GlobalTag' in process.__dict__:
+    process.GlobalTag.toGet = cms.VPSet( )
+    process.GlobalTag.toGet.append(
+        cms.PSet(  
+            record  = cms.string( "L1GtTriggerMenuRcd" ),
+            tag     = cms.string( "L1GtTriggerMenu_L1Menu_Commissioning2010_v4_mc" ),
+            connect = cms.untracked.string( "sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_Commissioning2010_v4_mc.db" )
+        )
+    )
+EOF
+      echo "cmsRun $name.py >& $name.log"
+      time  cmsRun $name.py >& $name.log
+    end
+
+  end
+
 end
 
-foreach lumi ( 8E29 1E31 )
+foreach gtag ( STARTUP MC )
   foreach task ( RelVal_Reco )
     echo " "
-    set name = ${task}_${lumi}
+    set name = ${task}_${gtag}
     foreach ext (log root)
-	/bin/rm $name.$ext
+      /bin/rm $name.$ext
     end
+cat >> $name.py <<EOF
+# override the L1 menu
+if 'GlobalTag' in process.__dict__:
+    process.GlobalTag.toGet = cms.VPSet( )
+    process.GlobalTag.toGet.append(
+        cms.PSet(  
+            record  = cms.string( "L1GtTriggerMenuRcd" ),
+            tag     = cms.string( "L1GtTriggerMenu_L1Menu_Commissioning2010_v4_mc" ),
+            connect = cms.untracked.string( "sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_Commissioning2010_v4_mc.db" )
+        )
+    )
+EOF
     echo "cmsRun $name.py >& $name.log"
     time  cmsRun $name.py >& $name.log
   end
