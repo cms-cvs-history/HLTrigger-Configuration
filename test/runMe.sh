@@ -26,7 +26,8 @@ foreach gtag ( STARTUP MC )
     cat >> $name.py <<EOF
 # override the L1 menu
 if 'GlobalTag' in process.__dict__:
-    process.GlobalTag.toGet = cms.VPSet( )
+    if not 'toGet' in process.GlobalTag.__dict__:
+        process.GlobalTag.toGet = cms.VPSet( )
     process.GlobalTag.toGet.append(
         cms.PSet(  
             record  = cms.string( "L1GtTriggerMenuRcd" ),
@@ -67,7 +68,8 @@ EOF
         cat >> $name.py <<EOF
 # override the L1 menu
 if 'GlobalTag' in process.__dict__:
-    process.GlobalTag.toGet = cms.VPSet( )
+    if not 'toGet' in process.GlobalTag.__dict__:
+        process.GlobalTag.toGet = cms.VPSet( )
     process.GlobalTag.toGet.append(
         cms.PSet(  
             record  = cms.string( "L1GtTriggerMenuRcd" ),
@@ -80,7 +82,8 @@ EOF
         cat >> $name.py <<EOF
 # override the L1 menu
 if 'GlobalTag' in process.__dict__:
-    process.GlobalTag.toGet = cms.VPSet( )
+    if not 'toGet' in process.GlobalTag.__dict__:
+        process.GlobalTag.toGet = cms.VPSet( )
     process.GlobalTag.toGet.append(
         cms.PSet(  
             record  = cms.string( "L1GtTriggerMenuRcd" ),
@@ -110,7 +113,8 @@ foreach gtag ( STARTUP MC )
       cat >> $name.py <<EOF
 # override the L1 menu
 if 'GlobalTag' in process.__dict__:
-    process.GlobalTag.toGet = cms.VPSet( )
+    if not 'toGet' in process.GlobalTag.__dict__:
+        process.GlobalTag.toGet = cms.VPSet( )
     process.GlobalTag.toGet.append(
         cms.PSet(  
             record  = cms.string( "L1GtTriggerMenuRcd" ),
