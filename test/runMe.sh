@@ -109,8 +109,7 @@ foreach gtag ( STARTUP MC )
     echo
     set name = ${task}_${gtag}
     rm -f $name.{log,root}
-    if ( $table == GRun ) then
-      cat >> $name.py <<EOF
+    cat >> $name.py <<EOF
 # override the L1 menu
 if 'GlobalTag' in process.__dict__:
     if not 'toGet' in process.GlobalTag.__dict__:
@@ -123,7 +122,6 @@ if 'GlobalTag' in process.__dict__:
         )
     )
 EOF
-    endif
     echo "cmsRun $name.py >& $name.log"
     time  cmsRun $name.py >& $name.log
     echo "exit status: $?"
