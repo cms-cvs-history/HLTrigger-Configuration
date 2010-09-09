@@ -37,6 +37,7 @@ if 'GlobalTag' in process.__dict__:
 EOF
     echo "cmsRun $name.py >& $name.log"
     time  cmsRun $name.py >& $name.log
+    echo "exit status: $?"
 #   link to input file for subsequent OnLine* step
     if ( $gtag == STARTUP ) then
       foreach table ( GRun HIon )
@@ -53,6 +54,7 @@ EOF
         rm -f $name.{log,root}
         echo "cmsRun $name.py >& $name.log"
         time  cmsRun $name.py >& $name.log
+        echo "exit status: $?"
       end
     endif
 
@@ -76,6 +78,7 @@ EOF
       endif
       echo "cmsRun $name.py >& $name.log"
       time  cmsRun $name.py >& $name.log
+      echo "exit status: $?"
     end
 
   end
@@ -100,5 +103,6 @@ EOF
     endif
     echo "cmsRun $name.py >& $name.log"
     time  cmsRun $name.py >& $name.log
+    echo "exit status: $?"
   end
 end
