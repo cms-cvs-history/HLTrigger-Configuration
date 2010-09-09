@@ -1,14 +1,22 @@
 #!/bin/tcsh
-
-foreach lumi ( 8E29 GRun 1E31 HIon )
-  echo " "
-  echo "diff -C0 RelVal_HLT_${lumi}.log OnLine_HLT_${lumi}.log"
-        diff -C0 RelVal_HLT_${lumi}.log OnLine_HLT_${lumi}.log | grep L1T
-        diff -C0 RelVal_HLT_${lumi}.log OnLine_HLT_${lumi}.log | grep HLT-Report
-        diff -C0 RelVal_HLT_${lumi}.log OnLine_HLT_${lumi}.log | grep TrigReport
-  echo " "
-  echo "diff -C0 RelVal_HLT_${lumi}.log RelVal_HLT2_${lumi}.log"
-        diff -C0 RelVal_HLT_${lumi}.log RelVal_HLT2_${lumi}.log | grep L1T
-        diff -C0 RelVal_HLT_${lumi}.log RelVal_HLT2_${lumi}.log | grep HLT-Report
-        diff -C0 RelVal_HLT_${lumi}.log RelVal_HLT2_${lumi}.log | grep TrigReport
+foreach gtag ( STARTUP MC )
+  echo
+  echo $gtag
+  foreach table ( GRun HIon )
+    echo
+    set name = ${table}_${gtag}
+    echo $name
+    if ( $gtag == STARTUP ) then
+    echo
+    echo "diff -C0 RelVal_HLT_${name}.log OnLine_HLT_${table}.log"
+#         diff -C0 RelVal_HLT_${name}.log OnLine_HLT_${table}.log | grep L1T
+          diff -C0 RelVal_HLT_${name}.log OnLine_HLT_${table}.log | grep "HLT-Report "
+          diff -C0 RelVal_HLT_${name}.log OnLine_HLT_${table}.log | grep "TrigReport "
+    endif
+    echo
+    echo "diff -C0 RelVal_HLT_${name}.log RelVal_HLT2_${name}.log"
+#         diff -C0 RelVal_HLT_${name}.log RelVal_HLT2_${name}.log | grep L1T
+          diff -C0 RelVal_HLT_${name}.log RelVal_HLT2_${name}.log | grep "HLT-Report "
+          diff -C0 RelVal_HLT_${name}.log RelVal_HLT2_${name}.log | grep "TrigReport "
+  end
 end
