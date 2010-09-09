@@ -26,7 +26,8 @@ foreach gtag ( STARTUP MC )
 cat >> $name.py <<EOF
 # override the L1 menu
 if 'GlobalTag' in process.__dict__:
-    process.GlobalTag.toGet = cms.VPSet( )
+    if not 'toGet' in process.GlobalTag.__dict__:
+        process.GlobalTag.toGet = cms.VPSet( )
     process.GlobalTag.toGet.append(
         cms.PSet(  
             record  = cms.string( "L1GtTriggerMenuRcd" ),
@@ -66,12 +67,27 @@ EOF
         cat >> $name.py <<EOF
 # override the L1 menu
 if 'GlobalTag' in process.__dict__:
-    process.GlobalTag.toGet = cms.VPSet( )
+    if not 'toGet' in process.GlobalTag.__dict__:
+        process.GlobalTag.toGet = cms.VPSet( )
     process.GlobalTag.toGet.append(
         cms.PSet(  
             record  = cms.string( "L1GtTriggerMenuRcd" ),
             tag     = cms.string( "L1GtTriggerMenu_L1Menu_Commissioning2010_v4_mc" ),
             connect = cms.untracked.string( "sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_Commissioning2010_v4_mc.db" )
+        )
+    )
+EOF
+      else if ( $table == HIon ) then 
+        cat >> $name.py <<EOF
+# override the L1 menu
+if 'GlobalTag' in process.__dict__:
+    if not 'toGet' in process.GlobalTag.__dict__:
+        process.GlobalTag.toGet = cms.VPSet( )
+    process.GlobalTag.toGet.append(
+        cms.PSet(  
+            record  = cms.string( "L1GtTriggerMenuRcd" ),
+            tag     = cms.string( "L1GtTriggerMenu_L1Menu_MC2010_v0_mc" ),
+            connect = cms.untracked.string( "frontier://FrontierProd/CMS_COND_31X_L1T" )
         )
     )
 EOF
@@ -91,12 +107,27 @@ EOF
       cat >> $name.py <<EOF
 # override the L1 menu
 if 'GlobalTag' in process.__dict__:
-    process.GlobalTag.toGet = cms.VPSet( )
+    if not 'toGet' in process.GlobalTag.__dict__:
+        process.GlobalTag.toGet = cms.VPSet( )
     process.GlobalTag.toGet.append(
         cms.PSet(  
             record  = cms.string( "L1GtTriggerMenuRcd" ),
             tag     = cms.string( "L1GtTriggerMenu_L1Menu_Commissioning2010_v4_mc" ),
             connect = cms.untracked.string( "sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_Commissioning2010_v4_mc.db" )
+        )
+    )
+EOF
+    else if ( $table == HIon ) then 
+      cat >> $name.py <<EOF
+# override the L1 menu
+if 'GlobalTag' in process.__dict__:
+    if not 'toGet' in process.GlobalTag.__dict__:
+        process.GlobalTag.toGet = cms.VPSet( )
+    process.GlobalTag.toGet.append(
+        cms.PSet(  
+            record  = cms.string( "L1GtTriggerMenuRcd" ),
+            tag     = cms.string( "L1GtTriggerMenu_L1Menu_MC2010_v0_mc" ),
+            connect = cms.untracked.string( "frontier://FrontierProd/CMS_COND_31X_L1T" )
         )
     )
 EOF
