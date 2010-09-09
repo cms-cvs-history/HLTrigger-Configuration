@@ -23,11 +23,10 @@ foreach gtag ( STARTUP MC )
     echo
     set name = ${task}_${gtag}
     rm -f $name.{log,root}
-cat >> $name.py <<EOF
+    cat >> $name.py <<EOF
 # override the L1 menu
 if 'GlobalTag' in process.__dict__:
-    if not 'toGet' in process.GlobalTag.__dict__:
-        process.GlobalTag.toGet = cms.VPSet( )
+    process.GlobalTag.toGet = cms.VPSet( )
     process.GlobalTag.toGet.append(
         cms.PSet(  
             record  = cms.string( "L1GtTriggerMenuRcd" ),
@@ -42,6 +41,7 @@ EOF
 #   link to input file for subsequent OnLine* step
     if ( $gtag == STARTUP ) then
       foreach table ( GRun HIon )
+        rm -f RelVal_DigiL1Raw_${table}.root
         ln -s RelVal_DigiL1Raw_${gtag}.root RelVal_DigiL1Raw_${table}.root
       end
     endif
@@ -67,8 +67,7 @@ EOF
         cat >> $name.py <<EOF
 # override the L1 menu
 if 'GlobalTag' in process.__dict__:
-    if not 'toGet' in process.GlobalTag.__dict__:
-        process.GlobalTag.toGet = cms.VPSet( )
+    process.GlobalTag.toGet = cms.VPSet( )
     process.GlobalTag.toGet.append(
         cms.PSet(  
             record  = cms.string( "L1GtTriggerMenuRcd" ),
@@ -77,17 +76,16 @@ if 'GlobalTag' in process.__dict__:
         )
     )
 EOF
-      else if ( $table == HIon ) then 
+      else if ( $table == HIon ) then
         cat >> $name.py <<EOF
 # override the L1 menu
 if 'GlobalTag' in process.__dict__:
-    if not 'toGet' in process.GlobalTag.__dict__:
-        process.GlobalTag.toGet = cms.VPSet( )
+    process.GlobalTag.toGet = cms.VPSet( )
     process.GlobalTag.toGet.append(
         cms.PSet(  
             record  = cms.string( "L1GtTriggerMenuRcd" ),
             tag     = cms.string( "L1GtTriggerMenu_L1Menu_MC2010_v0_mc" ),
-            connect = cms.untracked.string( "frontier://FrontierProd/CMS_COND_31X_L1T" )
+            connect = cms.untracked.string( process.GlobalTag.connect.value().replace('CMS_COND_31X_GLOBALTAG', 'CMS_COND_31X_L1T') )
         )
     )
 EOF
@@ -99,6 +97,11 @@ EOF
 
   end
 
+end
+
+# separate reco task to run last
+
+foreach gtag ( STARTUP MC )
   foreach task ( RelVal_Reco )
     echo
     set name = ${task}_${gtag}
@@ -107,27 +110,12 @@ EOF
       cat >> $name.py <<EOF
 # override the L1 menu
 if 'GlobalTag' in process.__dict__:
-    if not 'toGet' in process.GlobalTag.__dict__:
-        process.GlobalTag.toGet = cms.VPSet( )
+    process.GlobalTag.toGet = cms.VPSet( )
     process.GlobalTag.toGet.append(
         cms.PSet(  
             record  = cms.string( "L1GtTriggerMenuRcd" ),
             tag     = cms.string( "L1GtTriggerMenu_L1Menu_Commissioning2010_v4_mc" ),
             connect = cms.untracked.string( "sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_Commissioning2010_v4_mc.db" )
-        )
-    )
-EOF
-    else if ( $table == HIon ) then 
-      cat >> $name.py <<EOF
-# override the L1 menu
-if 'GlobalTag' in process.__dict__:
-    if not 'toGet' in process.GlobalTag.__dict__:
-        process.GlobalTag.toGet = cms.VPSet( )
-    process.GlobalTag.toGet.append(
-        cms.PSet(  
-            record  = cms.string( "L1GtTriggerMenuRcd" ),
-            tag     = cms.string( "L1GtTriggerMenu_L1Menu_MC2010_v0_mc" ),
-            connect = cms.untracked.string( "frontier://FrontierProd/CMS_COND_31X_L1T" )
         )
     )
 EOF
