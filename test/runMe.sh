@@ -32,7 +32,7 @@ if 'GlobalTag' in process.__dict__:
         cms.PSet(  
             record  = cms.string( "L1GtTriggerMenuRcd" ),
             tag     = cms.string( "L1GtTriggerMenu_L1Menu_Commissioning2010_v4_mc" ),
-            connect = cms.untracked.string( "sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_Commissioning2010_v4_mc.db" )
+            connect = cms.untracked.string( process.GlobalTag.connect.value().replace('CMS_COND_31X_GLOBALTAG', 'CMS_COND_31X_L1T') )
         )
     )
 EOF
@@ -64,35 +64,6 @@ EOF
       echo
       set name = ${task}_${table}_${gtag}
       rm -f $name.{log,root}
-      if ( $table == GRun ) then
-        cat >> $name.py <<EOF
-# override the L1 menu
-if 'GlobalTag' in process.__dict__:
-    if not 'toGet' in process.GlobalTag.__dict__:
-        process.GlobalTag.toGet = cms.VPSet( )
-    process.GlobalTag.toGet.append(
-        cms.PSet(  
-            record  = cms.string( "L1GtTriggerMenuRcd" ),
-            tag     = cms.string( "L1GtTriggerMenu_L1Menu_Commissioning2010_v4_mc" ),
-            connect = cms.untracked.string( "sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_Commissioning2010_v4_mc.db" )
-        )
-    )
-EOF
-      else if ( $table == HIon ) then
-        cat >> $name.py <<EOF
-# override the L1 menu
-if 'GlobalTag' in process.__dict__:
-    if not 'toGet' in process.GlobalTag.__dict__:
-        process.GlobalTag.toGet = cms.VPSet( )
-    process.GlobalTag.toGet.append(
-        cms.PSet(  
-            record  = cms.string( "L1GtTriggerMenuRcd" ),
-            tag     = cms.string( "L1GtTriggerMenu_L1Menu_MC2010_v0_mc" ),
-            connect = cms.untracked.string( process.GlobalTag.connect.value().replace('CMS_COND_31X_GLOBALTAG', 'CMS_COND_31X_L1T') )
-        )
-    )
-EOF
-      endif
       echo "cmsRun $name.py >& $name.log"
       time  cmsRun $name.py >& $name.log
       echo "exit status: $?"
@@ -118,7 +89,7 @@ if 'GlobalTag' in process.__dict__:
         cms.PSet(  
             record  = cms.string( "L1GtTriggerMenuRcd" ),
             tag     = cms.string( "L1GtTriggerMenu_L1Menu_Commissioning2010_v4_mc" ),
-            connect = cms.untracked.string( "sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_Commissioning2010_v4_mc.db" )
+            connect = cms.untracked.string( process.GlobalTag.connect.value().replace('CMS_COND_31X_GLOBALTAG', 'CMS_COND_31X_L1T') )
         )
     )
 EOF
@@ -127,3 +98,7 @@ EOF
     echo "exit status: $?"
   end
 end
+
+echo
+echo "Resulting log files:"
+ls -lt *.log
