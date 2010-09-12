@@ -2156,3 +2156,5 @@ process.MessageLogger.categories.append('TriggerSummaryProducerAOD')
 process.MessageLogger.categories.append('L1GtTrigReport')
 process.MessageLogger.categories.append('HLTrigReport')
 
+# hand-made corrections to suppprt offline update to hltOnlineBeamSpot
+process.hltOnlineBeamSpot.gtEvmLabel = cms.InputTag('')

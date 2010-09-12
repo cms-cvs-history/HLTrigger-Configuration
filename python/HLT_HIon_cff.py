@@ -1615,3 +1615,5 @@ HLTSchedule = cms.Schedule( *(HLTriggerFirstPath, HLT_L1DoubleMuOpen, HLT_ZeroBi
 if 'ESUnpackerWorkerESProducer' in locals():
     ESUnpackerWorkerESProducer.RHAlgo.ESBaseline = 1000
 
+# hand-made corrections to suppprt offline update to hltOnlineBeamSpot
+hltOnlineBeamSpot.gtEvmLabel = cms.InputTag('')

@@ -255,7 +255,7 @@ process.datasets = cms.PSet(
 )
 
 process.source = cms.Source( "PoolSource",
-    fileNames = cms.untracked.vstring( '/store/data/Run2010A/MinimumBias/RAW/v1/000/140/381/08F3BCC8-6092-DF11-AE9B-001D09F2525D.root' )
+    fileNames = cms.untracked.vstring( '/store/express/Run2010A/ExpressPhysics/FEVT/v4/000/144/011/4C376C4B-A0B1-DF11-AF2C-003048F118D4.root' )
 )
 
 process.BTagRecord = cms.ESSource( "EmptyESSource",
@@ -10115,3 +10115,6 @@ process.hltDt4DSegments.Reco4DAlgoConfig.Reco2DAlgoConfig.recAlgoConfig.tTrigMod
 process.hltDt4DSegments.Reco4DAlgoConfig.Reco2DAlgoConfig.recAlgoConfig.tTrigModeConfig.tofCorrType = 0
 process.hltDt4DSegments.Reco4DAlgoConfig.recAlgoConfig.tTrigModeConfig.wirePropCorrType = 0
 process.hltDt4DSegments.Reco4DAlgoConfig.recAlgoConfig.tTrigModeConfig.tofCorrType = 0
+
+# hand-made corrections to suppprt offline update to hltOnlineBeamSpot
+process.hltOnlineBeamSpot.gtEvmLabel = cms.InputTag('')

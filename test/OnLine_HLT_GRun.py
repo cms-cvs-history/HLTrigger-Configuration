@@ -13321,3 +13321,6 @@ process.hltDt4DSegments.Reco4DAlgoConfig.Reco2DAlgoConfig.recAlgoConfig.tTrigMod
 process.hltDt4DSegments.Reco4DAlgoConfig.Reco2DAlgoConfig.recAlgoConfig.tTrigModeConfig.tofCorrType = 0
 process.hltDt4DSegments.Reco4DAlgoConfig.recAlgoConfig.tTrigModeConfig.wirePropCorrType = 0
 process.hltDt4DSegments.Reco4DAlgoConfig.recAlgoConfig.tTrigModeConfig.tofCorrType = 0
+
+# hand-made corrections to suppprt offline update to hltOnlineBeamSpot
+process.hltOnlineBeamSpot.gtEvmLabel = cms.InputTag('')
