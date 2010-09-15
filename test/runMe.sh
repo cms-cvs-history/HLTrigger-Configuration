@@ -24,19 +24,6 @@ foreach gtag ( STARTUP MC )
     echo
     set name = ${task}_${gtag}
     rm -f $name.{log,root}
-    cat >> $name.py <<EOF
-# override the L1 menu
-if 'GlobalTag' in process.__dict__:
-    if not 'toGet' in process.GlobalTag.__dict__:
-        process.GlobalTag.toGet = cms.VPSet( )
-    process.GlobalTag.toGet.append(
-        cms.PSet(  
-            record  = cms.string( "L1GtTriggerMenuRcd" ),
-            tag     = cms.string( "L1GtTriggerMenu_L1Menu_Commissioning2010_v4_mc" ),
-            connect = cms.untracked.string( process.GlobalTag.connect.value().replace('CMS_COND_31X_GLOBALTAG', 'CMS_COND_31X_L1T') )
-        )
-    )
-EOF
     echo "cmsRun $name.py >& $name.log"
     time  cmsRun $name.py >& $name.log
     echo "exit status: $?"
@@ -66,19 +53,6 @@ EOF
       set name = ${task}_${table}_${gtag}
       rm -f $name.{log,root}
       if ( $table == GRun ) then
-        cat >> $name.py <<EOF
-# override the L1 menu
-if 'GlobalTag' in process.__dict__:
-    if not 'toGet' in process.GlobalTag.__dict__:
-        process.GlobalTag.toGet = cms.VPSet( )
-    process.GlobalTag.toGet.append(
-        cms.PSet(  
-            record  = cms.string( "L1GtTriggerMenuRcd" ),
-            tag     = cms.string( "L1GtTriggerMenu_L1Menu_Commissioning2010_v4_mc" ),
-            connect = cms.untracked.string( process.GlobalTag.connect.value().replace('CMS_COND_31X_GLOBALTAG', 'CMS_COND_31X_L1T') )
-        )
-    )
-EOF
       else if ( $table == HIon ) then
         cat >> $name.py <<EOF
 # override the L1 menu
@@ -110,19 +84,6 @@ foreach gtag ( STARTUP MC )
     echo
     set name = ${task}_${gtag}
     rm -f $name.{log,root}
-    cat >> $name.py <<EOF
-# override the L1 menu
-if 'GlobalTag' in process.__dict__:
-    if not 'toGet' in process.GlobalTag.__dict__:
-        process.GlobalTag.toGet = cms.VPSet( )
-    process.GlobalTag.toGet.append(
-        cms.PSet(  
-            record  = cms.string( "L1GtTriggerMenuRcd" ),
-            tag     = cms.string( "L1GtTriggerMenu_L1Menu_Commissioning2010_v4_mc" ),
-            connect = cms.untracked.string( process.GlobalTag.connect.value().replace('CMS_COND_31X_GLOBALTAG', 'CMS_COND_31X_L1T') )
-        )
-    )
-EOF
     echo "cmsRun $name.py >& $name.log"
     time  cmsRun $name.py >& $name.log
     echo "exit status: $?"
