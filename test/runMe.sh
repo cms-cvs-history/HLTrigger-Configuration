@@ -80,7 +80,7 @@ end
 # separate reco task to run last
 
 foreach gtag ( STARTUP MC )
-  foreach task ( RelVal_Reco )
+  foreach task ( RelVal_RECO )
     echo
     set name = ${task}_${gtag}
     rm -f $name.{log,root}
