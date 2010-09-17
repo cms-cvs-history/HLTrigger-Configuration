@@ -72,11 +72,11 @@ foreach gtag ( STARTUP MC )
 
     echo
     echo "Creating HLT+RECO $name"
-    cmsDriver.py RelVal           --step=$XHLT                          --conditions=$GTAG --filein=file:RelVal_DigiL1Raw_$gtag.root    --fileout=RelVal_HLT_RECO_$name.root          --number=100 --mc --no_exec --datatier 'RAW-HLT-RECO'         --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customL1THLT_Options.py   --python_filename=RelVal_HLT_RECO_$name.py --processName=HLT
+    cmsDriver.py RelVal           --step=$XHLT,RAW2DIGI,L1Reco,RECO     --conditions=$GTAG --filein=file:RelVal_DigiL1Raw_$gtag.root    --fileout=RelVal_HLT_RECO_$name.root          --number=100 --mc --no_exec --datatier 'RAW-HLT-RECO'         --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customL1THLT_Options.py   --python_filename=RelVal_HLT_RECO_$name.py --processName=HLT
 
     echo
     echo "Creating RECO+HLT $name"
-    cmsDriver.py RelVal           --step=$XHLT                          --conditions=$GTAG --filein=file:RelVal_DigiL1Raw_$gtag.root    --fileout=RelVal_RECO_HLT_$name.root          --number=100 --mc --no_exec --datatier 'RAW-HLT-RECO'         --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customL1THLT_Options.py   --python_filename=RelVal_RECO_HLT_$name.py --processName=HLT
+    cmsDriver.py RelVal           --step=RAW2DIGI,L1Reco,RECO,$XHLT     --conditions=$GTAG --filein=file:RelVal_DigiL1Raw_$gtag.root    --fileout=RelVal_RECO_HLT_$name.root          --number=100 --mc --no_exec --datatier 'RAW-HLT-RECO'         --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/customL1THLT_Options.py   --python_filename=RelVal_RECO_HLT_$name.py --processName=HLT
 
   end
 end
