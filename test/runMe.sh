@@ -36,7 +36,7 @@ foreach gtag ( STARTUP MC )
     endif
   end
 
-  foreach table ( GRun HIon )
+  foreach table ( HIon GRun )
     if ( $gtag == STARTUP ) then
       foreach task ( OnData_HLT OnLine_HLT )
         echo
