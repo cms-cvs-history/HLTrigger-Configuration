@@ -24,6 +24,19 @@ foreach gtag ( STARTUP MC )
     echo
     set name = ${task}_${gtag}
     rm -f $name.{log,root}
+    cat >> $name.py <<EOF
+# override the L1 menu
+if 'GlobalTag' in process.__dict__:
+    if not 'toGet' in process.GlobalTag.__dict__:
+        process.GlobalTag.toGet = cms.VPSet( )
+    process.GlobalTag.toGet.append(
+        cms.PSet(  
+            record  = cms.string( "L1GtTriggerMenuRcd" ),
+            tag     = cms.string( "L1GtTriggerMenu_L1Menu_Collisions2010_v0_mc" ),
+            connect = cms.untracked.string( "sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_Collisions2010_v0_mc.db" )
+        )
+    )
+EOF
     echo "cmsRun $name.py >& $name.log"
     time  cmsRun $name.py >& $name.log
     echo "exit status: $?"
@@ -52,9 +65,19 @@ foreach gtag ( STARTUP MC )
       echo
       set name = ${task}_${table}_${gtag}
       rm -f $name.{log,root}
-      if ( $table == GRun ) then
-      else if ( $table == HIon ) then
-      endif
+      cat >> $name.py <<EOF
+# override the L1 menu
+if 'GlobalTag' in process.__dict__:
+    if not 'toGet' in process.GlobalTag.__dict__:
+        process.GlobalTag.toGet = cms.VPSet( )
+    process.GlobalTag.toGet.append(
+        cms.PSet(  
+            record  = cms.string( "L1GtTriggerMenuRcd" ),
+            tag     = cms.string( "L1GtTriggerMenu_L1Menu_Collisions2010_v0_mc" ),
+            connect = cms.untracked.string( "sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_Collisions2010_v0_mc.db" )
+        )
+    )
+EOF
       echo "cmsRun $name.py >& $name.log"
       time  cmsRun $name.py >& $name.log
       echo "exit status: $?"
@@ -71,6 +94,19 @@ foreach gtag ( STARTUP MC )
     echo
     set name = ${task}_${gtag}
     rm -f $name.{log,root}
+    cat >> $name.py <<EOF
+# override the L1 menu
+if 'GlobalTag' in process.__dict__:
+    if not 'toGet' in process.GlobalTag.__dict__:
+        process.GlobalTag.toGet = cms.VPSet( )
+    process.GlobalTag.toGet.append(
+        cms.PSet(  
+            record  = cms.string( "L1GtTriggerMenuRcd" ),
+            tag     = cms.string( "L1GtTriggerMenu_L1Menu_Collisions2010_v0_mc" ),
+            connect = cms.untracked.string( "sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_Collisions2010_v0_mc.db" )
+        )
+    )
+EOF
     echo "cmsRun $name.py >& $name.log"
     time  cmsRun $name.py >& $name.log
     echo "exit status: $?"
