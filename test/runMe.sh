@@ -26,16 +26,16 @@ foreach gtag ( STARTUP MC )
     rm -f $name.{log,root}
     cat >> $name.py <<EOF
 # override the L1 menu
-if 'GlobalTag' in process.__dict__:
-    if not 'toGet' in process.GlobalTag.__dict__:
-        process.GlobalTag.toGet = cms.VPSet( )
-    process.GlobalTag.toGet.append(
-        cms.PSet(  
-            record  = cms.string( "L1GtTriggerMenuRcd" ),
-            tag     = cms.string( "L1GtTriggerMenu_L1Menu_Collisions2010_v0_mc" ),
-            connect = cms.untracked.string( process.GlobalTag.connect.value().replace('CMS_COND_31X_GLOBALTAG', 'CMS_COND_31X_L1T') )
-        )
-    )
+#if 'GlobalTag' in process.__dict__:
+#    if not 'toGet' in process.GlobalTag.__dict__:
+#        process.GlobalTag.toGet = cms.VPSet( )
+#    process.GlobalTag.toGet.append(
+#        cms.PSet(  
+#            record  = cms.string( "L1GtTriggerMenuRcd" ),
+#            tag     = cms.string( "L1GtTriggerMenu_L1Menu_Collisions2010_v0_mc" ),
+#            connect = cms.untracked.string( process.GlobalTag.connect.value().replace('CMS_COND_31X_GLOBALTAG', 'CMS_COND_31X_L1T') )
+#        )
+#    )
 EOF
     echo "cmsRun $name.py >& $name.log"
     time  cmsRun $name.py >& $name.log
@@ -67,16 +67,16 @@ EOF
       rm -f $name.{log,root}
       cat >> $name.py <<EOF
 # override the L1 menu
-if 'GlobalTag' in process.__dict__:
-    if not 'toGet' in process.GlobalTag.__dict__:
-        process.GlobalTag.toGet = cms.VPSet( )
-    process.GlobalTag.toGet.append(
-        cms.PSet(  
-            record  = cms.string( "L1GtTriggerMenuRcd" ),
-            tag     = cms.string( "L1GtTriggerMenu_L1Menu_Collisions2010_v0_mc" ),
-            connect = cms.untracked.string( process.GlobalTag.connect.value().replace('CMS_COND_31X_GLOBALTAG', 'CMS_COND_31X_L1T') )
-        )
-    )
+#if 'GlobalTag' in process.__dict__:
+#    if not 'toGet' in process.GlobalTag.__dict__:
+#        process.GlobalTag.toGet = cms.VPSet( )
+#    process.GlobalTag.toGet.append(
+#        cms.PSet(  
+#            record  = cms.string( "L1GtTriggerMenuRcd" ),
+#            tag     = cms.string( "L1GtTriggerMenu_L1Menu_Collisions2010_v0_mc" ),
+#            connect = cms.untracked.string( process.GlobalTag.connect.value().replace('CMS_COND_31X_GLOBALTAG', 'CMS_COND_31X_L1T') )
+#        )
+#    )
 EOF
       echo "cmsRun $name.py >& $name.log"
       time  cmsRun $name.py >& $name.log
@@ -96,16 +96,16 @@ foreach gtag ( STARTUP MC )
     rm -f $name.{log,root}
     cat >> $name.py <<EOF
 # override the L1 menu
-if 'GlobalTag' in process.__dict__:
-    if not 'toGet' in process.GlobalTag.__dict__:
-        process.GlobalTag.toGet = cms.VPSet( )
-    process.GlobalTag.toGet.append(
-        cms.PSet(  
-            record  = cms.string( "L1GtTriggerMenuRcd" ),
-            tag     = cms.string( "L1GtTriggerMenu_L1Menu_Collisions2010_v0_mc" ),
-            connect = cms.untracked.string( process.GlobalTag.connect.value().replace('CMS_COND_31X_GLOBALTAG', 'CMS_COND_31X_L1T') )
-        )
-    )
+#if 'GlobalTag' in process.__dict__:
+#    if not 'toGet' in process.GlobalTag.__dict__:
+#        process.GlobalTag.toGet = cms.VPSet( )
+#    process.GlobalTag.toGet.append(
+#        cms.PSet(  
+#            record  = cms.string( "L1GtTriggerMenuRcd" ),
+#            tag     = cms.string( "L1GtTriggerMenu_L1Menu_Collisions2010_v0_mc" ),
+#            connect = cms.untracked.string( process.GlobalTag.connect.value().replace('CMS_COND_31X_GLOBALTAG', 'CMS_COND_31X_L1T') )
+#        )
+#    )
 EOF
     echo "cmsRun $name.py >& $name.log"
     time  cmsRun $name.py >& $name.log
