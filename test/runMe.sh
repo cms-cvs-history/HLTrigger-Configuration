@@ -90,9 +90,10 @@ end
 # separate reco task to run last
 
 foreach gtag ( STARTUP MC )
-  foreach task ( RelVal_RECO )
+# foreach table ( GRun HIon )
+  foreach table ( GRun )
     echo
-    set name = ${task}_${gtag}
+    set name = RelVal_HLT_RECO_${table}_${gtag}
     rm -f $name.{log,root}
     cat >> $name.py <<EOF
 # override the L1 menu
