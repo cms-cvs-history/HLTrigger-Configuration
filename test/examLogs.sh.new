@@ -18,7 +18,7 @@ foreach gtag ( STARTUP MC )
     echo "diff -C0 RelVal_HLT_${name}.log RelVal_HLT_RECO_${name}.log"
 #         diff -C0 RelVal_HLT_${name}.log RelVal_HLT_RECO_${name}.log | grep L1T
           diff -C0 RelVal_HLT_${name}.log RelVal_HLT_RECO_${name}.log | grep "HLT-Report "
-          diff -C0 RelVal_HLT_${name}.log RelVal_HLT_RECO_${name}.log | grep "TrigReport "
+#         diff -C0 RelVal_HLT_${name}.log RelVal_HLT_RECO_${name}.log | grep "TrigReport "
     endif
     echo
     echo "diff -C0 RelVal_HLT_${name}.log RelVal_HLT2_${name}.log"
