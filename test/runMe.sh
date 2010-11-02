@@ -20,42 +20,50 @@ pwd
 
 foreach gtag ( STARTUP MC )
 
-  foreach task ( RelVal_DigiL1Raw )
-    echo
-    set name = ${task}_${gtag}
-    rm -f $name.{log,root}
-    cat >> $name.py <<EOF
-# override the L1 menu
+# foreach table ( GRun HIon )
+  foreach table ( HIon )
+
+    foreach task ( RelVal_DigiL1Raw )
+
+      echo
+      set name = ${task}_${table}_${gtag}
+      rm -f $name.{log,root}
+      if ( $table == HIon ) then
+#        cat >> $name.py <<EOF
+## override the L1 menu
 #if 'GlobalTag' in process.__dict__:
 #    if not 'toGet' in process.GlobalTag.__dict__:
 #        process.GlobalTag.toGet = cms.VPSet( )
 #    process.GlobalTag.toGet.append(
 #        cms.PSet(  
 #            record  = cms.string( "L1GtTriggerMenuRcd" ),
-#            tag     = cms.string( "L1GtTriggerMenu_L1Menu_Collisions2010_v0_mc" ),
-#            connect = cms.untracked.string( process.GlobalTag.connect.value().replace('CMS_COND_31X_GLOBALTAG', 'CMS_COND_31X_L1T') )
+#            tag     = cms.string( "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2010_v0_mc" ),
+#            connect = cms.untracked.string( "sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_CollisionsHeavyIons2010_v0_mc.db" )
 #        )
 #    )
-EOF
-    echo "cmsRun $name.py >& $name.log"
-    time  cmsRun $name.py >& $name.log
-    echo "exit status: $?"
-#   link to input file for subsequent OnLine* step
-    if ( $gtag == STARTUP ) then
-      foreach table ( GRun HIon )
-        rm -f RelVal_DigiL1Raw_${table}.root
-        ln -s RelVal_DigiL1Raw_${gtag}.root RelVal_DigiL1Raw_${table}.root
-      end
-    endif
-  end
+#EOF
+      endif
 
-  foreach table ( GRun HIon )
+      echo "cmsRun $name.py >& $name.log"
+#     ls -l        $name.py
+      time  cmsRun $name.py >& $name.log
+      echo "exit status: $?"
+
+#     link to input file for subsequent OnLine* step
+      if ( $gtag == STARTUP ) then
+        rm -f RelVal_DigiL1Raw_${table}.root
+        ln -s RelVal_DigiL1Raw_${table}_${gtag}.root RelVal_DigiL1Raw_${table}.root
+      endif
+
+    end
+
     if ( $gtag == STARTUP ) then
       foreach task ( OnData_HLT OnLine_HLT )
         echo
         set name = ${task}_${table}
         rm -f $name.{log,root}
         echo "cmsRun $name.py >& $name.log"
+#       ls -l        $name.py
         time  cmsRun $name.py >& $name.log
         echo "exit status: $?"
       end
@@ -65,20 +73,23 @@ EOF
       echo
       set name = ${task}_${table}_${gtag}
       rm -f $name.{log,root}
-      cat >> $name.py <<EOF
-# override the L1 menu
+      if ( $table == HIon ) then
+#        cat >> $name.py <<EOF
+## override the L1 menu
 #if 'GlobalTag' in process.__dict__:
 #    if not 'toGet' in process.GlobalTag.__dict__:
 #        process.GlobalTag.toGet = cms.VPSet( )
 #    process.GlobalTag.toGet.append(
 #        cms.PSet(  
 #            record  = cms.string( "L1GtTriggerMenuRcd" ),
-#            tag     = cms.string( "L1GtTriggerMenu_L1Menu_Collisions2010_v0_mc" ),
-#            connect = cms.untracked.string( process.GlobalTag.connect.value().replace('CMS_COND_31X_GLOBALTAG', 'CMS_COND_31X_L1T') )
+#            tag     = cms.string( "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2010_v0_mc" ),
+#            connect = cms.untracked.string( "sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_CollisionsHeavyIons2010_v0_mc.db" )
 #        )
 #    )
-EOF
+#EOF
+      endif
       echo "cmsRun $name.py >& $name.log"
+#     ls -l        $name.py
       time  cmsRun $name.py >& $name.log
       echo "exit status: $?"
     end
@@ -91,26 +102,31 @@ end
 
 foreach gtag ( STARTUP MC )
 # foreach table ( GRun HIon )
-  foreach table ( GRun )
-    echo
-    set name = RelVal_HLT_RECO_${table}_${gtag}
-    rm -f $name.{log,root}
-    cat >> $name.py <<EOF
-# override the L1 menu
+  foreach table ( HIon )
+    foreach task ( RelVal_HLT_RECO )
+      echo
+      set name = ${task}_${table}_${gtag}
+      rm -f $name.{log,root}
+      if ( $table == HIon ) then
+#        cat >> $name.py <<EOF
+## override the L1 menu
 #if 'GlobalTag' in process.__dict__:
 #    if not 'toGet' in process.GlobalTag.__dict__:
 #        process.GlobalTag.toGet = cms.VPSet( )
 #    process.GlobalTag.toGet.append(
 #        cms.PSet(  
 #            record  = cms.string( "L1GtTriggerMenuRcd" ),
-#            tag     = cms.string( "L1GtTriggerMenu_L1Menu_Collisions2010_v0_mc" ),
-#            connect = cms.untracked.string( process.GlobalTag.connect.value().replace('CMS_COND_31X_GLOBALTAG', 'CMS_COND_31X_L1T') )
+#            tag     = cms.string( "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2010_v0_mc" ),
+#            connect = cms.untracked.string( "sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_CollisionsHeavyIons2010_v0_mc.db" )
 #        )
 #    )
-EOF
-    echo "cmsRun $name.py >& $name.log"
-    time  cmsRun $name.py >& $name.log
-    echo "exit status: $?"
+#EOF
+      endif
+      echo "cmsRun $name.py >& $name.log"
+#     ls -l        $name.py
+      time  cmsRun $name.py >& $name.log
+      echo "exit status: $?"
+    end
   end
 end
 
