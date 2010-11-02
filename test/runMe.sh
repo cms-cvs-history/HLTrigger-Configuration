@@ -20,8 +20,7 @@ pwd
 
 foreach gtag ( STARTUP MC )
 
-# foreach table ( GRun HIon )
-  foreach table ( HIon )
+  foreach table ( GRun HIon )
 
     foreach task ( RelVal_DigiL1Raw )
 
@@ -101,8 +100,7 @@ end
 # separate reco task to run last
 
 foreach gtag ( STARTUP MC )
-# foreach table ( GRun HIon )
-  foreach table ( HIon )
+  foreach table ( GRun HIon )
     foreach task ( RelVal_HLT_RECO )
       echo
       set name = ${task}_${table}_${gtag}
