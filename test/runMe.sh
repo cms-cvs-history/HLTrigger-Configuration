@@ -27,6 +27,7 @@ foreach gtag ( STARTUP MC )
       echo
       set name = ${task}_${table}_${gtag}
       rm -f $name.{log,root}
+
       if ( $table == HIon ) then
 #        cat >> $name.py <<EOF
 ## override the L1 menu
@@ -47,31 +48,35 @@ foreach gtag ( STARTUP MC )
 #     ls -l        $name.py
       time  cmsRun $name.py >& $name.log
       echo "exit status: $?"
-
-#     link to input file for subsequent OnLine* step
-      if ( $gtag == STARTUP ) then
-        rm -f RelVal_DigiL1Raw_${table}.root
-        ln -s RelVal_DigiL1Raw_${table}_${gtag}.root RelVal_DigiL1Raw_${table}.root
-      endif
 
     end
 
     if ( $gtag == STARTUP ) then
+
+#     link to input file for subsequent OnLine* step
+      rm -f RelVal_DigiL1Raw_${table}.root
+      ln -s RelVal_DigiL1Raw_${table}_${gtag}.root RelVal_DigiL1Raw_${table}.root
       foreach task ( OnData_HLT OnLine_HLT )
+
         echo
         set name = ${task}_${table}
         rm -f $name.{log,root}
+
         echo "cmsRun $name.py >& $name.log"
 #       ls -l        $name.py
         time  cmsRun $name.py >& $name.log
         echo "exit status: $?"
+
       end
+
     endif
 
     foreach task ( RelVal_HLT RelVal_HLT2 )
+
       echo
       set name = ${task}_${table}_${gtag}
       rm -f $name.{log,root}
+
       if ( $table == HIon ) then
 #        cat >> $name.py <<EOF
 ## override the L1 menu
@@ -87,10 +92,12 @@ foreach gtag ( STARTUP MC )
 #    )
 #EOF
       endif
+
       echo "cmsRun $name.py >& $name.log"
 #     ls -l        $name.py
       time  cmsRun $name.py >& $name.log
       echo "exit status: $?"
+
     end
 
   end
@@ -99,12 +106,16 @@ end
 
 # separate reco task to run last
 
-foreach gtag ( STARTUP MC )
+foreach gtag ( STARTUP )
+
   foreach table ( GRun HIon )
+
     foreach task ( RelVal_HLT_RECO )
+
       echo
       set name = ${task}_${table}_${gtag}
       rm -f $name.{log,root}
+
       if ( $table == HIon ) then
 #        cat >> $name.py <<EOF
 ## override the L1 menu
@@ -120,12 +131,16 @@ foreach gtag ( STARTUP MC )
 #    )
 #EOF
       endif
+
       echo "cmsRun $name.py >& $name.log"
 #     ls -l        $name.py
       time  cmsRun $name.py >& $name.log
       echo "exit status: $?"
+
     end
+
   end
+
 end
 
 echo
