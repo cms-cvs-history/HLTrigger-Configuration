@@ -13,11 +13,11 @@ set InputFileGENSIM = rfio:/castor/cern.ch/user/g/gruen/cms/TTbarGenSim31X.root
 # global stags for PP and HIon running
 set GTAGPPUP = auto:startup
 set GTAGPPMC = auto:mc
-set GTAGHIUP = START39_V4HI::All
+set GTAGHIUP = START39_V7HI::All
 set GTAGHIMC = MC39_V4HI::All
 
 set XL1TPP = "" # syntax: tag,record[,connect]
-set XL1THI = "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2010_v2_mc,L1GtTriggerMenuRcd,sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_CollisionsHeavyIons2010_v2_mc.db"
+set XL1THI = "" # "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2010_v2_mc,L1GtTriggerMenuRcd,sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_CollisionsHeavyIons2010_v2_mc.db"
 
 # specific workflows, first varying the globaltags, then the hlt tables
 
@@ -26,10 +26,12 @@ foreach gtag ( STARTUP MC )
     set GTAG   = $GTAGPPUP
     set GTAGPP = $GTAGPPUP
     set GTAGHI = $GTAGHIUP
+    set XL1THI = ""
   else if ( $gtag == MC ) then
     set GTAG   = $GTAGPPMC
     set GTAGPP = $GTAGPPMC
     set GTAGHI = $GTAGHIMC
+    set XL1THI = "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2010_v2_mc,L1GtTriggerMenuRcd,sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_CollisionsHeavyIons2010_v2_mc.db"
   else
     # unsupported
     continue
