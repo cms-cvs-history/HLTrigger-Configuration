@@ -38,17 +38,9 @@ function getConfigForCVS() {
   local NAME="$2"
   log "    dumping HLT cff for $NAME"
 
-  # override L1 menus
-  if [ "$NAME" == "8E29" ] || [ "$NAME" == "GRun" ]; then
-    hltGetConfiguration --cff --offline --mc $CONFIG --type $NAME                                  > HLT_${NAME}_cff.py
-  elif [ "$NAME" == "1E31" ] || [ "$NAME" == "HIon" ]; then
-    hltGetConfiguration --cff --offline --mc $CONFIG --type $NAME                                  > HLT_${NAME}_cff.py
-  else
-    hltGetConfiguration --cff --offline --mc $CONFIG --type $NAME                                  > HLT_${NAME}_cff.py
-  fi
-
   # do not use any L1 override
-  #hltGetConfiguration --cff --offline --mc $CONFIG --type $NAME > HLT_${NAME}_cff.py
+  hltGetConfiguration --cff --offline --mc   $CONFIG --type $NAME > HLT_${NAME}_cff.py
+  hltGetConfiguration --cff --offline --data $CONFIG --type $NAME > HLT_${NAME}_data_cff.py
 }
 
 function getContentForCVS() {
