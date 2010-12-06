@@ -14,7 +14,7 @@ __triggerTable = {
     # HLT trigger table for the 2009 IDEAL Heavy-Ion menu
     'HIon': ( 
         'HLTrigger/Configuration/HLT_HIon_cff', 
-    )
+    ),
 
     # HLT trigger table for the 2009 IDEAL Heavy-Ion menu
     'HIon_data': ( 
