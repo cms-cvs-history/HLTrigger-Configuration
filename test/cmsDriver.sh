@@ -13,7 +13,7 @@ set InputFileGENSIM = rfio:/castor/cern.ch/user/g/gruen/cms/TTbarGenSim31X.root
 # global stags for PP and HIon running
 set GTAGPPUP = auto:startup
 set GTAGPPMC = auto:mc
-set GTAGHIUP = START39_V7HI::All
+set GTAGHIUP = auto:starthi
 set GTAGHIMC = MC39_V4HI::All
 
 set XL1TPP = "" # syntax: tag,record[,connect]
