@@ -2870,6 +2870,12 @@ hltPixelTracks = cms.EDProducer( "PixelTrackProducer",
       ),
       SeedingLayers = cms.string( "PixelLayerTriplets" )
     ),
+    SeedMergerPSet = cms.PSet(
+        layerListName = cms.string( "PixelSeedMergerQuadruplets" ),
+        mergeTriplets = cms.bool( True ),
+        addRemainingTriplets = cms.bool( False ),
+        ttrhBuilderLabel = cms.string( "TTRHBuilderPixelOnly" )
+    ),                                                          
     FitterPSet = cms.PSet( 
       ComponentName = cms.string( "PixelFitterByHelixProjections" ),
       TTRHBuilder = cms.string( "TTRHBuilderPixelOnly" )
@@ -6540,6 +6546,12 @@ hltL25TauPixelSeeds = cms.EDProducer( "SeedGeneratorFromRegionHitsEDProducer",
         ptMin = cms.double( 4.0 )
       )
     ),
+    SeedMergerPSet = cms.PSet(
+        layerListName = cms.string( "PixelSeedMergerQuadruplets" ),
+        mergeTriplets = cms.bool( False ), # these are pairs
+        addRemainingTriplets = cms.bool( False ),
+        ttrhBuilderLabel = cms.string( "WithTrackAngle" )
+    ),                                  
     OrderedHitsFactoryPSet = cms.PSet( 
       ComponentName = cms.string( "StandardHitPairGenerator" ),
       SeedingLayers = cms.string( "PixelLayerPairs" ),
@@ -6643,6 +6655,12 @@ hltL3TauPixelSeeds = cms.EDProducer( "SeedGeneratorFromRegionHitsEDProducer",
         ptMin = cms.double( 0.9 )
       )
     ),
+    SeedMergerPSet = cms.PSet(
+        layerListName = cms.string( "PixelSeedMergerQuadruplets" ),
+        mergeTriplets = cms.bool( False ), # these are pairs
+        addRemainingTriplets = cms.bool( False ),
+        ttrhBuilderLabel = cms.string( "WithTrackAngle" )
+    ),                                 
     OrderedHitsFactoryPSet = cms.PSet( 
       ComponentName = cms.string( "StandardHitPairGenerator" ),
       SeedingLayers = cms.string( "PixelLayerPairs" ),
@@ -6863,6 +6881,12 @@ hltBLifetimeRegionalPixelSeedGeneratorStartup = cms.EDProducer( "SeedGeneratorFr
         vertexSrc = cms.InputTag( "hltPixelVertices" )
       )
     ),
+    SeedMergerPSet = cms.PSet(
+        layerListName = cms.string( "PixelSeedMergerQuadruplets" ),
+        mergeTriplets = cms.bool( False ), # these are pairs
+        addRemainingTriplets = cms.bool( False ),
+        ttrhBuilderLabel = cms.string( "WithTrackAngle" )
+    ),                                                            
     OrderedHitsFactoryPSet = cms.PSet( 
       ComponentName = cms.string( "StandardHitPairGenerator" ),
       SeedingLayers = cms.string( "PixelLayerPairs" ),
@@ -7608,6 +7632,12 @@ hltPixelTracksForMinBias = cms.EDProducer( "PixelTrackProducer",
         originZPos = cms.double( 0.0 )
       )
     ),
+    SeedMergerPSet = cms.PSet(
+        layerListName = cms.string( "PixelSeedMergerQuadruplets" ),
+        mergeTriplets = cms.bool( True ),
+        addRemainingTriplets = cms.bool( False ),
+        ttrhBuilderLabel = cms.string( "TTRHBuilderPixelOnly" )
+    ),                                       
     OrderedHitsFactoryPSet = cms.PSet( 
       ComponentName = cms.string( "StandardHitTripletGenerator" ),
       SeedingLayers = cms.string( "PixelLayerTriplets" ),
@@ -7802,6 +7832,12 @@ hltHITPixelTracksHB = cms.EDProducer( "PixelTrackProducer",
       ),
       SeedingLayers = cms.string( "PixelLayerTripletsHITHB" )
     ),
+    SeedMergerPSet = cms.PSet(
+        layerListName = cms.string( "PixelSeedMergerQuadruplets" ),
+        mergeTriplets = cms.bool( True ),
+        addRemainingTriplets = cms.bool( False ),
+        ttrhBuilderLabel = cms.string( "TTRHBuilderPixelOnly" )
+    ),                                  
     FitterPSet = cms.PSet( 
       ComponentName = cms.string( "PixelFitterByConformalMappingAndLine" ),
       TTRHBuilder = cms.string( "TTRHBuilderPixelOnly" ),
@@ -7829,6 +7865,12 @@ hltHITPixelTracksHE = cms.EDProducer( "PixelTrackProducer",
         ptMin = cms.double( 0.35 )
       )
     ),
+    SeedMergerPSet = cms.PSet(
+        layerListName = cms.string( "PixelSeedMergerQuadruplets" ),
+        mergeTriplets = cms.bool( True ),
+        addRemainingTriplets = cms.bool( False ),
+        ttrhBuilderLabel = cms.string( "TTRHBuilderPixelOnly" )
+    ),                                  
     OrderedHitsFactoryPSet = cms.PSet( 
       ComponentName = cms.string( "StandardHitTripletGenerator" ),
       GeneratorPSet = cms.PSet( 
@@ -7930,6 +7972,12 @@ hltHITPixelTripletSeedGeneratorHE1E31 = cms.EDProducer( "SeedGeneratorFromRegion
         ptMin = cms.double( 0.5 )
       )
     ),
+    SeedMergerPSet = cms.PSet(
+        layerListName = cms.string( "PixelSeedMergerQuadruplets" ),
+        mergeTriplets = cms.bool( True ),
+        addRemainingTriplets = cms.bool( False ),
+        ttrhBuilderLabel = cms.string( "WithTrackAngle" )
+    ),                                                    
     OrderedHitsFactoryPSet = cms.PSet( 
       ComponentName = cms.string( "StandardHitTripletGenerator" ),
       GeneratorPSet = cms.PSet( 
@@ -8435,6 +8483,12 @@ hltPixelTracksForHighMult = cms.EDProducer( "PixelTrackProducer",
         originZPos = cms.double( 0.0 )
       )
     ),
+    SeedMergerPSet = cms.PSet(
+        layerListName = cms.string( "PixelSeedMergerQuadruplets" ),
+        mergeTriplets = cms.bool( True ),
+        addRemainingTriplets = cms.bool( False ),
+        ttrhBuilderLabel = cms.string( "TTRHBuilderPixelOnly" )
+    ),                                                                                                            
     OrderedHitsFactoryPSet = cms.PSet( 
       ComponentName = cms.string( "StandardHitTripletGenerator" ),
       SeedingLayers = cms.string( "PixelLayerTriplets" ),
