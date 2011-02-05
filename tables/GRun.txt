@@ -6,6 +6,7 @@ HLT_Jet150_v1
 HLT_Jet190_v1
 HLT_Jet240_v1
 HLT_Jet370_v1
+HLT_Jet370_NoJetID_v1
 HLT_DiJetAve15U_v4
 HLT_DiJetAve30U_v4
 HLT_DiJetAve50U_v4
@@ -69,6 +70,10 @@ HLT_L2DoubleMu35_NoVertex_v1
 HLT_DoubleMu3_v3
 HLT_DoubleMu6_v1
 HLT_DoubleMu7_v1
+HLT_DoubleMu3_Bs_v1
+HLT_DoubleMu3_Jpsi_v1
+HLT_DoubleMu3_Quarkonium_v1
+HLT_DoubleMu3_Upsilon_v1
 HLT_DoubleMu4_Acoplanarity03_v1
 HLT_TripleMu5_v1
 HLT_Photon30_CaloIdVL_v1
@@ -104,7 +109,13 @@ HLT_DoubleIsoPFTau20_Trk5_v1
 HLT_BTagMu_DiJet20_Mu5_v1
 HLT_BTagMu_DiJet60_Mu7_v1
 HLT_BTagMu_DiJet80_Mu9_v1
+HLT_Mu5_Track0_Jpsi_B5Q7_v1
+HLT_Mu5_TkMu0_OST_Jpsi_Tight_B5Q7_v1
+HLT_Mu5_HT200_v1
+HLT_Mu8_HT200_v1
 HLT_Mu5_DoubleEle8_v1
+HLT_Mu8_Jet40_v1
+HLT_Mu8_Photon20_CaloIdVT_IsoT_v1
 HLT_Mu8_Ele17_CaloIdL_v1
 HLT_Mu10_Ele10_CaloIdL_v1
 HLT_Mu15_Photon20_CaloIdL_v1
@@ -156,7 +167,9 @@ HLT_Calibration_v1
 HLT_EcalCalibration_v1
 HLT_HcalCalibration_v1
 HLT_Random_v1
-HLT_TrackerCosmics_v2
+HLT_L1TrackerCosmics_v2
+HLT_RegionalCosmicTracking_v1
+HLT_L3MuonsCosmicTracking_v1
 HLTriggerFinalPath
 HLTOutput
 # ExpressOutput
