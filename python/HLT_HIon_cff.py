@@ -1,18 +1,21 @@
-# /dev/CMSSW_3_11_1/HIon/V4 (CMSSW_3_11_0_pre5_HLT5)
+# /dev/CMSSW_3_11_1/HIon/V5 (CMSSW_3_11_0_pre5_HLT5)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_11_1/HIon/V4')
+  tableName = cms.string('/dev/CMSSW_3_11_1/HIon/V5')
 )
 
 streams = cms.PSet( 
-  A = cms.vstring( 'A' ),
+  A = cms.vstring( 'A',
+    'HcalNZS' ),
   ALCAP0 = cms.vstring( 'AlCaP0' ),
-  ALCAPHISYM = cms.vstring( 'AlCaPhiSymEcal' ),
+  ALCAPHISYM = cms.vstring( 'AlCaPhiSym' ),
+  Calibration = cms.vstring( 'TestEnables' ),
   DQM = cms.vstring( 'OnlineMonitor',
     'OnlineMonitorHI' ),
+  EcalCalibration = cms.vstring( 'EcalLaser' ),
   HLTDQM = cms.vstring( 'OnlineHltMonitor',
     'OnlineHltMonitorHI' ),
   HLTMON = cms.vstring( 'OfflineMonitor',
@@ -23,7 +26,9 @@ streams = cms.PSet(
 datasets = cms.PSet( 
   A = cms.vstring(  ),
   AlCaP0 = cms.vstring(  ),
-  AlCaPhiSymEcal = cms.vstring(  ),
+  AlCaPhiSym = cms.vstring(  ),
+  EcalLaser = cms.vstring( 'HLT_EcalCalibration_v1' ),
+  HcalNZS = cms.vstring(  ),
   L1Accept = cms.vstring( 'HLTriggerFinalPath' ),
   OfflineMonitor = cms.vstring( 'HLT_LogMonitor' ),
   OfflineMonitorHI = cms.vstring( 'HLT_HIBptxXOR',
@@ -85,7 +90,8 @@ datasets = cms.PSet(
     'HLT_HIPhoton20_Cleaned_Core',
     'HLT_HIStoppedHSCP35',
     'HLT_HcalCalibration_HI' ),
-  RPCMonitor = cms.vstring(  )
+  RPCMonitor = cms.vstring(  ),
+  TestEnables = cms.vstring(  )
 )
 
 hltESSAK5CaloL2L3 = cms.ESSource( "JetCorrectionServiceChain",
@@ -214,6 +220,10 @@ caloDetIdAssociator = cms.ESProducer( "DetIdAssociatorESProducer",
   nEta = cms.int32( 70 ),
   nPhi = cms.int32( 72 ),
   includeBadChambers = cms.bool( False )
+)
+cosmicsNavigationSchoolESProducer = cms.ESProducer( "NavigationSchoolESProducer",
+  ComponentName = cms.string( "CosmicNavigationSchool" ),
+  appendToDataLabel = cms.string( "" )
 )
 ecalDetIdAssociator = cms.ESProducer( "DetIdAssociatorESProducer",
   ComponentName = cms.string( "EcalDetIdAssociator" ),

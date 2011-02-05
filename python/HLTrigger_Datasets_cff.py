@@ -1,4 +1,4 @@
-# /dev/CMSSW_3_11_1/GRun/V4
+# /dev/CMSSW_3_11_1/GRun/V5
 
 import FWCore.ParameterSet.Config as cms
 
@@ -57,4 +57,11 @@ streamA_datasetA_selector.triggerConditions = cms.vstring('HLT_BTagMu_DiJet20_Mu
     'HLT_R032_MR100_v1', 
     'HLT_R032_v1', 
     'HLT_R035_MR100_v1')
+
+from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter as streamA_datasetHcalNZS_selector
+streamA_datasetHcalNZS_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')
+streamA_datasetHcalNZS_selector.l1tResults = cms.InputTag('')
+streamA_datasetHcalNZS_selector.throw      = cms.bool(False)
+streamA_datasetHcalNZS_selector.triggerConditions = cms.vstring('HLT_HcalNZS_v2', 
+    'HLT_HcalPhiSym_v2')
 
