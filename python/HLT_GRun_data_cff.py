@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_11_1/GRun/V6 (CMSSW_3_11_0_pre5_HLT5)
+# /dev/CMSSW_3_11_1/GRun/V8 (CMSSW_3_11_0_pre5_HLT5)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_11_1/GRun/V6')
+  tableName = cms.string('/dev/CMSSW_3_11_1/GRun/V8')
 )
 
 streams = cms.PSet( 
@@ -5156,7 +5156,7 @@ hltPreDoubleMu0Bs = cms.EDFilter( "HLTPrescaler",
 )
 hltDiMuonL1Filtered0 = cms.EDFilter( "HLTMuonL1Filter",
     CandTag = cms.InputTag( "hltL1extraParticles" ),
-    PreviousCandTag = cms.InputTag( "hltL1sL1DoubleMu0HighQ" ),
+    PreviousCandTag = cms.InputTag( "hltL1sL1DoubleMu0" ),
     MaxEta = cms.double( 2.5 ),
     MinPt = cms.double( 0.0 ),
     MinN = cms.int32( 2 ),
@@ -5227,10 +5227,34 @@ hltL1sL1DoubleMu0HighQ = cms.EDFilter( "HLTLevel1GTSeed",
 hltPreDoubleMu0Jpsi = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" )
 )
+hltDiMuonL1Filtered0HighQ = cms.EDFilter( "HLTMuonL1Filter",
+    CandTag = cms.InputTag( "hltL1extraParticles" ),
+    PreviousCandTag = cms.InputTag( "hltL1sL1DoubleMu0HighQ" ),
+    MaxEta = cms.double( 2.5 ),
+    MinPt = cms.double( 0.0 ),
+    MinN = cms.int32( 2 ),
+    ExcludeSingleSegmentCSC = cms.bool( False ),
+    CSCTFtag = cms.InputTag( "unused" ),
+    SelectQualities = cms.vint32(  )
+)
+hltDiMuonL2PreFiltered0HighQ = cms.EDFilter( "HLTMuonL2PreFilter",
+    BeamSpotTag = cms.InputTag( "hltOnlineBeamSpot" ),
+    CandTag = cms.InputTag( "hltL2MuonCandidates" ),
+    PreviousCandTag = cms.InputTag( "hltDiMuonL1Filtered0HighQ" ),
+    SeedMapTag = cms.InputTag( "hltL2Muons" ),
+    MinN = cms.int32( 2 ),
+    MaxEta = cms.double( 2.5 ),
+    MinNhits = cms.int32( 0 ),
+    MaxDr = cms.double( 9999.0 ),
+    MaxDz = cms.double( 9999.0 ),
+    MinPt = cms.double( 0.0 ),
+    NSigmaPt = cms.double( 0.0 ),
+    SaveTag = cms.untracked.bool( True )
+)
 hltDiMuonL3PreFiltered3Jpsi = cms.EDFilter( "HLTMuonL3PreFilter",
     BeamSpotTag = cms.InputTag( "hltOnlineBeamSpot" ),
     CandTag = cms.InputTag( "hltL3MuonCandidates" ),
-    PreviousCandTag = cms.InputTag( "hltDiMuonL2PreFiltered0" ),
+    PreviousCandTag = cms.InputTag( "hltDiMuonL2PreFiltered0HighQ" ),
     MinN = cms.int32( 2 ),
     MaxEta = cms.double( 2.5 ),
     MinNhits = cms.int32( 0 ),
@@ -5243,7 +5267,7 @@ hltDiMuonL3PreFiltered3Jpsi = cms.EDFilter( "HLTMuonL3PreFilter",
 hltDoubleMu3JpsiL3Filtered = cms.EDFilter( "HLTMuonDimuonL3Filter",
     BeamSpotTag = cms.InputTag( "hltOnlineBeamSpot" ),
     CandTag = cms.InputTag( "hltL3MuonCandidates" ),
-    PreviousCandTag = cms.InputTag( "hltDiMuonL2PreFiltered0" ),
+    PreviousCandTag = cms.InputTag( "hltDiMuonL2PreFiltered0HighQ" ),
     FastAccept = cms.bool( False ),
     MaxEta = cms.double( 2.5 ),
     MinNhits = cms.int32( 0 ),
@@ -5268,7 +5292,7 @@ hltPreDoubleMu0Quarkonium = cms.EDFilter( "HLTPrescaler",
 hltDiMuonL3PreFiltered3Quarkonium = cms.EDFilter( "HLTMuonL3PreFilter",
     BeamSpotTag = cms.InputTag( "hltOnlineBeamSpot" ),
     CandTag = cms.InputTag( "hltL3MuonCandidates" ),
-    PreviousCandTag = cms.InputTag( "hltDiMuonL2PreFiltered0" ),
+    PreviousCandTag = cms.InputTag( "hltDiMuonL2PreFiltered0HighQ" ),
     MinN = cms.int32( 2 ),
     MaxEta = cms.double( 2.5 ),
     MinNhits = cms.int32( 0 ),
@@ -5281,7 +5305,7 @@ hltDiMuonL3PreFiltered3Quarkonium = cms.EDFilter( "HLTMuonL3PreFilter",
 hltDoubleMu3QuarkoniumL3Filtered = cms.EDFilter( "HLTMuonDimuonL3Filter",
     BeamSpotTag = cms.InputTag( "hltOnlineBeamSpot" ),
     CandTag = cms.InputTag( "hltL3MuonCandidates" ),
-    PreviousCandTag = cms.InputTag( "hltDiMuonL2PreFiltered0" ),
+    PreviousCandTag = cms.InputTag( "hltDiMuonL2PreFiltered0HighQ" ),
     FastAccept = cms.bool( False ),
     MaxEta = cms.double( 2.5 ),
     MinNhits = cms.int32( 0 ),
@@ -5306,7 +5330,7 @@ hltPreDoubleMu0Upsilon = cms.EDFilter( "HLTPrescaler",
 hltDiMuonL3PreFiltered3Upsilon = cms.EDFilter( "HLTMuonL3PreFilter",
     BeamSpotTag = cms.InputTag( "hltOnlineBeamSpot" ),
     CandTag = cms.InputTag( "hltL3MuonCandidates" ),
-    PreviousCandTag = cms.InputTag( "hltDiMuonL2PreFiltered0" ),
+    PreviousCandTag = cms.InputTag( "hltDiMuonL2PreFiltered0HighQ" ),
     MinN = cms.int32( 2 ),
     MaxEta = cms.double( 2.5 ),
     MinNhits = cms.int32( 0 ),
@@ -5319,7 +5343,7 @@ hltDiMuonL3PreFiltered3Upsilon = cms.EDFilter( "HLTMuonL3PreFilter",
 hltDoubleMu3UpsilonL3Filtered = cms.EDFilter( "HLTMuonDimuonL3Filter",
     BeamSpotTag = cms.InputTag( "hltOnlineBeamSpot" ),
     CandTag = cms.InputTag( "hltL3MuonCandidates" ),
-    PreviousCandTag = cms.InputTag( "hltDiMuonL2PreFiltered0" ),
+    PreviousCandTag = cms.InputTag( "hltDiMuonL2PreFiltered0HighQ" ),
     FastAccept = cms.bool( False ),
     MaxEta = cms.double( 2.5 ),
     MinNhits = cms.int32( 0 ),
@@ -16096,9 +16120,9 @@ HLT_DoubleMu3_v3 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1DoubleMu0 + hltPreDo
 HLT_DoubleMu6_v1 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1DoubleMu3 + hltPreDoubleMu6 + hltDiMuon3L1Filtered0 + HLTL2muonrecoSequence + hltDiMuon3L2PreFiltered0 + HLTL3muonrecoSequence + hltDiMuonL3PreFiltered6 + HLTEndSequence )
 HLT_DoubleMu7_v1 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1DoubleMu3 + hltPreDoubleMu7 + hltDiMuon3L1Filtered0 + HLTL2muonrecoSequence + hltDiMuon3L2PreFiltered0 + HLTL3muonrecoSequence + hltDiMuonL3PreFiltered7 + HLTEndSequence )
 HLT_DoubleMu3_Bs_v1 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1DoubleMu0 + hltPreDoubleMu0Bs + hltDiMuonL1Filtered0 + HLTL2muonrecoSequence + hltDiMuonL2PreFiltered0 + HLTL3muonrecoSequence + hltDiMuonL3PreFiltered3Bs + hltDoubleMu3BsL3Filtered + HLTEndSequence )
-HLT_DoubleMu3_Jpsi_v1 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1DoubleMu0HighQ + hltPreDoubleMu0Jpsi + hltDiMuonL1Filtered0 + HLTL2muonrecoSequence + hltDiMuonL2PreFiltered0 + HLTL3muonrecoSequence + hltDiMuonL3PreFiltered3Jpsi + hltDoubleMu3JpsiL3Filtered + HLTEndSequence )
-HLT_DoubleMu3_Quarkonium_v1 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1DoubleMu0HighQ + hltPreDoubleMu0Quarkonium + hltDiMuonL1Filtered0 + HLTL2muonrecoSequence + hltDiMuonL2PreFiltered0 + HLTL3muonrecoSequence + hltDiMuonL3PreFiltered3Quarkonium + hltDoubleMu3QuarkoniumL3Filtered + HLTEndSequence )
-HLT_DoubleMu3_Upsilon_v1 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1DoubleMu0HighQ + hltPreDoubleMu0Upsilon + hltDiMuonL1Filtered0 + HLTL2muonrecoSequence + hltDiMuonL2PreFiltered0 + HLTL3muonrecoSequence + hltDiMuonL3PreFiltered3Upsilon + hltDoubleMu3UpsilonL3Filtered + HLTEndSequence )
+HLT_DoubleMu3_Jpsi_v1 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1DoubleMu0HighQ + hltPreDoubleMu0Jpsi + hltDiMuonL1Filtered0HighQ + HLTL2muonrecoSequence + hltDiMuonL2PreFiltered0HighQ + HLTL3muonrecoSequence + hltDiMuonL3PreFiltered3Jpsi + hltDoubleMu3JpsiL3Filtered + HLTEndSequence )
+HLT_DoubleMu3_Quarkonium_v1 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1DoubleMu0HighQ + hltPreDoubleMu0Quarkonium + hltDiMuonL1Filtered0HighQ + HLTL2muonrecoSequence + hltDiMuonL2PreFiltered0HighQ + HLTL3muonrecoSequence + hltDiMuonL3PreFiltered3Quarkonium + hltDoubleMu3QuarkoniumL3Filtered + HLTEndSequence )
+HLT_DoubleMu3_Upsilon_v1 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1DoubleMu0HighQ + hltPreDoubleMu0Upsilon + hltDiMuonL1Filtered0HighQ + HLTL2muonrecoSequence + hltDiMuonL2PreFiltered0HighQ + HLTL3muonrecoSequence + hltDiMuonL3PreFiltered3Upsilon + hltDoubleMu3UpsilonL3Filtered + HLTEndSequence )
 HLT_DoubleMu4_Acoplanarity03_v1 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1DoubleMu3 + hltPreDoubleMu4Excl + hltDiMuonL1Filtered3 + HLTL2muonrecoSequence + hltL2DoubleMu3L2Filtered + HLTL3muonrecoSequence + hltDiMuonL3PreFiltered4 + hltDoubleMu4ExclL3PreFiltered + HLTEndSequence )
 HLT_TripleMu5_v1 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1DoubleMu3 + hltPreTripleMu3 + hltL1DoubleMu3L1TriMuFiltered3 + HLTL2muonrecoSequence + hltL1DoubleMu3L2TriMuFiltered4 + HLTL3muonrecoSequence + hltL1DoubleMu3L3TriMuFiltered5 + HLTEndSequence )
 HLT_Mu5_Track0_Jpsi_B5Q7_v1 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1SingleMu5BQ7 + hltPreMu5Track0JpsiB5Q7 + hltMu5TrackJpsiL1Filtered0 + HLTL2muonrecoSequence + hltMu5TrackJpsiL2Filtered5 + HLTL3muonrecoSequence + hltMu5TrackJpsiL3Filtered5 + HLTMuTrackJpsiPixelRecoSequence + hltMu5TrackJpsiPixelMassFiltered + HLTMuTrackJpsiTrackRecoSequence + hltMu5TrackJpsiTrackMassFiltered + HLTEndSequence )
