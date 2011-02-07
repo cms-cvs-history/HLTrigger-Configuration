@@ -551,7 +551,7 @@ if 'GlobalTag' in %%(dict)s:
 
       self.options['paths'].append( "-AOutput" )
       self.options['paths'].append( "-ALCAP0Output" )
-      self.options['paths'].append( "-ALCAPHISYMP0Output" )
+      self.options['paths'].append( "-ALCAPHISYMOutput" )
       self.options['paths'].append( "-CalibrationOutput" )
       self.options['paths'].append( "-DQMOutput" )
       self.options['paths'].append( "-EcalCalibrationOutput" )
