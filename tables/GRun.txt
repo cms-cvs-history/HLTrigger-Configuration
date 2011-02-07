@@ -27,7 +27,9 @@ HLT_DiJet60_MET45_v1
 HLT_DiJet70_PT70_v1
 HLT_DiJet100_PT100_v1
 HLT_DiJet130_PT130_v1
+HLT_QuadJet20_IsoPFTau_PFMHT_v1
 HLT_QuadJet40_v1
+HLT_QuadJet40_IsoPFTau40_v1
 HLT_QuadJet50_BTagIP_v1
 HLT_QuadJet50_Jet40_v1
 HLT_QuadJet60_v1
@@ -171,14 +173,19 @@ HLT_L1TrackerCosmics_v2
 HLT_RegionalCosmicTracking_v1
 HLT_L3MuonsCosmicTracking_v1
 HLTriggerFinalPath
-HLTOutput
+AOutput
+ALCAP0Output
+ALCAPHISYMOutput
+CalibrationOutput
+DQMOutput
+EcalCalibrationOutput
+HLTDQMOutput
+HLTMONOutput
+NanoDSTOutput
+RPCMONOutput
+# HLTDQMResultsOutput
 # ExpressOutput
 # AlCaOutput
 # AlCaPPOutput
-# DQMOutput
-# HLTDQMOutput
-# HLTDQMResultsOutput
-# HLTMONOutput
-NanoDSTOutput
 HLTriggerFirstPath
 HLTAnalyzerEndpath

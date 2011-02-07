@@ -57,13 +57,21 @@ HLT_EcalCalibration_v1
 HLT_HcalCalibration_HI
 HLT_LogMonitor
 HLTriggerFinalPath
-HLTOutput
+AOutput
+ALCAP0Output
+ALCAPHISYMOutput
+CalibrationOutput
+DQMOutput
+EcalCalibrationOutput
+HLTDQMOutput
+HLTMONOutput
+NanoDSTOutput
+RPCMONOutput
 # ExpressOutput
 # AlCaOutput
 # AlCaHIOutput
 # DQMOutput
 # HLTDQMOutput
 # HLTDQMResultsOutput
-NanoDSTOutput
 HLTriggerFirstPath
 HLTAnalyzerEndpath
