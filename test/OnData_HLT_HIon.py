@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_11_1/HIon/V11 (CMSSW_3_11_0_pre5_HLT5)
+# /dev/CMSSW_3_11_1/HIon/V12 (CMSSW_3_11_0_HLT3)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_11_1/HIon/V11')
+  tableName = cms.string('/dev/CMSSW_3_11_1/HIon/V12')
 )
 
 process.streams = cms.PSet( 
@@ -596,12 +596,12 @@ process.hcalRecAlgos = cms.ESProducer( "HcalRecAlgoESProducer",
         'HcalCellDead' )
     )
   ),
+  RecoveredRecHitBits = cms.vstring( 'TimingAddedBit',
+    'TimingSubtractedBit' ),
   appendToDataLabel = cms.string( "" ),
   DropChannelStatusBits = cms.vstring( 'HcalCellMask',
     'HcalCellOff',
-    'HcalCellDead' ),
-  RecoveredRecHitBits = cms.vstring( 'TimingAddedBit',
-    'TimingSubtractedBit' )
+    'HcalCellDead' )
 )
 process.hcal_db_producer = cms.ESProducer( "HcalDbProducer",
   appendToDataLabel = cms.string( "" )
@@ -1480,6 +1480,7 @@ process.MessageLogger = cms.Service( "MessageLogger",
     threshold = cms.untracked.string( "INFO" ),
 )
 process.PrescaleService = cms.Service( "PrescaleService",
+    lvl1DefaultLabel = cms.untracked.string( "" ),
     lvl1Labels = cms.vstring( '5E32' ),
     prescaleTable = cms.VPSet( 
     )
@@ -3608,8 +3609,12 @@ process.hltTowerMakerForHcal = cms.EDProducer( "CaloTowersCreator",
 )
 process.hltHcalTowerFilter = cms.EDFilter( "HLTHcalTowerFilter",
     inputTag = cms.InputTag( "hltTowerMakerForHcal" ),
-    MinE = cms.double( 5.0 ),
-    MaxN = cms.int32( 10 )
+    MinE_HB = cms.double( 1.5 ),
+    MinE_HE = cms.double( 2.5 ),
+    MinE_HF = cms.double( 9.0 ),
+    MaxN_HB = cms.int32( 2 ),
+    MaxN_HE = cms.int32( 2 ),
+    MaxN_HF = cms.int32( 8 )
 )
 process.hltL1sHIJet35U = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),

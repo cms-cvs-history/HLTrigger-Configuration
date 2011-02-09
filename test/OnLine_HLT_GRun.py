@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_11_1/GRun/V11 (CMSSW_3_11_0_pre5_HLT5)
+# /dev/CMSSW_3_11_1/GRun/V12 (CMSSW_3_11_0_HLT3)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_11_1/GRun/V11')
+  tableName = cms.string('/dev/CMSSW_3_11_1/GRun/V12')
 )
 
 process.streams = cms.PSet( 
@@ -603,12 +603,12 @@ process.hcalRecAlgos = cms.ESProducer( "HcalRecAlgoESProducer",
         'HcalCellDead' )
     )
   ),
+  RecoveredRecHitBits = cms.vstring( 'TimingAddedBit',
+    'TimingSubtractedBit' ),
   appendToDataLabel = cms.string( "" ),
   DropChannelStatusBits = cms.vstring( 'HcalCellMask',
     'HcalCellOff',
-    'HcalCellDead' ),
-  RecoveredRecHitBits = cms.vstring( 'TimingAddedBit',
-    'TimingSubtractedBit' )
+    'HcalCellDead' )
 )
 process.hcal_db_producer = cms.ESProducer( "HcalDbProducer",
   appendToDataLabel = cms.string( "" )
@@ -1487,6 +1487,7 @@ process.MessageLogger = cms.Service( "MessageLogger",
     threshold = cms.untracked.string( "INFO" ),
 )
 process.PrescaleService = cms.Service( "PrescaleService",
+    lvl1DefaultLabel = cms.untracked.string( "" ),
     lvl1Labels = cms.vstring( '5E32' ),
     prescaleTable = cms.VPSet( 
     )
@@ -2009,6 +2010,7 @@ process.hltAntiKT5L2L3CorrCaloJets = cms.EDProducer( "CaloJetCorrectionProducer"
 process.hltJetIDPassedCorrJets = cms.EDProducer( "HLTJetIDProducer",
     jetsInput = cms.InputTag( "hltAntiKT5L2L3CorrCaloJets" ),
     min_EMF = cms.double( 1.0E-6 ),
+    max_EMF = cms.double( 999.0 ),
     min_N90 = cms.int32( 2 )
 )
 process.hltSingleJet30 = cms.EDFilter( "HLT1CaloJet",
@@ -2186,6 +2188,7 @@ process.hltL1MatchedJetsRegional = cms.EDProducer( "HLTJetL1MatchProducer",
 process.hltJetIDPassedJetsRegional = cms.EDProducer( "HLTJetIDProducer",
     jetsInput = cms.InputTag( "hltL1MatchedJetsRegional" ),
     min_EMF = cms.double( 1.0E-6 ),
+    max_EMF = cms.double( 999.0 ),
     min_N90 = cms.int32( 2 )
 )
 process.hltSingleJet60Regional = cms.EDFilter( "HLT1CaloJet",
@@ -2288,7 +2291,7 @@ process.hltSingleJet370Regional = cms.EDFilter( "HLT1CaloJet",
     MaxEta = cms.double( 5.0 ),
     MinN = cms.int32( 1 )
 )
-process.copy_of_hltPreJet370 = cms.EDFilter( "HLTPrescaler",
+process.hltPreJet370NoJetID = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" )
 )
 process.hltSingleJet370RegionalNoJetID = cms.EDFilter( "HLT1CaloJet",
@@ -2304,6 +2307,7 @@ process.hltPreDiJetAve15U = cms.EDFilter( "HLTPrescaler",
 process.hltJetIDPassedAK5Jets = cms.EDProducer( "HLTJetIDProducer",
     jetsInput = cms.InputTag( "hltAntiKT5CaloJets" ),
     min_EMF = cms.double( 1.0E-6 ),
+    max_EMF = cms.double( 999.0 ),
     min_N90 = cms.int32( 2 )
 )
 process.hltDiJetAve15U = cms.EDFilter( "HLTDiJetAveFilter",
@@ -7716,8 +7720,12 @@ process.hltTowerMakerForHcal = cms.EDProducer( "CaloTowersCreator",
 )
 process.hltHcalTowerFilter = cms.EDFilter( "HLTHcalTowerFilter",
     inputTag = cms.InputTag( "hltTowerMakerForHcal" ),
-    MinE = cms.double( 5.0 ),
-    MaxN = cms.int32( 10 )
+    MinE_HB = cms.double( 1.5 ),
+    MinE_HE = cms.double( 2.5 ),
+    MinE_HF = cms.double( 9.0 ),
+    MaxN_HB = cms.int32( 2 ),
+    MaxN_HE = cms.int32( 2 ),
+    MaxN_HF = cms.int32( 8 )
 )
 process.hltPreDoublePhoton32CaloIdL = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" )
@@ -17080,7 +17088,7 @@ process.HLT_Jet150_v1 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL
 process.HLT_Jet190_v1 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1SingleJet92 + process.hltPreJet190 + process.HLTRegionalRecoJetSequenceAK5Corrected + process.hltSingleJet190Regional + process.HLTEndSequence )
 process.HLT_Jet240_v1 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1SingleJet92 + process.hltPreJet240 + process.HLTRegionalRecoJetSequenceAK5Corrected + process.hltSingleJet240Regional + process.HLTEndSequence )
 process.HLT_Jet370_v1 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1SingleJet92 + process.hltPreJet370 + process.HLTRegionalRecoJetSequenceAK5Corrected + process.hltSingleJet370Regional + process.HLTEndSequence )
-process.HLT_Jet370_NoJetID_v1 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1SingleJet92 + process.copy_of_hltPreJet370 + process.HLTRegionalTowerMakerForJetsSequence + process.hltAntiKT5CaloJetsRegional + process.hltAntiKT5L2L3CorrCaloJetsRegional + process.hltL1MatchedJetsRegional + process.hltSingleJet370RegionalNoJetID + process.HLTEndSequence )
+process.HLT_Jet370_NoJetID_v1 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1SingleJet92 + process.hltPreJet370NoJetID + process.HLTRegionalTowerMakerForJetsSequence + process.hltAntiKT5CaloJetsRegional + process.hltAntiKT5L2L3CorrCaloJetsRegional + process.hltL1MatchedJetsRegional + process.hltSingleJet370RegionalNoJetID + process.HLTEndSequence )
 process.HLT_DiJetAve15U_v4 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1SingleJet16 + process.hltPreDiJetAve15U + process.HLTRecoJetSequenceAK5Uncorrected + process.hltJetIDPassedAK5Jets + process.hltDiJetAve15U + process.HLTEndSequence )
 process.HLT_DiJetAve30U_v4 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1SingleJet36 + process.hltPreDiJetAve30U + process.HLTRecoJetSequenceAK5Uncorrected + process.hltJetIDPassedAK5Jets + process.hltDiJetAve30U + process.HLTEndSequence )
 process.HLT_DiJetAve50U_v4 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1SingleJet52 + process.hltPreDiJetAve50U + process.HLTRecoJetSequenceAK5Uncorrected + process.hltJetIDPassedAK5Jets + process.hltDiJetAve50U + process.HLTEndSequence )

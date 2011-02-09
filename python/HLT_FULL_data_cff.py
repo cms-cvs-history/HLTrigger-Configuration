@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_11_1/HLT_fix2/V109 (CMSSW_3_11_0_pre5_HLT5)
+# /dev/CMSSW_3_11_1/HLT_fix2/V110 (CMSSW_3_11_0_HLT3)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_11_1/HLT_fix2/V109')
+  tableName = cms.string('/dev/CMSSW_3_11_1/HLT_fix2/V110')
 )
 
 streams = cms.PSet( 
@@ -350,12 +350,12 @@ hcalRecAlgos = cms.ESProducer( "HcalRecAlgoESProducer",
         'HcalCellDead' )
     )
   ),
+  RecoveredRecHitBits = cms.vstring( 'TimingAddedBit',
+    'TimingSubtractedBit' ),
   appendToDataLabel = cms.string( "" ),
   DropChannelStatusBits = cms.vstring( 'HcalCellMask',
     'HcalCellOff',
-    'HcalCellDead' ),
-  RecoveredRecHitBits = cms.vstring( 'TimingAddedBit',
-    'TimingSubtractedBit' )
+    'HcalCellDead' )
 )
 hltESPAnalyticalPropagator = cms.ESProducer( "AnalyticalPropagatorESProducer",
   ComponentName = cms.string( "hltESPAnalyticalPropagator" ),
@@ -1668,6 +1668,7 @@ hltAntiKT5L2L3CorrCaloJets = cms.EDProducer( "CaloJetCorrectionProducer",
 hltJetIDPassedCorrJets = cms.EDProducer( "HLTJetIDProducer",
     jetsInput = cms.InputTag( "hltAntiKT5L2L3CorrCaloJets" ),
     min_EMF = cms.double( 1.0E-6 ),
+    max_EMF = cms.double( 999.0 ),
     min_N90 = cms.int32( 2 )
 )
 hltSingleJet30 = cms.EDFilter( "HLT1CaloJet",
@@ -1845,6 +1846,7 @@ hltL1MatchedJetsRegional = cms.EDProducer( "HLTJetL1MatchProducer",
 hltJetIDPassedJetsRegional = cms.EDProducer( "HLTJetIDProducer",
     jetsInput = cms.InputTag( "hltL1MatchedJetsRegional" ),
     min_EMF = cms.double( 1.0E-6 ),
+    max_EMF = cms.double( 999.0 ),
     min_N90 = cms.int32( 2 )
 )
 hltSingleJet60Regional = cms.EDFilter( "HLT1CaloJet",
@@ -1947,7 +1949,7 @@ hltSingleJet370Regional = cms.EDFilter( "HLT1CaloJet",
     MaxEta = cms.double( 5.0 ),
     MinN = cms.int32( 1 )
 )
-copy_of_hltPreJet370 = cms.EDFilter( "HLTPrescaler",
+hltPreJet370NoJetID = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" )
 )
 hltSingleJet370RegionalNoJetID = cms.EDFilter( "HLT1CaloJet",
@@ -1963,6 +1965,7 @@ hltPreDiJetAve15U = cms.EDFilter( "HLTPrescaler",
 hltJetIDPassedAK5Jets = cms.EDProducer( "HLTJetIDProducer",
     jetsInput = cms.InputTag( "hltAntiKT5CaloJets" ),
     min_EMF = cms.double( 1.0E-6 ),
+    max_EMF = cms.double( 999.0 ),
     min_N90 = cms.int32( 2 )
 )
 hltDiJetAve15U = cms.EDFilter( "HLTDiJetAveFilter",
@@ -7375,8 +7378,12 @@ hltTowerMakerForHcal = cms.EDProducer( "CaloTowersCreator",
 )
 hltHcalTowerFilter = cms.EDFilter( "HLTHcalTowerFilter",
     inputTag = cms.InputTag( "hltTowerMakerForHcal" ),
-    MinE = cms.double( 5.0 ),
-    MaxN = cms.int32( 10 )
+    MinE_HB = cms.double( 1.5 ),
+    MinE_HE = cms.double( 2.5 ),
+    MinE_HF = cms.double( 9.0 ),
+    MaxN_HB = cms.int32( 2 ),
+    MaxN_HE = cms.int32( 2 ),
+    MaxN_HF = cms.int32( 8 )
 )
 hltPreDoublePhoton32CaloIdL = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" )
@@ -17437,7 +17444,7 @@ HLT_Jet150_v1 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1SingleJet92 + hltPreJet
 HLT_Jet190_v1 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1SingleJet92 + hltPreJet190 + HLTRegionalRecoJetSequenceAK5Corrected + hltSingleJet190Regional + HLTEndSequence )
 HLT_Jet240_v1 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1SingleJet92 + hltPreJet240 + HLTRegionalRecoJetSequenceAK5Corrected + hltSingleJet240Regional + HLTEndSequence )
 HLT_Jet370_v1 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1SingleJet92 + hltPreJet370 + HLTRegionalRecoJetSequenceAK5Corrected + hltSingleJet370Regional + HLTEndSequence )
-HLT_Jet370_NoJetID_v1 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1SingleJet92 + copy_of_hltPreJet370 + HLTRegionalTowerMakerForJetsSequence + hltAntiKT5CaloJetsRegional + hltAntiKT5L2L3CorrCaloJetsRegional + hltL1MatchedJetsRegional + hltSingleJet370RegionalNoJetID + HLTEndSequence )
+HLT_Jet370_NoJetID_v1 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1SingleJet92 + hltPreJet370NoJetID + HLTRegionalTowerMakerForJetsSequence + hltAntiKT5CaloJetsRegional + hltAntiKT5L2L3CorrCaloJetsRegional + hltL1MatchedJetsRegional + hltSingleJet370RegionalNoJetID + HLTEndSequence )
 HLT_DiJetAve15U_v4 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1SingleJet16 + hltPreDiJetAve15U + HLTRecoJetSequenceAK5Uncorrected + hltJetIDPassedAK5Jets + hltDiJetAve15U + HLTEndSequence )
 HLT_DiJetAve30U_v4 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1SingleJet36 + hltPreDiJetAve30U + HLTRecoJetSequenceAK5Uncorrected + hltJetIDPassedAK5Jets + hltDiJetAve30U + HLTEndSequence )
 HLT_DiJetAve50U_v4 = cms.Path( HLTBeginSequenceBPTX + hltL1sL1SingleJet52 + hltPreDiJetAve50U + HLTRecoJetSequenceAK5Uncorrected + hltJetIDPassedAK5Jets + hltDiJetAve50U + HLTEndSequence )
