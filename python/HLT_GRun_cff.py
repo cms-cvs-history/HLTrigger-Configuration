@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_11_1/GRun/V12 (CMSSW_3_11_0_HLT3)
+# /dev/CMSSW_3_11_1/GRun/V13 (CMSSW_3_11_0_HLT4)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_11_1/GRun/V12')
+  tableName = cms.string('/dev/CMSSW_3_11_1/GRun/V13')
 )
 
 streams = cms.PSet( 
@@ -2917,7 +2917,7 @@ hltPFTauTrackPt5Discriminator = cms.EDProducer( "PFRecoTauDiscriminationByLeadin
     PFTauProducer = cms.InputTag( "hltPFTaus" ),
     Prediscriminants = cms.PSet(  BooleanOperator = cms.string( "and" ) ),
     UseOnlyChargedHadrons = cms.bool( True ),
-    MinPtLeadingObject = cms.double( 0.0 )
+    MinPtLeadingObject = cms.double( 5.0 )
 )
 hltPFTauTightIsolationDiscriminator = cms.EDProducer( "PFRecoTauDiscriminationByIsolation",
     PFTauProducer = cms.InputTag( "hltPFTaus" ),
