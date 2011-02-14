@@ -16,7 +16,7 @@ set GTAGPPMC = L1HLTST311_V0::All
 set GTAGHIUP = auto:starthi
 set GTAGHIMC = MC39_V4HI::All
 
-set XL1TPP = "L1GtTriggerMenu_L1Menu_Collisions2011_v0a_mc,L1GtTriggerMenuRcd" # syntax: tag,record[,connect]
+set XL1TPP = "L1GtTriggerMenu_L1Menu_Collisions2011_v0a_mc,L1GtTriggerMenuRcd,frontier://FrontierProd/CMS_COND_31X_L1T" # syntax: tag,record[,connect]
 set XL1THI = "" # "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2010_v2_mc,L1GtTriggerMenuRcd,sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_CollisionsHeavyIons2010_v2_mc.db"
 
 # specific workflows, first varying the globaltags, then the hlt tables
