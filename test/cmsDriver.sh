@@ -11,12 +11,12 @@ set InputFileGENSIM = rfio:/castor/cern.ch/user/g/gruen/cms/TTbarGenSim3110.root
 #set GTAGUP = FrontierConditions_GlobalTag,START36_V1::All
 #set GTAGMC = FrontierConditions_GlobalTag,MC_36Y_V1::All
 # global stags for PP and HIon running
-set GTAGPPUP = TESTL1_ST311::All #auto:startup
-set GTAGPPMC = TESTL1_ST311::All #auto:mc
+set GTAGPPUP = L1HLTST311_V0::All
+set GTAGPPMC = L1HLTST311_V0::All
 set GTAGHIUP = auto:starthi
 set GTAGHIMC = MC39_V4HI::All
 
-set XL1TPP = "" # syntax: tag,record[,connect]
+set XL1TPP = "L1Menu_Collisions2011_v0a" # syntax: tag,record[,connect]
 set XL1THI = "" # "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2010_v2_mc,L1GtTriggerMenuRcd,sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_CollisionsHeavyIons2010_v2_mc.db"
 
 # specific workflows, first varying the globaltags, then the hlt tables
