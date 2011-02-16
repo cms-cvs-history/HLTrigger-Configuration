@@ -187,7 +187,7 @@ AlCa_RPCMuonNoHits_v2
 AlCa_RPCMuonNoTriggers_v2
 AlCa_RPCMuonNormalisation_v2
 HLT_GlobalRunHPDNoise_v2
-HLT_TechTrigHCALNoise_v2
+HLT_L1Tech_HBHEHO_totalOR_v1
 HLT_ZeroBias_v1
 HLT_Physics_v1
 HLT_Calibration_v1
