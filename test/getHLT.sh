@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # ConfDB configurations to use
-MASTER="/dev/CMSSW_3_11_1/HLT_fix2"     # no explicit version, take te most recent 
+MASTER="/dev/CMSSW_3_11_1/HLT_fix3"     # no explicit version, take te most recent 
 TARGET="/dev/CMSSW_3_11_1/\$TABLE"      # no explicit version, take te most recent 
 TABLES="GRun HIon"                      # $TABLE in the above variable will be expanded to these TABLES
 
@@ -70,7 +70,7 @@ function getConfigForOnline() {
   log "    dumping full HLT for $NAME"
   # override L1 menus
   if [ "$NAME" == "GRun" ]; then
-    hltGetConfiguration --full --offline --data $CONFIG --type $NAME --unprescale --process HLT$NAME --l1 $L1TPP --globaltag TESTL1_GR_P::All   > OnData_HLT_$NAME.py
+    hltGetConfiguration --full --offline --data $CONFIG --type $NAME --unprescale --process HLT$NAME --l1 $L1TPP --globaltag GRR311L1HLTV0::All > OnData_HLT_$NAME.py
     hltGetConfiguration --full --offline --mc   $CONFIG --type $NAME --unprescale --process HLT$NAME             --globaltag L1HLTST311_V0::All > OnLine_HLT_$NAME.py 
   elif [ "$NAME" == "HIon" ]; then
     hltGetConfiguration --full --offline --data $CONFIG --type $NAME --unprescale --process HLT$NAME --l1 $L1THI --globaltag auto:hltonline     > OnData_HLT_$NAME.py
