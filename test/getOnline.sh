@@ -1,6 +1,6 @@
 #! /bin/bash
 
-HLT='/dev/CMSSW_3_11_1/GRun'
+HLT='/online/collisions/2011/ParadiseLost/v3/HLT'
 L1T='L1GtTriggerMenu_L1Menu_Collisions2011_v0a_mc'
 
 hltGetConfiguration $HLT --process TEST --full --offline --mc   --l1 $L1T --unprescale > offline_mc.py

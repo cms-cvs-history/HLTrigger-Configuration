@@ -201,6 +201,7 @@ HLT_L2MuOpen_NoVertex_v1
 HLT_L3MuonsCosmicTracking_v1
 HLT_RegionalCosmicTracking_v1
 HLT_LogMonitor_v1
+HLT_DTErrors_v1
 DQM_FEDIntegrity_v2
 HLTriggerFinalPath
 AOutput

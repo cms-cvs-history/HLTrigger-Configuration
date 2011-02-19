@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_11_1/GRun/V32 (CMSSW_3_11_0_HLT6)
+# /dev/CMSSW_3_11_1/GRun/V33 (CMSSW_3_11_0_HLT6)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_11_1/GRun/V32')
+  tableName = cms.string('/dev/CMSSW_3_11_1/GRun/V33')
 )
 
 process.streams = cms.PSet( 
@@ -226,7 +226,7 @@ process.datasets = cms.PSet(
     'HLT_L1TrackerCosmics_v2',
     'HLT_Mu24_v1',
     'HLT_ZeroBias_v1' ),
-  FEDMonitor = cms.vstring(  ),
+  FEDMonitor = cms.vstring( 'HLT_DTErrors_v1' ),
   HcalHPDNoise = cms.vstring( 'HLT_GlobalRunHPDNoise_v2',
     'HLT_L1Tech_HBHEHO_totalOR_v1' ),
   HcalNZS = cms.vstring( 'HLT_HcalNZS_v2',
@@ -248,6 +248,7 @@ process.datasets = cms.PSet(
     'HLT_CentralJet80_MET160_v1',
     'HLT_CentralJet80_MET65_v1',
     'HLT_CentralJet80_MET80_v1',
+    'HLT_DTErrors_v1',
     'HLT_DiJet100_PT100_v1',
     'HLT_DiJet130_PT130_v1',
     'HLT_DiJet60_MET45_v1',
@@ -448,6 +449,7 @@ process.datasets = cms.PSet(
     'HLT_CentralJet80_MET160_v1',
     'HLT_CentralJet80_MET65_v1',
     'HLT_CentralJet80_MET80_v1',
+    'HLT_DTErrors_v1',
     'HLT_DiJet100_PT100_v1',
     'HLT_DiJet130_PT130_v1',
     'HLT_DiJet60_MET45_v1',
@@ -644,6 +646,7 @@ process.datasets = cms.PSet(
     'HLT_CentralJet80_MET160_v1',
     'HLT_CentralJet80_MET65_v1',
     'HLT_CentralJet80_MET80_v1',
+    'HLT_DTErrors_v1',
     'HLT_DiJet100_PT100_v1',
     'HLT_DiJet130_PT130_v1',
     'HLT_DiJet60_MET45_v1',
@@ -850,7 +853,7 @@ process.GlobalTag = cms.ESSource( "PoolDBESSource",
     connect = cms.string( "frontier://FrontierProd/CMS_COND_31X_GLOBALTAG" ),
     DumpStat = cms.untracked.bool( False ),
     BlobStreamerName = cms.untracked.string( "TBufferBlobStreamingService" ),
-    globaltag = cms.string( "GRR311L1HLTV0::All" ),
+    globaltag = cms.string( "GR_H_V14::All" ),
     DBParameters = cms.PSet( 
       authenticationPath = cms.untracked.string( "." ),
       connectionRetrialTimeOut = cms.untracked.int32( 60 ),
@@ -16314,6 +16317,13 @@ process.hltLogMonitorFilter = cms.EDFilter( "HLTLogMonitorFilter",
     categories = cms.VPSet( 
     )
 )
+process.hltPreAlCaDTErrors = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" )
+)
+process.hltDTROMonitorFilter = cms.EDFilter( "HLTDTROMonitorFilter",
+    inputLabel = cms.InputTag( "source" )
+)
+process.hltDynAlCaDTErrors = cms.EDFilter( "HLTDynamicPrescaler" )
 process.hltL1sAlCaEcalPi0Eta = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),
     L1NrBxInEvent = cms.int32( 3 ),
@@ -17705,6 +17715,7 @@ process.hltOutputDQM = cms.OutputModule( "PoolOutputModule",
   'HLT_CentralJet80_MET160_v1',
   'HLT_CentralJet80_MET65_v1',
   'HLT_CentralJet80_MET80_v1',
+  'HLT_DTErrors_v1',
   'HLT_DiJet100_PT100_v1',
   'HLT_DiJet130_PT130_v1',
   'HLT_DiJet60_MET45_v1',
@@ -17941,6 +17952,7 @@ process.hltOutputHLTDQM = cms.OutputModule( "PoolOutputModule",
   'HLT_CentralJet80_MET160_v1',
   'HLT_CentralJet80_MET65_v1',
   'HLT_CentralJet80_MET80_v1',
+  'HLT_DTErrors_v1',
   'HLT_DiJet100_PT100_v1',
   'HLT_DiJet130_PT130_v1',
   'HLT_DiJet60_MET45_v1',
@@ -18265,6 +18277,7 @@ process.hltOutputHLTMON = cms.OutputModule( "PoolOutputModule",
   'HLT_CentralJet80_MET160_v1',
   'HLT_CentralJet80_MET65_v1',
   'HLT_CentralJet80_MET80_v1',
+  'HLT_DTErrors_v1',
   'HLT_DiJet100_PT100_v1',
   'HLT_DiJet130_PT130_v1',
   'HLT_DiJet60_MET45_v1',
@@ -18602,7 +18615,8 @@ process.hltOutputNanoDST = cms.OutputModule( "PoolOutputModule",
 process.hltOutputOnlineErrors = cms.OutputModule( "PoolOutputModule",
     fileName = cms.untracked.string( "outputOnlineErrors.root" ),
     fastCloning = cms.untracked.bool( False ),
-    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring( 'HLT_LogMonitor_v1' ) ),
+    SelectEvents = cms.untracked.PSet(  SelectEvents = cms.vstring( 'HLT_DTErrors_v1',
+  'HLT_LogMonitor_v1' ) ),
     outputCommands = cms.untracked.vstring( 'drop *_hlt*_*_*',
       'keep *_hltL1GtObjectMap_*_*',
       'keep FEDRawDataCollection_rawDataCollector_*_*',
@@ -18948,6 +18962,7 @@ process.HLT_L1TrackerCosmics_v2 = cms.Path( process.HLTBeginSequence + process.h
 process.HLT_RegionalCosmicTracking_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sRegionalCosmicTracking + process.hltPreRegionalCosmicTracking + process.hltTrackerCosmicsPattern + process.hltL1sL1MuOR + process.hltL1MuORL1Filtered0 + process.HLTL2muonrecoSequenceNoVtx + process.hltSingleL2MuORL2PreFilteredNoVtx + process.HLTDoLocalPixelSequence + process.HLTDoLocalStripSequence + process.hltRegionalCosmicTrackerSeeds + process.hltRegionalCosmicCkfTrackCandidates + process.hltRegionalCosmicTracks + process.hltCosmicTrackSelector + process.HLTEndSequence )
 process.HLT_L3MuonsCosmicTracking_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sTrackerCosmics + process.hltPreL3MuonsCosmicTracking + process.hltTrackerCosmicsPattern + process.hltL1sL1MuOR + process.hltL1MuORL1Filtered0 + process.HLTL2muonrecoSequenceNoVtx + process.hltSingleL2MuORL2PreFilteredNoVtx + process.HLTDoLocalPixelSequence + process.HLTDoLocalStripSequence + process.hltL3TrajectorySeedNoVtx + process.hltL3TrackCandidateFromL2NoVtx + process.hltL3TkTracksFromL2NoVtx + process.hltL3MuonsNoVtx + process.hltL3MuonCandidatesNoVtx + process.hltMu5NoVertexL3PreFiltered5 + process.HLTEndSequence )
 process.HLT_LogMonitor_v1 = cms.Path( process.hltGtDigis + process.hltPreLogMonitor + process.hltLogMonitorFilter + process.HLTEndSequence )
+process.HLT_DTErrors_v1 = cms.Path( process.hltGtDigis + process.hltPreAlCaDTErrors + process.hltDTROMonitorFilter + process.hltDynAlCaDTErrors + process.HLTEndSequence )
 process.AlCa_EcalPi0_v2 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sAlCaEcalPi0Eta + process.hltPreAlCaEcalPi0 + process.HLTDoRegionalPi0EtaSequence + process.hltSimple3x3Clusters + process.hltAlCaPi0RecHitsFilter + process.HLTEndSequence )
 process.AlCa_EcalEta_v2 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sAlCaEcalPi0Eta + process.hltPreAlCaEcalEta + process.HLTDoRegionalPi0EtaSequence + process.hltSimple3x3Clusters + process.hltAlCaEtaRecHitsFilter + process.HLTEndSequence )
 process.AlCa_EcalPhiSym_v2 = cms.Path( process.HLTBeginSequenceBPTX + process.hltL1sL1BscMinBiasORBptxPlusANDMinus + process.hltPreAlCaEcalPhiSym + process.hltEcalRawToRecHitFacility + process.hltESRawToRecHitFacility + process.hltEcalRegionalRestFEDs + process.hltEcalRecHitAll + process.hltAlCaPhiSymStream + process.HLTEndSequence )
