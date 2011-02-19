@@ -5552,7 +5552,7 @@ if 'GlobalTag' in process.__dict__:
     process.GlobalTag.toGet.append(
         cms.PSet(
             record  = cms.string( 'L1GtTriggerMenuRcd' ),
-            tag     = cms.string( 'L1GtTriggerMenu_L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2010_v2_mc_mc' ),
+            tag     = cms.string( 'L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2010_v2_mc' ),
             label   = cms.untracked.string( '' ),
             connect = cms.untracked.string( 'frontier://FrontierProd/CMS_COND_31X_L1T' )
         )
