@@ -211,9 +211,10 @@ ALCAPHISYMOutput
 CalibrationOutput
 DQMOutput
 EcalCalibrationOutput
+ExpressOutput
 HLTDQMOutput
-# HLTDQMResultsOutput
+HLTDQMResultsOutput
 HLTMONOutput
 NanoDSTOutput
+OnlineErrorsOutput
 RPCMONOutput
-# ExpressOutput
