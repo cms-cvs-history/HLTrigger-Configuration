@@ -195,26 +195,6 @@ BTagRecord = cms.ESSource( "EmptyESSource",
   appendToDataLabel = cms.string( "" ),
   firstValid = cms.vuint32( 1 )
 )
-L2RelativeCorrectionService = cms.ESSource( "LXXXCorrectionService",
-  appendToDataLabel = cms.string( "" ),
-  level = cms.string( "L2Relative" ),
-  algorithm = cms.string( "IC5Calo" ),
-  section = cms.string( "" ),
-  era = cms.string( "Summer09_7TeV_ReReco332" )
-)
-L3AbsoluteCorrectionService = cms.ESSource( "LXXXCorrectionService",
-  appendToDataLabel = cms.string( "" ),
-  level = cms.string( "L3Absolute" ),
-  algorithm = cms.string( "IC5Calo" ),
-  section = cms.string( "" ),
-  era = cms.string( "Summer09_7TeV_ReReco332" )
-)
-MCJetCorrectorIcone5 = cms.ESSource( "JetCorrectionServiceChain",
-  appendToDataLabel = cms.string( "" ),
-  correctors = cms.vstring( 'L2RelativeCorrectionService',
-    'L3AbsoluteCorrectionService' ),
-  label = cms.string( "MCJetCorrectorIcone5" )
-)
 MCJetCorrectorIcone5HF07 = cms.ESSource( "LXXXCorrectionService",
   appendToDataLabel = cms.string( "" ),
   level = cms.string( "L2Relative" ),

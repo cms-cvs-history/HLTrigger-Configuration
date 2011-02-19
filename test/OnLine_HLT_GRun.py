@@ -857,26 +857,6 @@ process.HepPDTESSource = cms.ESSource( "HepPDTESSource",
     pdtFileName = cms.FileInPath( "SimGeneral/HepPDTESSource/data/pythiaparticle.tbl" ),
     appendToDataLabel = cms.string( "" )
 )
-process.L2RelativeCorrectionService = cms.ESSource( "LXXXCorrectionService",
-    appendToDataLabel = cms.string( "" ),
-    level = cms.string( "L2Relative" ),
-    algorithm = cms.string( "IC5Calo" ),
-    section = cms.string( "" ),
-    era = cms.string( "Summer09_7TeV_ReReco332" )
-)
-process.L3AbsoluteCorrectionService = cms.ESSource( "LXXXCorrectionService",
-    appendToDataLabel = cms.string( "" ),
-    level = cms.string( "L3Absolute" ),
-    algorithm = cms.string( "IC5Calo" ),
-    section = cms.string( "" ),
-    era = cms.string( "Summer09_7TeV_ReReco332" )
-)
-process.MCJetCorrectorIcone5 = cms.ESSource( "JetCorrectionServiceChain",
-    appendToDataLabel = cms.string( "" ),
-    correctors = cms.vstring( 'L2RelativeCorrectionService',
-      'L3AbsoluteCorrectionService' ),
-    label = cms.string( "MCJetCorrectorIcone5" )
-)
 process.MCJetCorrectorIcone5HF07 = cms.ESSource( "LXXXCorrectionService",
     appendToDataLabel = cms.string( "" ),
     level = cms.string( "L2Relative" ),
@@ -3891,12 +3871,6 @@ process.hltIterativeCone5CaloJetsRegional = cms.EDProducer( "FastjetJetProducer"
     doRhoFastjet = cms.bool( False ),
     subtractorName = cms.string( "" ),
     sumRecHits = cms.bool( False )
-)
-process.hltMCJetCorJetIcone5Regional = cms.EDProducer( "CaloJetCorrectionProducer",
-    src = cms.InputTag( "hltIterativeCone5CaloJetsRegional" ),
-    verbose = cms.untracked.bool( False ),
-    alias = cms.untracked.string( "corJetIcone5" ),
-    correctors = cms.vstring( 'MCJetCorrectorIcone5' )
 )
 process.hltDoubleJet15UForwardBackward = cms.EDFilter( "HLTForwardBackwardJetsFilter",
     inputTag = cms.InputTag( "hltIterativeCone5CaloJetsRegional" ),
@@ -17879,7 +17853,7 @@ process.HLTDoCaloSequence = cms.Sequence( process.hltEcalRawToRecHitFacility + p
 process.HLTRecoJetSequenceU = cms.Sequence( process.HLTDoCaloSequence + process.hltIterativeCone5CaloJets + process.hltMCJetCorJetIcone5HF07 )
 process.HLTHcalNoiseSequence = cms.Sequence( process.hltHcalNoiseInfoProducer + process.hltHcalMETNoiseFilter )
 process.HLTDoRegionalJetEcalSequence = cms.Sequence( process.hltEcalRawToRecHitFacility + process.hltEcalRegionalJetsFEDs + process.hltEcalRegionalJetsRecHit )
-process.HLTRecoJetRegionalSequence = cms.Sequence( process.HLTDoRegionalJetEcalSequence + process.HLTDoLocalHcalSequence + process.hltTowerMakerForJets + process.hltIterativeCone5CaloJetsRegional + process.hltMCJetCorJetIcone5Regional )
+process.HLTRecoJetRegionalSequence = cms.Sequence( process.HLTDoRegionalJetEcalSequence + process.HLTDoLocalHcalSequence + process.hltTowerMakerForJets + process.hltIterativeCone5CaloJetsRegional )
 process.HLTRecoMETSequence = cms.Sequence( process.HLTDoCaloSequence + process.hltMet )
 process.HLTRSequence = cms.Sequence( process.HLTRecoJetSequenceU + process.HLTRecoMETSequence + process.hltRHemisphere )
 process.HLTDoJet20UHTRecoSequence = cms.Sequence( process.hltJet20UHt )
