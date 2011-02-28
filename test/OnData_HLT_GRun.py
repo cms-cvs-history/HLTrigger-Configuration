@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_11_0/GRun/V11 (CMSSW_3_11_0_HLT8)
+# /dev/CMSSW_3_11_0/GRun/V12 (CMSSW_3_11_0_HLT8)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_11_0/GRun/V11')
+  tableName = cms.string('/dev/CMSSW_3_11_0/GRun/V12')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -872,26 +872,6 @@ process.hltESSHcalSeverityLevel = cms.ESSource( "EmptyESSource",
     iovIsRunNotTime = cms.bool( True ),
     appendToDataLabel = cms.string( "" ),
     firstValid = cms.vuint32( 1 )
-)
-process.hltESSL2RelativeCorrectionService = cms.ESSource( "LXXXCorrectionService",
-    appendToDataLabel = cms.string( "" ),
-    level = cms.string( "L2Relative" ),
-    algorithm = cms.string( "IC5Calo" ),
-    section = cms.string( "" ),
-    era = cms.string( "Summer09_7TeV_ReReco332" )
-)
-process.hltESSL3AbsoluteCorrectionService = cms.ESSource( "LXXXCorrectionService",
-    appendToDataLabel = cms.string( "" ),
-    level = cms.string( "L3Absolute" ),
-    algorithm = cms.string( "IC5Calo" ),
-    section = cms.string( "" ),
-    era = cms.string( "Summer09_7TeV_ReReco332" )
-)
-process.hltESSMCJetCorrectorIcone5 = cms.ESSource( "JetCorrectionServiceChain",
-    appendToDataLabel = cms.string( "" ),
-    correctors = cms.vstring( 'hltESSL2RelativeCorrectionService',
-      'hltESSL3AbsoluteCorrectionService' ),
-    label = cms.string( "hltESSMCJetCorrectorIcone5" )
 )
 process.hltESSMCJetCorrectorIcone5HF07 = cms.ESSource( "LXXXCorrectionService",
     appendToDataLabel = cms.string( "" ),
@@ -3875,12 +3855,6 @@ process.hltIterativeCone5CaloJetsRegional = cms.EDProducer( "FastjetJetProducer"
     doRhoFastjet = cms.bool( False ),
     subtractorName = cms.string( "" ),
     sumRecHits = cms.bool( False )
-)
-process.hltMCJetCorJetIcone5Regional = cms.EDProducer( "CaloJetCorrectionProducer",
-    src = cms.InputTag( "hltIterativeCone5CaloJetsRegional" ),
-    verbose = cms.untracked.bool( False ),
-    alias = cms.untracked.string( "corJetIcone5" ),
-    correctors = cms.vstring( 'hltESSMCJetCorrectorIcone5' )
 )
 process.hltDoubleJet15UForwardBackward = cms.EDFilter( "HLTForwardBackwardJetsFilter",
     inputTag = cms.InputTag( "hltIterativeCone5CaloJetsRegional" ),
@@ -17979,7 +17953,7 @@ process.HLTDoCaloSequence = cms.Sequence( process.hltEcalRawToRecHitFacility + p
 process.HLTRecoJetSequenceU = cms.Sequence( process.HLTDoCaloSequence + process.hltIterativeCone5CaloJets + process.hltMCJetCorJetIcone5HF07 )
 process.HLTHcalNoiseSequence = cms.Sequence( process.hltHcalNoiseInfoProducer + process.hltHcalMETNoiseFilter )
 process.HLTDoRegionalJetEcalSequence = cms.Sequence( process.hltEcalRawToRecHitFacility + process.hltEcalRegionalJetsFEDs + process.hltEcalRegionalJetsRecHit )
-process.HLTRecoJetRegionalSequence = cms.Sequence( process.HLTDoRegionalJetEcalSequence + process.HLTDoLocalHcalSequence + process.hltTowerMakerForJets + process.hltIterativeCone5CaloJetsRegional + process.hltMCJetCorJetIcone5Regional )
+process.HLTRecoJetRegionalSequence = cms.Sequence( process.HLTDoRegionalJetEcalSequence + process.HLTDoLocalHcalSequence + process.hltTowerMakerForJets + process.hltIterativeCone5CaloJetsRegional )
 process.HLTRecoMETSequence = cms.Sequence( process.HLTDoCaloSequence + process.hltMet )
 process.HLTRSequence = cms.Sequence( process.HLTRecoJetSequenceU + process.HLTRecoMETSequence + process.hltRHemisphere )
 process.HLTDoJet20UHTRecoSequence = cms.Sequence( process.hltJet20UHt )

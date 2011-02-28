@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_11_0/HIon/V11 (CMSSW_3_11_0_HLT8)
+# /dev/CMSSW_3_11_0/HIon/V12 (CMSSW_3_11_0_HLT8)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_11_0/HIon/V11')
+  tableName = cms.string('/dev/CMSSW_3_11_0/HIon/V12')
 )
 
 streams = cms.PSet( 
@@ -200,26 +200,6 @@ hltESSHcalSeverityLevel = cms.ESSource( "EmptyESSource",
   iovIsRunNotTime = cms.bool( True ),
   appendToDataLabel = cms.string( "" ),
   firstValid = cms.vuint32( 1 )
-)
-hltESSL2RelativeCorrectionService = cms.ESSource( "LXXXCorrectionService",
-  appendToDataLabel = cms.string( "" ),
-  level = cms.string( "L2Relative" ),
-  algorithm = cms.string( "IC5Calo" ),
-  section = cms.string( "" ),
-  era = cms.string( "Summer09_7TeV_ReReco332" )
-)
-hltESSL3AbsoluteCorrectionService = cms.ESSource( "LXXXCorrectionService",
-  appendToDataLabel = cms.string( "" ),
-  level = cms.string( "L3Absolute" ),
-  algorithm = cms.string( "IC5Calo" ),
-  section = cms.string( "" ),
-  era = cms.string( "Summer09_7TeV_ReReco332" )
-)
-hltESSMCJetCorrectorIcone5 = cms.ESSource( "JetCorrectionServiceChain",
-  appendToDataLabel = cms.string( "" ),
-  correctors = cms.vstring( 'hltESSL2RelativeCorrectionService',
-    'hltESSL3AbsoluteCorrectionService' ),
-  label = cms.string( "hltESSMCJetCorrectorIcone5" )
 )
 hltESSMCJetCorrectorIcone5HF07 = cms.ESSource( "LXXXCorrectionService",
   appendToDataLabel = cms.string( "" ),
