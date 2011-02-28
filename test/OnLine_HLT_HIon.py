@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_11_0/HIon/V7 (CMSSW_3_11_0_pre5_HLT5)
+# /dev/CMSSW_3_11_0/HIon/V11 (CMSSW_3_11_0_HLT8)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_11_0/HIon/V7')
+  tableName = cms.string('/dev/CMSSW_3_11_0/HIon/V11')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -710,12 +710,12 @@ process.hcalRecAlgos = cms.ESProducer( "HcalRecAlgoESProducer",
         'HcalCellDead' )
     )
   ),
+  RecoveredRecHitBits = cms.vstring( 'TimingAddedBit',
+    'TimingSubtractedBit' ),
   appendToDataLabel = cms.string( "" ),
   DropChannelStatusBits = cms.vstring( 'HcalCellMask',
     'HcalCellOff',
-    'HcalCellDead' ),
-  RecoveredRecHitBits = cms.vstring( 'TimingAddedBit',
-    'TimingSubtractedBit' )
+    'HcalCellDead' )
 )
 process.hcal_db_producer = cms.ESProducer( "HcalDbProducer",
   appendToDataLabel = cms.string( "" )
@@ -3071,6 +3071,7 @@ process.hltCorrectedIslandBarrelSuperClustersHI = cms.EDProducer( "EgammaSCCorre
     rawSuperClusterProducer = cms.InputTag( 'hltIslandSuperClustersHI','islandBarrelSuperClustersHI' ),
     superClusterAlgo = cms.string( "Island" ),
     applyEnergyCorrection = cms.bool( False ),
+    applyCrackCorrection = cms.bool( False ),
     sigmaElectronicNoise = cms.double( 0.15 ),
     etThresh = cms.double( 0.0 ),
     corectedSuperClusterCollection = cms.string( "" ),
@@ -3090,6 +3091,7 @@ process.hltCorrectedIslandEndcapSuperClustersHI = cms.EDProducer( "EgammaSCCorre
     rawSuperClusterProducer = cms.InputTag( 'hltIslandSuperClustersHI','islandEndcapSuperClustersHI' ),
     superClusterAlgo = cms.string( "Island" ),
     applyEnergyCorrection = cms.bool( False ),
+    applyCrackCorrection = cms.bool( False ),
     sigmaElectronicNoise = cms.double( 0.15 ),
     etThresh = cms.double( 0.0 ),
     corectedSuperClusterCollection = cms.string( "" ),
@@ -3296,6 +3298,7 @@ process.hltCorrectedHybridSuperClustersL1Isolated = cms.EDProducer( "EgammaSCCor
     rawSuperClusterProducer = cms.InputTag( "hltHybridSuperClustersL1Isolated" ),
     superClusterAlgo = cms.string( "Hybrid" ),
     applyEnergyCorrection = cms.bool( True ),
+    applyCrackCorrection = cms.bool( False ),
     sigmaElectronicNoise = cms.double( 0.03 ),
     etThresh = cms.double( 1.0 ),
     corectedSuperClusterCollection = cms.string( "" ),
@@ -3385,6 +3388,7 @@ process.hltCorrectedMulti5x5EndcapSuperClustersWithPreshowerL1Isolated = cms.EDP
     rawSuperClusterProducer = cms.InputTag( "hltMulti5x5EndcapSuperClustersWithPreshowerL1Isolated" ),
     superClusterAlgo = cms.string( "Multi5x5" ),
     applyEnergyCorrection = cms.bool( True ),
+    applyCrackCorrection = cms.bool( False ),
     sigmaElectronicNoise = cms.double( 0.15 ),
     etThresh = cms.double( 1.0 ),
     corectedSuperClusterCollection = cms.string( "" ),
@@ -3443,6 +3447,7 @@ process.hltCorrectedHybridSuperClustersL1NonIsolatedTemp = cms.EDProducer( "Egam
     rawSuperClusterProducer = cms.InputTag( "hltHybridSuperClustersL1NonIsolated" ),
     superClusterAlgo = cms.string( "Hybrid" ),
     applyEnergyCorrection = cms.bool( True ),
+    applyCrackCorrection = cms.bool( False ),
     sigmaElectronicNoise = cms.double( 0.03 ),
     etThresh = cms.double( 1.0 ),
     corectedSuperClusterCollection = cms.string( "" ),
@@ -3537,6 +3542,7 @@ process.hltCorrectedMulti5x5EndcapSuperClustersWithPreshowerL1NonIsolatedTemp = 
     rawSuperClusterProducer = cms.InputTag( "hltMulti5x5EndcapSuperClustersWithPreshowerL1NonIsolated" ),
     superClusterAlgo = cms.string( "Multi5x5" ),
     applyEnergyCorrection = cms.bool( True ),
+    applyCrackCorrection = cms.bool( False ),
     sigmaElectronicNoise = cms.double( 0.15 ),
     etThresh = cms.double( 1.0 ),
     corectedSuperClusterCollection = cms.string( "" ),
@@ -3751,8 +3757,12 @@ process.hltTowerMakerForHcal = cms.EDProducer( "CaloTowersCreator",
 )
 process.hltHcalTowerFilter = cms.EDFilter( "HLTHcalTowerFilter",
     inputTag = cms.InputTag( "hltTowerMakerForHcal" ),
-    MinE = cms.double( 5.0 ),
-    MaxN = cms.int32( 10 )
+    MinE_HB = cms.double( 1.5 ),
+    MinE_HE = cms.double( 2.5 ),
+    MinE_HF = cms.double( 9.0 ),
+    MaxN_HB = cms.int32( 2 ),
+    MaxN_HE = cms.int32( 2 ),
+    MaxN_HF = cms.int32( 8 )
 )
 process.hltL1sHIJet35U = cms.EDFilter( "HLTLevel1GTSeed",
     L1UseL1TriggerObjectMaps = cms.bool( True ),
