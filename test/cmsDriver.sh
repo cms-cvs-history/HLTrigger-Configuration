@@ -31,7 +31,7 @@ foreach gtag ( STARTUP MC )
     set GTAG   = $GTAGPPMC
     set GTAGPP = $GTAGPPMC
     set GTAGHI = $GTAGHIMC
-    set XL1THI = "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2010_v2_mc,L1GtTriggerMenuRcd,sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_CollisionsHeavyIons2010_v2_mc.db"
+    set XL1THI = "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2010_v2_mc,L1GtTriggerMenuRcd,sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/L1Menu_CollisionsHeavyIons2010_v2/sqlFile/L1Menu_CollisionsHeavyIons2010_v2_mc.db"
   else
     # unsupported
     continue
