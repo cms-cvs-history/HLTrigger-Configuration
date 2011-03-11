@@ -4988,7 +4988,7 @@ if 'GlobalTag' in process.__dict__:
         cms.PSet(  
             record  = cms.string( "L1GtTriggerMenuRcd" ),
             tag     = cms.string( "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2010_v2_mc" ),
-            connect = cms.untracked.string( "sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/sqlFile/L1Menu_CollisionsHeavyIons2010_v2_mc.db" )
+            connect = cms.untracked.string( "frontier://FrontierProd/CMS_COND_31X_L1T" )
         )
     )
 
