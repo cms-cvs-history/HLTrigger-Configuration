@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_11_0/GRun/V12 (CMSSW_3_11_0_HLT8)
+# /dev/CMSSW_3_11_0/GRun/V16 (CMSSW_3_11_0_HLT18)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_11_0/GRun/V12')
+  tableName = cms.string('/dev/CMSSW_3_11_0/GRun/V16')
 )
 
 process.options = cms.untracked.PSet(  Rethrow = cms.untracked.vstring( 'ProductNotFound',
@@ -3134,7 +3134,9 @@ process.hltHbhereco = cms.EDProducer( "HcalHitReconstructor",
       flagsToSkip = cms.int32( 24 ),
       isS8S1 = cms.bool( False )
     ),
-    firstAuxOffset = cms.int32( 0 )
+    firstAuxOffset = cms.int32( 0 ),
+    firstAuxTS = cms.int32( 4 ),
+    tsFromDB = cms.bool( False )
 )
 process.hltHfreco = cms.EDProducer( "HcalHitReconstructor",
     firstSample = cms.int32( 4 ),
@@ -3237,7 +3239,9 @@ process.hltHfreco = cms.EDProducer( "HcalHitReconstructor",
       flagsToSkip = cms.int32( 24 ),
       isS8S1 = cms.bool( False )
     ),
-    firstAuxOffset = cms.int32( 0 )
+    firstAuxOffset = cms.int32( 0 ),
+    firstAuxTS = cms.int32( 4 ),
+    tsFromDB = cms.bool( False )
 )
 process.hltHoreco = cms.EDProducer( "HcalHitReconstructor",
     firstSample = cms.int32( 4 ),
@@ -3325,7 +3329,9 @@ process.hltHoreco = cms.EDProducer( "HcalHitReconstructor",
       flagsToSkip = cms.int32( 24 ),
       isS8S1 = cms.bool( False )
     ),
-    firstAuxOffset = cms.int32( 0 )
+    firstAuxOffset = cms.int32( 0 ),
+    firstAuxTS = cms.int32( 4 ),
+    tsFromDB = cms.bool( False )
 )
 process.hltTowerMakerForAll = cms.EDProducer( "CaloTowersCreator",
     EBThreshold = cms.double( 0.07 ),
@@ -3907,7 +3913,7 @@ process.hltDiJet20UMeff180U = cms.EDFilter( "HLTMhtHtFilter",
     minPT12 = cms.double( 0.0 ),
     minMeff = cms.double( 180.0 ),
     minHt = cms.double( 0.0 ),
-    minMht2Ht = cms.double( 0.0 ),
+    minAlphaT = cms.double( 0.0 ),
     minPtJet = cms.vdouble( 20.0, 20.0 ),
     etaJet = cms.vdouble( 9999.0, 9999.0 )
 )
@@ -3924,7 +3930,7 @@ process.hltDiJet50UPT50U = cms.EDFilter( "HLTMhtHtFilter",
     minPT12 = cms.double( 50.0 ),
     minMeff = cms.double( 0.0 ),
     minHt = cms.double( 0.0 ),
-    minMht2Ht = cms.double( 0.0 ),
+    minAlphaT = cms.double( 0.0 ),
     minPtJet = cms.vdouble( 50.0, 50.0 ),
     etaJet = cms.vdouble( 9999.0, 9999.0 )
 )
@@ -6667,6 +6673,7 @@ process.hltDoubleMu0QuarkoniumL3PreFiltered = cms.EDFilter( "HLTMuonDimuonL3Filt
     MaxPtBalance = cms.double( 999999.0 ),
     NSigmaPt = cms.double( 0.0 ),
     MaxDzMuMu = cms.double( 999999.0 ),
+    MaxRapidityPair = cms.double( 999999.0 ),
     SaveTag = cms.untracked.bool( True )
 )
 process.hltPreDoubleMu3 = cms.EDFilter( "HLTPrescaler",
@@ -16308,8 +16315,8 @@ process.hltPreDQMSmart = cms.EDFilter( "TriggerResultsFilter",
       'HLT_L1_BptxXOR_BscMinBiasOR',
       'HLT_L2DoubleMu0',
       'HLT_L2DoubleMu20_NoVertex_v1',
-      'HLT_L2Mu0_NoVertex',
-      'HLT_L2Mu30_v1',
+      'FALSE_NoVertex',
+      'FALSE0_v1',
       'HLT_L2Mu7_v1',
       'HLT_LogMonitor',
       'HLT_MET100_v3',
@@ -16511,8 +16518,8 @@ process.hltPreHLTDQMSmart = cms.EDFilter( "TriggerResultsFilter",
       'HLT_L1_BptxXOR_BscMinBiasOR',
       'HLT_L2DoubleMu0',
       'HLT_L2DoubleMu20_NoVertex_v1',
-      'HLT_L2Mu0_NoVertex',
-      'HLT_L2Mu30_v1',
+      'FALSE_NoVertex',
+      'FALSE0_v1',
       'HLT_L2Mu7_v1',
       'HLT_LogMonitor',
       'HLT_MET100_v3',
@@ -16600,7 +16607,7 @@ process.hltPreHLTDQMResults = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" )
 )
 process.hltPreHLTDQMResultsSmart = cms.EDFilter( "TriggerResultsFilter",
-    triggerConditions = cms.vstring( 'HLT_*' ),
+    triggerConditions = cms.vstring( 'FALSE*' ),
     hltResults = cms.InputTag( "TriggerResults" ),
     l1tResults = cms.InputTag( "" ),
     l1tIgnoreMask = cms.bool( False ),
@@ -16726,8 +16733,8 @@ process.hltPreHLTMONSmart = cms.EDFilter( "TriggerResultsFilter",
       'HLT_L1_BptxXOR_BscMinBiasOR',
       'HLT_L2DoubleMu0',
       'HLT_L2DoubleMu20_NoVertex_v1',
-      'HLT_L2Mu0_NoVertex',
-      'HLT_L2Mu30_v1',
+      'FALSE_NoVertex',
+      'FALSE0_v1',
       'HLT_L2Mu7_v1',
       'HLT_LogMonitor',
       'HLT_MET100_v3',

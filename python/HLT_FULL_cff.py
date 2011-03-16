@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_11_0/HLT/V22 (CMSSW_3_11_0_HLT8)
+# /dev/CMSSW_3_11_0/HLT/V26 (CMSSW_3_11_0_HLT18)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_11_0/HLT/V22')
+  tableName = cms.string('/dev/CMSSW_3_11_0/HLT/V26')
 )
 
 streams = cms.PSet( 
@@ -2554,7 +2554,9 @@ hltHbhereco = cms.EDProducer( "HcalHitReconstructor",
       flagsToSkip = cms.int32( 24 ),
       isS8S1 = cms.bool( False )
     ),
-    firstAuxOffset = cms.int32( 0 )
+    firstAuxOffset = cms.int32( 0 ),
+    firstAuxTS = cms.int32( 4 ),
+    tsFromDB = cms.bool( False )
 )
 hltHfreco = cms.EDProducer( "HcalHitReconstructor",
     firstSample = cms.int32( 4 ),
@@ -2657,7 +2659,9 @@ hltHfreco = cms.EDProducer( "HcalHitReconstructor",
       flagsToSkip = cms.int32( 24 ),
       isS8S1 = cms.bool( False )
     ),
-    firstAuxOffset = cms.int32( 0 )
+    firstAuxOffset = cms.int32( 0 ),
+    firstAuxTS = cms.int32( 4 ),
+    tsFromDB = cms.bool( False )
 )
 hltHoreco = cms.EDProducer( "HcalHitReconstructor",
     firstSample = cms.int32( 4 ),
@@ -2745,7 +2749,9 @@ hltHoreco = cms.EDProducer( "HcalHitReconstructor",
       flagsToSkip = cms.int32( 24 ),
       isS8S1 = cms.bool( False )
     ),
-    firstAuxOffset = cms.int32( 0 )
+    firstAuxOffset = cms.int32( 0 ),
+    firstAuxTS = cms.int32( 4 ),
+    tsFromDB = cms.bool( False )
 )
 hltTowerMakerForAll = cms.EDProducer( "CaloTowersCreator",
     EBThreshold = cms.double( 0.07 ),
@@ -3327,7 +3333,7 @@ hltDiJet20UMeff180U = cms.EDFilter( "HLTMhtHtFilter",
     minPT12 = cms.double( 0.0 ),
     minMeff = cms.double( 180.0 ),
     minHt = cms.double( 0.0 ),
-    minMht2Ht = cms.double( 0.0 ),
+    minAlphaT = cms.double( 0.0 ),
     minPtJet = cms.vdouble( 20.0, 20.0 ),
     etaJet = cms.vdouble( 9999.0, 9999.0 )
 )
@@ -3344,7 +3350,7 @@ hltDiJet50UPT50U = cms.EDFilter( "HLTMhtHtFilter",
     minPT12 = cms.double( 50.0 ),
     minMeff = cms.double( 0.0 ),
     minHt = cms.double( 0.0 ),
-    minMht2Ht = cms.double( 0.0 ),
+    minAlphaT = cms.double( 0.0 ),
     minPtJet = cms.vdouble( 50.0, 50.0 ),
     etaJet = cms.vdouble( 9999.0, 9999.0 )
 )
@@ -6319,6 +6325,7 @@ hltDoubleMu0QuarkoniumL3PreFiltered = cms.EDFilter( "HLTMuonDimuonL3Filter",
     MaxPtBalance = cms.double( 999999.0 ),
     NSigmaPt = cms.double( 0.0 ),
     MaxDzMuMu = cms.double( 999999.0 ),
+    MaxRapidityPair = cms.double( 999999.0 ),
     SaveTag = cms.untracked.bool( True )
 )
 hltPreDoubleMu0QuarkLS = cms.EDFilter( "HLTPrescaler",
@@ -6345,6 +6352,7 @@ hltDoubleMu0QuarkoniumLSL3PreFiltered = cms.EDFilter( "HLTMuonDimuonL3Filter",
     MaxPtBalance = cms.double( 999999.0 ),
     NSigmaPt = cms.double( 0.0 ),
     MaxDzMuMu = cms.double( 999999.0 ),
+    MaxRapidityPair = cms.double( 999999.0 ),
     SaveTag = cms.untracked.bool( True )
 )
 hltPreDoubleMu3 = cms.EDFilter( "HLTPrescaler",

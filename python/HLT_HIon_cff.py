@@ -1,10 +1,10 @@
-# /dev/CMSSW_3_11_0/HIon/V12 (CMSSW_3_11_0_HLT8)
+# /dev/CMSSW_3_11_0/HIon/V16 (CMSSW_3_11_0_HLT18)
 
 import FWCore.ParameterSet.Config as cms
 
 
 HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_11_0/HIon/V12')
+  tableName = cms.string('/dev/CMSSW_3_11_0/HIon/V16')
 )
 
 streams = cms.PSet( 
@@ -2316,7 +2316,9 @@ hltHbhereco = cms.EDProducer( "HcalHitReconstructor",
       flagsToSkip = cms.int32( 24 ),
       isS8S1 = cms.bool( False )
     ),
-    firstAuxOffset = cms.int32( 0 )
+    firstAuxOffset = cms.int32( 0 ),
+    firstAuxTS = cms.int32( 4 ),
+    tsFromDB = cms.bool( False )
 )
 hltHfreco = cms.EDProducer( "HcalHitReconstructor",
     firstSample = cms.int32( 4 ),
@@ -2419,7 +2421,9 @@ hltHfreco = cms.EDProducer( "HcalHitReconstructor",
       flagsToSkip = cms.int32( 24 ),
       isS8S1 = cms.bool( False )
     ),
-    firstAuxOffset = cms.int32( 0 )
+    firstAuxOffset = cms.int32( 0 ),
+    firstAuxTS = cms.int32( 4 ),
+    tsFromDB = cms.bool( False )
 )
 hltHoreco = cms.EDProducer( "HcalHitReconstructor",
     firstSample = cms.int32( 4 ),
@@ -2507,7 +2511,9 @@ hltHoreco = cms.EDProducer( "HcalHitReconstructor",
       flagsToSkip = cms.int32( 24 ),
       isS8S1 = cms.bool( False )
     ),
-    firstAuxOffset = cms.int32( 0 )
+    firstAuxOffset = cms.int32( 0 ),
+    firstAuxTS = cms.int32( 4 ),
+    tsFromDB = cms.bool( False )
 )
 hltTowerMakerForAll = cms.EDProducer( "CaloTowersCreator",
     EBThreshold = cms.double( 0.07 ),
