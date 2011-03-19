@@ -1,11 +1,11 @@
-# /dev/CMSSW_3_11_1/GRun/V84 (CMSSW_3_11_0_HLT18)
+# /dev/CMSSW_3_11_1/GRun/V85 (CMSSW_3_11_0_HLT18)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/dev/CMSSW_3_11_1/GRun/V84')
+  tableName = cms.string('/dev/CMSSW_3_11_1/GRun/V85')
 )
 
 process.streams = cms.PSet( 
@@ -12562,8 +12562,8 @@ process.hltEle17CaloIdVTCaloIsoVTTrkIdTTrkIsoVTSC8PMMassFilter = cms.EDFilter( "
     isElectron1 = cms.untracked.bool( False ),
     isElectron2 = cms.untracked.bool( False ),
     SaveTag = cms.untracked.bool( True ),
-    L1IsoCand = cms.InputTag( "hltPixelMatchStartUpWindowElectronsL1IsoLowPt" ),
-    L1NonIsoCand = cms.InputTag( "hltPixelMatchStartUpWindowElectronsL1NonIsoLowPt" )
+    L1IsoCand = cms.InputTag( "hltRecoEcalSuperClusterActivityCandidate" ),
+    L1NonIsoCand = cms.InputTag( "" )
 )
 process.hltPreEle17CaloIdTTrkIdTCaloIsoVLTrkIsoVLEle8CaloIdTTrkIdTCaloIsoVLTrkIsoVL = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtDigis" )
