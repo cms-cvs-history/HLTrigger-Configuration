@@ -1,3 +1,4 @@
+HLT_Activity_Ecal_SC7_v*
 HLT_L1SingleJet36_v*
 HLT_Jet30_v*
 HLT_Jet60_v*
