@@ -21799,7 +21799,8 @@ process.options = cms.untracked.PSet(
 if 'GlobalTag' in process.__dict__:
     process.GlobalTag.connect   = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'
     process.GlobalTag.pfnPrefix = cms.untracked.string('frontier://FrontierProd/')
-    process.GlobalTag.globaltag = 'L1HLTST311_V0::All'
+    from Configuration.PyReleaseValidation.autoCond import autoCond
+    process.GlobalTag.globaltag = autoCond['startup']
 
 # override the L1 menu
 if 'GlobalTag' in process.__dict__:
@@ -21808,7 +21809,7 @@ if 'GlobalTag' in process.__dict__:
             record  = cms.string( 'L1GtTriggerMenuRcd' ),
             tag     = cms.string( 'L1GtTriggerMenu_L1Menu_Collisions2011_v1_mc' ),
             label   = cms.untracked.string( '' ),
-            connect = cms.untracked.string( 'sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/L1Menu_Collisions2011_v1/sqlFile/L1Menu_Collisions2011_v1_mc.db' )
+            connect = cms.untracked.string( 'frontier://FrontierProd/CMS_COND_31X_L1T' )
         )
     )
 

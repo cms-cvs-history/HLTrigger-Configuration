@@ -62,16 +62,16 @@ function getDatasetsForCVS() {
 function getConfigForOnline() {
   local CONFIG="$1"
   local NAME="$2"
-  local L1T="L1Menu_Collisions2010_v0"
-  local L1TPP="L1GtTriggerMenu_L1Menu_Collisions2011_v1_mc,sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/L1Menu_Collisions2011_v1/sqlFile/L1Menu_Collisions2011_v1_mc.db"
-  local L1THI="L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2010_v2_mc"
 # local L1T="tag[,connect]" - record is hardwired as L1GtTriggerMenuRcd
+  local L1TPP="L1GtTriggerMenu_L1Menu_Collisions2011_v1_mc,frontier://FrontierProd/CMS_COND_31X_L1T"
+  local L1THI="L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2010_v2_mc"
+
 
   log "    dumping full HLT for $NAME"
   # override L1 menus
   if [ "$NAME" == "GRun" ]; then
-    hltGetConfiguration --full --offline --data $CONFIG --type $NAME --unprescale --process HLT$NAME --l1 $L1TPP --globaltag GRP311L1HLTV0::All > OnData_HLT_$NAME.py
-    hltGetConfiguration --full --offline --mc   $CONFIG --type $NAME --unprescale --process HLT$NAME --l1 $L1TPP --globaltag L1HLTST311_V0::All > OnLine_HLT_$NAME.py 
+    hltGetConfiguration --full --offline --data $CONFIG --type $NAME --unprescale --process HLT$NAME --l1 $L1TPP --globaltag GR_H_V14::All      > OnData_HLT_$NAME.py
+    hltGetConfiguration --full --offline --mc   $CONFIG --type $NAME --unprescale --process HLT$NAME --l1 $L1TPP --globaltag auto:startup       > OnLine_HLT_$NAME.py 
   elif [ "$NAME" == "HIon" ]; then
     hltGetConfiguration --full --offline --data $CONFIG --type $NAME --unprescale --process HLT$NAME --l1 $L1THI --globaltag auto:hltonline     > OnData_HLT_$NAME.py
     hltGetConfiguration --full --offline --mc   $CONFIG --type $NAME --unprescale --process HLT$NAME --l1 $L1THI --globaltag auto:starthi       > OnLine_HLT_$NAME.py
