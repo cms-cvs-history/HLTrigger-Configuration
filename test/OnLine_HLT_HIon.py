@@ -5157,9 +5157,6 @@ process.setName_('HLTHIon')
 if 'hltTrigReport' in process.__dict__:
     process.hltTrigReport.HLTriggerResults       = cms.InputTag( 'TriggerResults', '', 'HLTHIon' )
 
-if 'hltDQMHLTScalers' in process.__dict__:
-    process.hltDQMHLTScalers.triggerResults      = cms.InputTag( 'TriggerResults', '', 'HLTHIon' )
-
 if 'hltPreExpressSmart' in process.__dict__:
     process.hltPreExpressSmart.TriggerResultsTag = cms.InputTag( 'TriggerResults', '', 'HLTHIon' )
 
@@ -5168,6 +5165,10 @@ if 'hltPreHLTMONSmart' in process.__dict__:
 
 if 'hltPreDQMSmart' in process.__dict__:
     process.hltPreDQMSmart.TriggerResultsTag     = cms.InputTag( 'TriggerResults', '', 'HLTHIon' )
+
+if 'hltDQMHLTScalers' in process.__dict__:
+    process.hltDQMHLTScalers.triggerResults      = cms.InputTag( 'TriggerResults', '', 'HLTHIon' )
+    process.hltDQMHLTScalers.processname         = 'HLTHIon'
 
 if 'hltDQML1SeedLogicScalers' in process.__dict__:
     process.hltDQML1SeedLogicScalers.processname = 'HLTHIon'

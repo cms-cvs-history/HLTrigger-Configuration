@@ -21966,9 +21966,6 @@ process.setName_('HLTGRun')
 if 'hltTrigReport' in process.__dict__:
     process.hltTrigReport.HLTriggerResults       = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
 
-if 'hltDQMHLTScalers' in process.__dict__:
-    process.hltDQMHLTScalers.triggerResults      = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
-
 if 'hltPreExpressSmart' in process.__dict__:
     process.hltPreExpressSmart.TriggerResultsTag = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
 
@@ -21977,6 +21974,10 @@ if 'hltPreHLTMONSmart' in process.__dict__:
 
 if 'hltPreDQMSmart' in process.__dict__:
     process.hltPreDQMSmart.TriggerResultsTag     = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
+
+if 'hltDQMHLTScalers' in process.__dict__:
+    process.hltDQMHLTScalers.triggerResults      = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
+    process.hltDQMHLTScalers.processname         = 'HLTGRun'
 
 if 'hltDQML1SeedLogicScalers' in process.__dict__:
     process.hltDQML1SeedLogicScalers.processname = 'HLTGRun'
