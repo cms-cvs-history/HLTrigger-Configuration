@@ -1,4 +1,4 @@
-# /dev/CMSSW_4_2_0/GRun/V4
+# /dev/CMSSW_4_2_0/GRun/V6
 
 import FWCore.ParameterSet.Config as cms
 
@@ -15,6 +15,7 @@ streamA_datasetCommissioning_selector.triggerConditions = cms.vstring('HLT_Activ
     'HLT_IsoTrackHE_v3', 
     'HLT_L1SingleEG12_v1', 
     'HLT_L1SingleEG5_v1', 
+    'HLT_L1SingleJet16_v1', 
     'HLT_L1SingleJet36_v1', 
     'HLT_L1SingleMuOpen_DT_v1', 
     'HLT_L1SingleMuOpen_v1', 
@@ -47,6 +48,10 @@ streamA_datasetDoubleElectron_selector.triggerConditions = cms.vstring('HLT_Doub
     'HLT_Ele17_CaloIdT_TrkIdVL_CaloIsoVL_TrkIsoVL_Ele8_CaloIdT_TrkIdVL_CaloIsoVL_TrkIsoVL_v2', 
     'HLT_Ele17_CaloIdVT_CaloIsoVT_TrkIdT_TrkIsoVT_SC8_Mass30_v2', 
     'HLT_Ele32_CaloIdL_CaloIsoVL_SC17_v2', 
+    'HLT_Ele8_CaloIdL_CaloIsoVL_Jet40_v2', 
+    'HLT_Ele8_CaloIdL_CaloIsoVL_v2', 
+    'HLT_Ele8_CaloIdL_TrkIdVL_v2', 
+    'HLT_Ele8_v2', 
     'HLT_Photon20_CaloIdVT_IsoT_Ele8_CaloIdL_CaloIsoVL_v2', 
     'HLT_TripleEle10_CaloIdL_TrkIdVL_v2')
 
@@ -70,6 +75,7 @@ streamA_datasetElectronHad_selector.l1tResults = cms.InputTag('')
 streamA_datasetElectronHad_selector.throw      = cms.bool(False)
 streamA_datasetElectronHad_selector.triggerConditions = cms.vstring('HLT_DoubleEle8_CaloIdL_TrkIdVL_HT150_v1', 
     'HLT_DoubleEle8_CaloIdT_TrkIdVL_HT150_v1', 
+    'HLT_Ele10_CaloIdL_CaloIsoVL_TrkIdVL_TrkIsoVL_HT200_v3', 
     'HLT_Ele10_CaloIdT_CaloIsoVL_TrkIdT_TrkIsoVL_HT200_v3', 
     'HLT_Ele15_CaloIdVT_CaloIsoT_TrkIdT_TrkIsoT_Jet35_Jet25_Deta2_v1', 
     'HLT_Ele15_CaloIdVT_CaloIsoT_TrkIdT_TrkIsoT_Jet35_Jet25_Deta3_v1', 
@@ -140,18 +146,20 @@ from HLTrigger.HLTfilters.triggerResultsFilter_cfi import triggerResultsFilter a
 streamA_datasetJet_selector.hltResults = cms.InputTag('TriggerResults', '', 'HLT')
 streamA_datasetJet_selector.l1tResults = cms.InputTag('')
 streamA_datasetJet_selector.throw      = cms.bool(False)
-streamA_datasetJet_selector.triggerConditions = cms.vstring('HLT_DiJetAve100U_v4', 
-    'HLT_DiJetAve140U_v4', 
-    'HLT_DiJetAve15U_v4', 
-    'HLT_DiJetAve180U_v4', 
-    'HLT_DiJetAve300U_v4', 
-    'HLT_DiJetAve30U_v4', 
-    'HLT_DiJetAve50U_v4', 
-    'HLT_DiJetAve70U_v4', 
+streamA_datasetJet_selector.triggerConditions = cms.vstring('HLT_DiJetAve110_v1', 
+    'HLT_DiJetAve150_v1', 
+    'HLT_DiJetAve190_v1', 
+    'HLT_DiJetAve240_v1', 
+    'HLT_DiJetAve300_v1', 
+    'HLT_DiJetAve30_v1', 
+    'HLT_DiJetAve370_v1', 
+    'HLT_DiJetAve60_v1', 
+    'HLT_DiJetAve80_v1', 
     'HLT_Jet110_v1', 
     'HLT_Jet150_v1', 
     'HLT_Jet190_v1', 
     'HLT_Jet240_v1', 
+    'HLT_Jet300_v1', 
     'HLT_Jet30_v1', 
     'HLT_Jet370_NoJetID_v1', 
     'HLT_Jet370_v1', 

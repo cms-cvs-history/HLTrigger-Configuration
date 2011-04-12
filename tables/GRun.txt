@@ -1,4 +1,5 @@
 HLT_Activity_Ecal_SC7_v*
+HLT_L1SingleJet16_v*
 HLT_L1SingleJet36_v*
 HLT_Jet30_v*
 HLT_Jet60_v*
@@ -7,16 +8,18 @@ HLT_Jet110_v*
 HLT_Jet150_v*
 HLT_Jet190_v*
 HLT_Jet240_v*
+HLT_Jet300_v*
 HLT_Jet370_v*
 HLT_Jet370_NoJetID_v*
-HLT_DiJetAve15U_v*
-HLT_DiJetAve30U_v*
-HLT_DiJetAve50U_v*
-HLT_DiJetAve70U_v*
-HLT_DiJetAve100U_v*
-HLT_DiJetAve140U_v*
-HLT_DiJetAve180U_v*
-HLT_DiJetAve300U_v*
+HLT_DiJetAve30_v*
+HLT_DiJetAve60_v*
+HLT_DiJetAve80_v*
+HLT_DiJetAve110_v*
+HLT_DiJetAve150_v*
+HLT_DiJetAve190_v*
+HLT_DiJetAve240_v*
+HLT_DiJetAve300_v*
+HLT_DiJetAve370_v*
 HLT_DoubleJet30_ForwardBackward_v*
 HLT_DoubleJet60_ForwardBackward_v*
 HLT_DoubleJet70_ForwardBackward_v*
@@ -139,9 +142,9 @@ HLT_DoublePhoton33_v*
 HLT_DoublePhoton5_IsoVL_CEP_v*
 HLT_L1SingleEG5_v*
 HLT_L1SingleEG12_v*
-# HLT_Ele8_v*
-# HLT_Ele8_CaloIdL_CaloIsoVL_v*
-# HLT_Ele8_CaloIdL_TrkIdVL_v*
+HLT_Ele8_v*
+HLT_Ele8_CaloIdL_CaloIsoVL_v*
+HLT_Ele8_CaloIdL_TrkIdVL_v*
 HLT_Ele15_CaloIdVT_CaloIsoT_TrkIdT_TrkIsoT_v*
 HLT_Ele17_CaloIdL_CaloIsoVL_v*
 HLT_Ele17_CaloIdL_CaloIsoVL_Ele8_CaloIdL_CaloIsoVL_v*
@@ -189,8 +192,8 @@ HLT_DoubleMu5_Ele8_v*
 HLT_DoubleMu5_Ele8_CaloIdL_TrkIdVL_v*
 HLT_HT200_Ele5_CaloIdVL_TrkIdVL_CaloIsoVL_TrkIsoVL_PFMHT35_v*
 HLT_HT250_Ele5_CaloIdVL_TrkIdVL_CaloIsoVL_TrkIsoVL_PFMHT35_v*
-# HLT_Ele8_CaloIdL_CaloIsoVL_Jet40_v*
-# HLT_Ele10_CaloIdL_CaloIsoVL_TrkIdVL_TrkIsoVL_HT200_v*
+HLT_Ele8_CaloIdL_CaloIsoVL_Jet40_v*
+HLT_Ele10_CaloIdL_CaloIsoVL_TrkIdVL_TrkIsoVL_HT200_v*
 HLT_Ele10_CaloIdT_CaloIsoVL_TrkIdT_TrkIsoVL_HT200_v*
 HLT_Ele15_CaloIdVT_TrkIdT_LooseIsoPFTau15_v*
 HLT_Ele15_CaloIdVT_CaloIsoT_TrkIdT_TrkIsoT_LooseIsoPFTau15_v*
