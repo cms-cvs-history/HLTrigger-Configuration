@@ -5033,6 +5033,13 @@ process.OnlineErrorsOutput = cms.EndPath( process.hltPreOnlineErrorsOutput + pro
 process.RPCMONOutput = cms.EndPath( process.hltPreRPCMONOutput )
 
 
+# HF cleaning at HLT (default in data, revert back for MC)
+if 'hcalRecAlgos' in process.__dict__:
+    process.hcalRecAlgos.SeverityLevels[3].RecHitFlags.append("HFDigiTime")
+    process.hcalRecAlgos.SeverityLevels[4].RecHitFlags.remove("HFDigiTime")
+if 'hltHfreco' in process.__dict__:
+    process.hltHfreco.setNoiseFlags = cms.bool( False )
+
 # override the process name
 process.setName_('HLTHIon')
 
