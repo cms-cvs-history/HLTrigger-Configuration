@@ -11,8 +11,8 @@ set InputFileGENSIM = rfio:/castor/cern.ch/user/g/gruen/cms/TTbarGenSim3110.root
 #set GTAGUP = FrontierConditions_GlobalTag,START36_V1::All
 #set GTAGMC = FrontierConditions_GlobalTag,MC_36Y_V1::All
 # global stags for PP and HIon running
-set GTAGPPUP = L1HLTST311_V0::All
-set GTAGPPMC = L1HLTST311_V0::All
+set GTAGPPUP = START311_V2::All
+set GTAGPPMC = MC_311_V2::All
 set GTAGHIUP = auto:starthi
 set GTAGHIMC = MC39_V4HI::All
 

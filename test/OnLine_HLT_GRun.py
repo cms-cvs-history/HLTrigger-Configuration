@@ -21785,7 +21785,7 @@ process.options = cms.untracked.PSet(
 if 'GlobalTag' in process.__dict__:
     process.GlobalTag.connect   = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'
     process.GlobalTag.pfnPrefix = cms.untracked.string('frontier://FrontierProd/')
-    process.GlobalTag.globaltag = 'L1HLTST311_V0::All'
+    process.GlobalTag.globaltag = 'START311_V2::All'
 
 # override the L1 menu
 if 'GlobalTag' in process.__dict__:
