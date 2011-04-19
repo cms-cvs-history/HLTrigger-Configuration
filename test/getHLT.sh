@@ -1,12 +1,9 @@
 #! /bin/bash
 
-# ConfDB configurations to use
-MASTER="/dev/CMSSW_4_2_0/HLT"        # no explicit version, take te most recent
-TARGET="/dev/CMSSW_4_2_0/\$TABLE"    # no explicit version, take te most recent
-TABLES="GRun HIon"                   # $TABLE in the above variable will be expanded to these TABLES
-
-# "static" configurations
-HLT5E32v62="/online/collisions/2011/5e32/v6.2/HLT"
+# ConfDB configurations to use - frozen menus for MC production
+MASTER="/dev/CMSSW_4_2_0/HLT/V1"
+HLTGRun="/online/collisions/2011/5e32/v6.2/HLT"     # in place of /dev/CMSSW_4_2_0/GRun/V1
+HLTHIon="/dev/CMSSW_4_2_0/HIon/V1"
 
 # print extra messages ?
 VERBOSE=false
@@ -101,16 +98,11 @@ hash -r
 # for things in CMSSW CVS
 echo "Extracting CVS python dumps"
 rm -f HLT*_cff.py
-getConfigForCVS  $MASTER "FULL"
-getContentForCVS $MASTER
-for TABLE in $TABLES; do
-  getConfigForCVS $(eval echo $TARGET) $TABLE
-done
-for TABLE in "GRun"; do
-  getDatasetsForCVS $(eval echo $TARGET) HLTrigger_Datasets_cff.py
-done
-# "static" menus in CVS
-getConfigForCVS $HLT5E32v62 "5E32v62" "GRun"
+getConfigForCVS   $MASTER "FULL"
+getContentForCVS  $MASTER
+getConfigForCVS   $HLTGRun "GRun"
+getConfigForCVS   $HLTHIon "HIon"
+getDatasetsForCVS $HLTGRun HLTrigger_Datasets_cff.py
 
 log "Done"
 ls -l HLT_*_cff.py HLTrigger_EventContent_cff.py HLTrigger_Datasets_cff.py
@@ -121,9 +113,8 @@ echo
 echo "Extracting full configurations"
 rm -f OnData_HLT_*.py
 rm -f OnLine_HLT_*.py
-for TABLE in $TABLES; do
-  getConfigForOnline $(eval echo $TARGET) $TABLE
-done
+getConfigForOnline $HLTGRun "GRun"
+getConfigForOnline $HLTHIon "HIon"
 log "Done"
 ls -l OnData_HLT_*.py
 ls -l OnLine_HLT_*.py
