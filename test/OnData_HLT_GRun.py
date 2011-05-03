@@ -25156,28 +25156,11 @@ process.RPCMONOutput = cms.EndPath( process.hltPreRPCMONOutput + process.hltOutp
 process.TrackerCalibrationOutput = cms.EndPath( process.hltPreTrackerCalibrationOutput + process.hltOutputTrackerCalibration )
 
 
-# Extra customisation for CMSSW 42X+ only
-process.ecalSeverityLevel = cms.ESProducer( "EcalSeverityLevelESProducer",
-    appendToDataLabel = cms.string( "" ),
-    flagMask = cms.vuint32( 1, 34, 896, 4, 49152, 6232 ),
-    dbstatusMask = cms.vuint32( 1, 2046, 0, 0, 0, 64512 ),
-    timeThresh = cms.double( 2.0 )
-)
 # Extra customisation for CMSSW 42X only
 if 'hltParticleFlowRecHitECAL' in process.__dict__:
     process.hltParticleFlowRecHitECAL.thresh_Cleaning = cms.double(2.0)
 if 'hltParticleFlowRecHitHCAL' in process.__dict__:
     process.hltParticleFlowRecHitHCAL.Max_Calib = cms.double(5.0)
-
-if 'hltParticleFlowRecHitHCAL' in process.__dict__:
-    process.hltParticleFlowRecHitHCAL.HCAL_Calib = True
-    process.hltParticleFlowRecHitHCAL.HF_Calib = True
-if 'hltParticleFlow' in process.__dict__:
-    process.hltParticleFlow.calibPFSCEle_barrel = [1.004, -1.536, 22.88, -1.467, 0.3555, 0.6227, 14.65, 2051, 25, 0.9932, -0.5444, 0, 0.5438, 0.7109, 7.645, 0.2904, 0]
-    process.hltParticleFlow.calibPFSCEle_endcap = [1.153, -16.5975, 5.668, -0.1772, 16.22, 7.326, 0.0483, -4.068, 9.406]
-if 'hltParticleFlowForTaus' in process.__dict__:
-    process.hltParticleFlowForTaus.calibPFSCEle_barrel = [1.004, -1.536, 22.88, -1.467, 0.3555, 0.6227, 14.65, 2051, 25, 0.9932, -0.5444, 0, 0.5438, 0.7109, 7.645, 0.2904, 0]
-    process.hltParticleFlowForTaus.calibPFSCEle_endcap = [1.153, -16.5975, 5.668, -0.1772, 16.22, 7.326, 0.0483, -4.068, 9.406]
 
 # override the process name
 process.setName_('HLTGRun')
@@ -25220,8 +25203,18 @@ process.options = cms.untracked.PSet(
 if 'GlobalTag' in process.__dict__:
     process.GlobalTag.connect   = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'
     process.GlobalTag.pfnPrefix = cms.untracked.string('frontier://FrontierProd/')
-    from Configuration.PyReleaseValidation.autoCond import autoCond
-    process.GlobalTag.globaltag = autoCond['hltonline']
+    process.GlobalTag.globaltag = 'GR_H_V16::All'
+
+# override the L1 menu
+if 'GlobalTag' in process.__dict__:
+    process.GlobalTag.toGet.append(
+        cms.PSet(
+            record  = cms.string( 'L1GtTriggerMenuRcd' ),
+            tag     = cms.string( 'L1GtTriggerMenu_L1Menu_Collisions2011_v1_mc' ),
+            label   = cms.untracked.string( '' ),
+            connect = cms.untracked.string( 'frontier://FrontierProd/CMS_COND_31X_L1T' )
+        )
+    )
 
 if 'MessageLogger' in process.__dict__:
     process.MessageLogger.categories.append('TriggerSummaryProducerAOD')

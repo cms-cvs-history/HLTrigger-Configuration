@@ -5122,13 +5122,6 @@ process.RPCMONOutput = cms.EndPath( process.hltPreRPCMONOutput )
 process.TrackerCalibrationOutput = cms.EndPath( process.hltPreTrackerCalibrationOutput + process.hltOutputTrackerCalibration )
 
 
-# Extra customisation for CMSSW 42X+ only
-process.ecalSeverityLevel = cms.ESProducer( "EcalSeverityLevelESProducer",
-    appendToDataLabel = cms.string( "" ),
-    flagMask = cms.vuint32( 1, 34, 896, 4, 49152, 6232 ),
-    dbstatusMask = cms.vuint32( 1, 2046, 0, 0, 0, 64512 ),
-    timeThresh = cms.double( 2.0 )
-)
 # Extra customisation for CMSSW 42X only
 if 'hltParticleFlowRecHitECAL' in process.__dict__:
     process.hltParticleFlowRecHitECAL.thresh_Cleaning = cms.double(2.0)
