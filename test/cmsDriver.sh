@@ -16,7 +16,7 @@ set GTAGPPMC = auto:mc
 set GTAGHIUP = auto:starthi
 set GTAGHIMC = MC39_V4HI::All
 
-set XJEC   = "JetCorrectorParametersCollection_Jec11_V1_AK5Calo,JetCorrectionsRecord,frontier://PromptProd/CMS_COND_31X_PHYSICSTOOLS" # ",AK5Calo"
+set XJEC   = "JetCorrectorParametersCollection_Jec11_V1_AK5Calo,JetCorrectionsRecord,frontier://PromptProd/CMS_COND_31X_PHYSICSTOOLS,AK5Calo"
 set XL1TPP = "" # syntax: tag,record[,connect]
 set XL1TPP = "" # "L1GtTriggerMenu_L1Menu_Collisions2011_v1_mc,L1GtTriggerMenuRcd,frontier://FrontierProd/CMS_COND_31X_L1T"
 set XL1TPP = $XJEC
