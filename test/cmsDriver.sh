@@ -16,8 +16,10 @@ set GTAGPPMC = auto:mc
 set GTAGHIUP = auto:starthi
 set GTAGHIMC = MC39_V4HI::All
 
+set XJEC   = "JetCorrectorParametersCollection_Jec11_V1_AK5Calo,JetCorrectionsRecord,frontier://PromptProd/CMS_COND_31X_PHYSICSTOOLS" # ",AK5Calo"
 set XL1TPP = "" # syntax: tag,record[,connect]
 set XL1TPP = "" # "L1GtTriggerMenu_L1Menu_Collisions2011_v1_mc,L1GtTriggerMenuRcd,frontier://FrontierProd/CMS_COND_31X_L1T"
+set XL1TPP = $XJEC
 
 # specific workflows, first varying the globaltags, then the hlt tables
 
@@ -26,12 +28,12 @@ foreach gtag ( STARTUP MC )
     set GTAG   = $GTAGPPUP
     set GTAGPP = $GTAGPPUP
     set GTAGHI = $GTAGHIUP
-    set XL1THI = ""
+    set XL1THI = $XJEC
   else if ( $gtag == MC ) then
     set GTAG   = $GTAGPPMC
     set GTAGPP = $GTAGPPMC
     set GTAGHI = $GTAGHIMC
-    set XL1THI = "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2010_v2_mc,L1GtTriggerMenuRcd,sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/L1Menu_CollisionsHeavyIons2010_v2/sqlFile/L1Menu_CollisionsHeavyIons2010_v2_mc.db"
+    set XL1THI = "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2010_v2_mc,L1GtTriggerMenuRcd,sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/L1Menu_CollisionsHeavyIons2010_v2/sqlFile/L1Menu_CollisionsHeavyIons2010_v2_mc.db"+$XJEC
   else
     # unsupported
     continue
