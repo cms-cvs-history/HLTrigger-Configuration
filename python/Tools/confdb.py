@@ -9,6 +9,8 @@ from options import globalTag
 class HLTProcess(object):
   # paths not supported by FastSim
   fastsimUnsupportedPaths = [
+
+  # paths for which a recovery is not foreseen/possible
     "AlCa_EcalEta_v*",
     "AlCa_EcalPhiSym_v*",
     "AlCa_EcalPi0_v*",
@@ -30,6 +32,12 @@ class HLTProcess(object):
     "HLT_L1SingleMuOpen_AntiBPTX_v*",
     "HLT_JetE30_NoBPTX*_v*",
     "HLT_JetE50_NoBPTX*_v*",
+    "HLT_JetE50_NoBPTX3BX_NoHalo_v*",
+    
+  # TODO: paths likely not supportable, but it should be checked nonetheless
+    "HLT_MET100_HBHENoiseFiltered_v*",
+    "HLT_MET120_HBHENoiseFiltered_v*",
+    "HLT_MET200_HBHENoiseFiltered_v*",
   
   # TODO: paths not supported by FastSim, but for which a recovery should be attempted
     "HLT_Mu3_Track3_Jpsi_v*",
@@ -265,10 +273,14 @@ if 'hltPreHLTMONOutputSmart' in %(dict)s:
   def addGlobalOptions(self):
     # add global options
     self.data += """
-# add global options
+# limit the number of events to be processed
 %(process)smaxEvents = cms.untracked.PSet(
     input = cms.untracked.int32( 100 )
 )
+"""
+    if not self.config.profiling:
+      self.data += """
+# enable the TrigReport and TimeReport
 %(process)soptions = cms.untracked.PSet(
     wantSummary = cms.untracked.bool( True )
 )
@@ -430,19 +442,6 @@ if 'GlobalTag' in %%(dict)s:
 
 
   def overrideOutput(self):
-    #reOutputModuleDef = re.compile(r'\b(process\.)?hltOutput(\w+) *= *cms\.OutputModule\(.*\n([^)].*\n)*\) *\n')
-    #reOutputModuleRef = re.compile(r' *[+*]? *\b(process\.)?hltOutput(\w+)')    # FIXME this does not cover "hltOutputX + something"
-    #if self.config.output == 'none':
-    #  # drop all output modules
-    #  self.data = reOutputModuleDef.sub('', self.data)
-    #  self.data = reOutputModuleRef.sub('', self.data)
-
-    #elif self.config.output == 'minimal':
-    #  # drop all output modules except "HLTDQMResults"
-    #  repl = lambda match: (match.group(2) == 'HLTDQMResults') and match.group() or ''
-    #  self.data = reOutputModuleDef.sub(repl, self.data)
-    #  self.data = reOutputModuleRef.sub(repl, self.data)
-
     # override the "online" ShmStreamConsumer output modules with "offline" PoolOutputModule's
     self.data = re.sub(
       r'\b(process\.)?hltOutput(\w+) *= *cms\.OutputModule\( *"ShmStreamConsumer" *,',
@@ -520,13 +519,9 @@ if 'GlobalTag' in %%(dict)s:
 
 
   def instrumentTiming(self):
-    if self.config.timing:
-      # instrument the menu with the modules and EndPath needed for timing studies
+    if self.config.profiling:
+      # instrument the menu for profiling: remove the HLTAnalyzerEndpath, add/override the HLTriggerFirstPath, with hltGetRaw and hltGetConditions
       text = ''
-
-      if 'HLTriggerFirstPath' in self.data:
-        # remove HLTriggerFirstPath
-        self.data = re.sub(r'.*\bHLTriggerFirstPath\s*=.*\n', '', self.data)
 
       if not 'hltGetRaw' in self.data:
         # add hltGetRaw
@@ -546,11 +541,30 @@ if 'GlobalTag' in %%(dict)s:
 """
 
       # add the definition of HLTriggerFirstPath
+      # FIXME in a cff, should also update the HLTSchedule
       text += """
 %(process)sHLTriggerFirstPath = cms.Path( %(process)shltGetRaw + %(process)shltGetConditions + %(process)shltBoolFalse )
 """
       self.data = re.sub(r'.*cms\.(End)?Path.*', text + r'\g<0>', self.data, 1)
 
+      # load additional conditions needed by hltGetConditions
+      self.loadAdditionalConditions('add XML geometry to keep hltGetConditions happy',
+        {
+          'record'  : 'GeometryFileRcd',
+          'tag'     : 'XMLFILE_Geometry_380V3_Ideal_mc',
+          'label'   : 'Ideal',
+          'connect' : '%(connect)s/CMS_COND_34X_GEOMETRY'
+        }, {
+          'record'  : 'GeometryFileRcd',
+          'tag'     : 'XMLFILE_Geometry_380V3_Extended_mc',
+          'label'   : 'Extended',
+          'connect' : '%(connect)s/CMS_COND_34X_GEOMETRY'
+        }
+      )
+
+    # instrument the menu with the Service, EDProducer and EndPath needed for timing studies
+    # FIXME in a cff, should also update the HLTSchedule
+    if self.config.timing:
       self.data += """
 # instrument the menu with the modules and EndPath needed for timing studies
 %(process)sPathTimerService = cms.Service( "PathTimerService",
@@ -571,20 +585,6 @@ if 'GlobalTag' in %%(dict)s:
 
 %(process)sTimingOutput = cms.EndPath( %(process)shltTimer + %(process)shltOutputTiming )
 """
-      self.loadAdditionalConditions('add XML geometry to keep hltGetConditions happy',
-        {
-          'record'  : 'GeometryFileRcd',
-          'tag'     : 'XMLFILE_Geometry_380V3_Ideal_mc',
-          'label'   : 'Ideal',
-          'connect' : '%(connect)s/CMS_COND_34X_GEOMETRY'
-        }, {
-          'record'  : 'GeometryFileRcd',
-          'tag'     : 'XMLFILE_Geometry_380V3_Extended_mc',
-          'label'   : 'Extended',
-          'connect' : '%(connect)s/CMS_COND_34X_GEOMETRY'
-        }
-      )
-
 
   @staticmethod
   def dumppaths(paths):
@@ -596,55 +596,57 @@ if 'GlobalTag' in %%(dict)s:
   def buildPathList(self):
     self.all_paths = self.getPathList()
 
-    # no path list was requested, dump the full table
-    if not self.config.paths:
+    if self.config.paths:
+      # no path list was requested, dump the full table, minus unsupported / unwanted paths
+      paths = self.config.paths.split(',')
+    else:
+      # dump only the requested paths, plus the eventual output endpaths
       paths = []
 
+    if self.config.fragment or self.config.output == 'none':
       # drop all output endpaths
-      if self.config.fragment or self.config.output != 'all':
+      if self.config.paths:
+        pass    # paths are removed by default
+      else:
         paths.append( "-*Output" )
-
-      # keep output for the TriggerResults
-      if self.config.output == 'minimal':
+    elif self.config.output == 'minimal':
+      # drop all output endpaths but HLTDQMResultsOutput
+      if self.config.paths:
         paths.append( "HLTDQMResultsOutput" )
-
-      # drop paths unsupported by fastsim
-      if self.config.fastsim:
-        paths.extend( "-%s" % path for path in self.fastsimUnsupportedPaths )
-
-      # this should never be in any dump (nor online menu)
-      paths.append( "-OfflineOutput" )
-
-      # expand all wildcards and do a "subtractive" consolidation
-      paths = self.expandWildcards(paths, self.all_paths)
-      self.options['paths'] = self.consolidateNegativeList(paths)
-
-    # dump only the requested paths, plus the eventual output endpaths
+      else:
+        paths.append( "-*Output" )
+        paths.append( "HLTDQMResultsOutput" )
     else:
-      paths = self.config.paths.split(',')
+      # keep / add back all output endpaths
+      if self.config.paths:
+        paths.append( "*Output" )
+      else:
+        pass    # paths are kepy by default
 
-      # add back output endpaths for full dumps
-      if not self.config.fragment:
-        if self.config.output == 'all':
-          # add back all output modules
-          paths.append( "*Output" )
-        elif self.config.output == 'minimal':
-          # add back only the output for the TriggerResults
-          paths.append( "HLTDQMResultsOutput" )
+    # drop paths unsupported by fastsim
+    if self.config.fastsim:
+      paths.extend( "-%s" % path for path in self.fastsimUnsupportedPaths )
 
-      # drop paths unsupported by fastsim
-      if self.config.fastsim:
-        paths.extend( "-%s" % path for path in self.fastsimUnsupportedPaths )
+    # drop unwanted paths for profiling (and timing studies)
+    if self.config.profiling:
+      paths.append( "-HLTriggerFirstPath" )
+      paths.append( "-HLTAnalyzerEndpath" )
 
-      # this should never be in any dump (nor online menu)
-      paths.append( "-OfflineOutput" )
+    # this should never be in any dump (nor online menu)
+    paths.append( "-OfflineOutput" )
 
-      # expand all wildcards and do an "additive" consolidation
-      paths = self.expandWildcards(paths, self.all_paths)
+    # expand all wildcards
+    paths = self.expandWildcards(paths, self.all_paths)
+
+    if self.config.paths:
+      # do an "additive" consolidation
       self.options['paths'] = self.consolidatePositiveList(paths)
-
       if not self.options['paths']:
         raise RuntimeError('Error: option "--paths %s" does not select any valid paths' % self.config.paths)
+    else:
+      # do a "subtractive" consolidation
+      self.options['paths'] = self.consolidateNegativeList(paths)
+
 
   def buildOptions(self):
     # common configuration for all scenarios
@@ -832,6 +834,9 @@ if 'GlobalTag' in %%(dict)s:
       self.options['modules'].append( "-hltBLifetimeRegionalPixelSeedGeneratorEleJetSingleTop" )
       self.options['modules'].append( "-hltBLifetimeRegionalCkfTrackCandidatesEleJetSingleTop" )
       self.options['modules'].append( "-hltBLifetimeRegionalCtfWithMaterialTracksEleJetSingleTop" )
+      self.options['modules'].append( "-hltBLifetimeRegionalPixelSeedGeneratorIsoEleJetSingleTop" )
+      self.options['modules'].append( "-hltBLifetimeRegionalCkfTrackCandidatesIsoEleJetSingleTop" )
+      self.options['modules'].append( "-hltBLifetimeRegionalCtfWithMaterialTracksIsoEleJetSingleTop" )
       self.options['modules'].append( "-hltBLifetimeRegionalPixelSeedGeneratorRA2b" )
       self.options['modules'].append( "-hltBLifetimeRegionalCkfTrackCandidatesRA2b" )
       self.options['modules'].append( "-hltBLifetimeRegionalCtfWithMaterialTracksRA2b" )
@@ -841,6 +846,12 @@ if 'GlobalTag' in %%(dict)s:
       self.options['modules'].append( "-hltBLifetimeRegionalPixelSeedGeneratorHbb" )
       self.options['modules'].append( "-hltBLifetimeRegionalCkfTrackCandidatesHbb" )
       self.options['modules'].append( "-hltBLifetimeRegionalCtfWithMaterialTracksHbb" )
+      self.options['modules'].append( "-hltBLifetimeRegionalPixel3DSeedGeneratorJet30Hbb" )
+      self.options['modules'].append( "-hltBLifetimeRegional3DCkfTrackCandidatesJet30Hbb" )
+      self.options['modules'].append( "-hltBLifetimeRegional3DCtfWithMaterialTracksJet30Hbb" )
+      self.options['modules'].append( "-hltBLifetimeRegionalPixelSeedGeneratorbbPhi" )
+      self.options['modules'].append( "-hltBLifetimeRegionalCkfTrackCandidatesbbPhi" )
+      self.options['modules'].append( "-hltBLifetimeRegionalCtfWithMaterialTracksbbPhi" )
 
       self.options['modules'].append( "-hltPixelTracksForMinBias" )
       self.options['modules'].append( "-hltPixelTracksForHighMult" )
@@ -893,7 +904,7 @@ if 'GlobalTag' in %%(dict)s:
       self.source = "file:/tmp/InputCollection.root"
     elif self.config.data:
       # offline we can run on data...
-      self.source = "/store/data/Run2011A/MinimumBias/RAW/v1/000/163/592/0255752B-6971-E011-93FB-003048F1C836.root"
+      self.source = "/store/data/Run2011A/MinimumBias/RAW/v1/000/165/205/6C8BA6D0-F680-E011-B467-003048F118AC.root"
     else:
       # ...or on mc
       self.source = "file:RelVal_DigiL1Raw_%s.root" % self.config.type
