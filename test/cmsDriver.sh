@@ -5,7 +5,8 @@ cmsenv
 rehash
 
 #set InputFileGENSIM = file:/scratch/cms/TTbarGenSim3110.root
-set InputFileGENSIM = rfio:/castor/cern.ch/user/g/gruen/cms/TTbarGenSim3110.root
+#set InputFileGENSIM = rfio:/castor/cern.ch/user/g/gruen/cms/TTbarGenSim3110.root
+set InputFileGENSIM = root://castorcms//castor/cern.ch/user/g/gruen/cms/TTbarGenSim3110.root
 
 # global tags to be used
 #set GTAGUP = FrontierConditions_GlobalTag,START36_V1::All
