@@ -35,14 +35,13 @@ HLT_DoubleJet80_ForwardBackward_v*
 HLT_DiJet130_PT130_v*
 HLT_DiJet160_PT160_v*
 HLT_CentralJet80_MET65_v*
-HLT_CentralJet80_MET80_v*
+HLT_CentralJet80_MET80HF_v*
 HLT_CentralJet80_MET100_v*
 HLT_CentralJet80_MET160_v*
 HLT_DiJet60_MET45_v*
 HLT_DiCentralJet20_MET80_v*
 HLT_DiCentralJet20_BTagIP_MET65_v*
 HLT_CentralJet46_CentralJet38_DiBTagIP3D_v*
-HLT_CentralJet60_CentralJet53_DiBTagIP3D_v*
 HLT_QuadJet40_v*
 HLT_QuadJet40_IsoPFTau40_v*
 HLT_QuadJet45_IsoPFTau45_v*
@@ -284,7 +283,6 @@ HLT_Mu17_QuadCentralJet30_v*
 HLT_Mu17_Ele8_CaloIdL_v*
 HLT_Mu17_Ele8_CaloIdT_CaloIsoVL_v*
 HLT_Mu12_DiCentralJet30_BTagIP3D_v*
-HLT_Mu12_DiCentralJet20_BTagIP3D1stTrack_v*
 HLT_Mu12_DiCentralJet20_DiBTagIP3D1stTrack_v*
 HLT_Mu17_CentralJet30_BTagIP_v*
 HLT_Mu30_HT200_v*
@@ -344,7 +342,6 @@ HLT_Ele22_CaloIdVT_TrkIdT_CentralJet30_CentralJet25_v*
 HLT_Ele22_CaloIdVT_CaloIsoT_TrkIdT_TrkIsoT_CentralJet30_CentralJet25_v*
 HLT_Ele22_CaloIdVT_CaloIsoT_TrkIdT_TrkIsoT_CentralJet30_CentralJet25_PFMHT20_v*
 HLT_Ele25_CaloIdVT_CaloIsoT_TrkIdT_TrkIsoT_DiCentralJet30_PFMHT25_v*
-HLT_Photon30_CaloIdVT_CentralJet20_BTagIP_v*
 HLT_HT200_DoubleEle5_CaloIdVL_MassJPsi_v*
 HLT_DoubleEle8_CaloIdT_TrkIdVL_HT150_v*
 HLT_DoubleEle8_CaloIdT_TrkIdVL_Mass4_HT150_v* 
