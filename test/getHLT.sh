@@ -1,9 +1,9 @@
 #! /bin/bash
 
 # ConfDB configurations to use - frozen menus for MC production
-MASTER="/dev/CMSSW_4_2_0/HLT/V1"
-HLTGRun="/online/collisions/2011/5e32/v6.2/HLT"     # in place of /dev/CMSSW_4_2_0/GRun/V1
-HLTHIon="/dev/CMSSW_4_2_0/HIon/V1"
+MASTER="/dev/CMSSW_4_2_0/HLT/V480"
+HLTGRun="/online/collisions/2011/1.4e33/v1.2/HLT/V2"     # in place of /dev/CMSSW_4_2_0/GRun/V137
+HLTHIon="/dev/CMSSW_4_2_0/HIon/V137"
 
 # print extra messages ?
 VERBOSE=false
