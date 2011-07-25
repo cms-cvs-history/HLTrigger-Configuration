@@ -19,7 +19,7 @@ set GTAGHIMC = MC39_V4HI::All
 
 set XL1TPP = "" # syntax: tag,record[,connect,label]
 set XL1TPP = "" # "L1GtTriggerMenu_L1Menu_Collisions2011_v1_mc,L1GtTriggerMenuRcd,frontier://FrontierProd/CMS_COND_31X_L1T"
-set XL1TPP = "L1GtTriggerMenu_L1Menu_Collisions2011_v4_mc,L1GtTriggerMenuRcd,frontier://FrontierProd/CMS_COND_31X_L1T"
+set XL1TPP = "L1GtTriggerMenu_L1Menu_Collisions2011_v5_mc,L1GtTriggerMenuRcd,frontier://FrontierProd/CMS_COND_31X_L1T"
 
 # specific workflows, first varying the globaltags, then the hlt tables
 
@@ -33,7 +33,8 @@ foreach gtag ( STARTUP MC )
     set GTAG   = $GTAGPPMC
     set GTAGPP = $GTAGPPMC
     set GTAGHI = $GTAGHIMC
-    set XL1THI = "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2010_v2_mc,L1GtTriggerMenuRcd,sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/L1Menu_CollisionsHeavyIons2010_v2/sqlFile/L1Menu_CollisionsHeavyIons2010_v2_mc.db"
+    #set XL1THI = "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2010_v2_mc,L1GtTriggerMenuRcd,sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/L1Menu_CollisionsHeavyIons2010_v2/sqlFile/L1Menu_CollisionsHeavyIons2010_v2_mc.db"
+    set XL1THI = "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2010_v2_mc,L1GtTriggerMenuRcd,frontier://FrontierProd/CMS_COND_31X_L1T"
   else
     # unsupported
     continue
