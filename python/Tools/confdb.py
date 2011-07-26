@@ -194,6 +194,15 @@ class HLTProcess(object):
 import os
 cmsswVersion = os.environ['CMSSW_VERSION']
 
+# from CMSSW_4_4_0_pre6: updated configuration for the HybridClusterProducer
+if cmsswVersion > "CMSSW_4_4":
+    %(process)shltHybridSuperClustersActivity.xi               = cms.double( 0.0 )
+    %(process)shltHybridSuperClustersActivity.useEtForXi       = cms.bool( False )
+    %(process)shltHybridSuperClustersL1Isolated.xi             = cms.double( 0.0 )
+    %(process)shltHybridSuperClustersL1Isolated.useEtForXi     = cms.bool( False )
+    %(process)shltHybridSuperClustersL1NonIsolated.xi          = cms.double( 0.0 )
+    %(process)shltHybridSuperClustersL1NonIsolated.useEtForXi  = cms.bool( False )
+
 # from CMSSW_4_4_0_pre5: updated configuration for the EcalSeverityLevelESProducer
 if cmsswVersion > "CMSSW_4_4":
     %(process)secalSeverityLevel = cms.ESProducer("EcalSeverityLevelESProducer",
@@ -275,6 +284,15 @@ if 'hltPreHLTMONOutputSmart' in %(dict)s:
 # version specific customizations
 import os
 cmsswVersion = os.environ['CMSSW_VERSION']
+
+# from CMSSW_4_4_0_pre6: updated configuration for the HybridClusterProducer
+if cmsswVersion > "CMSSW_4_4":
+    %(process)shltHybridSuperClustersActivity.xi               = cms.double( 0.0 )
+    %(process)shltHybridSuperClustersActivity.useEtForXi       = cms.bool( False )
+    %(process)shltHybridSuperClustersL1Isolated.xi             = cms.double( 0.0 )
+    %(process)shltHybridSuperClustersL1Isolated.useEtForXi     = cms.bool( False )
+    %(process)shltHybridSuperClustersL1NonIsolated.xi          = cms.double( 0.0 )
+    %(process)shltHybridSuperClustersL1NonIsolated.useEtForXi  = cms.bool( False )
 
 # from CMSSW_4_4_0_pre5: updated configuration for the EcalSeverityLevelESProducer
 if cmsswVersion > "CMSSW_4_4":

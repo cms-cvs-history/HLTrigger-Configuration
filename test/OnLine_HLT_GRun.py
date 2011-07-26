@@ -33947,6 +33947,15 @@ if 'MessageLogger' in process.__dict__:
 import os
 cmsswVersion = os.environ['CMSSW_VERSION']
 
+# from CMSSW_4_4_0_pre6: updated configuration for the HybridClusterProducer
+if cmsswVersion > "CMSSW_4_4":
+    process.hltHybridSuperClustersActivity.xi               = cms.double( 0.0 )
+    process.hltHybridSuperClustersActivity.useEtForXi       = cms.bool( False )
+    process.hltHybridSuperClustersL1Isolated.xi             = cms.double( 0.0 )
+    process.hltHybridSuperClustersL1Isolated.useEtForXi     = cms.bool( False )
+    process.hltHybridSuperClustersL1NonIsolated.xi          = cms.double( 0.0 )
+    process.hltHybridSuperClustersL1NonIsolated.useEtForXi  = cms.bool( False )
+
 # from CMSSW_4_4_0_pre5: updated configuration for the EcalSeverityLevelESProducer
 if cmsswVersion > "CMSSW_4_4":
     process.ecalSeverityLevel = cms.ESProducer("EcalSeverityLevelESProducer",
