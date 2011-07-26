@@ -194,14 +194,17 @@ class HLTProcess(object):
 import os
 cmsswVersion = os.environ['CMSSW_VERSION']
 
-# from CMSSW_4_4_0_pre6: updated configuration for the HybridClusterProducer
+# from CMSSW_4_4_0_pre6: updated configuration for the HybridClusterProducer's and EgammaHLTHybridClusterProducer's
 if cmsswVersion > "CMSSW_4_4":
-    %(process)shltHybridSuperClustersActivity.xi               = cms.double( 0.0 )
-    %(process)shltHybridSuperClustersActivity.useEtForXi       = cms.bool( False )
-    %(process)shltHybridSuperClustersL1Isolated.xi             = cms.double( 0.0 )
-    %(process)shltHybridSuperClustersL1Isolated.useEtForXi     = cms.bool( False )
-    %(process)shltHybridSuperClustersL1NonIsolated.xi          = cms.double( 0.0 )
-    %(process)shltHybridSuperClustersL1NonIsolated.useEtForXi  = cms.bool( False )
+    if 'hltHybridSuperClustersActivity' in %(dict)s:
+        %(process)shltHybridSuperClustersActivity.xi               = cms.double( 0.0 )
+        %(process)shltHybridSuperClustersActivity.useEtForXi       = cms.bool( False )
+    if 'hltHybridSuperClustersL1Isolated' in %(dict)s:
+        %(process)shltHybridSuperClustersL1Isolated.xi             = cms.double( 0.0 )
+        %(process)shltHybridSuperClustersL1Isolated.useEtForXi     = cms.bool( False )
+    if 'hltHybridSuperClustersL1NonIsolated' in %(dict)s:
+        %(process)shltHybridSuperClustersL1NonIsolated.xi          = cms.double( 0.0 )
+        %(process)shltHybridSuperClustersL1NonIsolated.useEtForXi  = cms.bool( False )
 
 # from CMSSW_4_4_0_pre5: updated configuration for the EcalSeverityLevelESProducer
 if cmsswVersion > "CMSSW_4_4":
@@ -285,14 +288,17 @@ if 'hltPreHLTMONOutputSmart' in %(dict)s:
 import os
 cmsswVersion = os.environ['CMSSW_VERSION']
 
-# from CMSSW_4_4_0_pre6: updated configuration for the HybridClusterProducer
+# from CMSSW_4_4_0_pre6: updated configuration for the HybridClusterProducer's and EgammaHLTHybridClusterProducer's
 if cmsswVersion > "CMSSW_4_4":
-    %(process)shltHybridSuperClustersActivity.xi               = cms.double( 0.0 )
-    %(process)shltHybridSuperClustersActivity.useEtForXi       = cms.bool( False )
-    %(process)shltHybridSuperClustersL1Isolated.xi             = cms.double( 0.0 )
-    %(process)shltHybridSuperClustersL1Isolated.useEtForXi     = cms.bool( False )
-    %(process)shltHybridSuperClustersL1NonIsolated.xi          = cms.double( 0.0 )
-    %(process)shltHybridSuperClustersL1NonIsolated.useEtForXi  = cms.bool( False )
+    if 'hltHybridSuperClustersActivity' in %(dict)s:
+        %(process)shltHybridSuperClustersActivity.xi               = cms.double( 0.0 )
+        %(process)shltHybridSuperClustersActivity.useEtForXi       = cms.bool( False )
+    if 'hltHybridSuperClustersL1Isolated' in %(dict)s:
+        %(process)shltHybridSuperClustersL1Isolated.xi             = cms.double( 0.0 )
+        %(process)shltHybridSuperClustersL1Isolated.useEtForXi     = cms.bool( False )
+    if 'hltHybridSuperClustersL1NonIsolated' in %(dict)s:
+        %(process)shltHybridSuperClustersL1NonIsolated.xi          = cms.double( 0.0 )
+        %(process)shltHybridSuperClustersL1NonIsolated.useEtForXi  = cms.bool( False )
 
 # from CMSSW_4_4_0_pre5: updated configuration for the EcalSeverityLevelESProducer
 if cmsswVersion > "CMSSW_4_4":
@@ -427,8 +433,8 @@ if cmsswVersion > "CMSSW_4_3":
       self._fix_parameter(                               type = 'InputTag', value = 'hltMuonCSCDigis',      replace = 'simMuonCSCDigis')
       self._fix_parameter(                               type = 'InputTag', value = 'hltMuonDTDigis',       replace = 'simMuonDTDigis')
       self._fix_parameter(                               type = 'InputTag', value = 'hltMuonRPCDigis',      replace = 'simMuonRPCDigis')
-      # TOBE REMOVED as soon the configuration in confDB gets fixed:
-      self._fix_parameter(                               type = 'InputTag', value = 'hltPFJetCtfWithMaterialTracks', replace = 'hltIter4Merged')
+      ## TO BE REMOVED as soon the configuration in confDB gets fixed:
+      #self._fix_parameter(                               type = 'InputTag', value = 'hltPFJetCtfWithMaterialTracks', replace = 'hltIter4Merged')
 
       # fix the definition of sequences and paths
       self.data = re.sub( r'hltMuonCSCDigis', r'cms.SequencePlaceholder( "simMuonCSCDigis" )',  self.data )

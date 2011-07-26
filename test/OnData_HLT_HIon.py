@@ -5865,14 +5865,17 @@ if 'MessageLogger' in process.__dict__:
 import os
 cmsswVersion = os.environ['CMSSW_VERSION']
 
-# from CMSSW_4_4_0_pre6: updated configuration for the HybridClusterProducer
+# from CMSSW_4_4_0_pre6: updated configuration for the HybridClusterProducer's and EgammaHLTHybridClusterProducer's
 if cmsswVersion > "CMSSW_4_4":
-    process.hltHybridSuperClustersActivity.xi               = cms.double( 0.0 )
-    process.hltHybridSuperClustersActivity.useEtForXi       = cms.bool( False )
-    process.hltHybridSuperClustersL1Isolated.xi             = cms.double( 0.0 )
-    process.hltHybridSuperClustersL1Isolated.useEtForXi     = cms.bool( False )
-    process.hltHybridSuperClustersL1NonIsolated.xi          = cms.double( 0.0 )
-    process.hltHybridSuperClustersL1NonIsolated.useEtForXi  = cms.bool( False )
+    if 'hltHybridSuperClustersActivity' in process.__dict__:
+        process.hltHybridSuperClustersActivity.xi               = cms.double( 0.0 )
+        process.hltHybridSuperClustersActivity.useEtForXi       = cms.bool( False )
+    if 'hltHybridSuperClustersL1Isolated' in process.__dict__:
+        process.hltHybridSuperClustersL1Isolated.xi             = cms.double( 0.0 )
+        process.hltHybridSuperClustersL1Isolated.useEtForXi     = cms.bool( False )
+    if 'hltHybridSuperClustersL1NonIsolated' in process.__dict__:
+        process.hltHybridSuperClustersL1NonIsolated.xi          = cms.double( 0.0 )
+        process.hltHybridSuperClustersL1NonIsolated.useEtForXi  = cms.bool( False )
 
 # from CMSSW_4_4_0_pre5: updated configuration for the EcalSeverityLevelESProducer
 if cmsswVersion > "CMSSW_4_4":
