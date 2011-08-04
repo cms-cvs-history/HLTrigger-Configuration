@@ -1,6 +1,7 @@
 #!/bin/tcsh
 
-foreach gtag ( STARTUP MC )
+foreach gtag ( STARTUP )
+#foreach gtag ( STARTUP MC )
 
   echo
   echo $gtag
@@ -31,7 +32,7 @@ foreach gtag ( STARTUP MC )
             diff -C0 RelVal_HLT_${name}.log RelVal_HLT2_${name}.log | grep "TrigReport "
      else
        echo
-       echo "Currently no globaltags for comination $name!"
+       echo "Currently no globaltags for combination $name!"
      endif
    endif
 
