@@ -18,7 +18,8 @@ echo
 echo "Running selected configs from:"
 pwd
 
-foreach gtag ( STARTUP MC )
+foreach gtag ( STARTUP )
+#foreach gtag ( STARTUP MC )
 
   foreach table ( GRun HIon )
 
