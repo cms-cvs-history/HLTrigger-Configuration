@@ -14,7 +14,7 @@ set InputFileGENSIM = root://castorcms//castor/cern.ch/user/g/gruen/cms/TTbarGen
 # global stags for PP and HIon running
 set GTAGPPUP = auto:startup
 set GTAGPPMC = auto:mc
-set GTAGHIUP = auto:startup # auto:starthi
+set GTAGHIUP = auto:starthi
 set GTAGHIMC = auto:mc      # MC39_V4HI::All
 
 set XL1T   = "" # syntax: tag,record[,connect,label]
