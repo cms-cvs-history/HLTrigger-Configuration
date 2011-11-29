@@ -92,7 +92,7 @@ foreach gtag ( STARTUP )
 #    )
 #EOF
 
-      if ($table == HIon && $task == FastSim) then
+      if ($table == HIon && $task == FastSim_GenToHLT ) then
       echo "$name does not exist!"
       else
       echo "cmsRun $name.py >& $name.log"
@@ -107,7 +107,23 @@ foreach gtag ( STARTUP )
 
 end
 
-# separate reco task to run last
+# special fastsim tests
+
+# foreach task ( IntegrationTestWithHLT_cfg ExampleWithHLT_GRun_cfg )
+foreach task ( IntegrationTestWithHLT_cfg )
+
+  echo
+  set name = ${task}
+  rm -f $name.{log,root}
+
+  echo "cmsRun $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py >& $name.log"
+# ls -l        $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py
+  time  cmsRun $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py >& $name.log
+  echo "exit status: $?"
+
+end
+
+# separate hlt+reco tasks to run last
 
 foreach gtag ( STARTUP )
 
