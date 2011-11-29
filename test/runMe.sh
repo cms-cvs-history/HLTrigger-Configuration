@@ -71,7 +71,7 @@ foreach gtag ( STARTUP )
 
     endif
 
-    foreach task ( RelVal_HLT RelVal_HLT2 )
+    foreach task ( RelVal_HLT RelVal_HLT2 FastSim_GenToHLT )
 
       echo
       set name = ${task}_${table}_${gtag}
@@ -92,10 +92,14 @@ foreach gtag ( STARTUP )
 #    )
 #EOF
 
+      if ($table == HIon && $task == FastSim) then
+      echo "$name does not exist!"
+      else
       echo "cmsRun $name.py >& $name.log"
 #     ls -l        $name.py
       time  cmsRun $name.py >& $name.log
       echo "exit status: $?"
+      endif
 
     end
 
