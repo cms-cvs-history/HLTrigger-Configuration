@@ -117,15 +117,16 @@ foreach task ( IntegrationTestWithHLT_cfg )
   rm -f $name.{log,root}
 
   if ( -f $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py ) then  
-    echo "cmsRun $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py >& $name.log"
+    echo "cmsRun  CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py >& $name.log"
 #   ls -l        $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py
     time  cmsRun $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py >& $name.log
+    echo "exit status: $?"
   else
-    echo "cmsRun $CMSSW_RELEASE_BASE/src/FastSimulation/Configuration/test/$name.py >& $name.log"
+    echo "cmsRun  CMSSW_RELEASE_BASE/src/FastSimulation/Configuration/test/$name.py >& $name.log"
 #   ls -l        $CMSSW_RELEASE_BASE/src/FastSimulation/Configuration/test/$name.py
     time  cmsRun $CMSSW_RELEASE_BASE/src/FastSimulation/Configuration/test/$name.py >& $name.log
+    echo "exit status: $?"
   endif
-  echo "exit status: $?"
 
 end
 
