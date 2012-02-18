@@ -93,7 +93,7 @@ foreach gtag ( STARTUP )
 #EOF
 
       if ($table == HIon && $task == FastSim_GenToHLT ) then
-      echo "$name does not exist!"
+      echo "$task not available for $table!"
       else
       echo "cmsRun $name.py >& $name.log"
 #     ls -l        $name.py
@@ -116,9 +116,15 @@ foreach task ( IntegrationTestWithHLT_cfg )
   set name = ${task}
   rm -f $name.{log,root}
 
-  echo "cmsRun $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py >& $name.log"
-# ls -l        $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py
-  time  cmsRun $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py >& $name.log
+  if ( -f $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py ) then  
+    echo "cmsRun $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py >& $name.log"
+#   ls -l        $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py
+    time  cmsRun $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py >& $name.log
+  else
+    echo "cmsRun $CMSSW_RELEASE_BASE/src/FastSimulation/Configuration/test/$name.py >& $name.log"
+#   ls -l        $CMSSW_RELEASE_BASE/src/FastSimulation/Configuration/test/$name.py
+    time  cmsRun $CMSSW_RELEASE_BASE/src/FastSimulation/Configuration/test/$name.py >& $name.log
+  endif
   echo "exit status: $?"
 
 end
