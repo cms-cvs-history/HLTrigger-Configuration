@@ -18,50 +18,35 @@ echo
 echo "Running selected configs from:"
 pwd
 
-foreach gtag ( STARTUP )
-#foreach gtag ( STARTUP MC )
+foreach gtag ( STARTUP DATA )
+#foreach gtag ( STARTUP MC DATA )
 
   foreach table ( GRun HIon )
 
+    if ($gtag != DATA) then
     foreach task ( RelVal_DigiL1Raw )
 
       echo
       set name = ${task}_${table}_${gtag}
       rm -f $name.{log,root}
-
-#      cat >> $name.py <<EOF
-## load 4.2.x JECs
-#if 'GlobalTag' in process.__dict__:
-#    if not 'toGet' in process.GlobalTag.__dict__:
-#        process.GlobalTag.toGet = cms.VPSet( )
-#    process.GlobalTag.toGet.append(
-#        cms.PSet(
-#            record  = cms.string( 'JetCorrectionsRecord' ),
-#            tag     = cms.string( 'JetCorrectorParametersCollection_Jec11_V1_AK5Calo' ),
-#            label   = cms.untracked.string( 'AK5Calo' ),
-#            connect = cms.untracked.string( 'frontier://PromptProd/CMS_COND_31X_PHYSICSTOOLS' )
-#        )
-#    )
-#EOF
-
       echo "cmsRun $name.py >& $name.log"
 #     ls -l        $name.py
       time  cmsRun $name.py >& $name.log
       echo "exit status: $?"
 
     end
+    endif
 
     if ( $gtag == STARTUP ) then
 
 #     link to input file for subsequent OnLine* step
       rm -f RelVal_DigiL1Raw_${table}.root
       ln -s RelVal_DigiL1Raw_${table}_${gtag}.root RelVal_DigiL1Raw_${table}.root
-      foreach task ( OnData_HLT OnLine_HLT )
+      foreach task ( OnLine_HLT )
 
         echo
         set name = ${task}_${table}
         rm -f $name.{log,root}
-
         echo "cmsRun $name.py >& $name.log"
 #       ls -l        $name.py
         time  cmsRun $name.py >& $name.log
@@ -69,37 +54,31 @@ foreach gtag ( STARTUP )
 
       end
 
+    else if ($gtag == DATA ) then
+
+      foreach task ( OnData_HLT )
+
+        echo
+        set name = ${task}_${table}
+        rm -f $name.{log,root}
+        echo "cmsRun $name.py >& $name.log"
+#       ls -l        $name.py
+        time  cmsRun $name.py >& $name.log
+        echo "exit status: $?"
+
+      end
+  
     endif
 
-    foreach task ( RelVal_HLT RelVal_HLT2 FastSim_GenToHLT )
+    foreach task ( RelVal_HLT RelVal_HLT2 )
 
       echo
       set name = ${task}_${table}_${gtag}
       rm -f $name.{log,root}
-
-#      cat >> $name.py <<EOF
-## load 4.2.x JECs
-#if 'GlobalTag' in process.__dict__:
-#    if not 'toGet' in process.GlobalTag.__dict__:
-#        process.GlobalTag.toGet = cms.VPSet( )
-#    process.GlobalTag.toGet.append(
-#        cms.PSet(
-#            record  = cms.string( 'JetCorrectionsRecord' ),
-#            tag     = cms.string( 'JetCorrectorParametersCollection_Jec11_V1_AK5Calo' ),
-#            label   = cms.untracked.string( 'AK5Calo' ),
-#            connect = cms.untracked.string( 'frontier://PromptProd/CMS_COND_31X_PHYSICSTOOLS' )
-#        )
-#    )
-#EOF
-
-      if ($table == HIon && $task == FastSim_GenToHLT ) then
-      echo "$task not available for $table!"
-      else
       echo "cmsRun $name.py >& $name.log"
 #     ls -l        $name.py
       time  cmsRun $name.py >& $name.log
       echo "exit status: $?"
-      endif
 
     end
 
@@ -109,7 +88,18 @@ end
 
 # special fastsim tests
 
-# foreach task ( IntegrationTestWithHLT_cfg ExampleWithHLT_GRun_cfg )
+foreach task ( FastSim_GenToHLT_GRun_STARTUP )
+
+  echo
+  set name = ${task}
+  rm -f $name.{log,root}
+  echo "cmsRun $name.py >& $name.log"
+# ls -l        $name.py
+  time  cmsRun $name.py >& $name.log
+  echo "exit status: $?"
+
+end
+
 foreach task ( IntegrationTestWithHLT_cfg )
 
   echo
@@ -132,7 +122,8 @@ end
 
 # separate hlt+reco tasks to run last
 
-foreach gtag ( STARTUP )
+foreach gtag ( STARTUP DATA )
+#foreach gtag ( STARTUP MC DATA )
 
   foreach table ( GRun HIon )
 
@@ -141,22 +132,6 @@ foreach gtag ( STARTUP )
       echo
       set name = ${task}_${table}_${gtag}
       rm -f $name.{log,root}
-
-#      cat >> $name.py <<EOF
-## load 4.2.x JECs
-#if 'GlobalTag' in process.__dict__:
-#    if not 'toGet' in process.GlobalTag.__dict__:
-#        process.GlobalTag.toGet = cms.VPSet( )
-#    process.GlobalTag.toGet.append(
-#        cms.PSet(
-#            record  = cms.string( 'JetCorrectionsRecord' ),
-#            tag     = cms.string( 'JetCorrectorParametersCollection_Jec11_V1_AK5Calo' ),
-#            label   = cms.untracked.string( 'AK5Calo' ),
-#            connect = cms.untracked.string( 'frontier://PromptProd/CMS_COND_31X_PHYSICSTOOLS' )
-#        )
-#    )
-#EOF
-
       echo "cmsRun $name.py >& $name.log"
 #     ls -l        $name.py
       time  cmsRun $name.py >& $name.log
