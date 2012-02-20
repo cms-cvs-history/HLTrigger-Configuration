@@ -1,7 +1,6 @@
 #!/bin/tcsh
 
 cmsenv
-
 rehash
 
 echo

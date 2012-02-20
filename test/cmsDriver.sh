@@ -8,6 +8,7 @@ rehash
 #set InputFileGENSIM = file:/scratch/cms/TTbarGenSim3110.root
 #set InputFileGENSIM = rfio:/castor/cern.ch/user/g/gruen/cms/TTbarGenSim3110.root
 set InputFileGENSIM = root://castorcms//castor/cern.ch/user/g/gruen/cms/TTbarGenSim3110.root
+
 # raw input for Real-Data tests (use same real-data raw file as in confdb.py!)
 set InputFileRealData = /store/data/Run2011B/MinimumBias/RAW/v1/000/178/479/3E364D71-F4F5-E011-ABD2-001D09F29146.root
 

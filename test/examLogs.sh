@@ -1,9 +1,5 @@
 #!/bin/tcsh
 
-touch temp1
-touch temp2
-/bin/rm -rf temp*
-
 foreach gtag ( STARTUP DATA )
 #foreach gtag ( STARTUP MC DATA )
 
