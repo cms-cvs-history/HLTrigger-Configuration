@@ -90,7 +90,7 @@ foreach gtag ( DATA STARTUP MC )
 
     echo
     echo "Creating DigiL1RawHLT $name"
-    cmsDriver.py RelVal                --step=DIGI,L1,DIGI2RAW,$XHLT         --conditions=$GTAG --filein=$InputFileGENSIM                    --custom_conditions=$XL1T --fileout=RelVal_DigiL1RawHLT_$name.root --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --python_filename=RelVal_DigiL1RawHLT_$name.py  --processName=HLT
+    cmsDriver.py RelVal                --step=DIGI,L1,DIGI2RAW,$XHLT         --conditions=$GTAG --filein=$InputFileGENSIM                    --custom_conditions=$XL1T --fileout=RelVal_DigiL1RawHLT_$name.root --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=RAW          --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --python_filename=RelVal_DigiL1RawHLT_$name.py  --processName=HLT
 
     if ( $table == GRun) then
     echo

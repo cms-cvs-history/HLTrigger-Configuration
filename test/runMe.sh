@@ -23,7 +23,8 @@ foreach gtag ( STARTUP DATA )
   foreach table ( GRun HIon )
 
     if ($gtag != DATA) then
-    foreach task ( RelVal_DigiL1Raw )
+    foreach task ( RelVal_DigiL1RawHLT )
+#    foreach task ( RelVal_DigiL1Raw )
 
       echo
       set name = ${task}_${table}_${gtag}
@@ -33,14 +34,17 @@ foreach gtag ( STARTUP DATA )
       time  cmsRun $name.py >& $name.log
       echo "exit status: $?"
 
+      if ( $gtag == STARTUP ) then
+#     link to input file for subsequent OnLine* step
+      rm -f              RelVal_DigiL1Raw_${table}.root
+      ln -s ${name}.root RelVal_DigiL1Raw_${table}.root
+      endif
+
     end
     endif
 
     if ( $gtag == STARTUP ) then
 
-#     link to input file for subsequent OnLine* step
-      rm -f RelVal_DigiL1Raw_${table}.root
-      ln -s RelVal_DigiL1Raw_${table}_${gtag}.root RelVal_DigiL1Raw_${table}.root
       foreach task ( OnLine_HLT )
 
         echo
