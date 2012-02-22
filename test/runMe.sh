@@ -35,6 +35,9 @@ foreach gtag ( STARTUP DATA )
       echo "exit status: $?"
 
       if ( $gtag == STARTUP ) then
+#     link to input file for subsequent RelVal* step
+      rm -f              RelVal_Raw_${table}_${gtag}.root
+      ln -s ${name}.root RelVal_Raw_${table}_${gtag}.root
 #     link to input file for subsequent OnLine* step
       rm -f              RelVal_Raw_${table}.root
       ln -s ${name}.root RelVal_Raw_${table}.root
