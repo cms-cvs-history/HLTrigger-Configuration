@@ -36,8 +36,8 @@ foreach gtag ( STARTUP DATA )
 
       if ( $gtag == STARTUP ) then
 #     link to input file for subsequent OnLine* step
-      rm -f              RelVal_DigiL1Raw_${table}.root
-      ln -s ${name}.root RelVal_DigiL1Raw_${table}.root
+      rm -f              RelVal_Raw_${table}.root
+      ln -s ${name}.root RelVal_Raw_${table}.root
       endif
 
     end

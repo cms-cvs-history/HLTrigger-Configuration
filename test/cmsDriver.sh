@@ -63,7 +63,7 @@ foreach gtag ( DATA STARTUP MC )
     if ($gtag == DATA ) then
       set FILEIN = $InputFileRealData
     else 
-      set FILEIN = file:RelVal_DigiL1Raw_$name.root
+      set FILEIN = file:RelVal_Raw_$name.root
     endif
 
     if ( $table == GRun ) then
@@ -86,11 +86,11 @@ foreach gtag ( DATA STARTUP MC )
 
     echo
     echo "Creating DigiL1Raw $name"
-    cmsDriver.py RelVal                --step=DIGI,L1,DIGI2RAW               --conditions=$GTAG --filein=$InputFileGENSIM                    --custom_conditions=$XL1T --fileout=RelVal_DigiL1Raw_$name.root    --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW'     --eventcontent=RAW          --customise=HLTrigger/Configuration/CustomConfigs.L1T     --python_filename=RelVal_DigiL1Raw_$name.py
+    cmsDriver.py RelVal                --step=DIGI,L1,DIGI2RAW               --conditions=$GTAG --filein=$InputFileGENSIM                    --custom_conditions=$XL1T --fileout=RelVal_Raw_$name.root          --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW'     --eventcontent=RAW          --customise=HLTrigger/Configuration/CustomConfigs.L1T     --python_filename=RelVal_DigiL1Raw_$name.py
 
     echo
     echo "Creating DigiL1RawHLT $name"
-    cmsDriver.py RelVal                --step=DIGI,L1,DIGI2RAW,$XHLT         --conditions=$GTAG --filein=$InputFileGENSIM                    --custom_conditions=$XL1T --fileout=RelVal_DigiL1RawHLT_$name.root --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=RAW          --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --python_filename=RelVal_DigiL1RawHLT_$name.py  --processName=HLT
+    cmsDriver.py RelVal                --step=DIGI,L1,DIGI2RAW,$XHLT         --conditions=$GTAG --filein=$InputFileGENSIM                    --custom_conditions=$XL1T --fileout=RelVal_Raw_$name.root          --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=RAW          --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --python_filename=RelVal_DigiL1RawHLT_$name.py  --processName=HLT
 
     if ( $table == GRun) then
     echo
