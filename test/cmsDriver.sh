@@ -53,7 +53,7 @@ foreach gtag ( DATA STARTUP MC )
   if ( $gtag != DATA ) then    
   echo
   echo "Creating TTbarGenSim $gtag"
-    cmsDriver.py TTbar_Tauola_7TeV_cfi --step=GEN,SIM                        --conditions=$GTAG                                                                        --fileout=TTbarGenSim_$gtag.root         --number=100 $DATAMC --no_exec --datatier 'GEN-SIM'              --eventcontent=FEVTSIM      --customise=HLTrigger/Configuration/CustomConfigs.Base    --python_filename=TTbarGenSim_$gtag.py
+    cmsDriver.py TTbar_Tauola_8TeV_cfi --step=GEN,SIM                        --conditions=$GTAG                                                                        --fileout=TTbarGenSim_$gtag.root         --number=100 $DATAMC --no_exec --datatier 'GEN-SIM'              --eventcontent=FEVTSIM      --customise=HLTrigger/Configuration/CustomConfigs.Base    --python_filename=TTbarGenSim_$gtag.py
   endif
 
   foreach table ( GRun HIon )
@@ -79,10 +79,12 @@ foreach gtag ( DATA STARTUP MC )
       continue
     endif
 
-    if ( $gtag != DATA ) then
+    if ( $gtag == DATA ) then
+    #  set XHLT = L1REPACK,$XHLT
+    else
     echo
     echo "Creating TTbarGenToHLT $name"
-    cmsDriver.py TTbar_Tauola_7TeV_cfi --step=GEN,SIM,DIGI,L1,DIGI2RAW,$XHLT --conditions=$GTAG                                              --custom_conditions=$XL1T --fileout=TTbarGenHLT_$name.root         --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --python_filename=TTbarGenToHLT_$name.py
+    cmsDriver.py TTbar_Tauola_8TeV_cfi --step=GEN,SIM,DIGI,L1,DIGI2RAW,$XHLT --conditions=$GTAG                                              --custom_conditions=$XL1T --fileout=TTbarGenHLT_$name.root         --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --python_filename=TTbarGenToHLT_$name.py
 
     echo
     echo "Creating DigiL1Raw $name"
@@ -95,7 +97,7 @@ foreach gtag ( DATA STARTUP MC )
     if ( $table == GRun) then
     echo
     echo "Creating FastSim $name"
-    cmsDriver.py TTbar_Tauola_7TeV_cfi --step GEN,FASTSIM,HLT:GRun           --conditions=$GTAG                                              --custom_conditions=$XL1T --fileout=FastSim_GenToHLT_$name.root    --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RECO'    --eventcontent FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --python_filename=FastSim_GenToHLT_$name.py     --processName=HLT
+    cmsDriver.py TTbar_Tauola_8TeV_cfi --step GEN,FASTSIM,HLT:GRun           --conditions=$GTAG                                              --custom_conditions=$XL1T --fileout=FastSim_GenToHLT_$name.root    --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RECO'    --eventcontent FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --python_filename=FastSim_GenToHLT_$name.py     --processName=HLT
     endif
 
     endif
