@@ -28,7 +28,8 @@ set XL1THI = "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2011_v0_mc,L1GtTriggerMe
 
 # specific workflows, first varying the globaltags, then the hlt tables
 
-foreach gtag ( DATA STARTUP MC )
+foreach gtag ( STARTUP DATA )
+#foreach gtag ( DATA STARTUP MC )
   if ( $gtag == DATA ) then
     set GTAG   = $GTAGPPRD
     set GTAGPP = $GTAGPPRD
@@ -59,12 +60,7 @@ foreach gtag ( DATA STARTUP MC )
   foreach table ( GRun HIon )
 
     set name = ${table}_${gtag}  
-
-    if ($gtag == DATA ) then
-      set FILEIN = $InputFileRealData
-    else 
-      set FILEIN = file:RelVal_Raw_$name.root
-    endif
+    set FILEIN = file:RelVal_Raw_$name.root
 
     if ( $table == GRun ) then
       set XL1T = $XL1TPP
@@ -80,7 +76,10 @@ foreach gtag ( DATA STARTUP MC )
     endif
 
     if ( $gtag == DATA ) then
-    #  set XHLT = L1REPACK,$XHLT
+    echo
+    echo "Creating L1RePack $name"
+    cmsDriver.py RelVal                --step=L1REPACK                       --conditions=$GTAG --filein=$InputFileRealData                  --custom_conditions=$XL1T --fileout=RelVal_L1RePack_$name.root     --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW'     --eventcontent=RAW          --customise=HLTrigger/Configuration/CustomConfigs.L1T     --python_filename=RelVal_L1RePack_$name.py
+
     else
     echo
     echo "Creating TTbarGenToHLT $name"

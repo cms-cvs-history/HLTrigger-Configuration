@@ -22,9 +22,15 @@ foreach gtag ( STARTUP DATA )
 
   foreach table ( GRun HIon )
 
-    if ($gtag != DATA) then
-#    foreach task ( RelVal_DigiL1RawHLT )
-    foreach task ( RelVal_DigiL1Raw )
+#   prepare Raw file for HLT 
+
+    if ($gtag == DATA) then
+      set base = RelVal_L1RePack
+    else
+      set base = RelVal_DigiL1Raw
+    endif
+
+    foreach task ( $base )
 
       echo
       set name = ${task}_${table}_${gtag}
@@ -34,17 +40,11 @@ foreach gtag ( STARTUP DATA )
       time  cmsRun $name.py >& $name.log
       echo "exit status: $?"
 
-      if ( $gtag == STARTUP ) then
 #     link to input file for subsequent RelVal* step
       rm -f              RelVal_Raw_${table}_${gtag}.root
       ln -s ${name}.root RelVal_Raw_${table}_${gtag}.root
-#     link to input file for subsequent OnLine* step
-      rm -f              RelVal_Raw_${table}.root
-      ln -s ${name}.root RelVal_Raw_${table}.root
-      endif
 
     end
-    endif
 
     if ( $gtag == STARTUP ) then
 
