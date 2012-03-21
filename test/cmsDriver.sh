@@ -96,7 +96,7 @@ foreach gtag ( STARTUP DATA )
     if ( $table == GRun) then
     echo
     echo "Creating FastSim $name"
-    cmsDriver.py TTbar_Tauola_8TeV_cfi --step GEN,FASTSIM,HLT:GRun           --conditions=$GTAG                                              --custom_conditions=$XL1T --fileout=FastSim_GenToHLT_$name.root    --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RECO'    --eventcontent FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --python_filename=FastSim_GenToHLT_$name.py     --processName=HLT
+    cmsDriver.py TTbar_Tauola_8TeV_cfi --step GEN,FASTSIM,HLT:GRun           --conditions=$GTAG                                              --custom_conditions=$XL1T --fileout=FastSim_GenToHLT_$name.root    --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RECO'    --eventcontent FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.FASTSIM --python_filename=FastSim_GenToHLT_$name.py     --processName=HLT
     endif
 
     endif
