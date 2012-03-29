@@ -3,6 +3,9 @@
 cmsenv
 rehash
 
+set rawLHC = L1RePack
+set rawSIM = DigiL1Raw
+
 echo
 echo "Existing cfg files:"
 ls -l On*.py
@@ -50,33 +53,15 @@ foreach gtag ( STARTUP DATA )
 
   foreach table ( GRun HIon )
 
-#   prepare Raw file for HLT 
-
     if ($gtag == DATA) then
-      set base = RelVal_L1RePack
+      set base = RelVal_${rawLHC}
     else
-      set base = RelVal_DigiL1Raw
+      set base = RelVal_${rawSIM}
     endif
 
-    foreach task ( $base )
+#   run workflows
 
-      echo
-      set name = ${task}_${table}_${gtag}
-      rm -f $name.{log,root}
-      echo "cmsRun $name.py >& $name.log"
-#     ls -l        $name.py
-      time  cmsRun $name.py >& $name.log
-      echo "exit status: $?"
-
-#     link to input file for subsequent RelVal* step
-      rm -f              RelVal_Raw_${table}_${gtag}.root
-      ln -s ${name}.root RelVal_Raw_${table}_${gtag}.root
-
-    end
-
-#   run HLT workflows
-
-    set base = ( ONLINE_HLT RelVal_HLT RelVal_HLT2 )
+    set base = ( $base ONLINE_HLT RelVal_HLT RelVal_HLT2 )
 
     if ( $gtag == STARTUP ) then
       if ( $table == GRun) then
@@ -93,6 +78,12 @@ foreach gtag ( STARTUP DATA )
 #     ls -l        $name.py
       time  cmsRun $name.py >& $name.log
       echo "exit status: $?"
+
+      if ( ( $task == RelVal_${rawLHC} ) || ( $task == RelVal_${rawSIM} ) ) then
+#       link to input file for subsequent steps
+        rm -f              RelVal_Raw_${table}_${gtag}.root
+        ln -s ${name}.root RelVal_Raw_${table}_${gtag}.root
+      endif
 
     end
 

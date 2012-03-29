@@ -1,5 +1,7 @@
 #!/bin/tcsh
 
+set base = RelVal_HLT
+
 foreach gtag ( STARTUP DATA )
 
   echo
@@ -11,23 +13,16 @@ foreach gtag ( STARTUP DATA )
     set name = ${table}_${gtag}
     echo $name
 
-    echo
-    echo "diff -C0 RelVal_HLT_${name}.log ONLINE_HLT_${name}.log"
-#         diff -C0 RelVal_HLT_${name}.log ONLINE_HLT_${name}.log | grep L1T
-          diff -C0 RelVal_HLT_${name}.log ONLINE_HLT_${name}.log | grep "HLT-Report "
-#         diff -C0 RelVal_HLT_${name}.log ONLINE_HLT_${name}.log | grep "TrigReport "
+    foreach task ( ONLINE_HLT RelVal_HLT_RECO RelVal_HLT2 )
 
-    echo
-    echo "diff -C0 RelVal_HLT_${name}.log RelVal_HLT_RECO_${name}.log"
-#         diff -C0 RelVal_HLT_${name}.log RelVal_HLT_RECO_${name}.log | grep L1T
-          diff -C0 RelVal_HLT_${name}.log RelVal_HLT_RECO_${name}.log | grep "HLT-Report "
-#         diff -C0 RelVal_HLT_${name}.log RelVal_HLT_RECO_${name}.log | grep "TrigReport "
+      echo
+      echo "Compare  ${base}_${name} to  ${task}_${name}"
+      echo "diff -C0 ${base}_${name}.log ${task}_${name}.log"
+#           diff -C0 ${base}_${name}.log ${task}_${name}.log | grep L1T
+            diff -C0 ${base}_${name}.log ${task}_${name}.log | grep "HLT-Report "
+#           diff -C0 ${base}_${name}.log ${task}_${name}.log | grep "TrigReport "
 
-    echo
-    echo "diff -C0 RelVal_HLT_${name}.log RelVal_HLT2_${name}.log"
-#         diff -C0 RelVal_HLT_${name}.log RelVal_HLT2_${name}.log | grep L1T
-          diff -C0 RelVal_HLT_${name}.log RelVal_HLT2_${name}.log | grep "HLT-Report "
-#         diff -C0 RelVal_HLT_${name}.log RelVal_HLT2_${name}.log | grep "TrigReport "
+    end
 
   end
 
