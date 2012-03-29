@@ -5,20 +5,48 @@ rehash
 
 echo
 echo "Existing cfg files:"
-ls -l OnData*.py
-ls -l OnLine*.py
+ls -l On*.py
 
 echo
-echo "Creating offline configs with cmsDriver"
+echo "Creating ONLINE cfg files adding the HLTAnalyzerEndpath:"
+
+foreach gtag ( Data Line )
+  set GTAG = ` echo $gtag | tr "[a-z]" "[A-Z]" `
+  if ( $GTAG == LINE ) then
+    set GTAG = STARTUP
+  endif
+  foreach table ( GRun HIon )
+    set oldfile = On${gtag}_HLT_${table}.py
+    set newfile = ONLINE_HLT_${table}_${GTAG}.py
+    rm -f $newfile
+    cp $oldfile $newfile
+    cat >> $newfile <<EOF
+#
+    if not ('HLTAnalyzerEndpath' in process.__dict__) :
+        from HLTrigger.Configuration.HLT_FULL_cff import hltL1GtTrigReport,hltTrigReport
+        process.hltL1GtTrigReport = hltL1GtTrigReport
+        process.hltTrigReport = hltTrigReport
+        process.hltTrigReport.HLTriggerResults = cms.InputTag( 'TriggerResults','',process.name_() )
+        process.HLTAnalyzerEndpath = cms.EndPath(process.hltL1GtTrigReport + process.hltTrigReport)
+#
+EOF
+  end
+end
+
+echo
+echo "Created ONLINE cfg files:"
+ls -l ON*.py
+
+echo
+echo "Creating offline cfg files with cmsDriver"
 echo "./cmsDriver.sh"
 time  ./cmsDriver.sh
 
 echo
-echo "Running selected configs from:"
+echo "Running selected cfg files from:"
 pwd
 
 foreach gtag ( STARTUP DATA )
-#foreach gtag ( STARTUP MC DATA )
 
   foreach table ( GRun HIon )
 
@@ -46,37 +74,17 @@ foreach gtag ( STARTUP DATA )
 
     end
 
+#   run HLT workflows
+
+    set base = ( ONLINE_HLT RelVal_HLT RelVal_HLT2 )
+
     if ( $gtag == STARTUP ) then
-
-      foreach task ( OnLine_HLT )
-
-        echo
-        set name = ${task}_${table}
-        rm -f $name.{log,root}
-        echo "cmsRun $name.py >& $name.log"
-#       ls -l        $name.py
-        time  cmsRun $name.py >& $name.log
-        echo "exit status: $?"
-
-      end
-
-    else if ($gtag == DATA ) then
-
-      foreach task ( OnData_HLT )
-
-        echo
-        set name = ${task}_${table}
-        rm -f $name.{log,root}
-        echo "cmsRun $name.py >& $name.log"
-#       ls -l        $name.py
-        time  cmsRun $name.py >& $name.log
-        echo "exit status: $?"
-
-      end
-  
+      if ( $table == GRun) then
+        set base = ( $base FastSim_GenToHLT )
+      endif
     endif
 
-    foreach task ( RelVal_HLT RelVal_HLT2 )
+    foreach task ( $base )
 
       echo
       set name = ${task}_${table}_${gtag}
@@ -92,19 +100,7 @@ foreach gtag ( STARTUP DATA )
 
 end
 
-# special fastsim tests
-
-foreach task ( FastSim_GenToHLT_GRun_STARTUP )
-
-  echo
-  set name = ${task}
-  rm -f $name.{log,root}
-  echo "cmsRun $name.py >& $name.log"
-# ls -l        $name.py
-  time  cmsRun $name.py >& $name.log
-  echo "exit status: $?"
-
-end
+# special fastsim integration test
 
 foreach task ( IntegrationTestWithHLT_cfg )
 
@@ -113,23 +109,22 @@ foreach task ( IntegrationTestWithHLT_cfg )
   rm -f $name.{log,root}
 
   if ( -f $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py ) then  
-    echo "cmsRun  CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py >& $name.log"
-#   ls -l        $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py
-    time  cmsRun $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py >& $name.log
+    echo "cmsRun "'$CMSSW_BASE'"/src/FastSimulation/Configuration/test/$name.py >& $name.log"
+#   ls -l         $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py
+    time  cmsRun  $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py >& $name.log
     echo "exit status: $?"
   else
-    echo "cmsRun  CMSSW_RELEASE_BASE/src/FastSimulation/Configuration/test/$name.py >& $name.log"
-#   ls -l        $CMSSW_RELEASE_BASE/src/FastSimulation/Configuration/test/$name.py
-    time  cmsRun $CMSSW_RELEASE_BASE/src/FastSimulation/Configuration/test/$name.py >& $name.log
+    echo "cmsRun "'$CMSSW_RELEASE_BASE'"/src/FastSimulation/Configuration/test/$name.py >& $name.log"
+#   ls -l         $CMSSW_RELEASE_BASE/src/FastSimulation/Configuration/test/$name.py
+    time  cmsRun  $CMSSW_RELEASE_BASE/src/FastSimulation/Configuration/test/$name.py >& $name.log
     echo "exit status: $?"
   endif
 
 end
 
-# separate hlt+reco tasks to run last
+# separate hlt+reco workflows to run last
 
 foreach gtag ( STARTUP DATA )
-#foreach gtag ( STARTUP MC DATA )
 
   foreach table ( GRun HIon )
 
@@ -148,6 +143,8 @@ foreach gtag ( STARTUP DATA )
   end
 
 end
+
+#
 
 echo
 echo "Resulting log files:"
