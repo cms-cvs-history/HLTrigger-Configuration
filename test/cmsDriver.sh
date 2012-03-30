@@ -119,6 +119,7 @@ foreach gtag ( STARTUP DATA )
     echo "Creating Full RECO $name"
 
     if ( $gtag == DATA ) then
+
     cmsDriver.py RelVal                --step=RAW2DIGI,L1Reco,RECO,DQM             --conditions=$GTAG --filein=$FILEIN                             --custom_conditions=$XL1T --fileout=RelVal_RECO_$name.root         --number=100 $DATAMC --no_exec --datatier 'RAW-HLT-RECO'         --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --scenario=$SCEN --python_filename=RelVal_RECO_$name.py          --processName=HLT1
 
     else
