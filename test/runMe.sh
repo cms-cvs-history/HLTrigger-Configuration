@@ -113,13 +113,13 @@ foreach task ( IntegrationTestWithHLT_cfg )
 
 end
 
-# separate hlt+reco workflows to run last
+# separate hlt+reco, reco+dqm workflows to run last
 
-foreach gtag ( STARTUP DATA )
+foreach task ( RelVal_HLT_RECO RelVal_RECO )
 
-  foreach table ( GRun HIon )
+  foreach gtag ( STARTUP DATA )
 
-    foreach task ( RelVal_HLT_RECO )
+    foreach table ( GRun HIon )
 
       echo
       set name = ${task}_${table}_${gtag}
