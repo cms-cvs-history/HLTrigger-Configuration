@@ -35,16 +35,19 @@ foreach gtag ( STARTUP DATA )
     set GTAGPP = $GTAGPPRD
     set GTAGHI = $GTAGHIRD
     set DATAMC = --data
+    set PNAME  = HLT1
   else  if ( $gtag == STARTUP ) then
     set GTAG   = $GTAGPPUP
     set GTAGPP = $GTAGPPUP
     set GTAGHI = $GTAGHIUP
     set DATAMC = --mc
+    set PNAME  = HLT
   else if ( $gtag == MC ) then
     set GTAG   = $GTAGPPMC
     set GTAGPP = $GTAGPPMC
     set GTAGHI = $GTAGHIMC
     set DATAMC = --mc
+    set PNAME  = HLT
   else
     # unsupported
     continue
@@ -78,34 +81,30 @@ foreach gtag ( STARTUP DATA )
     endif
 
     if ( $gtag == DATA ) then
+
     echo
     echo "Creating L1RePack $name"
     cmsDriver.py RelVal                --step=L1REPACK                             --conditions=$GTAG --filein=$InputFileRealData                  --custom_conditions=$XL1T --fileout=RelVal_L1RePack_$name.root     --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW'     --eventcontent=RAW          --customise=HLTrigger/Configuration/CustomConfigs.L1T     --scenario=$SCEN --python_filename=RelVal_L1RePack_$name.py
 
     else
-    echo
-    echo "Creating TTbarGenToHLT $name"
-    cmsDriver.py TTbar_Tauola_8TeV_cfi --step=GEN,SIM,DIGI,L1,DIGI2RAW,$XHLT       --conditions=$GTAG                                              --custom_conditions=$XL1T --fileout=TTbarGenHLT_$name.root         --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --scenario=$SCEN --python_filename=TTbarGenToHLT_$name.py
 
     echo
     echo "Creating DigiL1Raw $name"
     cmsDriver.py RelVal                --step=DIGI,L1,DIGI2RAW                     --conditions=$GTAG --filein=$InputFileGENSIM                    --custom_conditions=$XL1T --fileout=RelVal_DigiL1Raw_$name.root    --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW'     --eventcontent=RAW          --customise=HLTrigger/Configuration/CustomConfigs.L1T     --scenario=$SCEN --python_filename=RelVal_DigiL1Raw_$name.py
 
-    echo
-    echo "Creating DigiL1RawHLT $name"
-    cmsDriver.py RelVal                --step=DIGI,L1,DIGI2RAW,$XHLT               --conditions=$GTAG --filein=$InputFileGENSIM                    --custom_conditions=$XL1T --fileout=RelVal_DigiL1RawHLT_$name.root --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=RAW          --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --scenario=$SCEN --python_filename=RelVal_DigiL1RawHLT_$name.py  --processName=HLT
-
     if ( $table == GRun) then
+
     echo
     echo "Creating FastSim $name"
-    cmsDriver.py TTbar_Tauola_8TeV_cfi --step GEN,FASTSIM,$XHLT                    --conditions=$GTAG                                              --custom_conditions=$XL1T --fileout=FastSim_GenToHLT_$name.root    --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RECO'    --eventcontent FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.FASTSIM --scenario=$SCEN --python_filename=FastSim_GenToHLT_$name.py     --processName=HLT
+    cmsDriver.py TTbar_Tauola_8TeV_cfi --step GEN,FASTSIM,$XHLT                    --conditions=$GTAG                                              --custom_conditions=$XL1T --fileout=FastSim_GenToHLT_$name.root    --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RECO'    --eventcontent FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.FASTSIM --scenario=$SCEN --python_filename=FastSim_GenToHLT_$name.py     --processName=$PNAME
+
     endif
 
     endif
 
     echo
     echo "Creating HLT $name"
-    cmsDriver.py RelVal                --step=$XHLT                                --conditions=$GTAG --filein=$FILEIN                             --custom_conditions=$XL1T --fileout=RelVal_HLT_$name.root          --number=100 $DATAMC --no_exec --datatier 'RAW-HLT'              --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --scenario=$SCEN --python_filename=RelVal_HLT_$name.py           --processName=HLT1
+    cmsDriver.py RelVal                --step=$XHLT                                --conditions=$GTAG --filein=$FILEIN                             --custom_conditions=$XL1T --fileout=RelVal_HLT_$name.root          --number=100 $DATAMC --no_exec --datatier 'RAW-HLT'              --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --scenario=$SCEN --python_filename=RelVal_HLT_$name.py           --processName=$PNAME
 
     echo
     echo "Creating HLT2 (re-running HLT) $name"
@@ -117,23 +116,23 @@ foreach gtag ( STARTUP DATA )
 
     echo
     echo "Creating HLT+RECO $name"
-    cmsDriver.py RelVal                --step=$XHLT,RAW2DIGI,L1Reco,RECO           --conditions=$RTAG --filein=$FILEIN                             --custom_conditions=$XL1T --fileout=RelVal_HLT_RECO_$name.root     --number=100 $DATAMC --no_exec --datatier 'RAW-HLT-RECO'         --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --scenario=$SCEN --python_filename=RelVal_HLT_RECO_$name.py      --processName=HLT1
+    cmsDriver.py RelVal                --step=$XHLT,RAW2DIGI,L1Reco,RECO           --conditions=$RTAG --filein=$FILEIN                             --custom_conditions=$XL1T --fileout=RelVal_HLT_RECO_$name.root     --number=100 $DATAMC --no_exec --datatier 'RAW-HLT-RECO'         --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --scenario=$SCEN --python_filename=RelVal_HLT_RECO_$name.py      --processName=$PNAME
 
 
     echo
     echo "Creating Full RECO $name"
-    cmsDriver.py RelVal                --step=RAW2DIGI,L1Reco,RECO,DQM             --conditions=$RTAG --filein=$FILEIN                             --custom_conditions=$XL1T --fileout=RelVal_RECO_$name.root         --number=100 $DATAMC --no_exec --datatier 'RAW-HLT-RECO'         --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --scenario=$SCEN --python_filename=RelVal_RECO_$name.py          --processName=HLT1
+    cmsDriver.py RelVal                --step=RAW2DIGI,L1Reco,RECO,DQM             --conditions=$RTAG --filein=file:RelVal_HLT_$name.root          --custom_conditions=$XL1T --fileout=RelVal_RECO_$name.root         --number=100 $DATAMC --no_exec --datatier 'RAW-HLT-RECO'         --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --scenario=$SCEN --python_filename=RelVal_RECO_$name.py
 
     else
 
     echo
     echo "Creating HLT+RECO $name"
-    cmsDriver.py RelVal                --step=$XHLT,RAW2DIGI,L1Reco,RECO           --conditions=$GTAG --filein=$FILEIN                             --custom_conditions=$XL1T --fileout=RelVal_HLT_RECO_$name.root     --number=100 $DATAMC --no_exec --datatier 'RAW-HLT-RECO'         --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --scenario=$SCEN --python_filename=RelVal_HLT_RECO_$name.py      --processName=HLT1
+    cmsDriver.py RelVal                --step=$XHLT,RAW2DIGI,L1Reco,RECO           --conditions=$GTAG --filein=$FILEIN                             --custom_conditions=$XL1T --fileout=RelVal_HLT_RECO_$name.root     --number=100 $DATAMC --no_exec --datatier 'RAW-HLT-RECO'         --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --scenario=$SCEN --python_filename=RelVal_HLT_RECO_$name.py      --processName=$PNAME
 
 
     echo
     echo "Creating Full RECO $name"
-    cmsDriver.py RelVal                --step=RAW2DIGI,L1Reco,RECO,VALIDATION,DQM  --conditions=$GTAG --filein=$FILEIN                             --custom_conditions=$XL1T --fileout=RelVal_RECO_$name.root         --number=100 $DATAMC --no_exec --datatier 'RAW-HLT-RECO'         --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --scenario=$SCEN --python_filename=RelVal_RECO_$name.py          --processName=HLT1
+    cmsDriver.py RelVal                --step=RAW2DIGI,L1Reco,RECO,VALIDATION,DQM  --conditions=$GTAG --filein=file:RelVal_HLT_$name.root          --custom_conditions=$XL1T --fileout=RelVal_RECO_$name.root         --number=100 $DATAMC --no_exec --datatier 'RAW-HLT-RECO'         --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --scenario=$SCEN --python_filename=RelVal_RECO_$name.py
 
     endif
 
