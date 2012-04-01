@@ -113,13 +113,19 @@ foreach task ( IntegrationTestWithHLT_cfg )
 
 end
 
-# separate hlt+reco, reco+dqm workflows to run last
+# separate hlt+reco and reco+(validation)+dqm workflows
 
-foreach task ( RelVal_HLT_RECO RelVal_RECO )
+foreach gtag ( STARTUP DATA )
 
-  foreach gtag ( STARTUP DATA )
+  foreach table ( GRun HIon )
 
-    foreach table ( GRun HIon )
+    if ($gtag == DATA) then
+      set base = ( RelVal_HLT_Reco                     RelVal_RECO )
+    else
+      set base = ( RelVal_HLT_Reco RelVal_DigiL1RawHLT RelVal_RECO )
+    endif
+
+    foreach task ( $base )
 
       echo
       set name = ${task}_${table}_${gtag}
