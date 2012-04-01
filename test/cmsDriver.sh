@@ -90,7 +90,7 @@ foreach gtag ( STARTUP DATA )
 
     echo
     echo "dbs query $name"
-    /bin/rm -f RelVal_GenSim_$name.log
+    /bin/rm -f                                                                   RelVal_GenSim_$name.log
     dbs search --noheader --query "find file where dataset like $InputGenSim" >& RelVal_GenSim_$name.log
     
     echo
