@@ -84,15 +84,15 @@ foreach gtag ( STARTUP DATA )
 
     echo
     echo "Creating TTbarGenSim $name"
-      cmsDriver.py TTbar_Tauola_8TeV_cfi --step=GEN,SIM                            --conditions=$GTAG                                                                        --fileout=TTbarGenSim_$name.root         --number=100 $DATAMC --no_exec --datatier 'GEN-SIM'              --eventcontent=FEVTSIM      --customise=HLTrigger/Configuration/CustomConfigs.Base    --scenario=$SCEN  --python_filename=TTbarGenSim_$name.py
+      cmsDriver.py TTbar_Tauola_8TeV_cfi --step=GEN,SIM                            --conditions=$GTAG                                                                        --fileout=TTbarGenSim_$name.root         --number=100 $DATAMC --no_exec --datatier 'GEN-SIM'               --eventcontent=FEVTSIM      --customise=HLTrigger/Configuration/CustomConfigs.Base    --scenario=$SCEN --python_filename=TTbarGenSim_$name.py
 
     echo
     echo "Creating DigiL1Raw $name"
-    cmsDriver.py RelVal                --step=DIGI,L1,DIGI2RAW                     --conditions=$GTAG --filein=${InputFileGENSIM}${table}.root    --custom_conditions=$XL1T --fileout=RelVal_DigiL1Raw_$name.root    --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW'      --eventcontent=RAW          --customise=HLTrigger/Configuration/CustomConfigs.L1T     --scenario=$SCEN --python_filename=RelVal_DigiL1Raw_$name.py
+    cmsDriver.py RelVal                --step=DIGI,L1,DIGI2RAW                     --conditions=$GTAG --filein=${InputFileGENSIM}${table}.root    --custom_conditions=$XL1T  --fileout=RelVal_DigiL1Raw_$name.root    --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW'      --eventcontent=RAW          --customise=HLTrigger/Configuration/CustomConfigs.L1T     --scenario=$SCEN --python_filename=RelVal_DigiL1Raw_$name.py
 
     echo
     echo "Creating DigiL1RawHLT $name"
-    cmsDriver.py RelVal                --step=DIGI,L1,DIGI2RAW,$XHLT               --conditions=$GTAG --filein=${InputFileGENSIM}${table}.root    --custom_conditions=$XL1T --fileout=RelVal_DigiL1RawHLT_$name.root --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT' --eventcontent=FEVTDEBUGHLT  --customise=HLTrigger/Configuration/CustomConfigs.L1T     --scenario=$SCEN --python_filename=RelVal_DigiL1RawHLT_$name.py  --processName=$PNAME
+    cmsDriver.py RelVal                --step=DIGI,L1,DIGI2RAW,$XHLT               --conditions=$GTAG --filein=${InputFileGENSIM}${table}.root    --custom_conditions=$XL1T  --fileout=RelVal_DigiL1RawHLT_$name.root --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT'  --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1T     --scenario=$SCEN --python_filename=RelVal_DigiL1RawHLT_$name.py  --processName=$PNAME
 
     if ( $table == GRun) then
 
