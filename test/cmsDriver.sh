@@ -89,6 +89,10 @@ foreach gtag ( STARTUP DATA )
     else
 
     echo
+    echo "Creating TTbarGenToHLT $name"
+    cmsDriver.py TTbar_Tauola_8TeV_cfi --step=GEN,SIM,DIGI,L1,DIGI2RAW,$XHLT       --conditions=$GTAG                                              --custom_conditions=$XL1T  --fileout=RelVal_GenSim_$name.root       --number=100 $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT'  --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --scenario=$SCEN --python_filename=RelVal_GenSim_$name.py
+
+    echo
     echo "dbs query $name"
     /bin/rm -f                                                                   RelVal_GenSim_$name.log
     dbs search --noheader --query "find file where dataset like $InputGenSim" >& RelVal_GenSim_$name.log
