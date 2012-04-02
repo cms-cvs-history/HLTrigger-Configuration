@@ -26,8 +26,8 @@ set GTAGHIRD = auto:hltonline
 set NNPPUP = 100
 set NNPPMC = 100
 set NNPPRD = 100
-set NNHIUP = 20
-set NNHIMC = 20
+set NNHIUP = 25
+set NNHIMC = 25
 set NNHIRD = 100
 
 set XL1T   = "" # syntax: tag,record[,connect,label]
