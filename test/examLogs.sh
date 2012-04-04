@@ -13,7 +13,7 @@ foreach gtag ( STARTUP DATA )
     set name = ${table}_${gtag}
     echo $name
 
-    foreach task ( ONLINE_HLT RelVal_HLT_RECO RelVal_HLT2 )
+    foreach task ( ONLINE_HLT RelVal_HLT_Reco RelVal_HLT2 )
 
       echo
       echo "Compare  ${base}_${name} to  ${task}_${name}"
