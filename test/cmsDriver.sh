@@ -4,15 +4,19 @@ cmsenv
 
 rehash
 
-# gen sim input for MonteCarlo Simulation tests
-#set InputFileGENSIM = file:/scratch/cms/TTbarGenSim523
-#set InputFileGENSIM = rfio:/castor/cern.ch/user/g/gruen/cms/TTbarGenSim523
-#set InputFileGENSIM = root://castorcms//castor/cern.ch/user/g/gruen/cms/TTbarGenSim523
-set InputGenSimGRun = /RelValProdTTbar/CMSSW_5_2_3-START52_V5-v1/GEN-SIM
-set InputGenSimHIon = /RelValPyquen_ZeemumuJets_pt10_2760GeV/CMSSW_5_2_2-PU_STARTHI52_V4-v1/GEN-SIM
+#
+# old files in castor: rfdir /castor/cern.ch/cms/store/...
+# new files in eos   : cmsLs /store/...
+#
 
-# raw input for Real-Data tests (use same real-data raw file as in confdb.py!)
+#
+# gen sim input files for Monte-Carlo tests
+set InputGenSimGRun = /store/relval/CMSSW_5_2_3/RelValProdTTbar/GEN-SIM/START52_V5-v1/0043/D81488D7-0F7A-E111-8BDE-001A92811726.root
+set InputGenSimHIon = /store/relval/CMSSW_5_2_2/RelValPyquen_ZeemumuJets_pt10_2760GeV/GEN-SIM/PU_STARTHI52_V4-v1/0256/FEC57E54-E775-E111-914C-003048678B20.root
+#
+# lhc raw input files for Real-Data tests
 set InputLHCRawGRun = /store/data/Run2011B/MinimumBias/RAW/v1/000/178/479/3E364D71-F4F5-E011-ABD2-001D09F29146.root
+#et InputLHCRawHIon = /store/hidata/HIRun2011/HIHighPt/RAW/v1/000/182/838/F20AAF66-F71C-E111-9704-BCAEC532971D.root
 set InputLHCRawHIon = /store/data/Run2011B/MinimumBias/RAW/v1/000/178/479/3E364D71-F4F5-E011-ABD2-001D09F29146.root
 
 # global tags to be used for PP and HIon running
@@ -103,22 +107,17 @@ foreach gtag ( STARTUP DATA )
 
     else
 
-    echo
-    echo "Creating TTbarGenToHLT $name"
-    cmsDriver.py TTbar_Tauola_8TeV_cfi --step=GEN,SIM,DIGI,L1,DIGI2RAW,$XHLT       --conditions=$GTAG                                              --custom_conditions=$XL1T  --fileout=RelVal_GenSim_$name.root       --number=$NN $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT'  --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --scenario=$SCEN --python_filename=RelVal_GenSim_$name.py
+#   echo
+#   echo "Creating TTbarGenToHLT $name"
+#   cmsDriver.py TTbar_Tauola_8TeV_cfi --step=GEN,SIM,DIGI,L1,DIGI2RAW,$XHLT       --conditions=$GTAG                                              --custom_conditions=$XL1T  --fileout=RelVal_GenSim_$name.root       --number=$NN $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT'  --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --scenario=$SCEN --python_filename=RelVal_GenSim_$name.py
 
     echo
-    echo "dbs query $name"
-    /bin/rm -f                                                                   RelVal_GenSim_$name.log
-    dbs search --noheader --query "find file where dataset like $InputGenSim" >& RelVal_GenSim_$name.log
-    
-    echo
     echo "Creating DigiL1Raw $name"
-    cmsDriver.py RelVal                --step=DIGI,L1,DIGI2RAW                     --conditions=$GTAG --filein=filelist:RelVal_GenSim_$name.log    --custom_conditions=$XL1T  --fileout=RelVal_DigiL1Raw_$name.root    --number=$NN $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW'      --eventcontent=RAW          --customise=HLTrigger/Configuration/CustomConfigs.L1T     --scenario=$SCEN --python_filename=RelVal_DigiL1Raw_$name.py
+    cmsDriver.py RelVal                --step=DIGI,L1,DIGI2RAW                     --conditions=$GTAG --filein=$InputGenSim                        --custom_conditions=$XL1T  --fileout=RelVal_DigiL1Raw_$name.root    --number=$NN $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW'      --eventcontent=RAW          --customise=HLTrigger/Configuration/CustomConfigs.L1T     --scenario=$SCEN --python_filename=RelVal_DigiL1Raw_$name.py
 
     echo
     echo "Creating DigiL1RawHLT $name"
-    cmsDriver.py RelVal                --step=DIGI,L1,DIGI2RAW,$XHLT               --conditions=$GTAG --filein=filelist:RelVal_GenSim_$name.log    --custom_conditions=$XL1T  --fileout=RelVal_DigiL1RawHLT_$name.root --number=$NN $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT'  --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --scenario=$SCEN --python_filename=RelVal_DigiL1RawHLT_$name.py  --processName=$PNAME
+    cmsDriver.py RelVal                --step=DIGI,L1,DIGI2RAW,$XHLT               --conditions=$GTAG --filein=$InputGenSim                        --custom_conditions=$XL1T  --fileout=RelVal_DigiL1RawHLT_$name.root --number=$NN $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT'  --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --scenario=$SCEN --python_filename=RelVal_DigiL1RawHLT_$name.py  --processName=$PNAME
 
     if ( $table == GRun) then
 
