@@ -16,9 +16,9 @@ set InputGenSimHIon = /store/relval/CMSSW_5_2_2/RelValPyquen_ZeemumuJets_pt10_27
 #
 # lhc raw input files for Real-Data tests
 set InputLHCRawGRun = /store/data/Run2011B/MinimumBias/RAW/v1/000/178/479/3E364D71-F4F5-E011-ABD2-001D09F29146.root
-#et InputLHCRawHIon = /store/hidata/HIRun2011/HIHighPt/RAW/v1/000/182/838/F20AAF66-F71C-E111-9704-BCAEC532971D.root
-set InputLHCRawHIon = /store/data/Run2011B/MinimumBias/RAW/v1/000/178/479/3E364D71-F4F5-E011-ABD2-001D09F29146.root
+set InputLHCRawHIon = /store/hidata/HIRun2011/HIHighPt/RAW/v1/000/182/838/F20AAF66-F71C-E111-9704-BCAEC532971D.root
 
+#
 # global tags to be used for PP and HIon running
 set GTAGPPUP = auto:startup
 set GTAGPPMC = auto:mc
