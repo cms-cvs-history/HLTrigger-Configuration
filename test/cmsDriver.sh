@@ -32,7 +32,7 @@ set NNPPMC = 100
 set NNPPRD = 100
 set NNHIUP = 25
 set NNHIMC = 25
-set NNHIRD = 100
+set NNHIRD = 25
 
 set XL1T   = "" # syntax: tag,record[,connect,label]
 set XL1TPP = "L1GtTriggerMenu_L1Menu_Collisions2012_v0_mc,L1GtTriggerMenuRcd,frontier://FrontierProd/CMS_COND_31X_L1T"
