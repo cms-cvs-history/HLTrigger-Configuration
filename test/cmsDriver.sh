@@ -77,7 +77,7 @@ foreach gtag ( STARTUP DATA )
 
     set name = ${table}_${gtag}  
 
-    if ( ($table == GRun) || ($table == 5E33v4 ) ) then
+    if ( $table != HIon) then
       set XL1T = $XL1TPP
       set XHLT = HLT:GRun
       set GTAG = $GTAGPP
