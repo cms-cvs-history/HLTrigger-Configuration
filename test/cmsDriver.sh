@@ -15,7 +15,7 @@ set InputGenSimGRun = /store/relval/CMSSW_5_2_3/RelValProdTTbar/GEN-SIM/START52_
 set InputGenSimHIon = /store/relval/CMSSW_5_2_2/RelValPyquen_ZeemumuJets_pt10_2760GeV/GEN-SIM/PU_STARTHI52_V4-v1/0256/FEC57E54-E775-E111-914C-003048678B20.root
 #
 # lhc raw input files for Real-Data tests
-set InputLHCRawGRun = /store/data/Run2012A/MinimumBias/RAW/v1/000/191/718/90514D6B-EE89-E111-AC1C-0025B32035BC.root
+set InputLHCRawGRun = /store/data/Run2012A/MuEG/RAW/v1/000/191/718/14932935-E289-E111-830C-5404A6388697.root
 #et InputLHCRawGRun = /store/data/Run2011B/MinimumBias/RAW/v1/000/178/479/3E364D71-F4F5-E011-ABD2-001D09F29146.root
 set InputLHCRawHIon = /store/hidata/HIRun2011/HIHighPt/RAW/v1/000/182/838/F20AAF66-F71C-E111-9704-BCAEC532971D.root
 
