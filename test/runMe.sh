@@ -18,7 +18,7 @@ foreach gtag ( Data Line )
   if ( $GTAG == LINE ) then
     set GTAG = STARTUP
   endif
-  foreach table ( GRun HIon )
+  foreach table ( GRun 5E33v4 HIon )
     set oldfile = On${gtag}_HLT_${table}.py
     set newfile = ONLINE_HLT_${table}_${GTAG}.py
     rm -f $newfile
@@ -58,7 +58,7 @@ pwd
 
 foreach gtag ( STARTUP DATA )
 
-  foreach table ( GRun HIon )
+  foreach table ( GRun 5E33v4 HIon )
 
     if ($gtag == DATA) then
       set base = RelVal_${rawLHC}
@@ -71,7 +71,7 @@ foreach gtag ( STARTUP DATA )
     set base = ( $base ONLINE_HLT RelVal_HLT RelVal_HLT2 )
 
     if ( $gtag == STARTUP ) then
-      if ( $table == GRun) then
+      if ( $table != HIon ) then
         set base = ( $base FastSim_GenToHLT )
       endif
     endif
@@ -124,7 +124,7 @@ end
 
 foreach gtag ( STARTUP DATA )
 
-  foreach table ( GRun HIon )
+  foreach table ( GRun 5E33v4 HIon )
 
     if ($gtag == DATA) then
       set base = ( RelVal_HLT_Reco                     RelVal_RECO )

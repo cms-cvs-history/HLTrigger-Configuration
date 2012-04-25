@@ -73,11 +73,11 @@ foreach gtag ( STARTUP DATA )
     continue
   endif
 
-  foreach table ( GRun HIon )
+  foreach table ( GRun 5E33v4 HIon )
 
     set name = ${table}_${gtag}  
 
-    if ( $table == GRun ) then
+    if ( ($table == GRun) || ($table == 5E33v4 ) ) then
       set XL1T = $XL1TPP
       set XHLT = HLT:GRun
       set GTAG = $GTAGPP
@@ -119,7 +119,7 @@ foreach gtag ( STARTUP DATA )
     echo "Creating DigiL1RawHLT $name"
     cmsDriver.py RelVal                --step=DIGI,L1,DIGI2RAW,$XHLT               --conditions=$GTAG --filein=$InputGenSim                        --custom_conditions=$XL1T  --fileout=RelVal_DigiL1RawHLT_$name.root --number=$NN $DATAMC --no_exec --datatier 'GEN-SIM-DIGI-RAW-HLT'  --eventcontent=FEVTDEBUGHLT --customise=HLTrigger/Configuration/CustomConfigs.L1THLT  --scenario=$SCEN --python_filename=RelVal_DigiL1RawHLT_$name.py  --processName=$PNAME
 
-    if ( $table == GRun) then
+    if ( $table != HIon ) then
 
     echo
     echo "Creating FastSim $name"
