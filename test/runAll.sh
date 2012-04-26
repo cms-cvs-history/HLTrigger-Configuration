@@ -59,7 +59,7 @@ time  ./runOne.sh STARTUP
 
   set N = 0
   cp -f ./runOne.log ./runOne.tmp  
-  cat ./runOne.tmp | grep Finished
+  cat ./runOne.tmp | grep -q Finished
   set F = $?
 
 while ( $F )
@@ -67,7 +67,7 @@ while ( $F )
   set N = `cat ./runOne.tmp | wc -l`
   sleep 13
   cp -f ./runOne.log ./runOne.tmp  
-  cat ./runOne.tmp | grep Finished
+  cat ./runOne.tmp | grep -q Finished
   set F = $?
 end
 
