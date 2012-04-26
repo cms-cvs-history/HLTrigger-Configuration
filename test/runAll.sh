@@ -59,14 +59,16 @@ time  ./runOne.sh STARTUP
 
   set N = 0
   cp -f ./runOne.log ./runOne.tmp  
-  set F = `cat ./runOne.tmp | grep Finished`
+  cat ./runOne.tmp | grep Finished
+  set F = $?
 
-while ( $F != Finished )
+while ( $F )
   awk "{if (NR>$N) {print}}"  ./runOne.tmp
   set N = `cat ./runOne.tmp | wc -l`
   sleep 13
   cp -f ./runOne.log ./runOne.tmp  
-  set F = `cat ./runOne.tmp | grep Finished`
+  cat ./runOne.tmp | grep Finished
+  set F = $?
 end
 
 wait
