@@ -3,9 +3,6 @@
 cmsenv
 rehash
 
-set rawLHC = L1RePack
-set rawSIM = DigiL1Raw
-
 echo
 echo "Existing cfg files:"
 ls -l On*.py
@@ -56,10 +53,14 @@ echo
 echo "Running selected cfg files from:"
 pwd
 
-rm -f                        ./runOne.log 
-time ./runOne.sh DATA     >& ./runOne.log &
-time ./runOne.sh STARTUP
+rm -f                         ./runOne.log 
+time  ./runOne.sh DATA     >& ./runOne.log &
+time  ./runOne.sh STARTUP
 
+cat   ./runOne.log
+
+echo
+echo "Waiting for remaining DATA tests to finish"
 wait
 
 cat   ./runOne.log
@@ -67,4 +68,4 @@ rm -f ./runOne.log
 
 echo
 echo "Resulting log files:"
-ls -lt *.log
+ls -l *.log
