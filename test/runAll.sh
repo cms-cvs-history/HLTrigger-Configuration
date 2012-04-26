@@ -57,14 +57,22 @@ rm -f                         ./runOne.log
 time  ./runOne.sh DATA     >& ./runOne.log &
 time  ./runOne.sh STARTUP
 
-cat   ./runOne.log
+  set N = 0
+  cp -f ./runOne.log ./runOne.tmp  
+  set F = `cat ./runOne.tmp | grep Finished`
 
-echo
-echo "Waiting for remaining DATA tests to finish"
+while ( $F != Finished )
+  awk "{if (NR>$N) {print}}"  ./runOne.tmp
+  set N = `cat ./runOne.tmp | wc -l`
+  sleep 13
+  cp -f ./runOne.log ./runOne.tmp  
+  set F = `cat ./runOne.tmp | grep Finished`
+end
+
 wait
 
-cat   ./runOne.log
-rm -f ./runOne.log
+  awk "{if (NR>$N) {print}}"  ./runOne.log
+  rm -f ./runOne.{log,tmp}
 
 echo
 echo "Resulting log files:"

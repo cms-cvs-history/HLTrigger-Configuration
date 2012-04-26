@@ -7,7 +7,7 @@ set rawLHC = L1RePack
 set rawSIM = DigiL1Raw
 
 echo
-echo $0 $1
+echo Starting $0 $1
 
 foreach gtag ( $1 )
 
@@ -103,4 +103,6 @@ foreach gtag ( $1 )
 
 end
 
+echo
+echo Finished $0 $1
 #
