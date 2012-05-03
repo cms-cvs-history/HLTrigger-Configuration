@@ -78,9 +78,17 @@ foreach gtag ( STARTUP DATA )
 
     set name = ${table}_${gtag}  
 
-    if ( $table != HIon) then
+    if ( $table == GRun ) then
       set XL1T = $XL1TPP
       set XHLT = HLT:GRun
+      set GTAG = $GTAGPP
+      set NN   = $NNPP
+      set SCEN = pp
+      set InputGenSim = $InputGenSimGRun
+      set InputLHCRaw = $InputLHCRawGRun
+    else if ( $table == 5E33v4 ) then
+      set XL1T = $XL1TPP
+      set XHLT = HLT:5E33v4
       set GTAG = $GTAGPP
       set NN   = $NNPP
       set SCEN = pp
