@@ -11,7 +11,7 @@ echo Starting $0 $1
 
 foreach gtag ( $1 )
 
-  foreach table ( GRun 5E33v4 HIon )
+  foreach table ( GRun 5E33v4 7E33v2 HIon )
 
     if ($gtag == DATA) then
       set base = RelVal_${rawLHC}
@@ -79,7 +79,7 @@ endif
 
 foreach gtag ( $1 )
 
-  foreach table ( GRun 5E33v4 HIon )
+  foreach table ( GRun 5E33v4 7E33v2 HIon )
 
     if ($gtag == DATA) then
       set base = ( RelVal_HLT_Reco                     RelVal_RECO )
