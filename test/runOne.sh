@@ -7,11 +7,23 @@ set rawLHC = L1RePack
 set rawSIM = DigiL1Raw
 
 echo
-echo Starting $0 $1
+echo Starting $0 $1 $2
+
+if ( $2 == "" ) then
+  set tables = ( GRun )
+else if ( $2 == ALL ) then
+  set tables = ( GRun 5E33v4 7E33v2 HIon )
+else if ( $2 == BOTH ) then
+  set tables = ( GRun HIon )
+else if ( $2 == FROZEN ) then
+  set tables = ( 5E33v4 7E33v2 )
+else
+  set tables = ( $2 )
+endif
 
 foreach gtag ( $1 )
 
-  foreach table ( GRun 5E33v4 7E33v2 HIon )
+  foreach table ( $tables )
 
     if ($gtag == DATA) then
       set base = RelVal_${rawLHC}
@@ -79,7 +91,7 @@ endif
 
 foreach gtag ( $1 )
 
-  foreach table ( GRun 5E33v4 7E33v2 HIon )
+  foreach table ( $tables )
 
     if ($gtag == DATA) then
       set base = ( RelVal_HLT_Reco                     RelVal_RECO )
@@ -104,5 +116,5 @@ foreach gtag ( $1 )
 end
 
 echo
-echo Finished $0 $1
+echo Finished $0 $1 $2
 #

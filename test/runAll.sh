@@ -53,9 +53,9 @@ echo
 echo "Running selected cfg files from:"
 pwd
 
-rm -f                         ./runOne.log 
-time  ./runOne.sh DATA     >& ./runOne.log &
-time  ./runOne.sh STARTUP
+rm -f                           ./runOne.log 
+time  ./runOne.sh DATA    $1 >& ./runOne.log &
+time  ./runOne.sh STARTUP $1
 
   set N = 0
   cp -f ./runOne.log ./runOne.tmp  
