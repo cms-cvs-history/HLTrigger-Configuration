@@ -43,13 +43,6 @@ echo "./cmsDriver.sh"
 time  ./cmsDriver.sh
 
 echo
-echo "Fixup of RelVal_L1RePack_HIon_DATA.py - should be done via cmsDriver's ConfigBuilder"
-cat >> RelVal_L1RePack_HIon_DATA.py <<EOF
-from PhysicsTools.PatAlgos.tools.helpers import massSearchReplaceAnyInputTag
-massSearchReplaceAnyInputTag(process.SimL1Emulator,"rawDataCollector","rawDataRepacker",False)
-EOF
-
-echo
 echo "Running selected cfg files from:"
 pwd
 
