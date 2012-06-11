@@ -1733,7 +1733,9 @@ process.TrackerDigiGeometryESModule = cms.ESProducer( "TrackerDigiGeometryESModu
   alignmentsLabel = cms.string( "" )
 )
 process.TrackerGeometricDetESModule = cms.ESProducer( "TrackerGeometricDetESModule",
-  fromDDD = cms.bool( False )
+  fromDDD = cms.bool( False ),
+  layerNumberPXB = cms.uint32( 16 ),
+  totalBlade = cms.uint32( 24 )
 )
 process.TransientTrackBuilderESProducer = cms.ESProducer( "TransientTrackBuilderESProducer",
   ComponentName = cms.string( "TransientTrackBuilder" )
@@ -1884,7 +1886,11 @@ process.hcalRecAlgos = cms.ESProducer( "HcalRecAlgoESProducer",
   'HFInTimeWindow',
   'ZDCBit',
   'CalibrationBit',
-  'TimingErrorBit' ),
+  'TimingErrorBit',
+  'HBHEFlatNoise',
+  'HBHESpikeNoise',
+  'HBHETriangleNoise',
+  'HBHETS4TS5Noise' ),
       ChannelStatus = cms.vstring(  ),
       Level = cms.int32( 8 )
     ),
