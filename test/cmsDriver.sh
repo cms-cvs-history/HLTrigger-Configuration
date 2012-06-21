@@ -12,7 +12,7 @@ rehash
 #
 # gen sim input files for Monte-Carlo tests
 set InputGenSimGRun = /store/relval/CMSSW_5_2_3/RelValProdTTbar/GEN-SIM/START52_V5-v1/0043/D81488D7-0F7A-E111-8BDE-001A92811726.root
-set InputGenSimHIon = /store/relval/CMSSW_5_2_2/RelValPyquen_ZeemumuJets_pt10_2760GeV/GEN-SIM/PU_STARTHI52_V4-v1/0256/FEC57E54-E775-E111-914C-003048678B20.root
+set InputGenSimHIon = /store/relval/CMSSW_5_2_5_cand1/RelValPyquen_ZeemumuJets_pt10_2760GeV/GEN-SIM/PU_STARTHI52_V8-v1/0009/343F3DF7-7293-E111-8242-003048D2BBF0.root
 #
 # lhc raw input files for Real-Data tests
 set InputLHCRawGRun = /store/data/Run2012A/MuEG/RAW/v1/000/191/718/14932935-E289-E111-830C-5404A6388697.root
