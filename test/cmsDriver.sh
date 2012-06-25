@@ -43,6 +43,14 @@ set XL1THI = "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2011_v0_mc,L1GtTriggerMe
 
 # specific workflows, first varying the globaltags, then the hlt tables
 
+# Append new JECs (as long as not in GT):
+set XJEC = "JetCorrectorParametersCollection_Jec12_V8_HLT_AK5CaloHLT,JetCorrectionsRecord,sqlite_file:/afs/fnal.gov/files/home/room2/apana/public/HLT/Jec12_V8_HLT.db,AK5CaloHLT+JetCorrectorParametersCollection_Jec12_V8_HLT_AK5PFHLT,JetCorrectionsRecord,sqlite_file:/afs/fnal.gov/files/home/room2/apana/public/HLT/Jec12_V8_HLT.db,AK5PFHLT+JetCorrectorParametersCollection_Jec12_V8_HLT_AK5PFchsHLT,JetCorrectionsRecord,sqlite_file:/afs/fnal.gov/files/home/room2/apana/public/HLT/Jec12_V8_HLT.db,AK5PFchsHLT"
+
+set XL1TPP = ${XL1TPP}+${XJEC}
+echo $XL1TPP
+set XL1THI = ${XL1THI}+${XJEC}
+echo $XL1THI
+
 foreach gtag ( STARTUP DATA )
 #foreach gtag ( DATA STARTUP MC )
   if ( $gtag == DATA ) then
