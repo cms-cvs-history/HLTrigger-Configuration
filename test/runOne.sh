@@ -66,52 +66,17 @@ end
 # special fastsim integration test
 
 if ( $1 == STARTUP ) then
-foreach task ( IntegrationTestWithHLT_cfg )
+  foreach task ( IntegrationTestWithHLT_cfg )
 
-  echo
-  set name = ${task}
-  rm -f $name.{log,root,py}
+    echo
+    set name = ${task}
+    rm -f $name.{log,root}
+    echo "cmsRun $name.py >& $name.log"
+#   ls -l        $name.py
+    time  cmsRun $name.py >& $name.log
+    echo "exit status: $?"
 
-  if ( -f $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py ) then
-    cp         $CMSSW_BASE/src/FastSimulation/Configuration/test/$name.py $name.py
-  else
-    cp $CMSSW_RELEASE_BASE/src/FastSimulation/Configuration/test/$name.py $name.py
-  endif
-
-  cat >> $name.py <<EOF
-
-process.GlobalTag.toGet.append(
-        cms.PSet(
-            record  = cms.string( 'JetCorrectionsRecord' ),
-            tag     = cms.string( 'JetCorrectorParametersCollection_Jec12_V8_HLT_AK5CaloHLT' ),
-            label   = cms.untracked.string( 'AK5CaloHLT' ),
-            connect = cms.untracked.string( 'sqlite_file:/afs/fnal.gov/files/home/room2/apana/public/HLT/Jec12_V8_HLT.db' )
-        )
-)
-process.GlobalTag.toGet.append(
-        cms.PSet(
-            record  = cms.string( 'JetCorrectionsRecord' ),
-            tag     = cms.string( 'JetCorrectorParametersCollection_Jec12_V8_HLT_AK5PFHLT' ),
-            label   = cms.untracked.string( 'AK5PFHLT' ),
-            connect = cms.untracked.string( 'sqlite_file:/afs/fnal.gov/files/home/room2/apana/public/HLT/Jec12_V8_HLT.db' )
-        )
-)
-process.GlobalTag.toGet.append(
-        cms.PSet(
-            record  = cms.string( 'JetCorrectionsRecord' ),
-            tag     = cms.string( 'JetCorrectorParametersCollection_Jec12_V8_HLT_AK5PFchsHLT' ),
-            label   = cms.untracked.string( 'AK5PFchsHLT' ),
-            connect = cms.untracked.string( 'sqlite_file:/afs/fnal.gov/files/home/room2/apana/public/HLT/Jec12_V8_HLT.db' )
-        )
-)
-
-EOF
-  echo "cmsRun $name.py >& $name.log"
-# ls -l        $name.py
-  time  cmsRun $name.py >& $name.log
-  echo "exit status: $?"
-
-end
+  end
 endif
 
 # separate hlt+reco and reco+(validation)+dqm workflows
