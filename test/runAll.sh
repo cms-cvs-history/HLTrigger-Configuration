@@ -58,32 +58,32 @@ foreach task ( IntegrationTestWithHLT_cfg )
   endif
 
   cat >> $name.py <<EOF
-
+# load 5.2.x JECs
 process.GlobalTag.toGet.append(
         cms.PSet(
             record  = cms.string( 'JetCorrectionsRecord' ),
-            tag     = cms.string( 'JetCorrectorParametersCollection_Jec12_V8_HLT_AK5CaloHLT' ),
+            tag     = cms.string( 'JetCorrectorParametersCollection_AK5Calo_2012_V8_hlt_mc' ),
             label   = cms.untracked.string( 'AK5CaloHLT' ),
-            connect = cms.untracked.string( 'sqlite_file:/afs/fnal.gov/files/home/room2/apana/public/HLT/Jec12_V8_HLT.db' )
+            connect = cms.untracked.string( 'frontier://FrontierProd/CMS_COND_31X_PHYSICSTOOLS' )
         )
 )
 process.GlobalTag.toGet.append(
         cms.PSet(
             record  = cms.string( 'JetCorrectionsRecord' ),
-            tag     = cms.string( 'JetCorrectorParametersCollection_Jec12_V8_HLT_AK5PFHLT' ),
+            tag     = cms.string( 'JetCorrectorParametersCollection_AK5PF_2012_V8_hlt_mc' ),
             label   = cms.untracked.string( 'AK5PFHLT' ),
-            connect = cms.untracked.string( 'sqlite_file:/afs/fnal.gov/files/home/room2/apana/public/HLT/Jec12_V8_HLT.db' )
+            connect = cms.untracked.string( 'frontier://FrontierProd/CMS_COND_31X_PHYSICSTOOLS' )
         )
 )
 process.GlobalTag.toGet.append(
         cms.PSet(
             record  = cms.string( 'JetCorrectionsRecord' ),
-            tag     = cms.string( 'JetCorrectorParametersCollection_Jec12_V8_HLT_AK5PFchsHLT' ),
+            tag     = cms.string( 'JetCorrectorParametersCollection_AK5PFchs_2012_V8_hlt_mc' ),
             label   = cms.untracked.string( 'AK5PFchsHLT' ),
-            connect = cms.untracked.string( 'sqlite_file:/afs/fnal.gov/files/home/room2/apana/public/HLT/Jec12_V8_HLT.db' )
+            connect = cms.untracked.string( 'frontier://FrontierProd/CMS_COND_31X_PHYSICSTOOLS' )
         )
 )
-
+#
 EOF
 
 end
