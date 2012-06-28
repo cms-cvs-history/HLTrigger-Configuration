@@ -58,6 +58,16 @@ foreach task ( IntegrationTestWithHLT_cfg )
   endif
 
   cat >> $name.py <<EOF
+#
+# 2012 v2 L1 menu
+process.GlobalTag.toGet.append(
+        cms.PSet(
+            tag=cms.string("L1GtTriggerMenu_L1Menu_Collisions2012_v2_mc"),
+            record=cms.string("L1GtTriggerMenuRcd"),
+            connect=cms.untracked.string("sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/L1Menu_Collisions2012_v2/sqlFile/L1Menu_Collisions2012_v2_mc.db"),
+        )
+)
+#
 # load 5.2.x JECs
 process.GlobalTag.toGet.append(
         cms.PSet(

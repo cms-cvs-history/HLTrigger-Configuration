@@ -35,10 +35,11 @@ set NNHIUP = 25
 set NNHIMC = 25
 set NNHIRD = 25
 
-set XL1T   = "" # syntax: tag,record[,connect,label]
-set XL1TPP = "L1GtTriggerMenu_L1Menu_Collisions2012_v1_mc,L1GtTriggerMenuRcd,frontier://FrontierProd/CMS_COND_31X_L1T"
-#set XL1TPP = "L1GtTriggerMenu_L1Menu_Collisions2012_v1_mc,L1GtTriggerMenuRcd,sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/L1Menu_Collisions2012_v1/sqlFile/L1Menu_Collisions2012_v1_mc.db"
-set XL1THI = "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2011_v0_mc,L1GtTriggerMenuRcd,frontier://FrontierProd/CMS_COND_31X_L1T"
+set XL1T    = "" # syntax: tag,record[,connect,label]
+set XL1TPP1 = "L1GtTriggerMenu_L1Menu_Collisions2012_v1_mc,L1GtTriggerMenuRcd,frontier://FrontierProd/CMS_COND_31X_L1T"
+#et XL1TPP2 = "L1GtTriggerMenu_L1Menu_Collisions2012_v2_mc,L1GtTriggerMenuRcd,frontier://FrontierProd/CMS_COND_31X_L1T"
+set XL1TPP2 = "L1GtTriggerMenu_L1Menu_Collisions2012_v2_mc,L1GtTriggerMenuRcd,sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/L1Menu_Collisions2012_v2/sqlFile/L1Menu_Collisions2012_v2_mc.db"
+set XL1THI  = "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2011_v0_mc,L1GtTriggerMenuRcd,frontier://FrontierProd/CMS_COND_31X_L1T"
 #set XL1THI = "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2011_v0_mc,L1GtTriggerMenuRcd,sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/L1Menu_CollisionsHeavyIons2011_v0/sqlFile/L1Menu_CollisionsHeavyIons2011_v0_mc.db"
 
 # specific workflows, first varying the globaltags, then the hlt tables
@@ -46,10 +47,9 @@ set XL1THI = "L1GtTriggerMenu_L1Menu_CollisionsHeavyIons2011_v0_mc,L1GtTriggerMe
 # Append new JECs (as long as not in GT):
 set XJEC = "JetCorrectorParametersCollection_AK5Calo_2012_V8_hlt_mc,JetCorrectionsRecord,frontier://FrontierProd/CMS_COND_31X_PHYSICSTOOLS,AK5CaloHLT+JetCorrectorParametersCollection_AK5PF_2012_V8_hlt_mc,JetCorrectionsRecord,frontier://FrontierProd/CMS_COND_31X_PHYSICSTOOLS,AK5PFHLT+JetCorrectorParametersCollection_AK5PFchs_2012_V8_hlt_mc,JetCorrectionsRecord,frontier://FrontierProd/CMS_COND_31X_PHYSICSTOOLS,AK5PFchsHLT"
 
-set XL1TPP = ${XL1TPP}+${XJEC}
-echo $XL1TPP
-set XL1THI = ${XL1THI}+${XJEC}
-echo $XL1THI
+set XL1TPP1 = ${XL1TPP1}+${XJEC}
+set XL1TPP2 = ${XL1TPP2}+${XJEC}
+set XL1THI  = ${XL1THI}+${XJEC}
 
 foreach gtag ( STARTUP DATA )
 #foreach gtag ( DATA STARTUP MC )
@@ -87,7 +87,7 @@ foreach gtag ( STARTUP DATA )
     set name = ${table}_${gtag}  
 
     if ( $table == GRun ) then
-      set XL1T = $XL1TPP
+      set XL1T = $XL1TPP2
       set XHLT = HLT:GRun
       set GTAG = $GTAGPP
       set NN   = $NNPP
@@ -95,7 +95,7 @@ foreach gtag ( STARTUP DATA )
       set InputGenSim = $InputGenSimGRun
       set InputLHCRaw = $InputLHCRawGRun
     else if ( $table == 5E33v4 ) then
-      set XL1T = $XL1TPP
+      set XL1T = $XL1TPP1
       set XHLT = HLT:5E33v4
       set GTAG = $GTAGPP
       set NN   = $NNPP
@@ -103,7 +103,7 @@ foreach gtag ( STARTUP DATA )
       set InputGenSim = $InputGenSimGRun
       set InputLHCRaw = $InputLHCRawGRun
     else if ( $table == 7E33v2 ) then
-      set XL1T = $XL1TPP
+      set XL1T = $XL1TPP1
       set XHLT = HLT:7E33v2
       set GTAG = $GTAGPP
       set NN   = $NNPP
