@@ -22,12 +22,12 @@ foreach gtag ( Data Line )
     cp $oldfile $newfile
     cat >> $newfile <<EOF
 #
-    if not ('HLTAnalyzerEndpath' in process.__dict__) :
-        from HLTrigger.Configuration.HLT_FULL_cff import hltL1GtTrigReport,hltTrigReport
-        process.hltL1GtTrigReport = hltL1GtTrigReport
-        process.hltTrigReport = hltTrigReport
-        process.hltTrigReport.HLTriggerResults = cms.InputTag( 'TriggerResults','',process.name_() )
-        process.HLTAnalyzerEndpath = cms.EndPath(process.hltL1GtTrigReport + process.hltTrigReport)
+if not ('HLTAnalyzerEndpath' in process.__dict__) :
+    from HLTrigger.Configuration.HLT_FULL_cff import hltL1GtTrigReport,hltTrigReport
+    process.hltL1GtTrigReport = hltL1GtTrigReport
+    process.hltTrigReport = hltTrigReport
+    process.hltTrigReport.HLTriggerResults = cms.InputTag( 'TriggerResults','',process.name_() )
+    process.HLTAnalyzerEndpath = cms.EndPath(process.hltL1GtTrigReport + process.hltTrigReport)
 #
 EOF
   end
