@@ -69,14 +69,14 @@ process.GlobalTag.toGet.append(
 )
 #
 # load 5.2.x JECs
-process.GlobalTag.toGet.append(
-        cms.PSet(
-            record  = cms.string( 'JetCorrectionsRecord' ),
-            tag     = cms.string( 'JetCorrectorParametersCollection_AK5Calo_2012_V8_hlt_mc' ),
-            label   = cms.untracked.string( 'AK5CaloHLT' ),
-            connect = cms.untracked.string( 'frontier://FrontierProd/CMS_COND_31X_PHYSICSTOOLS' )
-        )
-)
+#process.GlobalTag.toGet.append(
+#        cms.PSet(
+#            record  = cms.string( 'JetCorrectionsRecord' ),
+#            tag     = cms.string( 'JetCorrectorParametersCollection_AK5Calo_2012_V8_hlt_mc' ),
+#            label   = cms.untracked.string( 'AK5CaloHLT' ),
+#            connect = cms.untracked.string( 'frontier://FrontierProd/CMS_COND_31X_PHYSICSTOOLS' )
+#        )
+#)
 process.GlobalTag.toGet.append(
         cms.PSet(
             record  = cms.string( 'JetCorrectionsRecord' ),
