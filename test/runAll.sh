@@ -59,40 +59,8 @@ foreach task ( IntegrationTestWithHLT_cfg )
 
   cat >> $name.py <<EOF
 #
-# 2012 v2 L1 menu
-process.GlobalTag.toGet.append(
-        cms.PSet(
-            tag=cms.string("L1GtTriggerMenu_L1Menu_Collisions2012_v2_mc"),
-            record=cms.string("L1GtTriggerMenuRcd"),
-            connect=cms.untracked.string("sqlite_file:/afs/cern.ch/user/g/ghete/public/L1Menu/L1Menu_Collisions2012_v2/sqlFile/L1Menu_Collisions2012_v2_mc.db"),
-        )
-)
-#
-# load 5.2.x JECs
-#process.GlobalTag.toGet.append(
-#        cms.PSet(
-#            record  = cms.string( 'JetCorrectionsRecord' ),
-#            tag     = cms.string( 'JetCorrectorParametersCollection_AK5Calo_2012_V8_hlt_mc' ),
-#            label   = cms.untracked.string( 'AK5CaloHLT' ),
-#            connect = cms.untracked.string( 'frontier://FrontierProd/CMS_COND_31X_PHYSICSTOOLS' )
-#        )
-#)
-process.GlobalTag.toGet.append(
-        cms.PSet(
-            record  = cms.string( 'JetCorrectionsRecord' ),
-            tag     = cms.string( 'JetCorrectorParametersCollection_AK5PF_2012_V8_hlt_mc' ),
-            label   = cms.untracked.string( 'AK5PFHLT' ),
-            connect = cms.untracked.string( 'frontier://FrontierProd/CMS_COND_31X_PHYSICSTOOLS' )
-        )
-)
-process.GlobalTag.toGet.append(
-        cms.PSet(
-            record  = cms.string( 'JetCorrectionsRecord' ),
-            tag     = cms.string( 'JetCorrectorParametersCollection_AK5PFchs_2012_V8_hlt_mc' ),
-            label   = cms.untracked.string( 'AK5PFchsHLT' ),
-            connect = cms.untracked.string( 'frontier://FrontierProd/CMS_COND_31X_PHYSICSTOOLS' )
-        )
-)
+from HLTrigger.Configuration.AutoCondGlobalTag import AutoCondGlobalTag
+process.Globaltag = AutoCondGlobalTag(process.GlobalTag,'auto:startup_GRun')
 #
 EOF
 
