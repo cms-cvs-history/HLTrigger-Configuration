@@ -60,7 +60,7 @@ foreach task ( IntegrationTestWithHLT_cfg )
   cat >> $name.py <<EOF
 #
 from HLTrigger.Configuration.AutoCondGlobalTag import AutoCondGlobalTag
-process.Globaltag = AutoCondGlobalTag(process.GlobalTag,'auto:startup_GRun')
+process.GlobalTag = AutoCondGlobalTag(process.GlobalTag,'auto:startup_GRun')
 #
 EOF
 
