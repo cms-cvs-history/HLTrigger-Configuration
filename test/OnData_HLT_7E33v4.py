@@ -42172,39 +42172,39 @@ import os
 cmsswVersion = os.environ['CMSSW_VERSION']
 
 # override the process name
-process.setName_('HLTGRun')
+process.setName_('HLT7E33v4')
 
 # adapt HLT modules to the correct process name
 if 'hltTrigReport' in process.__dict__:
-    process.hltTrigReport.HLTriggerResults                    = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
+    process.hltTrigReport.HLTriggerResults                    = cms.InputTag( 'TriggerResults', '', 'HLT7E33v4' )
 
 if 'hltPreExpressCosmicsOutputSmart' in process.__dict__:
-    process.hltPreExpressCosmicsOutputSmart.TriggerResultsTag = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
+    process.hltPreExpressCosmicsOutputSmart.TriggerResultsTag = cms.InputTag( 'TriggerResults', '', 'HLT7E33v4' )
 
 if 'hltPreExpressOutputSmart' in process.__dict__:
-    process.hltPreExpressOutputSmart.TriggerResultsTag        = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
+    process.hltPreExpressOutputSmart.TriggerResultsTag        = cms.InputTag( 'TriggerResults', '', 'HLT7E33v4' )
 
 if 'hltPreDQMForHIOutputSmart' in process.__dict__:
-    process.hltPreDQMForHIOutputSmart.TriggerResultsTag       = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
+    process.hltPreDQMForHIOutputSmart.TriggerResultsTag       = cms.InputTag( 'TriggerResults', '', 'HLT7E33v4' )
 
 if 'hltPreDQMForPPOutputSmart' in process.__dict__:
-    process.hltPreDQMForPPOutputSmart.TriggerResultsTag       = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
+    process.hltPreDQMForPPOutputSmart.TriggerResultsTag       = cms.InputTag( 'TriggerResults', '', 'HLT7E33v4' )
 
 if 'hltPreHLTDQMResultsOutputSmart' in process.__dict__:
-    process.hltPreHLTDQMResultsOutputSmart.TriggerResultsTag  = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
+    process.hltPreHLTDQMResultsOutputSmart.TriggerResultsTag  = cms.InputTag( 'TriggerResults', '', 'HLT7E33v4' )
 
 if 'hltPreHLTDQMOutputSmart' in process.__dict__:
-    process.hltPreHLTDQMOutputSmart.TriggerResultsTag         = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
+    process.hltPreHLTDQMOutputSmart.TriggerResultsTag         = cms.InputTag( 'TriggerResults', '', 'HLT7E33v4' )
 
 if 'hltPreHLTMONOutputSmart' in process.__dict__:
-    process.hltPreHLTMONOutputSmart.TriggerResultsTag         = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
+    process.hltPreHLTMONOutputSmart.TriggerResultsTag         = cms.InputTag( 'TriggerResults', '', 'HLT7E33v4' )
 
 if 'hltDQMHLTScalers' in process.__dict__:
-    process.hltDQMHLTScalers.triggerResults                   = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
-    process.hltDQMHLTScalers.processname                      = 'HLTGRun'
+    process.hltDQMHLTScalers.triggerResults                   = cms.InputTag( 'TriggerResults', '', 'HLT7E33v4' )
+    process.hltDQMHLTScalers.processname                      = 'HLT7E33v4'
 
 if 'hltDQML1SeedLogicScalers' in process.__dict__:
-    process.hltDQML1SeedLogicScalers.processname              = 'HLTGRun'
+    process.hltDQML1SeedLogicScalers.processname              = 'HLT7E33v4'
 
 # limit the number of events to be processed
 process.maxEvents = cms.untracked.PSet(
@@ -42222,7 +42222,7 @@ if 'GlobalTag' in process.__dict__:
     process.GlobalTag.pfnPrefix = cms.untracked.string('frontier://FrontierProd/')
 #
     from HLTrigger.Configuration.AutoCondGlobalTag import AutoCondGlobalTag
-    process.GlobalTag = AutoCondGlobalTag(process.GlobalTag,'auto:hltonline_GRun')
+    process.GlobalTag = AutoCondGlobalTag(process.GlobalTag,'auto:hltonline_7E33v4')
 
 # override the L1 menu
 if 'GlobalTag' in process.__dict__:
