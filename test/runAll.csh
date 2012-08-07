@@ -39,14 +39,13 @@ ls -l ON*.py
 
 echo
 echo "Creating offline cfg files with cmsDriver"
-echo "./cmsDriver.sh"
-time  ./cmsDriver.sh
+echo "./cmsDriver.csh"
+time  ./cmsDriver.csh
 
 echo
 echo "Creating special FastSim IntegrationTestWithHLT:"
 
 foreach task ( IntegrationTestWithHLT_cfg )
-
   echo
   set name = ${task}
   rm -f $name.py
@@ -56,14 +55,6 @@ foreach task ( IntegrationTestWithHLT_cfg )
   else
     cp $CMSSW_RELEASE_BASE/src/FastSimulation/Configuration/test/$name.py $name.py
   endif
-
-  cat >> $name.py <<EOF
-#
-from HLTrigger.Configuration.AutoCondGlobalTag import AutoCondGlobalTag
-process.GlobalTag = AutoCondGlobalTag(process.GlobalTag,'auto:startup_GRun')
-#
-EOF
-
 end
 
 echo
@@ -71,8 +62,8 @@ echo "Running selected cfg files from:"
 pwd
 
 rm -f                           ./runOne.log 
-time  ./runOne.sh DATA    $1 >& ./runOne.log &
-time  ./runOne.sh STARTUP $1
+time ./runOne.csh DATA    $1 >& ./runOne.log &
+time ./runOne.csh STARTUP $1
 
   set N = 0
   cp -f ./runOne.log ./runOne.tmp  
