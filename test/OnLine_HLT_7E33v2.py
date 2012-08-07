@@ -1,11 +1,11 @@
-# /online/collisions/2012/7e33/v2.2/HLT/V6 (CMSSW_5_2_5_HLT5)
+# /online/collisions/2012/7e33/v2.2/HLT/V7 (CMSSW_5_2_5_HLT5)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/online/collisions/2012/7e33/v2.2/HLT/V6')
+  tableName = cms.string('/online/collisions/2012/7e33/v2.2/HLT/V7')
 )
 
 process.streams = cms.PSet( 
@@ -1755,9 +1755,7 @@ process.TrackerDigiGeometryESModule = cms.ESProducer( "TrackerDigiGeometryESModu
   alignmentsLabel = cms.string( "" )
 )
 process.TrackerGeometricDetESModule = cms.ESProducer( "TrackerGeometricDetESModule",
-  fromDDD = cms.bool( False ),
-  layerNumberPXB = cms.uint32( 16 ),
-  totalBlade = cms.uint32( 24 )
+  fromDDD = cms.bool( False )
 )
 process.TransientTrackBuilderESProducer = cms.ESProducer( "TransientTrackBuilderESProducer",
   ComponentName = cms.string( "TransientTrackBuilder" )
@@ -42601,6 +42599,10 @@ process.source = cms.Source( "PoolSource",
 if 'hltHfreco' in process.__dict__:
     process.hltHfreco.setNoiseFlags = cms.bool( True )
 
+# customise the HLT menu for running on MC
+from HLTrigger.Configuration.customizeHLTforMC import customizeHLTforMC
+process = customizeHLTforMC(process)
+
 # remove the HLT prescales
 if 'PrescaleService' in process.__dict__:
     process.PrescaleService.lvl1DefaultLabel = cms.string( '0' )
@@ -42660,19 +42662,8 @@ process.options = cms.untracked.PSet(
 if 'GlobalTag' in process.__dict__:
     process.GlobalTag.connect   = 'frontier://FrontierProd/CMS_COND_31X_GLOBALTAG'
     process.GlobalTag.pfnPrefix = cms.untracked.string('frontier://FrontierProd/')
-    from Configuration.AlCa.autoCond import autoCond
-    process.GlobalTag.globaltag = autoCond['startup_7E33v2'][0].split(',')[0]
-
-# override the L1 menu
-if 'GlobalTag' in process.__dict__:
-    process.GlobalTag.toGet.append(
-        cms.PSet(
-            record  = cms.string( 'L1GtTriggerMenuRcd' ),
-            tag     = cms.string( 'L1GtTriggerMenu_L1Menu_Collisions2012_v0_mc' ),
-            label   = cms.untracked.string( '' ),
-            connect = cms.untracked.string( 'frontier://FrontierProd/CMS_COND_31X_L1T' )
-        )
-    )
+    from Configuration.AlCa.GlobalTag import GlobalTag as customiseGlobalTag
+    process.GlobalTag = customiseGlobalTag(process.GlobalTag,'auto:startup_7E33v2')
 
 if 'MessageLogger' in process.__dict__:
     process.MessageLogger.categories.append('TriggerSummaryProducerAOD')
