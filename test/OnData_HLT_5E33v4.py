@@ -42619,7 +42619,7 @@ process.source = cms.Source( "PoolSource",
     )
 )
 
-# En-able HF Noise filters in GRun menu
+# Enable HF Noise filters in GRun menu
 if 'hltHfreco' in process.__dict__:
     process.hltHfreco.setNoiseFlags = cms.bool( True )
 
