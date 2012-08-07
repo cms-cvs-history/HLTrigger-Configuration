@@ -1,11 +1,11 @@
-# /online/collisions/2012/7e33/v4.0/HLT/V8 (CMSSW_5_2_6_HLT1)
+# /online/collisions/2012/7e33/v4.1/HLT/V2 (CMSSW_5_2_6_HLT2)
 
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "HLT" )
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/online/collisions/2012/7e33/v4.0/HLT/V8')
+  tableName = cms.string('/online/collisions/2012/7e33/v4.1/HLT/V2')
 )
 
 process.streams = cms.PSet( 
@@ -1527,9 +1527,6 @@ process.HcalGeometryFromDBEP = cms.ESProducer( "HcalGeometryFromDBEP",
   applyAlignment = cms.bool( False )
 )
 process.HcalTopologyIdealEP = cms.ESProducer( "HcalTopologyIdealEP" )
-process.L1GtTriggerMaskAlgoTrigTrivialProducer = cms.ESProducer( "L1GtTriggerMaskAlgoTrigTrivialProducer",
-  TriggerMask = cms.vuint32( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
-)
 process.MaterialPropagator = cms.ESProducer( "PropagatorWithMaterialESProducer",
   PropagationDirection = cms.string( "alongMomentum" ),
   ComponentName = cms.string( "PropagatorWithMaterial" ),
@@ -4112,6 +4109,7 @@ process.FastTimerService = cms.Service( "FastTimerService",
     dqmPath = cms.untracked.string( "HLT/TimerService" ),
     skipFirstPath = cms.untracked.bool( False ),
     dqmModuleTimeRange = cms.untracked.double( 40.0 ),
+    enableDQMbyPathCounters = cms.untracked.bool( False ),
     enableDQMbyLumi = cms.untracked.bool( False ),
     dqmTimeResolution = cms.untracked.double( 5.0 ),
     enableTimingPaths = cms.untracked.bool( True ),
@@ -4121,9 +4119,13 @@ process.FastTimerService = cms.Service( "FastTimerService",
     enableTimingModules = cms.untracked.bool( True ),
     dqmPathTimeRange = cms.untracked.double( 100.0 ),
     enableDQM = cms.untracked.bool( True ),
+    enableDQMbyPathDetails = cms.untracked.bool( False ),
     dqmTimeRange = cms.untracked.double( 1000.0 ),
+    enableDQMbyPathOverhead = cms.untracked.bool( False ),
     enableDQMbyModule = cms.untracked.bool( False ),
-    enableTimingSummary = cms.untracked.bool( True )
+    enableDQMbyPathActive = cms.untracked.bool( False ),
+    enableTimingSummary = cms.untracked.bool( False ),
+    enableDQMbyPathTotal = cms.untracked.bool( True )
 )
 process.DQM = cms.Service( "DQM",
     publishFrequency = cms.untracked.double( 5.0 ),
@@ -4209,7 +4211,11 @@ process.MessageLogger = cms.Service( "MessageLogger",
       'hltL3MuonsIOHit',
       'hltPixelTracks',
       'hltSiPixelDigis',
-      'hltL3MuonsOIHit' ),
+      'hltL3MuonsOIHit',
+      'hltL1SeededElectronGsfTracks',
+      'hltL1SeededStartUpElectronPixelSeeds',
+      'hltBLifetimeRegionalCtfWithMaterialTracksbbPhiL1FastJetFastPV',
+      'hltCtfActivityWithMaterialTracks' ),
     errors = cms.untracked.PSet( 
       threshold = cms.untracked.string( "INFO" ),
       placeholder = cms.untracked.bool( True ),
@@ -4951,7 +4957,7 @@ process.PrescaleService = cms.Service( "PrescaleService",
         prescales = cms.vuint32( 40, 40, 40, 40, 320, 800, 30, 30, 0, 0, 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_Ele8_CaloIdT_TrkIdVL_EG7_v2" ),
-        prescales = cms.vuint32( 40, 40, 40, 40, 40, 800, 30, 30, 0, 0, 0 )
+        prescales = cms.vuint32( 40, 40, 40, 40, 400, 800, 30, 30, 0, 0, 0 )
       ),
       cms.PSet(  pathName = cms.string( "HLT_Ele8_CaloIdT_TrkIdVL_Jet30_v7" ),
         prescales = cms.vuint32( 1, 1, 1, 1, 1, 15, 100, 300, 0, 0, 0 )
@@ -42148,7 +42154,7 @@ process.TrackerCalibrationOutput = cms.EndPath( process.hltPreTrackerCalibration
 
 process.source = cms.Source( "PoolSource",
     fileNames = cms.untracked.vstring(
-        'file:RelVal_Raw_7E33v4_DATA.root',
+        'file:RelVal_Raw_GRun_DATA.root',
     ),
     secondaryFileNames = cms.untracked.vstring(
     ),
@@ -42172,39 +42178,39 @@ import os
 cmsswVersion = os.environ['CMSSW_VERSION']
 
 # override the process name
-process.setName_('HLT7E33v4')
+process.setName_('HLTGRun')
 
 # adapt HLT modules to the correct process name
 if 'hltTrigReport' in process.__dict__:
-    process.hltTrigReport.HLTriggerResults                    = cms.InputTag( 'TriggerResults', '', 'HLT7E33v4' )
+    process.hltTrigReport.HLTriggerResults                    = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
 
 if 'hltPreExpressCosmicsOutputSmart' in process.__dict__:
-    process.hltPreExpressCosmicsOutputSmart.TriggerResultsTag = cms.InputTag( 'TriggerResults', '', 'HLT7E33v4' )
+    process.hltPreExpressCosmicsOutputSmart.TriggerResultsTag = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
 
 if 'hltPreExpressOutputSmart' in process.__dict__:
-    process.hltPreExpressOutputSmart.TriggerResultsTag        = cms.InputTag( 'TriggerResults', '', 'HLT7E33v4' )
+    process.hltPreExpressOutputSmart.TriggerResultsTag        = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
 
 if 'hltPreDQMForHIOutputSmart' in process.__dict__:
-    process.hltPreDQMForHIOutputSmart.TriggerResultsTag       = cms.InputTag( 'TriggerResults', '', 'HLT7E33v4' )
+    process.hltPreDQMForHIOutputSmart.TriggerResultsTag       = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
 
 if 'hltPreDQMForPPOutputSmart' in process.__dict__:
-    process.hltPreDQMForPPOutputSmart.TriggerResultsTag       = cms.InputTag( 'TriggerResults', '', 'HLT7E33v4' )
+    process.hltPreDQMForPPOutputSmart.TriggerResultsTag       = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
 
 if 'hltPreHLTDQMResultsOutputSmart' in process.__dict__:
-    process.hltPreHLTDQMResultsOutputSmart.TriggerResultsTag  = cms.InputTag( 'TriggerResults', '', 'HLT7E33v4' )
+    process.hltPreHLTDQMResultsOutputSmart.TriggerResultsTag  = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
 
 if 'hltPreHLTDQMOutputSmart' in process.__dict__:
-    process.hltPreHLTDQMOutputSmart.TriggerResultsTag         = cms.InputTag( 'TriggerResults', '', 'HLT7E33v4' )
+    process.hltPreHLTDQMOutputSmart.TriggerResultsTag         = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
 
 if 'hltPreHLTMONOutputSmart' in process.__dict__:
-    process.hltPreHLTMONOutputSmart.TriggerResultsTag         = cms.InputTag( 'TriggerResults', '', 'HLT7E33v4' )
+    process.hltPreHLTMONOutputSmart.TriggerResultsTag         = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
 
 if 'hltDQMHLTScalers' in process.__dict__:
-    process.hltDQMHLTScalers.triggerResults                   = cms.InputTag( 'TriggerResults', '', 'HLT7E33v4' )
-    process.hltDQMHLTScalers.processname                      = 'HLT7E33v4'
+    process.hltDQMHLTScalers.triggerResults                   = cms.InputTag( 'TriggerResults', '', 'HLTGRun' )
+    process.hltDQMHLTScalers.processname                      = 'HLTGRun'
 
 if 'hltDQML1SeedLogicScalers' in process.__dict__:
-    process.hltDQML1SeedLogicScalers.processname              = 'HLT7E33v4'
+    process.hltDQML1SeedLogicScalers.processname              = 'HLTGRun'
 
 # limit the number of events to be processed
 process.maxEvents = cms.untracked.PSet(
@@ -42222,7 +42228,7 @@ if 'GlobalTag' in process.__dict__:
     process.GlobalTag.pfnPrefix = cms.untracked.string('frontier://FrontierProd/')
 #
     from HLTrigger.Configuration.AutoCondGlobalTag import AutoCondGlobalTag
-    process.GlobalTag = AutoCondGlobalTag(process.GlobalTag,'auto:hltonline_7E33v4')
+    process.GlobalTag = AutoCondGlobalTag(process.GlobalTag,'auto:hltonline_GRun')
 
 # override the L1 menu
 if 'GlobalTag' in process.__dict__:
