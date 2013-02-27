@@ -31456,8 +31456,15 @@ if cmsswVersion.startswith('CMSSW_5_2_'):
 # customization for CMSSW_5_3_X
 if cmsswVersion.startswith('CMSSW_5_3_'):
 
-    # do not override the calo jet energy corrections in 5.3.x for consistency with the current MC samples
-    pass
+    # force the use of the correct calo jet energy corrections
+    if 'hltESPL1FastJetCorrectionESProducer' in locals():
+        hltESPL1FastJetCorrectionESProducer.algorithm  = "AK5CaloHLT"
+
+    if 'hltESPL2RelativeCorrectionESProducer' in locals():
+        hltESPL2RelativeCorrectionESProducer.algorithm = "AK5CaloHLT"
+
+    if 'hltESPL3AbsoluteCorrectionESProducer' in locals():
+        hltESPL3AbsoluteCorrectionESProducer.algorithm = "AK5CaloHLT"
 
 
 # customization for CMSSW_6_1_X and 6_2_X
