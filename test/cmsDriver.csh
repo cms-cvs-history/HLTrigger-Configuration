@@ -11,9 +11,9 @@ rehash
 
 #
 # gen sim input files for Monte-Carlo tests
-set InputGenSimGRun = /store/relval/CMSSW_5_2_3/RelValProdTTbar/GEN-SIM/START52_V5-v1/0043/D81488D7-0F7A-E111-8BDE-001A92811726.root
+set InputGenSimGRun = /store/relval/CMSSW_5_2_7-START52_V10/RelValProdTTbar/GEN-SIM/v1/00000/1E51943C-5306-E211-A13F-0018F3D096A2.root
 set InputGenSimHIon = /store/relval/CMSSW_5_2_7/RelValPyquen_ZeemumuJets_pt10_2760GeV/GEN-SIM/PU_STARTHI52_V9-v1/0004/52203A21-3708-E211-A85A-003048D2C16E.root
-set InputGenSimPIon = /store/relval/CMSSW_5_2_3/RelValProdTTbar/GEN-SIM/START52_V5-v1/0043/D81488D7-0F7A-E111-8BDE-001A92811726.root
+set InputGenSimPIon = /store/relval/CMSSW_5_2_7-START52_V10/RelValProdTTbar/GEN-SIM/v1/00000/1E51943C-5306-E211-A13F-0018F3D096A2.root
 #
 # lhc raw input files for Real-Data tests
 set InputLHCRawGRun = /store/data/Run2012A/MuEG/RAW/v1/000/191/718/14932935-E289-E111-830C-5404A6388697.root
@@ -88,7 +88,7 @@ foreach gtag ( STARTUP DATA )
     continue
   endif
 
-  foreach table ( GRun PIon 5E33v4 7E33v2 7E33v3 7E33v4 8E33v2 HIon )
+  foreach table ( GRun PIon 8E33v2 HIon )
 
     set name = ${table}_${gtag}  
 
@@ -96,38 +96,6 @@ foreach gtag ( STARTUP DATA )
       set XL1T = $XL1TPP3
       set XHLT = HLT:GRun
       set GTAG = ${GTAGPP}_GRun
-      set NN   = $NNPP
-      set SCEN = pp
-      set InputGenSim = $InputGenSimGRun
-      set InputLHCRaw = $InputLHCRawGRun
-    else if ( $table == 5E33v4 ) then
-      set XL1T = $XL1TPP1
-      set XHLT = HLT:5E33v4
-      set GTAG = ${GTAGPP}_5E33v4
-      set NN   = $NNPP
-      set SCEN = pp
-      set InputGenSim = $InputGenSimGRun
-      set InputLHCRaw = $InputLHCRawGRun
-    else if ( $table == 7E33v2 ) then
-      set XL1T = $XL1TPP1
-      set XHLT = HLT:7E33v2
-      set GTAG = ${GTAGPP}_7E33v2
-      set NN   = $NNPP
-      set SCEN = pp
-      set InputGenSim = $InputGenSimGRun
-      set InputLHCRaw = $InputLHCRawGRun
-    else if ( $table == 7E33v3 ) then
-      set XL1T = $XL1TPP2
-      set XHLT = HLT:7E33v3
-      set GTAG = ${GTAGPP}_7E33v3
-      set NN   = $NNPP
-      set SCEN = pp
-      set InputGenSim = $InputGenSimGRun
-      set InputLHCRaw = $InputLHCRawGRun
-    else if ( $table == 7E33v4 ) then
-      set XL1T = $XL1TPP2
-      set XHLT = HLT:7E33v4
-      set GTAG = ${GTAGPP}_7E33v4
       set NN   = $NNPP
       set SCEN = pp
       set InputGenSim = $InputGenSimGRun
