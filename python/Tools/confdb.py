@@ -1169,7 +1169,6 @@ if 'GlobalTag' in %%(dict)s:
       self.options['modules'].append( "-hltPFJetCkfTrackCandidates" )
       self.options['modules'].append( "-hltPFJetCtfWithMaterialTracks" )
       self.options['modules'].append( "-hltPFlowTrackSelectionHighPurity" )
-
       # === hltFastJet
       self.options['modules'].append( "-hltDisplacedHT250L1FastJetRegionalPixelSeedGenerator" )
       self.options['modules'].append( "-hltDisplacedHT250L1FastJetRegionalCkfTrackCandidates" )
