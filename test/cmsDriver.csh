@@ -38,6 +38,7 @@ set NNHIMC = 25
 set NNHIRD = 25
 
 set XL1T    = "" # syntax: tag,record[,connect,label]
+set XL1TPP0 = "" # "L1GtTriggerMenu_L1Menu_Collisions2011_v6_mc,L1GtTriggerMenuRcd,frontier://FrontierProd/CMS_COND_31X_L1T"
 set XL1TPP1 = "" # "L1GtTriggerMenu_L1Menu_Collisions2012_v1_mc,L1GtTriggerMenuRcd,frontier://FrontierProd/CMS_COND_31X_L1T"
 set XL1TPP2 = "" # "L1GtTriggerMenu_L1Menu_Collisions2012_v2_mc,L1GtTriggerMenuRcd,frontier://FrontierProd/CMS_COND_31X_L1T"
 set XL1TPP3 = "" # "L1GtTriggerMenu_L1Menu_Collisions2012_v3_mc,L1GtTriggerMenuRcd,frontier://FrontierProd/CMS_COND_31X_L1T"
@@ -88,7 +89,7 @@ foreach gtag ( STARTUP DATA )
     continue
   endif
 
-  foreach table ( GRun PIon 5E33v4 7E33v2 7E33v3 7E33v4 8E33v2 HIon )
+  foreach table ( GRun 2011 5E33v4 7E33v2 7E33v3 7E33v4 8E33v2 HIon PIon )
 
     set name = ${table}_${gtag}  
 
@@ -96,6 +97,14 @@ foreach gtag ( STARTUP DATA )
       set XL1T = $XL1TPP3
       set XHLT = HLT:GRun
       set GTAG = ${GTAGPP}_GRun
+      set NN   = $NNPP
+      set SCEN = pp
+      set InputGenSim = $InputGenSimGRun
+      set InputLHCRaw = $InputLHCRawGRun
+    else if ( $table == 2011 ) then
+      set XL1T = $XL1TPP0
+      set XHLT = HLT:2011
+      set GTAG = ${GTAGPP}_2011
       set NN   = $NNPP
       set SCEN = pp
       set InputGenSim = $InputGenSimGRun
