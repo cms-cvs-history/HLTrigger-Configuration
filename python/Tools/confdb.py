@@ -1171,7 +1171,7 @@ if 'GlobalTag' in %%(dict)s:
       self.options['modules'].append( "-hltPFlowTrackSelectionHighPurity" )
 
       # === hltFastJet
-      if self.config.type not in ('2011', ):
+      if self.config.type == '2011':
         self.options['modules'].append( "-hltDisplacedHT250L1FastJetRegionalPixelSeedGenerator" )
         self.options['modules'].append( "-hltDisplacedHT250L1FastJetRegionalCkfTrackCandidates" )
         self.options['modules'].append( "-hltDisplacedHT250L1FastJetRegionalCtfWithMaterialTracks" )     
@@ -1192,7 +1192,7 @@ if 'GlobalTag' in %%(dict)s:
         self.options['modules'].append( "-hltBLifetimeDiBTagIP3D1stTrkRegionalCtfWithMaterialTracksJet20HbbL1FastJet" )
 
       # === hltBLifetimeRegional
-      if self.config.type in ('2011', ):
+      if self.config.type != '2011':
         self.options['modules'].append( "-hltBLifetimeRegionalPixelSeedGeneratorSingleTop" )
         self.options['modules'].append( "-hltBLifetimeRegionalCtfWithMaterialTracksSingleTop" )
         self.options['modules'].append( "-hltBLifetimeRegionalCkfTrackCandidatesSingleTop" )
