@@ -3,6 +3,7 @@
 import sys
 import re
 import os
+import urllib, urllib2
 from pipe import pipe as _pipe
 from options import globalTag
 from itertools import islice
@@ -129,33 +130,41 @@ class HLTProcess(object):
     self.customize()
 
 
-  def _build_query(self):
-    if self.config.menu.run:
-      return '--runNumber %s' % self.config.menu.run
-    else:
-      return '--%s --configName %s' % (self.config.menu.db, self.config.menu.name)
-
-  def _build_options(self):
-    return ' '.join(['--%s %s' % (key, ','.join(vals)) for key, vals in self.options.iteritems() if vals])
-
-  def _build_cmdline(self):
-    if not self.config.fragment:
-      return 'edmConfigFromDB       %s --noedsources %s' % (self._build_query(), self._build_options())
-    else:
-      return 'edmConfigFromDB --cff %s --noedsources %s' % (self._build_query(), self._build_options())
-
-
   def getRawConfigurationFromDB(self):
-    cmdline = self._build_cmdline()
-    data = _pipe(cmdline)
+    url = 'http://j2eeps.cern.ch/cms-project-confdb-hltdev/get.jsp'
+    postdata = dict([ (key, ','.join(vals)) for key, vals in self.options.iteritems() if vals ])
+    postdata['noedsources'] = ''
+    if self.config.fragment:
+      postdata['cff'] = ''
+    if self.config.menu.run:
+      postdata['runNumber'] = self.config.menu.run
+    else:
+      postdata['dbName']    = self.config.menu.db
+      postdata['configName']= self.config.menu.name
+
+    data = urllib2.urlopen(url, urllib.urlencode(postdata)).read()
     if 'Exhausted Resultset' in data or 'CONFIG_NOT_FOUND' in data:
       raise ImportError('%s is not a valid HLT menu' % self.config.menuConfig.value)
     self.data = data
 
 
   def getPathList(self):
-    cmdline = 'edmConfigFromDB --cff %s --noedsources --noes --noservices --nosequences --nomodules' % self._build_query()
-    data = _pipe(cmdline)
+    url = 'http://j2eeps.cern.ch/cms-project-confdb-hltdev/get.jsp'
+    postdata = { 
+      'noedsources': '', 
+      'noes':        '',
+      'noservices':  '',
+      'nosequences': '',
+      'nomodules' :  '',
+      'cff':         '',
+    }
+    if self.config.menu.run:
+      postdata['runNumber'] = self.config.menu.run
+    else:
+      postdata['dbName']    = self.config.menu.db
+      postdata['configName']= self.config.menu.name
+
+    data = urllib2.urlopen(url, urllib.urlencode(postdata)).read()
     if 'Exhausted Resultset' in data or 'CONFIG_NOT_FOUND' in data:
       raise ImportError('%s is not a valid HLT menu' % self.config.menuConfig.value)
     filter = re.compile(r' *= *cms.(End)?Path.*')
@@ -1195,24 +1204,24 @@ if 'GlobalTag' in %%(dict)s:
       # === hltBLifetimeRegional
 
       # 2011 start
-#      self.options['modules'].append( "-hltBLifetimeRegionalPixelSeedGeneratorSingleTop" )
-#      self.options['modules'].append( "-hltBLifetimeRegionalCtfWithMaterialTracksSingleTop" )
-#      self.options['modules'].append( "-hltBLifetimeRegionalCkfTrackCandidatesSingleTop" )
-#      self.options['modules'].append( "-hltBLifetimeRegionalPixelSeedGeneratorEleJetSingleTop" )
-#      self.options['modules'].append( "-hltBLifetimeRegionalCkfTrackCandidatesEleJetSingleTop" )
-#      self.options['modules'].append( "-hltBLifetimeRegionalCtfWithMaterialTracksEleJetSingleTop" )
-#      self.options['modules'].append( "-hltBLifetimeRegionalPixelSeedGeneratorIsoEleJetSingleTop" )
-#      self.options['modules'].append( "-hltBLifetimeRegionalCkfTrackCandidatesIsoEleJetSingleTop" )
-#      self.options['modules'].append( "-hltBLifetimeRegionalCtfWithMaterialTracksIsoEleJetSingleTop" )
-#      self.options['modules'].append( "-hltBLifetimeRegionalPixelSeedGeneratorRA2b" )
-#      self.options['modules'].append( "-hltBLifetimeRegionalCkfTrackCandidatesRA2b" )
-#      self.options['modules'].append( "-hltBLifetimeRegionalCtfWithMaterialTracksRA2b" )
-#      self.options['modules'].append( "-hltBLifetimeRegionalPixelSeedGeneratorRAzr" )
-#      self.options['modules'].append( "-hltBLifetimeRegionalCkfTrackCandidatesRAzr" )
-#      self.options['modules'].append( "-hltBLifetimeRegionalCtfWithMaterialTracksRAzr" )
-#      self.options['modules'].append( "-hltBLifetimeRegionalPixelSeedGeneratorGammaB" )
-#      self.options['modules'].append( "-hltBLifetimeRegionalCkfTrackCandidatesGammaB" )
-#      self.options['modules'].append( "-hltBLifetimeRegionalCtfWithMaterialTracksGammaB" )
+      self.options['modules'].append( "-hltBLifetimeRegionalPixelSeedGeneratorSingleTop" )
+      self.options['modules'].append( "-hltBLifetimeRegionalCtfWithMaterialTracksSingleTop" )
+      self.options['modules'].append( "-hltBLifetimeRegionalCkfTrackCandidatesSingleTop" )
+      self.options['modules'].append( "-hltBLifetimeRegionalPixelSeedGeneratorEleJetSingleTop" )
+      self.options['modules'].append( "-hltBLifetimeRegionalCkfTrackCandidatesEleJetSingleTop" )
+      self.options['modules'].append( "-hltBLifetimeRegionalCtfWithMaterialTracksEleJetSingleTop" )
+      self.options['modules'].append( "-hltBLifetimeRegionalPixelSeedGeneratorIsoEleJetSingleTop" )
+      self.options['modules'].append( "-hltBLifetimeRegionalCkfTrackCandidatesIsoEleJetSingleTop" )
+      self.options['modules'].append( "-hltBLifetimeRegionalCtfWithMaterialTracksIsoEleJetSingleTop" )
+      self.options['modules'].append( "-hltBLifetimeRegionalPixelSeedGeneratorRA2b" )
+      self.options['modules'].append( "-hltBLifetimeRegionalCkfTrackCandidatesRA2b" )
+      self.options['modules'].append( "-hltBLifetimeRegionalCtfWithMaterialTracksRA2b" )
+      self.options['modules'].append( "-hltBLifetimeRegionalPixelSeedGeneratorRAzr" )
+      self.options['modules'].append( "-hltBLifetimeRegionalCkfTrackCandidatesRAzr" )
+      self.options['modules'].append( "-hltBLifetimeRegionalCtfWithMaterialTracksRAzr" )
+      self.options['modules'].append( "-hltBLifetimeRegionalPixelSeedGeneratorGammaB" )
+      self.options['modules'].append( "-hltBLifetimeRegionalCkfTrackCandidatesGammaB" )
+      self.options['modules'].append( "-hltBLifetimeRegionalCtfWithMaterialTracksGammaB" )
       # 2011 stop
                                                                                          
       self.options['modules'].append( "-hltBLifetimeRegionalPixelSeedGeneratorHbb" )
