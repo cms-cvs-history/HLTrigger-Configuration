@@ -609,8 +609,6 @@ if 'PrescaleService' in %(dict)s:
     text = """
 # override the GlobalTag, connection string and pfnPrefix
 if 'GlobalTag' in %(dict)s:
-    %(process)sGlobalTag.connect   = '%(connect)s/CMS_COND_31X_GLOBALTAG'
-    %(process)sGlobalTag.pfnPrefix = cms.untracked.string('%(connect)s/')
 """
 
     # when running on MC, override the global tag even if not specified on the command line
@@ -640,6 +638,11 @@ if 'GlobalTag' in %(dict)s:
         text += ", conditions = %s" % repr(self.config.l1cond)
       text += ")\n"
 
+    text += """    %(process)sGlobalTag.connect   = '%(connect)s/CMS_COND_31X_GLOBALTAG'
+    %(process)sGlobalTag.pfnPrefix = cms.untracked.string('%(connect)s/')
+    for pset in process.GlobalTag.toGet.value():
+        pset.connect = pset.connect.value().replace('frontier://FrontierProd/', '%(connect)s/')
+"""
     self.data += text
 
   def overrideL1MenuXml(self):
